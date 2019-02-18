@@ -4,53 +4,52 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-AddressBook - Level 4 was developed by the https://se-edu.github.io/docs/Team.html[se-edu] team. +
-_{The dummy content given below serves as a placeholder to be used by future forks of the project.}_ +
-{empty} +
+PocketProject was developed by the https://se-edu.github.io/docs/Team.html[W10-2] team. +
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
 == Project Team
 
-=== John Doe
-image::damithc.jpg[width="150", align="left"]
-{empty}[http://www.comp.nus.edu.sg/~damithch[homepage]] [https://github.com/damithc[github]] [<<johndoe#, portfolio>>]
+=== DARYL IGNATIUS TAN BOON YANG
+image::ditan96.jpg[width="150", align="left"]
+{empty}[https://github.com/ditan96[github]] [<<ditan96#, portfolio>>]
 
-Role: Project Advisor
-
-'''
-
-=== John Roe
-image::lejolly.jpg[width="150", align="left"]
-{empty}[http://github.com/lejolly[github]] [<<johndoe#, portfolio>>]
-
-Role: Team Lead +
-Responsibilities: UI
+Role:
+Responsibilities:
 
 '''
 
-=== Johnny Doe
-image::yijinl.jpg[width="150", align="left"]
-{empty}[http://github.com/yijinl[github]] [<<johndoe#, portfolio>>]
+=== GAN MING RUI JEFF
+image::jeffgan96.jpg[width="150", align="left"]
+{empty}[http://github.com/jeffgan96[github]] [<<jeffgan96#, portfolio>>]
 
-Role: Developer +
-Responsibilities: Data
-
-'''
-
-=== Johnny Roe
-image::m133225.jpg[width="150", align="left"]
-{empty}[http://github.com/m133225[github]] [<<johndoe#, portfolio>>]
-
-Role: Developer +
-Responsibilities: Dev Ops + Threading
+Role:
+Responsibilities:
 
 '''
 
-=== Benson Meier
-image::yl_coder.jpg[width="150", align="left"]
-{empty}[http://github.com/yl-coder[github]] [<<johndoe#, portfolio>>]
+=== LIN DEHUI
+image::dehui333.jpg[width="150", align="left"]
+{empty}[http://github.com/dehui333[github]] [<<dehui333#, portfolio>>]
 
-Role: Developer +
-Responsibilities: UI
+Role:
+Responsibilities:
+
+'''
+
+=== MANICKAMALAR JOTHINANDAN PILLAY
+image::jothipillay.jpg[width="150", align="left"]
+{empty}[http://github.com/jothipillay[github]] [<<jothipillay#, portfolio>>]
+
+Role:
+Responsibilities:
+
+'''
+
+=== SHUNE LEI YEE TUN
+image::shunnizuka.jpg[width="150", align="left"]
+{empty}[http://github.com/shunnizuka[github]] [<<shunnizuka#, portfolio>>]
+
+Role:
+Responsibilities:
 
 '''
