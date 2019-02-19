@@ -13,12 +13,18 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-* This is a desktop Address Book application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
-* It is a Java sample application intended for students learning Software Engineering while using Java as the main programming language.
-* It is *written in OOP fashion*. It provides a *reasonably well-written* code example that is *significantly bigger* (around 6 KLoC)than what students usually write in beginner-level SE modules.
-* What's different from https://github.com/se-edu/addressbook-level3[level 3]:
-** A more sophisticated GUI that includes a list  panel and an in-built Browser.
-** More test cases, including automated GUI testing.
+* PocketProject (Project Manager)
+
+* This is a desktop Project Manager application. Most of the user interactions happen using a CLI (Command Line Interface) and there is
+* also a GUI to support the system. It is an application using Java as the main programming language. 
+
+* It is intended for managers are in charge of many projects and who have a large number of employees assigned to each project at any 
+* given time. It helps managers to effectively manage any of their projects by being able to view employees assigned to the projects, 
+* skils required for the project, budget and timeline for the project among other things. 
+
+* It is written in OOP fashion and has a sophisticated GUI with an in-built brower. There are also automated test cases already in-built
+* using both automated GUI testing and JUnit Tests.
+
 ** Support for _Build Automation_ using Gradle and for _Continuous Integration_ using Travis CI.
 
 == Site Map
@@ -28,6 +34,10 @@ endif::[]
 * <<LearningOutcomes#, Learning Outcomes>>
 * <<AboutUs#, About Us>>
 * <<ContactUs#, Contact Us>>
+
+== Authors
+
+Daryl Tan, Lin Dehui, Jeff Gan, Jothinandan Pillay, Shune Lei
 
 == Acknowledgements
 
