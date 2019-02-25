@@ -811,13 +811,13 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of employees and software engineering projects
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*: manage employees and projects faster than a typical mouse/GUI driven app
 
 [appendix]
 == User Stories
@@ -827,17 +827,17 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|`* * *` |Software engineering project manager |Be able to add/delete projects in the app |Keep track of any new projects and remove unnecessary entries
 
-|`* * *` |user |add a new person |
+|`* * *` |Software engineering project manager |See all the current ongoing projects listed by priority |Keep track of which projects require immediate attention
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |Software engineering project manager |Find all employees that have a certain skill |Assign the right people with the required skills to the right projects
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |Software engineering project manager |Add/delete skills from employees |Update the skills possessed by employees as and when required
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* *` |Software engineering project manager |See total number of projects listed as completed and ongoing|Keep track of how many projects have been successfully completed and the number of ongoing projects at a glance
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* *` |Software engineering project manager |See a recommended list of employees based on the skill requirement of a project|Easily assign employees with the required skills to the project
 |=======================================================================
 
 _{More to be added}_
@@ -890,8 +890,6 @@ _{More to be added}_
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
 
-[[private-contact-detail]] Private contact detail::
-A contact detail that is not meant to be shared with others
 
 [appendix]
 == Product Survey
