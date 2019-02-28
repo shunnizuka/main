@@ -35,7 +35,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: repeat previous find command where person list is displaying the persons we are finding
+        /* Case: repeat previous find command where employee list is displaying the persons we are finding
          * -> 2 persons found
          */
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE + " " + KEYWORD_MATCHING_MEIER;
@@ -81,7 +81,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
 
-        /* Case: find same persons in address book after deleting 1 of them -> 1 person found */
+        /* Case: find same persons in address book after deleting 1 of them -> 1 employee found */
         executeCommand(DeleteCommand.COMMAND_WORD + " 1");
         assertFalse(getModel().getAddressBook().getPersonList().contains(BENSON));
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE + " " + KEYWORD_MATCHING_MEIER;
@@ -144,7 +144,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
 
-        /* Case: find person in empty address book -> 0 persons found */
+        /* Case: find employee in empty address book -> 0 persons found */
         deleteAllPersons();
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE + " " + KEYWORD_MATCHING_MEIER;
         expectedModel = getModel();
