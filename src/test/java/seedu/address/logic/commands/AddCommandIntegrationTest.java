@@ -43,7 +43,7 @@ public class AddCommandIntegrationTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Employee employeeInList = model.getAddressBook().getPersonList().get(0);
         assertCommandFailure(new AddCommand(employeeInList), model, commandHistory,
-                AddCommand.MESSAGE_DUPLICATE_PERSON);
+                AddCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
 }

@@ -36,31 +36,31 @@ public class AddCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullEmployee_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         new AddCommand(null);
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_employeeAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         Employee validEmployee = new EmployeeBuilder().build();
 
         CommandResult commandResult = new AddCommand(validEmployee).execute(modelStub, commandHistory);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEmployee), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validEmployee), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validEmployee), modelStub.employeesAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() throws Exception {
+    public void execute_duplicateEmployee_throwsCommandException() throws Exception {
         Employee validEmployee = new EmployeeBuilder().build();
         AddCommand addCommand = new AddCommand(validEmployee);
-        ModelStub modelStub = new ModelStubWithPerson(validEmployee);
+        ModelStub modelStub = new ModelStubWithEmployee(validEmployee);
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_PERSON);
+        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_EMPLOYEE);
         addCommand.execute(modelStub, commandHistory);
     }
 
@@ -206,10 +206,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single employee.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithEmployee extends ModelStub {
         private final Employee employee;
 
-        ModelStubWithPerson(Employee employee) {
+        ModelStubWithEmployee(Employee employee) {
             requireNonNull(employee);
             this.employee = employee;
         }
@@ -224,19 +224,19 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the employee being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Employee> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingEmployeeAdded extends ModelStub {
+        final ArrayList<Employee> employeesAdded = new ArrayList<>();
 
         @Override
         public boolean hasEmployee(Employee employee) {
             requireNonNull(employee);
-            return personsAdded.stream().anyMatch(employee::isSameEmployee);
+            return employeesAdded.stream().anyMatch(employee::isSameEmployee);
         }
 
         @Override
         public void addEmployee(Employee employee) {
             requireNonNull(employee);
-            personsAdded.add(employee);
+            employeesAdded.add(employee);
         }
 
         @Override
