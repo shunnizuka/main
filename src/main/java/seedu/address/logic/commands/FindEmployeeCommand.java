@@ -12,8 +12,13 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Keyword matching is case insensitive.
  */
 public class FindEmployeeCommand extends Command {
-
+    
     public static final String COMMAND_WORD = "find";
+    public static final String TYPE = "employee";
+    
+    //will shift these to the new classes later
+    public static final String FINDPROJECTTYPE = "project";
+    public static final String FINDSKILLTYPE = "skill";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain "
             + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
