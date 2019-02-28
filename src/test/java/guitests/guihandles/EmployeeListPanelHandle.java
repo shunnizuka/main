@@ -9,26 +9,26 @@ import javafx.scene.control.ListView;
 import seedu.address.model.employee.Employee;
 
 /**
- * Provides a handle for {@code PersonListPanel} containing the list of {@code PersonCard}.
+ * Provides a handle for {@code EmployeeListPanel} containing the list of {@code EmployeeCard}.
  */
-public class PersonListPanelHandle extends NodeHandle<ListView<Employee>> {
-    public static final String PERSON_LIST_VIEW_ID = "#personListView";
+public class EmployeeListPanelHandle extends NodeHandle<ListView<Employee>> {
+    public static final String EMPLOYEE_LIST_VIEW_ID = "#employeeListView";
 
     private static final String CARD_PANE_ID = "#cardPane";
 
-    private Optional<Employee> lastRememberedSelectedPersonCard;
+    private Optional<Employee> lastRememberedSelectedEmployeeCard;
 
-    public PersonListPanelHandle(ListView<Employee> personListPanelNode) {
-        super(personListPanelNode);
+    public EmployeeListPanelHandle(ListView<Employee> employeeListPanelNode) {
+        super(employeeListPanelNode);
     }
 
     /**
-     * Returns a handle to the selected {@code PersonCardHandle}.
+     * Returns a handle to the selected {@code EmployeeCardHandle}.
      * A maximum of 1 item can be selected at any time.
      * @throws AssertionError if no card is selected, or more than 1 card is selected.
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
-    public PersonCardHandle getHandleToSelectedCard() {
+    public EmployeeCardHandle getHandleToSelectedCard() {
         List<Employee> selectedEmployeeList = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedEmployeeList.size() != 1) {
@@ -36,7 +36,7 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Employee>> {
         }
 
         return getAllCardNodes().stream()
-                .map(PersonCardHandle::new)
+                .map(EmployeeCardHandle::new)
                 .filter(handle -> handle.equals(selectedEmployeeList.get(0)))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
@@ -91,7 +91,7 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Employee>> {
     }
 
     /**
-     * Selects the {@code PersonCard} at {@code index} in the list.
+     * Selects the {@code EmployeeCard} at {@code index} in the list.
      */
     public void select(int index) {
         getRootNode().getSelectionModel().select(index);
@@ -101,15 +101,15 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Employee>> {
      * Returns the employee card handle of a employee associated with the {@code index} in the list.
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
-    public PersonCardHandle getPersonCardHandle(int index) {
+    public EmployeeCardHandle getEmployeeCardHandle(int index) {
         return getAllCardNodes().stream()
-                .map(PersonCardHandle::new)
-                .filter(handle -> handle.equals(getPerson(index)))
+                .map(EmployeeCardHandle::new)
+                .filter(handle -> handle.equals(getEmployee(index)))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
     }
 
-    private Employee getPerson(int index) {
+    private Employee getEmployee(int index) {
         return getRootNode().getItems().get(index);
     }
 
@@ -123,30 +123,30 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Employee>> {
     }
 
     /**
-     * Remembers the selected {@code PersonCard} in the list.
+     * Remembers the selected {@code EmployeeCard} in the list.
      */
-    public void rememberSelectedPersonCard() {
+    public void rememberSelectedEmployeeCard() {
         List<Employee> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedItems.size() == 0) {
-            lastRememberedSelectedPersonCard = Optional.empty();
+            lastRememberedSelectedEmployeeCard = Optional.empty();
         } else {
-            lastRememberedSelectedPersonCard = Optional.of(selectedItems.get(0));
+            lastRememberedSelectedEmployeeCard = Optional.of(selectedItems.get(0));
         }
     }
 
     /**
-     * Returns true if the selected {@code PersonCard} is different from the value remembered by the most recent
-     * {@code rememberSelectedPersonCard()} call.
+     * Returns true if the selected {@code EmployeeCard} is different from the value remembered by the most recent
+     * {@code rememberSelectedEmployeeCard()} call.
      */
-    public boolean isSelectedPersonCardChanged() {
+    public boolean isSelectedEmployeeCardChanged() {
         List<Employee> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedItems.size() == 0) {
-            return lastRememberedSelectedPersonCard.isPresent();
+            return lastRememberedSelectedEmployeeCard.isPresent();
         } else {
-            return !lastRememberedSelectedPersonCard.isPresent()
-                    || !lastRememberedSelectedPersonCard.get().equals(selectedItems.get(0));
+            return !lastRememberedSelectedEmployeeCard.isPresent()
+                    || !lastRememberedSelectedEmployeeCard.get().equals(selectedItems.get(0));
         }
     }
 
