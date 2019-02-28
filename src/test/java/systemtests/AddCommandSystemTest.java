@@ -54,7 +54,8 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
-        /* Case: add a employee without tags to a non-empty address book, command with leading spaces and trailing spaces
+        /* Case: add a employee without tags to a non-empty address book, command with leading spaces and trailing 
+         * spaces
          * -> added
          */
         Employee toAdd = AMY;
@@ -105,7 +106,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         showPersonsWithName(KEYWORD_MATCHING_MEIER);
         assertCommandSuccess(IDA);
 
-        /* ------------------------ Perform add operation while a employee card is selected --------------------------- */
+        /* ------------------------ Perform add operation while a employee card is selected ------------------------- */
 
         /* Case: selects first card in the employee list, add a employee -> added, card selection remains unchanged */
         selectPerson(Index.fromOneBased(1));

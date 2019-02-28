@@ -19,8 +19,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.NameContainsKeywordsPredicate;
 import seedu.address.model.employee.exceptions.PersonNotFoundException;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.PersonBuilder;

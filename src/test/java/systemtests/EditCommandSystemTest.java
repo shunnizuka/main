@@ -41,8 +41,8 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -125,10 +125,10 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
                 Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
-        /* --------------------- Performing edit operation while a employee card is selected -------------------------- */
+        /* --------------------- Performing edit operation while a employee card is selected ----------------------- */
 
-        /* Case: selects first card in the employee list, edit a employee -> edited, card selection remains unchanged but
-         * browser url changes
+        /* Case: selects first card in the employee list, edit a employee -> edited, card selection remains unchanged
+         * but browser url changes
          */
         showAllPersons();
         index = INDEX_FIRST_PERSON;
@@ -191,22 +191,26 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: edit a employee with new values same as another employee's values but with different tags -> rejected */
+        /* Case: edit a employee with new values same as another employee's values but with different tags -> rejected*/
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: edit a employee with new values same as another employee's values but with different address -> rejected */
+        /* Case: edit an employee with new values same as another employee's values but with different address ->
+         * rejected
+         */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: edit a employee with new values same as another employee's values but with different phone -> rejected */
+        /* Case: edit a employee with new values same as another employee's values but with different phone -> rejected
+         */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
-        /* Case: edit a employee with new values same as another employee's values but with different email -> rejected */
+        /* Case: edit a employee with new values same as another employee's values but with different email -> rejected
+         */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
