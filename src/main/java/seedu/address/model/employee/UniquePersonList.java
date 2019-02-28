@@ -13,8 +13,8 @@ import seedu.address.model.employee.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A employee is considered unique by comparing using {@code Employee#isSamePerson(Employee)}. As such, adding and 
- * updating of persons uses Employee#isSamePerson(Employee) for equality so as to ensure that the employee being added 
+ * A employee is considered unique by comparing using {@code Employee#isSamePerson(Employee)}. As such, adding and
+ * updating of persons uses Employee#isSamePerson(Employee) for equality so as to ensure that the employee being added
  * or updated is unique in terms of identity in the UniquePersonList. However, the removal of a employee uses
  * Employee#equals(Object) so as to ensure that the employee with exactly the same fields will be removed.
  *

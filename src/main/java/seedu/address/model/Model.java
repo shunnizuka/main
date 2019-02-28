@@ -73,7 +73,7 @@ public interface Model {
     /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
      * {@code target} must exist in the address book.
-     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the address 
+     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the address
 	 * book.
      */
     void setPerson(Employee target, Employee editedEmployee);
