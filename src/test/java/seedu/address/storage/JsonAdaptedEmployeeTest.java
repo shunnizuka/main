@@ -33,7 +33,7 @@ public class JsonAdaptedEmployeeTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validEmployeeDetails_returnsPerson() throws Exception {
+    public void toModelType_validEmployeeDetails_returnsEmployee() throws Exception {
         JsonAdaptedEmployee employee = new JsonAdaptedEmployee(BENSON);
         assertEquals(BENSON, employee.toModelType());
     }

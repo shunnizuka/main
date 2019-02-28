@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
 import static seedu.address.testutil.TypicalEmployees.BOB;
@@ -86,24 +86,24 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasEmployee_nullEmployee_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         modelManager.hasEmployee(null);
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasEmployee_employeeNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasEmployee_employeeInAddressBook_returnsTrue() {
         modelManager.addEmployee(ALICE);
         assertTrue(modelManager.hasEmployee(ALICE));
     }
 
     @Test
-    public void deletePerson_personIsSelectedAndFirstPersonInFilteredPersonList_selectionCleared() {
+    public void deleteEmployee_employeeIsSelectedAndFirstEmployeeInFilteredEmployeeList_selectionCleared() {
         modelManager.addEmployee(ALICE);
         modelManager.setSelectedEmployee(ALICE);
         modelManager.deleteEmployee(ALICE);
@@ -111,7 +111,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void deletePerson_personIsSelectedAndSecondPersonInFilteredPersonList_firstPersonSelected() {
+    public void deleteEmployee_employeeIsSelectedAndSecondEmployeeInFilteredEmployeeList_firstEmployeeSelected() {
         modelManager.addEmployee(ALICE);
         modelManager.addEmployee(BOB);
         assertEquals(Arrays.asList(ALICE, BOB), modelManager.getFilteredEmployeeList());
@@ -121,7 +121,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setPerson_personIsSelected_selectedPersonUpdated() {
+    public void setEmployee_employeeIsSelected_selectedEmployeeUpdated() {
         modelManager.addEmployee(ALICE);
         modelManager.setSelectedEmployee(ALICE);
         Employee updatedAlice = new EmployeeBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
@@ -130,19 +130,19 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredEmployeeList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
         modelManager.getFilteredEmployeeList().remove(0);
     }
 
     @Test
-    public void setSelectedPerson_personNotInFilteredPersonList_throwsPersonNotFoundException() {
+    public void setSelectedEmployee_employeeNotInFilteredEmployeeList_throwsEmployeeNotFoundException() {
         thrown.expect(EmployeeNotFoundException.class);
         modelManager.setSelectedEmployee(ALICE);
     }
 
     @Test
-    public void setSelectedPerson_personInFilteredPersonList_setsSelectedPerson() {
+    public void setSelectedEmployee_employeeInFilteredEmployeeList_setsSelectedEmployee() {
         modelManager.addEmployee(ALICE);
         assertEquals(Collections.singletonList(ALICE), modelManager.getFilteredEmployeeList());
         modelManager.setSelectedEmployee(ALICE);
@@ -151,7 +151,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withEmployee(ALICE).withEmployee(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -178,7 +178,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

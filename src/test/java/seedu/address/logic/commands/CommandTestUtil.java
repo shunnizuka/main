@@ -131,7 +131,7 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the employee at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showEmployeeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEmployeeList().size());
 
         Employee employee = model.getFilteredEmployeeList().get(targetIndex.getZeroBased());
@@ -144,7 +144,7 @@ public class CommandTestUtil {
     /**
      * Deletes the first employee in {@code model}'s filtered list from {@code model}'s address book.
      */
-    public static void deleteFirstPerson(Model model) {
+    public static void deleteFirstEmployee(Model model) {
         Employee firstEmployee = model.getFilteredEmployeeList().get(0);
         model.deleteEmployee(firstEmployee);
         model.commitAddressBook();

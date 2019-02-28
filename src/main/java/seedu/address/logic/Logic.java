@@ -32,7 +32,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Employee> getFilteredPersonList();
+    ObservableList<Employee> getFilteredEmployeeList();
 
     /**
      * Returns an unmodifiable view of the list of commands entered by the user.
