@@ -73,7 +73,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         /* Case: redo editing the last employee in the list -> last employee edited again */
         command = RedoCommand.COMMAND_WORD;
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
-        model.setPerson(getModel().getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedEmployee);
+        model.setEmployee(getModel().getFilteredEmployeeList().get(INDEX_FIRST_PERSON.getZeroBased()), editedEmployee);
         assertCommandSuccess(command, model, expectedResultMessage);
 
         /* Case: edit a employee with new values same as existing values -> edited */
@@ -84,7 +84,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         /* Case: edit a employee with new values same as another employee's values but with different name -> edited */
         assertTrue(getModel().getAddressBook().getPersonList().contains(BOB));
         index = INDEX_SECOND_PERSON;
-        assertNotEquals(getModel().getFilteredPersonList().get(index.getZeroBased()), BOB);
+        assertNotEquals(getModel().getFilteredEmployeeList().get(index.getZeroBased()), BOB);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         editedEmployee = new EmployeeBuilder(BOB).withName(VALID_NAME_AMY).build();
@@ -102,7 +102,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         /* Case: clear tags -> cleared */
         index = INDEX_FIRST_PERSON;
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + PREFIX_TAG.getPrefix();
-        Employee employeeToEdit = getModel().getFilteredPersonList().get(index.getZeroBased());
+        Employee employeeToEdit = getModel().getFilteredEmployeeList().get(index.getZeroBased());
         editedEmployee = new EmployeeBuilder(employeeToEdit).withTags().build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -111,9 +111,9 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         /* Case: filtered employee list, edit index within bounds of address book and employee list -> edited */
         showPersonsWithName(KEYWORD_MATCHING_MEIER);
         index = INDEX_FIRST_PERSON;
-        assertTrue(index.getZeroBased() < getModel().getFilteredPersonList().size());
+        assertTrue(index.getZeroBased() < getModel().getFilteredEmployeeList().size());
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + NAME_DESC_BOB;
-        employeeToEdit = getModel().getFilteredPersonList().get(index.getZeroBased());
+        employeeToEdit = getModel().getFilteredEmployeeList().get(index.getZeroBased());
         editedEmployee = new EmployeeBuilder(employeeToEdit).withName(VALID_NAME_BOB).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -150,7 +150,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
-        invalidIndex = getModel().getFilteredPersonList().size() + 1;
+        invalidIndex = getModel().getFilteredEmployeeList().size() + 1;
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
                 Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
@@ -186,7 +186,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         executeCommand(EmployeeUtil.getAddCommand(BOB));
         assertTrue(getModel().getAddressBook().getPersonList().contains(BOB));
         index = INDEX_FIRST_PERSON;
-        assertFalse(getModel().getFilteredPersonList().get(index.getZeroBased()).equals(BOB));
+        assertFalse(getModel().getFilteredEmployeeList().get(index.getZeroBased()).equals(BOB));
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
@@ -237,8 +237,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
     private void assertCommandSuccess(String command, Index toEdit, Employee editedEmployee,
             Index expectedSelectedCardIndex) {
         Model expectedModel = getModel();
-        expectedModel.setPerson(expectedModel.getFilteredPersonList().get(toEdit.getZeroBased()), editedEmployee);
-        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.setEmployee(expectedModel.getFilteredEmployeeList().get(toEdit.getZeroBased()), editedEmployee);
+        expectedModel.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(command, expectedModel,
                 String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedEmployee), expectedSelectedCardIndex);
@@ -269,7 +269,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
             Index expectedSelectedCardIndex) {
         executeCommand(command);
-        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_PERSONS);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
         assertCommandBoxShowsDefaultStyle();
         if (expectedSelectedCardIndex != null) {

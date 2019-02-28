@@ -32,7 +32,7 @@ public class AddCommandIntegrationTest {
         Employee validEmployee = new EmployeeBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validEmployee);
+        expectedModel.addEmployee(validEmployee);
         expectedModel.commitAddressBook();
 
         assertCommandSuccess(new AddCommand(validEmployee), model, commandHistory,

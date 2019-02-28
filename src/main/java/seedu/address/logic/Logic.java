@@ -59,14 +59,14 @@ public interface Logic {
      * Selected employee in the filtered employee list.
      * null if no employee is selected.
      *
-     * @see seedu.address.model.Model#selectedPersonProperty()
+     * @see seedu.address.model.Model#selectedEmployeeProperty()
      */
     ReadOnlyProperty<Employee> selectedPersonProperty();
 
     /**
      * Sets the selected employee in the filtered employee list.
      *
-     * @see seedu.address.model.Model#setSelectedPerson(Employee)
+     * @see seedu.address.model.Model#setSelectedEmployee(Employee)
      */
     void setSelectedPerson(Employee employee);
 }

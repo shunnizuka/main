@@ -110,8 +110,8 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Employee> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
-        Employee expectedSelectedEmployee = actualModel.getSelectedPerson();
+        List<Employee> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEmployeeList());
+        Employee expectedSelectedEmployee = actualModel.getSelectedEmployee();
 
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
@@ -121,8 +121,8 @@ public class CommandTestUtil {
         } catch (CommandException e) {
             assertEquals(expectedMessage, e.getMessage());
             assertEquals(expectedAddressBook, actualModel.getAddressBook());
-            assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
-            assertEquals(expectedSelectedEmployee, actualModel.getSelectedPerson());
+            assertEquals(expectedFilteredList, actualModel.getFilteredEmployeeList());
+            assertEquals(expectedSelectedEmployee, actualModel.getSelectedEmployee());
             assertEquals(expectedCommandHistory, actualCommandHistory);
         }
     }
@@ -132,21 +132,21 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEmployeeList().size());
 
-        Employee employee = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Employee employee = model.getFilteredEmployeeList().get(targetIndex.getZeroBased());
         final String[] splitName = employee.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredEmployeeList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredEmployeeList().size());
     }
 
     /**
      * Deletes the first employee in {@code model}'s filtered list from {@code model}'s address book.
      */
     public static void deleteFirstPerson(Model model) {
-        Employee firstEmployee = model.getFilteredPersonList().get(0);
-        model.deletePerson(firstEmployee);
+        Employee firstEmployee = model.getFilteredEmployeeList().get(0);
+        model.deleteEmployee(firstEmployee);
         model.commitAddressBook();
     }
 

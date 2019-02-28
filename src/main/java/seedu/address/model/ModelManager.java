@@ -96,24 +96,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Employee employee) {
+    public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
         return versionedAddressBook.hasPerson(employee);
     }
 
     @Override
-    public void deletePerson(Employee target) {
+    public void deleteEmployee(Employee target) {
         versionedAddressBook.removePerson(target);
     }
 
     @Override
-    public void addPerson(Employee employee) {
+    public void addEmployee(Employee employee) {
         versionedAddressBook.addEmployee(employee);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredEmployeeList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Employee target, Employee editedEmployee) {
+    public void setEmployee(Employee target, Employee editedEmployee) {
         requireAllNonNull(target, editedEmployee);
 
         versionedAddressBook.setPerson(target, editedEmployee);
@@ -126,12 +126,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Employee> getFilteredPersonList() {
+    public ObservableList<Employee> getFilteredEmployeeList() {
         return filteredEmployees;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Employee> predicate) {
+    public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
         filteredEmployees.setPredicate(predicate);
     }
@@ -166,17 +166,17 @@ public class ModelManager implements Model {
     //=========== Selected employee ===========================================================================
 
     @Override
-    public ReadOnlyProperty<Employee> selectedPersonProperty() {
+    public ReadOnlyProperty<Employee> selectedEmployeeProperty() {
         return selectedPerson;
     }
 
     @Override
-    public Employee getSelectedPerson() {
+    public Employee getSelectedEmployee() {
         return selectedPerson.getValue();
     }
 
     @Override
-    public void setSelectedPerson(Employee employee) {
+    public void setSelectedEmployee(Employee employee) {
         if (employee != null && !filteredEmployees.contains(employee)) {
             throw new EmployeeNotFoundException();
         }

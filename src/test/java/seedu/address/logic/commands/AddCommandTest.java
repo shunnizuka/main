@@ -123,7 +123,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Employee employee) {
+        public void addEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -138,27 +138,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Employee employee) {
+        public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Employee target) {
+        public void deleteEmployee(Employee target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Employee target, Employee editedEmployee) {
+        public void setEmployee(Employee target, Employee editedEmployee) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Employee> getFilteredPersonList() {
+        public ObservableList<Employee> getFilteredEmployeeList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Employee> predicate) {
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,17 +188,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyProperty<Employee> selectedPersonProperty() {
+        public ReadOnlyProperty<Employee> selectedEmployeeProperty() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Employee getSelectedPerson() {
+        public Employee getSelectedEmployee() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setSelectedPerson(Employee employee) {
+        public void setSelectedEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -215,7 +215,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Employee employee) {
+        public boolean hasEmployee(Employee employee) {
             requireNonNull(employee);
             return this.employee.isSameEmployee(employee);
         }
@@ -228,13 +228,13 @@ public class AddCommandTest {
         final ArrayList<Employee> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Employee employee) {
+        public boolean hasEmployee(Employee employee) {
             requireNonNull(employee);
             return personsAdded.stream().anyMatch(employee::isSameEmployee);
         }
 
         @Override
-        public void addPerson(Employee employee) {
+        public void addEmployee(Employee employee) {
             requireNonNull(employee);
             personsAdded.add(employee);
         }

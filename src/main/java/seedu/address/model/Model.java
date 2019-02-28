@@ -56,19 +56,19 @@ public interface Model {
     /**
      * Returns true if a employee with the same identity as {@code employee} exists in the address book.
      */
-    boolean hasPerson(Employee employee);
+    boolean hasEmployee(Employee employee);
 
     /**
      * Deletes the given employee.
      * The employee must exist in the address book.
      */
-    void deletePerson(Employee target);
+    void deleteEmployee(Employee target);
 
     /**
      * Adds the given employee.
      * {@code employee} must not already exist in the address book.
      */
-    void addPerson(Employee employee);
+    void addEmployee(Employee employee);
 
     /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
@@ -76,16 +76,16 @@ public interface Model {
      * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the address
      * book.
      */
-    void setPerson(Employee target, Employee editedEmployee);
+    void setEmployee(Employee target, Employee editedEmployee);
 
     /** Returns an unmodifiable view of the filtered employee list */
-    ObservableList<Employee> getFilteredPersonList();
+    ObservableList<Employee> getFilteredEmployeeList();
 
     /**
      * Updates the filter of the filtered employee list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Employee> predicate);
+    void updateFilteredEmployeeList(Predicate<Employee> predicate);
 
     /**
      * Returns true if the model has previous address book states to restore.
@@ -116,16 +116,16 @@ public interface Model {
      * Selected employee in the filtered employee list.
      * null if no employee is selected.
      */
-    ReadOnlyProperty<Employee> selectedPersonProperty();
+    ReadOnlyProperty<Employee> selectedEmployeeProperty();
 
     /**
      * Returns the selected employee in the filtered employee list.
      * null if no employee is selected.
      */
-    Employee getSelectedPerson();
+    Employee getSelectedEmployee();
 
     /**
      * Sets the selected employee in the filtered employee list.
      */
-    void setSelectedPerson(Employee employee);
+    void setSelectedEmployee(Employee employee);
 }
