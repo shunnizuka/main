@@ -16,7 +16,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniqueEmployeeList persons;
+    private final UniqueEmployeeList employees;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
 
     /*
@@ -27,13 +27,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniqueEmployeeList();
+        employees = new UniqueEmployeeList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Employees in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -46,8 +46,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the employee list with {@code employees}.
      * {@code employees} must not contain duplicate employees.
      */
-    public void setPersons(List<Employee> employees) {
-        this.persons.setEmployees(employees);
+    public void setEmployees(List<Employee> employees) {
+        this.employees.setEmployees(employees);
         indicateModified();
     }
 
@@ -57,7 +57,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getEmployeeList());
+        setEmployees(newData.getEmployeeList());
     }
 
     //// employee-level operations
@@ -67,7 +67,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
-        return persons.contains(employee);
+        return employees.contains(employee);
     }
 
     /**
@@ -75,7 +75,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The employee must not already exist in the address book.
      */
     public void addEmployee(Employee p) {
-        persons.add(p);
+        employees.add(p);
         indicateModified();
     }
 
@@ -85,10 +85,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the address
      * book.
      */
-    public void setPerson(Employee target, Employee editedEmployee) {
+    public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
 
-        persons.setEmployee(target, editedEmployee);
+        employees.setEmployee(target, editedEmployee);
         indicateModified();
     }
 
@@ -97,7 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeEmployee(Employee key) {
-        persons.remove(key);
+        employees.remove(key);
         indicateModified();
     }
 
@@ -122,24 +122,24 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return employees.asUnmodifiableObservableList().size() + " employees";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Employee> getEmployeeList() {
-        return persons.asUnmodifiableObservableList();
+        return employees.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && employees.equals(((AddressBook) other).employees));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return employees.hashCode();
     }
 }

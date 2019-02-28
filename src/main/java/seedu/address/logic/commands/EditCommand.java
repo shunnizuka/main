@@ -76,7 +76,7 @@ public class EditCommand extends Command {
         }
 
         Employee employeeToEdit = lastShownList.get(index.getZeroBased());
-        Employee editedEmployee = createEditedPerson(employeeToEdit, editEmployeeDescriptor);
+        Employee editedEmployee = createEditedEmployee(employeeToEdit, editEmployeeDescriptor);
 
         if (!employeeToEdit.isSameEmployee(editedEmployee) && model.hasEmployee(editedEmployee)) {
             throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
@@ -92,7 +92,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
      * edited with {@code editEmployeeDescriptor}.
      */
-    private static Employee createEditedPerson(Employee employeeToEdit, EditEmployeeDescriptor editEmployeeDescriptor) {
+    private static Employee createEditedEmployee(Employee employeeToEdit, EditEmployeeDescriptor editEmployeeDescriptor) {
         assert employeeToEdit != null;
 
         Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());

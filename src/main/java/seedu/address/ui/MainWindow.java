@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane employeeListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,12 +111,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(logic.selectedPersonProperty());
+        browserPanel = new BrowserPanel(logic.selectedEmployeeProperty());
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
-        employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList(), logic.selectedPersonProperty(),
-                logic::setSelectedPerson);
-        personListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
+        employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList(), logic.selectedEmployeeProperty(),
+                logic::setSelectedEmployee);
+        employeeListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
