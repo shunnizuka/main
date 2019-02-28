@@ -8,8 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysEmployee;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardEquals;
 
-import guitests.guihandles.EmployeeListPanelHandle;
-
 import java.util.Collections;
 
 import org.junit.Test;
@@ -23,6 +21,8 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+
+import guitests.guihandles.EmployeeListPanelHandle;
 
 public class EmployeeListPanelTest extends GuiUnitTest {
     private static final ObservableList<Employee> TYPICAL_EMPLOYEES =
