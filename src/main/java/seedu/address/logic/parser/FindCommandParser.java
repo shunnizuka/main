@@ -35,31 +35,31 @@ public class FindCommandParser implements Parser<FindEmployeeCommand> {
         final String keyword = matcher.group("keyword");
         String[] nameKeywords = keyword.trim().split("\\s+");
 
-        if(keyword.isEmpty()) {
+        if (keyword.isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
 
-        if(nameKeywords.length > 1) {
+        if (nameKeywords.length > 1) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
 
         switch (type) {
 
-            case FindEmployeeCommand.TYPE:
-                return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        case FindEmployeeCommand.TYPE:
+            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
-            case FindEmployeeCommand.FINDPROJECTTYPE:
-                System.out.println("Parser: finding project....");
-                return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        case FindEmployeeCommand.FINDPROJECTTYPE:
+            System.out.println("Parser: finding project....");
+            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
-            case FindEmployeeCommand.FINDSKILLTYPE:
-                System.out.println("Parser: finding skill....");
-                return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(keyword)));
+        case FindEmployeeCommand.FINDSKILLTYPE:
+            System.out.println("Parser: finding skill....");
+            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(keyword)));
 
-            default:
-                return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(keyword)));
+        default:
+            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(keyword)));
 
         }
     }
