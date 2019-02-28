@@ -8,15 +8,15 @@ import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.UniquePersonList;
+import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameEmployee comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueEmployeeList persons;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
 
     /*
@@ -27,7 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueEmployeeList();
     }
 
     public AddressBook() {}
@@ -47,7 +47,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code employees} must not contain duplicate employees.
      */
     public void setPersons(List<Employee> employees) {
-        this.persons.setPersons(employees);
+        this.persons.setEmployees(employees);
         indicateModified();
     }
 
@@ -88,7 +88,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
 
-        persons.setPerson(target, editedEmployee);
+        persons.setEmployee(target, editedEmployee);
         indicateModified();
     }
 
