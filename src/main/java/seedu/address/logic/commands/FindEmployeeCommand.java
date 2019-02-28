@@ -16,9 +16,9 @@ public class FindEmployeeCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain "
-            + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD \n"
-            + "Example: " + COMMAND_WORD + "alice";
+        + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD \n"
+        + "Example: " + COMMAND_WORD + "alice";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -31,13 +31,13 @@ public class FindEmployeeCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindEmployeeCommand // instanceof handles nulls
-                && predicate.equals(((FindEmployeeCommand) other).predicate)); // state check
+            || (other instanceof FindEmployeeCommand // instanceof handles nulls
+            && predicate.equals(((FindEmployeeCommand) other).predicate)); // state check
     }
 }
