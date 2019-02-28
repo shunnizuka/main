@@ -9,20 +9,20 @@ import org.junit.Test;
 
 import guitests.guihandles.PersonCardHandle;
 import seedu.address.model.employee.Employee;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EmployeeBuilder;
 
 public class EmployeeCardTest extends GuiUnitTest {
 
     @Test
     public void display() {
         // no tags
-        Employee employeeWithNoTags = new PersonBuilder().withTags(new String[0]).build();
+        Employee employeeWithNoTags = new EmployeeBuilder().withTags(new String[0]).build();
         PersonCard personCard = new PersonCard(employeeWithNoTags, 1);
         uiPartRule.setUiPart(personCard);
         assertCardDisplay(personCard, employeeWithNoTags, 1);
 
         // with tags
-        Employee employeeWithTags = new PersonBuilder().build();
+        Employee employeeWithTags = new EmployeeBuilder().build();
         personCard = new PersonCard(employeeWithTags, 2);
         uiPartRule.setUiPart(personCard);
         assertCardDisplay(personCard, employeeWithTags, 2);
@@ -30,7 +30,7 @@ public class EmployeeCardTest extends GuiUnitTest {
 
     @Test
     public void equals() {
-        Employee employee = new PersonBuilder().build();
+        Employee employee = new EmployeeBuilder().build();
         PersonCard personCard = new PersonCard(employee, 0);
 
         // same employee, same index -> returns true
@@ -47,7 +47,7 @@ public class EmployeeCardTest extends GuiUnitTest {
         assertFalse(personCard.equals(0));
 
         // different employee, same index -> returns false
-        Employee differentEmployee = new PersonBuilder().withName("differentName").build();
+        Employee differentEmployee = new EmployeeBuilder().withName("differentName").build();
         assertFalse(personCard.equals(new PersonCard(differentEmployee, 0)));
 
         // same employee, different index -> returns false

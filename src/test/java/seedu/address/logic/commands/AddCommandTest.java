@@ -24,7 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.employee.Employee;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EmployeeBuilder;
 
 public class AddCommandTest {
 
@@ -44,7 +44,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Employee validEmployee = new PersonBuilder().build();
+        Employee validEmployee = new EmployeeBuilder().build();
 
         CommandResult commandResult = new AddCommand(validEmployee).execute(modelStub, commandHistory);
 
@@ -55,7 +55,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() throws Exception {
-        Employee validEmployee = new PersonBuilder().build();
+        Employee validEmployee = new EmployeeBuilder().build();
         AddCommand addCommand = new AddCommand(validEmployee);
         ModelStub modelStub = new ModelStubWithPerson(validEmployee);
 
@@ -66,8 +66,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Employee alice = new PersonBuilder().withName("Alice").build();
-        Employee bob = new PersonBuilder().withName("Bob").build();
+        Employee alice = new EmployeeBuilder().withName("Alice").build();
+        Employee bob = new EmployeeBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
