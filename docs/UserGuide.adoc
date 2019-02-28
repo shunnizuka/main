@@ -18,9 +18,9 @@ By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
 == Introduction
 
-PocketProject is for managers who have difficulty managing numerous projects that they are working on as well as the 
-many employees that are under their charge. This application helps to keep track of employees responsible for each 
-component of the project and also the workload of each employee.Thus, making it easier for managers to allocate and 
+PocketProject is for managers who have difficulty managing numerous projects that they are working on as well as the
+many employees that are under their charge. This application helps to keep track of employees responsible for each
+component of the project and also the workload of each employee.Thus, making it easier for managers to allocate and
 assign roles as required for different projects as well as manage their employees better.
 
 == Quick Start
@@ -197,8 +197,8 @@ Displays details of the project named “Apollo”
 
 Returns a view of details of the chosen employee. +
 Format: `view employee EMPLOYEE_INDEX`
-    
-Examples: 
+
+Examples:
 
 `list employees` +
 `view employee 3` +
@@ -234,10 +234,10 @@ Selects the 1st employee in the results of the `find` command.
 `addto employee Starrer Vanessa Peterson` +
 Vanessa Peterson is added to Project Starrer.
 
-Adds a milestone to a project + 
+Adds a milestone to a project +
 Format: `addto milestone PROJECT_NAME MS_DETAILS MS_DATE`
 
-Examples: 
+Examples:
 
 `addto milestone Apollo “Completed UI for program” 23/11/2015` +
 Milestone added to Project Apollo
@@ -260,14 +260,14 @@ Examples:
 
 `view milestones Apollo` +
 `removefrom milestone Apollo 1` +
-Removes the milestone at index 1 from Project Apollo. 
+Removes the milestone at index 1 from Project Apollo.
 
 === To indicate the project has been completed : `complete`
 
 Indicates that a project is completed.
-Format: `complete PROJ_NAME` 
+Format: `complete PROJ_NAME`
 
-Examples: 
+Examples:
 
 `complete Project Apollo` +
 Project Apollo has been finished and delivered to client.
@@ -280,10 +280,10 @@ Name: returns list in lexicographical order +
 Deadline: returns list by earliest deadline first. +
 Format: `sort KEY_VALUE`
 
-Examples: 
+Examples:
 
-`sort name` + 
-Projects have been sorted by name. 
+`sort name` +
+Projects have been sorted by name.
 
 `sort deadline` +
 Projects have been sorted by impending deadline.

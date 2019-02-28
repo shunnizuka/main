@@ -15,11 +15,11 @@ endif::[]
 
 * PocketProject (Project Manager)
 
-* This is a desktop Project Manager application. Most of the user interactions happen using a CLI (Command Line Interface) 
+* This is a desktop Project Manager application. Most of the user interactions happen using a CLI (Command Line Interface)
 and there is   also a GUI to support the system. It is an application using Java as the main programming language.
 
-* It is intended for managers are in charge of many projects and who have a large number of employees assigned to each project at any 
-given time. It helps managers to effectively manage any of their projects by being able to view employees assigned to the projects, 
+* It is intended for managers are in charge of many projects and who have a large number of employees assigned to each project at any
+given time. It helps managers to effectively manage any of their projects by being able to view employees assigned to the projects,
 skils required for the project, budget and timeline for the project among other things.
 
 * It is written in OOP fashion and has a sophisticated GUI with an in-built brower. There are also automated test cases already in-built
