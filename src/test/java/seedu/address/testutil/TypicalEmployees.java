@@ -21,7 +21,7 @@ import seedu.address.model.employee.Employee;
 /**
  * A utility class containing a list of {@code Employee} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalEmployees {
 
     public static final Employee ALICE = new EmployeeBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -57,20 +57,20 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalEmployees() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical employees.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Employee employee : getTypicalPersons()) {
-            ab.addPerson(employee);
+        for (Employee employee : getTypicalEmployees()) {
+            ab.addEmployee(employee);
         }
         return ab;
     }
 
-    public static List<Employee> getTypicalPersons() {
+    public static List<Employee> getTypicalEmployees() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

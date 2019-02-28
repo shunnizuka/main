@@ -108,7 +108,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Employee employee) {
-        versionedAddressBook.addPerson(employee);
+        versionedAddressBook.addEmployee(employee);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
