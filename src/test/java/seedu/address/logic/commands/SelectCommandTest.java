@@ -87,7 +87,7 @@ public class SelectCommandTest {
 
     /**
      * Executes a {@code SelectCommand} with the given {@code index},
-     * and checks that the model's selected employee is set to the employee at {@code index} in the filtered employee 
+     * and checks that the model's selected employee is set to the employee at {@code index} in the filtered employee
      * list.
      */
     private void assertExecutionSuccess(Index index) {
