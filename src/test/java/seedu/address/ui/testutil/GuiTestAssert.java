@@ -5,11 +5,11 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import seedu.address.model.employee.Employee;
-
 import guitests.guihandles.EmployeeCardHandle;
 import guitests.guihandles.EmployeeListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
+
+import seedu.address.model.employee.Employee;
 
 /**
  * A set of assertion methods useful for writing GUI tests.

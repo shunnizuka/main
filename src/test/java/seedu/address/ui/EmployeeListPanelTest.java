@@ -13,16 +13,19 @@ import java.util.Collections;
 import org.junit.Test;
 
 import guitests.guihandles.EmployeeCardHandle;
+import guitests.guihandles.EmployeeListPanelHandle;
+
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 
-import guitests.guihandles.EmployeeListPanelHandle;
+
 
 public class EmployeeListPanelTest extends GuiUnitTest {
     private static final ObservableList<Employee> TYPICAL_EMPLOYEES =

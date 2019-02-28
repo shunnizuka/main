@@ -7,10 +7,10 @@ import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysEmployee
 
 import org.junit.Test;
 
+import guitests.guihandles.EmployeeCardHandle;
+
 import seedu.address.model.employee.Employee;
 import seedu.address.testutil.EmployeeBuilder;
-
-import guitests.guihandles.EmployeeCardHandle;
 
 public class EmployeeCardTest extends GuiUnitTest {
 
