@@ -32,7 +32,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Employee> getFilteredPersonList();
+    ObservableList<Employee> getFilteredEmployeeList();
 
     /**
      * Returns an unmodifiable view of the list of commands entered by the user.
@@ -59,14 +59,14 @@ public interface Logic {
      * Selected employee in the filtered employee list.
      * null if no employee is selected.
      *
-     * @see seedu.address.model.Model#selectedPersonProperty()
+     * @see seedu.address.model.Model#selectedEmployeeProperty()
      */
-    ReadOnlyProperty<Employee> selectedPersonProperty();
+    ReadOnlyProperty<Employee> selectedEmployeeProperty();
 
     /**
      * Sets the selected employee in the filtered employee list.
      *
-     * @see seedu.address.model.Model#setSelectedPerson(Employee)
+     * @see seedu.address.model.Model#setSelectedEmployee(Employee)
      */
-    void setSelectedPerson(Employee employee);
+    void setSelectedEmployee(Employee employee);
 }

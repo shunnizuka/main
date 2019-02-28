@@ -23,7 +23,7 @@ public class SelectCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SELECT_PERSON_SUCCESS = "Selected Employee: %1$s";
+    public static final String MESSAGE_SELECT_EMPLOYEE_SUCCESS = "Selected Employee: %1$s";
 
     private final Index targetIndex;
 
@@ -35,14 +35,14 @@ public class SelectCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        List<Employee> filteredEmployeeList = model.getFilteredPersonList();
+        List<Employee> filteredEmployeeList = model.getFilteredEmployeeList();
 
         if (targetIndex.getZeroBased() >= filteredEmployeeList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
-        model.setSelectedPerson(filteredEmployeeList.get(targetIndex.getZeroBased()));
-        return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, targetIndex.getOneBased()));
+        model.setSelectedEmployee(filteredEmployeeList.get(targetIndex.getZeroBased()));
+        return new CommandResult(String.format(MESSAGE_SELECT_EMPLOYEE_SUCCESS, targetIndex.getOneBased()));
 
     }
 

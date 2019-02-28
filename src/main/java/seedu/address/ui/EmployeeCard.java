@@ -10,9 +10,9 @@ import seedu.address.model.employee.Employee;
 /**
  * An UI component that displays information of a {@code Employee}.
  */
-public class PersonCard extends UiPart<Region> {
+public class EmployeeCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "EmployeeListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,7 +39,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public PersonCard(Employee employee, int displayedIndex) {
+    public EmployeeCard(Employee employee, int displayedIndex) {
         super(FXML);
         this.employee = employee;
         id.setText(displayedIndex + ". ");
@@ -58,12 +58,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof EmployeeCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        EmployeeCard card = (EmployeeCard) other;
         return id.getText().equals(card.id.getText())
                 && employee.equals(card.employee);
     }

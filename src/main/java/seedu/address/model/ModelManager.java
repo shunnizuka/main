@@ -16,7 +16,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.exceptions.PersonNotFoundException;
+import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +27,7 @@ public class ModelManager implements Model {
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
-    private final SimpleObjectProperty<Employee> selectedPerson = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Employee> selectedEmployee = new SimpleObjectProperty<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,8 +40,8 @@ public class ModelManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEmployees = new FilteredList<>(versionedAddressBook.getPersonList());
-        filteredEmployees.addListener(this::ensureSelectedPersonIsValid);
+        filteredEmployees = new FilteredList<>(versionedAddressBook.getEmployeeList());
+        filteredEmployees.addListener(this::ensureSelectedEmployeeIsValid);
     }
 
     public ModelManager() {
@@ -96,27 +96,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Employee employee) {
+    public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
-        return versionedAddressBook.hasPerson(employee);
+        return versionedAddressBook.hasEmployee(employee);
     }
 
     @Override
-    public void deletePerson(Employee target) {
-        versionedAddressBook.removePerson(target);
+    public void deleteEmployee(Employee target) {
+        versionedAddressBook.removeEmployee(target);
     }
 
     @Override
-    public void addPerson(Employee employee) {
-        versionedAddressBook.addPerson(employee);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addEmployee(Employee employee) {
+        versionedAddressBook.addEmployee(employee);
+        updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
     }
 
     @Override
-    public void setPerson(Employee target, Employee editedEmployee) {
+    public void setEmployee(Employee target, Employee editedEmployee) {
         requireAllNonNull(target, editedEmployee);
 
-        versionedAddressBook.setPerson(target, editedEmployee);
+        versionedAddressBook.setEmployee(target, editedEmployee);
     }
 
     //=========== Filtered Employee List Accessors =============================================================
@@ -126,12 +126,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Employee> getFilteredPersonList() {
+    public ObservableList<Employee> getFilteredEmployeeList() {
         return filteredEmployees;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Employee> predicate) {
+    public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
         filteredEmployees.setPredicate(predicate);
     }
@@ -166,48 +166,49 @@ public class ModelManager implements Model {
     //=========== Selected employee ===========================================================================
 
     @Override
-    public ReadOnlyProperty<Employee> selectedPersonProperty() {
-        return selectedPerson;
+    public ReadOnlyProperty<Employee> selectedEmployeeProperty() {
+        return selectedEmployee;
     }
 
     @Override
-    public Employee getSelectedPerson() {
-        return selectedPerson.getValue();
+    public Employee getSelectedEmployee() {
+        return selectedEmployee.getValue();
     }
 
     @Override
-    public void setSelectedPerson(Employee employee) {
+    public void setSelectedEmployee(Employee employee) {
         if (employee != null && !filteredEmployees.contains(employee)) {
-            throw new PersonNotFoundException();
+            throw new EmployeeNotFoundException();
         }
-        selectedPerson.setValue(employee);
+        selectedEmployee.setValue(employee);
     }
 
     /**
-     * Ensures {@code selectedPerson} is a valid employee in {@code filteredEmployees}.
+     * Ensures {@code selectedEmployee} is a valid employee in {@code filteredEmployees}.
      */
-    private void ensureSelectedPersonIsValid(ListChangeListener.Change<? extends Employee> change) {
+    private void ensureSelectedEmployeeIsValid(ListChangeListener.Change<? extends Employee> change) {
         while (change.next()) {
-            if (selectedPerson.getValue() == null) {
+            if (selectedEmployee.getValue() == null) {
                 // null is always a valid selected employee, so we do not need to check that it is valid anymore.
                 return;
             }
 
-            boolean wasSelectedPersonReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedPerson.getValue());
-            if (wasSelectedPersonReplaced) {
-                // Update selectedPerson to its new value.
-                int index = change.getRemoved().indexOf(selectedPerson.getValue());
-                selectedPerson.setValue(change.getAddedSubList().get(index));
+            boolean wasSelectedEmployeeReplaced = change.wasReplaced()
+                    && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedEmployee.getValue());
+            if (wasSelectedEmployeeReplaced) {
+                // Update selectedEmployee to its new value.
+                int index = change.getRemoved().indexOf(selectedEmployee.getValue());
+                selectedEmployee.setValue(change.getAddedSubList().get(index));
                 continue;
             }
 
-            boolean wasSelectedPersonRemoved = change.getRemoved().stream()
-                    .anyMatch(removedPerson -> selectedPerson.getValue().isSamePerson(removedPerson));
-            if (wasSelectedPersonRemoved) {
+            boolean wasSelectedEmployeeRemoved = change.getRemoved().stream()
+                    .anyMatch(removedEmployee -> selectedEmployee.getValue().isSameEmployee(removedEmployee));
+            if (wasSelectedEmployeeRemoved) {
                 // Select the employee that came before it in the list,
                 // or clear the selection if there is no such employee.
-                selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+                selectedEmployee.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
     }
@@ -229,7 +230,7 @@ public class ModelManager implements Model {
         return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredEmployees.equals(other.filteredEmployees)
-                && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
+                && Objects.equals(selectedEmployee.get(), other.selectedEmployee.get());
     }
 
 }
