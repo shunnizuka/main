@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableMultiset;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Employee;
+import seedu.address.model.employee.Employee;
 
 /**
  * Provides a handle to a employee card in the employee list panel.
