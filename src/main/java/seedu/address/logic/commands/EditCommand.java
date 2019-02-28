@@ -52,18 +52,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This employee already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditEmployeeDescriptor editEmployeeDescriptor;
 
     /**
      * @param index of the employee in the filtered employee list to edit
-     * @param editPersonDescriptor details to edit the employee with
+     * @param editEmployeeDescriptor details to edit the employee with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditEmployeeDescriptor editEmployeeDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editEmployeeDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editEmployeeDescriptor = new EditEmployeeDescriptor(editEmployeeDescriptor);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class EditCommand extends Command {
         }
 
         Employee employeeToEdit = lastShownList.get(index.getZeroBased());
-        Employee editedEmployee = createEditedPerson(employeeToEdit, editPersonDescriptor);
+        Employee editedEmployee = createEditedPerson(employeeToEdit, editEmployeeDescriptor);
 
         if (!employeeToEdit.isSamePerson(editedEmployee) && model.hasPerson(editedEmployee)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -90,16 +90,16 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editEmployeeDescriptor}.
      */
-    private static Employee createEditedPerson(Employee employeeToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Employee createEditedPerson(Employee employeeToEdit, EditEmployeeDescriptor editEmployeeDescriptor) {
         assert employeeToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(employeeToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(employeeToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(employeeToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(employeeToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(employeeToEdit.getTags());
+        Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
+        Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
+        Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
+        Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
+        Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
         return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -119,27 +119,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editEmployeeDescriptor.equals(e.editEmployeeDescriptor);
     }
 
     /**
      * Stores the details to edit the employee with. Each non-empty field value will replace the
      * corresponding field value of the employee.
      */
-    public static class EditPersonDescriptor {
+    public static class EditEmployeeDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditEmployeeDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditEmployeeDescriptor(EditEmployeeDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -211,12 +211,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditEmployeeDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditEmployeeDescriptor e = (EditEmployeeDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

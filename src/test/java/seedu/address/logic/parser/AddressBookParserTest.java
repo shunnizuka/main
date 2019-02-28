@@ -18,7 +18,6 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -32,7 +31,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.EmployeeUtil;
 
 public class AddressBookParserTest {
     @Rule
@@ -43,7 +42,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Employee employee = new EmployeeBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(employee));
+        AddCommand command = (AddCommand) parser.parseCommand(EmployeeUtil.getAddCommand(employee));
         assertEquals(new AddCommand(employee), command);
     }
 
@@ -63,9 +62,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Employee employee = new EmployeeBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(employee).build();
+        EditCommand.EditEmployeeDescriptor descriptor = new EditPersonDescriptorBuilder(employee).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+            + INDEX_FIRST_PERSON.getOneBased() + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
