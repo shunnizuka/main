@@ -98,8 +98,8 @@ public abstract class AddressBookSystemTest {
         return mainWindowHandle.getCommandBox();
     }
 
-    public EmployeeListPanelHandle getPersonListPanel() {
-        return mainWindowHandle.getPersonListPanel();
+    public EmployeeListPanelHandle getEmployeeListPanel() {
+        return mainWindowHandle.getEmployeeListPanel();
     }
 
     public MainMenuHandle getMainMenu() {
@@ -134,17 +134,17 @@ public abstract class AddressBookSystemTest {
     }
 
     /**
-     * Displays all persons in the address book.
+     * Displays all employees in the address book.
      */
-    protected void showAllPersons() {
+    protected void showAllEmployees() {
         executeCommand(ListCommand.COMMAND_WORD);
         assertEquals(getModel().getAddressBook().getEmployeeList().size(), getModel().getFilteredEmployeeList().size());
     }
 
     /**
-     * Displays all persons with any parts of their names matching {@code keyword} (case-insensitive).
+     * Displays all employees with any parts of their names matching {@code keyword} (case-insensitive).
      */
-    protected void showPersonsWithName(String keyword) {
+    protected void showEmployeesWithName(String keyword) {
         executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + keyword);
         assertTrue(getModel().getFilteredEmployeeList().size() < getModel().getAddressBook().getEmployeeList().size());
     }
@@ -152,15 +152,15 @@ public abstract class AddressBookSystemTest {
     /**
      * Selects the employee at {@code index} of the displayed list.
      */
-    protected void selectPerson(Index index) {
+    protected void selectEmployee(Index index) {
         executeCommand(SelectCommand.COMMAND_WORD + " " + index.getOneBased());
-        assertEquals(index.getZeroBased(), getPersonListPanel().getSelectedCardIndex());
+        assertEquals(index.getZeroBased(), getEmployeeListPanel().getSelectedCardIndex());
     }
 
     /**
-     * Deletes all persons in the address book.
+     * Deletes all employees in the address book.
      */
-    protected void deleteAllPersons() {
+    protected void deleteAllEmployees() {
         executeCommand(ClearCommand.COMMAND_WORD);
         assertEquals(0, getModel().getAddressBook().getEmployeeList().size());
     }
@@ -168,14 +168,14 @@ public abstract class AddressBookSystemTest {
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
      * {@code expectedResultMessage}, the storage contains the same employee objects as {@code expectedModel}
-     * and the employee list panel displays the persons in the model correctly.
+     * and the employee list panel displays the employees in the model correctly.
      */
     protected void assertApplicationDisplaysExpected(String expectedCommandInput, String expectedResultMessage,
             Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
         assertEquals(new AddressBook(expectedModel.getAddressBook()), testApp.readStorageAddressBook());
-        assertListMatching(getPersonListPanel(), expectedModel.getFilteredEmployeeList());
+        assertListMatching(getEmployeeListPanel(), expectedModel.getFilteredEmployeeList());
     }
 
     /**
@@ -187,7 +187,7 @@ public abstract class AddressBookSystemTest {
         getBrowserPanel().rememberUrl();
         statusBarFooterHandle.rememberSaveLocation();
         statusBarFooterHandle.rememberSyncStatus();
-        getPersonListPanel().rememberSelectedEmployeeCard();
+        getEmployeeListPanel().rememberSelectedEmployeeCard();
     }
 
     /**
@@ -197,7 +197,7 @@ public abstract class AddressBookSystemTest {
      */
     protected void assertSelectedCardDeselected() {
         assertEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
-        assertFalse(getPersonListPanel().isAnyCardSelected());
+        assertFalse(getEmployeeListPanel().isAnyCardSelected());
     }
 
     /**
@@ -207,8 +207,8 @@ public abstract class AddressBookSystemTest {
      * @see EmployeeListPanelHandle#isSelectedEmployeeCardChanged()
      */
     protected void assertSelectedCardChanged(Index expectedSelectedCardIndex) {
-        getPersonListPanel().navigateToCard(getPersonListPanel().getSelectedCardIndex());
-        String selectedCardName = getPersonListPanel().getHandleToSelectedCard().getName();
+        getEmployeeListPanel().navigateToCard(getEmployeeListPanel().getSelectedCardIndex());
+        String selectedCardName = getEmployeeListPanel().getHandleToSelectedCard().getName();
         URL expectedUrl;
         try {
             expectedUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + selectedCardName.replaceAll(" ", "%20"));
@@ -217,7 +217,7 @@ public abstract class AddressBookSystemTest {
         }
         assertEquals(expectedUrl, getBrowserPanel().getLoadedUrl());
 
-        assertEquals(expectedSelectedCardIndex.getZeroBased(), getPersonListPanel().getSelectedCardIndex());
+        assertEquals(expectedSelectedCardIndex.getZeroBased(), getEmployeeListPanel().getSelectedCardIndex());
     }
 
     /**
@@ -227,7 +227,7 @@ public abstract class AddressBookSystemTest {
      */
     protected void assertSelectedCardUnchanged() {
         assertFalse(getBrowserPanel().isUrlChanged());
-        assertFalse(getPersonListPanel().isSelectedEmployeeCardChanged());
+        assertFalse(getEmployeeListPanel().isSelectedEmployeeCardChanged());
     }
 
     /**
@@ -271,7 +271,7 @@ public abstract class AddressBookSystemTest {
     private void assertApplicationStartingStateIsCorrect() {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
-        assertListMatching(getPersonListPanel(), getModel().getFilteredEmployeeList());
+        assertListMatching(getEmployeeListPanel(), getModel().getFilteredEmployeeList());
         assertEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
                 getStatusBarFooter().getSaveLocation());

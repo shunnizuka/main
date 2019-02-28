@@ -59,7 +59,7 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
         /* ------------------ Performing delete operation while a filtered list is being shown ---------------------- */
 
         /* Case: filtered employee list, delete index within bounds of address book and employee list -> deleted */
-        showPersonsWithName(KEYWORD_MATCHING_MEIER);
+        showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         Index index = INDEX_FIRST_PERSON;
         assertTrue(index.getZeroBased() < getModel().getFilteredEmployeeList().size());
         assertCommandSuccess(index);
@@ -67,7 +67,7 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
         /* Case: filtered employee list, delete index within bounds of address book but out of bounds of employee list
          * -> rejected
          */
-        showPersonsWithName(KEYWORD_MATCHING_MEIER);
+        showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         int invalidIndex = getModel().getAddressBook().getEmployeeList().size();
         command = DeleteCommand.COMMAND_WORD + " " + invalidIndex;
         assertCommandFailure(command, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -75,11 +75,11 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
         /* --------------------- Performing delete operation while a employee card is selected ---------------------- */
 
         /* Case: delete the selected employee -> employee list panel selects the employee before the deleted employee */
-        showAllPersons();
+        showAllEmployees();
         expectedModel = getModel();
         Index selectedIndex = getLastIndex(expectedModel);
         Index expectedIndex = Index.fromZeroBased(selectedIndex.getZeroBased() - 1);
-        selectPerson(selectedIndex);
+        selectEmployee(selectedIndex);
         command = DeleteCommand.COMMAND_WORD + " " + selectedIndex.getOneBased();
         deletedEmployee = removePerson(expectedModel, selectedIndex);
         expectedResultMessage = String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedEmployee);

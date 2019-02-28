@@ -88,7 +88,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, toAdd);
 
         /* Case: add to empty address book -> added */
-        deleteAllPersons();
+        deleteAllEmployees();
         assertCommandSuccess(ALICE);
 
         /* Case: add a employee with tags, command with parameters in random order -> added */
@@ -103,13 +103,13 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         /* -------------------------- Perform add operation on the shown filtered list ------------------------------ */
 
         /* Case: filters the employee list before adding -> added */
-        showPersonsWithName(KEYWORD_MATCHING_MEIER);
+        showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         assertCommandSuccess(IDA);
 
         /* ------------------------ Perform add operation while a employee card is selected ------------------------- */
 
         /* Case: selects first card in the employee list, add a employee -> added, card selection remains unchanged */
-        selectPerson(Index.fromOneBased(1));
+        selectEmployee(Index.fromOneBased(1));
         assertCommandSuccess(CARL);
 
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */
