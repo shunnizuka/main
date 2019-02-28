@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.model.employee.exceptions.DuplicatePersonException;
-import seedu.address.model.employee.exceptions.PersonNotFoundException;
+import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class UniqueEmployeeListTest {
@@ -78,7 +78,7 @@ public class UniqueEmployeeListTest {
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        thrown.expect(PersonNotFoundException.class);
+        thrown.expect(EmployeeNotFoundException.class);
         uniquePersonList.setPerson(ALICE, ALICE);
     }
 
@@ -127,7 +127,7 @@ public class UniqueEmployeeListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        thrown.expect(PersonNotFoundException.class);
+        thrown.expect(EmployeeNotFoundException.class);
         uniquePersonList.remove(ALICE);
     }
 

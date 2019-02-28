@@ -16,7 +16,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.exceptions.PersonNotFoundException;
+import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -178,7 +178,7 @@ public class ModelManager implements Model {
     @Override
     public void setSelectedPerson(Employee employee) {
         if (employee != null && !filteredEmployees.contains(employee)) {
-            throw new PersonNotFoundException();
+            throw new EmployeeNotFoundException();
         }
         selectedPerson.setValue(employee);
     }
