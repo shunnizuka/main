@@ -125,27 +125,21 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SKILL]...`
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-<<<<<<< HEAD
 * When editing skills, the existing skills of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person's skills by typing `s/` without specifying any tags after it.
-=======
 * When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
 * You can remove all the employee's tags by typing `t/` without specifying any tags after it.
->>>>>>> 53e8fc3f02e56b367e0b5588e3a43b12d12e4c02
 ****
 
 Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` +
-<<<<<<< HEAD
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower s/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing skills.
-=======
 Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
->>>>>>> 53e8fc3f02e56b367e0b5588e3a43b12d12e4c02
 
 === Locating employees, projects or skills by name: `find`
 
@@ -164,13 +158,10 @@ Examples:
 
 * `find employee John` +
 Returns `john` and `John Doe`
-<<<<<<< HEAD
 * `find employee Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
-=======
 * `find Betsy Tim John` +
 Returns any employee having names `Betsy`, `Tim`, or `John`
->>>>>>> 53e8fc3f02e56b367e0b5588e3a43b12d12e4c02
 
 Finds projects whose names contain any of the given keywords. +
 Format: `find project KEYWORD [MORE_KEYWORDS]`
@@ -185,21 +176,17 @@ Format: `find skill KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-<<<<<<< HEAD
 `find skill java` +
 Returns a list of employees who has java skill.
-=======
 * `list` +
 `delete 2` +
 Deletes the 2nd employee in the address book.
 * `find Betsy` +
 `delete 1` +
 Deletes the 1st employee in the results of the `find` command.
->>>>>>> 53e8fc3f02e56b367e0b5588e3a43b12d12e4c02
 
 === View the details of employees or projects or milestones : `view`
 
-<<<<<<< HEAD
 Returns the list of milestones and employees in a project. +
 Format: `view project PROJECT_NAME`
 
@@ -226,7 +213,6 @@ Examples:
 
 `addto employee Apollo John Doe` +
 John Doe is added to Project Apollo.
-=======
 Selects the employee identified by the index number used in the displayed employee list. +
 Format: `select INDEX`
 
@@ -244,7 +230,6 @@ Selects the 2nd employee in the address book.
 * `find Betsy` +
 `select 1` +
 Selects the 1st employee in the results of the `find` command.
->>>>>>> 53e8fc3f02e56b367e0b5588e3a43b12d12e4c02
 
 `addto employee Starrer Vanessa Peterson` +
 Vanessa Peterson is added to Project Starrer.

@@ -63,16 +63,8 @@ public class AddressBookParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-<<<<<<< HEAD
             
-            case ClearCommand.COMMAND_ALIAS:
-                return  new ClearCommand();
-            
-        case FindCommand.COMMAND_WORD:
-=======
-
-        case FindEmployeeCommand.COMMAND_WORD:
->>>>>>> 53e8fc3f02e56b367e0b5588e3a43b12d12e4c02
+            case FindEmployeeCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
