@@ -8,12 +8,12 @@ import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysPerson;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardEquals;
 
+import guitests.guihandles.EmployeeListPanelHandle;
 import java.util.Collections;
 
 import org.junit.Test;
 
 import guitests.guihandles.EmployeeCardHandle;
-import guitests.guihandles.PersonListPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,16 +30,16 @@ public class EmployeeListPanelTest extends GuiUnitTest {
     private static final long CARD_CREATION_AND_DELETION_TIMEOUT = 2500;
 
     private final SimpleObjectProperty<Employee> selectedPerson = new SimpleObjectProperty<>();
-    private PersonListPanelHandle personListPanelHandle;
+    private EmployeeListPanelHandle employeeListPanelHandle;
 
     @Test
     public void display() {
         initUi(TYPICAL_EMPLOYEES);
 
         for (int i = 0; i < TYPICAL_EMPLOYEES.size(); i++) {
-            personListPanelHandle.navigateToCard(TYPICAL_EMPLOYEES.get(i));
+            employeeListPanelHandle.navigateToCard(TYPICAL_EMPLOYEES.get(i));
             Employee expectedEmployee = TYPICAL_EMPLOYEES.get(i);
-            EmployeeCardHandle actualCard = personListPanelHandle.getPersonCardHandle(i);
+            EmployeeCardHandle actualCard = employeeListPanelHandle.getEmployeeCardHandle(i);
 
             assertCardDisplaysPerson(expectedEmployee, actualCard);
             assertEquals(Integer.toString(i + 1) + ". ", actualCard.getId());
@@ -53,13 +53,13 @@ public class EmployeeListPanelTest extends GuiUnitTest {
         guiRobot.interact(() -> selectedPerson.set(secondEmployee));
         guiRobot.pauseForHuman();
 
-        EmployeeCardHandle expectedPerson = personListPanelHandle.getPersonCardHandle(INDEX_SECOND_PERSON.getZeroBased());
-        EmployeeCardHandle selectedPerson = personListPanelHandle.getHandleToSelectedCard();
+        EmployeeCardHandle expectedPerson = employeeListPanelHandle.getEmployeeCardHandle(INDEX_SECOND_PERSON.getZeroBased());
+        EmployeeCardHandle selectedPerson = employeeListPanelHandle.getHandleToSelectedCard();
         assertCardEquals(expectedPerson, selectedPerson);
     }
 
     /**
-     * Verifies that creating and deleting large number of persons in {@code PersonListPanel} requires lesser than
+     * Verifies that creating and deleting large number of persons in {@code EmployeeListPanel} requires lesser than
      * {@code CARD_CREATION_AND_DELETION_TIMEOUT} milliseconds to execute.
      */
     @Test
@@ -74,7 +74,7 @@ public class EmployeeListPanelTest extends GuiUnitTest {
 
     /**
      * Returns a list of persons containing {@code personCount} persons that is used to populate the
-     * {@code PersonListPanel}.
+     * {@code EmployeeListPanel}.
      */
     private ObservableList<Employee> createBackingList(int personCount) {
         ObservableList<Employee> backingList = FXCollections.observableArrayList();
@@ -90,15 +90,15 @@ public class EmployeeListPanelTest extends GuiUnitTest {
     }
 
     /**
-     * Initializes {@code personListPanelHandle} with a {@code PersonListPanel} backed by {@code backingList}.
-     * Also shows the {@code Stage} that displays only {@code PersonListPanel}.
+     * Initializes {@code employeeListPanelHandle} with a {@code EmployeeListPanel} backed by {@code backingList}.
+     * Also shows the {@code Stage} that displays only {@code EmployeeListPanel}.
      */
     private void initUi(ObservableList<Employee> backingList) {
-        PersonListPanel personListPanel =
-                new PersonListPanel(backingList, selectedPerson, selectedPerson::set);
-        uiPartRule.setUiPart(personListPanel);
+        EmployeeListPanel employeeListPanel =
+                new EmployeeListPanel(backingList, selectedPerson, selectedPerson::set);
+        uiPartRule.setUiPart(employeeListPanel);
 
-        personListPanelHandle = new PersonListPanelHandle(getChildNode(personListPanel.getRoot(),
-                PersonListPanelHandle.PERSON_LIST_VIEW_ID));
+        employeeListPanelHandle = new EmployeeListPanelHandle(getChildNode(employeeListPanel.getRoot(),
+                EmployeeListPanelHandle.EMPLOYEE_LIST_VIEW_ID));
     }
 }

@@ -3,10 +3,10 @@ package seedu.address.ui.testutil;
 import static org.junit.Assert.assertEquals;
 
 import guitests.guihandles.EmployeeCardHandle;
+import guitests.guihandles.EmployeeListPanelHandle;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.employee.Employee;
 
@@ -39,29 +39,29 @@ public class GuiTestAssert {
     }
 
     /**
-     * Asserts that the list in {@code personListPanelHandle} displays the details of {@code employees} correctly and
+     * Asserts that the list in {@code employeeListPanelHandle} displays the details of {@code employees} correctly and
      * in the correct order.
      */
-    public static void assertListMatching(PersonListPanelHandle personListPanelHandle, Employee... employees) {
+    public static void assertListMatching(EmployeeListPanelHandle employeeListPanelHandle, Employee... employees) {
         for (int i = 0; i < employees.length; i++) {
-            personListPanelHandle.navigateToCard(i);
-            assertCardDisplaysPerson(employees[i], personListPanelHandle.getPersonCardHandle(i));
+            employeeListPanelHandle.navigateToCard(i);
+            assertCardDisplaysPerson(employees[i], employeeListPanelHandle.getEmployeeCardHandle(i));
         }
     }
 
     /**
-     * Asserts that the list in {@code personListPanelHandle} displays the details of {@code employees} correctly and
+     * Asserts that the list in {@code employeeListPanelHandle} displays the details of {@code employees} correctly and
      * in the correct order.
      */
-    public static void assertListMatching(PersonListPanelHandle personListPanelHandle, List<Employee> employees) {
-        assertListMatching(personListPanelHandle, employees.toArray(new Employee[0]));
+    public static void assertListMatching(EmployeeListPanelHandle employeeListPanelHandle, List<Employee> employees) {
+        assertListMatching(employeeListPanelHandle, employees.toArray(new Employee[0]));
     }
 
     /**
-     * Asserts the size of the list in {@code personListPanelHandle} equals to {@code size}.
+     * Asserts the size of the list in {@code employeeListPanelHandle} equals to {@code size}.
      */
-    public static void assertListSize(PersonListPanelHandle personListPanelHandle, int size) {
-        int numberOfPeople = personListPanelHandle.getListSize();
+    public static void assertListSize(EmployeeListPanelHandle employeeListPanelHandle, int size) {
+        int numberOfPeople = employeeListPanelHandle.getListSize();
         assertEquals(size, numberOfPeople);
     }
 

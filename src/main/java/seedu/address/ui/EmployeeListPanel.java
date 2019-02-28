@@ -14,39 +14,39 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of employees.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class EmployeeListPanel extends UiPart<Region> {
+    private static final String FXML = "EmployeeListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(EmployeeListPanel.class);
 
     @FXML
-    private ListView<Employee> personListView;
+    private ListView<Employee> employeeListView;
 
-    public PersonListPanel(ObservableList<Employee> employeeList, ObservableValue<Employee> selectedPerson,
-                           Consumer<Employee> onSelectedPersonChange) {
+    public EmployeeListPanel(ObservableList<Employee> employeeList, ObservableValue<Employee> selectedEmployee,
+                             Consumer<Employee> onSelectedEmployeeChange) {
         super(FXML);
-        personListView.setItems(employeeList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
-        personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        employeeListView.setItems(employeeList);
+        employeeListView.setCellFactory(listView -> new EmployeeListViewCell());
+        employeeListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             logger.fine("Selection in employee list panel changed to : '" + newValue + "'");
-            onSelectedPersonChange.accept(newValue);
+            onSelectedEmployeeChange.accept(newValue);
         });
-        selectedPerson.addListener((observable, oldValue, newValue) -> {
+        selectedEmployee.addListener((observable, oldValue, newValue) -> {
             logger.fine("Selected employee changed to: " + newValue);
 
             // Don't modify selection if we are already selecting the selected employee,
             // otherwise we would have an infinite loop.
-            if (Objects.equals(personListView.getSelectionModel().getSelectedItem(), newValue)) {
+            if (Objects.equals(employeeListView.getSelectionModel().getSelectedItem(), newValue)) {
                 return;
             }
 
             if (newValue == null) {
-                personListView.getSelectionModel().clearSelection();
+                employeeListView.getSelectionModel().clearSelection();
             } else {
-                int index = personListView.getItems().indexOf(newValue);
-                personListView.scrollTo(index);
-                personListView.getSelectionModel().clearAndSelect(index);
+                int index = employeeListView.getItems().indexOf(newValue);
+                employeeListView.scrollTo(index);
+                employeeListView.getSelectionModel().clearAndSelect(index);
             }
         });
     }
@@ -54,7 +54,7 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Employee} using a {@code EmployeeCard}.
      */
-    class PersonListViewCell extends ListCell<Employee> {
+    class EmployeeListViewCell extends ListCell<Employee> {
         @Override
         protected void updateItem(Employee employee, boolean empty) {
             super.updateItem(employee, empty);
