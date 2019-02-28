@@ -194,7 +194,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedEmployeeReplaced = change.wasReplaced()
-                                                        && change.getAddedSize() == change.getRemovedSize()
+                    && change.getAddedSize() == change.getRemovedSize()
                     && change.getRemoved().contains(selectedEmployee.getValue());
             if (wasSelectedEmployeeReplaced) {
                 // Update selectedEmployee to its new value.

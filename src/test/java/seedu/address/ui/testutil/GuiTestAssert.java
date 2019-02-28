@@ -4,10 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import guitests.guihandles.EmployeeCardHandle;
 import guitests.guihandles.EmployeeListPanelHandle;
+import guitests.guihandles.ResultDisplayHandle;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.employee.Employee;
 
 /**

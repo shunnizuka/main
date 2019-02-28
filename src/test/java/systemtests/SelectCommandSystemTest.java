@@ -7,8 +7,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.SelectCommand.MESSAGE_SELECT_EMPLOYEE_SUCCESS;
 import static seedu.address.testutil.TestUtil.getLastIndex;
 import static seedu.address.testutil.TestUtil.getMidIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalEmployees.KEYWORD_MATCHING_MEIER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 
 import org.junit.Test;
 
@@ -95,7 +95,7 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
         /* Case: select from empty address book -> rejected */
         deleteAllEmployees();
         assertCommandFailure(SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased(),
-        MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+                                        MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 
     /**
@@ -115,7 +115,7 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
     private void assertCommandSuccess(String command, Index expectedSelectedCardIndex) {
         Model expectedModel = getModel();
         String expectedResultMessage = String.format(
-        MESSAGE_SELECT_EMPLOYEE_SUCCESS, expectedSelectedCardIndex.getOneBased());
+            MESSAGE_SELECT_EMPLOYEE_SUCCESS, expectedSelectedCardIndex.getOneBased());
         int preExecutionSelectedCardIndex = getEmployeeListPanel().getSelectedCardIndex();
 
         executeCommand(command);

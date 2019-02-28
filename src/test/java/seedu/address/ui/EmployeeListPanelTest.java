@@ -3,12 +3,13 @@ package seedu.address.ui;
 import static java.time.Duration.ofMillis;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 import static seedu.address.testutil.TypicalEmployees.getTypicalEmployees;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysEmployee;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardEquals;
 
 import guitests.guihandles.EmployeeListPanelHandle;
+
 import java.util.Collections;
 
 import org.junit.Test;
@@ -53,7 +54,8 @@ public class EmployeeListPanelTest extends GuiUnitTest {
         guiRobot.interact(() -> selectedEmployee.set(secondEmployee));
         guiRobot.pauseForHuman();
 
-        EmployeeCardHandle expectedEmployee = employeeListPanelHandle.getEmployeeCardHandle(INDEX_SECOND_EMPLOYEE.getZeroBased());
+        EmployeeCardHandle expectedEmployee =
+                employeeListPanelHandle.getEmployeeCardHandle(INDEX_SECOND_EMPLOYEE.getZeroBased());
         EmployeeCardHandle selectedEmployee = employeeListPanelHandle.getHandleToSelectedCard();
         assertCardEquals(expectedEmployee, selectedEmployee);
     }
