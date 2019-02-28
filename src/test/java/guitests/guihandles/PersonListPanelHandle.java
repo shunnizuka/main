@@ -23,12 +23,12 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Employee>> {
     }
 
     /**
-     * Returns a handle to the selected {@code PersonCardHandle}.
+     * Returns a handle to the selected {@code EmployeeCardHandle}.
      * A maximum of 1 item can be selected at any time.
      * @throws AssertionError if no card is selected, or more than 1 card is selected.
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
-    public PersonCardHandle getHandleToSelectedCard() {
+    public EmployeeCardHandle getHandleToSelectedCard() {
         List<Employee> selectedEmployeeList = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedEmployeeList.size() != 1) {
@@ -36,7 +36,7 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Employee>> {
         }
 
         return getAllCardNodes().stream()
-                .map(PersonCardHandle::new)
+                .map(EmployeeCardHandle::new)
                 .filter(handle -> handle.equals(selectedEmployeeList.get(0)))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
@@ -101,9 +101,9 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Employee>> {
      * Returns the employee card handle of a employee associated with the {@code index} in the list.
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
-    public PersonCardHandle getPersonCardHandle(int index) {
+    public EmployeeCardHandle getPersonCardHandle(int index) {
         return getAllCardNodes().stream()
-                .map(PersonCardHandle::new)
+                .map(EmployeeCardHandle::new)
                 .filter(handle -> handle.equals(getPerson(index)))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);

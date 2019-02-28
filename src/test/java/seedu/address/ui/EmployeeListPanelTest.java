@@ -12,7 +12,7 @@ import java.util.Collections;
 
 import org.junit.Test;
 
-import guitests.guihandles.PersonCardHandle;
+import guitests.guihandles.EmployeeCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -39,7 +39,7 @@ public class EmployeeListPanelTest extends GuiUnitTest {
         for (int i = 0; i < TYPICAL_EMPLOYEES.size(); i++) {
             personListPanelHandle.navigateToCard(TYPICAL_EMPLOYEES.get(i));
             Employee expectedEmployee = TYPICAL_EMPLOYEES.get(i);
-            PersonCardHandle actualCard = personListPanelHandle.getPersonCardHandle(i);
+            EmployeeCardHandle actualCard = personListPanelHandle.getPersonCardHandle(i);
 
             assertCardDisplaysPerson(expectedEmployee, actualCard);
             assertEquals(Integer.toString(i + 1) + ". ", actualCard.getId());
@@ -53,8 +53,8 @@ public class EmployeeListPanelTest extends GuiUnitTest {
         guiRobot.interact(() -> selectedPerson.set(secondEmployee));
         guiRobot.pauseForHuman();
 
-        PersonCardHandle expectedPerson = personListPanelHandle.getPersonCardHandle(INDEX_SECOND_PERSON.getZeroBased());
-        PersonCardHandle selectedPerson = personListPanelHandle.getHandleToSelectedCard();
+        EmployeeCardHandle expectedPerson = personListPanelHandle.getPersonCardHandle(INDEX_SECOND_PERSON.getZeroBased());
+        EmployeeCardHandle selectedPerson = personListPanelHandle.getHandleToSelectedCard();
         assertCardEquals(expectedPerson, selectedPerson);
     }
 

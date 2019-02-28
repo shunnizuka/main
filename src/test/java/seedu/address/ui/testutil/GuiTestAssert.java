@@ -2,10 +2,10 @@ package seedu.address.ui.testutil;
 
 import static org.junit.Assert.assertEquals;
 
+import guitests.guihandles.EmployeeCardHandle;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import guitests.guihandles.PersonCardHandle;
 import guitests.guihandles.PersonListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import seedu.address.model.employee.Employee;
@@ -17,7 +17,7 @@ public class GuiTestAssert {
     /**
      * Asserts that {@code actualCard} displays the same values as {@code expectedCard}.
      */
-    public static void assertCardEquals(PersonCardHandle expectedCard, PersonCardHandle actualCard) {
+    public static void assertCardEquals(EmployeeCardHandle expectedCard, EmployeeCardHandle actualCard) {
         assertEquals(expectedCard.getId(), actualCard.getId());
         assertEquals(expectedCard.getAddress(), actualCard.getAddress());
         assertEquals(expectedCard.getEmail(), actualCard.getEmail());
@@ -29,7 +29,7 @@ public class GuiTestAssert {
     /**
      * Asserts that {@code actualCard} displays the details of {@code expectedEmployee}.
      */
-    public static void assertCardDisplaysPerson(Employee expectedEmployee, PersonCardHandle actualCard) {
+    public static void assertCardDisplaysPerson(Employee expectedEmployee, EmployeeCardHandle actualCard) {
         assertEquals(expectedEmployee.getName().fullName, actualCard.getName());
         assertEquals(expectedEmployee.getPhone().value, actualCard.getPhone());
         assertEquals(expectedEmployee.getEmail().value, actualCard.getEmail());

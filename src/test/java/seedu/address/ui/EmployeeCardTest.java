@@ -5,9 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysPerson;
 
+import guitests.guihandles.EmployeeCardHandle;
 import org.junit.Test;
 
-import guitests.guihandles.PersonCardHandle;
 import seedu.address.model.employee.Employee;
 import seedu.address.testutil.EmployeeBuilder;
 
@@ -61,12 +61,12 @@ public class EmployeeCardTest extends GuiUnitTest {
     private void assertCardDisplay(EmployeeCard employeeCard, Employee expectedEmployee, int expectedId) {
         guiRobot.pauseForHuman();
 
-        PersonCardHandle personCardHandle = new PersonCardHandle(employeeCard.getRoot());
+        EmployeeCardHandle employeeCardHandle = new EmployeeCardHandle(employeeCard.getRoot());
 
         // verify id is displayed correctly
-        assertEquals(Integer.toString(expectedId) + ". ", personCardHandle.getId());
+        assertEquals(Integer.toString(expectedId) + ". ", employeeCardHandle.getId());
 
         // verify employee details are displayed correctly
-        assertCardDisplaysPerson(expectedEmployee, personCardHandle);
+        assertCardDisplaysPerson(expectedEmployee, employeeCardHandle);
     }
 }
