@@ -40,10 +40,11 @@ public class FindCommandParser implements Parser<FindEmployeeCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
 
-        if (nameKeywords.length > 1) {
+       /* if (nameKeywords.length > 1) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
+        */
 
         switch (type) {
 
@@ -56,11 +57,10 @@ public class FindCommandParser implements Parser<FindEmployeeCommand> {
 
         case FindEmployeeCommand.FINDSKILLTYPE:
             System.out.println("Parser: finding skill....");
-            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(keyword)));
+            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
         default:
-            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(keyword)));
-
+            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
     }
 
