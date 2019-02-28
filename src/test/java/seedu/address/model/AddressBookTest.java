@@ -34,7 +34,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getEmployeeList());
     }
 
     @Test
@@ -65,18 +65,18 @@ public class AddressBookTest {
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        addressBook.hasPerson(null);
+        addressBook.hasEmployee(null);
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasEmployee(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addEmployee(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        assertTrue(addressBook.hasEmployee(ALICE));
     }
 
     @Test
@@ -84,13 +84,13 @@ public class AddressBookTest {
         addressBook.addEmployee(ALICE);
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasEmployee(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        addressBook.getPersonList().remove(0);
+        addressBook.getEmployeeList().remove(0);
     }
 
     @Test
@@ -123,7 +123,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Employee> getPersonList() {
+        public ObservableList<Employee> getEmployeeList() {
             return employees;
         }
 

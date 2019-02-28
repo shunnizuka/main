@@ -40,7 +40,7 @@ public class ModelManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEmployees = new FilteredList<>(versionedAddressBook.getPersonList());
+        filteredEmployees = new FilteredList<>(versionedAddressBook.getEmployeeList());
         filteredEmployees.addListener(this::ensureSelectedPersonIsValid);
     }
 
@@ -98,12 +98,12 @@ public class ModelManager implements Model {
     @Override
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
-        return versionedAddressBook.hasPerson(employee);
+        return versionedAddressBook.hasEmployee(employee);
     }
 
     @Override
     public void deleteEmployee(Employee target) {
-        versionedAddressBook.removePerson(target);
+        versionedAddressBook.removeEmployee(target);
     }
 
     @Override

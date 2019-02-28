@@ -57,7 +57,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setPersons(newData.getEmployeeList());
     }
 
     //// employee-level operations
@@ -65,7 +65,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a employee with the same identity as {@code employee} exists in the address book.
      */
-    public boolean hasPerson(Employee employee) {
+    public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
         return persons.contains(employee);
     }
@@ -96,7 +96,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Employee key) {
+    public void removeEmployee(Employee key) {
         persons.remove(key);
         indicateModified();
     }
@@ -127,7 +127,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Employee> getPersonList() {
+    public ObservableList<Employee> getEmployeeList() {
         return persons.asUnmodifiableObservableList();
     }
 
