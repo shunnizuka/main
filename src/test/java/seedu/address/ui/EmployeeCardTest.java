@@ -3,70 +3,71 @@ package seedu.address.ui;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysPerson;
+import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysEmployee;
 
 import org.junit.Test;
 
-import guitests.guihandles.PersonCardHandle;
+import guitests.guihandles.EmployeeCardHandle;
+
 import seedu.address.model.employee.Employee;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EmployeeBuilder;
 
 public class EmployeeCardTest extends GuiUnitTest {
 
     @Test
     public void display() {
         // no tags
-        Employee employeeWithNoTags = new PersonBuilder().withTags(new String[0]).build();
-        PersonCard personCard = new PersonCard(employeeWithNoTags, 1);
-        uiPartRule.setUiPart(personCard);
-        assertCardDisplay(personCard, employeeWithNoTags, 1);
+        Employee employeeWithNoTags = new EmployeeBuilder().withTags(new String[0]).build();
+        EmployeeCard employeeCard = new EmployeeCard(employeeWithNoTags, 1);
+        uiPartRule.setUiPart(employeeCard);
+        assertCardDisplay(employeeCard, employeeWithNoTags, 1);
 
         // with tags
-        Employee employeeWithTags = new PersonBuilder().build();
-        personCard = new PersonCard(employeeWithTags, 2);
-        uiPartRule.setUiPart(personCard);
-        assertCardDisplay(personCard, employeeWithTags, 2);
+        Employee employeeWithTags = new EmployeeBuilder().build();
+        employeeCard = new EmployeeCard(employeeWithTags, 2);
+        uiPartRule.setUiPart(employeeCard);
+        assertCardDisplay(employeeCard, employeeWithTags, 2);
     }
 
     @Test
     public void equals() {
-        Employee employee = new PersonBuilder().build();
-        PersonCard personCard = new PersonCard(employee, 0);
+        Employee employee = new EmployeeBuilder().build();
+        EmployeeCard employeeCard = new EmployeeCard(employee, 0);
 
         // same employee, same index -> returns true
-        PersonCard copy = new PersonCard(employee, 0);
-        assertTrue(personCard.equals(copy));
+        EmployeeCard copy = new EmployeeCard(employee, 0);
+        assertTrue(employeeCard.equals(copy));
 
         // same object -> returns true
-        assertTrue(personCard.equals(personCard));
+        assertTrue(employeeCard.equals(employeeCard));
 
         // null -> returns false
-        assertFalse(personCard.equals(null));
+        assertFalse(employeeCard.equals(null));
 
         // different types -> returns false
-        assertFalse(personCard.equals(0));
+        assertFalse(employeeCard.equals(0));
 
         // different employee, same index -> returns false
-        Employee differentEmployee = new PersonBuilder().withName("differentName").build();
-        assertFalse(personCard.equals(new PersonCard(differentEmployee, 0)));
+        Employee differentEmployee = new EmployeeBuilder().withName("differentName").build();
+        assertFalse(employeeCard.equals(new EmployeeCard(differentEmployee, 0)));
 
         // same employee, different index -> returns false
-        assertFalse(personCard.equals(new PersonCard(employee, 1)));
+        assertFalse(employeeCard.equals(new EmployeeCard(employee, 1)));
     }
 
     /**
-     * Asserts that {@code personCard} displays the details of {@code expectedEmployee} correctly and matches
+     * Asserts that {@code employeeCard} displays the details of {@code expectedEmployee} correctly and matches
      * {@code expectedId}.
      */
-    private void assertCardDisplay(PersonCard personCard, Employee expectedEmployee, int expectedId) {
+    private void assertCardDisplay(EmployeeCard employeeCard, Employee expectedEmployee, int expectedId) {
         guiRobot.pauseForHuman();
 
-        PersonCardHandle personCardHandle = new PersonCardHandle(personCard.getRoot());
+        EmployeeCardHandle employeeCardHandle = new EmployeeCardHandle(employeeCard.getRoot());
 
         // verify id is displayed correctly
-        assertEquals(Integer.toString(expectedId) + ". ", personCardHandle.getId());
+        assertEquals(Integer.toString(expectedId) + ". ", employeeCardHandle.getId());
 
         // verify employee details are displayed correctly
-        assertCardDisplaysPerson(expectedEmployee, personCardHandle);
+        assertCardDisplaysEmployee(expectedEmployee, employeeCardHandle);
     }
 }
