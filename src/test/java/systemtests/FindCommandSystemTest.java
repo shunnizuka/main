@@ -28,7 +28,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         /* Case: find multiple persons in address book, command with leading spaces and trailing spaces
          * -> 2 persons found
          */
-        String command = "   " + FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE 
+        String command = "   " + FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE
             + " " + KEYWORD_MATCHING_MEIER + "   ";
         Model expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL); // first names of Benson and Daniel are "Meier"
@@ -112,8 +112,8 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        
-/*        *//* Case: find phone number of person in address book -> 0 persons found *//*
+
+        /*        *//* Case: find phone number of person in address book -> 0 persons found *//*
         command = FindEmployeeCommand.COMMAND_WORD + " " + DANIEL.getPhone().value;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
@@ -133,8 +133,8 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         command = FindEmployeeCommand.COMMAND_WORD + " " + tags.get(0).tagName;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();*/
-        
-        
+
+
         /* Case: find while a person is selected -> selected card deselected */
         showAllEmployees();
         selectEmployee(Index.fromOneBased(1));

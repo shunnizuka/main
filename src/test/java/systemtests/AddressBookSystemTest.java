@@ -51,7 +51,7 @@ public abstract class AddressBookSystemTest {
 
     private static final List<String> COMMAND_BOX_DEFAULT_STYLE = Arrays.asList("text-input", "text-field");
     private static final List<String> COMMAND_BOX_ERROR_STYLE =
-            Arrays.asList("text-input", "text-field", CommandBox.ERROR_STYLE_CLASS);
+        Arrays.asList("text-input", "text-field", CommandBox.ERROR_STYLE_CLASS);
 
     private MainWindowHandle mainWindowHandle;
     private TestApp testApp;
@@ -146,9 +146,8 @@ public abstract class AddressBookSystemTest {
      * Displays all employees with any parts of their names matching {@code keyword} (case-insensitive).
      */
     protected void showEmployeesWithName(String keyword) {
-            executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE + " " + keyword);
+        executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE + " " + keyword);
         assertTrue(getModel().getFilteredEmployeeList().size() < getModel().getAddressBook().getEmployeeList().size());
-
     }
 
     /**
@@ -173,7 +172,7 @@ public abstract class AddressBookSystemTest {
      * and the employee list panel displays the employees in the model correctly.
      */
     protected void assertApplicationDisplaysExpected(String expectedCommandInput, String expectedResultMessage,
-            Model expectedModel) {
+                                                     Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
         assertEquals(new AddressBook(expectedModel.getAddressBook()), testApp.readStorageAddressBook());
@@ -276,7 +275,7 @@ public abstract class AddressBookSystemTest {
         assertListMatching(getEmployeeListPanel(), getModel().getFilteredEmployeeList());
         assertEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
-                getStatusBarFooter().getSaveLocation());
+            getStatusBarFooter().getSaveLocation());
         assertEquals(SYNC_STATUS_INITIAL, getStatusBarFooter().getSyncStatus());
     }
 
