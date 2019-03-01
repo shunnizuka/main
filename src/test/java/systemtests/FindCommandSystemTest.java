@@ -8,8 +8,8 @@ import static seedu.address.testutil.TypicalEmployees.CARL;
 import static seedu.address.testutil.TypicalEmployees.DANIEL;
 import static seedu.address.testutil.TypicalEmployees.KEYWORD_MATCHING_MEIER;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
+//import seedu.address.model.tag.Tag;
 
 public class FindCommandSystemTest extends AddressBookSystemTest {
 
@@ -49,7 +49,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: find multiple persons in address book, 2 keywords -> 2 persons found */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE +" Benson Daniel";
+        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE + " Benson Daniel";
         ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
@@ -67,7 +67,8 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         /* Case: find multiple persons in address book, 2 matching keywords and 1 non-matching keyword
          * -> 2 persons found
          */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE + " Daniel Benson NonMatchingKeyWord";
+        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE
+            + " Daniel Benson NonMatchingKeyWord";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -112,8 +113,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-
-        /*        *//* Case: find phone number of person in address book -> 0 persons found *//*
+        /**//* Case: find phone number of person in address book -> 0 persons found *//*
         command = FindEmployeeCommand.COMMAND_WORD + " " + DANIEL.getPhone().value;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
@@ -133,8 +133,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         command = FindEmployeeCommand.COMMAND_WORD + " " + tags.get(0).tagName;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();*/
-
-
+        
         /* Case: find while a person is selected -> selected card deselected */
         showAllEmployees();
         selectEmployee(Index.fromOneBased(1));
