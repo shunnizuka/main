@@ -14,11 +14,11 @@ import seedu.address.model.employee.NameContainsKeywordsPredicate;
 public class FindEmployeeCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
-    public static final String TYPE = "employee";
+    public static final String FIND_EMPLOYEE_TYPE = "employee";
 
     //will shift these to the new classes later
-    public static final String FINDPROJECTTYPE = "project";
-    public static final String FINDSKILLTYPE = "skill";
+    public static final String FIND_PROJECT_TYPE = "project";
+    public static final String FIND_SKILL_TYPE = "skill";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain "
         + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"

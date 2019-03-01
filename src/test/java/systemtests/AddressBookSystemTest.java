@@ -146,7 +146,7 @@ public abstract class AddressBookSystemTest {
      * Displays all employees with any parts of their names matching {@code keyword} (case-insensitive).
      */
     protected void showEmployeesWithName(String keyword) {
-        executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.TYPE + " " + keyword);
+        executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_TYPE + " " + keyword);
         assertTrue(getModel().getFilteredEmployeeList().size() < getModel().getAddressBook().getEmployeeList().size());
     }
 

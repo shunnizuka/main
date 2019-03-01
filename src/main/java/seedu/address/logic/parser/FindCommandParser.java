@@ -42,15 +42,13 @@ public class FindCommandParser implements Parser<FindEmployeeCommand> {
 
         switch (type) {
 
-        case FindEmployeeCommand.TYPE:
+        case FindEmployeeCommand.FIND_EMPLOYEE_TYPE:
             return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
-        case FindEmployeeCommand.FINDPROJECTTYPE:
-            System.out.println("Parser: finding project....");
+        case FindEmployeeCommand.FIND_PROJECT_TYPE:
             return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
-        case FindEmployeeCommand.FINDSKILLTYPE:
-            System.out.println("Parser: finding skill....");
+        case FindEmployeeCommand.FIND_SKILL_TYPE:
             return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
         default:
