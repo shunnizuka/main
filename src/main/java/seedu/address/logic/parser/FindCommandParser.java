@@ -40,12 +40,6 @@ public class FindCommandParser implements Parser<FindEmployeeCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
 
-       /* if (nameKeywords.length > 1) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
-        }
-        */
-
         switch (type) {
 
         case FindEmployeeCommand.TYPE:
