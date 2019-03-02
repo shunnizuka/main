@@ -88,13 +88,13 @@ public class UniqueProjectList implements Iterable<Project> {
      * Replaces the contents of this list with {@code Projects}.
      * {@code Projects} must not contain duplicate Projects.
      */
-    public void setProjects(List<Project> Projects) {
-        requireAllNonNull(Projects);
-        if (!ProjectsAreUnique(Projects)) {
+    public void setProjects(List<Project> projects) {
+        requireAllNonNull(projects);
+        if (!ProjectsAreUnique(projects)) {
             throw new DuplicateProjectException();
         }
 
-        internalList.setAll(Projects);
+        internalList.setAll(projects);
     }
 
     /**
@@ -124,10 +124,10 @@ public class UniqueProjectList implements Iterable<Project> {
     /**
      * Returns true if {@code Projects} contains only unique Projects.
      */
-    private boolean ProjectsAreUnique(List<Project> Projects) {
-        for (int i = 0; i < Projects.size() - 1; i++) {
-            for (int j = i + 1; j < Projects.size(); j++) {
-                if (Projects.get(i).isSameProject(Projects.get(j))) {
+    private boolean ProjectsAreUnique(List<Project> projects) {
+        for (int i = 0; i < projects.size() - 1; i++) {
+            for (int j = i + 1; j < projects.size(); j++) {
+                if (projects.get(i).isSameProject(projects.get(j))) {
                     return false;
                 }
             }
