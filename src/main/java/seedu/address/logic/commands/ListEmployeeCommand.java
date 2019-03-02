@@ -7,15 +7,18 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all employees in the employees list to the user.
  */
-public class ListEmployeeCommand extends Command {
+public class ListEmployeeCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "list";
-    public static final String LIST_EMPLOYEE_TYPE = "employee";
+    public static final String LIST_EMPLOYEE_KEYWORD = "employee";
 
     public static final String MESSAGE_SUCCESS = "Listed all employees";
 
+    public static final String MESSAGE_USAGE = ListCommand.COMMAND_WORD
+            + LIST_EMPLOYEE_KEYWORD
+            + "\n"
+            + ": Lists all employees registered in Pocket Project\n";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
