@@ -37,6 +37,7 @@ public class ListEmployeeCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
-        assertCommandSuccess(new ListEmployeeCommand(), model, commandHistory, ListEmployeeCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListEmployeeCommand(), model, commandHistory, ListEmployeeCommand.MESSAGE_SUCCESS,
+                expectedModel);
     }
 }
