@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,7 +10,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
 
 public class ListCommandParser implements Parser<ListCommand> {
 
@@ -40,15 +39,16 @@ public class ListCommandParser implements Parser<ListCommand> {
             switch (type) {
 
                 case ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD:
-                    return new EmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+                    return new ListEmployeeCommand();
 
                 case ListProjectCommand.LIST_PROJECT_KEYWORD:
-                    return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-
+                    return new ListProjectCommand();
 
                 default:
-                    return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
             }
+
         }
 
     }

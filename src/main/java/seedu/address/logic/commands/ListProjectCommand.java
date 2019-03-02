@@ -5,7 +5,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
 
 /**
  * Lists all projects in the projects list to the user.
@@ -20,10 +19,6 @@ public class ListProjectCommand extends ListCommand {
             + LIST_PROJECT_KEYWORD
             + "\n"
             + ": Lists all projects registered in Pocket Project\n";
-
-    public ListCommandEmployeeCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
