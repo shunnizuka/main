@@ -18,7 +18,7 @@ public class Project {
      * Constructor for each Project Object.
      */
     public Project (ProjectName pn, Client c, Deadline d) {
-        this. projectName = pn;
+        this.projectName = pn;
         this.client = c;
         this.deadline = d;
         milestone = new ArrayList<>();
