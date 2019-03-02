@@ -90,7 +90,7 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public void setProjects(List<Project> projects) {
         requireAllNonNull(projects);
-        if (!ProjectsAreUnique(projects)) {
+        if (!projectsAreUnique(projects)) {
             throw new DuplicateProjectException();
         }
 
