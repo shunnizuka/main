@@ -124,7 +124,7 @@ public class UniqueProjectList implements Iterable<Project> {
     /**
      * Returns true if {@code Projects} contains only unique Projects.
      */
-    private boolean ProjectsAreUnique(List<Project> projects) {
+    private boolean projectsAreUnique(List<Project> projects) {
         for (int i = 0; i < projects.size() - 1; i++) {
             for (int j = i + 1; j < projects.size(); j++) {
                 if (projects.get(i).isSameProject(projects.get(j))) {
