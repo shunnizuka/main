@@ -85,7 +85,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, expectedResultMessage);
 
         /* Case: find same persons in address book after deleting 1 of them -> 1 employee found */
-        executeCommand(DeleteCommand.COMMAND_WORD + " 1");
+        executeCommand(DeleteCommand.COMMAND_WORD + " employee 1");
         assertFalse(getModel().getAddressBook().getEmployeeList().contains(BENSON));
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_TYPE + " "
                 + KEYWORD_MATCHING_MEIER;
