@@ -57,6 +57,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+
+    //----------------Methods related to employees ----------------------------------------------------------
     /**
      * Returns true if a employee with the same identity as {@code employee} exists in the address book.
      */
@@ -91,11 +93,35 @@ public interface Model {
      */
     void updateFilteredEmployeeList(Predicate<Employee> predicate);
 
+
+    //------------- Methods related to projects ----------------------------------------------------------
+    /**
+     * Returns true if a employee with the same identity as {@code employee} exists in the address book.
+     */
+    boolean hasProject(Project employee);
+
+    /**
+     * Deletes the given project.
+     * The project must exist in the projects list.
+     */
+    void deleteProject(Project target);
+
+    /**
+     * Adds the given project.
+     * {@code project} must not already exist in the projects list.
+     */
+    void addProject(Project employee);
+
+    /** Returns an unmodifiable view of the filtered projects list */
+    ObservableList<Project> getFilteredProjectList();
+
     /**
      * Updates the filter of the filtered project list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
+
+    //-------------------------------------------------------------------------------------------
 
     /**
      * Returns true if the model has previous address book states to restore.

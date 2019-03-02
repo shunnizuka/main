@@ -16,6 +16,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
 import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 
 /**
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
+    private final FilteredList<Project> filteredProjects;
     private final SimpleObjectProperty<Employee> selectedEmployee = new SimpleObjectProperty<>();
 
     /**
@@ -42,6 +44,10 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEmployees = new FilteredList<>(versionedAddressBook.getEmployeeList());
         filteredEmployees.addListener(this::ensureSelectedEmployeeIsValid);
+
+        filteredProjects = new FilteredList<>(versionedAddressBook.getProjectList());
+        filteredEmployees.addListener(this::ensureSelectedEmployeeIsValid);
+
     }
 
     public ModelManager() {
@@ -102,14 +108,31 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return versionedAddressBook.hasProject(project);
+    }
+
+    @Override
     public void deleteEmployee(Employee target) {
         versionedAddressBook.removeEmployee(target);
+    }
+
+    @Override
+    public void deleteProject(Project target) {
+        versionedAddressBook.removeProject(target);
     }
 
     @Override
     public void addEmployee(Employee employee) {
         versionedAddressBook.addEmployee(employee);
         updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
+    }
+
+    @Override
+    public void addProject(Project project) {
+        versionedAddressBook.addProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override
@@ -135,6 +158,25 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredEmployees.setPredicate(predicate);
     }
+
+    //=========== Filtered Project List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
+    }
+
+
 
     //=========== Undo/Redo =================================================================================
 
