@@ -24,8 +24,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.employee.Employee;
-import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.model.project.Project;
+import seedu.address.testutil.EmployeeBuilder;
 
 public class AddCommandTest {
 

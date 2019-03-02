@@ -30,7 +30,8 @@ public class ListEmployeeCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListEmployeeCommand(), model, commandHistory, ListEmployeeCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListEmployeeCommand(), model, commandHistory,
+                ListEmployeeCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

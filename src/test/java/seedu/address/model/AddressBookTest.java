@@ -130,7 +130,9 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Project> getProjectList() { return projects; }
+        public ObservableList<Project> getProjectList() {
+            return projects;
+        }
 
         @Override
         public void addListener(InvalidationListener listener) {
