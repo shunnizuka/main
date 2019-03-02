@@ -22,7 +22,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
+import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -104,8 +106,15 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListEmployeeCommand.COMMAND_WORD) instanceof ListEmployeeCommand);
-        assertTrue(parser.parseCommand(ListEmployeeCommand.COMMAND_WORD + " 3") instanceof ListEmployeeCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
+                + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
+                + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListEmployeeCommand);
+
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
+                + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
+                + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListProjectCommand);
     }
 
     @Test
