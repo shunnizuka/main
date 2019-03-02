@@ -16,7 +16,7 @@ import seedu.address.model.employee.Employee;
  */
 public class DeleteProjectCommand extends DeleteCommand {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String DELETE_PROJECT_KEYWORD = "project";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " project"
             + ": Deletes the project identified by the name of the project.\n"

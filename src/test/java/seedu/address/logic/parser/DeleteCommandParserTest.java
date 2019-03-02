@@ -22,12 +22,12 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE));
+        assertParseSuccess(parser, "employee 1", new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "employee a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteEmployeeCommand.MESSAGE_USAGE));
     }
 }
