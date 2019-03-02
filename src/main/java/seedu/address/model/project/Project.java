@@ -37,6 +37,18 @@ public class Project {
         return deadline;
     }
 
+    /**
+     * Returns true if both projects have the same name.
+     */
+    public boolean isSameProject(Project otherProject) {
+        if (otherProject == this) {
+            return true;
+        }
+
+        return otherProject != null
+                && otherProject.getProjectName() == getProjectName();
+    }
+
     @Override
     public boolean equals (Object other) {
         if (other == this) {
