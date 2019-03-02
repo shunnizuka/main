@@ -2,6 +2,7 @@ package seedu.address.model.project;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents a project in the pocket project.
@@ -22,6 +23,56 @@ public class Project {
         this.deadline = d;
         milestone = new ArrayList<>();
     }
+
+    public ProjectName getProjectName() {
+        return projectName;
+    }
+    public List<Milestone> getMilestone() {
+        return milestone;
+    }
+    public Client getClient() {
+        return client;
+    }
+    public Deadline getDeadline() {
+        return deadline;
+    }
+
+    @Override
+    public boolean equals (Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Project)) {
+            return false;
+        }
+
+        Project otherProject = (Project) other;
+        return otherProject.getProjectName().equals(getProjectName())
+                && otherProject.getClient().equals(getClient())
+                && otherProject.getDeadline().equals(getDeadline());
+
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(projectName, client, deadline);
+    }
+
+    @Override
+    public String toString() {
+
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getProjectName())
+                .append(" Client: ")
+                .append(getClient())
+                .append(" Deadline: ")
+                .append(getDeadline());
+
+        return builder.toString();
+    }
+
 
 
 }
