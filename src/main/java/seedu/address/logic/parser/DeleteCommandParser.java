@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
+import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -19,7 +20,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     /**
      * Used for separation of delete type word and args.
      */
-    private static final Pattern DELETE_COMMAND_FORMAT = Pattern.compile("(?<typeWord>\\S+)(?<arguments>.*)");
+    private static final Pattern DELETE_COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
@@ -33,10 +34,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String typeWord = matcher.group("typeWord");
+        final String keyword = matcher.group("keyword");
         final String arguments = matcher.group("arguments");
 
-        if (typeWord.equals(DeleteCommand.DELETE_EMPLOYEE_TYPE)) {
+        if (keyword.equals(DeleteEmployeeCommand.DELETE_EMPLOYEE_KEYWORD)) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new DeleteEmployeeCommand(index);
@@ -44,7 +45,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEmployeeCommand.MESSAGE_USAGE), pe);
             }
-        } else if (typeWord.equals(DeleteCommand.DELETE_PROJECT_TYPE)) {
+        } else if (keyword.equals(DeleteProjectCommand.DELETE_PROJECT_KEYWORD)) {
             //to change to delete project later
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
