@@ -115,7 +115,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given employee {@code target} in the list with {@code editedEmployee}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the employee list.
      * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the address
      * book.
      */
