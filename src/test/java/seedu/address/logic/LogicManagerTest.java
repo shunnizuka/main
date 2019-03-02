@@ -22,6 +22,8 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListEmployeeCommand;
+import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -69,11 +71,16 @@ public class LogicManagerTest {
         assertHistoryCorrect(deleteCommand);
     }
 
+    //TODO: remove the assert for history
     @Test
     public void execute_validCommand_success() {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-        assertHistoryCorrect(listCommand);
+        String listEmployeeCommand = ListCommand.COMMAND_WORD + " " + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD;
+        assertCommandSuccess(listEmployeeCommand, ListEmployeeCommand.MESSAGE_SUCCESS, model);
+        //assertHistoryCorrect(listEmployeeCommand);
+
+        String listProjectCommand = ListCommand.COMMAND_WORD + " " + ListProjectCommand.LIST_PROJECT_KEYWORD;
+        assertCommandSuccess(listProjectCommand, ListProjectCommand.MESSAGE_SUCCESS, model);
+        //assertHistoryCorrect(listProjectCommand);
     }
 
     @Test

@@ -1,25 +1,17 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
-
-import seedu.address.logic.CommandHistory;
-import seedu.address.model.Model;
-
 /**
- * Lists all persons in the address book to the user.
+ * An abstract class to generalise all types of list commands
+ * Note that the {@code execute} command is not defined here so any classes inheriting from this has to implement it
  */
-public class ListCommand extends Command {
+public abstract class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": lists all employees/projects in the Pocket Project:\n"
+            + ListEmployeeCommand.MESSAGE_USAGE
+            + "\n"
+            + ListProjectCommand.MESSAGE_USAGE;
 
 
-    @Override
-    public CommandResult execute(Model model, CommandHistory history) {
-        requireNonNull(model);
-        model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
-        return new CommandResult(MESSAGE_SUCCESS);
-    }
 }
