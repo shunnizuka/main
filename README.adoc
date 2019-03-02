@@ -18,31 +18,36 @@ endif::[]
 * This is a desktop Project Manager application. Most of the user interactions happen using a CLI (Command Line Interface)
 and there is   also a GUI to support the system. It is an application using Java as the main programming language.
 
-* It is intended for managers are in charge of many projects and who have a large number of employees assigned to each project at any
-given time. It helps managers to effectively manage any of their projects by being able to view employees assigned to the projects,
-skils required for the project, budget and timeline for the project among other things.
+* It is intended for managers who are in charge of many software engineering projects and who have a large number of
+employees assigned to each project at any given time.
 
-* It is written in OOP fashion and has a sophisticated GUI with an in-built brower. There are also automated test cases already in-built
-using both automated GUI testing and JUnit Tests.
-
-* Support for _Build Automation_ using Gradle and for _Continuous Integration_ using Travis CI.
+* Managers can view project details such as
+** Employees assigned
+** Deadline
+** Client
+** Milestones
 
 == Site Map
 
 * <<UserGuide#, User Guide>>
 * <<DeveloperGuide#, Developer Guide>>
-* <<LearningOutcomes#, Learning Outcomes>>
 * <<AboutUs#, About Us>>
 * <<ContactUs#, Contact Us>>
 
 == Authors
 
-Daryl Tan, Lin Dehui, Jeff Gan, Jothinandan Pillay, Shune Lei
+* Daryl Tan (https://github.com/ditan96[@ditan96])
+* Jeff Gan (https://github.com/jeffgan96[@jeffgan96])
+* Jothinandan Pillay (https://github.com/jothipillay[@jothipillay])
+* Lin Dehui (https://github.com/dehui333[@dehui333])
+* Shune Lei (https://github.com/shunnizuka[@shunnizuka])
 
 == Acknowledgements
 
-* Some parts of this sample application were inspired by the excellent http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by
-_Marco Jakob_.
-* Libraries used: https://github.com/TestFX/TestFX[TextFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/google/guava[Guava], https://github.com/junit-team/junit5[JUnit5]
+* PocketProject is based on the AddressBook-Level4 project created by SE-EDU initiative at https://github.com/se-edu/
+* Some parts of this application were inspired by the excellent
+http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by _Marco Jakob_.
+* Libraries used: https://github.com/TestFX/TestFX[TextFX], https://github.com/FasterXML/jackson[Jackson],
+https://github.com/google/guava[Guava], https://github.com/junit-team/junit5[JUnit5]
 
 == Licence : link:LICENSE[MIT]
