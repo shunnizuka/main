@@ -40,15 +40,14 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         switch (type) {
 
-            case ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD:
-                return new ListEmployeeCommand();
+        case ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD:
+            return new ListEmployeeCommand();
 
-            case ListProjectCommand.LIST_PROJECT_KEYWORD:
-                return new ListProjectCommand();
+        case ListProjectCommand.LIST_PROJECT_KEYWORD:
+            return new ListProjectCommand();
 
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
     }
