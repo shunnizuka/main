@@ -92,6 +92,12 @@ public interface Model {
     void updateFilteredEmployeeList(Predicate<Employee> predicate);
 
     /**
+     * Updates the filter of the filtered project list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredProjectList(Predicate<Project> predicate);
+
+    /**
      * Returns true if the model has previous address book states to restore.
      */
     boolean canUndoAddressBook();
