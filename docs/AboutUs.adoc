@@ -4,52 +4,57 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-PocketProject was developed by the https://se-edu.github.io/docs/Team.html[W10-2] team. +
+PocketProject was developed by the https://github.com/cs2103-ay1819s2-w10-2[W10-2] team. +
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
 == Project Team
 
 === DARYL IGNATIUS TAN BOON YANG
 image::ditan96.png[width="150", align="left"]
-{empty}[https://github.com/ditan96[github]] [<<ditan96#, portfolio>>]
+{empty}[https://github.com/ditan96[github]]
 
-Role:
-Responsibilities:
+*Roles*: Team lead, Integration
+
+*Responsibilities*: Logic
 
 '''
 
 === GAN MING RUI JEFF
 image::jeffgan96.png[width="150", align="left"]
-{empty}[http://github.com/jeffgan96[github]] [<<jeffgan96#, portfolio>>]
+{empty}[http://github.com/jeffgan96[github]]
 
-Role:
-Responsibilities:
+*Roles*: Code Quality
+
+*Responsibilities*: UI, JavaFX
 
 '''
 
 === LIN DEHUI
 image::dehui333.png[width="150", align="left"]
-{empty}[http://github.com/dehui333[github]] [<<dehui333#, portfolio>>]
+{empty}[http://github.com/dehui333[github]]
 
-Role:
-Responsibilities:
+*Roles*: Scheduling and tracking
+
+*Responsibilities*: Model
 
 '''
 
 === MANICKAMALAR JOTHINANDAN PILLAY
 image::jothipillay.png[width="150", align="left"]
-{empty}[http://github.com/jothipillay[github]] [<<jothipillay#, portfolio>>]
+{empty}[http://github.com/jothipillay[github]]
 
-Role:
-Responsibilities:
+*Roles*: Documentation
+
+*Responsibilities*: Logic
 
 '''
 
 === SHUNE LEI YEE TUN
 image::shunnizuka.png[width="150", align="left"]
-{empty}[http://github.com/shunnizuka[github]] [<<shunnizuka#, portfolio>>]
+{empty}[http://github.com/shunnizuka[github]]
 
-Role:
-Responsibilities:
+*Roles*: Deliverables and deadlines
+
+*Responsibilities*: Storage
 
 '''

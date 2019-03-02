@@ -1,8 +1,8 @@
 package seedu.address.model.employee.exceptions;
 
 /**
- * Signals that the operation will result in duplicate employees(projects are considered duplicates if they have the
- * same name).
+ * Signals that the operation will result in duplicate employees(employees are considered duplicates if they have the
+ * same identity).
  */
 public class DuplicateEmployeeException extends RuntimeException {
     public DuplicateEmployeeException() {

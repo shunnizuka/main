@@ -23,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddressBookTest {
@@ -117,6 +118,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
+        private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Employee> employees) {
             this.employees.setAll(employees);
@@ -126,6 +128,9 @@ public class AddressBookTest {
         public ObservableList<Employee> getEmployeeList() {
             return employees;
         }
+
+        @Override
+        public ObservableList<Project> getProjectList() { return projects; }
 
         @Override
         public void addListener(InvalidationListener listener) {
