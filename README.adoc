@@ -25,7 +25,6 @@ employees assigned to each project at any given time.
 ** Employees assigned
 ** Deadline
 ** Client
-** Budget
 ** Milestones
 
 == Site Map
