@@ -1,69 +1,17 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
-
 /**
- * Adds an employee to the address book.
+ * Represents an add command with hidden internal logic and the ability to be executed.
  */
-public class AddCommand extends Command {
+public abstract class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to the address book. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New employee added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the address book";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " employee/project"
+            + ": Adds the employee/project identified by the index number/project name used in"
+            + " the displayed employee/project list.\n"
+            + AddEmployeeCommand.MESSAGE_USAGE + "\n";
+    //TODO  + AddProjectCommand.MESSAGE_USAGE;
 
-    private final Employee toAdd;
-
-    /**
-     * Creates an AddCommand to add the specified {@code Employee}
-     */
-    public AddCommand(Employee employee) {
-        requireNonNull(employee);
-        toAdd = employee;
-    }
-
-    @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        requireNonNull(model);
-
-        if (model.hasEmployee(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
-        }
-
-        model.addEmployee(toAdd);
-        model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
-    }
 }
