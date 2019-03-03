@@ -1,0 +1,63 @@
+package seedu.address.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+
+import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.project.Project;
+
+/**
+ * Adds a project to the list of projects in the Pocket Project application.
+ */
+
+public class AddProjectCommand extends AddCommand {
+
+    public static final String ADD_PROJECT_KEYWORD = "project";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " project"
+            + ": Adds the project identified by the name of the project.\n"
+            + "Parameters: PROJECT_NAME\n"
+            + PREFIX_CLIENT + "CLIENT "
+            + PREFIX_DEADLINE + "DEADLINE "
+            + "Example: " + COMMAND_WORD + " project" + " Apollo"
+            + PREFIX_CLIENT + "SymbCorp "
+            + PREFIX_DEADLINE + "23/11/2020 ";
+
+    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Added Project: %1$s";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the pocket project";
+
+    private final Project toAdd;
+
+    /**
+     * Creates an AddCommand to add the specified {@code Employee}
+     */
+    public AddProjectCommand(Project project) {
+        requireNonNull(project);
+        toAdd = project;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+        requireNonNull(model);
+
+        if (model.hasProject(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
+        }
+
+        model.addProject(toAdd);
+        model.commitAddressBook();
+        return new CommandResult(String.format(MESSAGE_ADD_PROJECT_SUCCESS, toAdd));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddProjectCommand // instanceof handles nulls
+                && toAdd.equals(((AddProjectCommand) other).toAdd));
+    }
+
+
+}
