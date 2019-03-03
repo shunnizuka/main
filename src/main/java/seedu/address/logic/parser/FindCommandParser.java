@@ -11,7 +11,7 @@ import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.FindSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindEmployeeCommand object
@@ -31,7 +31,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (!matcher.matches()) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         final String keyword = matcher.group("keyword");
@@ -46,16 +46,17 @@ public class FindCommandParser implements Parser<FindCommand> {
         switch (keyword) {
 
         case FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD:
-            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            return new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
         case FindProjectCommand.FIND_PROJECT_KEYWORD:
-            return new FindProjectCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            return new FindProjectCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
         case FindSkillCommand.FIND_SKILL_KEYWORD:
-            return new FindSkillCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            return new FindSkillCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
         default:
-            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
     }
 

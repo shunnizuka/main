@@ -8,5 +8,7 @@ public abstract class FindCommand extends Command{
         + ": Finds all employees/project/skill which contain "
         + "the specified arguments (case-insensitive) and displays them as a list with index numbers.\n"
         + "Parameters: ARGUMENTS \n"
-        + FindEmployeeCommand.MESSAGE_USAGE + "\n";
+        + FindEmployeeCommand.MESSAGE_USAGE + "\n"
+        + FindProjectCommand.MESSAGE_USAGE + "\n"
+        + FindSkillCommand.MESSAGE_USAGE + "\n";
 }

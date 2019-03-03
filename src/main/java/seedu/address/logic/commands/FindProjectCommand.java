@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -13,15 +13,15 @@ import seedu.address.model.employee.NameContainsKeywordsPredicate;
  */
 public class FindProjectCommand extends FindCommand {
 
-    public static final String FIND_PROJECT_KEYWORD = "peoject";
+    public static final String FIND_PROJECT_KEYWORD = "project";
 
     public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + FIND_PROJECT_KEYWORD
         + "[ARGUMENTS]" + "\n"
         + ": Find all projects with names containing [ARGUMENTS]";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final EmployeeNameContainsKeywordsPredicate predicate;
 
-    public FindProjectCommand(NameContainsKeywordsPredicate predicate) {
+    public FindProjectCommand(EmployeeNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

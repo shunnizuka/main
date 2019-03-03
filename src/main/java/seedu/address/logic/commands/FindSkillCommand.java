@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindSkillCommand extends FindCommand {
         + ": Find all employees with skills containing [ARGUMENTS]";
 
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final EmployeeNameContainsKeywordsPredicate predicate;
 
-    public FindSkillCommand(NameContainsKeywordsPredicate predicate) {
+    public FindSkillCommand(EmployeeNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
