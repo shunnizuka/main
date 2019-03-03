@@ -27,7 +27,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.EmployeeBuilder;
 
-public class AddCommandTest {
+public class AddEmployeeCommandTest {
 
     private static final CommandHistory EMPTY_COMMAND_HISTORY = new CommandHistory();
 
@@ -39,7 +39,7 @@ public class AddCommandTest {
     @Test
     public void constructor_nullEmployee_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        new AddCommand(null);
+        new AddEmployeeCommand(null);
     }
 
     @Test
@@ -47,9 +47,10 @@ public class AddCommandTest {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         Employee validEmployee = new EmployeeBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validEmployee).execute(modelStub, commandHistory);
+        CommandResult commandResult = new AddEmployeeCommand(validEmployee).execute(modelStub, commandHistory);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEmployee), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddEmployeeCommand.MESSAGE_ADD_EMPLOYEE_SUCCESS, validEmployee),
+            commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validEmployee), modelStub.employeesAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
@@ -57,26 +58,26 @@ public class AddCommandTest {
     @Test
     public void execute_duplicateEmployee_throwsCommandException() throws Exception {
         Employee validEmployee = new EmployeeBuilder().build();
-        AddCommand addCommand = new AddCommand(validEmployee);
+        AddEmployeeCommand addEmployeeCommand = new AddEmployeeCommand(validEmployee);
         ModelStub modelStub = new ModelStubWithEmployee(validEmployee);
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_EMPLOYEE);
-        addCommand.execute(modelStub, commandHistory);
+        thrown.expectMessage(AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        addEmployeeCommand.execute(modelStub, commandHistory);
     }
 
     @Test
     public void equals() {
         Employee alice = new EmployeeBuilder().withName("Alice").build();
         Employee bob = new EmployeeBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddEmployeeCommand addAliceCommand = new AddEmployeeCommand(alice);
+        AddEmployeeCommand addBobCommand = new AddEmployeeCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddEmployeeCommand addAliceCommandCopy = new AddEmployeeCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
