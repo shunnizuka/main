@@ -70,8 +70,8 @@ public class Employee {
         }
 
         return otherEmployee != null
-                && otherEmployee.getName().equals(getName())
-                && (otherEmployee.getPhone().equals(getPhone()) || otherEmployee.getEmail().equals(getEmail()));
+            && otherEmployee.getName().equals(getName())
+            && (otherEmployee.getPhone().equals(getPhone()) || otherEmployee.getEmail().equals(getEmail()));
     }
 
     /**
@@ -90,10 +90,10 @@ public class Employee {
 
         Employee otherEmployee = (Employee) other;
         return otherEmployee.getName().equals(getName())
-                && otherEmployee.getPhone().equals(getPhone())
-                && otherEmployee.getEmail().equals(getEmail())
-                && otherEmployee.getAddress().equals(getAddress())
-                && otherEmployee.getTags().equals(getTags());
+            && otherEmployee.getPhone().equals(getPhone())
+            && otherEmployee.getEmail().equals(getEmail())
+            && otherEmployee.getAddress().equals(getAddress())
+            && otherEmployee.getTags().equals(getTags());
     }
 
     @Override
@@ -106,13 +106,13 @@ public class Employee {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
+            .append(" Phone: ")
+            .append(getPhone())
+            .append(" Email: ")
+            .append(getEmail())
+            .append(" Address: ")
+            .append(getAddress())
+            .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
