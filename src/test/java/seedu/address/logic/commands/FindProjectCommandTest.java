@@ -25,7 +25,7 @@ import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindProjectCommand}.
  */
 public class FindProjectCommandTest {
-    
+
     private Model model = new ModelManager(getTypicalAddressBookWithProjects(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBookWithProjects(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
