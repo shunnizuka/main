@@ -84,7 +84,7 @@ public class AddEmployeeCommandSystemTest extends AddressBookSystemTest {
          * -> added
          */
         toAdd = new EmployeeBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
-        command = EmployeeUtil.getAddCommand(toAdd);
+        command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 
         /* Case: add to empty address book -> added */
@@ -115,26 +115,26 @@ public class AddEmployeeCommandSystemTest extends AddressBookSystemTest {
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */
 
         /* Case: add a duplicate employee -> rejected */
-        command = EmployeeUtil.getAddCommand(HOON);
+        command = EmployeeUtil.getAddEmployeeCommand(HOON);
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different phone -> rejected */
         toAdd = new EmployeeBuilder(HOON).withPhone(VALID_PHONE_BOB).build();
-        command = EmployeeUtil.getAddCommand(toAdd);
+        command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different email -> rejected */
         toAdd = new EmployeeBuilder(HOON).withEmail(VALID_EMAIL_BOB).build();
-        command = EmployeeUtil.getAddCommand(toAdd);
+        command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different address -> rejected */
         toAdd = new EmployeeBuilder(HOON).withAddress(VALID_ADDRESS_BOB).build();
-        command = EmployeeUtil.getAddCommand(toAdd);
+        command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different tags -> rejected */
-        command = EmployeeUtil.getAddCommand(HOON) + " " + PREFIX_TAG.getPrefix() + "friends";
+        command = EmployeeUtil.getAddEmployeeCommand(HOON) + " " + PREFIX_TAG.getPrefix() + "friends";
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: missing name -> rejected */
@@ -198,7 +198,7 @@ public class AddEmployeeCommandSystemTest extends AddressBookSystemTest {
      * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandSuccess(Employee toAdd) {
-        assertCommandSuccess(EmployeeUtil.getAddCommand(toAdd), toAdd);
+        assertCommandSuccess(EmployeeUtil.getAddEmployeeCommand(toAdd), toAdd);
     }
 
     /**
