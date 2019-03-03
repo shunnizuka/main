@@ -21,6 +21,7 @@ import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
+import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -58,7 +59,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + "employee " + INDEX_FIRST_EMPLOYEE.getOneBased());
+            DeleteCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
+                + INDEX_FIRST_EMPLOYEE.getOneBased());
         assertEquals(new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE), command);
     }
 
@@ -82,7 +84,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindEmployeeCommand command = (FindEmployeeCommand) parser.parseCommand(
             FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
-             + keywords.stream().collect(Collectors.joining(" ")));
+                + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -108,14 +110,14 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
-                + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListCommand);
+            + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
-                + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListEmployeeCommand);
+            + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListEmployeeCommand);
 
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
-                + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListCommand);
+            + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
-                + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListProjectCommand);
+            + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListProjectCommand);
     }
 
     @Test

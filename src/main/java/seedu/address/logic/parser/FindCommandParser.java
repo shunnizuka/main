@@ -39,9 +39,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         final String arguments = matcher.group("arguments");
         String[] nameKeywords = arguments.trim().split("\\s+");
 
-        if (keyword.isEmpty()) {
+        if (arguments.isEmpty()) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         switch (keyword) {
