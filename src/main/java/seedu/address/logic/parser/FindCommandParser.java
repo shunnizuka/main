@@ -6,23 +6,26 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
+import seedu.address.logic.commands.FindProjectCommand;
+import seedu.address.logic.commands.FindSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindEmployeeCommand object
  */
-public class FindCommandParser implements Parser<FindEmployeeCommand> {
+public class FindCommandParser implements Parser<FindCommand> {
 
-    private static final Pattern FIND_COMMAND_FORMAT = Pattern.compile("(?<type>\\S+)(?<keyword>.*)");
+    private static final Pattern FIND_COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
     /**
      * Parses the given {@code String} of arguments in the context of the FindEmployeeCommand
      * and returns an FindEmployeeCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
 
-    public FindEmployeeCommand parse(String args) throws ParseException {
+    public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         final Matcher matcher = FIND_COMMAND_FORMAT.matcher(trimmedArgs);
 
@@ -31,25 +34,25 @@ public class FindCommandParser implements Parser<FindEmployeeCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
 
-        final String type = matcher.group("type");
         final String keyword = matcher.group("keyword");
-        String[] nameKeywords = keyword.trim().split("\\s+");
+        final String arguments = matcher.group("arguments");
+        String[] nameKeywords = arguments.trim().split("\\s+");
 
         if (keyword.isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
 
-        switch (type) {
+        switch (keyword) {
 
-        case FindEmployeeCommand.FIND_EMPLOYEE_TYPE:
+        case FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD:
             return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
-        case FindEmployeeCommand.FIND_PROJECT_TYPE:
-            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        case FindProjectCommand.FIND_PROJECT_KEYWORD:
+            return new FindProjectCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
-        case FindEmployeeCommand.FIND_SKILL_TYPE:
-            return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        case FindSkillCommand.FIND_SKILL_KEYWORD:
+            return new FindSkillCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
         default:
             return new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
