@@ -16,9 +16,9 @@ public class ListEmployeeCommand extends ListCommand {
     public static final String MESSAGE_SUCCESS = "Listed all employees";
 
     public static final String MESSAGE_USAGE = ListCommand.COMMAND_WORD
+            + " "
             + LIST_EMPLOYEE_KEYWORD
-            + "\n"
-            + ": Lists all employees registered in Pocket Project\n";
+            + ": Lists all employees registered in Pocket Project";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
