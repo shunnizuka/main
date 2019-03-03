@@ -37,6 +37,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_PROJECT_NAME_AMY = "Project Amy";
+    public static final String VALID_PROJECT_NAME_BOB = "Project Bob";
+    public static final String VALID_CLIENT_AMY = "SOC";
+    public static final String VALID_CLIENT_BOB = "FOS";
+    public static final String VALID_DEADLINE_AMY = "11/11/2011";
+    public static final String VALID_DEADLINE_BOB = "12/12/2012";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
