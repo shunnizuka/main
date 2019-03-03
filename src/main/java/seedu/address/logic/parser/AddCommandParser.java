@@ -55,13 +55,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         final String keyword = matcher.group("keyword");
         final String arguments = matcher.group("arguments");
 
-        if(keyword.equals(AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD)) {
+        if (keyword.equals(AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD)) {
             ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_TAG);
 
             if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                     || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEmployeeCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddEmployeeCommand.MESSAGE_USAGE));
             }
 
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -73,13 +75,14 @@ public class AddCommandParser implements Parser<AddCommand> {
             Employee employee = new Employee(name, phone, email, address, tagList);
 
             return new AddEmployeeCommand(employee);
-        } else if(keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD)) {
+        } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD)) {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_DEADLINE);
 
             if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT, PREFIX_DEADLINE)
                     || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddProjectCommand.MESSAGE_USAGE));
             }
 
             ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_NAME).get());
