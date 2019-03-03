@@ -24,6 +24,16 @@ public class Project {
         milestone = new ArrayList<>();
     }
 
+    /**
+     * Constructor specifying milestones too.
+     */
+    public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m) {
+        this.projectName = pn;
+        this.client = c;
+        this.deadline = d;
+        this.milestone = m;
+    }
+
     public ProjectName getProjectName() {
         return projectName;
     }
