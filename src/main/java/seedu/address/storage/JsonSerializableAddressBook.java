@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +21,20 @@ import seedu.address.model.employee.Employee;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "Employeees list contains duplicate employee(s).";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "Project list contains duplicate project(s).";
 
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
+    private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given employees.
+     * Constructs a {@code JsonSerializableAddressBook} with the given employees and projects.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("employees") List<JsonAdaptedEmployee> employees) {
+    public JsonSerializableAddressBook(
+            @JsonProperty("employees") List<JsonAdaptedEmployee> employees,
+            @JsonProperty("projects") List<JsonAdaptedProject> projects) {
         this.employees.addAll(employees);
+        this.projects.addAll(projects);
     }
 
     /**
@@ -38,6 +44,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         employees.addAll(source.getEmployeeList().stream().map(JsonAdaptedEmployee::new).collect(Collectors.toList()));
+        projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +60,14 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EMPLOYEE);
             }
             addressBook.addEmployee(employee);
+        }
+
+        for (JsonAdaptedProject jsonAdaptedProject : projects) {
+            Project project = jsonAdaptedProject.toModelType();
+            if (addressBook.hasProject(project)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
+            }
+            addressBook.addProject(project);
         }
         return addressBook;
     }
