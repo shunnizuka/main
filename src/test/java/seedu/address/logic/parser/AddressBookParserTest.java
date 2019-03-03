@@ -21,6 +21,7 @@ import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
+import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -32,6 +33,7 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
@@ -58,7 +60,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + "employee " + INDEX_FIRST_EMPLOYEE.getOneBased());
+            DeleteCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
+                + INDEX_FIRST_EMPLOYEE.getOneBased());
         assertEquals(new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE), command);
     }
 
@@ -80,10 +83,15 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindEmployeeCommand command = (FindEmployeeCommand) parser.parseCommand(
+        FindEmployeeCommand employeeCommand = (FindEmployeeCommand) parser.parseCommand(
             FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
-             + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(keywords)), command);
+                + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(keywords)), employeeCommand);
+
+        FindProjectCommand projectCommand = (FindProjectCommand) parser.parseCommand(
+            FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " "
+                + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindProjectCommand(new ProjectNameContainsKeywordsPredicate(keywords)), projectCommand);
     }
 
     @Test
@@ -108,14 +116,14 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
-                + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListCommand);
+            + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
-                + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListEmployeeCommand);
+            + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) instanceof ListEmployeeCommand);
 
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
-                + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListCommand);
+            + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " "
-                + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListProjectCommand);
+            + ListProjectCommand.LIST_PROJECT_KEYWORD) instanceof ListProjectCommand);
     }
 
     @Test
