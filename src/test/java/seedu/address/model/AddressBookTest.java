@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBookWithEmployees;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,6 +25,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.EmployeeBuilder;
+import seedu.address.testutil.TypicalProjects;
 
 public class AddressBookTest {
 
@@ -35,7 +36,9 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
+
         assertEquals(Collections.emptyList(), addressBook.getEmployeeList());
+        assertEquals(Collections.emptyList(), addressBook.getProjectList());
     }
 
     @Test
@@ -46,7 +49,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        AddressBook newData = TypicalProjects.addTypicalProjects(getTypicalAddressBookWithEmployees());
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }

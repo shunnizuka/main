@@ -62,8 +62,18 @@ public class TypicalEmployees {
     /**
      * Returns an {@code AddressBook} with all the typical employees.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBookWithEmployees() {
         AddressBook ab = new AddressBook();
+        for (Employee employee : getTypicalEmployees()) {
+            ab.addEmployee(employee);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical employees added to the given {@code AddressBook}.
+     */
+    public static AddressBook addTypicalEmployees(AddressBook ab) {
         for (Employee employee : getTypicalEmployees()) {
             ab.addEmployee(employee);
         }

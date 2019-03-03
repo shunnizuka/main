@@ -82,7 +82,7 @@ public abstract class AddressBookSystemTest {
      * Returns the data to be loaded into the file in {@link #getDataFileLocation()}.
      */
     protected AddressBook getInitialData() {
-        return TypicalEmployees.getTypicalAddressBook();
+        return TypicalEmployees.getTypicalAddressBookWithEmployees();
     }
 
     /**
