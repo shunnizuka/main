@@ -1,0 +1,61 @@
+package seedu.address.testutil;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.AddressBook;
+import seedu.address.model.project.Project;
+
+/**
+ * A utility class containing a list of {@code Project} objects to be used in tests.
+ */
+public class TypicalProjects {
+
+    public static final Project ALICE = new ProjectBuilder().withProjectName("Project Alice")
+            .withClient("Dehui").withDeadline("11/2/2019").build();
+    public static final Project BENSON = new ProjectBuilder().withProjectName("Project Benson")
+            .withClient("Jeff")
+            .withDeadline("23/1/2011").build();
+    public static final Project CARL = new ProjectBuilder().withProjectName("Project Carl").withClient("Darryl")
+            .withDeadline("12/12/2012").build();
+    public static final Project DANIEL = new ProjectBuilder().withProjectName("Project Daniel").withClient("Shune")
+            .withDeadline("21/12/2012").build();
+    public static final Project ELLE = new ProjectBuilder().withProjectName("Project Elle").withClient("Jothi")
+            .withDeadline("22/3/2019").build();
+    public static final Project FIONA = new ProjectBuilder().withProjectName("Project Fiona").withClient("SOC")
+            .withDeadline("1/1/2020").build();
+    public static final Project GEORGE = new ProjectBuilder().withProjectName("Project George").withClient("FASS")
+            .withDeadline("11/2/2021").build();
+
+    // Manually added
+    public static final Project HOON = new ProjectBuilder().withProjectName("Project Hoon Meier").withClient("FOE")
+            .withDeadline("21/11/2018").build();
+    public static final Project IDA = new ProjectBuilder().withProjectName("Project Ida Mueller").withClient("FOS")
+            .withDeadline("3/3/2013").build();
+    /*
+    // Manually added - Project's details found in {@code CommandTestUtil}
+    public static final Project AMY = new ProjectBuilder().withProjectName(VALID_NAME_AMY).withClient(VALID_PHONE_AMY)
+            .withDeadline(VALID_EMAIL_AMY).withClient(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+    public static final Project BOB = new ProjectBuilder().withProjectName(VALID_NAME_BOB).withClient(VALID_PHONE_BOB)
+            .withDeadline(VALID_EMAIL_BOB).withClient(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .build();
+    */
+    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+
+    private TypicalProjects() {} // prevents instantiation
+
+    /**
+     * Returns an {@code AddressBook} with all the typical projects.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Project project : getTypicalProjects()) {
+            ab.addProject(project);
+        }
+        return ab;
+    }
+
+    public static List<Project> getTypicalProjects() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+}
