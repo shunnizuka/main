@@ -49,6 +49,13 @@ public class Project {
                 && otherProject.getProjectName() == getProjectName();
     }
 
+    /**
+     * Returns true if this project has the given projectName.
+     */
+    public boolean hasProjectName(ProjectName projectName) {
+        return this.projectName.equals(projectName);
+    }
+
     @Override
     public boolean equals (Object other) {
         if (other == this) {
