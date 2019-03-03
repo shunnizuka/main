@@ -43,7 +43,7 @@ public class DeleteProjectCommandTest {
     @Test
     public void execute_invalidName_throwsCommandException() {
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(
-                TypicalProjectNames.Non_EXISTENT_PROJECT_NAME);
+                TypicalProjectNames.NON_EXISTENT_PROJECT_NAME);
 
         assertCommandFailure(deleteProjectCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECT_NAME);
@@ -73,7 +73,7 @@ public class DeleteProjectCommandTest {
     @Test
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(
-                TypicalProjectNames.Non_EXISTENT_PROJECT_NAME);
+                TypicalProjectNames.NON_EXISTENT_PROJECT_NAME);
 
         // execution failed -> address book state not added into model
         assertCommandFailure(deleteProjectCommand, model, commandHistory,
