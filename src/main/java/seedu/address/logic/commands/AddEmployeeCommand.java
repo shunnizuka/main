@@ -12,14 +12,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 
-
-
 /**
  * Adds an employee to the address book.
  */
 public class AddEmployeeCommand extends AddCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String ADD_EMPLOYEE_KEYWORD = "employee";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " employee"
             + ": Adds an employee to the address book. "
@@ -38,7 +36,7 @@ public class AddEmployeeCommand extends AddCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_ADD_EMPLOYEE_SUCCESS = "New employee added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the pocket project";
 
     private final Employee toAdd;
 

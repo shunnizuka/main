@@ -16,9 +16,9 @@ public class ListProjectCommand extends ListCommand {
     public static final String MESSAGE_SUCCESS = "Listed all projects";
 
     public static final String MESSAGE_USAGE = ListCommand.COMMAND_WORD
+            + " "
             + LIST_PROJECT_KEYWORD
-            + "\n"
-            + ": Lists all projects registered in Pocket Project\n";
+            + ": Lists all projects registered in Pocket Project";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
