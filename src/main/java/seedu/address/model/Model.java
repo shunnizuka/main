@@ -110,7 +110,7 @@ public interface Model {
      * Adds the given project.
      * {@code project} must not already exist in the projects list.
      */
-    void addProject(Project employee);
+    void addProject(Project project);
 
     /** Returns an unmodifiable view of the filtered projects list */
     ObservableList<Project> getFilteredProjectList();
