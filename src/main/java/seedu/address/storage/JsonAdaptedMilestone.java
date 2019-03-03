@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.Milestone;
@@ -17,7 +18,7 @@ class JsonAdaptedMilestone {
      * Constructs a {@code JsonAdaptedMilestone} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedMilestone(String milestone, String date) {
+    public JsonAdaptedMilestone(@JsonProperty("milestone") String milestone, @JsonProperty("date") String date) {
         this.milestone = milestone;
         this.date = date;
     }
