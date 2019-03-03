@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,7 +20,8 @@ public class AddProjectCommand extends AddCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " project"
             + ": Adds the project identified by the name of the project.\n"
-            + "Parameters: PROJECT_NAME\n"
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT + "CLIENT "
             + PREFIX_DEADLINE + "DEADLINE "
             + "Example: " + COMMAND_WORD + " project" + " Apollo"

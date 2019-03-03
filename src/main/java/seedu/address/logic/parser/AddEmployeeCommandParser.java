@@ -20,12 +20,12 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddEmployeeCommand object
  */
-public class AddCommandParser implements Parser<AddEmployeeCommand> {
+public class AddEmployeeCommandParser implements Parser<AddEmployeeCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
+     * Parses the given {@code String} of arguments in the context of the AddEmployeeCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

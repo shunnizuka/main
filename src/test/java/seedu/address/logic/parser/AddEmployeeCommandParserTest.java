@@ -40,8 +40,8 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EmployeeBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class AddEmployeeCommandParserTest {
+    private AddEmployeeCommandParser parser = new AddEmployeeCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
