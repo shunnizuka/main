@@ -48,11 +48,12 @@ public class FindCommandParserTest {
             expectedFindCommand);
 
         //TODO: to change the predicate after setting up FindSkillCommand
+        /*
         expectedFindCommand =
             new FindSkillCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList("java", "html")));
         assertParseSuccess(parser, FindSkillCommand.FIND_SKILL_KEYWORD + " java html",
             expectedFindCommand);
-
+        */
         // multiple whitespaces between keywords
         //TODO: need to fix parser to allow multiple whitespaces between keywords
         //assertParseSuccess(parser, "employee Alice \n \t Bob  \t", expectedFindCommand);
