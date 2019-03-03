@@ -11,6 +11,7 @@ import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.ProjectName;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -46,14 +47,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEmployeeCommand.MESSAGE_USAGE), pe);
             }
         } else if (keyword.equals(DeleteProjectCommand.DELETE_PROJECT_KEYWORD)) {
-            //to change to delete project later
-            try {
-                Index index = ParserUtil.parseIndex(arguments.trim());
-                return new DeleteEmployeeCommand(index);
-            } catch (ParseException pe) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEmployeeCommand.MESSAGE_USAGE), pe);
-            }
+            String projectNameToDelete = arguments.trim();
+            return new DeleteProjectCommand(new ProjectName(projectNameToDelete));
 
         } else {
             throw new ParseException (
