@@ -4,7 +4,7 @@ package seedu.address.logic.commands;
  * Represent a find command with hidden internal logic and the ability to be executed.
  */
 
-public abstract class FindCommand extends Command{
+public abstract class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 

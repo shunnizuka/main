@@ -39,9 +39,7 @@ public class FindEmployeeCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find employee where employee list is not displaying the employee we are finding 
-        -> 1 employee found 
-        */
+        /* Case: find employee where employee list is not displaying the employee we are finding -> 1 employee found */
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Carl";
         ModelHelper.setFilteredList(expectedModel, CARL);
         assertCommandSuccess(command, expectedModel);
