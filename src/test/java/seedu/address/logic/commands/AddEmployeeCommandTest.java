@@ -49,7 +49,8 @@ public class AddEmployeeCommandTest {
 
         CommandResult commandResult = new AddEmployeeCommand(validEmployee).execute(modelStub, commandHistory);
 
-        assertEquals(String.format(AddEmployeeCommand.MESSAGE_ADD_EMPLOYEE_SUCCESS, validEmployee), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddEmployeeCommand.MESSAGE_ADD_EMPLOYEE_SUCCESS, validEmployee),
+            commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validEmployee), modelStub.employeesAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
