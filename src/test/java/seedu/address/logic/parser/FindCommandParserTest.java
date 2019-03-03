@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 
@@ -18,7 +19,7 @@ public class FindCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            FindEmployeeCommand.MESSAGE_USAGE));
+            FindCommand.MESSAGE_USAGE));
     }
 
     @Test

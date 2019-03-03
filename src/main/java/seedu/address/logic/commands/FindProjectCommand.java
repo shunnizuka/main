@@ -6,6 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -19,18 +20,18 @@ public class FindProjectCommand extends FindCommand {
         + "[ARGUMENTS]" + "\n"
         + ": Find all projects with names containing [ARGUMENTS]";
 
-    private final EmployeeNameContainsKeywordsPredicate predicate;
+    private final ProjectNameContainsKeywordsPredicate predicate;
 
-    public FindProjectCommand(EmployeeNameContainsKeywordsPredicate predicate) {
+    public FindProjectCommand(ProjectNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.updateFilteredEmployeeList(predicate);
+        model.updateFilteredProjectList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW, model.getFilteredEmployeeList().size()));
+            String.format(Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW, model.getFilteredProjectList().size()));
     }
 
     @Override
