@@ -62,7 +62,7 @@ public class AddEmployeeCommandSystemTest extends AddressBookSystemTest {
         String command = "   " + AddEmployeeCommand.COMMAND_WORD + "  " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + " "
             + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
             + TAG_DESC_FRIEND + " ";
-            assertCommandSuccess(command, toAdd);
+        assertCommandSuccess(command, toAdd);
 
         /* Case: undo adding Amy to the list -> Amy deleted */
         command = UndoCommand.COMMAND_WORD;
