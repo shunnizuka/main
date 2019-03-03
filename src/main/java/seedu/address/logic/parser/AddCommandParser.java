@@ -58,12 +58,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (keyword.equals(AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD)) {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_TAG);
+                            PREFIX_TAG);
 
             if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                     || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddEmployeeCommand.MESSAGE_USAGE));
+                        AddEmployeeCommand.MESSAGE_USAGE));
             }
 
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -93,9 +93,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             return new AddProjectCommand(project);
         } else {
-            throw new ParseException (
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEmployeeCommand.MESSAGE_USAGE) //TODO EDIT this
-            );
+            throw new ParseException (String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
     }

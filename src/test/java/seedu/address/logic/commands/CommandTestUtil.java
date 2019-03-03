@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -39,10 +41,17 @@ public class CommandTestUtil {
 
     public static final String VALID_PROJECT_NAME_AMY = "Project Amy";
     public static final String VALID_PROJECT_NAME_BOB = "Project Bob";
+    public static final String VALID_PROJECT_NAME_ALICE = "Project Alice";
     public static final String VALID_CLIENT_AMY = "SOC";
     public static final String VALID_CLIENT_BOB = "FOS";
+    public static final String VALID_CLIENT_ALICE = "Dehui";
     public static final String VALID_DEADLINE_AMY = "11/11/2011";
     public static final String VALID_DEADLINE_BOB = "12/12/2012";
+    public static final String VALID_DEADLINE_ALICE = "11/02/2019";
+
+    public static final String NAME_DESC_ALICE = " " + PREFIX_NAME + VALID_PROJECT_NAME_ALICE;
+    public static final String CLIENT_DESC_ALICE = " " + PREFIX_CLIENT + VALID_CLIENT_ALICE;
+    public static final String DEADLINE_DESC_ALICE = " " + PREFIX_DEADLINE + VALID_DEADLINE_ALICE;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -60,6 +69,10 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_PROJECT_NAME_DESC = " " + PREFIX_NAME + "Alice##"; // '#' not allowed in names
+    public static final String INVALID_CLIENT_DESC = " " + PREFIX_CLIENT + "Apollo#&"; // '#' not allowed in client
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "222/11/2019"; // Format: DD/MM/YYYY
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
