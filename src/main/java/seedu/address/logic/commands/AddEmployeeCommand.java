@@ -17,12 +17,12 @@ import seedu.address.model.employee.Employee;
 /**
  * Adds an employee to the address book.
  */
-public class AddEmployeeCommand extends Command{ //TODO change the extends part
+public class AddEmployeeCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " employee" +
-            ": Adds an employee to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " employee"
+            + ": Adds an employee to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
