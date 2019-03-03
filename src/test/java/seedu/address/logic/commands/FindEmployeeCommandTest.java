@@ -24,7 +24,7 @@ import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindEmployeeCommand}.
  */
-public class FindCommandTest {
+public class FindEmployeeCommandTest {
     private Model model = new ModelManager(getTypicalAddressBookWithEmployees(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBookWithEmployees(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
