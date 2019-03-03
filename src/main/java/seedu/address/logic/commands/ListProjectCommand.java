@@ -26,4 +26,11 @@ public class ListProjectCommand extends ListCommand {
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListProjectCommand); // instanceof handles nulls
+
+    }
 }
