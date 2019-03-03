@@ -176,6 +176,16 @@ public class ModelManager implements Model {
         filteredProjects.setPredicate(predicate);
     }
 
+    //=========== Whole Project List Accessors ==============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Project> getProjectList() {
+        return versionedAddressBook.getProjectList();
+    }
 
 
     //=========== Undo/Redo =================================================================================

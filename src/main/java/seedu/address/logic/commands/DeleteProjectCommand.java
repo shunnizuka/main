@@ -5,11 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 
 /**
  * Deletes a employee identified using it's displayed index from the address book.
@@ -23,33 +23,40 @@ public class DeleteProjectCommand extends DeleteCommand {
             + "Parameters: PROJECT_NAME\n"
             + "Example: " + COMMAND_WORD + " project" + " Apollo";
 
-    public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Deleted Employee: %1$s";
+    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
-    private final Index targetIndex;
+    private final ProjectName projectName;
 
-    public DeleteProjectCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteProjectCommand(ProjectName targetName) {
+        this.projectName = targetName;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Employee> lastShownList = model.getFilteredEmployeeList();
+        List<Project> projectList = model.getProjectList();
+        Project projectToDelete = null;
+        boolean found = false;
+        for (Project p: projectList) {
+            if (p.hasProjectName(projectName)) {
+                found = true;
+                projectToDelete = p;
+                model.deleteProject(projectToDelete);
+                model.commitAddressBook();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+            }
+        }
+        if (!found) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
 
-        Employee employeeToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteEmployee(employeeToDelete);
-        model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteProjectCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteProjectCommand) other).targetIndex)); // state check
+                && projectName.equals(((DeleteProjectCommand) other).projectName)); // state check
     }
 }

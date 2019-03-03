@@ -121,6 +121,12 @@ public interface Model {
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    ObservableList<Project> getProjectList();
+
     //-------------------------------------------------------------------------------------------
 
     /**
