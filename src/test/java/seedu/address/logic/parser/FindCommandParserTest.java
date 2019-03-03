@@ -8,8 +8,9 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -18,14 +19,14 @@ public class FindCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            FindEmployeeCommand.MESSAGE_USAGE));
+            FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindEmployeeCommand expectedFindCommand =
-            new FindEmployeeCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+            new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "employee Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

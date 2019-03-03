@@ -43,10 +43,10 @@ public class DeleteProjectCommandTest {
     @Test
     public void execute_invalidName_throwsCommandException() {
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(
-                TypicalProjectNames.Non_EXISTENT_PROJECT_NAME);
+            TypicalProjectNames.NON_EXISTENT_PROJECT_NAME);
 
         assertCommandFailure(deleteProjectCommand, model, commandHistory,
-                Messages.MESSAGE_INVALID_PROJECT_NAME);
+            Messages.MESSAGE_INVALID_PROJECT_NAME);
     }
 
 
@@ -73,11 +73,11 @@ public class DeleteProjectCommandTest {
     @Test
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(
-                TypicalProjectNames.Non_EXISTENT_PROJECT_NAME);
+            TypicalProjectNames.NON_EXISTENT_PROJECT_NAME);
 
         // execution failed -> address book state not added into model
         assertCommandFailure(deleteProjectCommand, model, commandHistory,
-                Messages.MESSAGE_INVALID_PROJECT_NAME);
+            Messages.MESSAGE_INVALID_PROJECT_NAME);
 
         // single address book state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
@@ -88,16 +88,16 @@ public class DeleteProjectCommandTest {
     @Test
     public void equals() {
         DeleteProjectCommand deleteAliceCommand = new DeleteProjectCommand(
-                TypicalProjects.PROJECT_ALICE.getProjectName());
+            TypicalProjects.PROJECT_ALICE.getProjectName());
         DeleteProjectCommand deleteBensonCommand = new DeleteProjectCommand(
-                TypicalProjects.PROJECT_BENSON.getProjectName());
+            TypicalProjects.PROJECT_BENSON.getProjectName());
 
         // same object -> returns true
         assertTrue(deleteAliceCommand.equals(deleteAliceCommand));
 
         // same values -> returns true
         DeleteProjectCommand deleteAliceCommandCopy = new DeleteProjectCommand(
-                TypicalProjects.PROJECT_ALICE.getProjectName());
+            TypicalProjects.PROJECT_ALICE.getProjectName());
         assertTrue(deleteAliceCommand.equals(deleteAliceCommandCopy));
 
         // different types -> returns false
