@@ -39,7 +39,6 @@ import seedu.address.logic.commands.SelectCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.testutil.TestUtil;
-import seedu.address.testutil.TypicalEmployees;
 import seedu.address.ui.BrowserPanel;
 import seedu.address.ui.CommandBox;
 
