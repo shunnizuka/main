@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_PYTHON;
+import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_C;
 import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -95,11 +95,11 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_SKILL} alone will reset the skills of the {@code Employee} being edited,
         // parsing it together with a valid skill results in error
-        assertParseFailure(parser, "1" + SKILL_DESC_PYTHON + SKILL_DESC_JAVA + SKILL_EMPTY,
+        assertParseFailure(parser, "1" + SKILL_DESC_C + SKILL_DESC_JAVA + SKILL_EMPTY,
                                 Skill.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + SKILL_DESC_PYTHON + SKILL_EMPTY + SKILL_DESC_JAVA,
+        assertParseFailure(parser, "1" + SKILL_DESC_C + SKILL_EMPTY + SKILL_DESC_JAVA,
                                 Skill.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + SKILL_EMPTY + SKILL_DESC_PYTHON + SKILL_DESC_JAVA,
+        assertParseFailure(parser, "1" + SKILL_EMPTY + SKILL_DESC_C + SKILL_DESC_JAVA,
                                 Skill.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
@@ -112,7 +112,7 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_EMPLOYEE;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + SKILL_DESC_JAVA
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_PYTHON;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_C;
 
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -163,7 +163,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // skills
-        userInput = targetIndex.getOneBased() + SKILL_DESC_PYTHON;
+        userInput = targetIndex.getOneBased() + SKILL_DESC_C;
         descriptor = new EditEmployeeDescriptorBuilder().withSkills(VALID_SKILL_C).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -173,7 +173,7 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_EMPLOYEE;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + SKILL_DESC_PYTHON + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + SKILL_DESC_PYTHON
+                + SKILL_DESC_C + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + SKILL_DESC_C
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + SKILL_DESC_JAVA;
 
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withPhone(VALID_PHONE_BOB)
