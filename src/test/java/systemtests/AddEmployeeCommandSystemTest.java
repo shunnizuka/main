@@ -14,8 +14,8 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_PYTHON;
+import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -61,7 +61,7 @@ public class AddEmployeeCommandSystemTest extends AddressBookSystemTest {
         Employee toAdd = AMY;
         String command = "   " + AddEmployeeCommand.COMMAND_WORD + "  " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + " "
             + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
-            + SKILL_DESC_FRIEND + " ";
+            + SKILL_DESC_PYTHON + " ";
         assertCommandSuccess(command, toAdd);
 
         /* Case: undo adding Amy to the list -> Amy deleted */
@@ -78,7 +78,7 @@ public class AddEmployeeCommandSystemTest extends AddressBookSystemTest {
         /* Case: add a employee with all fields same as another employee in the address book except name -> added */
         toAdd = new EmployeeBuilder(AMY).withName(VALID_NAME_BOB).build();
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB
-            + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + SKILL_DESC_FRIEND;
+            + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + SKILL_DESC_PYTHON;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a employee with all fields same as another employee in the address book except phone and email
@@ -94,8 +94,8 @@ public class AddEmployeeCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: add a employee with tags, command with parameters in random order -> added */
         toAdd = BOB;
-        command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + SKILL_DESC_FRIEND
-            + PHONE_DESC_BOB + ADDRESS_DESC_BOB + NAME_DESC_BOB + SKILL_DESC_HUSBAND + EMAIL_DESC_BOB;
+        command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + SKILL_DESC_PYTHON
+            + PHONE_DESC_BOB + ADDRESS_DESC_BOB + NAME_DESC_BOB + SKILL_DESC_JAVA + EMAIL_DESC_BOB;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a employee, missing tags -> added */

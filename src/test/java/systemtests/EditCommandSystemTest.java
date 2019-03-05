@@ -16,13 +16,13 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_PYTHON;
+import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import static seedu.address.testutil.TypicalEmployees.AMY;
@@ -61,8 +61,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
          */
         Index index = INDEX_FIRST_EMPLOYEE;
         String command = " " + EditCommand.COMMAND_WORD + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
-                + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + SKILL_DESC_HUSBAND + " ";
-        Employee editedEmployee = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_HUSBAND).build();
+                + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + SKILL_DESC_JAVA + " ";
+        Employee editedEmployee = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_JAVA).build();
         assertCommandSuccess(command, index, editedEmployee);
 
         /* Case: undo editing the last employee in the list -> last employee restored */
@@ -79,7 +79,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: edit a employee with new values same as existing values -> edited */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_FRIEND + SKILL_DESC_HUSBAND;
+                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON + SKILL_DESC_JAVA;
         assertCommandSuccess(command, index, BOB);
 
         /* Case: edit a employee with new values same as another employee's values but with different name -> edited */
@@ -87,7 +87,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         index = INDEX_SECOND_EMPLOYEE;
         assertNotEquals(getModel().getFilteredEmployeeList().get(index.getZeroBased()), BOB);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_FRIEND + SKILL_DESC_HUSBAND;
+                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON + SKILL_DESC_JAVA;
         editedEmployee = new EmployeeBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -96,7 +96,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
          */
         index = INDEX_SECOND_EMPLOYEE;
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_BOB + SKILL_DESC_FRIEND + SKILL_DESC_HUSBAND;
+                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON + SKILL_DESC_JAVA;
         editedEmployee = new EmployeeBuilder(BOB).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -135,7 +135,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         index = INDEX_FIRST_EMPLOYEE;
         selectEmployee(index);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + SKILL_DESC_FRIEND;
+                + ADDRESS_DESC_AMY + SKILL_DESC_PYTHON;
         // this can be misleading: card selection actually remains unchanged but the
         // browser's url is updated to reflect the new employee's name
         assertCommandSuccess(command, index, AMY, index);
@@ -189,31 +189,31 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         index = INDEX_FIRST_EMPLOYEE;
         assertFalse(getModel().getFilteredEmployeeList().get(index.getZeroBased()).equals(BOB));
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_FRIEND + SKILL_DESC_HUSBAND;
+                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different tags -> rejected*/
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_HUSBAND;
+                + ADDRESS_DESC_BOB + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit an employee with new values same as another employee's values but with different address ->
          * rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_AMY + SKILL_DESC_FRIEND + SKILL_DESC_HUSBAND;
+                + ADDRESS_DESC_AMY + SKILL_DESC_PYTHON + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different phone -> rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_FRIEND + SKILL_DESC_HUSBAND;
+                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different email -> rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
-                + ADDRESS_DESC_BOB + SKILL_DESC_FRIEND + SKILL_DESC_HUSBAND;
+                + ADDRESS_DESC_BOB + SKILL_DESC_PYTHON + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
