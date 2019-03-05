@@ -10,7 +10,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.tag.Skill;
+import seedu.address.model.skill.Skill;
 
 /**
  * A utility class to help with building EditEmployeeDescriptor objects.
@@ -75,7 +75,7 @@ public class EditEmployeeDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Skill>} and set it to the {@code EditEmployeeDescriptor}
      * that we are building.
      */
-    public EditEmployeeDescriptorBuilder withTags(String... tags) {
+    public EditEmployeeDescriptorBuilder withSkills(String... tags) {
         Set<Skill> skillSet = Stream.of(tags).map(Skill::new).collect(Collectors.toSet());
         descriptor.setSkills(skillSet);
         return this;

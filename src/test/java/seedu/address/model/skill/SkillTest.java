@@ -1,4 +1,4 @@
-package seedu.address.model.tag;
+package seedu.address.model.skill;
 
 import org.junit.Test;
 
@@ -12,14 +12,14 @@ public class SkillTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        String invalidTagName = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Skill(invalidTagName));
+    public void constructor_invalidSkillName_throwsIllegalArgumentException() {
+        String invalidSkillName = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Skill(invalidSkillName));
     }
 
     @Test
-    public void isValidTagName() {
-        // null tag name
+    public void isValidSkillName() {
+        // null skill name
         Assert.assertThrows(NullPointerException.class, () -> Skill.isValidSkillName(null));
     }
 

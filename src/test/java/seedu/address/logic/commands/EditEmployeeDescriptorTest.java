@@ -52,7 +52,7 @@ public class EditEmployeeDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditEmployeeDescriptorBuilder(DESC_AMY).withTags(VALID_SKILL_HUSBAND).build();
+        editedAmy = new EditEmployeeDescriptorBuilder(DESC_AMY).withSkills(VALID_SKILL_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

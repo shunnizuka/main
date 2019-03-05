@@ -62,7 +62,7 @@ public class EditCommandTest {
                 .withSkills(VALID_SKILL_HUSBAND).build();
 
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_SKILL_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastEmployee, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);

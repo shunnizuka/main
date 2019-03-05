@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Skill;
+import seedu.address.model.skill.Skill;
 
 /**
  * Represents a Employee in the address book.
@@ -53,7 +53,7 @@ public class Employee {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable skill set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Skill> getSkills() {
