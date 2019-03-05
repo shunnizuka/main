@@ -104,23 +104,23 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code skill} is invalid.
      */
-    public static Skill parseSkill(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Skill.isValidSkillName(trimmedTag)) {
+    public static Skill parseSkill(String skill) throws ParseException {
+        requireNonNull(skill);
+        String trimmedSkill = skill.trim();
+        if (!Skill.isValidSkillName(trimmedSkill)) {
             throw new ParseException(Skill.MESSAGE_CONSTRAINTS);
         }
-        return new Skill(trimmedTag);
+        return new Skill(trimmedSkill);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Skill>}.
+     * Parses {@code Collection<String> skills} into a {@code Set<Skill>}.
      */
-    public static Set<Skill> parseSkills(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
+    public static Set<Skill> parseSkills(Collection<String> skills) throws ParseException {
+        requireNonNull(skills);
         final Set<Skill> skillSet = new HashSet<>();
-        for (String tagName : tags) {
-            skillSet.add(parseSkill(tagName));
+        for (String skillName : skills) {
+            skillSet.add(parseSkill(skillName));
         }
         return skillSet;
     }

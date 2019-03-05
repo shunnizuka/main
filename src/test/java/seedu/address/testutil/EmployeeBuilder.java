@@ -57,8 +57,8 @@ public class EmployeeBuilder {
     /**
      * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code Employee} that we are building.
      */
-    public EmployeeBuilder withSkills(String ... tags) {
-        this.skills = SampleDataUtil.getSkillSet(tags);
+    public EmployeeBuilder withSkills(String ... skills) {
+        this.skills = SampleDataUtil.getSkillSet(skills);
         return this;
     }
 

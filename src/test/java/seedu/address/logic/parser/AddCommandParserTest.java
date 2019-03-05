@@ -31,7 +31,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_C;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -61,7 +61,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Employee expectedEmployee = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_PYTHON).build();
+        Employee expectedEmployee = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_C).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD
@@ -90,7 +90,7 @@ public class AddCommandParserTest {
 
         // multiple tags - all accepted
         Employee expectedEmployeeMultipleTags =
-                new EmployeeBuilder(BOB).withSkills(VALID_SKILL_PYTHON, VALID_SKILL_JAVA)
+                new EmployeeBuilder(BOB).withSkills(VALID_SKILL_C, VALID_SKILL_JAVA)
                 .build();
         assertParseSuccess(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + SKILL_DESC_JAVA + SKILL_DESC_PYTHON,
@@ -153,7 +153,7 @@ public class AddCommandParserTest {
 
         // invalid skill
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
-            + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_SKILL_DESC + VALID_SKILL_PYTHON, Skill.MESSAGE_CONSTRAINTS);
+            + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_SKILL_DESC + VALID_SKILL_C, Skill.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + INVALID_NAME_DESC + PHONE_DESC_BOB

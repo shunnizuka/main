@@ -27,13 +27,13 @@ public class AddEmployeeCommand extends AddCommand {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_SKILL + "SKILL]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " employee "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_SKILL + "Java "
-            + PREFIX_SKILL + "UI designer";
+            + PREFIX_SKILL + "UI";
 
     public static final String MESSAGE_ADD_EMPLOYEE_SUCCESS = "New employee added: %1$s";
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the pocket project";

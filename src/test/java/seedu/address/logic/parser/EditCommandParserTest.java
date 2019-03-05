@@ -22,7 +22,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_C;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -116,7 +116,7 @@ public class EditCommandParserTest {
 
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_PYTHON).build();
+                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -164,7 +164,7 @@ public class EditCommandParserTest {
 
         // skills
         userInput = targetIndex.getOneBased() + SKILL_DESC_PYTHON;
-        descriptor = new EditEmployeeDescriptorBuilder().withSkills(VALID_SKILL_PYTHON).build();
+        descriptor = new EditEmployeeDescriptorBuilder().withSkills(VALID_SKILL_C).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -178,7 +178,7 @@ public class EditCommandParserTest {
 
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withSkills(VALID_SKILL_PYTHON, VALID_SKILL_JAVA).build();
+                .withSkills(VALID_SKILL_C, VALID_SKILL_JAVA).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
