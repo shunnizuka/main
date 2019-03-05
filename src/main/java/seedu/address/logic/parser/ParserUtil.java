@@ -16,7 +16,7 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Skill;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -99,30 +99,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String tag} into a {@code Skill}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Skill parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Skill.isValidSkillName(trimmedTag)) {
+            throw new ParseException(Skill.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Skill(trimmedTag);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code Set<Skill>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<Skill> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<Skill> skillSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            skillSet.add(parseTag(tagName));
         }
-        return tagSet;
+        return skillSet;
     }
 
     /**

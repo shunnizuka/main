@@ -28,7 +28,7 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Skill;
 
 /**
  * Parses input arguments and creates a new AddEmployeeCommand object
@@ -70,9 +70,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
             Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            Set<Skill> skillList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            Employee employee = new Employee(name, phone, email, address, tagList);
+            Employee employee = new Employee(name, phone, email, address, skillList);
 
             return new AddEmployeeCommand(employee);
         } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD)) {

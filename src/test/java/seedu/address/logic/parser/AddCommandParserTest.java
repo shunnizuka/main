@@ -31,8 +31,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalEmployees.AMY;
@@ -53,7 +53,7 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Skill;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddCommandParserTest {
@@ -61,7 +61,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Employee expectedEmployee = new EmployeeBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Employee expectedEmployee = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD
@@ -89,7 +89,7 @@ public class AddCommandParserTest {
                 new AddEmployeeCommand(expectedEmployee));
 
         // multiple tags - all accepted
-        Employee expectedEmployeeMultipleTags = new EmployeeBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Employee expectedEmployeeMultipleTags = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_FRIEND, VALID_SKILL_HUSBAND)
                 .build();
         assertParseSuccess(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
@@ -99,7 +99,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Employee expectedEmployee = new EmployeeBuilder(AMY).withTags().build();
+        Employee expectedEmployee = new EmployeeBuilder(AMY).withSkills().build();
         assertParseSuccess(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY + PHONE_DESC_AMY
             + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddEmployeeCommand(expectedEmployee));
@@ -150,7 +150,7 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
-            + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+            + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_TAG_DESC + VALID_SKILL_FRIEND, Skill.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + INVALID_NAME_DESC + PHONE_DESC_BOB

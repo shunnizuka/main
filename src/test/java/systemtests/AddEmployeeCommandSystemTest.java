@@ -42,7 +42,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Skill;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
 
@@ -185,7 +185,7 @@ public class AddEmployeeCommandSystemTest extends AddressBookSystemTest {
         /* Case: invalid tag -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY
             + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + INVALID_TAG_DESC;
-        assertCommandFailure(command, Tag.MESSAGE_CONSTRAINTS);
+        assertCommandFailure(command, Skill.MESSAGE_CONSTRAINTS);
     }
 
     /**

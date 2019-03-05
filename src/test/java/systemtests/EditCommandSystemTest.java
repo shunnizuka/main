@@ -22,7 +22,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 import static seedu.address.testutil.TypicalEmployees.AMY;
@@ -44,7 +44,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Skill;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
 
@@ -62,7 +62,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         Index index = INDEX_FIRST_EMPLOYEE;
         String command = " " + EditCommand.COMMAND_WORD + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
                 + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + TAG_DESC_HUSBAND + " ";
-        Employee editedEmployee = new EmployeeBuilder(BOB).withTags(VALID_TAG_HUSBAND).build();
+        Employee editedEmployee = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_HUSBAND).build();
         assertCommandSuccess(command, index, editedEmployee);
 
         /* Case: undo editing the last employee in the list -> last employee restored */
@@ -104,7 +104,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         index = INDEX_FIRST_EMPLOYEE;
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + PREFIX_TAG.getPrefix();
         Employee employeeToEdit = getModel().getFilteredEmployeeList().get(index.getZeroBased());
-        editedEmployee = new EmployeeBuilder(employeeToEdit).withTags().build();
+        editedEmployee = new EmployeeBuilder(employeeToEdit).withSkills().build();
         assertCommandSuccess(command, index, editedEmployee);
 
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
@@ -181,7 +181,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: invalid tag -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_TAG_DESC,
-                Tag.MESSAGE_CONSTRAINTS);
+                Skill.MESSAGE_CONSTRAINTS);
 
         /* Case: edit a employee with new values same as another employee's values -> rejected */
         executeCommand(EmployeeUtil.getAddEmployeeCommand(BOB));

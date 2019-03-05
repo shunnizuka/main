@@ -11,7 +11,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Skill;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -51,9 +51,9 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Skill> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(Skill::new)
                 .collect(Collectors.toSet());
     }
 
