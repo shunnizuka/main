@@ -3,11 +3,11 @@ package seedu.address.model.project;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
-import static seedu.address.testutil.TypicalProjects.PROJECT_CARL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
+import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
+import static seedu.address.testutil.TypicalProjects.PROJECT_CARL;
 
 import org.junit.Rule;
 import org.junit.Test;
