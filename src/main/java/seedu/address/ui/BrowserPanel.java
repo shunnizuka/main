@@ -49,6 +49,7 @@ public class BrowserPanel extends UiPart<Region> {
 
         selectedProject.addListener((observable, oldValue, newValue) -> {
             if (newValue == null) {
+
                 loadDefaultPage();
                 return;
             }
@@ -63,7 +64,9 @@ public class BrowserPanel extends UiPart<Region> {
     }
 
     //TODO CHANGE
-    private void loadProjectPage(Project project) { loadPage(SEARCH_PAGE_URL + project.getProjectName());}
+    private void loadProjectPage(Project project) {
+        loadPage(SEARCH_PAGE_URL + project.getProjectName());
+    }
 
     public void loadPage(String url) {
         Platform.runLater(() -> browser.getEngine().load(url));

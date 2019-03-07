@@ -17,8 +17,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
-import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -318,7 +318,7 @@ public class ModelManager implements Model {
         }
     }
 
-//===================================================================================================
+    //===================================================================================================
 
     @Override
     public boolean equals(Object obj) {
