@@ -65,7 +65,7 @@ public class UniqueProjectListTest {
     }
 
     @Test
-    public void setEmployee_nullTargetProject_throwsNullPointerException() {
+    public void setProject_nullTargetProject_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         uniqueProjectList.setProject(null, PROJECT_ALICE);
     }
