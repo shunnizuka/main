@@ -37,7 +37,7 @@ public class ProjectNameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different employee -> returns false
+        // different value -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
