@@ -15,13 +15,13 @@ public class DeadlineTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
+    public void constructor_invalidDeadline_throwsIllegalArgumentException() {
         String invalidDeadline = "";
         Assert.assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDeadline));
     }
 
     @Test
-    public void isValidEmail() {
+    public void isValidDeadline() {
         // null deadline
         Assert.assertThrows(NullPointerException.class, () -> Deadline.isValidDate(null));
 
