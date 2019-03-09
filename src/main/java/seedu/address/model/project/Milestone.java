@@ -42,7 +42,7 @@ public class Milestone {
      * Returns true if given string is valid for a milestone date
      */
     public static boolean isValidMilestoneDate(String date) {
-        DateFormat format = Project.getDateFormat();
+        DateFormat format = Project.dateFormat;
         format.setLenient(false);
         try {
             format.parse(date);

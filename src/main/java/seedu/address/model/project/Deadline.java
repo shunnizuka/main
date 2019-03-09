@@ -32,7 +32,7 @@ public class Deadline {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String input) {
-        DateFormat format = Project.getDateFormat();
+        DateFormat format = Project.dateFormat;
         format.setLenient(false);
         try {
             format.parse(input);

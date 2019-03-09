@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 public class Project {
 
-    private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private final ProjectName projectName;
     private final List<Milestone> milestone;
     private final Client client;
@@ -51,9 +51,6 @@ public class Project {
         return deadline;
     }
 
-    public static DateFormat getDateFormat() {
-        return dateFormat;
-    }
 
     /**
      * Returns true if both projects have the same name.
