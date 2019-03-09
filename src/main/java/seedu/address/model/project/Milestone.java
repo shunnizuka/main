@@ -10,8 +10,8 @@ public class Milestone {
             "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
     public static final String MESSAGE_CONSTRAINTS =
             "The date given must be in DD/MM/YYYY format";
-    private final String milestone;
-    private final String date;
+    public final String milestone;
+    public final String date;
 
 
     public Milestone(String milestone, String date) {
@@ -41,4 +41,7 @@ public class Milestone {
         //Does not check anything currently, could change in the future
         return true;
     }
+
 }
+
+

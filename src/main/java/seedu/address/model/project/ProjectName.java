@@ -18,7 +18,7 @@ public class ProjectName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private final String projectName;
+    public final String projectName;
 
     /**
      * Constructor for ProjectName.
