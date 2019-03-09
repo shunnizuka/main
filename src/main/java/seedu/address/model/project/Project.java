@@ -1,5 +1,7 @@
 package seedu.address.model.project;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,10 +11,12 @@ import java.util.Objects;
  */
 public class Project {
 
+    private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private final ProjectName projectName;
     private final List<Milestone> milestone;
     private final Client client;
     private final Deadline deadline;
+
 
     /**
      * Constructor for each Project Object.
@@ -45,6 +49,10 @@ public class Project {
     }
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    public static DateFormat getDateFormat() {
+        return dateFormat;
     }
 
     /**
