@@ -8,12 +8,10 @@ public class Milestone {
 
     public static final String DATE_VALIDATION_REGEX =
             "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
-    public static final String MILESTONE_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String MESSAGE_CONSTRAINTS =
-            "Milestones should be alphanumeric and not start with whitespace."
-            + "The date given must be in DD/MM/YYYY format";
-    public final String milestone;
-    public final String date;
+            "The date given must be in DD/MM/YYYY format";
+    private final String milestone;
+    private final String date;
 
 
     public Milestone(String milestone, String date) {
@@ -40,6 +38,7 @@ public class Milestone {
      * Returns true if given string is valid for a milestone string
      */
     public static boolean isValidMilestoneString(String info) {
-        return info.matches(MILESTONE_VALIDATION_REGEX);
+        //Does not check anything currently, could change in the future
+        return true;
     }
 }
