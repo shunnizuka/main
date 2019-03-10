@@ -90,9 +90,6 @@ class JsonAdaptedProject {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS + " " + projectName);
-        }
         final Description modelDescription = new Description(description);
 
         if (deadline == null) {

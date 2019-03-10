@@ -38,7 +38,7 @@ public class Project {
     }
 
     /**
-     * Constructor specifying description too.
+     * Constructor specifying description and milestone too.
      */
     public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc) {
         this.projectName = pn;
@@ -49,10 +49,7 @@ public class Project {
     }
 
     /**
-     * Constructor
-     * TODO: to be removed later
-     * I added this so that the projectBuilder can build project with description,
-     * and milestone data not up yet
+     * Constructor specifying description
      */
     public Project (ProjectName pn, Client c, Deadline d, Description desc) {
         this.projectName = pn;
@@ -61,9 +58,11 @@ public class Project {
         this.milestone = new ArrayList<>();
         this.description = desc;
     }
+
     public ProjectName getProjectName() {
         return projectName;
     }
+
     public List<Milestone> getMilestone() {
         return milestone;
     }
