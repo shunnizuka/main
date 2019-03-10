@@ -39,7 +39,6 @@ public class Project {
 
     /**
      * Constructor specifying description too.
-     * TODO: edit accordingly for addto function, I'm not sure how you all want to implement
      */
     public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc) {
         this.projectName = pn;
