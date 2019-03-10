@@ -52,7 +52,7 @@ public class MilestoneTest {
         assertFalse(Milestone.isValidMilestoneDate("44/11/2019")); // invalid date
         assertFalse(Milestone.isValidMilestoneDate("11/44/aaaa")); // invalid month
         assertFalse(Milestone.isValidMilestoneDate("11/11/1800")); // invalid year too old
-        assertFalse(Milestone.isValidMilestoneDate("29/02/2019")); // Not gap year
+        assertFalse(Milestone.isValidMilestoneDate("29/02/2019")); // Not leap year
 
         // invalid milestone strings
         assertFalse(Milestone.isValidMilestoneString(" ")); //empty string
