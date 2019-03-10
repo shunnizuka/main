@@ -91,7 +91,7 @@ class JsonAdaptedProject {
                 Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS + " " + projectName);
         }
         final Description modelDescription = new Description(description);
 

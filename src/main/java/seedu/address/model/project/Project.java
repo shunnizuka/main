@@ -48,6 +48,19 @@ public class Project {
         this.description = desc;
     }
 
+    /**
+     * Constructor
+     * TODO: to be removed later
+     * I added this so that the projectBuilder can build project with description,
+     * and milestone data not up yet
+     */
+    public Project (ProjectName pn, Client c, Deadline d, Description desc) {
+        this.projectName = pn;
+        this.client = c;
+        this.deadline = d;
+        this.milestone = new ArrayList<>();
+        this.description = desc;
+    }
     public ProjectName getProjectName() {
         return projectName;
     }
@@ -95,9 +108,7 @@ public class Project {
         Project otherProject = (Project) other;
         return otherProject.getProjectName().equals(getProjectName())
             && otherProject.getClient().equals(getClient())
-            && otherProject.getDeadline().equals(getDeadline())
-            && otherProject.getDescription().equals(getDescription());
-
+            && otherProject.getDeadline().equals(getDeadline());
     }
 
     @Override
