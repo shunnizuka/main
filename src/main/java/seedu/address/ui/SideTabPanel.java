@@ -6,6 +6,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 
+/**
+ * The side panel with tabpane for the application.
+ */
 public class SideTabPanel extends UiPart<Region> {
 
     private static final String FXML = "SideTabPanel.fxml";
