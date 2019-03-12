@@ -11,6 +11,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -46,32 +49,18 @@
           </padding>
         </StackPane>
 
-        <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.4" VBox.vgrow="ALWAYS">
-          <VBox fx:id="employeeList" minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="employeeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
-
+        <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.2849" prefWidth="352.0" VBox.vgrow="ALWAYS">
+          <AnchorPane SplitPane.resizableWithParent="false">
+            <StackPane fx:id="tabPanePlaceholder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+          </AnchorPane >
 
           <StackPane fx:id="browserPlaceholder" prefWidth="340" >
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
           </StackPane>
-
-          <VBox fx:id="ProjectList" minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
         </SplitPane>
-
-
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

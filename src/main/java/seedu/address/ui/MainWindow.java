@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SideTabPanel sideTabPanel;
 
     @FXML
     private StackPane browserPlaceholder;
@@ -47,10 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane employeeListPanelPlaceholder;
-
-    @FXML
-    private StackPane projectListPanelPlaceholder;
+    private StackPane tabPanePlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -120,11 +118,12 @@ public class MainWindow extends UiPart<Stage> {
 
         employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList(), logic.selectedEmployeeProperty(),
                 logic::setSelectedEmployee);
-        employeeListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
 
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(), logic.selectedProjectProperty(),
                 logic::setSelectedProject);
-        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+
+        sideTabPanel = new SideTabPanel(employeeListPanel.getRoot(), projectListPanel.getRoot());
+        tabPanePlaceholder.getChildren().add(sideTabPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
