@@ -57,7 +57,6 @@ public class Project {
         this.milestone = m;
         this.description = desc;
         this.employees = new UniqueEmployeeList();
-      
     }
 
     /**
