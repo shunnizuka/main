@@ -93,11 +93,11 @@ Format: `delete employee INDEX`
 
 Examples:
 
-* `list` +
-`delete 2` +
+* `list employees` +
+`delete employee 2` +
 Deletes the 2nd person in the employee list.
-* `find Betsy` +
-`delete 1` +
+* `find employee Betsy` +
+`delete employee 1` +
 Deletes the 1st person in the results of the `find` command.
 
 Deletes the project from the list of projects. +
