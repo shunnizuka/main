@@ -49,8 +49,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane employeeListPanelPlaceholder;
 
-    @FXML
-    private StackPane projectListPanelPlaceholder;
+    //@FXML
+    //private StackPane projectListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
 
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(), logic.selectedProjectProperty(),
                 logic::setSelectedProject);
-        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+        //projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

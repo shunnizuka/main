@@ -62,12 +62,6 @@
             </padding>
           </StackPane>
 
-          <VBox fx:id="ProjectList" minWidth="340" prefWidth="340" SplitPane.resizableWithParent="false">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
 
         </SplitPane>
 
