@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ProjectListPanel projectListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SideTabPanel sideTabPanel;
 
     @FXML
     private StackPane browserPlaceholder;
@@ -45,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane tabPanePlaceholder;
 
     //@FXML
     //private StackPane employeeListPanelPlaceholder;
@@ -125,6 +130,9 @@ public class MainWindow extends UiPart<Stage> {
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(), logic.selectedProjectProperty(),
                 logic::setSelectedProject);
         //projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+
+        sideTabPanel = new SideTabPanel(employeeListPanel.getRoot(), projectListPanel.getRoot());
+        tabPanePlaceholder.getChildren().add(sideTabPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

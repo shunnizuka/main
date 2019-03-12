@@ -50,14 +50,9 @@
 
         <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.4" VBox.vgrow="ALWAYS">
 
-          <TabPane fx:id="sideTabPane">
-            <Tab fx:id="projectsTab" text="Projects">
+          <StackPane fx:id="tabPanePlaceholder">
 
-            </Tab>
-            <Tab fx:id="employeesTab" text="Employees">
-
-            </Tab>
-          </TabPane>
+          </StackPane>
 
           <StackPane fx:id="browserPlaceholder" prefWidth="340" >
             <padding>
