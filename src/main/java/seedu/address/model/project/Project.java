@@ -1,19 +1,27 @@
 package seedu.address.model.project;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueEmployeeList;
 
 /**
  * Represents a project in the pocket project.
  */
 public class Project {
 
+    public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private final ProjectName projectName;
     private final List<Milestone> milestone;
     private final Client client;
     private final Deadline deadline;
+    private final UniqueEmployeeList employees;
     private final Description description;
+
 
     /**
      * Constructor for each Project Object.
@@ -23,6 +31,7 @@ public class Project {
         this.client = c;
         this.deadline = d;
         milestone = new ArrayList<>();
+        employees = new UniqueEmployeeList();
         this.description = new Description();
     }
 
@@ -34,6 +43,7 @@ public class Project {
         this.client = c;
         this.deadline = d;
         this.milestone = m;
+        this.employees = new UniqueEmployeeList();
         this.description = new Description();
     }
 
@@ -46,6 +56,7 @@ public class Project {
         this.deadline = d;
         this.milestone = m;
         this.description = desc;
+        this.employees = new UniqueEmployeeList();
     }
 
     /**
@@ -57,6 +68,7 @@ public class Project {
         this.deadline = d;
         this.milestone = new ArrayList<>();
         this.description = desc;
+        this.employees = new UniqueEmployeeList();
     }
 
     public ProjectName getProjectName() {
@@ -75,6 +87,7 @@ public class Project {
     public Description getDescription() {
         return description; }
 
+
     /**
      * Returns true if both projects have the same name.
      */
@@ -88,12 +101,18 @@ public class Project {
     }
 
     /**
+     *  Removes the employee with the given index on the last displayed list from this project.
+     */
+    public void removeEmployee(Employee employee) {
+        employees.remove(employee);
+    }
+
+    /**
      * Returns true if this project has the given projectName.
      */
     public boolean hasProjectName(ProjectName projectName) {
         return this.projectName.equals(projectName);
     }
-
     @Override
     public boolean equals (Object other) {
         if (other == this) {

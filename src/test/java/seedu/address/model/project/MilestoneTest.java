@@ -10,7 +10,7 @@ import seedu.address.testutil.Assert;
 public class MilestoneTest {
 
     //TODO: Add JUnit tests for constructor of milestones
-    /*
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> new Milestone(null, null));
@@ -22,7 +22,7 @@ public class MilestoneTest {
         String invalidMilestone = "";
         Assert.assertThrows(IllegalArgumentException.class, () -> new Milestone(invalidMilestone, invalidDate));
     }
-    */
+
 
     @Test
     public void isValidMilestone() {
@@ -52,11 +52,10 @@ public class MilestoneTest {
         assertFalse(Milestone.isValidMilestoneDate("44/11/2019")); // invalid date
         assertFalse(Milestone.isValidMilestoneDate("11/44/aaaa")); // invalid month
         assertFalse(Milestone.isValidMilestoneDate("11/11/1800")); // invalid year too old
+        assertFalse(Milestone.isValidMilestoneDate("29/02/2019")); // Not leap year
 
         // invalid milestone strings
         assertFalse(Milestone.isValidMilestoneString(" ")); //empty string
-        assertFalse(Milestone.isValidMilestoneString("?")); //non alphanumerical values
-        assertFalse(Milestone.isValidMilestoneString("Is this a valid string.")); //non alphanumerical values
 
         // valid deadlines
         assertTrue(Milestone.isValidMilestoneDate("11/11/2019"));
