@@ -20,6 +20,7 @@ public class Project {
     private final Client client;
     private final Deadline deadline;
     private final UniqueEmployeeList employees;
+    private final Description description;
 
 
     /**
@@ -31,6 +32,7 @@ public class Project {
         this.deadline = d;
         milestone = new ArrayList<>();
         employees = new UniqueEmployeeList();
+        this.description = new Description();
     }
 
     /**
@@ -42,11 +44,38 @@ public class Project {
         this.deadline = d;
         this.milestone = m;
         this.employees = new UniqueEmployeeList();
+        this.description = new Description();
+    }
+
+    /**
+     * Constructor specifying description and milestone too.
+     */
+    public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc) {
+        this.projectName = pn;
+        this.client = c;
+        this.deadline = d;
+        this.milestone = m;
+        this.description = desc;
+        this.employees = new UniqueEmployeeList();
+      
+    }
+
+    /**
+     * Constructor specifying description
+     */
+    public Project (ProjectName pn, Client c, Deadline d, Description desc) {
+        this.projectName = pn;
+        this.client = c;
+        this.deadline = d;
+        this.milestone = new ArrayList<>();
+        this.description = desc;
+        this.employees = new UniqueEmployeeList();
     }
 
     public ProjectName getProjectName() {
         return projectName;
     }
+
     public List<Milestone> getMilestone() {
         return milestone;
     }
@@ -56,6 +85,8 @@ public class Project {
     public Deadline getDeadline() {
         return deadline;
     }
+    public Description getDescription() {
+        return description; }
 
 
     /**
@@ -67,7 +98,7 @@ public class Project {
         }
 
         return otherProject != null
-                && otherProject.getProjectName().equals(getProjectName());
+            && otherProject.getProjectName().equals(getProjectName());
     }
 
     /**
@@ -95,15 +126,14 @@ public class Project {
 
         Project otherProject = (Project) other;
         return otherProject.getProjectName().equals(getProjectName())
-                && otherProject.getClient().equals(getClient())
-                && otherProject.getDeadline().equals(getDeadline());
-
+            && otherProject.getClient().equals(getClient())
+            && otherProject.getDeadline().equals(getDeadline());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(projectName, client, deadline);
+        return Objects.hash(projectName, client, deadline, description);
     }
 
     @Override
@@ -111,10 +141,11 @@ public class Project {
 
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectName())
-                .append(" Client: ")
-                .append(getClient())
-                .append(" Deadline: ")
-                .append(getDeadline());
+            .append(" Client: ")
+            .append(getClient())
+            .append(" Deadline: ")
+            .append(getDeadline())
+            .append(getDescription());
 
         return builder.toString();
     }

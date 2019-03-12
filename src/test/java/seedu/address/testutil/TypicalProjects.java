@@ -12,30 +12,28 @@ import seedu.address.model.project.Project;
 public class TypicalProjects {
 
     public static final Project PROJECT_ALICE = new ProjectBuilder().withProjectName("Project Alice")
-            .withClient("Dehui").withDeadline("11/02/2019").build();
+            .withClient("Dehui").withDeadline("11/02/2019").withDescrption("An application for Alice").build();
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
-            .withClient("Jeff")
-            .withDeadline("23/01/2011").build();
+            .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson").build();
     public static final Project PROJECT_CARL = new ProjectBuilder().withProjectName("Project Carl").withClient("Darryl")
-            .withDeadline("12/12/2012").build();
+            .withDeadline("12/12/2012").withDescrption("An application for Carl").build();
     public static final Project PROJECT_DANIEL = new ProjectBuilder().withProjectName("Project Daniel")
-            .withClient("Shune")
-            .withDeadline("21/12/2012").build();
+            .withClient("Shune").withDeadline("21/12/2012").withDescrption("An application for Daniel").build();
     public static final Project PROJECT_ELLE = new ProjectBuilder().withProjectName("Project Elle").withClient("Jothi")
-            .withDeadline("22/03/2019").build();
+            .withDeadline("22/03/2019").withDescrption("An application for Elle").build();
     public static final Project PROJECT_FIONA = new ProjectBuilder().withProjectName("Project Fiona").withClient("SOC")
-            .withDeadline("01/01/2020").build();
+            .withDeadline("01/01/2020").withDescrption("An application for Fiona").build();
     public static final Project PROJECT_GEORGE = new ProjectBuilder()
             .withProjectName("Project George").withClient("FASS")
-            .withDeadline("11/02/2021").build();
+            .withDeadline("11/02/2021").withDescrption("An application for George").build();
 
     // Manually added
     public static final Project PROJECT_HOON = new ProjectBuilder()
             .withProjectName("Project Hoon Meier").withClient("FOE")
-            .withDeadline("21/11/2018").build();
+            .withDeadline("21/11/2018").withDescrption("An application for Hoon Meir").build();
     public static final Project PROJECT_IDA = new ProjectBuilder()
             .withProjectName("Project Ida Mueller").withClient("FOS")
-            .withDeadline("3/3/2013").build();
+            .withDeadline("3/3/2013").withDescrption("An application for Ida Mueller").build();
     /*
     // Manually added - Project's details found in {@code CommandTestUtil}
     public static final Project AMY = new ProjectBuilder().withProjectName(VALID_NAME_AMY).withClient(VALID_PHONE_AMY)
