@@ -14,7 +14,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
  */
 public class Project {
 
-    public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    public static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
     private final ProjectName projectName;
     private final List<Milestone> milestone;
     private final Client client;
