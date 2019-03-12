@@ -50,6 +50,6 @@ public class ProjectCardHandle extends NodeHandle<Node> {
     public boolean equals(Project project) {
         return getProjectName().equals(project.getProjectName().projectName)
                 && getClient().equals(project.getClient().client)
-                && getDeadline().equals(project.getDeadline().deadline)
+                && getDeadline().equals(project.getDeadline().deadline);
     }
 }

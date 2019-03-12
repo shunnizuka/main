@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 
 import guitests.guihandles.EmployeeCardHandle;
 import guitests.guihandles.EmployeeListPanelHandle;
+import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.ResultDisplayHandle;
 
 import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
 
 /**
  * A set of assertion methods useful for writing GUI tests.
@@ -71,5 +73,24 @@ public class GuiTestAssert {
      */
     public static void assertResultMessage(ResultDisplayHandle resultDisplayHandle, String expected) {
         assertEquals(expected, resultDisplayHandle.getText());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the same values as {@code expectedCard}.
+     */
+    public static void assertCardEquals(ProjectCardHandle expectedCard, ProjectCardHandle actualCard) {
+        assertEquals(expectedCard.getId(), actualCard.getId());
+        assertEquals(expectedCard.getProjectName(), actualCard.getProjectName());
+        assertEquals(expectedCard.getClient(), actualCard.getClient());
+        assertEquals(expectedCard.getDeadline(), actualCard.getDeadline());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedProject}.
+     */
+    public static void assertCardDisplaysProject(Project expectedProject, ProjectCardHandle actualCard) {
+        assertEquals(expectedProject.getProjectName().projectName, actualCard.getProjectName());
+        assertEquals(expectedProject.getClient().client, actualCard.getClient());
+        assertEquals(expectedProject.getDeadline().deadline, actualCard.getDeadline());
     }
 }
