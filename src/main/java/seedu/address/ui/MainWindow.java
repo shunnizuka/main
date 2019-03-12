@@ -46,8 +46,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private MenuItem helpMenuItem;
 
-    @FXML
-    private StackPane employeeListPanelPlaceholder;
+    //@FXML
+    //private StackPane employeeListPanelPlaceholder;
 
     //@FXML
     //private StackPane projectListPanelPlaceholder;
@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
 
         employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList(), logic.selectedEmployeeProperty(),
                 logic::setSelectedEmployee);
-        employeeListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
+        //employeeListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
 
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(), logic.selectedProjectProperty(),
                 logic::setSelectedProject);
