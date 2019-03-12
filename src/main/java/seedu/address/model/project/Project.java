@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueEmployeeList;
+
 /**
  * Represents a project in the pocket project.
  */
@@ -16,6 +19,7 @@ public class Project {
     private final List<Milestone> milestone;
     private final Client client;
     private final Deadline deadline;
+    private final UniqueEmployeeList employees;
 
 
     /**
@@ -26,6 +30,7 @@ public class Project {
         this.client = c;
         this.deadline = d;
         milestone = new ArrayList<>();
+        employees = new UniqueEmployeeList();
     }
 
     /**
@@ -36,6 +41,7 @@ public class Project {
         this.client = c;
         this.deadline = d;
         this.milestone = m;
+        this.employees = new UniqueEmployeeList();
     }
 
     public ProjectName getProjectName() {
@@ -65,12 +71,18 @@ public class Project {
     }
 
     /**
+     *  Removes the employee with the given index on the last displayed list from this project.
+     */
+    public void removeEmployee(Employee employee) {
+        employees.remove(employee);
+    }
+
+    /**
      * Returns true if this project has the given projectName.
      */
     public boolean hasProjectName(ProjectName projectName) {
         return this.projectName.equals(projectName);
     }
-
     @Override
     public boolean equals (Object other) {
         if (other == this) {
