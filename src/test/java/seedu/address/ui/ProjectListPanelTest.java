@@ -3,8 +3,8 @@ package seedu.address.ui;
 import static java.time.Duration.ofMillis;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
+import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysProject;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardEquals;
 

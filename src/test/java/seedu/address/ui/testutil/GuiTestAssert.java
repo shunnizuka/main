@@ -30,6 +30,16 @@ public class GuiTestAssert {
     }
 
     /**
+     * Asserts that {@code actualCard} displays the same values as {@code expectedCard}.
+     */
+    public static void assertCardEquals(ProjectCardHandle expectedCard, ProjectCardHandle actualCard) {
+        assertEquals(expectedCard.getId(), actualCard.getId());
+        assertEquals(expectedCard.getProjectName(), actualCard.getProjectName());
+        assertEquals(expectedCard.getClient(), actualCard.getClient());
+        assertEquals(expectedCard.getDeadline(), actualCard.getDeadline());
+    }
+
+    /**
      * Asserts that {@code actualCard} displays the details of {@code expectedEmployee}.
      */
     public static void assertCardDisplaysEmployee(Employee expectedEmployee, EmployeeCardHandle actualCard) {
@@ -73,16 +83,6 @@ public class GuiTestAssert {
      */
     public static void assertResultMessage(ResultDisplayHandle resultDisplayHandle, String expected) {
         assertEquals(expected, resultDisplayHandle.getText());
-    }
-
-    /**
-     * Asserts that {@code actualCard} displays the same values as {@code expectedCard}.
-     */
-    public static void assertCardEquals(ProjectCardHandle expectedCard, ProjectCardHandle actualCard) {
-        assertEquals(expectedCard.getId(), actualCard.getId());
-        assertEquals(expectedCard.getProjectName(), actualCard.getProjectName());
-        assertEquals(expectedCard.getClient(), actualCard.getClient());
-        assertEquals(expectedCard.getDeadline(), actualCard.getDeadline());
     }
 
     /**
