@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
@@ -24,6 +25,7 @@ class JsonAdaptedProject {
     private final String projectName;
     private final String client;
     private final String deadline;
+    private final String description;
     private final List<JsonAdaptedMilestone> milestones = new ArrayList<>();
 
     /**
@@ -31,11 +33,13 @@ class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName, @JsonProperty("client") String client,
-                               @JsonProperty("deadline") String deadline,
-                               @JsonProperty("milestones") List<JsonAdaptedMilestone> milestones) {
+                              @JsonProperty("deadline") String deadline,
+                              @JsonProperty("description") String description,
+                              @JsonProperty("milestones") List<JsonAdaptedMilestone> milestones) {
         this.projectName = projectName;
         this.client = client;
         this.deadline = deadline;
+        this.description = description;
         if (milestones != null) {
             this.milestones.addAll(milestones);
         }
@@ -48,9 +52,10 @@ class JsonAdaptedProject {
         projectName = source.getProjectName().projectName;
         client = source.getClient().client;
         deadline = source.getDeadline().deadline;
+        description = source.getDescription().description;
         milestones.addAll(source.getMilestone().stream()
-                .map(JsonAdaptedMilestone::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedMilestone::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -66,7 +71,7 @@ class JsonAdaptedProject {
 
         if (projectName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectName.class.getSimpleName()));
+                ProjectName.class.getSimpleName()));
         }
         if (!ProjectName.isValidName(projectName)) {
             throw new IllegalValueException(ProjectName.MESSAGE_CONSTRAINTS);
@@ -81,9 +86,15 @@ class JsonAdaptedProject {
         }
         final Client modelClient = new Client(client);
 
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Description.class.getSimpleName()));
+        }
+        final Description modelDescription = new Description(description);
+
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Deadline.class.getSimpleName()));
+                Deadline.class.getSimpleName()));
         }
         if (!Deadline.isValidDate(deadline)) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
@@ -93,7 +104,7 @@ class JsonAdaptedProject {
 
 
         final List<Milestone> modelMilestones = projectMilestones;
-        return new Project(modeProjectlName, modelClient, modelDeadline, modelMilestones);
+        return new Project(modeProjectlName, modelClient, modelDeadline, modelMilestones, modelDescription);
     }
 
 }
