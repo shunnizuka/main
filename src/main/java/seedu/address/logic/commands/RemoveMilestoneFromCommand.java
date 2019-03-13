@@ -21,13 +21,13 @@ public class RemoveMilestoneFromCommand extends RemoveFromCommand {
 
     public static final String REMOVE_MILESTONE_KEYWORD = "milestone";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "PROJECT_NAME milestone"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME milestone"
             + ": removes the milestone identified by the index number"
-            + " used in the displayed employee list from the project.\n"
+            + " used in the displayed milestone list from the project.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + "Apollo milestone 1";
 
-    public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Removed Employee: %1$s from %2$s";
+    public static final String MESSAGE_REMOVE_MILESTONE_SUCCESS = "Removed milestone: %1$s from %2$s";
 
     private final Index targetIndex;
     private final ProjectName targetProject;
@@ -47,13 +47,14 @@ public class RemoveMilestoneFromCommand extends RemoveFromCommand {
         }
 
         Milestone milestoneToDelete = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, milestoneToDelete));
+        return new CommandResult(String.format(MESSAGE_REMOVE_MILESTONE_SUCCESS, milestoneToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteEmployeeCommand // instanceof handles nulls
-                && targetIndex.equals(((RemoveMilestoneFromCommand) other).targetIndex)); // state check
+                || (other instanceof RemoveMilestoneFromCommand // instanceof handles nulls
+                && targetIndex.equals(((RemoveMilestoneFromCommand) other).targetIndex)
+                && targetProject.equals(((RemoveMilestoneFromCommand) other).targetProject)); // state check
     }
 }

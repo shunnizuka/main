@@ -19,13 +19,13 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
 
     public static final String REMOVE_EMPLOYEE_KEYWORD = "employee";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "PROJECT_NAME employee"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME employee"
             + ": removes the employee identified by the index number"
             + " used in the displayed employee list from the project.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + "Apollo employee 1";
 
-    public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Removed Employee: %1$s from %2$s";
+    public static final String MESSAGE_REMOVE_EMPLOYEE_SUCCESS = "Removed Employee: %1$s from %2$s";
 
     private final Index targetIndex;
     private final ProjectName targetProject;
@@ -47,13 +47,14 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
         Employee employeeToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEmployee(employeeToDelete);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete));
+        return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_SUCCESS, employeeToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteEmployeeCommand // instanceof handles nulls
-                && targetIndex.equals(((RemoveEmployeeFromCommand) other).targetIndex)); // state check
+                || (other instanceof RemoveEmployeeFromCommand // instanceof handles nulls
+                && targetIndex.equals(((RemoveEmployeeFromCommand) other).targetIndex)
+                && targetProject.equals(((RemoveEmployeeFromCommand) other).targetProject)); // state check
     }
 }

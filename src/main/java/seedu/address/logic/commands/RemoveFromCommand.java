@@ -7,7 +7,7 @@ public abstract class RemoveFromCommand extends Command {
     public static final String COMMAND_WORD = "removefrom";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "PROJECT_NAME employee/milestone"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME employee/milestone"
             + ": removes the employee/milestone identified by the index number used in"
             + " the displayed employee/milestone list.\n"
             + RemoveEmployeeFromCommand.MESSAGE_USAGE + "\n"

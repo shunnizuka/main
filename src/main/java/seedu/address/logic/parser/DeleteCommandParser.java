@@ -32,7 +32,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         final Matcher matcher = DELETE_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         final String keyword = matcher.group("keyword");

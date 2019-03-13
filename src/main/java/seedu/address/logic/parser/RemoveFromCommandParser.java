@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.RemoveEmployeeFromCommand;
 import seedu.address.logic.commands.RemoveFromCommand;
 import seedu.address.logic.commands.RemoveMilestoneFromCommand;
@@ -33,12 +32,11 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
 
         final Matcher matcher = REMOVE_FROM_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveFromCommand.MESSAGE_USAGE));
         }
         final ProjectName projectName = new ProjectName(matcher.group("project").trim());
-        final String keyword = matcher.group("keyword");
+        final String keyword = matcher.group("keyword").trim();
         final String arguments = matcher.group("arguments");
-
         if (keyword.equals(RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD)) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
@@ -48,12 +46,17 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveEmployeeFromCommand.MESSAGE_USAGE), pe);
             }
         } else if (keyword.equals(RemoveMilestoneFromCommand.REMOVE_MILESTONE_KEYWORD)) {
-            Index index = ParserUtil.parseIndex(arguments.trim());
-            return new RemoveMilestoneFromCommand(index, projectName);
+            try {
+                Index index = ParserUtil.parseIndex(arguments.trim());
+                return new RemoveMilestoneFromCommand(index, projectName);
+            } catch (ParseException pe) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveMilestoneFromCommand.MESSAGE_USAGE), pe);
+            }
 
         } else {
             throw new ParseException (
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveMilestoneFromCommand.MESSAGE_USAGE)
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveFromCommand.MESSAGE_USAGE)
             );
         }
     }
