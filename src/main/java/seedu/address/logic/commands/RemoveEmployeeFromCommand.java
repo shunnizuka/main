@@ -23,7 +23,7 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
             + ": removes the employee identified by the index number"
             + " used in the displayed employee list from the project.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + "Apollo employee 1";
+            + "Example: " + COMMAND_WORD + " Apollo employee 1";
 
     public static final String MESSAGE_REMOVE_EMPLOYEE_SUCCESS = "Removed Employee: %1$s from %2$s";
 

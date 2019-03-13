@@ -25,7 +25,7 @@ public class RemoveMilestoneFromCommand extends RemoveFromCommand {
             + ": removes the milestone identified by the index number"
             + " used in the displayed milestone list from the project.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + "Apollo milestone 1";
+            + "Example: " + COMMAND_WORD + " Apollo milestone 1";
 
     public static final String MESSAGE_REMOVE_MILESTONE_SUCCESS = "Removed milestone: %1$s from %2$s";
 
