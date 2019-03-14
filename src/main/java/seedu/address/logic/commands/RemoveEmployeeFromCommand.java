@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -28,26 +30,34 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
     public static final String MESSAGE_REMOVE_EMPLOYEE_SUCCESS = "Removed Employee: %1$s from %2$s";
 
     private final Index targetIndex;
-    private final ProjectName targetProject;
+    private final ProjectName targetProjectName;
 
-    public RemoveEmployeeFromCommand(Index targetIndex, ProjectName targetProject) {
-        this.targetProject = targetProject;
+    public RemoveEmployeeFromCommand(Index targetIndex, ProjectName targetProjectName) {
+        this.targetProjectName = targetProjectName;
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Employee> lastShownList = model.getFilteredEmployeeList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        Project targetProject = null;
+        List<Project> projectList = model.getProjectList();
+        for (Project p: projectList) {
+            if (p.hasProjectName(targetProjectName)) {
+                targetProject = p;
+            }
+        }
+        if (targetProject == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
+        }
+        ObservableList<Employee> targetList = targetProject.getEmployees();
+        if (targetIndex.getZeroBased() >= targetList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
-
-        Employee employeeToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteEmployee(employeeToDelete);
+        Employee targetEmployee = targetList.get(targetIndex.getZeroBased());
+        targetProject.removeEmployee(targetEmployee);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_SUCCESS, employeeToDelete));
+        return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_SUCCESS, targetEmployee));
     }
 
     @Override
@@ -55,6 +65,6 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
         return other == this // short circuit if same object
                 || (other instanceof RemoveEmployeeFromCommand // instanceof handles nulls
                 && targetIndex.equals(((RemoveEmployeeFromCommand) other).targetIndex)
-                && targetProject.equals(((RemoveEmployeeFromCommand) other).targetProject)); // state check
+                && targetProjectName.equals(((RemoveEmployeeFromCommand) other).targetProjectName)); // state check
     }
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 
@@ -85,7 +86,11 @@ public class Project {
         return deadline;
     }
     public Description getDescription() {
-        return description; }
+        return description;
+    }
+    public ObservableList<Employee> getEmployees() {
+        return employees.asUnmodifiableObservableList();
+    }
 
 
 
