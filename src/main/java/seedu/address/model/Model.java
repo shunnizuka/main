@@ -161,6 +161,16 @@ public interface Model {
      */
     void setSelectedProject(Project project);
 
+    /**
+     * Replaces the given project {@code target} with {@code editedProject}.
+     * {@code target} must exist in the address book.
+     * The project name of {@code editedProject} must not be the same as another existing project in the address
+     * book.
+     */
+    void setProject(Project target, Project editedProject);
+
+
+
     //-------------------------------------------------------------------------------------------
 
     /**
