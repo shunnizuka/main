@@ -30,10 +30,10 @@ public class RemoveMilestoneFromCommand extends RemoveFromCommand {
     public static final String MESSAGE_REMOVE_MILESTONE_SUCCESS = "Removed milestone: %1$s from %2$s";
 
     private final Index targetIndex;
-    private final ProjectName targetProject;
+    private final ProjectName targetProjectName;
 
     public RemoveMilestoneFromCommand(Index targetIndex, ProjectName targetProject) {
-        this.targetProject = targetProject;
+        this.targetProjectName = targetProject;
         this.targetIndex = targetIndex;
     }
 
@@ -55,6 +55,6 @@ public class RemoveMilestoneFromCommand extends RemoveFromCommand {
         return other == this // short circuit if same object
                 || (other instanceof RemoveMilestoneFromCommand // instanceof handles nulls
                 && targetIndex.equals(((RemoveMilestoneFromCommand) other).targetIndex)
-                && targetProject.equals(((RemoveMilestoneFromCommand) other).targetProject)); // state check
+                && targetProjectName.equals(((RemoveMilestoneFromCommand) other).targetProjectName)); // state check
     }
 }
