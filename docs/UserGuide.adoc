@@ -18,10 +18,14 @@ By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
 == Introduction
 
-PocketProject is for managers who have difficulty managing numerous projects that they are working on as well as the
-many employees that are under their charge. This application helps to keep track of employees responsible for each
-component of the project and also the workload of each employee.Thus, making it easier for managers to allocate and
-assign roles as required for different projects as well as manage their employees better.
+PocketProject is primarily an application for software engineering project managers who are currently in-charge of
+a team of large employees and many projects. This application employs the use of a Command Line Interface(CLI) to easily
+navigate through the application which contributes to the efficiency and user-friendliness of the end product.
+This application allows managers to keep track of all the employees and their related background information such as their
+GitHub account username and relevant skills. Additionally, it also helps to keep track of all the projects that the manager
+is currently involved with and key details of the project such the client, deadline and milestones can also be stored.
+Through the combination of the two main componenets, the application allows the storing and viewing of all the employees
+working on particular project and all the projects currently under a single employee among other functionalities.
 
 == Quick Start
 
@@ -37,11 +41,35 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all employees
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
+* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named
+`John Doe` to the Address Book.
 * **`delete`**`3` : deletes the 3rd employee shown in the current list
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
+
+== Legends
+The following section details and previews a few legends that will
+be used throughout the user guide. These legends are used to represent
+special information such as tips and warnings.
+
+
+|===
+|Legend |Meaning
+
+|image:ug-lightbulb.png[width="50"]
+|The light bulb icon will be used to indicate any useful tips or shortcuts
+that users can take note of while using the PocketProject application.
+
+|image:ug-exclamation.png[width="50"]
+|The exclamation mark icon will be used to indicate any warning that users
+ can take note of while using the PocketProject application.
+
+|image:ug-smart.png[width="60"]
+|The graduation cap icon will be used to indicate any advanced usages or
+ extra technical information about how a particular command works should
+ users be interested to know.
+|===
 
 [[Features]]
 == Features
@@ -64,8 +92,8 @@ Format: `help`
 Adds an employee to the list of employees. +
 Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SKILL]...`
 
-[TIP]
-An employee can have any number of skills (including 0).
+image:ug-lightbulb.png[width="50"]
+Tip: An employee can have any number of skills (including 0).
 
 Examples:
 
@@ -79,6 +107,10 @@ Format: `add project n/NAME d/DEADLINE c/CLIENT_NAME`
 Examples:
 
 * `add project n/Apollo d/12/12/2019 c/FairPrice`
+
+image:ug-lightbulb.png[width="50"]
+Shortcut: Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+while keying in a command into the CLI.
 
 === Delete a project or an employee from the application `delete`
 
@@ -323,6 +355,15 @@ _{Commands related to managing of project will be added soon.}_
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+
+== Glossary
+
+. `alphanumeric` only contains either digits (0-9) or letters of the English
+alphabet (A-Z).
+. `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
+program in the form of successive lines of text
+. `milestone` a key event that is completed during the entire timeline
+of the project.
 
 == Command Summary
 
