@@ -18,10 +18,14 @@ By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
 == Introduction
 
-PocketProject is for managers who have difficulty managing numerous projects that they are working on as well as the
-many employees that are under their charge. This application helps to keep track of employees responsible for each
-component of the project and also the workload of each employee.Thus, making it easier for managers to allocate and
-assign roles as required for different projects as well as manage their employees better.
+PocketProject is primarily an application for software engineering project managers who are currently in-charge of
+a team of large employees and many projects. This application employs the use of a Command Line Interface(CLI) to easily
+navigate through the application which contributes to the efficiency and user-friendliness of the end product.
+This application allows managers to keep track of all the employees and their related background information such as their
+GitHub account username and relevant skills. Additionally, it also helps to keep track of all the projects that the manager
+is currently involved with and key details of the project such the client, deadline and milestones can also be stored.
+Through the combination of the two main componenets, the application allows the storing and viewing of all the employees
+working on particular project and all the projects currently under a single employee among other functionalities.
 
 == Quick Start
 
@@ -37,7 +41,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all employees
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
+* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named
+`John Doe` to the Address Book.
 * **`delete`**`3` : deletes the 3rd employee shown in the current list
 * *`exit`* : exits the app
 
