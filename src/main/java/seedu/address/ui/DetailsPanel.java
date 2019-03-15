@@ -52,7 +52,7 @@ public class DetailsPanel extends UiPart<Region> {
         Pane pane = new Pane();
         contentList = new ArrayList<>();
         contentList.add(pane);
-        updateInformationPanel(pane);
+        updateInformationPanel(pane.);
     }
 
     private void updateInformationPanel(Node e) {
