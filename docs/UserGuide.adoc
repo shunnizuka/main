@@ -92,8 +92,8 @@ Format: `help`
 Adds an employee to the list of employees. +
 Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SKILL]...`
 
-[TIP]
-An employee can have any number of skills (including 0).
+image:ug-lightbulb.png[width="50"]
+Tip: An employee can have any number of skills (including 0).
 
 Examples:
 
@@ -107,6 +107,10 @@ Format: `add project n/NAME d/DEADLINE c/CLIENT_NAME`
 Examples:
 
 * `add project n/Apollo d/12/12/2019 c/FairPrice`
+
+image:ug-lightbulb.png[width="50"]
+Shortcut: Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+while keying in a command into the CLI.
 
 === Delete a project or an employee from the application `delete`
 
@@ -356,6 +360,8 @@ _{Commands related to managing of project will be added soon.}_
 
 . `alphanumeric` only contains either digits (0-9) or letters of the English
 alphabet (A-Z).
+. `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
+program in the form of successive lines of text
 . `milestone` a key event that is completed during the entire timeline
 of the project.
 
