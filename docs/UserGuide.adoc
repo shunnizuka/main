@@ -48,18 +48,23 @@ The following section details and previews a few legends that will
 be used throughout the user guide. These legends are used to represent
 special information such as tips and warnings.
 
-image:ug-lightbulb.png[width="50"]
-The light bulb icon will be used to represent any useful tips that users
-can take note of while using the PocketProject application.
 
-image:ug-exclamation.png[width="50"]
-The exclamation mark icon will be used to represent any warning that users
-can take note of while using the PocketProject application.
+|===
+|Legend |Meaning
 
-image:ug-smart.png[width="60"]
-The graduation cap icon will be used to represent any advanced usages or
-extra technical information about how a particular command works should
-users be interested to know.
+|image:ug-lightbulb.png[width="50"]
+|The light bulb icon will be used to represent any useful tips that users
+ can take note of while using the PocketProject application.
+
+|image:ug-exclamation.png[width="50"]
+|The exclamation mark icon will be used to represent any warning that users
+ can take note of while using the PocketProject application.
+
+|image:ug-smart.png[width="60"]
+|The graduation cap icon will be used to represent any advanced usages or
+ extra technical information about how a particular command works should
+ users be interested to know.
+|===
 
 [[Features]]
 == Features
