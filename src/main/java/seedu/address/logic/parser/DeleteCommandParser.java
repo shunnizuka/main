@@ -9,7 +9,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.DeleteProjectCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectName;
 
@@ -32,7 +31,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         final Matcher matcher = DELETE_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         final String keyword = matcher.group("keyword");

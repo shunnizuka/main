@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 
@@ -14,9 +15,9 @@ import seedu.address.model.employee.UniqueEmployeeList;
  */
 public class Project {
 
-    public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    public static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
     private final ProjectName projectName;
-    private final List<Milestone> milestone;
+    private final List<Milestone> milestones;
     private final Client client;
     private final Deadline deadline;
     private final UniqueEmployeeList employees;
@@ -30,7 +31,7 @@ public class Project {
         this.projectName = pn;
         this.client = c;
         this.deadline = d;
-        milestone = new ArrayList<>();
+        milestones = new ArrayList<>();
         employees = new UniqueEmployeeList();
         this.description = new Description();
     }
@@ -42,7 +43,7 @@ public class Project {
         this.projectName = pn;
         this.client = c;
         this.deadline = d;
-        this.milestone = m;
+        this.milestones = m;
         this.employees = new UniqueEmployeeList();
         this.description = new Description();
     }
@@ -54,7 +55,7 @@ public class Project {
         this.projectName = pn;
         this.client = c;
         this.deadline = d;
-        this.milestone = m;
+        this.milestones = m;
         this.description = desc;
         this.employees = new UniqueEmployeeList();
     }
@@ -66,7 +67,7 @@ public class Project {
         this.projectName = pn;
         this.client = c;
         this.deadline = d;
-        this.milestone = new ArrayList<>();
+        this.milestones = new ArrayList<>();
         this.description = desc;
         this.employees = new UniqueEmployeeList();
     }
@@ -75,8 +76,8 @@ public class Project {
         return projectName;
     }
 
-    public List<Milestone> getMilestone() {
-        return milestone;
+    public List<Milestone> getMilestones() {
+        return milestones;
     }
     public Client getClient() {
         return client;
@@ -85,7 +86,12 @@ public class Project {
         return deadline;
     }
     public Description getDescription() {
-        return description; }
+        return description;
+    }
+    public ObservableList<Employee> getEmployees() {
+        return employees.asUnmodifiableObservableList();
+    }
+
 
 
     /**
@@ -101,10 +107,17 @@ public class Project {
     }
 
     /**
-     *  Removes the employee with the given index on the last displayed list from this project.
+     *  Removes the given employee from this project.
      */
     public void removeEmployee(Employee employee) {
         employees.remove(employee);
+    }
+
+    /**
+     * Removes the given milestone from this project.
+     */
+    public void removeMilestone(Milestone milestone) {
+        milestones.remove(milestone);
     }
 
     /**
@@ -126,7 +139,10 @@ public class Project {
         Project otherProject = (Project) other;
         return otherProject.getProjectName().equals(getProjectName())
             && otherProject.getClient().equals(getClient())
-            && otherProject.getDeadline().equals(getDeadline());
+            && otherProject.getDeadline().equals(getDeadline())
+            && otherProject.getDescription().equals(getDescription())
+            && otherProject.getMilestones().equals(getMilestones())
+            && otherProject.employees.equals(this.employees);
     }
 
     @Override

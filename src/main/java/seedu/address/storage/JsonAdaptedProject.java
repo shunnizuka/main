@@ -53,7 +53,7 @@ class JsonAdaptedProject {
         client = source.getClient().client;
         deadline = source.getDeadline().deadline;
         description = source.getDescription().description;
-        milestones.addAll(source.getMilestone().stream()
+        milestones.addAll(source.getMilestones().stream()
             .map(JsonAdaptedMilestone::new)
             .collect(Collectors.toList()));
     }
