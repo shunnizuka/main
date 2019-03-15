@@ -53,8 +53,8 @@ special information such as tips and warnings.
 |Legend |Meaning
 
 |image:ug-lightbulb.png[width="50"]
-|The light bulb icon will be used to indicate any useful tips that users
- can take note of while using the PocketProject application.
+|The light bulb icon will be used to indicate any useful tips or shortcuts
+that users can take note of while using the PocketProject application.
 
 |image:ug-exclamation.png[width="50"]
 |The exclamation mark icon will be used to indicate any warning that users
@@ -346,6 +346,13 @@ _{Commands related to managing of project will be added soon.}_
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+
+== Glossary
+
+. `alphanumeric` only contains either digits (0-9) or letters of the English
+alphabet (A-Z).
+. `milestone` a key event that is completed during the entire timeline
+of the project.
 
 == Command Summary
 
