@@ -48,6 +48,7 @@ public class ProjectBuilder {
         client = projectToCopy.getClient();
         description = projectToCopy.getDescription();
         employees = new UniqueEmployeeList();
+        this.milestones = new ArrayList<>();
         for (Employee e: projectToCopy.getEmployees()) {
             employees.add(e);
         }

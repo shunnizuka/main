@@ -8,7 +8,7 @@
     "milestones" :  [
       {"milestone" : "The project starts",
       "date" :  "11/11/2011"},
-      {"milestone" :  "The project starts",
+      {"milestone" :  "The project completes",
         "date" :  "12/12/2012"}],
     "employees" :  [{
       "name" : "Benson Meier",
@@ -30,7 +30,7 @@
     "milestones" :  [
       {"milestone" : "The project starts",
       "date" :  "11/11/2011"},
-      {"milestone" :  "The project starts",
+      {"milestone" :  "The project completes",
         "date" :  "12/12/2012"}],
     "employees" :  [{
       "name" : "Benson Meier",
@@ -52,7 +52,7 @@
     "milestones" :  [
       {"milestone" : "The project starts",
       "date" :  "11/11/2011"},
-      {"milestone" :  "The project starts",
+      {"milestone" :  "The project completes",
         "date" :  "12/12/2012"}],
     "employees" :  [{
       "name" : "Carl Kurz",

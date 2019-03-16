@@ -72,6 +72,10 @@ public class Milestone {
                 && milestone.equals(((Milestone) other).milestone)
                 && date.equals(((Milestone) other).date)); // state check
     }
+    @Override
+    public String toString() {
+        return this.milestone + " " + this.date;
+    }
 
 }
 
