@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddEmployeeCommandTest {
@@ -200,6 +201,14 @@ public class AddEmployeeCommandTest {
         @Override
         public void updateFilteredProjectList(Predicate<Project> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public Project getProjectWithName(ProjectName projectName) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
+            throw new AssertionError(("This method should not be called."));
         }
         //--------------------------------------------------------------------------------------------------
 

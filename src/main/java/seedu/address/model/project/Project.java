@@ -61,7 +61,7 @@ public class Project {
     }
 
     /**
-     * Constructor specifying description
+     * Constructor specifying description.
      */
     public Project (ProjectName pn, Client c, Deadline d, Description desc) {
         this.projectName = pn;
@@ -70,6 +70,18 @@ public class Project {
         this.milestones = new ArrayList<>();
         this.description = desc;
         this.employees = new UniqueEmployeeList();
+    }
+
+    /**
+     * Constructor specifying employees in the project.
+     */
+    public Project(ProjectName pn, Client c, Deadline d, Description desc, UniqueEmployeeList emp) {
+        this.projectName = pn;
+        this.client = c;
+        this.deadline = d;
+        this.description = desc;
+        this.employees = emp;
+        this.milestones = new ArrayList<>();
     }
 
     public ProjectName getProjectName() {
@@ -90,6 +102,14 @@ public class Project {
     }
     public ObservableList<Employee> getEmployees() {
         return employees.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns a clone of this Project object.
+     */
+    public Project clone() {
+        return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
+                this.description.clone(), this.employees.clone());
     }
 
 
@@ -160,7 +180,7 @@ public class Project {
             .append(getClient())
             .append(" Deadline: ")
             .append(getDeadline())
-            .append(getDescription());
+            .append(" " + getDescription());
 
         return builder.toString();
     }

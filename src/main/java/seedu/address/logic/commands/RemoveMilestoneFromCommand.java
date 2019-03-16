@@ -40,19 +40,13 @@ public class RemoveMilestoneFromCommand extends RemoveFromCommand {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        Project targetProject = null;
-        List<Project> projectList = model.getProjectList();
-        for (Project p: projectList) {
-            if (p.hasProjectName(targetProjectName)) {
-                targetProject = p;
-            }
-        }
+        Project targetProject = model.getProjectWithName(targetProjectName);
         if (targetProject == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
         List<Milestone> targetList = targetProject.getMilestones();
         if (targetIndex.getZeroBased() >= targetList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MILESTONE_DISPLATED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX);
         }
         Milestone targetMilestone = targetList.get(targetIndex.getZeroBased());
         targetProject.removeMilestone(targetMilestone);

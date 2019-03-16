@@ -36,6 +36,13 @@ public class ProjectName {
         return input.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a clone of this ProjectName object.
+     */
+    public ProjectName clone() {
+        return new ProjectName(this.projectName);
+    }
+
     @Override
     public String toString() {
         return projectName;

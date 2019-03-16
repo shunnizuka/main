@@ -12,20 +12,27 @@ import seedu.address.model.project.Project;
 public class TypicalProjects {
 
     public static final Project PROJECT_ALICE = new ProjectBuilder().withProjectName("Project Alice")
-            .withClient("Dehui").withDeadline("11/02/2019").withDescrption("An application for Alice").build();
+            .withClient("Dehui").withDeadline("11/02/2019")
+            .withDescrption("An application for Alice")
+            .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL)).build();
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
-            .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson").build();
+            .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson")
+            .withEmployees(Arrays.asList(TypicalEmployees.CARL, TypicalEmployees.DANIEL)).build();
     public static final Project PROJECT_CARL = new ProjectBuilder().withProjectName("Project Carl").withClient("Darryl")
-            .withDeadline("12/12/2012").withDescrption("An application for Carl").build();
+            .withDeadline("12/12/2012").withDescrption("An application for Carl")
+            .withEmployees(Arrays.asList(TypicalEmployees.DANIEL, TypicalEmployees.ELLE)).build();
     public static final Project PROJECT_DANIEL = new ProjectBuilder().withProjectName("Project Daniel")
             .withClient("Shune").withDeadline("21/12/2012").withDescrption("An application for Daniel").build();
     public static final Project PROJECT_ELLE = new ProjectBuilder().withProjectName("Project Elle").withClient("Jothi")
-            .withDeadline("22/03/2019").withDescrption("An application for Elle").build();
+            .withDeadline("22/03/2019").withDescrption("An application for Elle")
+            .withEmployees(Arrays.asList(TypicalEmployees.FIONA, TypicalEmployees.GEORGE)).build();
     public static final Project PROJECT_FIONA = new ProjectBuilder().withProjectName("Project Fiona").withClient("SOC")
-            .withDeadline("01/01/2020").withDescrption("An application for Fiona").build();
+            .withDeadline("01/01/2020").withDescrption("An application for Fiona")
+            .withEmployees(Arrays.asList(TypicalEmployees.GEORGE, TypicalEmployees.ALICE)).build();
     public static final Project PROJECT_GEORGE = new ProjectBuilder()
             .withProjectName("Project George").withClient("FASS")
-            .withDeadline("11/02/2021").withDescrption("An application for George").build();
+            .withDeadline("11/02/2021").withDescrption("An application for George")
+            .withEmployees(Arrays.asList(TypicalEmployees.ALICE, TypicalEmployees.BENSON)).build();
 
     // Manually added
     public static final Project PROJECT_HOON = new ProjectBuilder()

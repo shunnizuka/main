@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 
 /**
  * The API of the Model component.
@@ -168,6 +169,18 @@ public interface Model {
      * book.
      */
     void setProject(Project target, Project editedProject);
+
+    /**
+     * Returns the project with the given name if it exists, if not, return null.
+     */
+    Project getProjectWithName(ProjectName targetProjectName);
+
+    /**
+     * Removes the {@code targetEmployee} from the {@code targetProject}.
+     * Both {@code targetProject} must exist in the address book and {@code targetEmployee} in the employee list of
+     * {@code targetProject}.
+     */
+    void removeEmployeeFrom(Project targetProject, Employee targetEmployee);
 
 
 

@@ -59,6 +59,13 @@ public class Milestone {
         return !info.trim().isEmpty();
     }
 
+    /**
+     * Returns a clone of this Milestone object.
+     */
+    public Milestone clone() {
+        return new Milestone(this.milestone, this.date);
+    }
+
 }
 
 

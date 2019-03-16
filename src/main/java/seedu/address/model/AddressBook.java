@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -70,9 +71,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
+        List<Employee> employeeList = new ArrayList<>();
+        List<Project> projectList = new ArrayList<>();
+        for (Employee e: newData.getEmployeeList()) {
+            employeeList.add(e.clone());
+        }
+        for (Project p: newData.getProjectList()) {
+            projectList.add(p.clone());
+        }
 
-        setEmployees(newData.getEmployeeList());
-        setProjects(newData.getProjectList());
+        setEmployees(employeeList);
+        setProjects(projectList);
     }
 
 
@@ -157,6 +166,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
+    /**
+     * Removes {@code targetEmployee} from the {@code targetProject} from this {@code AddressBook}.
+     *  {@code targetProject} and {@code targetEmployee} must exist.
+     */
+    public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
+        projects.removeEmployeeFrom(targetProject, targetEmployee);
+        indicateModified();
+    }
+
     @Override
     public void addListener(InvalidationListener listener) {
         invalidationListenerManager.addListener(listener);
@@ -206,4 +224,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         Object[] array = {this.projects, this.employees};
         return Arrays.hashCode(array);
     }
+
+
 }

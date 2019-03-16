@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.List;
+
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
@@ -21,12 +25,14 @@ public class ProjectBuilder {
     private Deadline deadline;
     private Client client;
     private Description description;
+    private UniqueEmployeeList employees;
 
     public ProjectBuilder() {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
         deadline = new Deadline(DEFAULT_DEADLINE);
         client = new Client(DEFAULT_CLIENT);
         description = new Description((DEFAULT_DESCRIPTION));
+        employees = new UniqueEmployeeList();
     }
 
     /**
@@ -37,6 +43,10 @@ public class ProjectBuilder {
         deadline = projectToCopy.getDeadline();
         client = projectToCopy.getClient();
         description = projectToCopy.getDescription();
+        employees = new UniqueEmployeeList();
+        for (Employee e: projectToCopy.getEmployees()) {
+            employees.add(e);
+        }
     }
 
     /**
@@ -72,8 +82,16 @@ public class ProjectBuilder {
         return this;
     }
 
+    /**
+     * Sets the employees of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withEmployees(List<Employee> employees) {
+        this.employees.setEmployees(employees);
+        return this;
+    }
+
     public Project build() {
-        return new Project(projectName, client, deadline, description);
+        return new Project(projectName, client, deadline, description, employees);
     }
 
 }

@@ -11,6 +11,6 @@ public class Messages {
     public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_PROJECT_NAME = "The project name provided is invalid";
-    public static final String MESSAGE_INVALID_MILESTONE_DISPLATED_INDEX = "The employee index provided is invalid";
+    public static final String MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX = "The employee index provided is invalid";
 
 }
