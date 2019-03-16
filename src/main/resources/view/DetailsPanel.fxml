@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane fx:id="borderPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPanel"  minHeight="400" minWidth="600" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <Button fx:id="prevBtn" mnemonicParsing="false" text="&lt;" BorderPane.alignment="CENTER" />
    </left>
@@ -13,7 +13,7 @@
       <Button fx:id="nextBtn" mnemonicParsing="false" text="&gt;" BorderPane.alignment="CENTER" />
    </right>
    <center>
-      <StackPane fx:id="informationPanel" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane fx:id="informationPanel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
