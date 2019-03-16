@@ -29,7 +29,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "skills" : [ ]
+    "skills" : [ "Java" , "Python" , "HTML"]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
