@@ -15,7 +15,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
 /**
- * Removes an employee identified using it's displayed index from a project in the address book.
+ * Removes an employee identified using it's displayed index from a project in the Pocket Project.
  */
 public class RemoveEmployeeFromCommand extends RemoveFromCommand {
 
