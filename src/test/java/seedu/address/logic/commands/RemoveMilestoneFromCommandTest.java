@@ -73,7 +73,8 @@ public class RemoveMilestoneFromCommandTest {
         assertTrue(removeMilestoneFromCommand1.equals(removeMilestoneFromCommand1));
 
         // same values -> returns true
-        RemoveMilestoneFromCommand removeMilestoneFromCommand1Copy = new RemoveMilestoneFromCommand(Index.fromOneBased(1),
+        RemoveMilestoneFromCommand removeMilestoneFromCommand1Copy = new RemoveMilestoneFromCommand(Index
+                .fromOneBased(1),
                 TypicalProjects.PROJECT_ALICE.getProjectName());
         assertTrue(removeMilestoneFromCommand1.equals(removeMilestoneFromCommand1Copy));
 
