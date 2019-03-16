@@ -22,7 +22,8 @@ public class TypicalProjects {
             .withDeadline("12/12/2012").withDescrption("An application for Carl")
             .withEmployees(Arrays.asList(TypicalEmployees.DANIEL, TypicalEmployees.ELLE)).build();
     public static final Project PROJECT_DANIEL = new ProjectBuilder().withProjectName("Project Daniel")
-            .withClient("Shune").withDeadline("21/12/2012").withDescrption("An application for Daniel").build();
+            .withClient("Shune").withDeadline("21/12/2012").withDescrption("An application for Daniel")
+            .withEmployees(Arrays.asList(TypicalEmployees.ELLE, TypicalEmployees.FIONA)).build();
     public static final Project PROJECT_ELLE = new ProjectBuilder().withProjectName("Project Elle").withClient("Jothi")
             .withDeadline("22/03/2019").withDescrption("An application for Elle")
             .withEmployees(Arrays.asList(TypicalEmployees.FIONA, TypicalEmployees.GEORGE)).build();

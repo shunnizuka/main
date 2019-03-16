@@ -1,46 +1,151 @@
 {
-  "employees" : [],
-  "projects" : [
-    {"projectName" :  "Project Alice",
-      "client" :  "Dehui",
-      "deadline" :  "11/02/2019",
-      "description" : "An application for Alice",
-      "milestones" :  []},
-    {"projectName" :  "Project Benson",
-      "client" :  "Jeff",
-      "deadline" :  "23/01/2011",
-      "description" : "An application for Benson",
-      "milestones" :  []},
-    {"projectName" :  "Project Benson",
-      "client" :  "Jeff",
-      "deadline" :  "23/01/2011",
-      "description" : "An application for Benson",
-      "milestones" :  []},
-    {"projectName" :  "Project Carl",
-      "client" :  "Darryl",
-      "deadline" :  "12/12/2012",
-      "description" : "An application for Carl",
-      "milestones" :  []},
-    {"projectName" :  "Project Daniel",
-      "client" :  "Shune",
-      "deadline" :  "21/12/2012",
-      "description" : "An application for Daniel",
-      "milestones" :  []},
-    {"projectName" :  "Project Elle",
-      "client" :  "Jothi",
-      "deadline" :  "22/03/2019",
-      "description" : "An application for Elle",
-      "milestones" :  []},
-    {"projectName" :  "Project Fiona",
-      "client" :  "SOC",
-      "deadline" :  "01/01/2020",
-      "description" : "An application for Fiona",
-      "milestones" :  []},
-    {"projectName" :  "Project George",
-      "client" :  "FASS",
-      "deadline" :  "11/02/2021",
-      "description" : "An application for George",
-      "milestones" :  []}
+  "_comment": "AddressBook save file which contains the same Employee values as in TypicalEmployees#getTypicalAddressBook()",
+  "employees": [ ], "projects" : [
+  {"projectName" :  "Project Alice",
+    "client" :  "Dehui",
+    "deadline" :  "11/02/2019",
+    "description" : "An application for Alice",
+    "milestones" :  [],
+    "employees" :  [{
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "skills" : [ "CSS", "HTML" ]
+    }, {
+      "name" : "Carl Kurz",
+      "phone" : "95352563",
+      "email" : "heinz@example.com",
+      "address" : "wall street",
+      "skills" : [ ]
+    }]},
+  {"projectName" :  "Project Alice",
+    "client" :  "Dehui",
+    "deadline" :  "11/02/2019",
+    "description" : "An application for Alice",
+    "milestones" :  [],
+    "employees" :  [{
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "skills" : [ "CSS", "HTML" ]
+    }, {
+      "name" : "Carl Kurz",
+      "phone" : "95352563",
+      "email" : "heinz@example.com",
+      "address" : "wall street",
+      "skills" : [ ]
+    }]},
+  {"projectName" :  "Project Benson",
+    "client" :  "Jeff",
+    "deadline" :  "23/01/2011",
+    "description" : "An application for Benson",
+    "milestones" :  [],
+    "employees" :  [{
+      "name" : "Carl Kurz",
+      "phone" : "95352563",
+      "email" : "heinz@example.com",
+      "address" : "wall street",
+      "skills" : [ ]
+    }, {
+      "name" : "Daniel Meier",
+      "phone" : "87652533",
+      "email" : "cornelia@example.com",
+      "address" : "10th street",
+      "skills" : [ "Assembly" ]
+    }]},
+  {"projectName" :  "Project Carl",
+    "client" :  "Darryl",
+    "deadline" :  "12/12/2012",
+    "description" : "An application for Carl",
+    "milestones" :  [],
+    "employees" :  [{
+      "name" : "Daniel Meier",
+      "phone" : "87652533",
+      "email" : "cornelia@example.com",
+      "address" : "10th street",
+      "skills" : [ "Assembly" ]
+    }, {
+      "name" : "Elle Meyer",
+      "phone" : "9482224",
+      "email" : "werner@example.com",
+      "address" : "michegan ave",
+      "skills" : [ ]
+    }]},
+  {"projectName" :  "Project Daniel",
+    "client" :  "Shune",
+    "deadline" :  "21/12/2012",
+    "description" : "An application for Daniel",
+    "milestones" :  [],
+    "employees" :  [{
+      "name" : "Elle Meyer",
+      "phone" : "9482224",
+      "email" : "werner@example.com",
+      "address" : "michegan ave",
+      "skills" : [ ]
+    }, {
+      "name" : "Fiona Kunz",
+      "phone" : "9482427",
+      "email" : "lydia@example.com",
+      "address" : "little tokyo",
+      "skills" : [ ]
+    }]},
+  {"projectName" :  "Project Elle",
+    "client" :  "Jothi",
+    "deadline" :  "22/03/2019",
+    "description" : "An application for Elle",
+    "milestones" :  [],
+    "employees" : [{
+      "name" : "Fiona Kunz",
+      "phone" : "9482427",
+      "email" : "lydia@example.com",
+      "address" : "little tokyo",
+      "skills" : [ ]
+    }, {
+      "name" : "George Best",
+      "phone" : "9482442",
+      "email" : "anna@example.com",
+      "address" : "4th street",
+      "skills" : [ ]
+    }]},
+  {"projectName" :  "Project Fiona",
+    "client" :  "SOC",
+    "deadline" :  "01/01/2020",
+    "description" : "An application for Fiona",
+    "milestones" :  [],
+    "employees" :  [{
+      "name" : "George Best",
+      "phone" : "9482442",
+      "email" : "anna@example.com",
+      "address" : "4th street",
+      "skills" : [ ]
+    }, {
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "skills" : [ "Python" ]
+    } ]},
+  {"projectName" :  "Project George",
+    "client" :  "FASS",
+    "deadline" :  "11/02/2021",
+    "description" : "An application for George",
+    "milestones" :  [],
+    "employees" :  [{
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "skills" : [ "Python" ]
+    }, {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "skills" : [ "CSS", "HTML" ]
+    }]}
 
-  ]
+]
 }
+

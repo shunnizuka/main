@@ -84,6 +84,18 @@ public class Project {
         this.milestones = new ArrayList<>();
     }
 
+    /**
+     * Constructor specifying all fields.
+     */
+    public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp) {
+        this.projectName = pn;
+        this.client = c;
+        this.deadline = d;
+        this.description = desc;
+        this.employees = emp;
+        this.milestones = m;
+    }
+
     public ProjectName getProjectName() {
         return projectName;
     }
@@ -180,7 +192,16 @@ public class Project {
             .append(getClient())
             .append(" Deadline: ")
             .append(getDeadline())
-            .append(" " + getDescription());
+            .append(" " + getDescription()).append("\nemployees:\n");
+        for (Employee e: employees) {
+            builder.append(e);
+            builder.append("\n");
+        }
+        builder.append("milestones:\n");
+        for (Milestone m: milestones) {
+            builder.append(m);
+            builder.append("\n");
+        }
 
         return builder.toString();
     }
