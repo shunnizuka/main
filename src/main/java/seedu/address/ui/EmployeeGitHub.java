@@ -6,6 +6,9 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import seedu.address.model.employee.Employee;
 
+/**
+ * Contains a webview to load a github profile
+ */
 public class EmployeeGitHub extends UiPart<Region> {
 
     private static final String FXML = "EmployeeGitHub.fxml";

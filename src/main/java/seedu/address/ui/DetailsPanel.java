@@ -102,14 +102,22 @@ public class DetailsPanel extends UiPart<Region> {
 
     private void showPrevPanel() {
         int nextIndex = currentPanelIndex - 1;
-        currentPanelIndex = nextIndex % contentList.size();
+        if (nextIndex < 0) {
+            currentPanelIndex = 0;
+        } else {
+            currentPanelIndex = nextIndex;
+        }
         logger.info("Current pane: " + currentPanelIndex);
         updateInformationPanel(contentList.get(currentPanelIndex));
     }
 
     private void showNextPanel() {
         int nextIndex = currentPanelIndex + 1;
-        currentPanelIndex = nextIndex % contentList.size();
+        if (nextIndex > contentList.size() - 1) {
+            currentPanelIndex = contentList.size() - 1;
+        } else {
+            currentPanelIndex = nextIndex;
+        }
         logger.info("Current pane: " + currentPanelIndex);
         updateInformationPanel(contentList.get(currentPanelIndex));
     }
