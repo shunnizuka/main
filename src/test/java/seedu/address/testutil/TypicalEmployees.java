@@ -26,17 +26,17 @@ public class TypicalEmployees {
     public static final Employee ALICE = new EmployeeBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withSkills("Python").build();
+            .withSkills("Python", "Java").build();
     public static final Employee BENSON = new EmployeeBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withSkills("CSS", "HTML").build();
+            .withSkills("CSS", "HTML", "Java").build();
     public static final Employee CARL = new EmployeeBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Employee DANIEL = new EmployeeBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withSkills("Assembly").build();
     public static final Employee ELLE = new EmployeeBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
+            .withEmail("werner@example.com").withAddress("michegan ave").withSkills("Python").build();
     public static final Employee FIONA = new EmployeeBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Employee GEORGE = new EmployeeBuilder().withName("George Best").withPhone("9482442")

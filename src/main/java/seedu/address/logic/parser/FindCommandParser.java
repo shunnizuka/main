@@ -13,6 +13,7 @@ import seedu.address.logic.commands.FindSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
+import seedu.address.model.skill.EmployeeSkillContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindEmployeeCommand object
@@ -53,7 +54,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindProjectCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
         case FindSkillCommand.FIND_SKILL_KEYWORD:
-            return new FindSkillCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            return new FindSkillCommand(new EmployeeSkillContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
 
         default:
             throw new ParseException(
