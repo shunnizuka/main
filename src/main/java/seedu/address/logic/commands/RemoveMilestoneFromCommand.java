@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -11,6 +10,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -40,14 +40,24 @@ public class RemoveMilestoneFromCommand extends RemoveFromCommand {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Milestone> lastShownList = new ArrayList<>();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        Project targetProject = null;
+        List<Project> projectList = model.getProjectList();
+        for (Project p: projectList) {
+            if (p.hasProjectName(targetProjectName)) {
+                targetProject = p;
+            }
         }
-
-        Milestone milestoneToDelete = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_REMOVE_MILESTONE_SUCCESS, milestoneToDelete));
+        if (targetProject == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
+        }
+        List<Milestone> targetList = targetProject.getMilestones();
+        if (targetIndex.getZeroBased() >= targetList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MILESTONE_DISPLATED_INDEX);
+        }
+        Milestone targetMilestone = targetList.get(targetIndex.getZeroBased());
+        targetProject.removeMilestone(targetMilestone);
+        model.commitAddressBook();
+        return new CommandResult(String.format(MESSAGE_REMOVE_MILESTONE_SUCCESS, targetMilestone));
     }
 
     @Override
