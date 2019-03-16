@@ -49,7 +49,8 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
         Employee targetEmployee = targetList.get(targetIndex.getZeroBased());
         model.removeEmployeeFrom(targetProject, targetEmployee);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_SUCCESS, targetEmployee, targetProject));
+        return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_SUCCESS, targetEmployee,
+                targetProject.getProjectName()));
     }
 
     @Override
