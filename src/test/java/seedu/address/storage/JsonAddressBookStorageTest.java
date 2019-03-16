@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.HOON;
 import static seedu.address.testutil.TypicalEmployees.IDA;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBookWithEmployees;
 
 import java.io.IOException;
 import java.nio.file.Path;
