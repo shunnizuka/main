@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.employee.Employee;
 
 /**
  * Panel of the main window to show all information or employees and projects
@@ -24,6 +26,7 @@ public class DetailsPanel extends UiPart<Region> {
 
     public static final String FXML = "DetailsPanel.fxml";
     private static final int INITIAL_PANEL_INDEX = 0;
+    private EmployeeDetails employeeDetails;
 
     private List<Node> contentList;
     private int currentPanelIndex;
@@ -40,17 +43,33 @@ public class DetailsPanel extends UiPart<Region> {
     @FXML
     private Button nextBtn;
 
-    public DetailsPanel() {
+    public DetailsPanel(ObservableValue<Employee> employee) {
         super(FXML);
         initPrevBtn();
         initNextBtn();
         initDefaultView();
         this.currentPanelIndex = INITIAL_PANEL_INDEX;
+
+        employee.addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                logger.info("Loading new employee details");
+                employeeDetails = new EmployeeDetails(employee.getValue());
+                refreshContent();
+            }
+        });
+    }
+
+    /**
+     * Refreshes the content of the panel to the most updated selection
+     */
+    private void refreshContent() {
+        currentPanelIndex = INITIAL_PANEL_INDEX;
+        setContent(employeeDetails.getEmployeeDetails());
+        updateInformationPanel(contentList.get(currentPanelIndex));
     }
 
     /**
      * Initialises a default list of panels to show when nothing is selected.
-     *
      */
     private void initDefaultView() {
         Pane pane = new Pane();

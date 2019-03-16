@@ -113,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        detailsPanel = new DetailsPanel();
+        detailsPanel = new DetailsPanel(logic.selectedEmployeeProperty());
         detailsPanelPlaceholder.getChildren().add(detailsPanel.getRoot());
 
         employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList(), logic.selectedEmployeeProperty(),
