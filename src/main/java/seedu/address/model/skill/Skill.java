@@ -42,8 +42,8 @@ public class Skill {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Skill // instanceof handles nulls
-                && skillName.equals(((Skill) other).skillName)); // state check
+            || (other instanceof Skill // instanceof handles nulls
+            && skillName.equals(((Skill) other).skillName)); // state check
     }
 
     @Override
