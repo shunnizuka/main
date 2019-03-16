@@ -47,7 +47,12 @@
    "client" :  "Dehui",
    "deadline" :  "11/02/2019",
     "description" : "An application for Alice",
-   "milestones" :  [],
+   "milestones" :  [
+     {"milestone" : "The project starts",
+     "date" :  "11/11/2011"},
+     {"milestone" :  "The project starts",
+     "date" :  "12/12/2012"}
+   ],
   "employees" :  [{
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -65,7 +70,10 @@
     "client" :  "Jeff",
     "deadline" :  "23/01/2011",
     "description" : "An application for Benson",
-    "milestones" :  [],
+    "milestones" :  [{"milestone" : "The project starts",
+      "date" :  "11/11/2011"},
+      {"milestone" :  "The project starts",
+        "date" :  "12/12/2012"}],
   "employees" :  [{
     "name" : "Carl Kurz",
     "phone" : "95352563",

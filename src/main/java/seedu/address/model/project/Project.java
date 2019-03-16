@@ -120,7 +120,12 @@ public class Project {
      * Returns a clone of this Project object.
      */
     public Project clone() {
+        List<Milestone> cloneOfMilestones = new ArrayList<>();
+        for (Milestone m: this.milestones) {
+            cloneOfMilestones.add(m.clone());
+        }
         return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
+                cloneOfMilestones,
                 this.description.clone(), this.employees.clone());
     }
 

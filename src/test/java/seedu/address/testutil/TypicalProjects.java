@@ -14,10 +14,14 @@ public class TypicalProjects {
     public static final Project PROJECT_ALICE = new ProjectBuilder().withProjectName("Project Alice")
             .withClient("Dehui").withDeadline("11/02/2019")
             .withDescrption("An application for Alice")
-            .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL)).build();
+            .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
+            .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
+                    TypicalMilestones.TYPICAL_MILESTONE_END)).build();
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
             .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson")
-            .withEmployees(Arrays.asList(TypicalEmployees.CARL, TypicalEmployees.DANIEL)).build();
+            .withEmployees(Arrays.asList(TypicalEmployees.CARL, TypicalEmployees.DANIEL))
+            .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
+                    TypicalMilestones.TYPICAL_MILESTONE_END)).build();
     public static final Project PROJECT_CARL = new ProjectBuilder().withProjectName("Project Carl").withClient("Darryl")
             .withDeadline("12/12/2012").withDescrption("An application for Carl")
             .withEmployees(Arrays.asList(TypicalEmployees.DANIEL, TypicalEmployees.ELLE)).build();

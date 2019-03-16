@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.employee.Employee;
@@ -7,6 +8,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
+import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
@@ -26,6 +28,7 @@ public class ProjectBuilder {
     private Client client;
     private Description description;
     private UniqueEmployeeList employees;
+    private List<Milestone> milestones;
 
     public ProjectBuilder() {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
@@ -33,6 +36,7 @@ public class ProjectBuilder {
         client = new Client(DEFAULT_CLIENT);
         description = new Description((DEFAULT_DESCRIPTION));
         employees = new UniqueEmployeeList();
+        milestones = new ArrayList<>();
     }
 
     /**
@@ -46,6 +50,9 @@ public class ProjectBuilder {
         employees = new UniqueEmployeeList();
         for (Employee e: projectToCopy.getEmployees()) {
             employees.add(e);
+        }
+        for (Milestone m: projectToCopy.getMilestones()) {
+            milestones.add(m);
         }
     }
 
@@ -81,7 +88,13 @@ public class ProjectBuilder {
         this.description = new Description(desc);
         return this;
     }
-
+    /**
+     * Sets the milestones of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withMilestones(List<Milestone> milestones) {
+        this.milestones.addAll(milestones);
+        return this;
+    }
     /**
      * Sets the employees of the {@code Project} that we are building.
      */
@@ -91,7 +104,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(projectName, client, deadline, description, employees);
+        return new Project(projectName, client, deadline, milestones, description, employees);
     }
 
 }
