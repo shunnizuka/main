@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,11 +13,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Panel of the main window to show all information or employees and projects
  */
 public class DetailsPanel extends UiPart<Region> {
+
+    private final Logger logger = LogsCenter.getLogger(DetailsPanel.class);
 
     public static final String FXML = "DetailsPanel.fxml";
     private static final int INITIAL_PANEL_INDEX = 0;
@@ -52,10 +56,11 @@ public class DetailsPanel extends UiPart<Region> {
         Pane pane = new Pane();
         contentList = new ArrayList<>();
         contentList.add(pane);
-        updateInformationPanel(pane.);
+        updateInformationPanel(pane);
     }
 
     private void updateInformationPanel(Node e) {
+        informationPanel.getChildren().clear();
         informationPanel.getChildren().add(e);
     }
 
@@ -69,32 +74,25 @@ public class DetailsPanel extends UiPart<Region> {
     }
 
     private void initPrevBtn() {
-        prevBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                showPrevPanel();
-            }
-        });
+        prevBtn.setOnAction((actionEvent) -> showPrevPanel());
     }
 
     private void initNextBtn() {
-        nextBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                showNextPanel();
-            }
-        });
+        nextBtn.setOnAction((actionEvent) -> showNextPanel());
     }
 
     private void showPrevPanel() {
         int nextIndex = currentPanelIndex - 1;
         currentPanelIndex = nextIndex % contentList.size();
+        logger.info("Current pane: " + currentPanelIndex);
         updateInformationPanel(contentList.get(currentPanelIndex));
     }
 
     private void showNextPanel() {
         int nextIndex = currentPanelIndex + 1;
         currentPanelIndex = nextIndex % contentList.size();
+        logger.info("Current pane: " + currentPanelIndex);
         updateInformationPanel(contentList.get(currentPanelIndex));
     }
+
 }
