@@ -7,6 +7,7 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
@@ -181,6 +182,13 @@ public interface Model {
      * {@code targetProject}.
      */
     void removeEmployeeFrom(Project targetProject, Employee targetEmployee);
+
+    /**
+     * Removes the {@code targetMilestone} from the {@code targetProject}.
+     * Both {@code targetProject} must exist in the address book and {@code targetMilestone} in the milestone list of
+     * {@code targetProject}.
+     */
+    void removeMilestoneFrom(Project targetProject, Milestone targetMilestone);
 
 
 

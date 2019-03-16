@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 
@@ -172,6 +173,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
         projects.removeEmployeeFrom(targetProject, targetEmployee);
+        indicateModified();
+    }
+
+    /**
+     * Removes {@code targetMilestone} from the {@code targetProject} from this {@code AddressBook}.
+     *  {@code targetProject} and {@code targetMilestone} must exist.
+     */
+    public void removeMilestoneFrom(Project targetProject, Milestone targetMilestone) {
+        projects.removeMilestoneFrom(targetProject, targetMilestone);
         indicateModified();
     }
 

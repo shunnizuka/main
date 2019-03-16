@@ -118,6 +118,14 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
+     *  Removes the specified milestone from the specified project. They must exist.
+     */
+    public void removeMilestoneFrom(Project project, Milestone milestone) {
+        requireAllNonNull(project, milestone);
+        internalList.get(internalList.indexOf(project)).removeMilestone(milestone);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Project> asUnmodifiableObservableList() {

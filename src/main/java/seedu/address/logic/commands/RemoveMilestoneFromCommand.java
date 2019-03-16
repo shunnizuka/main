@@ -49,9 +49,10 @@ public class RemoveMilestoneFromCommand extends RemoveFromCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX);
         }
         Milestone targetMilestone = targetList.get(targetIndex.getZeroBased());
-        targetProject.removeMilestone(targetMilestone);
+        model.removeMilestoneFrom(targetProject, targetMilestone);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_REMOVE_MILESTONE_SUCCESS, targetMilestone));
+        return new CommandResult(String.format(MESSAGE_REMOVE_MILESTONE_SUCCESS, targetMilestone,
+                targetProject.getProjectName()));
     }
 
     @Override
