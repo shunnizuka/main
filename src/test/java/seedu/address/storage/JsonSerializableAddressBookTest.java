@@ -29,12 +29,13 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_typicalAddressBookFile_success() throws Exception {
-     /*   JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_ADDRESS_BOOK_FILE,
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_ADDRESS_BOOK_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalAddressBook =
                 TestUtil.typicalAddressBook();
-        assertEquals(addressBookFromFile, typicalAddressBook);*/
+        System.out.println(addressBookFromFile.getEmployeeList().get(0).getSkills());
+        assertEquals(addressBookFromFile, typicalAddressBook);
     }
 
     @Test

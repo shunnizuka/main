@@ -14,7 +14,7 @@
       "phone" : "INVALID",
       "email" : "johnd@example.com",
       "address" : "311, Clementi Ave 2, #02-25",
-      "skills" : [ "CSS", "HTML" ]
+      "skills" : [ "CSS", "HTML", "Java"]
     }, {
       "name" : "Carl Kurz",
       "phone" : "95352563",
@@ -59,7 +59,7 @@
       "phone" : "9482224",
       "email" : "werner@example.com",
       "address" : "michegan ave",
-      "skills" : [ ]
+      "skills" : [ "Python"]
     }]},
   {"projectName" :  "Project Daniel",
     "client" :  "Shune",
@@ -71,7 +71,7 @@
       "phone" : "9482224",
       "email" : "werner@example.com",
       "address" : "michegan ave",
-      "skills" : [ ]
+      "skills" : ["Python" ]
     }, {
       "name" : "Fiona Kunz",
       "phone" : "9482427",
@@ -113,7 +113,7 @@
       "phone" : "94351253",
       "email" : "alice@example.com",
       "address" : "123, Jurong West Ave 6, #08-111",
-      "skills" : [ "Python" ]
+      "skills" : ["Python", "Java" ]
     } ]},
   {"projectName" :  "Project George",
     "client" :  "FASS",
@@ -125,13 +125,13 @@
       "phone" : "94351253",
       "email" : "alice@example.com",
       "address" : "123, Jurong West Ave 6, #08-111",
-      "skills" : [ "Python" ]
+      "skills" : [ "Python", "Java"]
     }, {
       "name" : "Benson Meier",
       "phone" : "98765432",
       "email" : "johnd@example.com",
       "address" : "311, Clementi Ave 2, #02-25",
-      "skills" : [ "CSS", "HTML" ]
+      "skills" : [ "CSS", "HTML", "Java" ]
     }]}
 
 ]
