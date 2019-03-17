@@ -29,11 +29,11 @@ public class EmployeeListPanel extends UiPart<Region> {
         employeeListView.setItems(employeeList);
         employeeListView.setCellFactory(listView -> new EmployeeListViewCell());
         employeeListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            logger.fine("Selection in employee list panel changed to : '" + newValue + "'");
+            logger.info("Selection in employee list panel changed to : '" + newValue + "'");
             onSelectedEmployeeChange.accept(newValue);
         });
         selectedEmployee.addListener((observable, oldValue, newValue) -> {
-            logger.fine("Selected employee changed to: " + newValue);
+            logger.info("Selected employee changed to: " + newValue);
 
             // Don't modify selection if we are already selecting the selected employee,
             // otherwise we would have an infinite loop.
