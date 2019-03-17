@@ -6,6 +6,9 @@ import java.util.List;
 import javafx.scene.Node;
 import seedu.address.model.employee.Employee;
 
+/**
+ * Encapsulates all the information to display about an employee
+ */
 public class EmployeeDetails {
 
     private Employee employee;

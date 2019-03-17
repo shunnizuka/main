@@ -21,10 +21,9 @@ import seedu.address.model.project.Project;
  */
 public class DetailsPanel extends UiPart<Region> {
 
-    private final Logger logger = LogsCenter.getLogger(DetailsPanel.class);
-
-    public static final String FXML = "DetailsPanel.fxml";
     private static final int INITIAL_PANEL_INDEX = 0;
+    private static final Logger logger = LogsCenter.getLogger(DetailsPanel.class);
+    private static final String FXML = "DetailsPanel.fxml";
     private EmployeeDetails employeeDetails;
     private ProjectDetails projectDetails;
 
@@ -117,6 +116,9 @@ public class DetailsPanel extends UiPart<Region> {
         nextBtn.setOnAction((actionEvent) -> showNextPanel());
     }
 
+    /**
+     * Shows the panel before the current panel in the contents list
+     */
     private void showPrevPanel() {
         int nextIndex = currentPanelIndex - 1;
         if (nextIndex < 0) {
@@ -128,6 +130,9 @@ public class DetailsPanel extends UiPart<Region> {
         updateInformationPanel(contentList.get(currentPanelIndex));
     }
 
+    /**
+     * Shows the panel after the current panel in the contents list
+     */
     private void showNextPanel() {
         int nextIndex = currentPanelIndex + 1;
         if (nextIndex > contentList.size() - 1) {
