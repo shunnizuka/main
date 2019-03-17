@@ -32,16 +32,16 @@ import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.SelectCommand;
-import seedu.address.model.AddressBook;
+import seedu.address.model.PocketProject;
 import seedu.address.model.Model;
 import seedu.address.testutil.TestUtil;
 import seedu.address.ui.CommandBox;
 
 /**
- * A system test class for AddressBook, which provides access to handles of GUI components and helper methods
+ * A system test class for PocketProject, which provides access to handles of GUI components and helper methods
  * for test verification.
  */
-public abstract class AddressBookSystemTest {
+public abstract class PocketProjectSystemTest {
     @ClassRule
     public static ClockRule clockRule = new ClockRule();
 
@@ -75,8 +75,8 @@ public abstract class AddressBookSystemTest {
     /**
      * Returns the data to be loaded into the file in {@link #getDataFileLocation()}.
      */
-    protected AddressBook getInitialData() {
-        return TestUtil.typicalAddressBook();
+    protected PocketProject getInitialData() {
+        return TestUtil.typicalPocketProject();
     }
 
     /**
@@ -167,7 +167,7 @@ public abstract class AddressBookSystemTest {
                                                      Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
-        assertEquals(new AddressBook(expectedModel.getAddressBook()), testApp.readStorageAddressBook());
+        assertEquals(new PocketProject(expectedModel.getAddressBook()), testApp.readStorageAddressBook());
         assertListMatching(getEmployeeListPanel(), expectedModel.getFilteredEmployeeList());
     }
 

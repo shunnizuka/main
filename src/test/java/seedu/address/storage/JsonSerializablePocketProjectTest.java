@@ -11,18 +11,18 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.AddressBook;
+import seedu.address.model.PocketProject;
 import seedu.address.testutil.TestUtil;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializablePocketProjectTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
-                                                                "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_ADDRESS_BOOK_FILE = TEST_DATA_FOLDER.resolve("typicalAddressBook.json");
-    private static final Path INVALID_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("invalidEmployeeAddressBook.json");
-    private static final Path DUPLICATE_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("duplicateEmployeeAddressBook.json");
-    private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectAddressBook.json");
-    private static final Path DUPLICATE_PROJECT_FILE = TEST_DATA_FOLDER.resolve("duplicateProjectAddressBook.json");
+                                                                "data", "JsonSerializablePocketProjectTest");
+    private static final Path TYPICAL_ADDRESS_BOOK_FILE = TEST_DATA_FOLDER.resolve("typicalPocketProject.json");
+    private static final Path INVALID_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("invalidEmployeePocketProject.json");
+    private static final Path DUPLICATE_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("duplicateEmployeePocketProject.json");
+    private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectPocketProject.json");
+    private static final Path DUPLICATE_PROJECT_FILE = TEST_DATA_FOLDER.resolve("duplicateProjectPocketProject.json");
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -31,11 +31,11 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_typicalAddressBookFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_ADDRESS_BOOK_FILE,
                 JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalAddressBook =
-                TestUtil.typicalAddressBook();
-        System.out.println(addressBookFromFile.getEmployeeList().get(0).getSkills());
-        assertEquals(addressBookFromFile, typicalAddressBook);
+        PocketProject pocketProjectFromFile = dataFromFile.toModelType();
+        PocketProject typicalPocketProject =
+                TestUtil.typicalPocketProject();
+        System.out.println(pocketProjectFromFile.getEmployeeList().get(0).getSkills());
+        assertEquals(pocketProjectFromFile, typicalPocketProject);
     }
 
     @Test

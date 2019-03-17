@@ -28,7 +28,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final VersionedAddressBook versionedAddressBook;
+    private final VersionedPocketProject versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
     private final FilteredList<Project> filteredProjects;
@@ -38,13 +38,13 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPocketProject addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        versionedAddressBook = new VersionedAddressBook(addressBook);
+        versionedAddressBook = new VersionedPocketProject(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEmployees = new FilteredList<>(versionedAddressBook.getEmployeeList());
         filteredEmployees.addListener(this::ensureSelectedEmployeeIsValid);
@@ -55,7 +55,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new PocketProject(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -93,15 +93,15 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PocketProject ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setAddressBook(ReadOnlyPocketProject addressBook) {
         versionedAddressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyPocketProject getAddressBook() {
         return versionedAddressBook;
     }
 

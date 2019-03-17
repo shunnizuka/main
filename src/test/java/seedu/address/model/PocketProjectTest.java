@@ -31,31 +31,31 @@ import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TypicalProjects;
 
-public class AddressBookTest {
+public class PocketProjectTest {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final AddressBook addressBook = new AddressBook();
+    private final PocketProject pocketProject = new PocketProject();
 
     @Test
     public void constructor() {
 
-        assertEquals(Collections.emptyList(), addressBook.getEmployeeList());
-        assertEquals(Collections.emptyList(), addressBook.getProjectList());
+        assertEquals(Collections.emptyList(), pocketProject.getEmployeeList());
+        assertEquals(Collections.emptyList(), pocketProject.getProjectList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        addressBook.resetData(null);
+        pocketProject.resetData(null);
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = TypicalProjects.addTypicalProjects(getTypicalAddressBookWithEmployees());
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        PocketProject newData = TypicalProjects.addTypicalProjects(getTypicalAddressBookWithEmployees());
+        pocketProject.resetData(newData);
+        assertEquals(newData, pocketProject);
     }
 
     @Test
@@ -64,85 +64,85 @@ public class AddressBookTest {
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA)
                 .build();
         List<Employee> newEmployees = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newEmployees);
+        PocketProjectStub newData = new PocketProjectStub(newEmployees);
 
         thrown.expect(DuplicateEmployeeException.class);
-        addressBook.resetData(newData);
+        pocketProject.resetData(newData);
     }
 
     @Test
     public void hasEmployee_nullEmployee_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        addressBook.hasEmployee(null);
+        pocketProject.hasEmployee(null);
     }
 
     @Test
     public void hasProject_nullProject_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        addressBook.hasProject(null);
+        pocketProject.hasProject(null);
     }
 
 
 
     @Test
     public void hasEmployee_employeeNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasEmployee(ALICE));
+        assertFalse(pocketProject.hasEmployee(ALICE));
     }
 
     @Test
     public void hasProject_projectNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasProject(PROJECT_ALICE));
+        assertFalse(pocketProject.hasProject(PROJECT_ALICE));
     }
 
     @Test
     public void hasEmployee_employeeInAddressBook_returnsTrue() {
-        addressBook.addEmployee(ALICE);
-        assertTrue(addressBook.hasEmployee(ALICE));
+        pocketProject.addEmployee(ALICE);
+        assertTrue(pocketProject.hasEmployee(ALICE));
     }
 
     @Test
     public void hasProject_projectInAddressBook_returnsTrue() {
-        addressBook.addProject(PROJECT_ALICE);
-        assertTrue(addressBook.hasProject(PROJECT_ALICE));
+        pocketProject.addProject(PROJECT_ALICE);
+        assertTrue(pocketProject.hasProject(PROJECT_ALICE));
     }
 
     @Test
     public void hasEmployee_employeeWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addEmployee(ALICE);
+        pocketProject.addEmployee(ALICE);
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA)
                 .build();
-        assertTrue(addressBook.hasEmployee(editedAlice));
+        assertTrue(pocketProject.hasEmployee(editedAlice));
     }
 
     @Test
     public void hasProject_projectWithSameNameInAddressBook_returnsTrue() {
-        addressBook.addProject(PROJECT_ALICE);
+        pocketProject.addProject(PROJECT_ALICE);
         Project editedAlice = new ProjectBuilder(PROJECT_ALICE).withClient(VALID_CLIENT_BOB)
                 .withDeadline(VALID_DEADLINE_AMY)
                 .build();
-        assertTrue(addressBook.hasProject(editedAlice));
+        assertTrue(pocketProject.hasProject(editedAlice));
     }
 
     @Test
     public void getEmployeeList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        addressBook.getEmployeeList().remove(0);
+        pocketProject.getEmployeeList().remove(0);
     }
 
     @Test
     public void getProjectList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        addressBook.getProjectList().remove(0);
+        pocketProject.getProjectList().remove(0);
     }
 
     @Test
     public void addListener_withInvalidationListener_listenerAdded() {
         SimpleIntegerProperty counter = new SimpleIntegerProperty();
         InvalidationListener listener = observable -> counter.set(counter.get() + 1);
-        addressBook.addListener(listener);
-        addressBook.addEmployee(ALICE);
+        pocketProject.addListener(listener);
+        pocketProject.addEmployee(ALICE);
         assertEquals(1, counter.get());
-        addressBook.addProject(PROJECT_ALICE);
+        pocketProject.addProject(PROJECT_ALICE);
         assertEquals(2, counter.get());
 
     }
@@ -151,21 +151,21 @@ public class AddressBookTest {
     public void removeListener_withInvalidationListener_listenerRemoved() {
         SimpleIntegerProperty counter = new SimpleIntegerProperty();
         InvalidationListener listener = observable -> counter.set(counter.get() + 1);
-        addressBook.addListener(listener);
-        addressBook.removeListener(listener);
-        addressBook.addEmployee(ALICE);
-        addressBook.addProject(PROJECT_ALICE);
+        pocketProject.addListener(listener);
+        pocketProject.removeListener(listener);
+        pocketProject.addEmployee(ALICE);
+        pocketProject.addProject(PROJECT_ALICE);
         assertEquals(0, counter.get());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose employees/projects list can violate interface constraints.
+     * A stub ReadOnlyPocketProject whose employees/projects list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class PocketProjectStub implements ReadOnlyPocketProject {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Employee> employees) {
+        PocketProjectStub(Collection<Employee> employees) {
             this.projects.setAll(projects);
             this.employees.setAll(employees);
         }

@@ -54,10 +54,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyPocketProject addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the PocketProject */
+    ReadOnlyPocketProject getAddressBook();
 
 
     //----------------Methods related to employees ----------------------------------------------------------

@@ -19,7 +19,7 @@ import seedu.address.model.project.UniqueProjectList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameEmployee comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class PocketProject implements ReadOnlyPocketProject {
 
     private final UniqueEmployeeList employees;
     private final UniqueProjectList projects;
@@ -37,12 +37,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects = new UniqueProjectList();
     }
 
-    public AddressBook() {}
+    public PocketProject() {}
 
     /**
-     * Creates an AddressBook using the Employees in the {@code toBeCopied}
+     * Creates an PocketProject using the Employees in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public PocketProject(ReadOnlyPocketProject toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -68,9 +68,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code PocketProject} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyPocketProject newData) {
         requireNonNull(newData);
         List<Employee> employeeList = new ArrayList<>();
         List<Project> projectList = new ArrayList<>();
@@ -150,7 +150,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code PocketProject}.
      * {@code key} must exist in the address book.
      */
     public void removeEmployee(Employee key) {
@@ -159,7 +159,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code project} from this {@code AddressBook}.
+     * Removes {@code project} from this {@code PocketProject}.
      * {@code project} must exist in the address book.
      */
     public void removeProject(Project project) {
@@ -168,7 +168,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code targetEmployee} from the {@code targetProject} from this {@code AddressBook}.
+     * Removes {@code targetEmployee} from the {@code targetProject} from this {@code PocketProject}.
      *  {@code targetProject} and {@code targetEmployee} must exist.
      */
     public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
@@ -177,7 +177,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code targetMilestone} from the {@code targetProject} from this {@code AddressBook}.
+     * Removes {@code targetMilestone} from the {@code targetProject} from this {@code PocketProject}.
      *  {@code targetProject} and {@code targetMilestone} must exist.
      */
     public void removeMilestoneFrom(Project targetProject, Milestone targetMilestone) {
@@ -233,9 +233,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && employees.equals(((AddressBook) other).employees)
-                && projects.equals(((AddressBook) other).projects));
+                || (other instanceof PocketProject // instanceof handles nulls
+                && employees.equals(((PocketProject) other).employees)
+                && projects.equals(((PocketProject) other).projects));
     }
 
     @Override

@@ -25,7 +25,7 @@ import seedu.address.testutil.TypicalProjects;
  */
 public class RemoveEmployeeFromCommandTest {
 
-    private Model model = new ModelManager(TestUtil.typicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TestUtil.typicalPocketProject(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
