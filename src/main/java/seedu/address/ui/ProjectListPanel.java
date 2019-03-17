@@ -29,11 +29,11 @@ public class ProjectListPanel extends UiPart<Region> {
         projectListView.setItems(projectList);
         projectListView.setCellFactory(listView -> new ProjectListPanel.ProjectListViewCell());
         projectListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            logger.fine("Selection in project list panel changed to : '" + newValue + "'");
+            logger.info("Selection in project list panel changed to : '" + newValue + "'");
             onSelectedProjectChange.accept(newValue);
         });
         selectedProject.addListener((observable, oldValue, newValue) -> {
-            logger.fine("Selected project changed to: " + newValue);
+            logger.info("Selected project changed to: " + newValue);
 
             // Don't modify selection if we are already selecting the selected employee,
             // otherwise we would have an infinite loop.
