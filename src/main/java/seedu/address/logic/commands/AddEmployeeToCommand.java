@@ -15,24 +15,25 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
 /**
- * Removes an employee identified using it's displayed index from a project in the Pocket Project.
+ *  Adds an employee input by the user into the employee list associated with each project.
  */
-public class RemoveEmployeeFromCommand extends RemoveFromCommand {
+public class AddEmployeeToCommand extends AddToCommand {
 
-    public static final String REMOVE_EMPLOYEE_KEYWORD = "employee";
+    public static final String ADD_EMPLOYEE_KEYWORD = "employee";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME employee"
-            + ": removes the employee identified by the index number"
-            + " used in the displayed employee list from the project.\n"
+            + ": adds the employee by the index number used in"
+            + "  the displayed employee list into the respective list stored under the stated project.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " Apollo employee 1";
 
-    public static final String MESSAGE_REMOVE_EMPLOYEE_SUCCESS = "Removed Employee: %1$s from %2$s";
+    public static final String MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS = "Added Employee: %1$s from %2$s";
+    public static final String MESSAGE_DUPLICATE_PROJ_EMPLOYEE = "This employee already exists in the PocketProject.";
 
     private final Index targetIndex;
     private final ProjectName targetProjectName;
 
-    public RemoveEmployeeFromCommand(Index targetIndex, ProjectName targetProjectName) {
+    public AddEmployeeToCommand(Index targetIndex, ProjectName targetProjectName) {
         this.targetProjectName = targetProjectName;
         this.targetIndex = targetIndex;
     }
@@ -40,6 +41,13 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+
+        List<Employee> lastShownList = model.getFilteredEmployeeList();
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        }
+        Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
+
         Project targetProject = null;
         List<Project> projectList = model.getProjectList();
         for (Project p: projectList) {
@@ -51,20 +59,19 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
         ObservableList<Employee> targetList = targetProject.getEmployees();
-        if (targetIndex.getZeroBased() >= targetList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        if (targetList.contains(employeeToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
         }
-        Employee targetEmployee = targetList.get(targetIndex.getZeroBased());
-        targetProject.removeEmployee(targetEmployee);
+        targetList.add(employeeToAdd);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_SUCCESS, targetEmployee));
+        return new CommandResult(String.format(MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS, employeeToAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof RemoveEmployeeFromCommand // instanceof handles nulls
-                && targetIndex.equals(((RemoveEmployeeFromCommand) other).targetIndex)
-                && targetProjectName.equals(((RemoveEmployeeFromCommand) other).targetProjectName)); // state check
+                || (other instanceof AddEmployeeToCommand // instanceof handles nulls
+                && targetIndex.equals(((AddEmployeeToCommand) other).targetIndex)
+                && targetProjectName.equals(((AddEmployeeToCommand) other).targetProjectName)); // state check
     }
 }
