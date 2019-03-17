@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
         addressBookParser = new AddressBookParser();
 
         // Set addressBookModified to true whenever the models' address book is modified.
-        model.getAddressBook().addListener(observable -> addressBookModified = true);
+        model.getPocketProject().addListener(observable -> addressBookModified = true);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class LogicManager implements Logic {
         if (addressBookModified) {
             logger.info("Address book modified, saving to file.");
             try {
-                storage.savePocketProject(model.getAddressBook());
+                storage.savePocketProject(model.getPocketProject());
             } catch (IOException ioe) {
                 throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
             }
@@ -69,7 +69,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyPocketProject getAddressBook() {
-        return model.getAddressBook();
+        return model.getPocketProject();
     }
 
     @Override
@@ -89,7 +89,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getPocketProjectFilePath();
     }
 
     @Override

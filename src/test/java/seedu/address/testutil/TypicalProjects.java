@@ -61,7 +61,7 @@ public class TypicalProjects {
     /**
      * Returns an {@code PocketProject} with all the typical projects.
      */
-    public static PocketProject getTypicalAddressBookWithProjects() {
+    public static PocketProject getTypicalPocketProjectWithProjects() {
         PocketProject ab = new PocketProject();
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);

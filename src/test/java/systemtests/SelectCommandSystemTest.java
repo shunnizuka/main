@@ -58,7 +58,7 @@ public class SelectCommandSystemTest extends PocketProjectSystemTest {
          * -> rejected
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getModel().getAddressBook().getEmployeeList().size();
+        int invalidIndex = getModel().getPocketProject().getEmployeeList().size();
         assertCommandFailure(SelectCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         /* Case: filtered employee list, select index within bounds of address book and employee list -> selected */

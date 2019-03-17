@@ -28,7 +28,7 @@ public interface Logic {
     /**
      * Returns the PocketProject.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getPocketProject()
      */
     ReadOnlyPocketProject getAddressBook();
 

@@ -20,7 +20,7 @@ import org.junit.rules.ExpectedException;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PocketProjectBuilder;
 
 public class ModelManagerTest {
     @Rule
@@ -32,7 +32,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new PocketProject(), new PocketProject(modelManager.getAddressBook()));
+        assertEquals(new PocketProject(), new PocketProject(modelManager.getPocketProject()));
         assertEquals(null, modelManager.getSelectedEmployee());
     }
 
@@ -72,14 +72,14 @@ public class ModelManagerTest {
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        modelManager.setAddressBookFilePath(null);
+        modelManager.setPocketProjectFilePath(null);
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setPocketProjectFilePath(path);
+        assertEquals(path, modelManager.getPocketProjectFilePath());
     }
 
     @Test
@@ -150,7 +150,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        PocketProject pocketProject = new AddressBookBuilder().withEmployee(ALICE).withEmployee(BENSON).build();
+        PocketProject pocketProject = new PocketProjectBuilder().withEmployee(ALICE).withEmployee(BENSON).build();
         PocketProject differentPocketProject = new PocketProject();
         UserPrefs userPrefs = new UserPrefs();
 

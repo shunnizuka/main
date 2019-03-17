@@ -8,14 +8,14 @@ import java.util.List;
  */
 public class VersionedPocketProject extends PocketProject {
 
-    private final List<ReadOnlyPocketProject> addressBookStateList;
+    private final List<ReadOnlyPocketProject> pocketProjectStateList;
     private int currentStatePointer;
 
     public VersionedPocketProject(ReadOnlyPocketProject initialState) {
         super(initialState);
 
-        addressBookStateList = new ArrayList<>();
-        addressBookStateList.add(new PocketProject(initialState));
+        pocketProjectStateList = new ArrayList<>();
+        pocketProjectStateList.add(new PocketProject(initialState));
         currentStatePointer = 0;
     }
 
@@ -25,49 +25,49 @@ public class VersionedPocketProject extends PocketProject {
      */
     public void commit() {
         removeStatesAfterCurrentPointer();
-        addressBookStateList.add(new PocketProject(this));
+        pocketProjectStateList.add(new PocketProject(this));
         currentStatePointer++;
         indicateModified();
     }
 
     private void removeStatesAfterCurrentPointer() {
-        addressBookStateList.subList(currentStatePointer + 1, addressBookStateList.size()).clear();
+        pocketProjectStateList.subList(currentStatePointer + 1, pocketProjectStateList.size()).clear();
     }
 
     /**
-     * Restores the address book to its previous state.
+     * Restores the pocket project to its previous state.
      */
     public void undo() {
         if (!canUndo()) {
             throw new NoUndoableStateException();
         }
         currentStatePointer--;
-        resetData(addressBookStateList.get(currentStatePointer));
+        resetData(pocketProjectStateList.get(currentStatePointer));
     }
 
     /**
-     * Restores the address book to its previously undone state.
+     * Restores the pocket project to its previously undone state.
      */
     public void redo() {
         if (!canRedo()) {
             throw new NoRedoableStateException();
         }
         currentStatePointer++;
-        resetData(addressBookStateList.get(currentStatePointer));
+        resetData(pocketProjectStateList.get(currentStatePointer));
     }
 
     /**
-     * Returns true if {@code undo()} has address book states to undo.
+     * Returns true if {@code undo()} has pocket project states to undo.
      */
     public boolean canUndo() {
         return currentStatePointer > 0;
     }
 
     /**
-     * Returns true if {@code redo()} has address book states to redo.
+     * Returns true if {@code redo()} has pocket project states to redo.
      */
     public boolean canRedo() {
-        return currentStatePointer < addressBookStateList.size() - 1;
+        return currentStatePointer < pocketProjectStateList.size() - 1;
     }
 
     @Override
@@ -82,12 +82,12 @@ public class VersionedPocketProject extends PocketProject {
             return false;
         }
 
-        VersionedPocketProject otherVersionedAddressBook = (VersionedPocketProject) other;
+        VersionedPocketProject otherVersionedPocketProject = (VersionedPocketProject) other;
 
         // state check
-        return super.equals(otherVersionedAddressBook)
-                && addressBookStateList.equals(otherVersionedAddressBook.addressBookStateList)
-                && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
+        return super.equals(otherVersionedPocketProject)
+                && pocketProjectStateList.equals(otherVersionedPocketProject.pocketProjectStateList)
+                && currentStatePointer == otherVersionedPocketProject.currentStatePointer;
     }
 
     /**
@@ -95,7 +95,7 @@ public class VersionedPocketProject extends PocketProject {
      */
     public static class NoUndoableStateException extends RuntimeException {
         private NoUndoableStateException() {
-            super("Current state pointer at start of addressBookState list, unable to undo.");
+            super("Current state pointer at start of pocketProjectState list, unable to undo.");
         }
     }
 
@@ -104,7 +104,7 @@ public class VersionedPocketProject extends PocketProject {
      */
     public static class NoRedoableStateException extends RuntimeException {
         private NoRedoableStateException() {
-            super("Current state pointer at end of addressBookState list, unable to redo.");
+            super("Current state pointer at end of pocketProjectState list, unable to redo.");
         }
     }
 }

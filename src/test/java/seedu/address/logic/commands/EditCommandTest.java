@@ -21,9 +21,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
-import seedu.address.model.PocketProject;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PocketProject;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.employee.Employee;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
@@ -45,9 +45,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new PocketProject(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -67,9 +67,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new PocketProject(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.setEmployee(lastEmployee, editedEmployee);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -81,8 +81,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new PocketProject(model.getAddressBook()), new UserPrefs());
-        expectedModel.commitAddressBook();
+        Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -98,9 +98,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
-        Model expectedModel = new ModelManager(new PocketProject(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -119,7 +119,7 @@ public class EditCommandTest {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
 
         // edit employee in filtered list into a duplicate in address book
-        Employee employeeInList = model.getAddressBook().getEmployeeList().get(INDEX_SECOND_EMPLOYEE.getZeroBased());
+        Employee employeeInList = model.getPocketProject().getEmployeeList().get(INDEX_SECOND_EMPLOYEE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE,
                 new EditEmployeeDescriptorBuilder(employeeInList).build());
 
@@ -145,7 +145,7 @@ public class EditCommandTest {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
         Index outOfBoundIndex = INDEX_SECOND_EMPLOYEE;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEmployeeList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPocketProject().getEmployeeList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -159,19 +159,19 @@ public class EditCommandTest {
         Employee employeeToEdit = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor);
-        Model expectedModel = new ModelManager(new PocketProject(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.setEmployee(employeeToEdit, editedEmployee);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         // edit -> first employee edited
         editCommand.execute(model, commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered employee list to show all employees
-        expectedModel.undoAddressBook();
+        expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // redo -> same first employee edited again
-        expectedModel.redoAddressBook();
+        expectedModel.redoPocketProject();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
@@ -201,23 +201,23 @@ public class EditCommandTest {
         Employee editedEmployee = new EmployeeBuilder().build();
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor);
-        Model expectedModel = new ModelManager(new PocketProject(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
 
         showEmployeeAtIndex(model, INDEX_SECOND_EMPLOYEE);
         Employee employeeToEdit = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         expectedModel.setEmployee(employeeToEdit, editedEmployee);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         // edit -> edits second employee in unfiltered employee list / first employee in filtered employee list
         editCommand.execute(model, commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered employee list to show all employees
-        expectedModel.undoAddressBook();
+        expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         assertNotEquals(model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased()), employeeToEdit);
         // redo -> edits same second employee in unfiltered employee list
-        expectedModel.redoAddressBook();
+        expectedModel.redoPocketProject();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

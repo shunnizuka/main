@@ -38,9 +38,9 @@ public class RemoveMilestoneFromCommandTest {
         String expectedMessage = String.format(RemoveMilestoneFromCommand.MESSAGE_REMOVE_MILESTONE_SUCCESS,
                 targetMilestone, targetProject.getProjectName());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.removeMilestoneFrom(targetProject, targetMilestone);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(removeMilestoneFromCommand, model, commandHistory, expectedMessage, expectedModel);
     }

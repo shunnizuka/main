@@ -9,9 +9,9 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.PocketProject;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PocketProject;
 import seedu.address.model.ReadOnlyPocketProject;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.JsonPocketProjectStorage;
@@ -92,7 +92,7 @@ public class TestApp extends MainApp {
      * Returns a defensive copy of the model.
      */
     public Model getModel() {
-        Model copy = new ModelManager((model.getAddressBook()), new UserPrefs());
+        Model copy = new ModelManager((model.getPocketProject()), new UserPrefs());
         ModelHelper.setFilteredList(copy, model.getFilteredEmployeeList());
         return copy;
     }

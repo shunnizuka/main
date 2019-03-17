@@ -25,7 +25,7 @@ public class ListEmployeeCommandTest {
     @Before
     public void setUp() {
         model = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
     }
 
     @Test

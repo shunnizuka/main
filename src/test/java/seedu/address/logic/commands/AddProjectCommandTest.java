@@ -21,8 +21,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.PocketProject;
 import seedu.address.model.Model;
+import seedu.address.model.PocketProject;
 import seedu.address.model.ReadOnlyPocketProject;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.employee.Employee;
@@ -119,17 +119,17 @@ public class AddProjectCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getPocketProjectFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setPocketProjectFilePath(Path pocketProjectFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyPocketProject newData) {
+        public void setPocketProject(ReadOnlyPocketProject pocketProject) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -139,7 +139,7 @@ public class AddProjectCommandTest {
         }
 
         @Override
-        public ReadOnlyPocketProject getAddressBook() {
+        public ReadOnlyPocketProject getPocketProject() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -220,27 +220,27 @@ public class AddProjectCommandTest {
         //--------------------------------------------------------------------------------------------------
 
         @Override
-        public boolean canUndoAddressBook() {
+        public boolean canUndoPocketProject() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean canRedoAddressBook() {
+        public boolean canRedoPocketProject() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void undoAddressBook() {
+        public void undoPocketProject() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void redoAddressBook() {
+        public void redoPocketProject() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void commitAddressBook() {
+        public void commitPocketProject() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -312,12 +312,12 @@ public class AddProjectCommandTest {
         }
 
         @Override
-        public void commitAddressBook() {
+        public void commitPocketProject() {
             // called by {@code AddCommand#execute()}
         }
 
         @Override
-        public ReadOnlyPocketProject getAddressBook() {
+        public ReadOnlyPocketProject getPocketProject() {
             return new PocketProject();
         }
     }

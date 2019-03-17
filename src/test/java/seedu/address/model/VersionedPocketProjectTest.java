@@ -14,285 +14,287 @@ import java.util.List;
 
 import org.junit.Test;
 
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PocketProjectBuilder;
 
 public class VersionedPocketProjectTest {
 
-    private final ReadOnlyPocketProject addressBookWithAmy = new AddressBookBuilder().withEmployee(AMY).build();
-    private final ReadOnlyPocketProject addressBookWithBob = new AddressBookBuilder().withEmployee(BOB).build();
-    private final ReadOnlyPocketProject addressBookWithCarl = new AddressBookBuilder().withEmployee(CARL).build();
-    private final ReadOnlyPocketProject emptyAddressBook = new AddressBookBuilder().build();
+    private final ReadOnlyPocketProject pocketProjectWithAmy = new PocketProjectBuilder().withEmployee(AMY).build();
+    private final ReadOnlyPocketProject pocketProjectWithBob = new PocketProjectBuilder().withEmployee(BOB).build();
+    private final ReadOnlyPocketProject pocketProjectWithCarl = new PocketProjectBuilder().withEmployee(CARL).build();
+    private final ReadOnlyPocketProject emptyPocketProject = new PocketProjectBuilder().build();
 
     @Test
-    public void commit_singleAddressBook_noStatesRemovedCurrentStateSaved() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(emptyAddressBook);
+    public void commit_singlePocketProject_noStatesRemovedCurrentStateSaved() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(emptyPocketProject);
 
-        versionedAddressBook.commit();
-        assertAddressBookListStatus(versionedAddressBook,
-                Collections.singletonList(emptyAddressBook),
-                emptyAddressBook,
+        versionedPocketProject.commit();
+        assertPocketProjectListStatus(versionedPocketProject,
+                Collections.singletonList(emptyPocketProject),
+        emptyPocketProject,
                 Collections.emptyList());
     }
 
     @Test
-    public void commit_multipleAddressBookPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void commit_multiplePocketProjectPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
-        versionedAddressBook.commit();
-        assertAddressBookListStatus(versionedAddressBook,
-                Arrays.asList(emptyAddressBook, addressBookWithAmy, addressBookWithBob),
-                addressBookWithBob,
+        versionedPocketProject.commit();
+        assertPocketProjectListStatus(versionedPocketProject,
+                Arrays.asList(emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob),
+        pocketProjectWithBob,
                 Collections.emptyList());
     }
 
     @Test
-    public void commit_multipleAddressBookPointerNotAtEndOfStateList_statesAfterPointerRemovedCurrentStateSaved() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void commit_multiplePocketProjectPointerNotAtEndOfStateList_statesAfterPointerRemovedCurrentStateSaved() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
-        versionedAddressBook.commit();
-        assertAddressBookListStatus(versionedAddressBook,
-                Collections.singletonList(emptyAddressBook),
-                emptyAddressBook,
+        versionedPocketProject.commit();
+        assertPocketProjectListStatus(versionedPocketProject,
+                Collections.singletonList(emptyPocketProject),
+        emptyPocketProject,
                 Collections.emptyList());
     }
 
     @Test
-    public void canUndo_multipleAddressBookPointerAtEndOfStateList_returnsTrue() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void canUndo_multiplePocketProjectPointerAtEndOfStateList_returnsTrue() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
-        assertTrue(versionedAddressBook.canUndo());
+        assertTrue(versionedPocketProject.canUndo());
     }
 
     @Test
-    public void canUndo_multipleAddressBookPointerAtStartOfStateList_returnsTrue() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
+    public void canUndo_multiplePocketProjectPointerAtStartOfStateList_returnsTrue() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
 
-        assertTrue(versionedAddressBook.canUndo());
+        assertTrue(versionedPocketProject.canUndo());
     }
 
     @Test
-    public void canUndo_singleAddressBook_returnsFalse() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(emptyAddressBook);
+    public void canUndo_singlePocketProject_returnsFalse() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(emptyPocketProject);
 
-        assertFalse(versionedAddressBook.canUndo());
+        assertFalse(versionedPocketProject.canUndo());
     }
 
     @Test
-    public void canUndo_multipleAddressBookPointerAtStartOfStateList_returnsFalse() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void canUndo_multiplePocketProjectPointerAtStartOfStateList_returnsFalse() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
-        assertFalse(versionedAddressBook.canUndo());
+        assertFalse(versionedPocketProject.canUndo());
     }
 
     @Test
-    public void canRedo_multipleAddressBookPointerNotAtEndOfStateList_returnsTrue() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
+    public void canRedo_multiplePocketProjectPointerNotAtEndOfStateList_returnsTrue() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
 
-        assertTrue(versionedAddressBook.canRedo());
+        assertTrue(versionedPocketProject.canRedo());
     }
 
     @Test
-    public void canRedo_multipleAddressBookPointerAtStartOfStateList_returnsTrue() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void canRedo_multiplePocketProjectPointerAtStartOfStateList_returnsTrue() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
-        assertTrue(versionedAddressBook.canRedo());
+        assertTrue(versionedPocketProject.canRedo());
     }
 
     @Test
-    public void canRedo_singleAddressBook_returnsFalse() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(emptyAddressBook);
+    public void canRedo_singlePocketProject_returnsFalse() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(emptyPocketProject);
 
-        assertFalse(versionedAddressBook.canRedo());
+        assertFalse(versionedPocketProject.canRedo());
     }
 
     @Test
-    public void canRedo_multipleAddressBookPointerAtEndOfStateList_returnsFalse() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void canRedo_multiplePocketProjectPointerAtEndOfStateList_returnsFalse() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
-        assertFalse(versionedAddressBook.canRedo());
+        assertFalse(versionedPocketProject.canRedo());
     }
 
     @Test
-    public void undo_multipleAddressBookPointerAtEndOfStateList_success() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void undo_multiplePocketProjectPointerAtEndOfStateList_success() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
-        versionedAddressBook.undo();
-        assertAddressBookListStatus(versionedAddressBook,
-                Collections.singletonList(emptyAddressBook),
-                addressBookWithAmy,
-                Collections.singletonList(addressBookWithBob));
+        versionedPocketProject.undo();
+        assertPocketProjectListStatus(versionedPocketProject,
+                Collections.singletonList(emptyPocketProject),
+        pocketProjectWithAmy,
+                Collections.singletonList(pocketProjectWithBob));
     }
 
     @Test
-    public void undo_multipleAddressBookPointerNotAtStartOfStateList_success() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
+    public void undo_multiplePocketProjectPointerNotAtStartOfStateList_success() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
 
-        versionedAddressBook.undo();
-        assertAddressBookListStatus(versionedAddressBook,
+        versionedPocketProject.undo();
+        assertPocketProjectListStatus(versionedPocketProject,
                 Collections.emptyList(),
-                emptyAddressBook,
-                Arrays.asList(addressBookWithAmy, addressBookWithBob));
+        emptyPocketProject,
+                Arrays.asList(pocketProjectWithAmy, pocketProjectWithBob));
     }
 
     @Test
-    public void undo_singleAddressBook_throwsNoUndoableStateException() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(emptyAddressBook);
+    public void undo_singlePocketProject_throwsNoUndoableStateException() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(emptyPocketProject);
 
-        assertThrows(VersionedPocketProject.NoUndoableStateException.class, versionedAddressBook::undo);
+        assertThrows(VersionedPocketProject.NoUndoableStateException.class, versionedPocketProject::undo);
     }
 
     @Test
-    public void undo_multipleAddressBookPointerAtStartOfStateList_throwsNoUndoableStateException() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void undo_multiplePocketProjectPointerAtStartOfStateList_throwsNoUndoableStateException() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
-        assertThrows(VersionedPocketProject.NoUndoableStateException.class, versionedAddressBook::undo);
+        assertThrows(VersionedPocketProject.NoUndoableStateException.class, versionedPocketProject::undo);
     }
 
     @Test
-    public void redo_multipleAddressBookPointerNotAtEndOfStateList_success() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
+    public void redo_multiplePocketProjectPointerNotAtEndOfStateList_success() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
 
-        versionedAddressBook.redo();
-        assertAddressBookListStatus(versionedAddressBook,
-                Arrays.asList(emptyAddressBook, addressBookWithAmy),
-                addressBookWithBob,
+        versionedPocketProject.redo();
+        assertPocketProjectListStatus(versionedPocketProject,
+                Arrays.asList(emptyPocketProject, pocketProjectWithAmy),
+        pocketProjectWithBob,
                 Collections.emptyList());
     }
 
     @Test
-    public void redo_multipleAddressBookPointerAtStartOfStateList_success() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 2);
+    public void redo_multiplePocketProjectPointerAtStartOfStateList_success() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
-        versionedAddressBook.redo();
-        assertAddressBookListStatus(versionedAddressBook,
-                Collections.singletonList(emptyAddressBook),
-                addressBookWithAmy,
-                Collections.singletonList(addressBookWithBob));
+        versionedPocketProject.redo();
+        assertPocketProjectListStatus(versionedPocketProject,
+                Collections.singletonList(emptyPocketProject),
+        pocketProjectWithAmy,
+                Collections.singletonList(pocketProjectWithBob));
     }
 
     @Test
-    public void redo_singleAddressBook_throwsNoRedoableStateException() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(emptyAddressBook);
+    public void redo_singlePocketProject_throwsNoRedoableStateException() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(emptyPocketProject);
 
-        assertThrows(VersionedPocketProject.NoRedoableStateException.class, versionedAddressBook::redo);
+        assertThrows(VersionedPocketProject.NoRedoableStateException.class, versionedPocketProject::redo);
     }
 
     @Test
-    public void redo_multipleAddressBookPointerAtEndOfStateList_throwsNoRedoableStateException() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(
-                emptyAddressBook, addressBookWithAmy, addressBookWithBob);
+    public void redo_multiplePocketProjectPointerAtEndOfStateList_throwsNoRedoableStateException() {
+        VersionedPocketProject versionedPocketProject = preparePocketProjectList(
+        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
-        assertThrows(VersionedPocketProject.NoRedoableStateException.class, versionedAddressBook::redo);
+        assertThrows(VersionedPocketProject.NoRedoableStateException.class, versionedPocketProject::redo);
     }
 
     @Test
     public void equals() {
-        VersionedPocketProject versionedAddressBook = prepareAddressBookList(addressBookWithAmy, addressBookWithBob);
+        VersionedPocketProject versionedPocketProject =
+                preparePocketProjectList(pocketProjectWithAmy, pocketProjectWithBob);
 
         // same values -> returns true
-        VersionedPocketProject copy = prepareAddressBookList(addressBookWithAmy, addressBookWithBob);
-        assertTrue(versionedAddressBook.equals(copy));
+        VersionedPocketProject copy = preparePocketProjectList(pocketProjectWithAmy, pocketProjectWithBob);
+        assertTrue(versionedPocketProject.equals(copy));
 
         // same object -> returns true
-        assertTrue(versionedAddressBook.equals(versionedAddressBook));
+        assertTrue(versionedPocketProject.equals(versionedPocketProject));
 
         // null -> returns false
-        assertFalse(versionedAddressBook.equals(null));
+        assertFalse(versionedPocketProject.equals(null));
 
         // different types -> returns false
-        assertFalse(versionedAddressBook.equals(1));
+        assertFalse(versionedPocketProject.equals(1));
 
         // different state list -> returns false
-        VersionedPocketProject differentAddressBookList = prepareAddressBookList(addressBookWithBob, addressBookWithCarl);
-        assertFalse(versionedAddressBook.equals(differentAddressBookList));
+        VersionedPocketProject differentPocketProjectList =
+            preparePocketProjectList(pocketProjectWithBob, pocketProjectWithCarl);
+        assertFalse(versionedPocketProject.equals(differentPocketProjectList));
 
         // different current pointer index -> returns false
-        VersionedPocketProject differentCurrentStatePointer = prepareAddressBookList(
-                addressBookWithAmy, addressBookWithBob);
-        shiftCurrentStatePointerLeftwards(versionedAddressBook, 1);
-        assertFalse(versionedAddressBook.equals(differentCurrentStatePointer));
+        VersionedPocketProject differentCurrentStatePointer = preparePocketProjectList(
+        pocketProjectWithAmy, pocketProjectWithBob);
+        shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
+        assertFalse(versionedPocketProject.equals(differentCurrentStatePointer));
     }
 
     /**
-     * Asserts that {@code versionedAddressBook} is currently pointing at {@code expectedCurrentState},
-     * states before {@code versionedAddressBook#currentStatePointer} is equal to {@code expectedStatesBeforePointer},
-     * and states after {@code versionedAddressBook#currentStatePointer} is equal to {@code expectedStatesAfterPointer}.
+     * Asserts that {@code versionedPocketProject} is currently pointing at {@code expectedCurrentState},
+     * states before {@code versionedPocketProject#currentStatePointer} is equal to {@code expectedStatesBeforePointer},
+     * and states after {@code versionedPocketProject#currentStatePointer} is equal to {@code expectedStatesAfterPointer}.
      */
-    private void assertAddressBookListStatus(VersionedPocketProject versionedAddressBook,
-                                             List<ReadOnlyPocketProject> expectedStatesBeforePointer,
-                                             ReadOnlyPocketProject expectedCurrentState,
-                                             List<ReadOnlyPocketProject> expectedStatesAfterPointer) {
+    private void assertPocketProjectListStatus(VersionedPocketProject versionedPocketProject,
+                                               List<ReadOnlyPocketProject> expectedStatesBeforePointer,
+                                               ReadOnlyPocketProject expectedCurrentState,
+                                               List<ReadOnlyPocketProject> expectedStatesAfterPointer) {
         // check state currently pointing at is correct
-        assertEquals(new PocketProject(versionedAddressBook), expectedCurrentState);
+        assertEquals(new PocketProject(versionedPocketProject), expectedCurrentState);
 
         // shift pointer to start of state list
-        while (versionedAddressBook.canUndo()) {
-            versionedAddressBook.undo();
+        while (versionedPocketProject.canUndo()) {
+            versionedPocketProject.undo();
         }
 
         // check states before pointer are correct
-        for (ReadOnlyPocketProject expectedAddressBook : expectedStatesBeforePointer) {
-            assertEquals(expectedAddressBook, new PocketProject(versionedAddressBook));
-            versionedAddressBook.redo();
+        for (ReadOnlyPocketProject expectedPocketProject : expectedStatesBeforePointer) {
+            assertEquals(expectedPocketProject, new PocketProject(versionedPocketProject));
+            versionedPocketProject.redo();
         }
 
         // check states after pointer are correct
-        for (ReadOnlyPocketProject expectedAddressBook : expectedStatesAfterPointer) {
-            versionedAddressBook.redo();
-            assertEquals(expectedAddressBook, new PocketProject(versionedAddressBook));
+        for (ReadOnlyPocketProject expectedPocketProject : expectedStatesAfterPointer) {
+            versionedPocketProject.redo();
+            assertEquals(expectedPocketProject, new PocketProject(versionedPocketProject));
         }
 
         // check that there are no more states after pointer
-        assertFalse(versionedAddressBook.canRedo());
+        assertFalse(versionedPocketProject.canRedo());
 
         // revert pointer to original position
-        expectedStatesAfterPointer.forEach(unused -> versionedAddressBook.undo());
+        expectedStatesAfterPointer.forEach(unused -> versionedPocketProject.undo());
     }
 
     /**
-     * Creates and returns a {@code VersionedPocketProject} with the {@code addressBookStates} added into it, and the
+     * Creates and returns a {@code VersionedPocketProject} with the {@code pocketProjectStates} added into it, and the
      * {@code VersionedPocketProject#currentStatePointer} at the end of list.
      */
-    private VersionedPocketProject prepareAddressBookList(ReadOnlyPocketProject... addressBookStates) {
-        assertFalse(addressBookStates.length == 0);
+    private VersionedPocketProject preparePocketProjectList(ReadOnlyPocketProject... pocketProjectStates) {
+        assertFalse(pocketProjectStates.length == 0);
 
-        VersionedPocketProject versionedAddressBook = new VersionedPocketProject(addressBookStates[0]);
-        for (int i = 1; i < addressBookStates.length; i++) {
-            versionedAddressBook.resetData(addressBookStates[i]);
-            versionedAddressBook.commit();
+        VersionedPocketProject versionedPocketProject = new VersionedPocketProject(pocketProjectStates[0]);
+        for (int i = 1; i < pocketProjectStates.length; i++) {
+            versionedPocketProject.resetData(pocketProjectStates[i]);
+            versionedPocketProject.commit();
         }
 
-        return versionedAddressBook;
+        return versionedPocketProject;
     }
 
     /**
-     * Shifts the {@code versionedAddressBook#currentStatePointer} by {@code count} to the left of its list.
+     * Shifts the {@code versionedPocketProject#currentStatePointer} by {@code count} to the left of its list.
      */
-    private void shiftCurrentStatePointerLeftwards(VersionedPocketProject versionedAddressBook, int count) {
+    private void shiftCurrentStatePointerLeftwards(VersionedPocketProject versionedPocketProject, int count) {
         for (int i = 0; i < count; i++) {
-            versionedAddressBook.undo();
+            versionedPocketProject.undo();
         }
     }
 }

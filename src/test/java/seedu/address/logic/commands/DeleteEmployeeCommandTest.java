@@ -36,9 +36,9 @@ public class DeleteEmployeeCommandTest {
 
         String expectedMessage = String.format(DeleteEmployeeCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.deleteEmployee(employeeToDelete);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(deleteEmployeeCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -61,9 +61,9 @@ public class DeleteEmployeeCommandTest {
 
         String expectedMessage = String.format(DeleteEmployeeCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.deleteEmployee(employeeToDelete);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
         showNoEmployee(expectedModel);
 
         assertCommandSuccess(deleteEmployeeCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -75,7 +75,7 @@ public class DeleteEmployeeCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_EMPLOYEE;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEmployeeList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPocketProject().getEmployeeList().size());
 
         DeleteEmployeeCommand deleteEmployeeCommand = new DeleteEmployeeCommand(outOfBoundIndex);
 
@@ -87,19 +87,19 @@ public class DeleteEmployeeCommandTest {
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
         Employee employeeToDelete = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         DeleteEmployeeCommand deleteEmployeeCommand = new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE);
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.deleteEmployee(employeeToDelete);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         // delete -> first employee deleted
         deleteEmployeeCommand.execute(model, commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered employee list to show all employees
-        expectedModel.undoAddressBook();
+        expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // redo -> same first employee deleted again
-        expectedModel.redoAddressBook();
+        expectedModel.redoPocketProject();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
@@ -127,22 +127,22 @@ public class DeleteEmployeeCommandTest {
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameEmployeeDeleted() throws Exception {
         DeleteEmployeeCommand deleteEmployeeCommand = new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE);
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
 
         showEmployeeAtIndex(model, INDEX_SECOND_EMPLOYEE);
         Employee employeeToDelete = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         expectedModel.deleteEmployee(employeeToDelete);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         // delete -> deletes second employee in unfiltered employee list / first employee in filtered employee list
         deleteEmployeeCommand.execute(model, commandHistory);
 
-        expectedModel.undoAddressBook();
+        expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         assertNotEquals(employeeToDelete, model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased()));
         // redo -> deletes same second employee in unfiltered employee list
-        expectedModel.redoAddressBook();
+        expectedModel.redoPocketProject();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

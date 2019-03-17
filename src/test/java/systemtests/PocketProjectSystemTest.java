@@ -32,8 +32,8 @@ import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.SelectCommand;
-import seedu.address.model.PocketProject;
 import seedu.address.model.Model;
+import seedu.address.model.PocketProject;
 import seedu.address.testutil.TestUtil;
 import seedu.address.ui.CommandBox;
 
@@ -130,7 +130,7 @@ public abstract class PocketProjectSystemTest {
      */
     protected void showAllEmployees() {
         executeCommand(ListCommand.COMMAND_WORD + " " + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD);
-        assertEquals(getModel().getAddressBook().getEmployeeList().size(), getModel().getFilteredEmployeeList().size());
+        assertEquals(getModel().getPocketProject().getEmployeeList().size(), getModel().getFilteredEmployeeList().size());
     }
 
     /**
@@ -139,7 +139,7 @@ public abstract class PocketProjectSystemTest {
     protected void showEmployeesWithName(String keyword) {
         executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " " + keyword);
-        assertTrue(getModel().getFilteredEmployeeList().size() < getModel().getAddressBook().getEmployeeList().size());
+        assertTrue(getModel().getFilteredEmployeeList().size() < getModel().getPocketProject().getEmployeeList().size());
     }
 
     /**
@@ -155,7 +155,7 @@ public abstract class PocketProjectSystemTest {
      */
     protected void deleteAllEmployees() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getModel().getAddressBook().getEmployeeList().size());
+        assertEquals(0, getModel().getPocketProject().getEmployeeList().size());
     }
 
     /**
@@ -167,7 +167,7 @@ public abstract class PocketProjectSystemTest {
                                                      Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
-        assertEquals(new PocketProject(expectedModel.getAddressBook()), testApp.readStorageAddressBook());
+        assertEquals(new PocketProject(expectedModel.getPocketProject()), testApp.readStorageAddressBook());
         assertListMatching(getEmployeeListPanel(), expectedModel.getFilteredEmployeeList());
     }
 

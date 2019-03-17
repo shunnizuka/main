@@ -82,7 +82,7 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: find same employees in address book after deleting 1 of them -> 1 employee found */
         executeCommand(DeleteCommand.COMMAND_WORD + " employee 1");
-        assertFalse(getModel().getAddressBook().getEmployeeList().contains(BENSON));
+        assertFalse(getModel().getPocketProject().getEmployeeList().contains(BENSON));
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
             + KEYWORD_MATCHING_MEIER;
         expectedModel = getModel();

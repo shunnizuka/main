@@ -6,7 +6,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an pocket project
  */
 public interface ReadOnlyPocketProject extends Observable {
 

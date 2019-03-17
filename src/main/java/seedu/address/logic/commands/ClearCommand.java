@@ -19,8 +19,8 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.setAddressBook(new PocketProject());
-        model.commitAddressBook();
+        model.setPocketProject(new PocketProject());
+        model.commitPocketProject();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

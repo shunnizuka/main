@@ -6,9 +6,9 @@ import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWit
 import org.junit.Test;
 
 import seedu.address.logic.CommandHistory;
-import seedu.address.model.PocketProject;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PocketProject;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
@@ -19,7 +19,7 @@ public class ClearCommandTest {
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(new ClearCommand(), model, commandHistory, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
@@ -28,8 +28,8 @@ public class ClearCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
-        expectedModel.setAddressBook(new PocketProject());
-        expectedModel.commitAddressBook();
+        expectedModel.setPocketProject(new PocketProject());
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(new ClearCommand(), model, commandHistory, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

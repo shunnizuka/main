@@ -83,7 +83,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(command, index, BOB);
 
         /* Case: edit a employee with new values same as another employee's values but with different name -> edited */
-        assertTrue(getModel().getAddressBook().getEmployeeList().contains(BOB));
+        assertTrue(getModel().getPocketProject().getEmployeeList().contains(BOB));
         index = INDEX_SECOND_EMPLOYEE;
         assertNotEquals(getModel().getFilteredEmployeeList().get(index.getZeroBased()), BOB);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -122,7 +122,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
          * -> rejected
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getModel().getAddressBook().getEmployeeList().size();
+        int invalidIndex = getModel().getPocketProject().getEmployeeList().size();
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
                 Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
@@ -185,7 +185,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: edit a employee with new values same as another employee's values -> rejected */
         executeCommand(EmployeeUtil.getAddEmployeeCommand(BOB));
-        assertTrue(getModel().getAddressBook().getEmployeeList().contains(BOB));
+        assertTrue(getModel().getPocketProject().getEmployeeList().contains(BOB));
         index = INDEX_FIRST_EMPLOYEE;
         assertFalse(getModel().getFilteredEmployeeList().get(index.getZeroBased()).equals(BOB));
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

@@ -69,7 +69,7 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
          * -> rejected
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getModel().getAddressBook().getEmployeeList().size();
+        int invalidIndex = getModel().getPocketProject().getEmployeeList().size();
         command = DeleteEmployeeCommand.COMMAND_WORD + " employee " + invalidIndex;
         assertCommandFailure(command, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
@@ -98,7 +98,7 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: invalid index (size + 1) -> rejected */
         Index outOfBoundsIndex = Index.fromOneBased(
-                getModel().getAddressBook().getEmployeeList().size() + 1);
+                getModel().getPocketProject().getEmployeeList().size() + 1);
         command = DeleteEmployeeCommand.COMMAND_WORD + " employee " + outOfBoundsIndex.getOneBased();
         assertCommandFailure(command, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
