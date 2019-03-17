@@ -69,11 +69,11 @@ public class AddEmployeeToCommandTest {
     @Test
     public void execute_invalidIndexValidProjectName_throwsCommandException() {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        Index outOfBoundIndex = Index.fromOneBased(targetProject.getEmployees().size() + 1);
-        RemoveEmployeeFromCommand removeEmployeeFromCommand = new RemoveEmployeeFromCommand(outOfBoundIndex,
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
+        AddEmployeeToCommand addEmployeeToCommand = new AddEmployeeToCommand(outOfBoundIndex,
                 targetProject.getProjectName());
 
-        assertCommandFailure(removeEmployeeFromCommand, model, commandHistory,
+        assertCommandFailure(addEmployeeToCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 }
