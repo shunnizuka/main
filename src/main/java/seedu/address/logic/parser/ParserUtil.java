@@ -15,6 +15,7 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
 
@@ -36,6 +37,25 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String event} into a {@code Milestone}.
+     * Leading and trailing whitespaces will be trimmed and event split into
+     * description and date to check for validity
+     *
+     * @throws ParseException if the given {@code event} is invalid.
+     */
+    public static Milestone parseMilestone(String event) throws ParseException {
+        requireNonNull(event);
+        String trimmedMilestone = event.trim();
+        int position = trimmedMilestone.lastIndexOf(" ");
+        String milestoneDesc = trimmedMilestone.substring(0, position);
+        String date = trimmedMilestone.substring(position);
+        if (Milestone.isValidMilestone(milestoneDesc, date)) {
+            throw new ParseException(Milestone.MESSAGE_CONSTRAINTS);
+        }
+        return new Milestone(milestoneDesc, date);
     }
 
     /**
