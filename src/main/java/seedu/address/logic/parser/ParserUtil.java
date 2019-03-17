@@ -51,8 +51,8 @@ public class ParserUtil {
         String trimmedMilestone = event.trim();
         int position = trimmedMilestone.lastIndexOf(" ");
         String milestoneDesc = trimmedMilestone.substring(0, position);
-        String date = trimmedMilestone.substring(position);
-        if (Milestone.isValidMilestone(milestoneDesc, date)) {
+        String date = trimmedMilestone.substring(position + 1);
+        if (!Milestone.isValidMilestone(milestoneDesc.trim(), date.trim())) {
             throw new ParseException(Milestone.MESSAGE_CONSTRAINTS);
         }
         return new Milestone(milestoneDesc, date);

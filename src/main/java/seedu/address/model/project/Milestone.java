@@ -16,6 +16,9 @@ public class Milestone {
             "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
     public static final String MESSAGE_CONSTRAINTS = "The milestone info must not be empty or consisting of only spaces"
             + " and the date given must be in DD/MM/YYYY format";
+    public static final String MESSAGE_INVALID_STRING = "The milestone info must not be empty or consisting "
+        + "of only spaces";
+    public static final String MESSAGE_INVALID_DATE = "The date given must be in DD/MM/YYYY format";
     public final String milestone;
     public final String date;
 
@@ -23,9 +26,9 @@ public class Milestone {
 
     public Milestone(String milestone, String date) {
         requireNonNull(milestone);
-        checkArgument(isValidMilestoneString(milestone), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidMilestoneString(milestone), MESSAGE_INVALID_STRING);
         requireNonNull(date);
-        checkArgument(isValidMilestoneDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidMilestoneDate(date), MESSAGE_INVALID_DATE);
         this.milestone = milestone;
         this.date = date;
     }
@@ -42,6 +45,8 @@ public class Milestone {
      * Returns true if given string is valid for a milestone date
      */
     public static boolean isValidMilestoneDate(String date) {
+
+
         DateFormat format = Project.DATE_FORMAT;
         format.setLenient(false);
         try {
