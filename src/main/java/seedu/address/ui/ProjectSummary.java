@@ -14,10 +14,10 @@ public class ProjectSummary extends UiPart<Region> {
     private Pane projectDetails;
 
     @FXML
-    private Label name;
+    private Label projectName;
 
     public ProjectSummary(Project project) {
         super(FXML);
-        name.setText(project.getProjectName().projectName);
+        projectName.setText(project.getProjectName().projectName);
     }
 }

@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -16,6 +14,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
 
 /**
  * Panel of the main window to show all information or employees and projects
@@ -27,6 +26,7 @@ public class DetailsPanel extends UiPart<Region> {
     public static final String FXML = "DetailsPanel.fxml";
     private static final int INITIAL_PANEL_INDEX = 0;
     private EmployeeDetails employeeDetails;
+    private ProjectDetails projectDetails;
 
     private List<Node> contentList;
     private int currentPanelIndex;
@@ -43,28 +43,45 @@ public class DetailsPanel extends UiPart<Region> {
     @FXML
     private Button nextBtn;
 
-    public DetailsPanel(ObservableValue<Employee> employee) {
+    public DetailsPanel(ObservableValue<Employee> selectedEmployee, ObservableValue<Project> selectedProject) {
         super(FXML);
         initPrevBtn();
         initNextBtn();
         initDefaultView();
         this.currentPanelIndex = INITIAL_PANEL_INDEX;
 
-        employee.addListener((observable, oldValue, newValue) -> {
+        selectedEmployee.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 logger.info("Loading new employee details");
-                employeeDetails = new EmployeeDetails(employee.getValue());
-                refreshContent();
+                employeeDetails = new EmployeeDetails(selectedEmployee.getValue());
+                refreshEmployeeContent();
             }
         });
+
+        selectedProject.addListener(((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                logger.info("loading new project details");
+                projectDetails = new ProjectDetails(selectedProject.getValue());
+                refreshProjectContent();
+            }
+        }));
     }
 
     /**
-     * Refreshes the content of the panel to the most updated selection
+     * Refreshes the content of the panel to the most updated employee selection
      */
-    private void refreshContent() {
+    private void refreshEmployeeContent() {
         currentPanelIndex = INITIAL_PANEL_INDEX;
         setContent(employeeDetails.getEmployeeDetails());
+        updateInformationPanel(contentList.get(currentPanelIndex));
+    }
+
+    /**
+     * Refreshes the content of the panel to the most updated project selection
+     */
+    private void refreshProjectContent() {
+        currentPanelIndex = INITIAL_PANEL_INDEX;
+        setContent(projectDetails.getProjectDetails());
         updateInformationPanel(contentList.get(currentPanelIndex));
     }
 
