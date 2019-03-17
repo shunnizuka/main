@@ -236,6 +236,11 @@ This section describes some noteworthy details on how certain features are imple
 === Removing employee from project
 image::remove_employee_from_sequence.png[width="1000"]
 
+=== Find Employee/Project/Skill feature
+image::find_command_sequence_diagram.png[width="1000"]
+
+
+
 // skill::undoredo[]
 === Undo/Redo feature
 ==== Current Implementation
