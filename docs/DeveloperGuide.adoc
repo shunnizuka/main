@@ -259,16 +259,14 @@ Usage Scenario example for `find employee`:
 
 The working mechanism for `find project` is similar to `find employee`. Instead of updating the `filteredEmployees`, `filteredProjects` is updated instead to display the list of projects with name consisting the keywords.
 
-For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui. 
-
+For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
 ==== Design Consideration
 ===== Aspect: How `find` command is parsed
 Alternative 1: Have a nested `FindCommandParser` (current implementation)
 
 Alternative 2: Let `PocketProjectParser` handle parsing of all the `find` commands
 
-Using Alternative 1 is better as it provides better abstraction as the details of the 3 different commands will be hidden away. Hence it is more in line with OOP principles. There will also be less clutter in `FindCommandParser` as there are already a lot of other commands being parsed. 
-
+Using Alternative 1 is better as it provides better abstraction as the details of the 3 different commands will be hidden away. Hence it is more in line with OOP principles. There will also be less clutter in `FindCommandParser` as there are already a lot of other commands being parsed.
 
 // skill::undoredo[]
 === Undo/Redo feature
