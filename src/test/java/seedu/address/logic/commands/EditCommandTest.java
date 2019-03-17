@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEmployeeAtIndex;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBookWithEmployees;
+import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWithEmployees;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 
@@ -34,7 +34,7 @@ import seedu.address.testutil.EmployeeBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookWithEmployees(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test

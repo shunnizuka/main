@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBookWithEmployees;
+import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWithEmployees;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
 
 import java.util.Arrays;
@@ -53,7 +53,7 @@ public class PocketProjectTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        PocketProject newData = TypicalProjects.addTypicalProjects(getTypicalAddressBookWithEmployees());
+        PocketProject newData = TypicalProjects.addTypicalProjects(getTypicalPocketProjectWithEmployees());
         pocketProject.resetData(newData);
         assertEquals(newData, pocketProject);
     }

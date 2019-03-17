@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBookWithEmployees;
+import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWithEmployees;
 
 import java.nio.file.Path;
 
@@ -25,9 +25,9 @@ public class StorageManagerTest {
 
     @Before
     public void setUp() {
-        JsonPocketProjectStorage addressBookStorage = new JsonPocketProjectStorage(getTempFilePath("ab"));
+        JsonPocketProjectStorage pocketProjectStorage = new JsonPocketProjectStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(pocketProjectStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -50,21 +50,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void pocketProjectReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonPocketProjectStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonPocketProjectStorageTest} class.
          */
-        PocketProject original = getTypicalAddressBookWithEmployees();
+        PocketProject original = getTypicalPocketProjectWithEmployees();
         storageManager.savePocketProject(original);
         ReadOnlyPocketProject retrieved = storageManager.readPocketProject().get();
         assertEquals(original, new PocketProject(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getPocketProjectFilePath() {
+        assertNotNull(storageManager.getPocketProjectFilePath());
     }
 
 }

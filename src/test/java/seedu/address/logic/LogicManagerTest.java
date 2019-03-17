@@ -189,7 +189,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void savePocketProject(ReadOnlyPocketProject addressBook, Path filePath) throws IOException {
+        public void savePocketProject(ReadOnlyPocketProject pocketProject, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

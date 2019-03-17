@@ -15,16 +15,16 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.PocketProject;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PocketProject;
 import seedu.address.model.ReadOnlyPocketProject;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonPocketProjectStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PocketProjectStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonPocketProjectStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        PocketProjectStorage pocketProjectStorage = new JsonPocketProjectStorage(userPrefs.getPocketProjectFilePath());
+        storage = new StorageManager(pocketProjectStorage, userPrefsStorage);
 
         initLogging(config);
 

@@ -62,7 +62,7 @@ public class TypicalEmployees {
     /**
      * Returns an {@code PocketProject} with all the typical employees.
      */
-    public static PocketProject getTypicalAddressBookWithEmployees() {
+    public static PocketProject getTypicalPocketProjectWithEmployees() {
         PocketProject ab = new PocketProject();
         for (Employee employee : getTypicalEmployees()) {
             ab.addEmployee(employee);

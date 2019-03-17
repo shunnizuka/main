@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.DANIEL;
 import static seedu.address.testutil.TypicalEmployees.ELLE;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBookWithEmployees;
+import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWithEmployees;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,8 +25,8 @@ import seedu.address.model.skill.EmployeeSkillContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindEmployeeCommand}.
  */
 public class FindSkillCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBookWithEmployees(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBookWithEmployees(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test

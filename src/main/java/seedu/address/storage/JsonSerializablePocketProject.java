@@ -17,8 +17,8 @@ import seedu.address.model.project.Project;
 /**
  * An Immutable PocketProject that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "pocketproject")
+class JsonSerializablePocketProject {
 
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "Employees list contains duplicate employee(s).";
     public static final String MESSAGE_DUPLICATE_PROJECT = "Project list contains duplicate project(s).";
@@ -27,10 +27,10 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given employees and projects.
+     * Constructs a {@code JsonSerializablePocketProject} with the given employees and projects.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(
+    public JsonSerializablePocketProject(
             @JsonProperty("employees") List<JsonAdaptedEmployee> employees,
             @JsonProperty("projects") List<JsonAdaptedProject> projects) {
         this.employees.addAll(employees);
@@ -40,15 +40,15 @@ class JsonSerializableAddressBook {
     /**
      * Converts a given {@code ReadOnlyPocketProject} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePocketProject}.
      */
-    public JsonSerializableAddressBook(ReadOnlyPocketProject source) {
+    public JsonSerializablePocketProject(ReadOnlyPocketProject source) {
         employees.addAll(source.getEmployeeList().stream().map(JsonAdaptedEmployee::new).collect(Collectors.toList()));
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code PocketProject} object.
+     * Converts this pocket project into the model's {@code PocketProject} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

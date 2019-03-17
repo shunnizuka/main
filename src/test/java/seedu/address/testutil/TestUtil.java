@@ -58,6 +58,6 @@ public class TestUtil {
      *  Returns an pocketproject with the typical employees and typical projects.
      */
     public static PocketProject typicalPocketProject() {
-        return TypicalProjects.addTypicalProjects(TypicalEmployees.getTypicalAddressBookWithEmployees());
+        return TypicalProjects.addTypicalProjects(TypicalEmployees.getTypicalPocketProjectWithEmployees());
     }
 }

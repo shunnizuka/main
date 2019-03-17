@@ -17,7 +17,7 @@ import seedu.address.model.ReadOnlyPocketProject;
 /**
  * A class to access PocketProject data stored as a json file on the hard disk.
  */
-public class JsonPocketProjectStorage implements AddressBookStorage {
+public class JsonPocketProjectStorage implements PocketProjectStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonPocketProjectStorage.class);
 
@@ -27,7 +27,7 @@ public class JsonPocketProjectStorage implements AddressBookStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getPocketProjectFilePath() {
         return filePath;
     }
 
@@ -45,14 +45,14 @@ public class JsonPocketProjectStorage implements AddressBookStorage {
     public Optional<ReadOnlyPocketProject> readPocketProject(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializablePocketProject> jsonPocketProject = JsonUtil.readJsonFile(
+                filePath, JsonSerializablePocketProject.class);
+        if (!jsonPocketProject.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonPocketProject.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,8 +60,8 @@ public class JsonPocketProjectStorage implements AddressBookStorage {
     }
 
     @Override
-    public void savePocketProject(ReadOnlyPocketProject addressBook) throws IOException {
-        savePocketProject(addressBook, filePath);
+    public void savePocketProject(ReadOnlyPocketProject pocketProject) throws IOException {
+        savePocketProject(pocketProject, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonPocketProjectStorage implements AddressBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void savePocketProject(ReadOnlyPocketProject addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void savePocketProject(ReadOnlyPocketProject pocketProject, Path filePath) throws IOException {
+        requireNonNull(pocketProject);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePocketProject(pocketProject), filePath);
     }
 
 }

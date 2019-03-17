@@ -17,13 +17,13 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private PocketProjectStorage pocketProjectStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(PocketProjectStorage pocketProjectStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.pocketProjectStorage = pocketProjectStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -48,30 +48,31 @@ public class StorageManager implements Storage {
     // ================ PocketProject methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getPocketProjectFilePath() {
+        return pocketProjectStorage.getPocketProjectFilePath();
     }
 
     @Override
     public Optional<ReadOnlyPocketProject> readPocketProject() throws DataConversionException, IOException {
-        return readPocketProject(addressBookStorage.getAddressBookFilePath());
+        return readPocketProject(pocketProjectStorage.getPocketProjectFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyPocketProject> readPocketProject(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyPocketProject> readPocketProject(Path filePath)
+                                            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readPocketProject(filePath);
+        return pocketProjectStorage.readPocketProject(filePath);
     }
 
     @Override
-    public void savePocketProject(ReadOnlyPocketProject addressBook) throws IOException {
-        savePocketProject(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void savePocketProject(ReadOnlyPocketProject pocketProject) throws IOException {
+        savePocketProject(pocketProject, pocketProjectStorage.getPocketProjectFilePath());
     }
 
     @Override
-    public void savePocketProject(ReadOnlyPocketProject addressBook, Path filePath) throws IOException {
+    public void savePocketProject(ReadOnlyPocketProject pocketProject, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.savePocketProject(addressBook, filePath);
+        pocketProjectStorage.savePocketProject(pocketProject, filePath);
     }
 
 }

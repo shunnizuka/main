@@ -18,7 +18,7 @@ public class JsonSerializablePocketProjectTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
                                                                 "data", "JsonSerializablePocketProjectTest");
-    private static final Path TYPICAL_ADDRESS_BOOK_FILE = TEST_DATA_FOLDER.resolve("typicalPocketProject.json");
+    private static final Path TYPICAL_POCKET_PROJECT_FILE = TEST_DATA_FOLDER.resolve("typicalPocketProject.json");
     private static final Path INVALID_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("invalidEmployeePocketProject.json");
     private static final Path DUPLICATE_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("duplicateEmployeePocketProject.json");
     private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectPocketProject.json");
@@ -28,9 +28,9 @@ public class JsonSerializablePocketProjectTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void toModelType_typicalAddressBookFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_ADDRESS_BOOK_FILE,
-                JsonSerializableAddressBook.class).get();
+    public void toModelType_typicalPocketProjectFile_success() throws Exception {
+        JsonSerializablePocketProject dataFromFile = JsonUtil.readJsonFile(TYPICAL_POCKET_PROJECT_FILE,
+                JsonSerializablePocketProject.class).get();
         PocketProject pocketProjectFromFile = dataFromFile.toModelType();
         PocketProject typicalPocketProject =
                 TestUtil.typicalPocketProject();
@@ -40,35 +40,35 @@ public class JsonSerializablePocketProjectTest {
 
     @Test
     public void toModelType_invalidEmployeeFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_EMPLOYEE_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializablePocketProject dataFromFile = JsonUtil.readJsonFile(INVALID_EMPLOYEE_FILE,
+                JsonSerializablePocketProject.class).get();
         thrown.expect(IllegalValueException.class);
         dataFromFile.toModelType();
     }
 
     @Test
     public void toModelType_invalidProjectFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PROJECT_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializablePocketProject dataFromFile = JsonUtil.readJsonFile(INVALID_PROJECT_FILE,
+                JsonSerializablePocketProject.class).get();
         thrown.expect(IllegalValueException.class);
         dataFromFile.toModelType();
     }
 
     @Test
     public void toModelType_duplicateEmployees_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EMPLOYEE_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializablePocketProject dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EMPLOYEE_FILE,
+                JsonSerializablePocketProject.class).get();
         thrown.expect(IllegalValueException.class);
-        thrown.expectMessage(JsonSerializableAddressBook.MESSAGE_DUPLICATE_EMPLOYEE);
+        thrown.expectMessage(JsonSerializablePocketProject.MESSAGE_DUPLICATE_EMPLOYEE);
         dataFromFile.toModelType();
     }
 
     @Test
     public void toModelType_duplicateProjects_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PROJECT_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializablePocketProject dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PROJECT_FILE,
+                JsonSerializablePocketProject.class).get();
         thrown.expect(IllegalValueException.class);
-        thrown.expectMessage(JsonSerializableAddressBook.MESSAGE_DUPLICATE_PROJECT);
+        thrown.expectMessage(JsonSerializablePocketProject.MESSAGE_DUPLICATE_PROJECT);
         dataFromFile.toModelType();
     }
 

@@ -11,12 +11,12 @@ import seedu.address.model.ReadOnlyPocketProject;
 /**
  * Represents a storage for {@link PocketProject}.
  */
-public interface AddressBookStorage {
+public interface PocketProjectStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getPocketProjectFilePath();
 
     /**
      * Returns PocketProject data as a {@link ReadOnlyPocketProject}.
@@ -27,20 +27,20 @@ public interface AddressBookStorage {
     Optional<ReadOnlyPocketProject> readPocketProject() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getPocketProjectFilePath()
      */
     Optional<ReadOnlyPocketProject> readPocketProject(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyPocketProject} to the storage.
-     * @param addressBook cannot be null.
+     * @param pocketProject cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void savePocketProject(ReadOnlyPocketProject addressBook) throws IOException;
+    void savePocketProject(ReadOnlyPocketProject pocketProject) throws IOException;
 
     /**
      * @see #savePocketProject(ReadOnlyPocketProject)
      */
-    void savePocketProject(ReadOnlyPocketProject addressBook, Path filePath) throws IOException;
+    void savePocketProject(ReadOnlyPocketProject pocketProject, Path filePath) throws IOException;
 
 }
