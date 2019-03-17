@@ -185,6 +185,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
+    /**
+     * Removes {@code targetEmployee} from the {@code targetProject} from this {@code AddressBook}.
+     *  {@code targetProject} and {@code targetEmployee} must exist.
+     */
+    public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
+        projects.addEmployeeTo(targetProject, targetEmployee);
+        indicateModified();
+    }
+
+    /**
+     * Removes {@code targetMilestone} from the {@code targetProject} from this {@code AddressBook}.
+     *  {@code targetProject} and {@code targetMilestone} must exist.
+     */
+    public void addMilestoneTo(Project targetProject, Milestone targetMilestone) {
+        projects.addMilestoneTo(targetProject, targetMilestone);
+        indicateModified();
+    }
+
     @Override
     public void addListener(InvalidationListener listener) {
         invalidationListenerManager.addListener(listener);
