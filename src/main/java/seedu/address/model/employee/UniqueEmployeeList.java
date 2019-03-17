@@ -104,6 +104,17 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns a clone of this UniqueEmployeeList object.
+     */
+    public UniqueEmployeeList clone() {
+        UniqueEmployeeList newList = new UniqueEmployeeList();
+        for (Employee e: internalList) {
+            newList.add(e.clone());
+        }
+        return newList;
+    }
+
     @Override
     public Iterator<Employee> iterator() {
         return internalList.iterator();

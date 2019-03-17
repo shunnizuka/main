@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.employee.Employee;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
@@ -46,6 +47,17 @@ public class UniqueProjectList implements Iterable<Project> {
             throw new DuplicateProjectException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Returns a clone of this UniqueProjectList object.
+     */
+    public UniqueProjectList clone() {
+        UniqueProjectList newList = new UniqueProjectList();
+        for (Project p: internalList) {
+            newList.add(p.clone());
+        }
+        return newList;
     }
 
     /**
@@ -95,6 +107,22 @@ public class UniqueProjectList implements Iterable<Project> {
         }
 
         internalList.setAll(projects);
+    }
+
+    /**
+     *  Removes the specified employee from the specified project. They must exist.
+     */
+    public void removeEmployeeFrom(Project project, Employee employee) {
+        requireAllNonNull(project, employee);
+        internalList.get(internalList.indexOf(project)).removeEmployee(employee);
+    }
+
+    /**
+     *  Removes the specified milestone from the specified project. They must exist.
+     */
+    public void removeMilestoneFrom(Project project, Milestone milestone) {
+        requireAllNonNull(project, milestone);
+        internalList.get(internalList.indexOf(project)).removeMilestone(milestone);
     }
 
     /**

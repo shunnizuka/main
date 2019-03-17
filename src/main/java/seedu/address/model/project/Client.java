@@ -36,6 +36,13 @@ public class Client {
         return input.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a clone of this client object.
+     */
+    public Client clone() {
+        return new Client(this.client);
+    }
+
     @Override
     public String toString() {
         return client;

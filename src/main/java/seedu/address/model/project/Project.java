@@ -61,7 +61,7 @@ public class Project {
     }
 
     /**
-     * Constructor specifying description
+     * Constructor specifying description.
      */
     public Project (ProjectName pn, Client c, Deadline d, Description desc) {
         this.projectName = pn;
@@ -70,6 +70,30 @@ public class Project {
         this.milestones = new ArrayList<>();
         this.description = desc;
         this.employees = new UniqueEmployeeList();
+    }
+
+    /**
+     * Constructor specifying employees in the project.
+     */
+    public Project(ProjectName pn, Client c, Deadline d, Description desc, UniqueEmployeeList emp) {
+        this.projectName = pn;
+        this.client = c;
+        this.deadline = d;
+        this.description = desc;
+        this.employees = emp;
+        this.milestones = new ArrayList<>();
+    }
+
+    /**
+     * Constructor specifying all fields.
+     */
+    public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp) {
+        this.projectName = pn;
+        this.client = c;
+        this.deadline = d;
+        this.description = desc;
+        this.employees = emp;
+        this.milestones = m;
     }
 
     public ProjectName getProjectName() {
@@ -90,6 +114,19 @@ public class Project {
     }
     public ObservableList<Employee> getEmployees() {
         return employees.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns a clone of this Project object.
+     */
+    public Project clone() {
+        List<Milestone> cloneOfMilestones = new ArrayList<>();
+        for (Milestone m: this.milestones) {
+            cloneOfMilestones.add(m.clone());
+        }
+        return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
+                cloneOfMilestones,
+                this.description.clone(), this.employees.clone());
     }
 
 
@@ -160,7 +197,16 @@ public class Project {
             .append(getClient())
             .append(" Deadline: ")
             .append(getDeadline())
-            .append(getDescription());
+            .append(" " + getDescription()).append("\nemployees:\n");
+        for (Employee e: employees) {
+            builder.append(e);
+            builder.append("\n");
+        }
+        builder.append("milestones:\n");
+        for (Milestone m: milestones) {
+            builder.append(m);
+            builder.append("\n");
+        }
 
         return builder.toString();
     }

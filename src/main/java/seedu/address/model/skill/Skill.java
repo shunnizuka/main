@@ -26,6 +26,13 @@ public class Skill {
     }
 
     /**
+     * Returns a clone of this Skill object.
+     */
+    public Skill clone() {
+        return new Skill(this.skillName);
+    }
+
+    /**
      * Returns true if a given string is a valid skill name.
      */
     public static boolean isValidSkillName(String test) {

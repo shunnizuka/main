@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
@@ -27,6 +28,7 @@ class JsonAdaptedProject {
     private final String deadline;
     private final String description;
     private final List<JsonAdaptedMilestone> milestones = new ArrayList<>();
+    private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -35,7 +37,8 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName, @JsonProperty("client") String client,
                               @JsonProperty("deadline") String deadline,
                               @JsonProperty("description") String description,
-                              @JsonProperty("milestones") List<JsonAdaptedMilestone> milestones) {
+                              @JsonProperty("milestones") List<JsonAdaptedMilestone> milestones,
+                              @JsonProperty("employees") List<JsonAdaptedEmployee> employees) {
         this.projectName = projectName;
         this.client = client;
         this.deadline = deadline;
@@ -43,6 +46,7 @@ class JsonAdaptedProject {
         if (milestones != null) {
             this.milestones.addAll(milestones);
         }
+        this.employees.addAll(employees);
     }
 
     /**
@@ -56,6 +60,9 @@ class JsonAdaptedProject {
         milestones.addAll(source.getMilestones().stream()
             .map(JsonAdaptedMilestone::new)
             .collect(Collectors.toList()));
+        employees.addAll(source.getEmployees().stream()
+                .map(JsonAdaptedEmployee::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -64,9 +71,13 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
-        final List<Milestone> projectMilestones = new ArrayList<>();
+        final List<Milestone> modelMilestones = new ArrayList<>();
+        final UniqueEmployeeList modelEmployees = new UniqueEmployeeList();
         for (JsonAdaptedMilestone milestone : milestones) {
-            projectMilestones.add(milestone.toModelType());
+            modelMilestones.add(milestone.toModelType());
+        }
+        for (JsonAdaptedEmployee employee: employees) {
+            modelEmployees.add(employee.toModelType());
         }
 
         if (projectName == null) {
@@ -76,7 +87,7 @@ class JsonAdaptedProject {
         if (!ProjectName.isValidName(projectName)) {
             throw new IllegalValueException(ProjectName.MESSAGE_CONSTRAINTS);
         }
-        final ProjectName modeProjectlName = new ProjectName(projectName);
+        final ProjectName modelProjectName = new ProjectName(projectName);
 
         if (client == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Client.class.getSimpleName()));
@@ -103,8 +114,9 @@ class JsonAdaptedProject {
 
 
 
-        final List<Milestone> modelMilestones = projectMilestones;
-        return new Project(modeProjectlName, modelClient, modelDeadline, modelMilestones, modelDescription);
+
+        return new Project(modelProjectName, modelClient, modelDeadline, modelMilestones, modelDescription,
+                modelEmployees);
     }
 
 }

@@ -42,6 +42,13 @@ public class Deadline {
         return input.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a clone of this Deadline object.
+     */
+    public Deadline clone() {
+        return new Deadline(this.deadline);
+    }
+
     @Override
     public String toString() {
         return deadline;

@@ -25,6 +25,13 @@ public class Description {
         this.description = desc;
     }
 
+    /**
+     * Returns a clone of this Description object.
+     */
+    public Description clone() {
+        return new Description(this.description);
+    }
+
     @Override
     public String toString() {
         return description;

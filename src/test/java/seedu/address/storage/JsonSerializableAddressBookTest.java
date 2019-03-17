@@ -18,7 +18,7 @@ public class JsonSerializableAddressBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
                                                                 "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_EMPLOYEES_FILE = TEST_DATA_FOLDER.resolve("typicalAddressBook.json");
+    private static final Path TYPICAL_ADDRESS_BOOK_FILE = TEST_DATA_FOLDER.resolve("typicalAddressBook.json");
     private static final Path INVALID_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("invalidEmployeeAddressBook.json");
     private static final Path DUPLICATE_EMPLOYEE_FILE = TEST_DATA_FOLDER.resolve("duplicateEmployeeAddressBook.json");
     private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectAddressBook.json");
@@ -29,12 +29,13 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_typicalAddressBookFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_EMPLOYEES_FILE,
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_ADDRESS_BOOK_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalEmployeesAddressBook =
+        AddressBook typicalAddressBook =
                 TestUtil.typicalAddressBook();
-        assertEquals(addressBookFromFile, typicalEmployeesAddressBook);
+        System.out.println(addressBookFromFile.getEmployeeList().get(0).getSkills());
+        assertEquals(addressBookFromFile, typicalAddressBook);
     }
 
     @Test

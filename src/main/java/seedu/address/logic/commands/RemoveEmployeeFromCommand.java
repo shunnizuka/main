@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -40,13 +38,7 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        Project targetProject = null;
-        List<Project> projectList = model.getProjectList();
-        for (Project p: projectList) {
-            if (p.hasProjectName(targetProjectName)) {
-                targetProject = p;
-            }
-        }
+        Project targetProject = model.getProjectWithName(targetProjectName);
         if (targetProject == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
@@ -55,9 +47,10 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
         Employee targetEmployee = targetList.get(targetIndex.getZeroBased());
-        targetProject.removeEmployee(targetEmployee);
+        model.removeEmployeeFrom(targetProject, targetEmployee);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_SUCCESS, targetEmployee));
+        return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_SUCCESS, targetEmployee,
+                targetProject.getProjectName()));
     }
 
     @Override

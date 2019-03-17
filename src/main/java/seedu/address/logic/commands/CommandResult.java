@@ -45,6 +45,10 @@ public class CommandResult {
     public boolean isExit() {
         return exit;
     }
+    @Override
+    public String toString() {
+        return this.feedbackToUser;
+    }
 
     @Override
     public boolean equals(Object other) {

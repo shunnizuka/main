@@ -47,6 +47,13 @@ public class Email {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a clone of this Email object.
+     */
+    public Email clone() {
+        return new Email(this.value);
+    }
+
     @Override
     public String toString() {
         return value;

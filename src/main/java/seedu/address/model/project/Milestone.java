@@ -59,6 +59,24 @@ public class Milestone {
         return !info.trim().isEmpty();
     }
 
+    /**
+     * Returns a clone of this Milestone object.
+     */
+    public Milestone clone() {
+        return new Milestone(this.milestone, this.date);
+    }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Milestone // instanceof handles nulls
+                && milestone.equals(((Milestone) other).milestone)
+                && date.equals(((Milestone) other).date)); // state check
+    }
+    @Override
+    public String toString() {
+        return this.milestone + " " + this.date;
+    }
+
 }
 
 

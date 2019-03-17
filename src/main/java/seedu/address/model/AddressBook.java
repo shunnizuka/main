@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 
@@ -70,9 +72,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
+        List<Employee> employeeList = new ArrayList<>();
+        List<Project> projectList = new ArrayList<>();
+        for (Employee e: newData.getEmployeeList()) {
+            employeeList.add(e.clone());
+        }
+        for (Project p: newData.getProjectList()) {
+            projectList.add(p.clone());
+        }
 
-        setEmployees(newData.getEmployeeList());
-        setProjects(newData.getProjectList());
+        setEmployees(employeeList);
+        setProjects(projectList);
     }
 
 
@@ -157,6 +167,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         indicateModified();
     }
 
+    /**
+     * Removes {@code targetEmployee} from the {@code targetProject} from this {@code AddressBook}.
+     *  {@code targetProject} and {@code targetEmployee} must exist.
+     */
+    public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
+        projects.removeEmployeeFrom(targetProject, targetEmployee);
+        indicateModified();
+    }
+
+    /**
+     * Removes {@code targetMilestone} from the {@code targetProject} from this {@code AddressBook}.
+     *  {@code targetProject} and {@code targetMilestone} must exist.
+     */
+    public void removeMilestoneFrom(Project targetProject, Milestone targetMilestone) {
+        projects.removeMilestoneFrom(targetProject, targetMilestone);
+        indicateModified();
+    }
+
     @Override
     public void addListener(InvalidationListener listener) {
         invalidationListenerManager.addListener(listener);
@@ -178,9 +206,18 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return employees.asUnmodifiableObservableList().size() + " employees "
-            + projects.asUnmodifiableObservableList().size() + " projects";
-        // TODO: refine later
+        StringBuilder builder = new StringBuilder();
+        builder.append("employees:\n");
+        for (Employee e: employees) {
+            builder.append(e);
+            builder.append("\n");
+        }
+        builder.append("projects:\n");
+        for (Project p: projects) {
+            builder.append(p);
+            builder.append("\n");
+        }
+        return builder.toString();
     }
 
     @Override
@@ -206,4 +243,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         Object[] array = {this.projects, this.employees};
         return Arrays.hashCode(array);
     }
+
+
 }
