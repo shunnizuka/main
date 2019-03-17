@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.employee.Employee;
 import seedu.address.model.PocketProject;
+import seedu.address.model.employee.Employee;
 
 /**
  * A utility class containing a list of {@code Employee} objects to be used in tests.

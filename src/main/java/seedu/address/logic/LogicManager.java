@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.PocketProjectParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPocketProject;
@@ -29,34 +29,34 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final CommandHistory history;
-    private final AddressBookParser addressBookParser;
-    private boolean addressBookModified;
+    private final PocketProjectParser pocketProjectParser;
+    private boolean pocketProjectModified;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
         history = new CommandHistory();
-        addressBookParser = new AddressBookParser();
+        pocketProjectParser = new PocketProjectParser();
 
-        // Set addressBookModified to true whenever the models' address book is modified.
-        model.getPocketProject().addListener(observable -> addressBookModified = true);
+        // Set pocketProjectModified to true whenever the models' pocket project is modified.
+        model.getPocketProject().addListener(observable -> pocketProjectModified = true);
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-        addressBookModified = false;
+        pocketProjectModified = false;
 
         CommandResult commandResult;
         try {
-            Command command = addressBookParser.parseCommand(commandText);
+            Command command = pocketProjectParser.parseCommand(commandText);
             commandResult = command.execute(model, history);
         } finally {
             history.add(commandText);
         }
 
-        if (addressBookModified) {
-            logger.info("Address book modified, saving to file.");
+        if (pocketProjectModified) {
+            logger.info("Pocket project modified, saving to file.");
             try {
                 storage.savePocketProject(model.getPocketProject());
             } catch (IOException ioe) {
@@ -68,7 +68,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPocketProject getAddressBook() {
+    public ReadOnlyPocketProject getPocketProject() {
         return model.getPocketProject();
     }
 
@@ -88,7 +88,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getPocketProjectFilePath() {
         return model.getPocketProjectFilePath();
     }
 

@@ -30,7 +30,7 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getPocketProject()
      */
-    ReadOnlyPocketProject getAddressBook();
+    ReadOnlyPocketProject getPocketProject();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Employee> getFilteredEmployeeList();
@@ -48,7 +48,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPocketProjectFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

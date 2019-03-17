@@ -69,9 +69,9 @@ public class TestApp extends MainApp {
     }
 
     /**
-     * Returns a defensive copy of the address book data stored inside the storage file.
+     * Returns a defensive copy of the pocket project data stored inside the storage file.
      */
-    public PocketProject readStorageAddressBook() {
+    public PocketProject readStoragePocketProject() {
         try {
             return new PocketProject(storage.readPocketProject().get());
         } catch (DataConversionException dce) {

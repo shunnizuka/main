@@ -52,7 +52,7 @@ public class PocketProjectTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyPocketProject_replacesData() {
         PocketProject newData = TypicalProjects.addTypicalProjects(getTypicalPocketProjectWithEmployees());
         pocketProject.resetData(newData);
         assertEquals(newData, pocketProject);
@@ -85,29 +85,29 @@ public class PocketProjectTest {
 
 
     @Test
-    public void hasEmployee_employeeNotInAddressBook_returnsFalse() {
+    public void hasEmployee_employeeNotInPocketProject_returnsFalse() {
         assertFalse(pocketProject.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasProject_projectNotInAddressBook_returnsFalse() {
+    public void hasProject_projectNotInPocketProject_returnsFalse() {
         assertFalse(pocketProject.hasProject(PROJECT_ALICE));
     }
 
     @Test
-    public void hasEmployee_employeeInAddressBook_returnsTrue() {
+    public void hasEmployee_employeeInPocketProject_returnsTrue() {
         pocketProject.addEmployee(ALICE);
         assertTrue(pocketProject.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasProject_projectInAddressBook_returnsTrue() {
+    public void hasProject_projectInPocketProject_returnsTrue() {
         pocketProject.addProject(PROJECT_ALICE);
         assertTrue(pocketProject.hasProject(PROJECT_ALICE));
     }
 
     @Test
-    public void hasEmployee_employeeWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasEmployee_employeeWithSameIdentityFieldsInPocketProject_returnsTrue() {
         pocketProject.addEmployee(ALICE);
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA)
                 .build();
@@ -115,7 +115,7 @@ public class PocketProjectTest {
     }
 
     @Test
-    public void hasProject_projectWithSameNameInAddressBook_returnsTrue() {
+    public void hasProject_projectWithSameNameInPocketProject_returnsTrue() {
         pocketProject.addProject(PROJECT_ALICE);
         Project editedAlice = new ProjectBuilder(PROJECT_ALICE).withClient(VALID_CLIENT_BOB)
                 .withDeadline(VALID_DEADLINE_AMY)

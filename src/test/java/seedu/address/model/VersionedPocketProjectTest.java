@@ -30,39 +30,39 @@ public class VersionedPocketProjectTest {
         versionedPocketProject.commit();
         assertPocketProjectListStatus(versionedPocketProject,
                 Collections.singletonList(emptyPocketProject),
-        emptyPocketProject,
+                emptyPocketProject,
                 Collections.emptyList());
     }
 
     @Test
     public void commit_multiplePocketProjectPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
         versionedPocketProject.commit();
         assertPocketProjectListStatus(versionedPocketProject,
                 Arrays.asList(emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob),
-        pocketProjectWithBob,
+                pocketProjectWithBob,
                 Collections.emptyList());
     }
 
     @Test
     public void commit_multiplePocketProjectPointerNotAtEndOfStateList_statesAfterPointerRemovedCurrentStateSaved() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
         versionedPocketProject.commit();
         assertPocketProjectListStatus(versionedPocketProject,
                 Collections.singletonList(emptyPocketProject),
-        emptyPocketProject,
+                emptyPocketProject,
                 Collections.emptyList());
     }
 
     @Test
     public void canUndo_multiplePocketProjectPointerAtEndOfStateList_returnsTrue() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
         assertTrue(versionedPocketProject.canUndo());
     }
@@ -70,7 +70,7 @@ public class VersionedPocketProjectTest {
     @Test
     public void canUndo_multiplePocketProjectPointerAtStartOfStateList_returnsTrue() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
 
         assertTrue(versionedPocketProject.canUndo());
@@ -86,7 +86,7 @@ public class VersionedPocketProjectTest {
     @Test
     public void canUndo_multiplePocketProjectPointerAtStartOfStateList_returnsFalse() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
         assertFalse(versionedPocketProject.canUndo());
@@ -95,7 +95,7 @@ public class VersionedPocketProjectTest {
     @Test
     public void canRedo_multiplePocketProjectPointerNotAtEndOfStateList_returnsTrue() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
 
         assertTrue(versionedPocketProject.canRedo());
@@ -104,7 +104,7 @@ public class VersionedPocketProjectTest {
     @Test
     public void canRedo_multiplePocketProjectPointerAtStartOfStateList_returnsTrue() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
         assertTrue(versionedPocketProject.canRedo());
@@ -120,7 +120,7 @@ public class VersionedPocketProjectTest {
     @Test
     public void canRedo_multiplePocketProjectPointerAtEndOfStateList_returnsFalse() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
         assertFalse(versionedPocketProject.canRedo());
     }
@@ -128,25 +128,25 @@ public class VersionedPocketProjectTest {
     @Test
     public void undo_multiplePocketProjectPointerAtEndOfStateList_success() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
         versionedPocketProject.undo();
         assertPocketProjectListStatus(versionedPocketProject,
                 Collections.singletonList(emptyPocketProject),
-        pocketProjectWithAmy,
+                pocketProjectWithAmy,
                 Collections.singletonList(pocketProjectWithBob));
     }
 
     @Test
     public void undo_multiplePocketProjectPointerNotAtStartOfStateList_success() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
 
         versionedPocketProject.undo();
         assertPocketProjectListStatus(versionedPocketProject,
                 Collections.emptyList(),
-        emptyPocketProject,
+                emptyPocketProject,
                 Arrays.asList(pocketProjectWithAmy, pocketProjectWithBob));
     }
 
@@ -160,7 +160,7 @@ public class VersionedPocketProjectTest {
     @Test
     public void undo_multiplePocketProjectPointerAtStartOfStateList_throwsNoUndoableStateException() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
         assertThrows(VersionedPocketProject.NoUndoableStateException.class, versionedPocketProject::undo);
@@ -169,26 +169,26 @@ public class VersionedPocketProjectTest {
     @Test
     public void redo_multiplePocketProjectPointerNotAtEndOfStateList_success() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
 
         versionedPocketProject.redo();
         assertPocketProjectListStatus(versionedPocketProject,
                 Arrays.asList(emptyPocketProject, pocketProjectWithAmy),
-        pocketProjectWithBob,
+                pocketProjectWithBob,
                 Collections.emptyList());
     }
 
     @Test
     public void redo_multiplePocketProjectPointerAtStartOfStateList_success() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 2);
 
         versionedPocketProject.redo();
         assertPocketProjectListStatus(versionedPocketProject,
                 Collections.singletonList(emptyPocketProject),
-        pocketProjectWithAmy,
+                pocketProjectWithAmy,
                 Collections.singletonList(pocketProjectWithBob));
     }
 
@@ -202,7 +202,7 @@ public class VersionedPocketProjectTest {
     @Test
     public void redo_multiplePocketProjectPointerAtEndOfStateList_throwsNoRedoableStateException() {
         VersionedPocketProject versionedPocketProject = preparePocketProjectList(
-        emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
+                emptyPocketProject, pocketProjectWithAmy, pocketProjectWithBob);
 
         assertThrows(VersionedPocketProject.NoRedoableStateException.class, versionedPocketProject::redo);
     }
@@ -232,7 +232,7 @@ public class VersionedPocketProjectTest {
 
         // different current pointer index -> returns false
         VersionedPocketProject differentCurrentStatePointer = preparePocketProjectList(
-        pocketProjectWithAmy, pocketProjectWithBob);
+                pocketProjectWithAmy, pocketProjectWithBob);
         shiftCurrentStatePointerLeftwards(versionedPocketProject, 1);
         assertFalse(versionedPocketProject.equals(differentCurrentStatePointer));
     }
@@ -240,7 +240,8 @@ public class VersionedPocketProjectTest {
     /**
      * Asserts that {@code versionedPocketProject} is currently pointing at {@code expectedCurrentState},
      * states before {@code versionedPocketProject#currentStatePointer} is equal to {@code expectedStatesBeforePointer},
-     * and states after {@code versionedPocketProject#currentStatePointer} is equal to {@code expectedStatesAfterPointer}.
+     * and states after {@code versionedPocketProject#currentStatePointer} is equal to
+     * {@code expectedStatesAfterPointer}.
      */
     private void assertPocketProjectListStatus(VersionedPocketProject versionedPocketProject,
                                                List<ReadOnlyPocketProject> expectedStatesBeforePointer,

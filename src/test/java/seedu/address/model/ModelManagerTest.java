@@ -70,13 +70,13 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setPocketProjectFilePath_nullPath_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         modelManager.setPocketProjectFilePath(null);
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setPocketProjectFilePath_validPath_setsPocketProjectFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setPocketProjectFilePath(path);
         assertEquals(path, modelManager.getPocketProjectFilePath());
@@ -89,12 +89,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasEmployee_employeeNotInAddressBook_returnsFalse() {
+    public void hasEmployee_employeeNotInPocketProject_returnsFalse() {
         assertFalse(modelManager.hasEmployee(ALICE));
     }
 
     @Test
-    public void hasEmployee_employeeInAddressBook_returnsTrue() {
+    public void hasEmployee_employeeInPocketProject_returnsTrue() {
         modelManager.addEmployee(ALICE);
         assertTrue(modelManager.hasEmployee(ALICE));
     }

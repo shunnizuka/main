@@ -44,7 +44,7 @@ public class SampleDataTest extends PocketProjectSystemTest {
     }
 
     @Test
-    public void addressBook_dataFileDoesNotExist_loadSampleData() {
+    public void pocketProject_dataFileDoesNotExist_loadSampleData() {
         Employee[] expectedList = SampleDataUtil.getSampleEmployees();
         assertListMatching(getEmployeeListPanel(), expectedList);
     }

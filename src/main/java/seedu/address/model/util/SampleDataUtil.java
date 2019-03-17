@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPocketProject getSampleAddressBook() {
+    public static ReadOnlyPocketProject getSamplePocketProject() {
         PocketProject sampleAb = new PocketProject();
         for (Employee sampleEmployee : getSampleEmployees()) {
             sampleAb.addEmployee(sampleEmployee);

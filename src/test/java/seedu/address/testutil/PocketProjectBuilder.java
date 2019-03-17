@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import seedu.address.model.employee.Employee;
 import seedu.address.model.PocketProject;
 import seedu.address.model.project.Project;
+import seedu.address.model.employee.Employee;
 
 /**
  * A utility class to help with building PocketProject objects.
