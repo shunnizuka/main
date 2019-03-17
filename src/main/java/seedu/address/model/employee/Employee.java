@@ -75,6 +75,18 @@ public class Employee {
     }
 
     /**
+     * Returns a clone of this Employee object.
+     */
+    public Employee clone() {
+        Set<Skill> newSkills = new HashSet<>();
+        for (Skill s: skills) {
+            newSkills.add(s.clone());
+        }
+        return new Employee(this.name.clone(), this.phone.clone(), this.email.clone(), this.address.clone(),
+                newSkills);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

@@ -17,7 +17,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
+import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
@@ -149,6 +151,24 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedProject);
 
         versionedAddressBook.setProject(target, editedProject);
+    }
+    @Override
+    public Project getProjectWithName(ProjectName targetProjectName) {
+        Project targetProject = null;
+        for (Project p: versionedAddressBook.getProjectList()) {
+            if (p.hasProjectName(targetProjectName)) {
+                targetProject = p;
+            }
+        }
+        return targetProject;
+    }
+    @Override
+    public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
+        versionedAddressBook.removeEmployeeFrom(targetProject, targetEmployee);
+    }
+    @Override
+    public void removeMilestoneFrom(Project targetProject, Milestone targetMilestone) {
+        versionedAddressBook.removeMilestoneFrom(targetProject, targetMilestone);
     }
 
 

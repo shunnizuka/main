@@ -264,17 +264,17 @@ Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
 
 Examples:
 
-`list employees` +
+`view project Apollo` +
 `removefrom Apollo employee 3` +
 Removes the employee at index 3 from Project Apollo.
 
-Remove a milestone from a project. +
+Removes a milestone from a project. +
 Format: `removefrom PROJECT_NAME milestone MS_INDEX`
 
 Examples:
 
-`view milestones Apollo` +
-`removefrom milestone Apollo 1` +
+`view project Apollo` +
+`removefrom Apollo milestone 1` +
 Removes the milestone at index 1 from Project Apollo.
 
 === To indicate the project has been completed : `complete`

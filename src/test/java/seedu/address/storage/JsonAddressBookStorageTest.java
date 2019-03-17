@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.HOON;
 import static seedu.address.testutil.TypicalEmployees.IDA;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBookWithEmployees;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -19,6 +18,7 @@ import org.junit.rules.TemporaryFolder;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalProjects;
 
 public class JsonAddressBookStorageTest {
@@ -76,7 +76,7 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.getRoot().toPath().resolve("TempAddressBook.json");
-        AddressBook original = TypicalProjects.addTypicalProjects(getTypicalAddressBookWithEmployees());
+        AddressBook original = TestUtil.typicalAddressBook();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back

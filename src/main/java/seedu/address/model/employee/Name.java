@@ -38,6 +38,13 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     *  Returns a clone of this Name object.
+     */
+    public Name clone() {
+        return new Name(this.fullName);
+    }
+
 
     @Override
     public String toString() {
