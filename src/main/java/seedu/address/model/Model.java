@@ -190,6 +190,20 @@ public interface Model {
      */
     void removeMilestoneFrom(Project targetProject, Milestone targetMilestone);
 
+    /**
+     * Adds the {@code targetEmployee} to the {@code targetProject}.
+     * Both {@code targetProject} must exist in the pocket project and {@code targetEmployee} in the employee list
+     */
+    void addEmployeeTo(Project targetProject, Employee targetEmployee);
+
+    /**
+     * Adds the {@code milestone} to the {@code targetProject}.
+     * {@code targetProject} must exist in the pocket project.
+     */
+    void addMilestoneTo(Project targetProject, Milestone milestone);
+
+
+
 
 
     //-------------------------------------------------------------------------------------------

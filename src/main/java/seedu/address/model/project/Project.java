@@ -144,6 +144,20 @@ public class Project {
     }
 
     /**
+     * Adds the given employee to this project.
+     */
+     public void addEmployee(Employee employee) {
+        employees.add(employee);
+     }
+
+    /**
+     * Adds the given milestone to this project.
+     */
+     public void addMilestone(Milestone milestone) {
+        milestones.add(milestone);
+     }
+
+    /**
      *  Removes the given employee from this project.
      */
     public void removeEmployee(Employee employee) {
