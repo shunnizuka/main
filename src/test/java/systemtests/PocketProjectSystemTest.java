@@ -130,8 +130,8 @@ public abstract class PocketProjectSystemTest {
      */
     protected void showAllEmployees() {
         executeCommand(ListCommand.COMMAND_WORD + " " + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD);
-        assertEquals(getModel().getPocketProject().getEmployeeList().size()
-                , getModel().getFilteredEmployeeList().size());
+        assertEquals(getModel().getPocketProject().getEmployeeList().size(),
+                getModel().getFilteredEmployeeList().size());
     }
 
     /**
