@@ -84,7 +84,7 @@ public class EditCommand extends Command {
 
         model.setEmployee(employeeToEdit, editedEmployee);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
-        model.commitAddressBook();
+        model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee));
     }
 

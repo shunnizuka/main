@@ -16,10 +16,10 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the pocket-project level
  * Duplicates are not allowed (by .isSameEmployee comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class PocketProject implements ReadOnlyPocketProject {
 
     private final UniqueEmployeeList employees;
     private final UniqueProjectList projects;
@@ -37,12 +37,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects = new UniqueProjectList();
     }
 
-    public AddressBook() {}
+    public PocketProject() {}
 
     /**
-     * Creates an AddressBook using the Employees in the {@code toBeCopied}
+     * Creates an PocketProject using the Employees in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public PocketProject(ReadOnlyPocketProject toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -68,9 +68,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code PocketProject} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyPocketProject newData) {
         requireNonNull(newData);
         List<Employee> employeeList = new ArrayList<>();
         List<Project> projectList = new ArrayList<>();
@@ -90,7 +90,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// employee-level and project-level operations
 
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if a employee with the same identity as {@code employee} exists in the pocket project.
      */
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
@@ -98,7 +98,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a project with the same name as {@code project} exists in the address book.
+     * Returns true if a project with the same name as {@code project} exists in the pocket project.
      */
     public boolean hasProject(Project project) {
         requireNonNull(project);
@@ -106,8 +106,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a employee to the address book.
-     * The employee must not already exist in the address book.
+     * Adds a employee to the pocket project.
+     * The employee must not already exist in the pocket project.
      */
     public void addEmployee(Employee p) {
         employees.add(p);
@@ -115,8 +115,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a project to the address book.
-     * The project must not already exist in the address book.
+     * Adds a project to the pocket project.
+     * The project must not already exist in the pocket project.
      */
     public void addProject(Project p) {
         projects.add(p);
@@ -126,8 +126,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given employee {@code target} in the list with {@code editedEmployee}.
      * {@code target} must exist in the employee list.
-     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the address
-     * book.
+     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the pocket
+     * project.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
@@ -138,9 +138,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given project {@code target} in the list with {@code editedProject}.
-     * {@code target} must exist in the address book.
-     * The project name of {@code editedProject} must not be the same as another existing project in the address
-     * book.
+     * {@code target} must exist in the pocket project.
+     * The project name of {@code editedProject} must not be the same as another existing project in the pocket
+     * project.
      */
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
@@ -150,8 +150,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code PocketProject}.
+     * {@code key} must exist in the pocket project.
      */
     public void removeEmployee(Employee key) {
         employees.remove(key);
@@ -159,8 +159,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code project} from this {@code AddressBook}.
-     * {@code project} must exist in the address book.
+     * Removes {@code project} from this {@code PocketProject}.
+     * {@code project} must exist in the pocket project.
      */
     public void removeProject(Project project) {
         projects.remove(project);
@@ -168,7 +168,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code targetEmployee} from the {@code targetProject} from this {@code AddressBook}.
+     * Removes {@code targetEmployee} from the {@code targetProject} from this {@code PocketProject}.
      *  {@code targetProject} and {@code targetEmployee} must exist.
      */
     public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
@@ -177,7 +177,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code targetMilestone} from the {@code targetProject} from this {@code AddressBook}.
+     * Removes {@code targetMilestone} from the {@code targetProject} from this {@code PocketProject}.
      *  {@code targetProject} and {@code targetMilestone} must exist.
      */
     public void removeMilestoneFrom(Project targetProject, Milestone targetMilestone) {
@@ -196,7 +196,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Notifies listeners that the address book has been modified.
+     * Notifies listeners that the pocket project has been modified.
      */
     protected void indicateModified() {
         invalidationListenerManager.callListeners(this);
@@ -233,9 +233,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && employees.equals(((AddressBook) other).employees)
-                && projects.equals(((AddressBook) other).projects));
+                || (other instanceof PocketProject // instanceof handles nulls
+                && employees.equals(((PocketProject) other).employees)
+                && projects.equals(((PocketProject) other).projects));
     }
 
     @Override

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalProjects.getTypicalAddressBookWithProjects;
+import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
 
 import org.junit.Test;
 
@@ -23,7 +23,7 @@ import seedu.address.testutil.TypicalProjects;
  */
 public class DeleteProjectCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookWithProjects(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPocketProjectWithProjects(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -33,9 +33,9 @@ public class DeleteProjectCommandTest {
 
         String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(deleteProjectCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -54,19 +54,19 @@ public class DeleteProjectCommandTest {
     public void executeUndoRedo_validName_success() throws Exception {
         Project projectToDelete = model.getProjectList().get(0);
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(projectToDelete.getProjectName());
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         // delete -> first project deleted
         deleteProjectCommand.execute(model, commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered project list to show all projects
-        expectedModel.undoAddressBook();
+        expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // redo -> same first project deleted again
-        expectedModel.redoAddressBook();
+        expectedModel.redoPocketProject();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

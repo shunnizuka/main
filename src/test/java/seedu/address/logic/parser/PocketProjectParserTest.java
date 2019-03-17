@@ -38,11 +38,11 @@ import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
 
-public class AddressBookParserTest {
+public class PocketProjectParserTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final PocketProjectParser parser = new PocketProjectParser();
 
     @Test
     public void parseCommand_add() throws Exception {

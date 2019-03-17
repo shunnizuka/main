@@ -6,8 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.PocketProject;
 import seedu.address.model.employee.Employee;
 
 /**
@@ -57,7 +57,7 @@ public class TestUtil {
     /**
      *  Returns an pocketproject with the typical employees and typical projects.
      */
-    public static AddressBook typicalAddressBook() {
-        return TypicalProjects.addTypicalProjects(TypicalEmployees.getTypicalAddressBookWithEmployees());
+    public static PocketProject typicalPocketProject() {
+        return TypicalProjects.addTypicalProjects(TypicalEmployees.getTypicalPocketProjectWithEmployees());
     }
 }

@@ -50,7 +50,7 @@ public class AddProjectCommand extends AddCommand {
         }
 
         model.addProject(toAdd);
-        model.commitAddressBook();
+        model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADD_PROJECT_SUCCESS, toAdd));
     }
 

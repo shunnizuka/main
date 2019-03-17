@@ -15,8 +15,8 @@ public class FindProjectCommand extends FindCommand {
 
     public static final String FIND_PROJECT_KEYWORD = "project";
 
-    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + FIND_PROJECT_KEYWORD
-        + "[ARGUMENTS]" + "\n"
+    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + " " + FIND_PROJECT_KEYWORD
+        + " [ARGUMENTS]" + "\n"
         + ": Find all projects with names containing [ARGUMENTS]";
 
     private final ProjectNameContainsKeywordsPredicate predicate;

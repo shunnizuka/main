@@ -23,12 +23,12 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the pocket project data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final VersionedAddressBook versionedAddressBook;
+    private final VersionedPocketProject versionedPocketProject;
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
     private final FilteredList<Project> filteredProjects;
@@ -36,26 +36,26 @@ public class ModelManager implements Model {
     private final SimpleObjectProperty<Project> selectedProject = new SimpleObjectProperty<>();
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given pocketProject and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPocketProject pocketProject, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(pocketProject, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with pocket project: " + pocketProject + " and user prefs " + userPrefs);
 
-        versionedAddressBook = new VersionedAddressBook(addressBook);
+        versionedPocketProject = new VersionedPocketProject(pocketProject);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEmployees = new FilteredList<>(versionedAddressBook.getEmployeeList());
+        filteredEmployees = new FilteredList<>(versionedPocketProject.getEmployeeList());
         filteredEmployees.addListener(this::ensureSelectedEmployeeIsValid);
 
-        filteredProjects = new FilteredList<>(versionedAddressBook.getProjectList());
+        filteredProjects = new FilteredList<>(versionedPocketProject.getProjectList());
         filteredProjects.addListener(this::ensureSelectedProjectIsValid);
 
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new PocketProject(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -83,59 +83,59 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPocketProjectFilePath() {
+        return userPrefs.getPocketProjectFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPocketProjectFilePath(Path pocketProjectFilePath) {
+        requireNonNull(pocketProjectFilePath);
+        userPrefs.setPocketProjectFilePath(pocketProjectFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PocketProject ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        versionedAddressBook.resetData(addressBook);
+    public void setPocketProject(ReadOnlyPocketProject pocketProject) {
+        versionedPocketProject.resetData(pocketProject);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return versionedAddressBook;
+    public ReadOnlyPocketProject getPocketProject() {
+        return versionedPocketProject;
     }
 
     @Override
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
-        return versionedAddressBook.hasEmployee(employee);
+        return versionedPocketProject.hasEmployee(employee);
     }
 
     @Override
     public boolean hasProject(Project project) {
         requireNonNull(project);
-        return versionedAddressBook.hasProject(project);
+        return versionedPocketProject.hasProject(project);
     }
 
     @Override
     public void deleteEmployee(Employee target) {
-        versionedAddressBook.removeEmployee(target);
+        versionedPocketProject.removeEmployee(target);
     }
 
     @Override
     public void deleteProject(Project target) {
-        versionedAddressBook.removeProject(target);
+        versionedPocketProject.removeProject(target);
     }
 
     @Override
     public void addEmployee(Employee employee) {
-        versionedAddressBook.addEmployee(employee);
+        versionedPocketProject.addEmployee(employee);
         updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
     }
 
     @Override
     public void addProject(Project project) {
-        versionedAddressBook.addProject(project);
+        versionedPocketProject.addProject(project);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
@@ -143,19 +143,19 @@ public class ModelManager implements Model {
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireAllNonNull(target, editedEmployee);
 
-        versionedAddressBook.setEmployee(target, editedEmployee);
+        versionedPocketProject.setEmployee(target, editedEmployee);
     }
 
     @Override
     public void setProject(Project target, Project editedProject) {
         requireAllNonNull(target, editedProject);
 
-        versionedAddressBook.setProject(target, editedProject);
+        versionedPocketProject.setProject(target, editedProject);
     }
     @Override
     public Project getProjectWithName(ProjectName targetProjectName) {
         Project targetProject = null;
-        for (Project p: versionedAddressBook.getProjectList()) {
+        for (Project p: versionedPocketProject.getProjectList()) {
             if (p.hasProjectName(targetProjectName)) {
                 targetProject = p;
             }
@@ -164,11 +164,11 @@ public class ModelManager implements Model {
     }
     @Override
     public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
-        versionedAddressBook.removeEmployeeFrom(targetProject, targetEmployee);
+        versionedPocketProject.removeEmployeeFrom(targetProject, targetEmployee);
     }
     @Override
     public void removeMilestoneFrom(Project targetProject, Milestone targetMilestone) {
-        versionedAddressBook.removeMilestoneFrom(targetProject, targetMilestone);
+        versionedPocketProject.removeMilestoneFrom(targetProject, targetMilestone);
     }
 
 
@@ -177,7 +177,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Employee} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedPocketProject}
      */
     @Override
     public ObservableList<Employee> getFilteredEmployeeList() {
@@ -194,7 +194,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedPocketProject}
      */
     @Override
     public ObservableList<Project> getFilteredProjectList() {
@@ -211,39 +211,39 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedPocketProject}
      */
     @Override
     public ObservableList<Project> getProjectList() {
-        return versionedAddressBook.getProjectList();
+        return versionedPocketProject.getProjectList();
     }
 
 
     //=========== Undo/Redo =================================================================================
 
     @Override
-    public boolean canUndoAddressBook() {
-        return versionedAddressBook.canUndo();
+    public boolean canUndoPocketProject() {
+        return versionedPocketProject.canUndo();
     }
 
     @Override
-    public boolean canRedoAddressBook() {
-        return versionedAddressBook.canRedo();
+    public boolean canRedoPocketProject() {
+        return versionedPocketProject.canRedo();
     }
 
     @Override
-    public void undoAddressBook() {
-        versionedAddressBook.undo();
+    public void undoPocketProject() {
+        versionedPocketProject.undo();
     }
 
     @Override
-    public void redoAddressBook() {
-        versionedAddressBook.redo();
+    public void redoPocketProject() {
+        versionedPocketProject.redo();
     }
 
     @Override
-    public void commitAddressBook() {
-        versionedAddressBook.commit();
+    public void commitPocketProject() {
+        versionedPocketProject.commit();
     }
 
     //=========== Selected employee ===========================================================================
@@ -363,7 +363,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return versionedAddressBook.equals(other.versionedAddressBook)
+        return versionedPocketProject.equals(other.versionedPocketProject)
                 && userPrefs.equals(other.userPrefs)
                 && filteredEmployees.equals(other.filteredEmployees)
                 && Objects.equals(selectedEmployee.get(), other.selectedEmployee.get());
