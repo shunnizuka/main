@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.PocketProject;
 import seedu.address.model.employee.Employee;
 
 /**
@@ -60,10 +60,10 @@ public class TypicalEmployees {
     private TypicalEmployees() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical employees.
+     * Returns an {@code PocketProject} with all the typical employees.
      */
-    public static AddressBook getTypicalAddressBookWithEmployees() {
-        AddressBook ab = new AddressBook();
+    public static PocketProject getTypicalPocketProjectWithEmployees() {
+        PocketProject ab = new PocketProject();
         for (Employee employee : getTypicalEmployees()) {
             ab.addEmployee(employee);
         }
@@ -71,9 +71,9 @@ public class TypicalEmployees {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical employees added to the given {@code AddressBook}.
+     * Returns an {@code PocketProject} with all the typical employees added to the given {@code PocketProject}.
      */
-    public static AddressBook addTypicalEmployees(AddressBook ab) {
+    public static PocketProject addTypicalEmployees(PocketProject ab) {
         for (Employee employee : getTypicalEmployees()) {
             ab.addEmployee(employee);
         }

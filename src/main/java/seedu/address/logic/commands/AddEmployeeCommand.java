@@ -57,7 +57,7 @@ public class AddEmployeeCommand extends AddCommand {
         }
 
         model.addEmployee(toAdd);
-        model.commitAddressBook();
+        model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADD_EMPLOYEE_SUCCESS, toAdd));
     }
 

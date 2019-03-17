@@ -42,7 +42,7 @@ public class DeleteProjectCommand extends DeleteCommand {
                 found = true;
                 projectToDelete = p;
                 model.deleteProject(projectToDelete);
-                model.commitAddressBook();
+                model.commitPocketProject();
 
             }
         }

@@ -32,16 +32,16 @@ import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.SelectCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.PocketProject;
 import seedu.address.testutil.TestUtil;
 import seedu.address.ui.CommandBox;
 
 /**
- * A system test class for AddressBook, which provides access to handles of GUI components and helper methods
+ * A system test class for PocketProject, which provides access to handles of GUI components and helper methods
  * for test verification.
  */
-public abstract class AddressBookSystemTest {
+public abstract class PocketProjectSystemTest {
     @ClassRule
     public static ClockRule clockRule = new ClockRule();
 
@@ -75,8 +75,8 @@ public abstract class AddressBookSystemTest {
     /**
      * Returns the data to be loaded into the file in {@link #getDataFileLocation()}.
      */
-    protected AddressBook getInitialData() {
-        return TestUtil.typicalAddressBook();
+    protected PocketProject getInitialData() {
+        return TestUtil.typicalPocketProject();
     }
 
     /**
@@ -130,7 +130,8 @@ public abstract class AddressBookSystemTest {
      */
     protected void showAllEmployees() {
         executeCommand(ListCommand.COMMAND_WORD + " " + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD);
-        assertEquals(getModel().getAddressBook().getEmployeeList().size(), getModel().getFilteredEmployeeList().size());
+        assertEquals(getModel().getPocketProject().getEmployeeList().size(),
+                getModel().getFilteredEmployeeList().size());
     }
 
     /**
@@ -139,7 +140,8 @@ public abstract class AddressBookSystemTest {
     protected void showEmployeesWithName(String keyword) {
         executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " " + keyword);
-        assertTrue(getModel().getFilteredEmployeeList().size() < getModel().getAddressBook().getEmployeeList().size());
+        assertTrue(getModel().getFilteredEmployeeList().size()
+                < getModel().getPocketProject().getEmployeeList().size());
     }
 
     /**
@@ -155,7 +157,7 @@ public abstract class AddressBookSystemTest {
      */
     protected void deleteAllEmployees() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getModel().getAddressBook().getEmployeeList().size());
+        assertEquals(0, getModel().getPocketProject().getEmployeeList().size());
     }
 
     /**
@@ -167,7 +169,7 @@ public abstract class AddressBookSystemTest {
                                                      Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
-        assertEquals(new AddressBook(expectedModel.getAddressBook()), testApp.readStorageAddressBook());
+        assertEquals(new PocketProject(expectedModel.getPocketProject()), testApp.readStoragePocketProject());
         assertListMatching(getEmployeeListPanel(), expectedModel.getFilteredEmployeeList());
     }
 

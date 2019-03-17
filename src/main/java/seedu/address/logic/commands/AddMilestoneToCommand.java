@@ -55,7 +55,7 @@ public class AddMilestoneToCommand extends AddToCommand {
             throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
         }
         milestoneList.add(milestoneToAdd);
-        model.commitAddressBook();
+        model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADD_MILESTONE_SUCCESS, milestoneToAdd));
     }
 

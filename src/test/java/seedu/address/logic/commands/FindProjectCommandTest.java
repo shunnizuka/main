@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalProjects.PROJECT_CARL;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ELLE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_FIONA;
-import static seedu.address.testutil.TypicalProjects.getTypicalAddressBookWithProjects;
+import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,8 +26,8 @@ import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
  */
 public class FindProjectCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookWithProjects(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBookWithProjects(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPocketProjectWithProjects(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPocketProjectWithProjects(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
