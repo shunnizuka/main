@@ -144,6 +144,15 @@ public class ModelManager implements Model {
         versionedAddressBook.setEmployee(target, editedEmployee);
     }
 
+    @Override
+    public void setProject(Project target, Project editedProject) {
+        requireAllNonNull(target, editedProject);
+
+        versionedAddressBook.setProject(target, editedProject);
+    }
+
+
+
     //=========== Filtered Employee List Accessors =============================================================
 
     /**
