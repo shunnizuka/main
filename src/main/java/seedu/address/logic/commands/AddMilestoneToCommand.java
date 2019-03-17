@@ -63,7 +63,8 @@ public class AddMilestoneToCommand extends AddToCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddMilestoneToCommand // instanceof handles nulls
-                && targetProjectName.equals(((AddMilestoneToCommand) other).targetProjectName)); // state check
+                && targetProjectName.equals(((AddMilestoneToCommand) other).targetProjectName))
+                && milestoneToAdd.equals(((AddMilestoneToCommand) other).milestoneToAdd); // state check
     }
 
 
