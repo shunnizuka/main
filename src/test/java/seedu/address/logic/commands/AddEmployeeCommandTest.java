@@ -215,6 +215,14 @@ public class AddEmployeeCommandTest {
         public void removeMilestoneFrom(Project targetProject, Milestone targetMilestone) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void addMilestoneTo(Project targetProject, Milestone targetMilestone) {
+            throw new AssertionError("This method should not be called.");
+        }
         //--------------------------------------------------------------------------------------------------
 
         @Override
