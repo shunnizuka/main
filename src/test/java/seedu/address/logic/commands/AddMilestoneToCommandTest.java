@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -17,6 +16,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 /**
  * Contains unit tests for
@@ -28,26 +28,28 @@ public class AddMilestoneToCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
+    public void execute_validProjectNameValidIndex_success() {
+        Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
+        Milestone milestone = new Milestone("Completed UG", "05/05/2020");
+        AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(targetProject.getProjectName(),
+            milestone);
+        String expectedMessage = String.format(AddMilestoneToCommand.MESSAGE_ADD_MILESTONE_SUCCESS,
+                milestone, targetProject.getProjectName());
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.addMilestoneTo(targetProject, milestone);
+        expectedModel.commitAddressBook();
+
+        assertCommandSuccess(addMilestoneToCommand, model, commandHistory, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidProjectName_throwsCommandException() {
         AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(new ProjectName("INVALID"), new
             Milestone("Updated UG", "23/06/2019"));
         assertCommandFailure(addMilestoneToCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECT_NAME);
     }
-
-    //TODO understand how assert command failure works
-    /*
-    @Test
-    public void execute_invalidMilestoneValidProjectName_throwsCommandException() {
-        Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        Milestone ms = new Milestone("Done and dusted.", "233/05/2020");
-        AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(targetProject.getProjectName(), ms);
-
-        assertCommandFailure(addMilestoneToCommand, model, commandHistory, Milestone.MESSAGE_INVALID_DATE);
-    }
-    */
-
-
 
     @Test
     public void equals() {
