@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBookWithEmployees;
+import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWithEmployees;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,16 +24,16 @@ public class AddCommandIntegrationTest {
 
     @Before
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBookWithEmployees(), new UserPrefs());
+        model = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
     }
 
     @Test
     public void execute_newEmployee_success() {
         Employee validEmployee = new EmployeeBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.addEmployee(validEmployee);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(new AddEmployeeCommand(validEmployee), model, commandHistory,
                 String.format(AddEmployeeCommand.MESSAGE_ADD_EMPLOYEE_SUCCESS, validEmployee), expectedModel);
@@ -41,7 +41,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateEmployee_throwsCommandException() {
-        Employee employeeInList = model.getAddressBook().getEmployeeList().get(0);
+        Employee employeeInList = model.getPocketProject().getEmployeeList().get(0);
         assertCommandFailure(new AddEmployeeCommand(employeeInList), model, commandHistory,
                 AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }

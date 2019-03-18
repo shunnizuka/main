@@ -15,8 +15,8 @@ public class FindSkillCommand extends FindCommand {
 
     public static final String FIND_SKILL_KEYWORD = "skill";
 
-    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + FIND_SKILL_KEYWORD
-        + "[ARGUMENTS]" + "\n"
+    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + " " + FIND_SKILL_KEYWORD
+        + " [ARGUMENTS]" + "\n"
         + ": Find all employees with skills containing [ARGUMENTS]";
 
 

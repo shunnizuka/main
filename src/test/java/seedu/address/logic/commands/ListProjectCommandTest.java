@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBookWithEmployees;
+import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWithEmployees;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,8 +22,8 @@ public class ListProjectCommandTest {
 
     @Before
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBookWithEmployees(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
+        expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
     }
 
     @Test

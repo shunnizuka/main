@@ -8,7 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPocketProject;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 
@@ -26,11 +26,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the PocketProject.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getPocketProject()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyPocketProject getPocketProject();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Employee> getFilteredEmployeeList();
@@ -48,7 +48,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPocketProjectFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

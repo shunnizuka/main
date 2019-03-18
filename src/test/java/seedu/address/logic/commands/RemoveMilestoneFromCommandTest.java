@@ -25,7 +25,7 @@ import seedu.address.testutil.TypicalProjects;
  */
 public class RemoveMilestoneFromCommandTest {
 
-    private Model model = new ModelManager(TestUtil.typicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TestUtil.typicalPocketProject(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -38,9 +38,9 @@ public class RemoveMilestoneFromCommandTest {
         String expectedMessage = String.format(RemoveMilestoneFromCommand.MESSAGE_REMOVE_MILESTONE_SUCCESS,
                 targetMilestone, targetProject.getProjectName());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.removeMilestoneFrom(targetProject, targetMilestone);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(removeMilestoneFromCommand, model, commandHistory, expectedMessage, expectedModel);
     }

@@ -15,8 +15,8 @@ public class FindEmployeeCommand extends FindCommand {
 
     public static final String FIND_EMPLOYEE_KEYWORD = "employee";
 
-    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + FIND_EMPLOYEE_KEYWORD
-        + "[ARGUMENTS]" + "\n"
+    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + " " + FIND_EMPLOYEE_KEYWORD
+        + " [ARGUMENTS]" + "\n"
         + ": Find all employees with names containing [ARGUMENTS]";
 
     private final EmployeeNameContainsKeywordsPredicate predicate;

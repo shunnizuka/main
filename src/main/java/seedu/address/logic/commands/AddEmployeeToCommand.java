@@ -63,7 +63,7 @@ public class AddEmployeeToCommand extends AddToCommand {
             throw new CommandException(MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
         }
         targetProject.addEmployee(employeeToAdd);
-        model.commitAddressBook();
+        model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS, employeeToAdd,
             targetProject.getProjectName()));
     }
