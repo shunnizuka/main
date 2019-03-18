@@ -308,7 +308,9 @@ Usage Scenario example for `find employee`:
 The working mechanism for `find project` is similar to `find employee`. Instead of updating the `filteredEmployees`, `filteredProjects` is updated instead to display the list of projects with name consisting the keywords.
 
 For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
+
 ==== Design Consideration
+
 ===== Aspect: How `find` command is parsed
 Alternative 1: Have a nested `FindCommandParser` (current implementation)
 
