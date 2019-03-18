@@ -267,6 +267,15 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// skill::addTo[]
+=== Add employee/milestone to projects feature
+==== Current Implementation
+
+This feature focuses on the adding of employees or milestones to a selected project and is mainly facilitated
+by the model component of the PocketProject application.
+
+
+
 // skill::removefrom[]
 === Remove employee/milestone from projects feature
 ==== Current Implementation
@@ -311,12 +320,7 @@ the rest of the string to another specialized `RemoveFromCommandParser`. (curren
 Using alternative 2 is better  as it provides better abstraction as the details of the 2 different types of `RemoveFromCommand` will be hidden away, hence it is more in line with OOP principles.
 There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
 
-
-
-
 // end::removefrom[]
-
-
 
 === Find Employee/Project/Skill feature
 ==== Current Implementation
