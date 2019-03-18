@@ -236,6 +236,38 @@ This section describes some noteworthy details on how certain features are imple
 === Removing employee from project
 image::remove_employee_from_sequence.png[width="1000"]
 
+=== Find Employee/Project/Skill feature
+==== Current Implementation
+For the current `find` feature, there are 3 main commands that the user can execute:
+
+    1. `find employee [keywords]` - display employees with name containing keywords
+    2. `find project [keywords]` - display projects with name containing keywords
+    3. `find skill [keywords]` - display employees who has skills matching the keywords
+
+The `FindCommandParser` differentiate these 3 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill).
+
+The following sequence diagram shows how the `find employee` command works:
+
+image::findcommand_sequence_diagram.png[width="1000"]
+
+Usage Scenario example for `find employee`:
+
+1. User executes `find employee John` to look for employees whose names contains the word 'John'.
+2. `PocketProjectParser` will parse and identify the command as a `FindCommand` and pass on the argument `employee John` to `FindCommandParser`.
+3.  `FindCommandParser` identify the command based on the `COMMAND_KEYWORD` employee.
+4. `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist and the `filteredEmployees` list which is the list displayed on the ui is updated.
+
+The working mechanism for `find project` is similar to `find employee`. Instead of updating the `filteredEmployees`, `filteredProjects` is updated instead to display the list of projects with name consisting the keywords.
+
+For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
+==== Design Consideration
+===== Aspect: How `find` command is parsed
+Alternative 1: Have a nested `FindCommandParser` (current implementation)
+
+Alternative 2: Let `PocketProjectParser` handle parsing of all the `find` commands
+
+Using Alternative 1 is better as it provides better abstraction as the details of the 3 different commands will be hidden away. Hence it is more in line with OOP principles. There will also be less clutter in `FindCommandParser` as there are already a lot of other commands being parsed.
+
 // skill::undoredo[]
 === Undo/Redo feature
 ==== Current Implementation

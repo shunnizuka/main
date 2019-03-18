@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.PocketProject;
 import seedu.address.model.project.Project;
 
 /**
@@ -59,10 +59,10 @@ public class TypicalProjects {
     private TypicalProjects() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical projects.
+     * Returns an {@code PocketProject} with all the typical projects.
      */
-    public static AddressBook getTypicalAddressBookWithProjects() {
-        AddressBook ab = new AddressBook();
+    public static PocketProject getTypicalPocketProjectWithProjects() {
+        PocketProject ab = new PocketProject();
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);
         }
@@ -70,9 +70,9 @@ public class TypicalProjects {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical projects added to the given {@code AddressBook}.
+     * Returns an {@code PocketProject} with all the typical projects added to the given {@code PocketProject}.
      */
-    public static AddressBook addTypicalProjects(AddressBook ab) {
+    public static PocketProject addTypicalProjects(PocketProject ab) {
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);
         }

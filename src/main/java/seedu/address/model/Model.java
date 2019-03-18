@@ -42,47 +42,47 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' pocket project file path.
      */
-    Path getAddressBookFilePath();
+    Path getPocketProjectFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' pocket project file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPocketProjectFilePath(Path pocketProjectFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces pocket project data with the data in {@code pocketProject}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPocketProject(ReadOnlyPocketProject pocketProject);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the PocketProject */
+    ReadOnlyPocketProject getPocketProject();
 
 
     //----------------Methods related to employees ----------------------------------------------------------
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if a employee with the same identity as {@code employee} exists in the pocket project.
      */
     boolean hasEmployee(Employee employee);
 
     /**
      * Deletes the given employee.
-     * The employee must exist in the address book.
+     * The employee must exist in the pocket project.
      */
     void deleteEmployee(Employee target);
 
     /**
      * Adds the given employee.
-     * {@code employee} must not already exist in the address book.
+     * {@code employee} must not already exist in the pocket project.
      */
     void addEmployee(Employee employee);
 
     /**
      * Replaces the given employee {@code target} with {@code editedEmployee}.
-     * {@code target} must exist in the address book.
-     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the address
-     * book.
+     * {@code target} must exist in the pocket project.
+     * The employee identity of {@code editedEmployee} must not be the same as another existing employee in the pocket
+     * project.
      */
     void setEmployee(Employee target, Employee editedEmployee);
 
@@ -115,7 +115,7 @@ public interface Model {
 
     //------------- Methods related to projects ----------------------------------------------------------
     /**
-     * Returns true if a employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if a employee with the same identity as {@code employee} exists in the pocket project.
      */
     boolean hasProject(Project employee);
 
@@ -142,7 +142,7 @@ public interface Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedPocketProject}
      */
     ObservableList<Project> getProjectList();
 
@@ -165,9 +165,9 @@ public interface Model {
 
     /**
      * Replaces the given project {@code target} with {@code editedProject}.
-     * {@code target} must exist in the address book.
-     * The project name of {@code editedProject} must not be the same as another existing project in the address
-     * book.
+     * {@code target} must exist in the pocket project.
+     * The project name of {@code editedProject} must not be the same as another existing project in the pocket
+     * project.
      */
     void setProject(Project target, Project editedProject);
 
@@ -178,14 +178,14 @@ public interface Model {
 
     /**
      * Removes the {@code targetEmployee} from the {@code targetProject}.
-     * Both {@code targetProject} must exist in the address book and {@code targetEmployee} in the employee list of
+     * Both {@code targetProject} must exist in the pocket project and {@code targetEmployee} in the employee list of
      * {@code targetProject}.
      */
     void removeEmployeeFrom(Project targetProject, Employee targetEmployee);
 
     /**
      * Removes the {@code targetMilestone} from the {@code targetProject}.
-     * Both {@code targetProject} must exist in the address book and {@code targetMilestone} in the milestone list of
+     * Both {@code targetProject} must exist in the pocket project and {@code targetMilestone} in the milestone list of
      * {@code targetProject}.
      */
     void removeMilestoneFrom(Project targetProject, Milestone targetMilestone);
@@ -209,28 +209,28 @@ public interface Model {
     //-------------------------------------------------------------------------------------------
 
     /**
-     * Returns true if the model has previous address book states to restore.
+     * Returns true if the model has previous pocket project states to restore.
      */
-    boolean canUndoAddressBook();
+    boolean canUndoPocketProject();
 
     /**
-     * Returns true if the model has undone address book states to restore.
+     * Returns true if the model has undone pocket project states to restore.
      */
-    boolean canRedoAddressBook();
+    boolean canRedoPocketProject();
 
     /**
-     * Restores the model's address book to its previous state.
+     * Restores the model's pocket project to its previous state.
      */
-    void undoAddressBook();
+    void undoPocketProject();
 
     /**
-     * Restores the model's address book to its previously undone state.
+     * Restores the model's pocket project to its previously undone state.
      */
-    void redoAddressBook();
+    void redoPocketProject();
 
     /**
-     * Saves the current address book state for undo/redo.
+     * Saves the current pocket project state for undo/redo.
      */
-    void commitAddressBook();
+    void commitPocketProject();
 
 }
