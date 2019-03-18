@@ -233,8 +233,56 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-=== Removing employee from project
-image::remove_employee_from_sequence.png[width="1000"]
+// skill::removefrom[]
+=== Remove employee/milestone from projects feature
+==== Current Implementation
+
+The removing of employee or milestone from projects is facilitated by the model component of the PocketProject.
+This feature currently supports these two commands:
+
+* `removefrom [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of employees in the project named `[project name]`.
+* `removefrom [project name] milestone [milestone index]` -- removes the milestone at index `[milestone index]` in the list of milestones in the project named `[project name]`.
+
+
+These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(Project, Employee)` and `Model#removeMilestoneFrom(Project, Milestone)`.
+The methods does not take in indices as arguments since the corresponding Employee or Milestone object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`
+or `RemoveMilestoneFromCommand#execute()`
+before the methods of `Model` are called.
+The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone is similar:
+
+image::remove_employee_from_sequence_diagram.png[width="1000"]
+
+Given below is an example usage scenario and how the removal of employee/milestone feature behaves at each step.
+
+Step 1. The user enters the command `view project Apollo'. The app displays the list of employees and milestones in the project named "Apollo" by executing the `view` command.
+
+Step 2. The user enters `removefrom Apollo employee 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `RemoveFromCommand` (which constitutes of `RemoveEmployeeFromCommand`
+and `RemoveMilestoneFromCommand` by the `removefrom` keyword and passes the rest of the string to the `RemoveFromCommandParser` to identify which type of `RemoveFromCommand` is being executed and what are the arguments.
+The `RemoveFromCommandParser` then creates command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to remove the corresponding objects.
+
+Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
+
+[NOTE]
+The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+
+==== Design Considerations
+
+===== Aspect: How the command string (e.g. `removefrom Apollo employee 1`) is parsed
+
+Alternative 1: Let `PocketProjectParser` handle the whole string and construct the command.
+
+Alternative 2: Having 2 parsing stages where the `PocketProjectParser` identify that the command string is trying to execute a `RemoveFromCommand` from the `removefrom` key word, then passes
+the rest of the string to another specialized `RemoveFromCommandParser`. (current implementation)
+
+Using alternative 2 is better  as it provides better abstraction as the details of the 2 different types of `RemoveFromCommand` will be hidden away, hence it is more in line with OOP principles.
+There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
+
+
+
+
+// end::removefrom[]
+
+
 
 === Find Employee/Project/Skill feature
 ==== Current Implementation
@@ -260,7 +308,9 @@ Usage Scenario example for `find employee`:
 The working mechanism for `find project` is similar to `find employee`. Instead of updating the `filteredEmployees`, `filteredProjects` is updated instead to display the list of projects with name consisting the keywords.
 
 For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
-==== Design Consideration
+
+==== Design Considerations
+
 ===== Aspect: How `find` command is parsed
 Alternative 1: Have a nested `FindCommandParser` (current implementation)
 
