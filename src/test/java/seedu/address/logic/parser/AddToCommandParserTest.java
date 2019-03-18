@@ -1,5 +1,10 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeToCommand;
@@ -7,11 +12,6 @@ import seedu.address.logic.commands.AddMilestoneToCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
-
-import org.junit.Test;
-
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class AddToCommandParserTest {
 
@@ -57,25 +57,24 @@ public class AddToCommandParserTest {
     @Test
     public void parse_missingArgs_failure() {
 
-    //missing project name
-    assertParseFailure(parser, "employee 1",
+        //missing project name
+        assertParseFailure(parser, "employee 1",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddToCommand.MESSAGE_USAGE));
 
-    //missing keyword
-    assertParseFailure(parser, "Project Apollo 1",
+        //missing keyword
+        assertParseFailure(parser, "Project Apollo 1",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddToCommand.MESSAGE_USAGE));
 
-    //missing employee index
-    assertParseFailure(parser, "Project Apollo employee",
+        //missing employee index
+        assertParseFailure(parser, "Project Apollo employee",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddToCommand.MESSAGE_USAGE));
 
-    //missing date
-    assertParseFailure(parser, "Project Apollo milestone Completed",
+        //missing date
+        assertParseFailure(parser, "Project Apollo milestone Completed",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddMilestoneToCommand.MESSAGE_USAGE));
 
-    //empty missing description
-    assertParseFailure(parser, "Project Apollo milestone 23/04/1996",
+        //empty missing description
+        assertParseFailure(parser, "Project Apollo milestone 23/04/1996",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddMilestoneToCommand.MESSAGE_USAGE));
-
     }
 }

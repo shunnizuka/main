@@ -1,5 +1,12 @@
 package seedu.address.logic.commands;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
+import org.junit.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
@@ -11,12 +18,6 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalProjects;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 /**
  * Contains unit tests for
@@ -53,18 +54,17 @@ public class AddMilestoneToCommandTest {
 
     @Test
     public void equals() {
-        AddMilestoneToCommand addMilestoneToCommandOne = new AddMilestoneToCommand
-            (TypicalProjects.PROJECT_ALICE.getProjectName(), new Milestone("Completed", "22/05/2019"));
-        AddMilestoneToCommand addMilestoneToCommandTwo = new AddMilestoneToCommand
-                (TypicalProjects.PROJECT_BENSON.getProjectName(), new Milestone("Completed",
-                    "30/11/2019"));
+        AddMilestoneToCommand addMilestoneToCommandOne = new AddMilestoneToCommand(TypicalProjects.
+            PROJECT_ALICE.getProjectName(), new Milestone("Completed", "22/05/2019"));
+        AddMilestoneToCommand addMilestoneToCommandTwo = new AddMilestoneToCommand(TypicalProjects.
+            PROJECT_BENSON.getProjectName(), new Milestone("Completed", "30/11/2019"));
 
         // same object -> returns true
         assertTrue(addMilestoneToCommandOne.equals(addMilestoneToCommandOne));
 
         // same values -> returns true
-        AddMilestoneToCommand addMilestoneToCommandOneCopy = new AddMilestoneToCommand
-            ((TypicalProjects.PROJECT_ALICE.getProjectName()), new Milestone("Completed", "22/05/2019"));
+        AddMilestoneToCommand addMilestoneToCommandOneCopy = new AddMilestoneToCommand((TypicalProjects.
+            PROJECT_ALICE.getProjectName()), new Milestone("Completed", "22/05/2019"));
         assertTrue(addMilestoneToCommandOne.equals(addMilestoneToCommandOneCopy));
 
         // different types -> returns false
@@ -77,15 +77,13 @@ public class AddMilestoneToCommandTest {
         assertFalse(addMilestoneToCommandOne.equals(addMilestoneToCommandTwo));
 
         // different dates -> returns false
-        AddMilestoneToCommand addMilestoneToCommandThree = new AddMilestoneToCommand
-                (TypicalProjects.PROJECT_ALICE.getProjectName(), new Milestone("Completed",
-                    "23/05/2019"));
+        AddMilestoneToCommand addMilestoneToCommandThree = new AddMilestoneToCommand(TypicalProjects.
+            PROJECT_ALICE.getProjectName(), new Milestone("Completed", "23/05/2019"));
         assertFalse(addMilestoneToCommandOne.equals(addMilestoneToCommandThree));
 
         //different description -> returns false
-        AddMilestoneToCommand addMilestoneToCommandFour = new AddMilestoneToCommand
-                (TypicalProjects.PROJECT_ALICE.getProjectName(), new Milestone("Completed all",
-                    "22/05/2019"));
+        AddMilestoneToCommand addMilestoneToCommandFour = new AddMilestoneToCommand(TypicalProjects.
+            PROJECT_ALICE.getProjectName(), new Milestone("Completed all", "22/05/2019"));
         assertFalse(addMilestoneToCommandOne.equals(addMilestoneToCommandFour));
     }
 

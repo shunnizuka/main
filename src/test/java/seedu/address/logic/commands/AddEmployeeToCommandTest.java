@@ -1,26 +1,23 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.CommandHistory;
-
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-
-import seedu.address.model.UserPrefs;
-import seedu.address.model.employee.Employee;
-
-import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectName;
-import seedu.address.testutil.TestUtil;
-import seedu.address.testutil.TypicalProjects;
-
-import org.junit.Test;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
+import org.junit.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.CommandHistory;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
+import seedu.address.testutil.TestUtil;
+import seedu.address.testutil.TypicalProjects;
 
 
 /**
