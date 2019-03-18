@@ -13,7 +13,7 @@ ifdef::env-github[]
 :warning-caption: :warning:
 :experimental:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/cs2103-ay1819s2-w10-2/main
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
@@ -108,9 +108,9 @@ Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> docume
 
 ==== Updating documentation to match your fork
 
-After forking the repo, the documentation will still have the SE-EDU branding and refer to the `se-edu/addressbook-level4` repo.
+After forking the repo, the documentation will still have the SE-EDU branding and refer to the `se-edu/pocketproject` repo.
 
-If you plan to develop this fork as a separate product (i.e. instead of contributing to `se-edu/addressbook-level4`), you should do the following:
+If you plan to develop this fork as a separate product (i.e. instead of contributing to `se-edu/pocketproject`), you should do the following:
 
 . Configure the <<Docs-SiteWideDocSettings, site-wide documentation settings>> in link:{repoURL}/build.gradle[`build.gradle`], such as the `site-name`, to suit your own project.
 
@@ -214,7 +214,7 @@ image::LogicClassDiagram.png[width="800"]
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
+.  `Logic` uses the `PocketProjectParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a employee).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -236,12 +236,12 @@ image::ModelClassDiagram.png[width="800"]
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
+* stores the Pocket Project data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 [NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
+As a more OOP model, we can store a `Tag` list in `Pocket Project`, which `Person` can reference. This would allow `Pocket Project` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
  +
 image:ModelClassBetterOopDiagram.png[width="800"]
 
@@ -256,7 +256,7 @@ image::StorageClassDiagram.png[width="800"]
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save the Pocket Project data in json format and read it back.
 
 [[Design-Commons]]
 === Common classes
@@ -356,23 +356,23 @@ Using Alternative 1 is better as it provides better abstraction as the details o
 === Undo/Redo feature
 ==== Current Implementation
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
+The undo/redo mechanism is facilitated by `VersionedPocketProject`.
+It extends `PocketProject` with an undo/redo history, stored internally as an `pocketProjectStateList` and `currentStatePointer`.
 Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
+* `VersionedPocketProject#commit()` -- Saves the current pocket project state in its history.
+* `VersionedPocketProject#undo()` -- Restores the previous pocket project state from its history.
+* `VersionedPocketProject#redo()` -- Restores a previously undone pocket project state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitPocketProject()`, `Model#undoPocketProject()` and `Model#redoPocketProject()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedPocketProject` will be initialized with the initial pocket project state, and the `currentStatePointer` pointing to that single pocket project state.
 
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
-Step 2. The user executes `delete 5` command to delete the 5th employee in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th employee in the pocket project. The `delete` command calls `Model#commitPocketProject()`, causing the modified state of the pocket project after the `delete 5` command executes to be saved in the `pocketProjectStateList`, and the `currentStatePointer` is shifted to the newly inserted pocket project state.
 
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
