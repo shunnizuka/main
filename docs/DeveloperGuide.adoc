@@ -309,7 +309,7 @@ The working mechanism for `find project` is similar to `find employee`. Instead 
 
 For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
 
-==== Design Consideration
+==== Design Considerations
 
 ===== Aspect: How `find` command is parsed
 Alternative 1: Have a nested `FindCommandParser` (current implementation)
