@@ -272,8 +272,30 @@ This section describes some noteworthy details on how certain features are imple
 ==== Current Implementation
 
 This feature focuses on the adding of employees or milestones to a selected project and is mainly facilitated
-by the model component of the PocketProject application.
+by the model component of the PocketProject application. This feature supports two main commands:
 
+* `addto [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of all employees in the Pocket Project application.
+* `addto [project name] milestone [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
+
+These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)` and `Model#addMilestoneTo(Project, Milestone)`.
+These two methods only take in the project and employee/milestone as arguments as the correct Employee/Milestone object would be located by
+`AddEmployeeToCommand#excute()` or `AddMilestoneToCommand#execute()` before the methods of `Model` are called.
+
+Given below is an example usage scenario and how the addition of employee/milestone to a project feature behaves at each step.
+
+`AddEmployeeTo Command`
+
+Step 1. The user enters the command `list employees'. The app displays the list of employees in the Pocket Project by executing the `list` command.
+
+Step 2. The user enters `addto Apollo employee 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `AddToCommand`
+by the `addto` keyword and passes the rest of the string to the `AddToCommandParser` to identify which type of `AddToCommand` is being executed and what are the arguments.
+The `AddToCommandParser` then creates command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding object.
+
+
+Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
+
+[NOTE]
+The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
 
 
 // skill::removefrom[]
