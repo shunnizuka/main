@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= PocketProject - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -13,9 +13,43 @@ ifdef::env-github[]
 :warning-caption: :warning:
 :experimental:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/cs2103-ay1819s2-w10-2/main
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+
+== Introduction
+
+PocketProject is primarily an application for software engineering project managers who are currently in-charge of
+a team of large employees and many projects. This application employs the use of a Command Line Interface(CLI) to easily
+navigate through the application which contributes to the efficiency and user-friendliness of the end product.
+This application allows managers to keep track of all the employees and their related background information such as their
+GitHub account username and relevant skills. Additionally, it also helps to keep track of all the projects that the manager
+is currently involved with and key details of the project such the client, deadline and milestones can also be stored.
+Through the combination of the two main components, the application allows the storing and viewing of all the employees
+working on particular project and all the projects currently under a single employee among other functionalities.
+
+== Legends
+The following section details and previews a few legends that will
+be used throughout the user guide. These legends are used to represent
+special information such as tips and warnings.
+
+
+|===
+|Legend |Meaning
+
+|image:ug-lightbulb.png[width="50"]
+|The light bulb icon will be used to indicate any useful tips or shortcuts
+that users can take note of while using the PocketProject application.
+
+|image:ug-exclamation.png[width="50"]
+|The exclamation mark icon will be used to indicate any warnings that users
+ can take note of while using the PocketProject application.
+
+|image:ug-smart.png[width="60"]
+|The graduation cap icon will be used to indicate any advanced usages or
+ extra technical information about how a particular command works should
+ users be interested to know.
+|===
 
 == Setting up
 
@@ -74,9 +108,9 @@ Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> docume
 
 ==== Updating documentation to match your fork
 
-After forking the repo, the documentation will still have the SE-EDU branding and refer to the `se-edu/addressbook-level4` repo.
+After forking the repo, the documentation will still have the SE-EDU branding and refer to the `se-edu/pocketproject` repo.
 
-If you plan to develop this fork as a separate product (i.e. instead of contributing to `se-edu/addressbook-level4`), you should do the following:
+If you plan to develop this fork as a separate product (i.e. instead of contributing to `se-edu/pocketproject`), you should do the following:
 
 . Configure the <<Docs-SiteWideDocSettings, site-wide documentation settings>> in link:{repoURL}/build.gradle[`build.gradle`], such as the `site-name`, to suit your own project.
 
@@ -180,7 +214,7 @@ image::LogicClassDiagram.png[width="800"]
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
+.  `Logic` uses the `PocketProjectParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a employee).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -202,12 +236,12 @@ image::ModelClassDiagram.png[width="800"]
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
+* stores the Pocket Project data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 [NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
+As a more OOP model, we can store a `Tag` list in `Pocket Project`, which `Person` can reference. This would allow `Pocket Project` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
  +
 image:ModelClassBetterOopDiagram.png[width="800"]
 
@@ -222,7 +256,7 @@ image::StorageClassDiagram.png[width="800"]
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save the Pocket Project data in json format and read it back.
 
 [[Design-Commons]]
 === Common classes
@@ -232,6 +266,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+// skill::addTo[]
+=== Add employee/milestone to projects feature
+==== Current Implementation
+
+This feature focuses on the adding of employees or milestones to a selected project and is mainly facilitated
+by the model component of the PocketProject application. This feature supports two main commands:
+
+* `addto [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of all employees in the Pocket Project application.
+* `addto [project name] milestone [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
+
+These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)` and `Model#addMilestoneTo(Project, Milestone)`.
+These two methods only take in the project and employee/milestone as arguments as the correct Employee/Milestone object would be located by
+`AddEmployeeToCommand#excute()` or `AddMilestoneToCommand#execute()` before the methods of `Model` are called.
+
+Given below is an example usage scenario and how the addition of employee/milestone to a project feature behaves at each step.
+
+`AddEmployeeTo Command`
+
+Step 1. The user enters the command `list employees'. The app displays the list of employees in the Pocket Project by executing the `list` command.
+
+Step 2. The user enters `addto Apollo employee 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `AddToCommand`
+by the `addto` keyword and passes the rest of the string to the `AddToCommandParser` to identify which type of `AddToCommand` is being executed and what are the arguments.
+The `AddToCommandParser` then creates command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding object.
+
+`AddMilestoneTo Command`
+
+Step 1. The user enters the command `addto Apollo milestone [milestone details]'. The rest of the execution process is
+similar to Step 2 of the `AddEmployeeTo Command` mentioned above. Only the object added is decided between an employee or a
+milestone depending on the user input.
+
+image:ug-lightbulb.png[width="50"]
+Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` given must refer to some existing employee. Also,
+the milestone added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
+
+==== Future Planned Implementations
+
+The following additional features are scheduled to be implemented in future version.
+
+1. Add an alias to to the addto commands so that it is more user-friendly for users of this application. Users
+can key in the two above mentioned commands by replacing `employee` with `e` and `milestone` with `m`. The commands can be
+input as such:
+
+* `addto [project name] e [employee index]` -- removes the employee at index `[employee index]` in the list of all employees in the Pocket Project application.
+* `addto [project name] m [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
+
+The commands will be processed in the same way without any other changes.
+
+// end::addto[]
 
 // skill::removefrom[]
 === Remove employee/milestone from projects feature
@@ -262,8 +345,8 @@ The `RemoveFromCommandParser` then creates command object and passes it to the `
 
 Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
 
-[NOTE]
-The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+image:ug-lightbulb.png[width="50"]
+Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
 
 ==== Design Considerations
 
@@ -277,12 +360,7 @@ the rest of the string to another specialized `RemoveFromCommandParser`. (curren
 Using alternative 2 is better  as it provides better abstraction as the details of the 2 different types of `RemoveFromCommand` will be hidden away, hence it is more in line with OOP principles.
 There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
 
-
-
-
 // end::removefrom[]
-
-
 
 === Find Employee/Project/Skill feature
 ==== Current Implementation
@@ -322,32 +400,32 @@ Using Alternative 1 is better as it provides better abstraction as the details o
 === Undo/Redo feature
 ==== Current Implementation
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
+The undo/redo mechanism is facilitated by `VersionedPocketProject`.
+It extends `PocketProject` with an undo/redo history, stored internally as an `pocketProjectStateList` and `currentStatePointer`.
 Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
+* `VersionedPocketProject#commit()` -- Saves the current pocket project state in its history.
+* `VersionedPocketProject#undo()` -- Restores the previous pocket project state from its history.
+* `VersionedPocketProject#redo()` -- Restores a previously undone pocket project state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitPocketProject()`, `Model#undoPocketProject()` and `Model#redoPocketProject()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedPocketProject` will be initialized with the initial pocket project state, and the `currentStatePointer` pointing to that single pocket project state.
 
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
-Step 2. The user executes `delete 5` command to delete the 5th employee in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th employee in the pocket project. The `delete` command calls `Model#commitPocketProject()`, causing the modified state of the pocket project after the `delete 5` command executes to be saved in the `pocketProjectStateList`, and the `currentStatePointer` is shifted to the newly inserted pocket project state.
 
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
-Step 3. The user executes `add n/David ...` to add a new employee. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David ...` to add a new employee. The `add` command also calls `Model#commitPocketProject()`, causing another modified pocket project state to be saved into the `pocketProjectStateList`.
 
 image::UndoRedoNewCommand2StateListDiagram.png[width="800"]
 
 [NOTE]
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+If a command fails its execution, it will not call `Model#commitPocketProject()`, so the pocket project state will not be saved into the `pocketProjectStateList`.
 
 Step 4. The user now decides that adding the employee was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
