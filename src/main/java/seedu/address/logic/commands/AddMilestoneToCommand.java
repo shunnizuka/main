@@ -54,16 +54,18 @@ public class AddMilestoneToCommand extends AddToCommand {
         if (milestoneList.contains(milestoneToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
         }
-        milestoneList.add(milestoneToAdd);
+        targetProject.addMilestone(milestoneToAdd);
         model.commitPocketProject();
-        return new CommandResult(String.format(MESSAGE_ADD_MILESTONE_SUCCESS, milestoneToAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_MILESTONE_SUCCESS, milestoneToAdd,
+            targetProject.getProjectName()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddMilestoneToCommand // instanceof handles nulls
-                && targetProjectName.equals(((AddMilestoneToCommand) other).targetProjectName)); // state check
+                && targetProjectName.equals(((AddMilestoneToCommand) other).targetProjectName))
+                && milestoneToAdd.equals(((AddMilestoneToCommand) other).milestoneToAdd); // state check
     }
 
 

@@ -162,6 +162,7 @@ public class ModelManager implements Model {
         }
         return targetProject;
     }
+
     @Override
     public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
         versionedPocketProject.removeEmployeeFrom(targetProject, targetEmployee);
@@ -169,6 +170,14 @@ public class ModelManager implements Model {
     @Override
     public void removeMilestoneFrom(Project targetProject, Milestone targetMilestone) {
         versionedPocketProject.removeMilestoneFrom(targetProject, targetMilestone);
+    }
+    @Override
+    public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
+        versionedPocketProject.addEmployeeTo(targetProject, targetEmployee);
+    }
+    @Override
+    public void addMilestoneTo(Project targetProject, Milestone milestone) {
+        versionedPocketProject.addMilestoneTo(targetProject, milestone);
     }
 
 

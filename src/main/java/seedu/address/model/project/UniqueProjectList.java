@@ -126,6 +126,23 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
+     *  Adds the specified employee to the specified project. They must exist.
+     */
+    public void addEmployeeTo(Project project, Employee employee) {
+        requireAllNonNull(project, employee);
+        internalList.get(internalList.indexOf(project)).addEmployee(employee);
+    }
+
+    /**
+     *  Removes the specified milestone from the specified project. They must exist.
+     */
+    public void addMilestoneTo(Project project, Milestone milestone) {
+        requireAllNonNull(project, milestone);
+        internalList.get(internalList.indexOf(project)).addMilestone(milestone);
+    }
+
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Project> asUnmodifiableObservableList() {

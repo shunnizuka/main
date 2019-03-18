@@ -60,7 +60,7 @@ public class RemoveMilestoneFromCommandTest {
                 targetProject.getProjectName());
 
         assertCommandFailure(removeMilestoneFromCommand, model, commandHistory,
-                Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+                Messages.MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX);
     }
     @Test
     public void equals() {
