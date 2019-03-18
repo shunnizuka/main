@@ -291,8 +291,12 @@ Step 2. The user enters `addto Apollo employee 1`. The `LogicManager` passes the
 by the `addto` keyword and passes the rest of the string to the `AddToCommandParser` to identify which type of `AddToCommand` is being executed and what are the arguments.
 The `AddToCommandParser` then creates command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding object.
 
+`AddMilestoneTo Command`
 
-Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
+Step 1. The user enters the command `addto Apollo milestone [milestone details]'. The rest of the execution process is
+similar to Step 2 of the `AddEmployeeTo Command` mentioned above. Only the object added is decided between an employee or a
+milestone depending on the user input.
+
 
 [NOTE]
 The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
@@ -327,8 +331,8 @@ The `RemoveFromCommandParser` then creates command object and passes it to the `
 
 Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
 
-[NOTE]
-The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+image:ug-lightbulb.png[width="50"]
+Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
 
 ==== Design Considerations
 
