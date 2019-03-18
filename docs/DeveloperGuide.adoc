@@ -240,11 +240,11 @@ This section describes some noteworthy details on how certain features are imple
 The removing of employee or milestone from projects is facilitated by the model component of the PocketProject.
 This feature currently supports these two commands:
 
-* `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` -- removes the employee at index `EMPLOYEE_INDEX` in the list of employees in the project named `PROJECT_NAME`.
-* `removefrom PROJECT_NAME milestone MILESTONE_INDEX` -- removes the milestone at index `Milestone_INDEX` in the list of milestones in the project named `PROJECT_NAME`.
+* `removefrom [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of employees in the project named `[project name]`.
+* `removefrom [project name] milestone [milestone index]` -- removes the milestone at index `[milestone index]` in the list of milestones in the project named `[project name]`.
 
 
-These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(PROJECT_NAME, EMPLOYEE)` and `Model#removeMilestoneFrom(PROJECT_NAME, MILESTONE)`.
+These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(Project, Employee)` and `Model#removeMilestoneFrom(Project, Milestone)`.
 The methods does not take in indices as arguments since the corresponding Employee or Milestone object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`
 or `RemoveMilestoneFromCommand#execute()`
 before the methods of `Model` are called.
@@ -256,14 +256,14 @@ Given below is an example usage scenario and how the removal of employee/milesto
 
 Step 1. The user enters the command `view project Apollo'. The app displays the list of employees and milestones in the project named "Apollo" by executing the `view` command.
 
-Step 2. The user enters `removefrom Apollo employee 1'. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `RemoveFromCommand` (which constitutes of `RemoveEmployeeFromCommand`
+Step 2. The user enters `removefrom Apollo employee 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `RemoveFromCommand` (which constitutes of `RemoveEmployeeFromCommand`
 and `RemoveMilestoneFromCommand` by the `removefrom` keyword and passes the rest of the string to the `RemoveFromCommandParser` to identify which type of `RemoveFromCommand` is being executed and what are the arguments.
 The `RemoveFromCommandParser` then creates command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to remove the corresponding objects.
 
 Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
 
 [NOTE]
-The `PROJECT_NAME` entered must be valid and exists in the app. The indices given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
 
 ==== Design Considerations
 
@@ -274,7 +274,7 @@ Alternative 1: Let `PocketProjectParser` handle the whole string and construct t
 Alternative 2: Having 2 parsing stages where the `PocketProjectParser` identify that the command string is trying to execute a `RemoveFromCommand` from the `removefrom` key word, then passes
 the rest of the string to another specialized `RemoveFromCommandParser`. (current implementation)
 
-Using alternative 2 is better  as it provides better abstraction as the details of the 3 different commands will be hidden away, hence it is more in line with OOP principles.
+Using alternative 2 is better  as it provides better abstraction as the details of the 2 different types of `RemoveFromCommand` will be hidden away, hence it is more in line with OOP principles.
 There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
 
 
