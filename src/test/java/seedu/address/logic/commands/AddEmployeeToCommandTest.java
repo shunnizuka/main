@@ -29,7 +29,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
  */
 public class AddEmployeeToCommandTest {
 
-    private Model model = new ModelManager(TestUtil.typicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TestUtil.typicalPocketProject(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     //TODO
@@ -43,9 +43,9 @@ public class AddEmployeeToCommandTest {
         String expectedMessage = String.format(AddEmployeeToCommand.MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS,
                 targetEmployee, targetProject.getProjectName());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.addEmployeeTo(targetProject, targetEmployee);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(addEmployeeToCommand, model, commandHistory, expectedMessage, expectedModel);
     }

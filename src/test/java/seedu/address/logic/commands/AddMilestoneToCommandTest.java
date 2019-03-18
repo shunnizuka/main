@@ -24,7 +24,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
  */
 public class AddMilestoneToCommandTest {
 
-    private Model model = new ModelManager(TestUtil.typicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TestUtil.typicalPocketProject(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -36,9 +36,9 @@ public class AddMilestoneToCommandTest {
         String expectedMessage = String.format(AddMilestoneToCommand.MESSAGE_ADD_MILESTONE_SUCCESS,
                 milestone, targetProject.getProjectName());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.addMilestoneTo(targetProject, milestone);
-        expectedModel.commitAddressBook();
+        expectedModel.commitPocketProject();
 
         assertCommandSuccess(addMilestoneToCommand, model, commandHistory, expectedMessage, expectedModel);
     }

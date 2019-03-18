@@ -173,11 +173,11 @@ public class ModelManager implements Model {
     }
     @Override
     public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
-        versionedAddressBook.addEmployeeTo(targetProject, targetEmployee);
+        versionedPocketProject.addEmployeeTo(targetProject, targetEmployee);
     }
     @Override
     public void addMilestoneTo(Project targetProject, Milestone milestone) {
-        versionedAddressBook.addMilestoneTo(targetProject, milestone);
+        versionedPocketProject.addMilestoneTo(targetProject, milestone);
     }
 
 
