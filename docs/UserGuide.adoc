@@ -24,7 +24,7 @@ navigate through the application which contributes to the efficiency and user-fr
 This application allows managers to keep track of all the employees and their related background information such as their
 GitHub account username and relevant skills. Additionally, it also helps to keep track of all the projects that the manager
 is currently involved with and key details of the project such the client, deadline and milestones can also be stored.
-Through the combination of the two main componenets, the application allows the storing and viewing of all the employees
+Through the combination of the two main components, the application allows the storing and viewing of all the employees
 working on particular project and all the projects currently under a single employee among other functionalities.
 
 == Quick Start
@@ -62,7 +62,7 @@ special information such as tips and warnings.
 that users can take note of while using the PocketProject application.
 
 |image:ug-exclamation.png[width="50"]
-|The exclamation mark icon will be used to indicate any warning that users
+|The exclamation mark icon will be used to indicate any warnings that users
  can take note of while using the PocketProject application.
 
 |image:ug-smart.png[width="60"]

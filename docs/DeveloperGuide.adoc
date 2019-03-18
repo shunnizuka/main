@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= PocketProject - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -16,6 +16,40 @@ endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level4/tree/master
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+
+== Introduction
+
+PocketProject is primarily an application for software engineering project managers who are currently in-charge of
+a team of large employees and many projects. This application employs the use of a Command Line Interface(CLI) to easily
+navigate through the application which contributes to the efficiency and user-friendliness of the end product.
+This application allows managers to keep track of all the employees and their related background information such as their
+GitHub account username and relevant skills. Additionally, it also helps to keep track of all the projects that the manager
+is currently involved with and key details of the project such the client, deadline and milestones can also be stored.
+Through the combination of the two main components, the application allows the storing and viewing of all the employees
+working on particular project and all the projects currently under a single employee among other functionalities.
+
+== Legends
+The following section details and previews a few legends that will
+be used throughout the user guide. These legends are used to represent
+special information such as tips and warnings.
+
+
+|===
+|Legend |Meaning
+
+|image:ug-lightbulb.png[width="50"]
+|The light bulb icon will be used to indicate any useful tips or shortcuts
+that users can take note of while using the PocketProject application.
+
+|image:ug-exclamation.png[width="50"]
+|The exclamation mark icon will be used to indicate any warnings that users
+ can take note of while using the PocketProject application.
+
+|image:ug-smart.png[width="60"]
+|The graduation cap icon will be used to indicate any advanced usages or
+ extra technical information about how a particular command works should
+ users be interested to know.
+|===
 
 == Setting up
 
