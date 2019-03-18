@@ -246,6 +246,7 @@ This feature currently supports these two commands:
 
 These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(PROJECT_NAME, EMPLOYEE)` and `Model#removeMilestoneFrom(PROJECT_NAME, MILESTONE)`.
 The methods does not take in indices as arguments since the corresponding Employee or Milestone object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`
+or `RemoveMilestoneFromCommand#execute()`
 before the methods of `Model` are called.
 The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone is similar:
 
