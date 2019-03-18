@@ -297,10 +297,23 @@ Step 1. The user enters the command `addto Apollo milestone [milestone details]'
 similar to Step 2 of the `AddEmployeeTo Command` mentioned above. Only the object added is decided between an employee or a
 milestone depending on the user input.
 
-
 [NOTE]
 The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
 
+==== Future Planned Implementation
+
+The following additional features are scheduled to be implemented in future version.
+
+1. Add an alias to to the addto commands so that it is more user-friendly for users of this application. Users
+can key in the two above mentioned commands by replacing `employee` with `e` and `milestone` with `m`. The commands can be
+input as such:
+
+* `addto [project name] e [employee index]` -- removes the employee at index `[employee index]` in the list of all employees in the Pocket Project application.
+* `addto [project name] m [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
+
+The commands will be processed in the same way without any other changes.
+
+// end::addto[]
 
 // skill::removefrom[]
 === Remove employee/milestone from projects feature
@@ -331,8 +344,8 @@ The `RemoveFromCommandParser` then creates command object and passes it to the `
 
 Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
 
-image:ug-lightbulb.png[width="50"]
-Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+[NOTE]
+The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
 
 ==== Design Considerations
 
