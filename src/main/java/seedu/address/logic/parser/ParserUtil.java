@@ -52,7 +52,7 @@ public class ParserUtil {
         requireNonNull(event);
         String trimmedMilestone = event.trim();
         int position = trimmedMilestone.lastIndexOf(" ");
-        if((position > trimmedMilestone.length()) || (position < 0)) {
+        if ((position > trimmedMilestone.length()) || (position < 0)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddMilestoneToCommand.MESSAGE_USAGE));
         }
