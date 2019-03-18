@@ -244,7 +244,7 @@ This feature currently supports these two commands:
 * `removefrom PROJECT_NAME milestone MILESTONE_INDEX` -- removes the milestone at index `Milestone_INDEX` in the list of milestones in the project named `PROJECT_NAME`.
 
 
-These operations are exposed in the `Model` interface as `Model#removeEmployeeFrom(PROJECT_NAME, EMPLOYEE)` and `Model#removeMilestoneFrom(PROJECT_NAME, MILESTONE)`.
+These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(PROJECT_NAME, EMPLOYEE)` and `Model#removeMilestoneFrom(PROJECT_NAME, MILESTONE)`.
 The methods does not take in indices as arguments since the corresponding Employee or Milestone object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`
 before the methods of `Model` are called.
 The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone is similar:
