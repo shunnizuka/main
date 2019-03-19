@@ -120,7 +120,7 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color:  derive(#1F2833, -20%);
+    -fx-background-color:  derive(#1F2833, -23%);
 }
 
 .list-cell:filled:odd {
@@ -343,4 +343,9 @@
     -fx-focus-color: transparent;
     -fx-background-insets: 0, 1, 2;
     -fx-color: #fff;
+}
+
+#details-panel {
+    -fx-background-color: derive(#C2CAD0, -10%);
+
 }
