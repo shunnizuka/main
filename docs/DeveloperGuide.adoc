@@ -428,6 +428,42 @@ Alternative 2: Let `PocketProjectParser` handle parsing of all the `list` comman
 
 Using Alternative 1 is better as it provides better abstraction as the `listCommandParser` will handle all `list` commands. It also reduces the cluttering in the main `PocketProjectParser`.
 
+// skill::stats[]
+=== [Proposed] Stats feature
+==== Planned Implementation
+
+The displaying of statistics in Pocket Project will be facilitated by the model component. This feature is
+planned to support 1 main command:
+
+* `stats` -- Displays the total number of projects and the respective number of ongoing and completed projects
+
+The operation will be supported by the methods in the `Model` interface: `Model#getProjectList()` and `Model#getCompletedProjectList`.
+These two methods each will retrieve an unmodifiable list of ongoing projects and completed projects respectively.
+
+
+The following sequence diagram shows how the stats command will work:
+
+image::stats_sequence_diagram.png[width="1000"]
+
+Usage Scenario example for `stats`:
+
+1.	User executes `stats` to view project statistics in Pocket Project.
+2.	`PocketProjectParser` will parse and identify the command as a `StatsCommand` and returns a `StatsCommand`.
+3.	`LogicManager` then executes `StatsCommand`, calling the `Model#getProjectList()` and `Model#getCompletedProjectList()` methods
+ which return the list of ongoing and completed projects respectively.
+4.  `StatsCommand` then returns the total number of projects and the respective number of ongoing and completed projects.
+
+==== Design Considerations
+===== Aspect: How the number of projects is obtained.
+Alternative 1: Obtain the required project lists through `Model` and and get the size of the lists.
+
+Alternative 2: Let `UniqueProjectList` keep track of the number of projects and implement a `UniqueProjectList#getSize()` method which is called by `StatsCommand`.
+
+Using Alternative 1 is better as the Pocket Project statistics only need to be displayed when the user executes `stats`.
+Alternative 2 would require additional checks to ensure that there is live update of project statistics in `UniqueProjectList` every time a project is added, deleted or completed.
+
+
+// end::stats[]
 
 === Undo/Redo feature
 ==== Current Implementation
