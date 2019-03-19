@@ -397,6 +397,38 @@ Alternative 2: Let `PocketProjectParser` handle parsing of all the `find` comman
 Using Alternative 1 is better as it provides better abstraction as the details of the 3 different commands will be hidden away. Hence it is more in line with OOP principles. There will also be less clutter in `FindCommandParser` as there are already a lot of other commands being parsed.
 
 // skill::undoredo[]
+
+=== List Employee/Project feature
+==== Current implementation
+For the current list feature, there are 2 main commands that the user can execute:
+
+    1. `list employee` - displays all employees
+    2. `list project` - displays all projects
+
+The `ListCommandParser` will parse the user input based on the `COMMAND_KEYWORD` entered by the user, and then execute the appropriate command based on the keyword given.
+
+The following sequence diagram shows how the list employee command works:
+
+image::listcommand_sequence_diagram.png[width="1000"]
+
+Usage Scenario example for `list employee`:
+
+1.	User executes `list employee` to list all employees in PocketProject.
+2.	`PocketProjectParser` will parse and identify the command as a `ListCommand` and pass the argument employee to `ListCommandParser`.
+3.	`ListCommandParser` identifies the command to execute based on the `COMMAND_KEYWORD` and returns a `ListEmployeeCommand`.
+4.	`LogicManager` then executes `ListEmployeeCommand`. All the employees in PocketProject will be returned by the `filteredEmployees` list.
+
+The mechanism for `list project` is similar to `list employee`, apart from the fact that a `ListProjectCommand` is executed instead.
+
+==== Design Considerations
+===== Aspect: How `list command` is parsed
+Alternative 1: Have a separate command parser for all `list` commands (current implementation)
+
+Alternative 2: Let `PocketProjectParser` handle parsing of all the `list` commands
+
+Using Alternative 1 is better as it provides better abstraction as the `listCommandParser` will handle all `list` commands. It also reduces the cluttering in the main `PocketProjectParser`.
+
+
 === Undo/Redo feature
 ==== Current Implementation
 
