@@ -1,4 +1,4 @@
-= PocketProject - User Guide
+= Pocket Project - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
@@ -12,9 +12,11 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4
+:repoURL: https://github.com/cs2103-ay1819s2-w10-2/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+Authors: `Daryl Tan, Jeff Gan, Jothinandan Pillay, Lin Dehui, Shune Lei`
+
+Since: `August 2018` License: `MIT`
 
 == Introduction
 
@@ -30,8 +32,8 @@ working on particular project and all the projects currently under a single empl
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `pocketproject.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for your Pocket Project.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -42,7 +44,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 * *`list employee`* : lists all employees
 * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named
-`John Doe` to the Address Book.
+`John Doe` to the Pocket Project.
 * **`delete`**`3` : deletes the 3rd employee shown in the current list
 * *`exit`* : exits the app
 
