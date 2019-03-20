@@ -397,19 +397,22 @@ Project Apollo has been finished and delivered to client.
 
 === Sort the projects by name or deadline : `sort`
 
-Returns a sorted list of projects by the sort key value. +
-Available keys: name, deadline +
-Name: returns list in lexicographical order +
-Deadline: returns list by earliest deadline first. +
+Returns a sorted list of projects by the sort key value.
+Available keys: name, deadline.
+
+Name: returns list in lexicographic order +
+Deadline: returns list by earliest deadline first.
+
 Format: `sort KEY_VALUE`
 
 Examples:
 
 `sort name` +
-Projects have been sorted by name.
+List of project have been sorted by name.
 
 `sort deadline` +
-Projects have been sorted by impending deadline.
+List of projects have been sorted by deadline with the
+earliest deadline displayed at the top of the list.
 
 === Display statistics regarding all the projects : `stats`
 
@@ -474,6 +477,7 @@ _{Commands related to managing of project will be added soon.}_
 alphabet (A-Z).
 . `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
 program in the form of successive lines of text.
+. `lexicographic` ordering of words based on how it would appear in a dictionary.
 . `milestone` a key event that is completed during the entire timeline
 of the project.
 . `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
