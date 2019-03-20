@@ -167,12 +167,15 @@ image:ug-lightbulb.png[width="50"]
 Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
-=== Listing all employees or projects : `list`
+=== Listing all employees or projects in application : `list`
+==== List all employees in the application: `list employees`
+Shows a list of all employees in the employee list.
 
-Shows a list of all employees in the employee list. +
 Format: `list employees`
 
-Shows a list of all projects in the project list. +
+==== List all projects in the application: `list projects`
+Shows a list of all projects in the project list.
+
 Format: `list projects`
 
 === Editing an employee : `edit`
@@ -406,9 +409,11 @@ _{Commands related to managing of project will be added soon.}_
 . `alphanumeric` only contains either digits (0-9) or letters of the English
 alphabet (A-Z).
 . `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
-program in the form of successive lines of text
+program in the form of successive lines of text.
 . `milestone` a key event that is completed during the entire timeline
 of the project.
+. `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
+. `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
 
 == Command Summary
 
