@@ -120,7 +120,7 @@ Examples:
 * `add project n/Xtreme c/John Smith d/13/04/2020`
 
 image:ug-lightbulb.png[width="50"]
-Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
 === Delete an employee or a project from the application `delete`
@@ -164,7 +164,7 @@ Examples:
 Deletes project "Apollo" from project list.
 
 image:ug-lightbulb.png[width="50"]
-Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
 === Listing all employees or projects in application : `list`
@@ -178,30 +178,37 @@ Shows a list of all projects in the project list.
 
 Format: `list projects`
 
-=== Editing an employee : `edit`
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+while keying in a command into the CLI.
 
-Edits an existing employee. +
+=== Editing an employee in the application : `edit`
+
+Edits an existing employee.
+
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SKILL]...`
 
-****
-* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
-* You can remove all the person's skills by typing `s/` without specifying any skills after it.
-* When editing skills, the existing skills of the employee will be removed i.e adding of skills is not cumulative.
-* You can remove all the employee's skills by typing `t/` without specifying any skills after it.
-****
+image:ug-notepadpencil.png[width="40"]
+Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
+
+image:ug-notepadpencil.png[width="40"]
+At least one of the optional fields must be provided and all existing values will be updated with the input values.
+When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
 
 Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` +
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower s/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing skills.
-Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing skills.
+* `edit 2 n/Betsy Crower s/Java` +
+Edits the name of the 2nd person to be `Betsy Crower` and sets Java as the only skill.
+* `edit 2 n/Betsy Crower s/C++ s/HTML` +
+Edits the name of the 2nd employee to be `Betsy Crower` and sets C++ and HTML as the skills.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer*.
+
+image:ug-lightbulb.png[width="50"]
+You can remove all the person's skills by typing `s/` without specifying any skills after it.
 
 === Locating employees, projects or skills by name: `find`
 
@@ -401,7 +408,8 @@ _{Commands related to managing of project will be added soon.}_
 
 == FAQ
 
-*Q*: How do I transfer my data to another Computer? +
+*Q*: How do I transfer my data to another Computer?
+
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
 
 == Glossary
