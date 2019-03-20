@@ -208,23 +208,31 @@ Examples:
 * `find skill java` +
 Returns a list of employees who has java skill.
 
+
 ****
+image:ug-lightbulb.png[width="50"]
+
 * The search is case insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+****
+
+****
+image:ug-exclamation.png[width="50"]
+
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* 
 ****
 
 An example usage scenario:
 
 For example, to delete Bernice Yu from the employee list, you can follow these steps:
 
-Step 1: `find Bernice` - to narrow down the list to all employees with name containing Bernice
+Step 1: `find employee Bernice` - to narrow down the list to all employees with name containing Bernice
 
 image::findEmployeeBernice.png[width="800"]
  
-Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find Bernice` command.
+Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
 
 === View the details of employees or projects or milestones : `view`
 
@@ -379,15 +387,28 @@ of the project.
 
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
+* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/TAG]...` +
 e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clear`
-* *Delete* : `delete INDEX` +
-e.g. `delete 3`
+* *Delete* : `delete COMMAND_KEYWORD INDEX` +
+e.g. `delete employee 3` `delete project 1`
+* *List* : `list COMMAND_KEYWORD` +
+e.g. `list employee` `list project`
 * *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *List* : `list`
+* *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
+e.g. `find employee Jake` `find project Apollo` `find skill Java`
+* *View*: +
+e.g.
+* *Addto*: +
+e.g.
+* *Removefrom*: +
+e.g.
+* *Complete* : +
+e.g.
+* *Sort*: +
+e.g.
+* *Stats*: +
+e.g.
+* *Exit*:  `exit`
 * *Help* : `help`
 
