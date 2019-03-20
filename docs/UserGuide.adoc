@@ -396,17 +396,17 @@ e.g. `edit employee 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
 e.g. `find employee Jake` `find project Apollo` `find skill Java`
 //are we using view or select?
-* *View*: + 
+* *View*: +
 e.g.
 * *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE` +
 e.g. `addto Apollo employee John Doe` `addto Apollo milestone "Completed UI for program" 23/11/2015`
 * *Removefrom*: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` `removefrom PROJECT_NAME milestone MS_INDEX` +
-e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1` 
+e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1`
 * *Complete* : `complete PROJECT_NAME` +
 e.g. `complete Apollo`
 * *Sort*: `sort COMMAND_KEYWORD` +
 e.g. `sort name` `sort deadline`
-* *Stats*: `stat` 
+* *Stats*: `stat`
 * *Exit*:  `exit`
 * *Help* : `help`
 
