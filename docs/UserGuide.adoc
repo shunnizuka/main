@@ -78,8 +78,8 @@ that users can take note of while using the PocketProject application.
 *Command Format*
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items in square brackets are optional e.g `n/NAME [s/Skill]` can be used as `n/John Doe s/Java` or as `n/John Doe`.
+* Items with `…`​ after them can be used multiple times including zero times e.g. `[s/Skill]...` can be used as `{nbsp}` (i.e. 0 times), `s/Java`, `s/Java s/HTML` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
@@ -175,16 +175,10 @@ Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing 
 
 === Locating employees, projects or skills by name: `find`
 
-Finds employees whose names contain any of the given keywords. +
-Format: `find employee KEYWORD [MORE_KEYWORDS]`
+There are 3 different commands that can be used to find entities in the PocketProject:
 
-****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-****
+1. Finds employees whose names contain any of the given keywords. +
+Format: `find employee KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
@@ -195,27 +189,42 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 * `find Betsy Tim John` +
 Returns any employee having names `Betsy`, `Tim`, or `John`
 
-Finds projects whose names contain any of the given keywords. +
+2. 
+Finds projects whose names contain any of the given keywords. + 
 Format: `find project KEYWORD [MORE_KEYWORDS]`
+
 
 Examples:
 
-`find project Apollo` +
+* `find project Apollo` +
 Returns a list of projects with names that contain Apollo
 
+3. 
 Finds employees with the chosen skill. +
 Format: `find skill KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-`find skill java` +
+* `find skill java` +
 Returns a list of employees who has java skill.
-* `list` +
-`delete 2` +
-Deletes the 2nd employee in the address book.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st employee in the results of the `find` command.
+
+****
+* The search is case insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+****
+
+An example usage scenario:
+
+For example, to delete Bernice Yu from the employee list, you can follow these steps:
+
+Step 1: `find Bernice` - to narrow down the list to all employees with name containing Bernice
+
+image::findEmployeeBernice.png[width="800"]
+ 
+Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find Bernice` command.
 
 === View the details of employees or projects or milestones : `view`
 
