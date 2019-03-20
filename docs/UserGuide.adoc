@@ -78,8 +78,8 @@ that users can take note of while using the PocketProject application.
 *Command Format*
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items in square brackets are optional e.g `n/NAME [s/Skill]` can be used as `n/John Doe s/Java` or as `n/John Doe`.
+* Items with `…`​ after them can be used multiple times including zero times e.g. `[s/Skill]...` can be used as `{nbsp}` (i.e. 0 times), `s/Java`, `s/Java s/HTML` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
@@ -175,16 +175,10 @@ Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing 
 
 === Locating employees, projects or skills by name: `find`
 
-Finds employees whose names contain any of the given keywords. +
-Format: `find employee KEYWORD [MORE_KEYWORDS]`
+There are 3 different commands that can be used to find entities in the PocketProject:
 
-****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-****
+1. Finds employees whose names contain any of the given keywords. +
+Format: `find employee KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
@@ -195,28 +189,49 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 * `find Betsy Tim John` +
 Returns any employee having names `Betsy`, `Tim`, or `John`
 
+2.
 Finds projects whose names contain any of the given keywords. +
 Format: `find project KEYWORD [MORE_KEYWORDS]`
 
+
 Examples:
 
-`find project Apollo` +
+* `find project Apollo` +
 Returns a list of projects with names that contain Apollo
 
+3.
 Finds employees with the chosen skill. +
 Format: `find skill KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-`find skill java` +
+* `find skill java` +
 Returns a list of employees who has java skill.
-* `list` +
-`delete 2` +
-Deletes the 2nd employee in the address book.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st employee in the results of the `find` command.
 
+
+****
+image:ug-lightbulb.png[width="50"]
+
+* The search is case insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+****
+
+****
+image:ug-exclamation.png[width="50"]
+
+* Only full words will be matched e.g. `Han` will not match `Hans`
+****
+
+An example usage scenario:
+
+For example, to delete Bernice Yu from the employee list, you can follow these steps:
+
+Step 1: `find employee Bernice` - to narrow down the list to all employees with name containing Bernice
+
+image::findEmployeeBernice.png[width="800"]
+
+Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
 === View the details of employees or projects or milestones : `view`
 
 Returns the list of milestones and employees in a project. +
@@ -370,15 +385,28 @@ of the project.
 
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clear`
-* *Delete* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *List* : `list`
+* *Add* `add employee n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/Skill]...` +
+e.g. `add employee n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 s/Java s/Python`
+* *Delete* : `delete COMMAND_KEYWORD INDEX` +
+e.g. `delete employee 3` `delete project 1`
+* *List* : `list COMMAND_KEYWORD` +
+e.g. `list employee` `list project`
+* *Edit* : `edit employee INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/Skill]...` +
+e.g. `edit employee 2 n/James Lee e/jameslee@example.com`
+* *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
+e.g. `find employee Jake` `find project Apollo` `find skill Java`
+//are we using view or select?
+* *View*: +
+e.g.
+* *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE` +
+e.g. `addto Apollo employee John Doe` `addto Apollo milestone "Completed UI for program" 23/11/2015`
+* *Removefrom*: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` `removefrom PROJECT_NAME milestone MS_INDEX` +
+e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1`
+* *Complete* : `complete PROJECT_NAME` +
+e.g. `complete Apollo`
+* *Sort*: `sort COMMAND_KEYWORD` +
+e.g. `sort name` `sort deadline`
+* *Stats*: `stat`
+* *Exit*:  `exit`
 * *Help* : `help`
 
