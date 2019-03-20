@@ -437,7 +437,7 @@ Format: `exit`
 
 === Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+Pocket Project data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
 // skill::dataencryption[]
@@ -480,11 +480,10 @@ e.g. `list employee` `list project`
 e.g. `edit employee 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
 e.g. `find employee Jake` `find project Apollo` `find skill Java`
-//are we using view or select?
-* *View*: +
-e.g.
+* *View* : `view employee EMPLOYEE_INDEX` , `view project PROJECT_NAME` +
+e.g. `view employee 3` `view project Apollo`
 * *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE` +
-e.g. `addto Apollo employee John Doe` `addto Apollo milestone "Completed UI for program" 23/11/2015`
+e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015`
 * *Removefrom*: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` `removefrom PROJECT_NAME milestone MS_INDEX` +
 e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1`
 * *Complete* : `complete PROJECT_NAME` +
