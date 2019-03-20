@@ -259,7 +259,7 @@ Milestone added to Project Apollo
 
 === Remove an employee or milestone from a project : `removefrom`
 
-Remove an employee from a project. +
+Removing an employee from a project: +
 Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
 
 Examples:
@@ -268,7 +268,7 @@ Examples:
 `removefrom Apollo employee 3` +
 Removes the employee at index 3 from Project Apollo.
 
-Removes a milestone from a project. +
+Removing a milestone from a project: +
 Format: `removefrom PROJECT_NAME milestone MS_INDEX`
 
 Examples:
