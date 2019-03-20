@@ -55,17 +55,20 @@ The following section details and previews a few legends that will
 be used throughout the user guide. These legends are used to represent
 special information such as tips and warnings.
 
-
 |===
 |Legend |Meaning
 
+|image:ug-notepadpencil.png[width="40"]
+|The note pad icon will be used to indicate any useful tips or things that users
+need to take note of while using the Pocket Project application.
+
 |image:ug-lightbulb.png[width="50"]
-|The light bulb icon will be used to indicate any useful tips or shortcuts
-that users can take note of while using the PocketProject application.
+|The light bulb icon will be used to indicate any shortcuts
+that users can use while using the Pocket Project application.
 
 |image:ug-exclamation.png[width="50"]
 |The exclamation mark icon will be used to indicate any warnings that users
- can take note of while using the PocketProject application.
+ can take note of while using the Pocket Project application.
 
 |image:ug-smart.png[width="60"]
 |The graduation cap icon will be used to indicate any advanced usages or
