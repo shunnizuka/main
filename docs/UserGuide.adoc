@@ -59,20 +59,20 @@ special information such as tips and warnings.
 |Legend |Meaning
 
 |image:ug-notepadpencil.png[width="40"]
-|The note pad icon will be used to indicate any useful tips or things that users
+|The note pad icon indicates any useful tips or things that users
 need to take note of while using the Pocket Project application.
 
 |image:ug-lightbulb.png[width="50"]
-|The light bulb icon will be used to indicate any shortcuts
+|The light bulb icon indicates any shortcuts
 that users can use while using the Pocket Project application.
 
 |image:ug-exclamation.png[width="50"]
-|The exclamation mark icon will be used to indicate any warnings that users
+|The exclamation mark icon indicates any warnings that users
  can take note of while using the Pocket Project application.
 
 |image:ug-smart.png[width="60"]
-|The graduation cap icon will be used to indicate any advanced usages or
- extra technical information about how a particular command works should
+|The graduation cap icon indicates any advanced usages or
+ extra technical information about how a particular command works should the
  users be interested to know.
 |===
 
@@ -85,7 +85,7 @@ that users can use while using the Pocket Project application.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [s/Skill]` can be used as `n/John Doe s/Java` or as `n/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[s/Skill]...` can be used as `{nbsp}` (i.e. 0 times), `s/Java`, `s/Java s/HTML` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, then  `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
 === Viewing help : `help`
@@ -94,27 +94,33 @@ Format: `help`
 
 === Adding an employee or project to the application: `add`
 
-Adds an employee to the list of employees. +
-Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SKILL]...`
+==== Adding an employee to the application: `add employee`
 
-image:ug-lightbulb.png[width="50"]
-Tip: An employee can have any number of skills (including 0).
+Adds an employee to the list of employees.
+
+Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SKILL]...`
 
 Examples:
 
 * `add employee n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add employee n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add employee n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 s/HTML`
 
+image:ug-notepadpencil.png[width="40"]
+An employee can have any number of skills (including 0).
 
-Adds a project to the list of projects. +
+==== Adding a project to the application: `add project`
+
+Adds a project to the list of projects.
+
 Format: `add project n/NAME d/DEADLINE c/CLIENT_NAME`
 
 Examples:
 
 * `add project n/Apollo d/12/12/2019 c/FairPrice`
+* `add project n/Xtreme c/John Smith d/13/04/2020`
 
 image:ug-lightbulb.png[width="50"]
-Shortcut: Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
 === Delete a project or an employee from the application `delete`
