@@ -233,7 +233,6 @@ Finds projects whose names contain any of the given keywords.
 
 Format: `find project KEYWORD [MORE_KEYWORDS]`
 
-
 Examples:
 
 * `find project Apollo` +
@@ -278,17 +277,12 @@ image::findEmployeeBernice.png[width="800"]
 
 Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
 
-=== View the details of employees or projects or milestones : `view`
+=== View the details of employees or projects : `view`
 
-Returns the list of milestones and employees in a project. +
-Format: `view project PROJECT_NAME`
+==== View details of an employee: `view employee`
 
-Examples:
+Returns a view of details of the chosen employee.
 
-`view project Apollo` +
-Displays details of the project named “Apollo”
-
-Returns a view of details of the chosen employee. +
 Format: `view employee EMPLOYEE_INDEX`
 
 Examples:
@@ -296,6 +290,20 @@ Examples:
 `list employees` +
 `view employee 3` +
 Displays details of the employee at index 3
+
+==== View details of a project: `view project`
+Returns the list of milestones and employees in a project.
+
+Format: `view project PROJECT_NAME`
+
+Examples:
+
+`view project Apollo` +
+Displays details (client, deadline, employees, milestones) of project “Apollo”.
+
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+while keying in a command into the CLI.
 
 === Add an employee or milestone to a project : `addto`
 
