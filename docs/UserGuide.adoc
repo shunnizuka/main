@@ -182,7 +182,7 @@ image:ug-lightbulb.png[width="50"]
 Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
-=== Editing an employee in the application : `edit`
+=== Edit an employee in the application : `edit`
 
 Edits an existing employee.
 
@@ -212,9 +212,10 @@ You can remove all the person's skills by typing `s/` without specifying any ski
 
 === Locating employees, projects or skills by name: `find`
 
-There are 3 different commands that can be used to find entities in the PocketProject:
+==== Find employees in the application: `find employee`
 
-1. Finds employees whose names contain any of the given keywords. +
+Finds employees whose names contain any of the given keywords.
+
 Format: `find employee KEYWORD [MORE_KEYWORDS]`
 
 Examples:
@@ -226,8 +227,10 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 * `find Betsy Tim John` +
 Returns any employee having names `Betsy`, `Tim`, or `John`
 
-2.
-Finds projects whose names contain any of the given keywords. +
+==== Find projects in the application: `find project`
+
+Finds projects whose names contain any of the given keywords.
+
 Format: `find project KEYWORD [MORE_KEYWORDS]`
 
 
@@ -236,31 +239,36 @@ Examples:
 * `find project Apollo` +
 Returns a list of projects with names that contain Apollo
 
-3.
-Finds employees with the chosen skill. +
+==== Find employees with skills: `find skill`
+Finds employees with the chosen skill.
+
 Format: `find skill KEYWORD [MORE_KEYWORDS]`
+
+image:ug-notepadpencil.png[width="40"]
+The search is case insensitive. e.g `hans` will match `Hans`
+
+image:ug-notepadpencil.png[width="40"]
+The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 
 Examples:
 
 * `find skill java` +
 Returns a list of employees who has java skill.
 
+* `find skill java C++`
+Returns a list of employees who have either java or C++ or both.
 
-****
-image:ug-lightbulb.png[width="50"]
+image:ug-notepadpencil.png[width="40"]
+Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-****
-
-****
 image:ug-exclamation.png[width="50"]
+Only full words will be matched e.g. `Han` will not match `Hans`
 
-* Only full words will be matched e.g. `Han` will not match `Hans`
-****
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee', 'p' as an alias for 'project', 's' as an alias for 'skills'
+while keying in a command into the CLI.
 
-An example usage scenario:
+==== Find Command Usage Scenario
 
 For example, to delete Bernice Yu from the employee list, you can follow these steps:
 
@@ -269,6 +277,7 @@ Step 1: `find employee Bernice` - to narrow down the list to all employees with 
 image::findEmployeeBernice.png[width="800"]
 
 Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
+
 === View the details of employees or projects or milestones : `view`
 
 Returns the list of milestones and employees in a project. +
