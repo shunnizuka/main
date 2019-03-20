@@ -92,9 +92,9 @@ that users can use while using the Pocket Project application.
 
 Format: `help`
 
-=== Adding an employee or project to the application: `add`
+=== Add an employee or project to the application: `add`
 
-==== Adding an employee to the application: `add employee`
+==== Add an employee to the application: `add employee`
 
 Adds an employee to the list of employees.
 
@@ -108,7 +108,7 @@ Examples:
 image:ug-notepadpencil.png[width="40"]
 An employee can have any number of skills (including 0).
 
-==== Adding a project to the application: `add project`
+==== Add a project to the application: `add project`
 
 Adds a project to the list of projects.
 
@@ -123,33 +123,49 @@ image:ug-lightbulb.png[width="50"]
 Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
-=== Delete a project or an employee from the application `delete`
+=== Delete an employee or a project from the application `delete`
 
-Deletes the specified employee from the employee list. +
+==== Delete an employee from the application: `delete employee`
+
+Deletes the specified employee from the employee list.
+
 Format: `delete employee INDEX`
 
-****
-* Deletes the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed employee list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
+image:ug-notepadpencil.png[width="40"]
+Deletes the employee at the specified `INDEX`.
+The index refers to the index number (one-based) shown in the displayed list of employees.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer*.
 
 Examples:
 
 * `list employees` +
 `delete employee 2` +
-Deletes the 2nd person in the employee list.
+Deletes the 2nd person in the displayed employee list.
+
 * `find employee Betsy` +
 `delete employee 1` +
-Deletes the 1st person in the results of the `find` command.
+Deletes the 1st person in the resultant employee list shown by the `find` command.
 
-Deletes the project from the list of projects. +
+image:ug-notepadpencil.png[width="40"]
+Either the `list employee` command or the `find employee` command needs to be invoked
+before calling the `delete employee` command as the index is referenced from the last returned list
+of employees.
+
+==== Delete a project from the application: `delete project`
+Deletes the project from the list of projects.
+
 Format: `delete project PROJECT_NAME`
 
 Examples:
 
 `delete project Apollo` +
 Deletes project "Apollo" from project list.
+
+image:ug-lightbulb.png[width="50"]
+Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+while keying in a command into the CLI.
 
 === Listing all employees or projects : `list`
 
