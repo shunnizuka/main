@@ -336,7 +336,7 @@ Adds a milestone to a project.
 
 Format: `addto PROJECT_NAME milestone MS_DETAILS MS_DATE`
 
-image:ug-notepadpencil.png[width="40"]
+image:ug-exclamation.png[width="50"]
 Date must be of the format DD/MM/YYYY
 
 Examples:
@@ -350,23 +350,40 @@ while keying in a command into the CLI.
 
 === Remove an employee or milestone from a project : `removefrom`
 
-Removing an employee from a project: +
+==== Remove an employee from a project: `removefrom employee`
+
+Removing an employee from a project.
+
 Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
 
 Examples:
 
 `view project Apollo` +
 `removefrom Apollo employee 3` +
-Removes the employee at index 3 from Project Apollo.
+Removes the employee at 3rd position at displayed list of employees from Project Apollo.
 
-Removing a milestone from a project: +
+==== Remove a milestone from a project: `removefrom milestone`
+
+Removing a milestone from a project.
+
 Format: `removefrom PROJECT_NAME milestone MS_INDEX`
 
 Examples:
 
 `view project Apollo` +
 `removefrom Apollo milestone 1` +
-Removes the milestone at index 1 from Project Apollo.
+Removes the milestone at 1st position of displayed list of milestone from Project Apollo.
+
+image:ug-notepadpencil.png[width="40"]
+Removes the employee at the specified `INDEX`.
+The index refers to the index number (one-based) shown in the displayed list of employees.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer* and cannot be larger than the size of the list.
+
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
+while keying in a command into the CLI.
 
 === To indicate the project has been completed : `complete`
 
