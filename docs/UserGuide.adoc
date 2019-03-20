@@ -136,7 +136,7 @@ Deletes the employee at the specified `INDEX`.
 The index refers to the index number (one-based) shown in the displayed list of employees.
 
 image:ug-exclamation.png[width="50"]
-The index must be a *positive integer*.
+The index must be a *positive integer* and cannot be larger than the size of the list.
 
 Examples:
 
@@ -205,7 +205,7 @@ Edits the name of the 2nd person to be `Betsy Crower` and sets Java as the only 
 Edits the name of the 2nd employee to be `Betsy Crower` and sets C++ and HTML as the skills.
 
 image:ug-exclamation.png[width="50"]
-The index must be a *positive integer*.
+The index must be a *positive integer* and cannot be larger than the size of the list.
 
 image:ug-lightbulb.png[width="50"]
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
@@ -307,24 +307,46 @@ while keying in a command into the CLI.
 
 === Add an employee or milestone to a project : `addto`
 
-Adds an employee to a project. +
+==== Add an employee to a project: `addto employee`
+
+Adds an employee to a project.
+
 Format: `addto PROJECT_NAME employee EMPLOYEE_INDEX`
 
+image:ug-notepadpencil.png[width="40"]
+Adds the employee at the specified `INDEX`.
+The index refers to the index number (one-based) shown in the displayed list of employees.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer* and cannot be larger than the size of the list.
+
 Examples:
 
-`addto Apollo employee John Doe` +
-John Doe is added to Project Apollo.
+* `list employees` +
+`addto Apollo employee 2` +
+Adds the 2nd person in the displayed employee list to project "Apollo".
 
-`addto Starrer employee Vanessa Peterson` +
-Vanessa Peterson is added to Project Starrer.
+* `find employee John Han` +
+`addto Apollo employee 5` +
+Adds the 5th person in the displayed employee list to project "Apollo".
 
-Adds a milestone to a project +
+==== Add a milestone to a project: `addto milestone`
+
+Adds a milestone to a project.
+
 Format: `addto PROJECT_NAME milestone MS_DETAILS MS_DATE`
 
+image:ug-notepadpencil.png[width="40"]
+Date must be of the format DD/MM/YYYY
+
 Examples:
 
-`addto Apollo milestone “Completed UI for program” 23/11/2015` +
-Milestone added to Project Apollo
+`addto Apollo milestone Completed UI for program 23/11/2015` +
+Milestone added to project "Apollo".
+
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
+while keying in a command into the CLI.
 
 === Remove an employee or milestone from a project : `removefrom`
 
