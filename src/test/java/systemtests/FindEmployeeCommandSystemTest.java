@@ -114,7 +114,7 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: find while a employee is selected -> selected card deselected */
         showAllEmployees();
-        selectEmployee(Index.fromOneBased(1));
+        viewEmployee(Index.fromOneBased(1));
         assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Daniel";
         ModelHelper.setFilteredList(expectedModel, DANIEL);

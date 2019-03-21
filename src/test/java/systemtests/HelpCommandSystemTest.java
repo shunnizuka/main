@@ -13,6 +13,7 @@ import guitests.GuiRobot;
 import guitests.guihandles.HelpWindowHandle;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewEmployeeCommand;
 import seedu.address.ui.StatusBarFooter;
 
@@ -55,14 +56,15 @@ public class HelpCommandSystemTest extends PocketProjectSystemTest {
         getMainWindowHandle().focus();
 
         // assert that while the help window is open the UI updates correctly for a command execution
-        executeCommand(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
+        executeCommand(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
+                + INDEX_FIRST_EMPLOYEE.getOneBased());
         assertEquals("", getCommandBox().getInput());
         assertCommandBoxShowsDefaultStyle();
         assertNotEquals(HelpCommand.SHOWING_HELP_MESSAGE, getResultDisplay().getText());
         assertListMatching(getEmployeeListPanel(), getModel().getFilteredEmployeeList());
 
         // assert that the status bar too is updated correctly while the help window is open
-        // note: the select command tested above does not update the status bar
+        // note: the view command tested above does not update the status bar
         executeCommand(DeleteCommand.COMMAND_WORD + " employee " + INDEX_FIRST_EMPLOYEE.getOneBased());
         assertNotEquals(StatusBarFooter.SYNC_STATUS_INITIAL, getStatusBarFooter().getSyncStatus());
     }
