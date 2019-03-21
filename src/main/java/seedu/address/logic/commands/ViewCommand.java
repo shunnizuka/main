@@ -8,7 +8,9 @@ public abstract class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_USAGE = ViewEmployeeCommand.MESSAGE_USAGE
+    public static final String MESSAGE_USAGE = "view employee/project INDEX"
+            + "\n"
+            + ViewEmployeeCommand.MESSAGE_USAGE
             + "\n"
             + ViewProjectCommand.MESSAGE_USAGE;
 

@@ -19,11 +19,12 @@ public class ViewEmployeeCommand extends ViewCommand {
     public static final String VIEW_EMPLOYEE_KEYWORD = "employee";
 
     public static final String MESSAGE_USAGE = ViewCommand.COMMAND_WORD
+            + " "
             + VIEW_EMPLOYEE_KEYWORD
             + ": Selects the employee identified by the index number used in the displayed employee list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: "
             + ViewCommand.COMMAND_WORD
+            + " "
             + VIEW_EMPLOYEE_KEYWORD + " 1";
 
     public static final String MESSAGE_VIEW_EMPLOYEE_SUCCESS = "Viewing employee details at index: %1$s";
