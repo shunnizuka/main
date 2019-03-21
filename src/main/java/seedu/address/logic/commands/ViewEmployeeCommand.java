@@ -14,7 +14,7 @@ import seedu.address.model.employee.Employee;
 /**
  * Selects a employee identified using it's displayed index from the address book.
  */
-public class ViewCommand extends Command {
+public class ViewEmployeeCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
@@ -27,7 +27,7 @@ public class ViewCommand extends Command {
 
     private final Index targetIndex;
 
-    public ViewCommand(Index targetIndex) {
+    public ViewEmployeeCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -49,7 +49,7 @@ public class ViewCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewCommand // instanceof handles nulls
-                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
+                || (other instanceof ViewEmployeeCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewEmployeeCommand) other).targetIndex)); // state check
     }
 }

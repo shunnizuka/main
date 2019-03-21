@@ -28,7 +28,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewEmployeeCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
@@ -129,9 +129,9 @@ public class PocketProjectParserTest {
 
     @Test
     public void parseCommand_select() throws Exception {
-        ViewCommand command = (ViewCommand) parser.parseCommand(
-            ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
-        assertEquals(new ViewCommand(INDEX_FIRST_EMPLOYEE), command);
+        ViewEmployeeCommand command = (ViewEmployeeCommand) parser.parseCommand(
+            ViewEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
+        assertEquals(new ViewEmployeeCommand(INDEX_FIRST_EMPLOYEE), command);
     }
 
     @Test
