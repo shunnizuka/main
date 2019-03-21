@@ -14,20 +14,20 @@ import seedu.address.model.employee.Employee;
 /**
  * Selects a employee identified using it's displayed index from the address book.
  */
-public class SelectCommand extends Command {
+public class ViewCommand extends Command {
 
-    public static final String COMMAND_WORD = "select";
+    public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Selects the employee identified by the index number used in the displayed employee list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SELECT_EMPLOYEE_SUCCESS = "Selected Employee: %1$s";
+    public static final String MESSAGE_VIEW_EMPLOYEE_SUCCESS = "Viewing employee details at index: %1$s";
 
     private final Index targetIndex;
 
-    public SelectCommand(Index targetIndex) {
+    public ViewCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -42,14 +42,14 @@ public class SelectCommand extends Command {
         }
 
         model.setSelectedEmployee(filteredEmployeeList.get(targetIndex.getZeroBased()));
-        return new CommandResult(String.format(MESSAGE_SELECT_EMPLOYEE_SUCCESS, targetIndex.getOneBased()));
+        return new CommandResult(String.format(MESSAGE_VIEW_EMPLOYEE_SUCCESS, targetIndex.getOneBased()));
 
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SelectCommand // instanceof handles nulls
-                && targetIndex.equals(((SelectCommand) other).targetIndex)); // state check
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
     }
 }
