@@ -26,12 +26,12 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* Case: select the first card in the employee list, command with leading spaces and trailing spaces
          * -> selected
          */
-        String command = "   " + ViewEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + "   ";
+        String command = "   " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + "   ";
         assertCommandSuccess(command, INDEX_FIRST_EMPLOYEE);
 
         /* Case: select the last card in the employee list -> selected */
         Index personCount = getLastIndex(getModel());
-        command = ViewEmployeeCommand.COMMAND_WORD + " " + personCount.getOneBased();
+        command = ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + personCount.getOneBased();
         assertCommandSuccess(command, personCount);
 
         /* Case: undo previous selection -> rejected */
@@ -46,7 +46,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: select the middle card in the employee list -> selected */
         Index middleIndex = getMidIndex(getModel());
-        command = ViewEmployeeCommand.COMMAND_WORD + " " + middleIndex.getOneBased();
+        command = ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + middleIndex.getOneBased();
         assertCommandSuccess(command, middleIndex);
 
         /* Case: select the current selected card -> selected */
@@ -59,34 +59,34 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         int invalidIndex = getModel().getPocketProject().getEmployeeList().size();
-        assertCommandFailure(ViewEmployeeCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + invalidIndex, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         /* Case: filtered employee list, select index within bounds of address book and employee list -> selected */
         Index validIndex = Index.fromOneBased(1);
         assertTrue(validIndex.getZeroBased() < getModel().getFilteredEmployeeList().size());
-        command = ViewEmployeeCommand.COMMAND_WORD + " " + validIndex.getOneBased();
+        command = ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + validIndex.getOneBased();
         assertCommandSuccess(command, validIndex);
 
         /* ----------------------------------- Perform invalid select operations ------------------------------------ */
 
         /* Case: invalid index (0) -> rejected */
-        assertCommandFailure(ViewEmployeeCommand.COMMAND_WORD + " " + 0,
+        assertCommandFailure(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + 0,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (-1) -> rejected */
-        assertCommandFailure(ViewEmployeeCommand.COMMAND_WORD + " " + -1,
+        assertCommandFailure(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + -1,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
         invalidIndex = getModel().getFilteredEmployeeList().size() + 1;
-        assertCommandFailure(ViewEmployeeCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + invalidIndex, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         /* Case: invalid arguments (alphabets) -> rejected */
-        assertCommandFailure(ViewEmployeeCommand.COMMAND_WORD + " abc",
+        assertCommandFailure(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " abc",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: invalid arguments (extra argument) -> rejected */
-        assertCommandFailure(ViewEmployeeCommand.COMMAND_WORD + " 1 abc",
+        assertCommandFailure(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " 1 abc",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: mixed case command word -> rejected */
@@ -94,7 +94,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: select from empty address book -> rejected */
         deleteAllEmployees();
-        assertCommandFailure(ViewEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased(),
+        assertCommandFailure(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased(),
                                         MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 
