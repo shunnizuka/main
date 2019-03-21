@@ -176,7 +176,8 @@ public class LogicManagerTest {
                     HistoryCommand.MESSAGE_SUCCESS, String.join("\n", expectedCommands));
             assertEquals(expectedMessage, result.getFeedbackToUser());
         } catch (ParseException | CommandException e) {
-            throw new AssertionError("Parsing and execution of HistoryCommand.VIEW_EMPLOYEE_KEYWORD should succeed.", e);
+            throw new AssertionError("Parsing and execution of HistoryCommand.VIEW_EMPLOYEE_KEYWORD should" +
+                    "succeed.", e);
         }
     }
 

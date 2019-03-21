@@ -14,9 +14,9 @@ import org.junit.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewEmployeeCommand;
-import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 
 public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
@@ -33,7 +33,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: view the last card in the employee list -> selected */
         Index personCount = getLastIndex(getModel());
-        command = ViewCommand.COMMAND_WORD+ " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
+        command = ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
                 + personCount.getOneBased();
         assertCommandSuccess(command, personCount);
 
