@@ -13,6 +13,4 @@ public abstract class ViewCommand extends Command {
             + ViewEmployeeCommand.MESSAGE_USAGE
             + "\n"
             + ViewProjectCommand.MESSAGE_USAGE;
-
-
 }
