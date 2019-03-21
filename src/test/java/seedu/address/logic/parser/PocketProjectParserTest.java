@@ -130,7 +130,7 @@ public class PocketProjectParserTest {
     @Test
     public void parseCommand_select() throws Exception {
         ViewEmployeeCommand command = (ViewEmployeeCommand) parser.parseCommand(
-            ViewEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
+            ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
         assertEquals(new ViewEmployeeCommand(INDEX_FIRST_EMPLOYEE), command);
     }
 

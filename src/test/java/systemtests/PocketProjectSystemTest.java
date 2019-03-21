@@ -148,7 +148,7 @@ public abstract class PocketProjectSystemTest {
      * Selects the employee at {@code index} of the displayed list.
      */
     protected void selectEmployee(Index index) {
-        executeCommand(ViewEmployeeCommand.COMMAND_WORD + " " + index.getOneBased());
+        executeCommand(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + index.getOneBased());
         assertEquals(index.getZeroBased(), getEmployeeListPanel().getSelectedCardIndex());
     }
 

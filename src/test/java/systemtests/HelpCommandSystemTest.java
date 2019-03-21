@@ -55,7 +55,7 @@ public class HelpCommandSystemTest extends PocketProjectSystemTest {
         getMainWindowHandle().focus();
 
         // assert that while the help window is open the UI updates correctly for a command execution
-        executeCommand(ViewEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
+        executeCommand(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased());
         assertEquals("", getCommandBox().getInput());
         assertCommandBoxShowsDefaultStyle();
         assertNotEquals(HelpCommand.SHOWING_HELP_MESSAGE, getResultDisplay().getText());
