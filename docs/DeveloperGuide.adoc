@@ -241,7 +241,7 @@ The `Model`,
 * does not depend on any of the other three components.
 
 [NOTE]
-As a more OOP model, we can store a `Tag` list in `Pocket Project`, which `Employee` can reference. This would allow `Pocket Project` to only require one `Tag` object per unique `Tag`, instead of each `Employee` needing their own `Tag` object. An example of how such a model may look like is given below. +
+As a more OOP model, we can store a `Skill` list in `Pocket Project`, which `Employee` can reference. This would allow `Pocket Project` to only require one `Skill` object per unique `Skill`, instead of each `Employee` needing their own `Skill` object. An example of how such a model may look like is given below. +
  +
 image:ModelClassBetterOopDiagram.png[width="800"]
 
@@ -798,21 +798,21 @@ Do take a look at <<Design-Logic>> before attempting to modify the `Logic` compo
 [discrete]
 ==== `Model` component
 
-*Scenario:* You are in charge of `model`. One day, the `logic`-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in the Pocket Project, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.
+*Scenario:* You are in charge of `model`. One day, the `logic`-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular skill from everyone in the Pocket Project, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.
 
 [TIP]
 Do take a look at <<Design-Model>> before attempting to modify the `Model` component.
 
-. Add a `removeTag(Tag)` method. The specified tag will be removed from everyone in the Pocket Project.
+. Add a `removeSkill(Skill)` method. The specified skill will be removed from everyone in the Pocket Project.
 +
 ****
 * Hints
 ** The link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model`] and the link:{repoURL}/src/main/java/seedu/address/model/PocketProject.java[`PocketProject`] API need to be updated.
 ** Think about how you can use SLAP to design the method. Where should we place the main logic of deleting skills?
-**  Find out which of the existing API methods in  link:{repoURL}/src/main/java/seedu/address/model/PocketProject.java[`PocketProject`] and link:{repoURL}/src/main/java/seedu/address/model/employee/Employee.java[`Employee`] classes can be used to implement the tag removal logic. link:{repoURL}/src/main/java/seedu/address/model/PocketProject.java[`PocketProject`] allows you to update a employee, and link:{repoURL}/src/main/java/seedu/address/model/employee/Employee.java[`Employee`] allows you to update the skills.
+**  Find out which of the existing API methods in  link:{repoURL}/src/main/java/seedu/address/model/PocketProject.java[`PocketProject`] and link:{repoURL}/src/main/java/seedu/address/model/employee/Employee.java[`Employee`] classes can be used to implement the skill removal logic. link:{repoURL}/src/main/java/seedu/address/model/PocketProject.java[`PocketProject`] allows you to update a employee, and link:{repoURL}/src/main/java/seedu/address/model/employee/Employee.java[`Employee`] allows you to update the skills.
 * Solution
-** Implement a `removeTag(Tag)` method in link:{repoURL}/src/main/java/seedu/address/model/PocketProject.java[`PocketProject`]. Loop through each employee, and remove the `tag` from each employee.
-** Add a new API method `deleteTag(Tag)` in link:{repoURL}/src/main/java/seedu/address/model/ModelManager.java[`ModelManager`]. Your link:{repoURL}/src/main/java/seedu/address/model/ModelManager.java[`ModelManager`] should call `PocketProject#removeTag(Tag)`.
+** Implement a `removeSkill(Skill)` method in link:{repoURL}/src/main/java/seedu/address/model/PocketProject.java[`PocketProject`]. Loop through each employee, and remove the `skill` from each employee.
+** Add a new API method `deleteSkill(Skill)` in link:{repoURL}/src/main/java/seedu/address/model/ModelManager.java[`ModelManager`]. Your link:{repoURL}/src/main/java/seedu/address/model/ModelManager.java[`ModelManager`] should call `PocketProject#removeSkill(Skill)`.
 ** Add new tests for each of the new public methods that you have added.
 ** See this https://github.com/se-edu/addressbook-level4/pull/790[PR] for the full solution.
 ****
@@ -837,13 +837,13 @@ image::getting-started-ui-tag-after.png[width="300"]
 +
 ****
 * Hints
-** The tag labels are created inside link:{repoURL}/src/main/java/seedu/address/ui/EmployeeCard.java[the `EmployeeCard` constructor] (`new Label(tag.skillName)`). https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html[JavaFX's `Label` class] allows you to modify the style of each Label, such as changing its color.
+** The skill labels are created inside link:{repoURL}/src/main/java/seedu/address/ui/EmployeeCard.java[the `EmployeeCard` constructor] (`new Label(skill.skillName)`). https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html[JavaFX's `Label` class] allows you to modify the style of each Label, such as changing its color.
 ** Use the .css attribute `-fx-background-color` to add a color.
 ** You may wish to modify link:{repoURL}/src/main/resources/view/DarkTheme.css[`DarkTheme.css`] to include some pre-defined colors using css, especially if you have experience with web-based css.
 * Solution
-** You can modify the existing test methods for `EmployeeCard` 's to include testing the tag's color as well.
+** You can modify the existing test methods for `EmployeeCard` 's to include testing the skill's color as well.
 ** See this https://github.com/se-edu/addressbook-level4/pull/798[PR] for the full solution.
-*** The PR uses the hash code of the tag names to generate a color. This is deliberately designed to ensure consistent colors each time the application runs. You may wish to expand on this design to include additional features, such as allowing users to set their own tag colors, and directly saving the colors to storage, so that skills retain their colors even if the hash code algorithm changes.
+*** The PR uses the hash code of the skill names to generate a color. This is deliberately designed to ensure consistent colors each time the application runs. You may wish to expand on this design to include additional features, such as allowing users to set their own skill colors, and directly saving the colors to storage, so that skills retain their colors even if the hash code algorithm changes.
 ****
 
 . Modify link:{repoURL}/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java[`NewResultAvailableEvent`] such that link:{repoURL}/src/main/java/seedu/address/ui/ResultDisplay.java[`ResultDisplay`] can show a different style on error (currently it shows the same regardless of errors).
