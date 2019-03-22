@@ -47,6 +47,12 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
         model.addEmployeeTo(targetProject, targetEmployee);
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
+
+        /* ----------------------------------- Perform invalid add operations --------------------------------------- */
+        /* Case: add a duplicate employee to a project -> rejected */
+        command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
+                + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
+        assertCommandFailure(command, AddEmployeeToCommand.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
     }
 
     private void assertCommandSuccess(String command,Project targetProject, Employee targetEmployee) {
@@ -64,5 +70,25 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
         assertSelectedCardUnchanged();
         assertCommandBoxShowsDefaultStyle();
         assertStatusBarUnchangedExceptSyncStatus();
+    }
+
+    /**
+     * Executes {@code command} and asserts that the,<br>
+     * 1. Command box displays {@code command}.<br>
+     * 2. Command box has the error style class.<br>
+     * 3. Result display box displays {@code expectedResultMessage}.<br>
+     * 4. {@code Storage} and {@code EmployeeListPanel} remain unchanged.<br>
+     * 5. Browser url, selected card and status bar remain unchanged.<br>
+     * Verifications 1, 3 and 4 are performed by
+     * {@code PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     */
+    private void assertCommandFailure(String command, String expectedResultMessage) {
+        Model expectedModel = getModel();
+        executeCommand(command);
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
+        assertSelectedCardUnchanged();
+        assertCommandBoxShowsErrorStyle();
+        assertStatusBarUnchanged();
     }
 }
