@@ -75,20 +75,20 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* Case: add a employee with all fields same as another employee in the address book except name -> added */
+        /* Case: add a employee with all fields same as another employee in the pocket project except name -> added */
         toAdd = new EmployeeBuilder(AMY).withName(VALID_NAME_BOB).build();
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB
             + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + SKILL_DESC_C;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add a employee with all fields same as another employee in the address book except phone and email
+        /* Case: add a employee with all fields same as another employee in the pocket project except phone and email
          * -> added
          */
         toAdd = new EmployeeBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add to empty address book -> added */
+        /* Case: add to empty pocket project -> added */
         deleteAllEmployees();
         assertCommandSuccess(ALICE);
 
