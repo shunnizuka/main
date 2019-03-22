@@ -54,7 +54,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
-        /* Case: add a employee without tags to a non-empty address book, command with leading spaces and trailing
+        /* Case: add a employee without tags to a non-empty pocket project, command with leading spaces and trailing
          * spaces
          * -> added
          */
