@@ -3,6 +3,7 @@ package systemtests;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeToCommand;
 import seedu.address.logic.commands.AddToCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
@@ -40,6 +41,12 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
         String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
         System.out.println(targetProject);
+
+        /* Case: redo adding Amy to the list -> Amy added again */
+        command = RedoCommand.COMMAND_WORD;
+        model.addEmployeeTo(targetProject, targetEmployee);
+        expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, model, expectedResultMessage);
     }
 
     private void assertCommandSuccess(String command,Project targetProject, Employee targetEmployee) {
