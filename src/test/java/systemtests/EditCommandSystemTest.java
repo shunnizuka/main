@@ -133,7 +133,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
          */
         showAllEmployees();
         index = INDEX_FIRST_EMPLOYEE;
-        selectEmployee(index);
+        viewEmployee(index);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + SKILL_DESC_C;
         // this can be misleading: card selection actually remains unchanged but the

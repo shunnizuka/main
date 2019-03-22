@@ -110,7 +110,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* ------------------------ Perform add operation while a employee card is selected ------------------------- */
 
         /* Case: selects first card in the employee list, add a employee -> added, card selection remains unchanged */
-        selectEmployee(Index.fromOneBased(1));
+        viewEmployee(Index.fromOneBased(1));
         assertCommandSuccess(CARL);
 
         /* ----------------------------------- Perform invalid add operations --------------------------------------- */

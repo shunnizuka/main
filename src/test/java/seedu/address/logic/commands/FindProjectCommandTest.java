@@ -70,7 +70,8 @@ public class FindProjectCommandTest {
     @Test
     public void execute_multipleKeywords_multipleProjectsFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3);
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("Carl Elle fiona");
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate(
+                "Carl Elle fiona");
         FindProjectCommand command = new FindProjectCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);

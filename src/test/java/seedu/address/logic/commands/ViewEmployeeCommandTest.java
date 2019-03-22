@@ -20,9 +20,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code SelectCommand}.
+ * Contains integration tests (interaction with the Model) for {@code ViewEmployeeCommand}.
  */
-public class SelectCommandTest {
+public class ViewEmployeeCommandTest {
     private Model model = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
@@ -65,14 +65,14 @@ public class SelectCommandTest {
 
     @Test
     public void equals() {
-        SelectCommand selectFirstCommand = new SelectCommand(INDEX_FIRST_EMPLOYEE);
-        SelectCommand selectSecondCommand = new SelectCommand(INDEX_SECOND_EMPLOYEE);
+        ViewEmployeeCommand selectFirstCommand = new ViewEmployeeCommand(INDEX_FIRST_EMPLOYEE);
+        ViewEmployeeCommand selectSecondCommand = new ViewEmployeeCommand(INDEX_SECOND_EMPLOYEE);
 
         // same object -> returns true
         assertTrue(selectFirstCommand.equals(selectFirstCommand));
 
         // same values -> returns true
-        SelectCommand selectFirstCommandCopy = new SelectCommand(INDEX_FIRST_EMPLOYEE);
+        ViewEmployeeCommand selectFirstCommandCopy = new ViewEmployeeCommand(INDEX_FIRST_EMPLOYEE);
         assertTrue(selectFirstCommand.equals(selectFirstCommandCopy));
 
         // different types -> returns false
@@ -86,24 +86,24 @@ public class SelectCommandTest {
     }
 
     /**
-     * Executes a {@code SelectCommand} with the given {@code index},
+     * Executes a {@code ViewEmployeeCommand} with the given {@code index},
      * and checks that the model's selected employee is set to the employee at {@code index} in the filtered employee
      * list.
      */
     private void assertExecutionSuccess(Index index) {
-        SelectCommand selectCommand = new SelectCommand(index);
-        String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_EMPLOYEE_SUCCESS, index.getOneBased());
+        ViewEmployeeCommand viewEmployeeCommand = new ViewEmployeeCommand(index);
+        String expectedMessage = String.format(ViewEmployeeCommand.MESSAGE_VIEW_EMPLOYEE_SUCCESS, index.getOneBased());
         expectedModel.setSelectedEmployee(model.getFilteredEmployeeList().get(index.getZeroBased()));
 
-        assertCommandSuccess(selectCommand, model, commandHistory, expectedMessage, expectedModel);
+        assertCommandSuccess(viewEmployeeCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     /**
-     * Executes a {@code SelectCommand} with the given {@code index}, and checks that a {@code CommandException}
+     * Executes a {@code ViewEmployeeCommand} with the given {@code index}, and checks that a {@code CommandException}
      * is thrown with the {@code expectedMessage}.
      */
     private void assertExecutionFailure(Index index, String expectedMessage) {
-        SelectCommand selectCommand = new SelectCommand(index);
-        assertCommandFailure(selectCommand, model, commandHistory, expectedMessage);
+        ViewEmployeeCommand viewEmployeeCommand = new ViewEmployeeCommand(index);
+        assertCommandFailure(viewEmployeeCommand, model, commandHistory, expectedMessage);
     }
 }
