@@ -1,5 +1,10 @@
 package systemtests;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import org.junit.Test;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeToCommand;
 import seedu.address.logic.commands.AddToCommand;
@@ -9,8 +14,6 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.TypicalProjects;
-
-import org.junit.Test;
 
 public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
 
@@ -26,7 +29,6 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
          */
 
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        System.out.println(targetProject);
         int validIndex = model.getFilteredEmployeeList().size() - 1;
         Employee targetEmployee = model.getFilteredEmployeeList()
             .get(Index.fromOneBased(model.getFilteredEmployeeList().size() - 1).getZeroBased());
@@ -34,13 +36,11 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
             + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
 
         assertCommandSuccess(command, targetProject, targetEmployee);
-        System.out.println(targetProject);
 
         /* Case: undo adding employee to Project Alice */
         command = UndoCommand.COMMAND_WORD;
         String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
-        System.out.println(targetProject);
 
         /* Case: redo adding Amy to the list -> Amy added again */
         command = RedoCommand.COMMAND_WORD;
@@ -53,6 +53,26 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
         command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
                 + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
         assertCommandFailure(command, AddEmployeeToCommand.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
+
+        /* Case: missing command word -> rejected */
+        command = targetProject.getProjectName() + " " + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
+        assertCommandFailure(command, String.format(Messages.MESSAGE_UNKNOWN_COMMAND));
+
+        /* Case: missing project name -> rejected */
+        command = AddToCommand.COMMAND_WORD + " " + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            AddToCommand.MESSAGE_USAGE));
+
+        /* Case: missing employee keyword -> rejected */
+        command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " " + validIndex;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToCommand.MESSAGE_USAGE));
+
+        /* Case: missing employee index -> rejected */
+        command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
+                + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToCommand.MESSAGE_USAGE));
     }
 
     /**
