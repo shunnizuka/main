@@ -3,6 +3,7 @@ package systemtests;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeToCommand;
 import seedu.address.logic.commands.AddToCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
@@ -24,6 +25,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
          */
 
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
+        System.out.println(targetProject);
         int validIndex = model.getFilteredEmployeeList().size() - 1;
         Employee targetEmployee = model.getFilteredEmployeeList()
             .get(Index.fromOneBased(model.getFilteredEmployeeList().size() - 1).getZeroBased());
@@ -31,6 +33,13 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
             + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
 
         assertCommandSuccess(command, targetProject, targetEmployee);
+        System.out.println(targetProject);
+
+        /* Case: undo adding employee to Project Alice */
+        command = UndoCommand.COMMAND_WORD;
+        String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, model, expectedResultMessage);
+        System.out.println(targetProject);
     }
 
     private void assertCommandSuccess(String command,Project targetProject, Employee targetEmployee) {
