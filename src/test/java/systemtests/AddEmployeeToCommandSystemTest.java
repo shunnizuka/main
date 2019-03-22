@@ -55,6 +55,22 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
         assertCommandFailure(command, AddEmployeeToCommand.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
     }
 
+    /**
+     * Executes the {@code AddEmployeeToCommand} that adds {@code targetEmployee}
+     * to {@code targetProject} in the model and asserts that the,<br>
+     * 1. Command box displays an empty string.<br>
+     * 2. Command box has the default style class.<br>
+     * 3. Result display box displays the success message of executing {@code AddEmployeeToCommand} with the details of
+     * {@code toAdd}.<br>
+     * 4. {@code Storage} equal to the corresponding components in
+     * the current model added with {@code targetEmployee} and {@code targetProject}.<br>
+     * 5. Browser url and selected card remain unchanged.<br>
+     * 6. Status bar's sync status changes.<br>
+     * Verifications 1, 3 and 4 are performed by
+     * {@code PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     */
+
     private void assertCommandSuccess(String command,Project targetProject, Employee targetEmployee) {
         Model expectedModel = getModel();
         expectedModel.addEmployeeTo(targetProject, targetEmployee);
@@ -63,6 +79,15 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
 
         assertCommandSuccess(command, expectedModel, expectedResultMessage);
     }
+
+    /**
+     * Performs the same verification as {@code assertCommandSuccess(String, Project, Employee)} except asserts that
+     * the,<br>
+     * 1. Result display box displays {@code expectedResultMessage}.<br>
+     * 2. {@code Storage} and {@code EmployeeListPanel} equal to the corresponding components in
+     * {@code expectedModel}.<br>
+     * @see AddEmployeeToCommandSystemTest#assertCommandSuccess(String, Project, Employee)
+     */
 
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
         executeCommand(command);
@@ -83,6 +108,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
      * {@code PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
+
     private void assertCommandFailure(String command, String expectedResultMessage) {
         Model expectedModel = getModel();
         executeCommand(command);
