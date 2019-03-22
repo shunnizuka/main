@@ -22,7 +22,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
 
         Model model = getModel();
 
-        /* ------------------------ Perform addto operations on the shown unfiltered list ----------------------------- */
+        /* ------------------------ Perform addto operations on the shown unfiltered list -------------------------- */
 
         /* Case: add an employee to a project in the non-empty pocket project, command with leading spaces and trailing
          * spaces
@@ -91,7 +91,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
 
-    private void assertCommandSuccess(String command,Project targetProject, Employee targetEmployee) {
+    private void assertCommandSuccess(String command, Project targetProject, Employee targetEmployee) {
         Model expectedModel = getModel();
         expectedModel.addEmployeeTo(targetProject, targetEmployee);
         String expectedResultMessage = String.format(AddEmployeeToCommand.MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS,
