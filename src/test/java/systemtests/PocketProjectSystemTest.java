@@ -22,6 +22,7 @@ import guitests.guihandles.CommandBoxHandle;
 import guitests.guihandles.EmployeeListPanelHandle;
 import guitests.guihandles.MainMenuHandle;
 import guitests.guihandles.MainWindowHandle;
+import guitests.guihandles.ProjectListPanelHandle;
 import guitests.guihandles.ResultDisplayHandle;
 import guitests.guihandles.StatusBarFooterHandle;
 
@@ -105,13 +106,16 @@ public abstract class PocketProjectSystemTest {
         return mainWindowHandle.getMainMenu();
     }
 
-
     public StatusBarFooterHandle getStatusBarFooter() {
         return mainWindowHandle.getStatusBarFooter();
     }
 
     public ResultDisplayHandle getResultDisplay() {
         return mainWindowHandle.getResultDisplay();
+    }
+
+    public ProjectListPanelHandle getProjectListPanel() {
+        return mainWindowHandle.getProjectListPanel();
     }
 
     /**
@@ -134,7 +138,7 @@ public abstract class PocketProjectSystemTest {
     protected void showAllEmployees() {
         executeCommand(ListCommand.COMMAND_WORD + " " + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD);
         assertEquals(getModel().getPocketProject().getEmployeeList().size(),
-                getModel().getFilteredEmployeeList().size());
+            getModel().getFilteredEmployeeList().size());
     }
 
     /**
@@ -143,7 +147,7 @@ public abstract class PocketProjectSystemTest {
     protected void showAllProjects() {
         executeCommand(ListCommand.COMMAND_WORD + " " + ListProjectCommand.LIST_PROJECT_KEYWORD);
         assertEquals(getModel().getPocketProject().getProjectList().size(),
-                getModel().getFilteredProjectList().size());
+            getModel().getFilteredProjectList().size());
     }
 
     /**
@@ -155,7 +159,7 @@ public abstract class PocketProjectSystemTest {
         System.out.println(getModel().getFilteredEmployeeList());
         System.out.println(getModel().getPocketProject().getEmployeeList());
         assertTrue(getModel().getFilteredEmployeeList().size()
-                < getModel().getPocketProject().getEmployeeList().size());
+            < getModel().getPocketProject().getEmployeeList().size());
     }
 
     /**
@@ -163,7 +167,7 @@ public abstract class PocketProjectSystemTest {
      */
     protected void showProjectsWithName(String keyword) {
         executeCommand(FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD
-                + " " + keyword);
+            + " " + keyword);
         System.out.println(getModel().getFilteredProjectList());
         System.out.println(getModel().getPocketProject().getProjectList());
         assertTrue(getModel().getFilteredProjectList().size()
@@ -175,7 +179,7 @@ public abstract class PocketProjectSystemTest {
      */
     protected void viewEmployee(Index index) {
         executeCommand(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
-                + index.getOneBased());
+            + index.getOneBased());
         assertEquals(index.getZeroBased(), getEmployeeListPanel().getSelectedCardIndex());
     }
 
@@ -189,9 +193,9 @@ public abstract class PocketProjectSystemTest {
         //        + index.getOneBased());
         //assertEquals(index.getZeroBased(), getProjectListPanel().getSelectedCardIndex());
     }
-    
+
     /**
-     * Deletes all employees in the pocket project.
+     * * Deletes all employees in the pocket project.
      */
     protected void deleteAllEmployees() {
         executeCommand(ClearCommand.COMMAND_WORD);
@@ -228,6 +232,7 @@ public abstract class PocketProjectSystemTest {
         statusBarFooterHandle.rememberSaveLocation();
         statusBarFooterHandle.rememberSyncStatus();
         getEmployeeListPanel().rememberSelectedEmployeeCard();
+        getProjectListPanel().rememberSelectedProjectCard();
     }
 
     /**
@@ -255,6 +260,10 @@ public abstract class PocketProjectSystemTest {
      */
     protected void assertSelectedCardUnchanged() {
         assertFalse(getEmployeeListPanel().isSelectedEmployeeCardChanged());
+    }
+
+    protected void assertSelectedProjectCardUnchanged() {
+        assertFalse(getProjectListPanel().isSelectedProjectCardChanged());
     }
 
     /**

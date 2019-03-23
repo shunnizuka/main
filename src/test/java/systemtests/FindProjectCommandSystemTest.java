@@ -21,8 +21,6 @@ import seedu.address.model.Model;
 
 public class FindProjectCommandSystemTest extends PocketProjectSystemTest {
 
-    //TODO gui stuff for project
-
     @Test
     public void find() {
         /* Case: find multiple projects in Pocket Project, command with leading spaces and trailing spaces
@@ -33,7 +31,7 @@ public class FindProjectCommandSystemTest extends PocketProjectSystemTest {
         Model expectedModel = getModel();
         ModelHelper.setProjectFilteredList(expectedModel, PROJECT_ALICE, PROJECT_CARL);
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: repeat previous find command where project list is displaying the projects we are finding
          * -> 2 projects found
@@ -41,30 +39,30 @@ public class FindProjectCommandSystemTest extends PocketProjectSystemTest {
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " "
             + "hey";
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find project where project list is not displaying the project we are finding -> 1 project found */
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " Carl";
         ModelHelper.setProjectFilteredList(expectedModel, PROJECT_CARL);
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find multiple projects in Pocket Project, 2 keywords -> 2 projects found */
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " Benson Daniel";
         ModelHelper.setProjectFilteredList(expectedModel, PROJECT_BENSON, PROJECT_DANIEL);
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find multiple projects in Pocket Project, 2 keywords in reversed order -> 2 projects found */
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " Daniel Benson";
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find multiple projects in Pocket Project, 2 keywords with 1 repeat -> 2 projects found */
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD
             + " Daniel Benson Daniel";
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find multiple projects in Pocket Project, 2 matching keywords and 1 non-matching keyword
          * -> 2 projects found
@@ -72,7 +70,7 @@ public class FindProjectCommandSystemTest extends PocketProjectSystemTest {
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD
             + " Daniel Benson NonMatchingKeyWord";
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: undo previous find command -> rejected */
         command = UndoCommand.COMMAND_WORD;
@@ -93,39 +91,40 @@ public class FindProjectCommandSystemTest extends PocketProjectSystemTest {
         expectedModel = getModel();
         ModelHelper.setProjectFilteredList(expectedModel, PROJECT_ALICE);
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find project in Pocket Project, keyword is same as name but of different case -> 1 project found */
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " HeY";
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find project in Pocket Project, command word is of mixed case -> 1 project found */
         command = "FinD" + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " Hey";
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find project in Pocket Project, keyword is substring of name -> 0 projects found */
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " he";
         ModelHelper.setProjectFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find project in Pocket Project, name is substring of keyword -> 0 projects found */
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " heeeeeeey";
         ModelHelper.setProjectFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
         /* Case: find project not in Pocket Project -> 0 projects found */
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " Mark";
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
 
+        //TODO View Project stuff
         /* Case: find while a project is selected -> selected card deselected */
         /*
         showAllProjects();
-        viewEmployee(Index.fromOneBased(1));
+        viewProject(Index.fromOneBased(1));
         assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " Daniel";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
@@ -140,7 +139,7 @@ public class FindProjectCommandSystemTest extends PocketProjectSystemTest {
         expectedModel = getModel();
         ModelHelper.setProjectFilteredList(expectedModel, PROJECT_DANIEL);
         assertCommandSuccess(command, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
     }
 
     /**
@@ -177,7 +176,7 @@ public class FindProjectCommandSystemTest extends PocketProjectSystemTest {
 
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
-        //assertSelectedCardUnchanged();
+        assertSelectedProjectCardUnchanged();
         assertCommandBoxShowsErrorStyle();
         assertStatusBarUnchanged();
     }
