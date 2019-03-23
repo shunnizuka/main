@@ -29,8 +29,10 @@ import seedu.address.TestApp;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
+import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
+import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewEmployeeCommand;
 import seedu.address.model.Model;
@@ -136,13 +138,36 @@ public abstract class PocketProjectSystemTest {
     }
 
     /**
+     * Displays all projects in the address book.
+     */
+    protected void showAllProjects() {
+        executeCommand(ListCommand.COMMAND_WORD + " " + ListProjectCommand.LIST_PROJECT_KEYWORD);
+        assertEquals(getModel().getPocketProject().getProjectList().size(),
+                getModel().getFilteredProjectList().size());
+    }
+
+    /**
      * Displays all employees with any parts of their names matching {@code keyword} (case-insensitive).
      */
     protected void showEmployeesWithName(String keyword) {
         executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " " + keyword);
+        System.out.println(getModel().getFilteredEmployeeList());
+        System.out.println(getModel().getPocketProject().getEmployeeList());
         assertTrue(getModel().getFilteredEmployeeList().size()
                 < getModel().getPocketProject().getEmployeeList().size());
+    }
+
+    /**
+     * Displays all projects with any parts of their names matching {@code keyword} (case-insensitive).
+     */
+    protected void showProjectsWithName(String keyword) {
+        executeCommand(FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD
+                + " " + keyword);
+        System.out.println(getModel().getFilteredProjectList());
+        System.out.println(getModel().getPocketProject().getProjectList());
+        assertTrue(getModel().getFilteredProjectList().size()
+            < getModel().getPocketProject().getProjectList().size());
     }
 
     /**
@@ -154,12 +179,32 @@ public abstract class PocketProjectSystemTest {
         assertEquals(index.getZeroBased(), getEmployeeListPanel().getSelectedCardIndex());
     }
 
+    //TODO SET UP GUI CLASSES AND VARIABLES FOR TESTING
     /**
-     * Deletes all employees in the address book.
+     * Views the project at {@code index} of the displayed list.
+     */
+
+    protected void viewProject(Index index) {
+        //executeCommand(ViewCommand.COMMAND_WORD + " " + ViewProjectCommand.VIEW_PROJECT_KEYWORD + " "
+        //        + index.getOneBased());
+        //assertEquals(index.getZeroBased(), getProjectListPanel().getSelectedCardIndex());
+    }
+
+
+    /**
+     * Deletes all employees in the pocket project.
      */
     protected void deleteAllEmployees() {
         executeCommand(ClearCommand.COMMAND_WORD);
         assertEquals(0, getModel().getPocketProject().getEmployeeList().size());
+    }
+
+    /**
+     * Deletes all projects in the pocket project.
+     */
+    protected void deleteAllProjects() {
+        executeCommand(ClearCommand.COMMAND_WORD);
+        assertEquals(0, getModel().getPocketProject().getProjectList().size());
     }
 
     /**
@@ -266,4 +311,12 @@ public abstract class PocketProjectSystemTest {
     protected Model getModel() {
         return testApp.getModel();
     }
+
+    /**
+     * Returns a defensive copy of the current project model.
+     */
+    protected Model getProjectModel() {
+        return testApp.getProjectModel();
+    }
+
 }
