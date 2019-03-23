@@ -159,12 +159,12 @@ public class Project {
         Comparator<? super Milestone> comparator = new Comparator<Milestone>() {
             @Override
             public int compare(Milestone m1, Milestone m2) {
-                int dd1 = Integer.parseInt(m1.milestone.substring(0, 2));
-                int mm1 = Integer.parseInt(m1.milestone.substring(3, 5));
-                int yy1 = Integer.parseInt(m1.milestone.substring(6, 10));
-                int dd2 = Integer.parseInt(m2.milestone.substring(0, 2));
-                int mm2 = Integer.parseInt(m2.milestone.substring(3, 5));
-                int yy2 = Integer.parseInt(m2.milestone.substring(6, 10));
+                int dd1 = Integer.parseInt(m1.date.substring(0, 2));
+                int mm1 = Integer.parseInt(m1.date.substring(3, 5));
+                int yy1 = Integer.parseInt(m1.date.substring(6, 10));
+                int dd2 = Integer.parseInt(m2.date.substring(0, 2));
+                int mm2 = Integer.parseInt(m2.date.substring(3, 5));
+                int yy2 = Integer.parseInt(m2.date.substring(6, 10));
                 if (yy1 != yy2) {
                     return yy1 - yy2;
                 } else if (mm1 != mm2) {

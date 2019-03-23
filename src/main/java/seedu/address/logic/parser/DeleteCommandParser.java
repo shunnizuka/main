@@ -35,7 +35,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        final String keyword = matcher.group("keyword");
+        final String keyword = matcher.group("keyword").toLowerCase();
         final String arguments = matcher.group("arguments");
 
         if (keyword.equals(DeleteEmployeeCommand.DELETE_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
