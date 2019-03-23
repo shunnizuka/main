@@ -1060,7 +1060,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |Software engineering project manager |Be able to add/delete projects in the app |Keep track of any new projects and remove unnecessary entries
 
-|`* * *` |Software engineering project manager |See all the current ongoing projects listed by priority |Keep track of which projects require immediate attention
+|`* * *` |Software engineering project manager |See all the current ongoing projects listed by importance |Keep track of which projects require immediate attention
 
 |`* * *` |Software engineering project manager |Find all employees that have a certain skill |Assign the right people with the required skills to the right projects
 

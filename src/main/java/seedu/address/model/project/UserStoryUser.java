@@ -9,6 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class UserStoryUser {
 
     public static final String DEFAULT_USER = "Typical user";
+    public static final String PREFIX_USER = "as a";
     public static final String MESSAGE_CONSTRAINTS = "User story should have a valid user.";
 
     /**
@@ -33,7 +34,7 @@ public class UserStoryUser {
     }
 
     /**
-     * Returns true if a given string is a valid priority level.
+     * Returns true if a given string is a valid importance level.
      */
     public static boolean isValidUserStoryUser(String input) {
         return input.matches(VALIDATION_REGEX);

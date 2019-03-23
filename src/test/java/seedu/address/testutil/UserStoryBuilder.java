@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
 import seedu.address.model.project.UserStory;
-import seedu.address.model.project.UserStoryBenefit;
+import seedu.address.model.project.UserStoryImportance;
+import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryFunction;
-import seedu.address.model.project.UserStoryPriority;
 import seedu.address.model.project.UserStoryUser;
 
 /**
@@ -11,38 +11,38 @@ import seedu.address.model.project.UserStoryUser;
  */
 public class UserStoryBuilder {
 
-    public static final String DEFAULT_PRIORITY = "3";
+    public static final String DEFAULT_IMPORTANCE = "3";
     public static final String DEFAULT_USER = "Software engineering project manager";
     public static final String DEFAULT_FUNCTION = "Be able to add/delete projects in the app";
-    public static final String DEFAULT_BENEFIT = "Keep track of any new projects and remove unnecessary entries";
+    public static final String DEFAULT_REASON = "Keep track of any new projects and remove unnecessary entries";
 
-    private UserStoryPriority priority;
+    private UserStoryImportance importance;
     private UserStoryUser user;
     private UserStoryFunction function;
-    private UserStoryBenefit benefit;
+    private UserStoryReason reason;
 
     public UserStoryBuilder() {
-        priority = new UserStoryPriority(DEFAULT_PRIORITY);
+        importance = new UserStoryImportance(DEFAULT_IMPORTANCE);
         user = new UserStoryUser(DEFAULT_USER);
         function = new UserStoryFunction(DEFAULT_FUNCTION);
-        benefit = new UserStoryBenefit(DEFAULT_BENEFIT);
+        reason = new UserStoryReason(DEFAULT_REASON);
     }
 
     /**
      * Initializes the UserStoryBuilder with the data of {@code userStoryToCopy}.
      */
     public UserStoryBuilder(UserStory userStoryToCopy) {
-        priority = userStoryToCopy.getUserStoryPriority();
+        importance = userStoryToCopy.getUserStoryImportance();
         user = userStoryToCopy.getUserStoryUser();
         function = userStoryToCopy.getUserStoryFunction();
-        benefit = userStoryToCopy.getUserStoryBenefit();
+        reason = userStoryToCopy.getUserStoryReason();
     }
 
     /**
-     * Sets the {@code UserStoryPriority} of the {@code UserStory} that we are building.
+     * Sets the {@code UserStoryImportance} of the {@code UserStory} that we are building.
      */
-    public UserStoryBuilder withPriority(String priority) {
-        this.priority = new UserStoryPriority(priority);
+    public UserStoryBuilder withImportance(String importance) {
+        this.importance = new UserStoryImportance(importance);
         return this;
     }
 
@@ -63,15 +63,15 @@ public class UserStoryBuilder {
     }
 
     /**
-     * Sets the {@code UserStoryBenefit} of the {@code UserStory} that we are building.
+     * Sets the {@code UserStoryReason} of the {@code UserStory} that we are building.
      */
-    public UserStoryBuilder withBenefit(String benefit) {
-        this.benefit = new UserStoryBenefit(benefit);
+    public UserStoryBuilder withReason(String reason) {
+        this.reason = new UserStoryReason(reason);
         return this;
     }
 
     public UserStory build() {
-        return new UserStory(priority, user, function, benefit);
+        return new UserStory(importance, user, function, reason);
     }
 
 }

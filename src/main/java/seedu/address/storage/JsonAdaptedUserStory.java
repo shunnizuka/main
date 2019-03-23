@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.UserStory;
-import seedu.address.model.project.UserStoryBenefit;
+import seedu.address.model.project.UserStoryImportance;
+import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryFunction;
-import seedu.address.model.project.UserStoryPriority;
 import seedu.address.model.project.UserStoryUser;
 
 /**
@@ -17,31 +17,31 @@ class JsonAdaptedUserStory {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "User story's %s field is missing!";
 
-    private final String priority;
+    private final String importance;
     private final String user;
     private final String function;
-    private final String benefit;
+    private final String reason;
 
     /**
      * Constructs a {@code JsonAdaptedUserStory} with the given user story details.
      */
     @JsonCreator
-    public JsonAdaptedUserStory(@JsonProperty("priority") String priority, @JsonProperty("user") String user,
-                                @JsonProperty("function") String function, @JsonProperty("benefit") String benefit) {
-        this.priority = priority;
+    public JsonAdaptedUserStory(@JsonProperty("importance") String importance, @JsonProperty("user") String user,
+                                @JsonProperty("function") String function, @JsonProperty("reason") String reason) {
+        this.importance = importance;
         this.user = user;
         this.function = function;
-        this.benefit = benefit;
+        this.reason = reason;
     }
 
     /**
      * Converts a given {@code User Story} into this class for Jackson use.
      */
     public JsonAdaptedUserStory(UserStory source) {
-        priority = source.getUserStoryPriority().getPriority().toString();
+        importance = source.getUserStoryImportance().getImportance().toString();
         user = source.getUserStoryUser().getUser();
         function = source.getUserStoryFunction().getFunction();
-        benefit = source.getUserStoryBenefit().getBenefit();
+        reason = source.getUserStoryReason().getReason();
     }
 
     /**
@@ -51,14 +51,14 @@ class JsonAdaptedUserStory {
      */
     public UserStory toModelType() throws IllegalValueException {
 
-        if (priority == null) {
+        if (importance == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    UserStoryPriority.class.getSimpleName()));
+                    UserStoryImportance.class.getSimpleName()));
         }
-        if (!UserStoryPriority.isValidPriorityLevel(priority)) {
-            throw new IllegalValueException(UserStoryPriority.MESSAGE_CONSTRAINTS);
+        if (!UserStoryImportance.isValidImportanceLevel(importance)) {
+            throw new IllegalValueException(UserStoryImportance.MESSAGE_CONSTRAINTS);
         }
-        final UserStoryPriority modelUserStoryPriority = new UserStoryPriority(priority);
+        final UserStoryImportance modelUserStoryImportance = new UserStoryImportance(importance);
 
         if (user == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -75,13 +75,13 @@ class JsonAdaptedUserStory {
         }
         final UserStoryFunction modelUserStoryFunction = new UserStoryFunction(function);
 
-        if (benefit == null) {
+        if (reason == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    UserStoryBenefit.class.getSimpleName()));
+                    UserStoryReason.class.getSimpleName()));
         }
-        final UserStoryBenefit modelUserStoryBenefit = new UserStoryBenefit(benefit);
+        final UserStoryReason modelUserStoryReason = new UserStoryReason(reason);
 
-        return new UserStory(modelUserStoryPriority, modelUserStoryUser, modelUserStoryFunction, modelUserStoryBenefit);
+        return new UserStory(modelUserStoryImportance, modelUserStoryUser, modelUserStoryFunction, modelUserStoryReason);
     }
 
 }

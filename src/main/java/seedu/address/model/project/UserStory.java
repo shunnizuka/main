@@ -1,27 +1,24 @@
 package seedu.address.model.project;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Represents a user story stored in pocket project.
  */
 public class UserStory {
 
-    UserStoryPriority priority;
+    UserStoryImportance importance;
     UserStoryUser user;
     UserStoryFunction function;
-    UserStoryBenefit benefit;
+    UserStoryReason reason;
 
     /**
      * Constructor for a user story
      */
-    public UserStory(UserStoryPriority priority, UserStoryUser user, UserStoryFunction function,
-                     UserStoryBenefit benefit) {
-        this.priority = priority;
+    public UserStory(UserStoryImportance importance, UserStoryUser user, UserStoryFunction function,
+                     UserStoryReason reason) {
+        this.importance = importance;
         this.user = user;
         this.function = function;
-        this.benefit = benefit;
+        this.reason = reason;
     }
 
     @Override
@@ -31,18 +28,18 @@ public class UserStory {
         }
         //check all the fields for equality
         else return other instanceof UserStory
-                &&  priority.equals(((UserStory) other).priority)
+                &&  importance.equals(((UserStory) other).importance)
                 && user.equals(((UserStory) other).user)
                 && function.equals(((UserStory) other).function)
-                && benefit.equals(((UserStory) other).benefit);
+                && reason.equals(((UserStory) other).reason);
     }
 
-    public UserStoryPriority getUserStoryPriority() {
-        return priority;
+    public UserStoryImportance getUserStoryImportance() {
+        return importance;
     }
 
-    public UserStoryBenefit getUserStoryBenefit() {
-        return benefit;
+    public UserStoryReason getUserStoryReason() {
+        return reason;
     }
 
     public UserStoryFunction getUserStoryFunction() {
@@ -55,7 +52,7 @@ public class UserStory {
 
     /**
      * Comparison between user stories. If two user stories are idential in all the string fields, then
-     * it should be considered as the same story even if the priority level is different.
+     * it should be considered as the same story even if the importance level is different.
      * @param story
      * @return
      */
@@ -66,19 +63,19 @@ public class UserStory {
         //check the string fields
         else return user.equals(story.user)
                 && function.equals(story.function)
-                && benefit.equals(story.benefit);
+                && reason.equals(story.reason);
     }
 
     /**
      * Returns a clone of this user story.
      */
     public UserStory clone() {
-        return new UserStory(this.priority.clone(), this.user.clone(), this.function.clone(),
-                this.benefit.clone());
+        return new UserStory(this.importance.clone(), this.user.clone(), this.function.clone(),
+                this.reason.clone());
     }
 
-    public boolean isHigherPriority(UserStory other) {
-        return this.priority.isHigherPriority(other.priority);
+    public boolean isHigherImportance(UserStory other) {
+        return this.importance.isHigherImportance(other.importance);
     }
 
     @Override
@@ -88,8 +85,10 @@ public class UserStory {
                 .append(getUserStoryUser())
                 .append(" Function: ")
                 .append(getUserStoryFunction())
-                .append(" Benefit: ")
-                .append(getUserStoryBenefit());
+                .append(" Reason: ")
+                .append(getUserStoryReason())
+                .append(" Importance: ")
+                .append(getUserStoryImportance());
         return builder.toString();
     }
 }

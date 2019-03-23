@@ -13,7 +13,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
 /**
- * Adds a milestone to a project in the address book.
+ * Adds a milestone to a project in the projects list.
  */
 public class AddMilestoneToCommand extends AddToCommand {
 
