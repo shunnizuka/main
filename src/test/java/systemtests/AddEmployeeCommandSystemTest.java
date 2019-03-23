@@ -123,7 +123,6 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         deleteAllEmployees();
 
         /* Case: add a employee with skills, command with parameters in random order -> added */
-      
         toAdd = BOB;
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + SKILL_DESC_C
             + PHONE_DESC_BOB + ADDRESS_DESC_BOB + NAME_DESC_BOB + SKILL_DESC_JAVA + EMAIL_DESC_BOB;
