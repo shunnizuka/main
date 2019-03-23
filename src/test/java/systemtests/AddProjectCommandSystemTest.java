@@ -57,7 +57,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
         /* -------------------------- Perform add operation on the shown filtered list ------------------------------ */
 
         /* Case: filters the employee list before adding -> added */
-        showProjectsWithName(TypicalProjects.KEYWORD_MATCHING_ALICE);
+        showProjectsWithName(TypicalProjects.KEYWORD_MATCHING_BENSON);
         assertCommandSuccess(PROJECT_XAVIER);
 
         /* ------------------------ Perform add operation while a project card is selected ------------------------- */

@@ -14,8 +14,12 @@ import seedu.address.model.project.ProjectName;
  */
 public class TypicalProjects {
 
-    public static final Project PROJECT_ALICE = new Project(new ProjectName("Project Alice"), new Client("Dehui"),
-            new Deadline("11/02/2019"));
+    public static final Project PROJECT_ALICE = new ProjectBuilder().withProjectName("Project Alice")
+            .withClient("Dehui").withDeadline("11/02/2019")
+            .withDescrption("An application for Alice")
+            .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
+            .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
+                    TypicalMilestones.TYPICAL_MILESTONE_END)).build();
 
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
             .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson")
@@ -68,7 +72,7 @@ public class TypicalProjects {
             .withDeadline(VALID_EMAIL_BOB).withClient(VALID_ADDRESS_BOB)
             .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
     */
-    public static final String KEYWORD_MATCHING_ALICE = "Alice"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_BENSON = "Benson"; // A keyword that matches MEIER
 
     private TypicalProjects() {} // prevents instantiation
 
