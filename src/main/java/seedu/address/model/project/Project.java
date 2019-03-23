@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -155,6 +156,25 @@ public class Project {
      */
     public void addMilestone(Milestone milestone) {
         milestones.add(milestone);
+        Comparator<? super Milestone> comparator = new Comparator<Milestone>() {
+            @Override
+            public int compare(Milestone m1, Milestone m2) {
+                int dd1 = Integer.parseInt(m1.milestone.substring(0, 2));
+                int mm1 = Integer.parseInt(m1.milestone.substring(3, 5));
+                int yy1 = Integer.parseInt(m1.milestone.substring(6, 10));
+                int dd2 = Integer.parseInt(m2.milestone.substring(0, 2));
+                int mm2 = Integer.parseInt(m2.milestone.substring(3, 5));
+                int yy2 = Integer.parseInt(m2.milestone.substring(6, 10));
+                if (yy1 != yy2) {
+                    return yy1 - yy2;
+                } else if (mm1 != mm2) {
+                    return mm1 - mm2;
+                } else {
+                    return dd1 - dd2;
+                }
+            }
+        };
+        milestones.sort(comparator);
     }
 
     /**
