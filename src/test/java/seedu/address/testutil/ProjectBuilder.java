@@ -11,6 +11,8 @@ import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.SortedUserStoryList;
+import seedu.address.model.project.UserStory;
 
 /**
  * A utility class to help with building Project objects.
@@ -29,6 +31,7 @@ public class ProjectBuilder {
     private Description description;
     private UniqueEmployeeList employees;
     private List<Milestone> milestones;
+    private SortedUserStoryList userStories;
 
     public ProjectBuilder() {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
@@ -37,6 +40,7 @@ public class ProjectBuilder {
         description = new Description((DEFAULT_DESCRIPTION));
         employees = new UniqueEmployeeList();
         milestones = new ArrayList<>();
+        userStories = new SortedUserStoryList();
     }
 
     /**
@@ -54,6 +58,9 @@ public class ProjectBuilder {
         }
         for (Milestone m: projectToCopy.getMilestones()) {
             milestones.add(m);
+        }
+        for (UserStory u: projectToCopy.getUserStories()) {
+            userStories.add(u);
         }
     }
 
@@ -101,6 +108,14 @@ public class ProjectBuilder {
      */
     public ProjectBuilder withEmployees(List<Employee> employees) {
         this.employees.setEmployees(employees);
+        return this;
+    }
+
+    /**
+     * Sets the user stories of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withUserStories(List<UserStory> stories) {
+        this.userStories.setUserStories(stories);
         return this;
     }
 
