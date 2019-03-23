@@ -39,15 +39,23 @@ public class UserStoryBuilder {
     }
 
     /**
-     * Sets the {@code User} of the {@code UserStory} that we are building.
+     * Sets the {@code UserStoryPriority} of the {@code UserStory} that we are building.
      */
-    public UserStoryBuilder withName(String user) {
+    public UserStoryBuilder withPriority(String priority) {
+        this.priority = new UserStoryPriority(priority);
+        return this;
+    }
+
+    /**
+     * Sets the {@code UserStoryUser} of the {@code UserStory} that we are building.
+     */
+    public UserStoryBuilder withUser(String user) {
         this.user = new UserStoryUser(user);
         return this;
     }
 
     /**
-     * Sets the {@code Function} of the {@code UserStory} that we are building.
+     * Sets the {@code UserStoryFunction} of the {@code UserStory} that we are building.
      */
     public UserStoryBuilder withFunction(String function) {
         this.function = new UserStoryFunction(function);
@@ -55,7 +63,7 @@ public class UserStoryBuilder {
     }
 
     /**
-     * Sets the {@code Benefit} of the {@code UserStory} that we are building.
+     * Sets the {@code UserStoryBenefit} of the {@code UserStory} that we are building.
      */
     public UserStoryBuilder withBenefit(String benefit) {
         this.benefit = new UserStoryBenefit(benefit);

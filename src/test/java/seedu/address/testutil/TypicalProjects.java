@@ -20,7 +20,7 @@ public class TypicalProjects {
             .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                     TypicalMilestones.TYPICAL_MILESTONE_END))
-            .withUserStories().build();
+            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
 
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
             .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson")
