@@ -38,7 +38,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
         final ProjectName projectName = new ProjectName(matcher.group("project").trim());
         final String keyword = matcher.group("keyword").trim().toLowerCase();
         final String arguments = matcher.group("arguments");
-        if (keyword.equals(AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD)) {
+        if (keyword.equals(AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new AddEmployeeToCommand(index, projectName);
@@ -46,7 +46,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEmployeeToCommand.MESSAGE_USAGE), pe);
             }
-        } else if (keyword.equals(AddMilestoneToCommand.ADD_MILESTONE_KEYWORD)) {
+        } else if (keyword.equals(AddMilestoneToCommand.ADD_MILESTONE_KEYWORD) || keyword.equals("m")) {
             try {
                 Milestone milestone = ParserUtil.parseMilestone(arguments.trim());
                 return new AddMilestoneToCommand(projectName, milestone);

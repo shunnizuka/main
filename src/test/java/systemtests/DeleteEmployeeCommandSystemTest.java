@@ -2,7 +2,6 @@ package systemtests;
 
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.DeleteEmployeeCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS;
 import static seedu.address.testutil.TestUtil.getEmployee;
 import static seedu.address.testutil.TestUtil.getLastIndex;
