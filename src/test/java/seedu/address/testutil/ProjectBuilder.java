@@ -107,5 +107,4 @@ public class ProjectBuilder {
     public Project build() {
         return new Project(projectName, client, deadline, milestones, description, employees);
     }
-
 }

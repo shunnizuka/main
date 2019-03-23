@@ -97,6 +97,15 @@ public class TestApp extends MainApp {
         return copy;
     }
 
+    /**
+     * Returns a defensive copy of the model with project list.
+     */
+    public Model getProjectModel() {
+        Model copy = new ModelManager((model.getPocketProject()), new UserPrefs());
+        ModelHelper.setProjectFilteredList(copy, model.getFilteredProjectList());
+        return copy;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         ui.start(primaryStage);
