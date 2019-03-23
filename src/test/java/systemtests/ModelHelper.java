@@ -25,19 +25,19 @@ public class ModelHelper {
         model.updateFilteredEmployeeList(predicate.orElse(PREDICATE_MATCHING_NO_EMPLOYEES));
     }
     /**
+     * @see ModelHelper#setFilteredList(Model, List)
+     */
+    public static void setFilteredList(Model model, Employee... toDisplay) {
+        setFilteredList(model, Arrays.asList(toDisplay));
+    }
+
+    /**
      * Updates {@code model}'s filtered list to display only {@code toDisplay}.
      */
     public static void setProjectFilteredList(Model model, List<Project> toDisplay) {
         Optional<Predicate<Project>> predicate =
                 toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
         model.updateFilteredProjectList(predicate.orElse(PREDICATE_MATCHING_NO_PROJECTS));
-    }
-
-    /**
-     * @see ModelHelper#setFilteredList(Model, List)
-     */
-    public static void setFilteredList(Model model, Employee... toDisplay) {
-        setFilteredList(model, Arrays.asList(toDisplay));
     }
 
     /**
