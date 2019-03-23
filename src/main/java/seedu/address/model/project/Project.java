@@ -177,6 +177,13 @@ public class Project {
     public boolean hasProjectName(ProjectName projectName) {
         return this.projectName.equals(projectName);
     }
+
+    /**
+     * Returns true if this project contains the given Employee.
+     */
+    public boolean containsEmployee(Employee employee) {
+        return employees.contains(employee);
+    }
     @Override
     public boolean equals (Object other) {
         if (other == this) {

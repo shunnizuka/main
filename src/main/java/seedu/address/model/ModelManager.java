@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -178,6 +180,16 @@ public class ModelManager implements Model {
     @Override
     public void addMilestoneTo(Project targetProject, Milestone milestone) {
         versionedPocketProject.addMilestoneTo(targetProject, milestone);
+    }
+    @Override
+    public List<Project> getProjectsContaining(Employee employee) {
+        List<Project> list = new ArrayList<>();
+        for (Project p: versionedPocketProject.getProjectList()) {
+            if (p.containsEmployee(employee)) {
+                list.add(p);
+            }
+        }
+        return list;
     }
 
 
