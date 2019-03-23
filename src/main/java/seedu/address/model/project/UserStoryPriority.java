@@ -47,4 +47,10 @@ public class UserStoryPriority {
         return priority.hashCode();
     }
 
+    /**
+     * Returns a clone of this user story priority.
+     */
+    public UserStoryPriority clone() {
+        return new UserStoryPriority(this.priority.toString());
+    }
 }

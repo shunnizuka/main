@@ -37,4 +37,10 @@ public class UserStoryFunction {
         return function.hashCode();
     }
 
+    /**
+     * Returns a clone of this user story function.
+     */
+    public UserStoryFunction clone() {
+        return new UserStoryFunction(this.function);
+    }
 }

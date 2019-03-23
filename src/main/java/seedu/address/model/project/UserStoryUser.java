@@ -51,4 +51,11 @@ public class UserStoryUser {
         return user.hashCode();
     }
 
+    /**
+     * Returns a clone of this user story user.
+     */
+    public UserStoryUser clone() {
+        return new UserStoryUser(this.user);
+    }
+
 }

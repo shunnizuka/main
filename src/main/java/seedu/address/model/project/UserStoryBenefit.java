@@ -38,4 +38,10 @@ public class UserStoryBenefit {
         return benefit.hashCode();
     }
 
+    /**
+     * Returns a clone of this user story benefit.
+     */
+    public UserStoryBenefit clone() {
+        return new UserStoryBenefit(this.benefit);
+    }
 }

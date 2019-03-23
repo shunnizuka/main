@@ -1,5 +1,8 @@
 package seedu.address.model.project;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a user story stored in pocket project.
  */
@@ -32,7 +35,29 @@ public class UserStory {
                 && user.equals(((UserStory) other).user)
                 && function.equals(((UserStory) other).function)
                 && benefit.equals(((UserStory) other).benefit);
-
     }
 
+    /**
+     * Comparison between user stories. If two user stories are idential in all the string fields, then
+     * it should be considered as the same story even if the priority level is different.
+     * @param story
+     * @return
+     */
+    public boolean isSameUserStory(UserStory story) {
+        if (story == this) {
+            return true;
+        }
+        //check the string fields
+        else return user.equals(story.user)
+                && function.equals(story.function)
+                && benefit.equals(story.benefit);
+    }
+
+    /**
+     * Returns a clone of this user story.
+     */
+    public UserStory clone() {
+        return new UserStory(this.priority.clone(), this.user.clone(), this.function.clone(),
+                this.benefit.clone());
+    }
 }
