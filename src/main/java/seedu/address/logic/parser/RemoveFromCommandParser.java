@@ -37,7 +37,7 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
         final ProjectName projectName = new ProjectName(matcher.group("project").trim());
         final String keyword = matcher.group("keyword").trim();
         final String arguments = matcher.group("arguments");
-        if (keyword.equals(RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD)) {
+        if (keyword.equals(RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new RemoveEmployeeFromCommand(index, projectName);
@@ -45,7 +45,7 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveEmployeeFromCommand.MESSAGE_USAGE), pe);
             }
-        } else if (keyword.equals(RemoveMilestoneFromCommand.REMOVE_MILESTONE_KEYWORD)) {
+        } else if (keyword.equals(RemoveMilestoneFromCommand.REMOVE_MILESTONE_KEYWORD) || keyword.equals("m")) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new RemoveMilestoneFromCommand(index, projectName);

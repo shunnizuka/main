@@ -20,9 +20,10 @@ public class DeleteProjectCommand extends DeleteCommand {
     public static final String DELETE_PROJECT_KEYWORD = "project";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " project"
-            + ": Deletes the project identified by the name of the project.\n"
-            + "Parameters: PROJECT_NAME\n"
-            + "Example: " + COMMAND_WORD + " project" + " Apollo";
+            + ": Deletes the project identified by the name or index(must be positive integer) of the project.\n"
+            + "Parameters: PROJECT_NAME/PROJECT_INDEX\n"
+            + "Example: " + COMMAND_WORD + " project" + " Apollo\n"
+            + "Example: " + COMMAND_WORD + " project" + " 1\n";
 
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
@@ -71,8 +72,15 @@ public class DeleteProjectCommand extends DeleteCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteProjectCommand // instanceof handles nulls
-                && projectName.equals(((DeleteProjectCommand) other).projectName)); // state check
+        if (projectName != null) {
+            return other == this // short circuit if same object
+                    || (other instanceof DeleteProjectCommand // instanceof handles nulls
+                    && projectName.equals(((DeleteProjectCommand) other).projectName));
+            // state check
+        } else {
+            return other == this // short circuit if same object
+                    || (other instanceof DeleteProjectCommand // instanceof handles nulls
+                    && targetIndex.equals(((DeleteProjectCommand) other).targetIndex)); // state check
+        }
     }
 }

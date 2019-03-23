@@ -21,6 +21,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * Used for separation of delete type word and args.
      */
     private static final Pattern DELETE_COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
+    private static final String INTEGER_STRING_FORMAT = "(-?)[0-9]+";
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
@@ -37,7 +38,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         final String keyword = matcher.group("keyword");
         final String arguments = matcher.group("arguments");
 
-        if (keyword.equals(DeleteEmployeeCommand.DELETE_EMPLOYEE_KEYWORD)) {
+        if (keyword.equals(DeleteEmployeeCommand.DELETE_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new DeleteEmployeeCommand(index);
@@ -45,12 +46,17 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEmployeeCommand.MESSAGE_USAGE), pe);
             }
-        } else if (keyword.equals(DeleteProjectCommand.DELETE_PROJECT_KEYWORD)) {
+        } else if (keyword.equals(DeleteProjectCommand.DELETE_PROJECT_KEYWORD) || keyword.equals("p")) {
             String argument = arguments.trim();
-            try {
-                Index index = ParserUtil.parseIndex(argument);
-                return new DeleteProjectCommand(index);
-            } catch (ParseException pe) {
+            if (argument.matches(INTEGER_STRING_FORMAT)) {
+                try {
+                    Index index = ParserUtil.parseIndex(argument);
+                    return new DeleteProjectCommand(index);
+                } catch (ParseException pe) {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            DeleteProjectCommand.MESSAGE_USAGE, pe));
+                }
+            } else {
                 return new DeleteProjectCommand(new ProjectName(argument));
             }
         } else {
