@@ -54,7 +54,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
-        /* Case: add a employee without tags to a non-empty pocket project, command with leading spaces and trailing
+        /* Case: add a employee without skills to a non-empty pocket project, command with leading spaces and trailing
          * spaces
          * -> added
          */
@@ -92,13 +92,13 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         deleteAllEmployees();
         assertCommandSuccess(ALICE);
 
-        /* Case: add a employee with tags, command with parameters in random order -> added */
+        /* Case: add a employee with skills, command with parameters in random order -> added */
         toAdd = BOB;
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + SKILL_DESC_C
             + PHONE_DESC_BOB + ADDRESS_DESC_BOB + NAME_DESC_BOB + SKILL_DESC_JAVA + EMAIL_DESC_BOB;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add a employee, missing tags -> added */
+        /* Case: add a employee, missing skills -> added */
         assertCommandSuccess(HOON);
 
         /* -------------------------- Perform add operation on the shown filtered list ------------------------------ */
@@ -134,7 +134,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
-        /* Case: add a duplicate employee except with different tags -> rejected */
+        /* Case: add a duplicate employee except with different skills -> rejected */
         command = EmployeeUtil.getAddEmployeeCommand(HOON) + " " + PREFIX_SKILL.getPrefix() + "friends";
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
