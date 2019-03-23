@@ -94,6 +94,11 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
+        /* Case: find employee in address book, command word is of mixed case -> 1 employee found */
+        command = "FinD" + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Meier";
+        assertCommandSuccess(command, expectedModel);
+        assertSelectedCardUnchanged();
+
         /* Case: find employee in address book, keyword is substring of name -> 0 employees found */
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Mei";
         ModelHelper.setFilteredList(expectedModel);

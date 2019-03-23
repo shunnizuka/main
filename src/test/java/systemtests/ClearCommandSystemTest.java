@@ -50,6 +50,10 @@ public class ClearCommandSystemTest extends PocketProjectSystemTest {
         /* Case: clear empty address book -> cleared */
         assertCommandSuccess(ClearCommand.COMMAND_WORD);
         assertSelectedCardUnchanged();
+
+        /* Case: clear empty address book with mixed case command words -> cleared */
+        assertCommandSuccess("ClEaR");
+        assertSelectedCardUnchanged();
     }
 
     /**
