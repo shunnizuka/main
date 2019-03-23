@@ -10,7 +10,7 @@ public class UserStoryBenefit {
      * Constructor for creating a benefit of a user story.
      * @param benefit
      */
-    private UserStoryBenefit(String benefit) {
+    public UserStoryBenefit(String benefit) {
         this.benefit = benefit;
     }
 

@@ -37,19 +37,19 @@ public class UserStory {
                 && benefit.equals(((UserStory) other).benefit);
     }
 
-    public UserStoryPriority getPriority() {
+    public UserStoryPriority getUserStoryPriority() {
         return priority;
     }
 
-    public UserStoryBenefit getBenefit() {
+    public UserStoryBenefit getUserStoryBenefit() {
         return benefit;
     }
 
-    public UserStoryFunction getFunction() {
+    public UserStoryFunction getUserStoryFunction() {
         return function;
     }
 
-    public UserStoryUser getUser() {
+    public UserStoryUser getUserStoryUser() {
         return user;
     }
 
@@ -85,11 +85,11 @@ public class UserStory {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("User: ")
-                .append(getUser())
+                .append(getUserStoryUser())
                 .append(" Function: ")
-                .append(getFunction())
+                .append(getUserStoryFunction())
                 .append(" Benefit: ")
-                .append(getBenefit());
+                .append(getUserStoryBenefit());
         return builder.toString();
     }
 }
