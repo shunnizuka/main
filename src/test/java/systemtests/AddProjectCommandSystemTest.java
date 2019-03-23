@@ -1,5 +1,6 @@
 package systemtests;
 
+import static seedu.address.testutil.TypicalProjects.PROJECT_XAVIER;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
 import seedu.address.logic.commands.AddProjectCommand;
@@ -11,6 +12,7 @@ import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.testutil.ProjectUtil;
+import seedu.address.testutil.TypicalProjects;
 
 import org.junit.Test;
 
@@ -52,6 +54,16 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
         deleteAllProjects();
         assertCommandSuccess(toAdd);
 
+        /* -------------------------- Perform add operation on the shown filtered list ------------------------------ */
+
+        /* Case: filters the employee list before adding -> added */
+        showProjectsWithName(TypicalProjects.KEYWORD_MATCHING_ALICE);
+        assertCommandSuccess(PROJECT_XAVIER);
+
+        /* ------------------------ Perform add operation while a project card is selected ------------------------- */
+
+        /* Case: selects first card in the project list, add a project -> added, card selection remains unchanged */
+        //TODO
     }
 
     /**

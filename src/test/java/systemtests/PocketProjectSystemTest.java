@@ -29,10 +29,12 @@ import seedu.address.TestApp;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
+import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewEmployeeCommand;
+import seedu.address.logic.commands.ViewProjectCommand;
 import seedu.address.model.Model;
 import seedu.address.model.PocketProject;
 import seedu.address.testutil.TestUtil;
@@ -146,6 +148,16 @@ public abstract class PocketProjectSystemTest {
     }
 
     /**
+     * Displays all projects with any parts of their names matching {@code keyword} (case-insensitive).
+     */
+    protected void showProjectsWithName(String keyword) {
+        executeCommand(FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD
+                + " " + keyword);
+        assertTrue(getModel().getFilteredProjectList().size()
+                < getModel().getPocketProject().getProjectList().size());
+    }
+
+    /**
      * Views the employee at {@code index} of the displayed list.
      */
     protected void viewEmployee(Index index) {
@@ -153,6 +165,18 @@ public abstract class PocketProjectSystemTest {
                 + index.getOneBased());
         assertEquals(index.getZeroBased(), getEmployeeListPanel().getSelectedCardIndex());
     }
+
+    //TODO SET UP GUI CLASSES AND VARIABLES FOR TESTING
+    /**
+     * Views the project at {@code index} of the displayed list.
+     */
+    /*
+    protected void viewProject(Index index) {
+        executeCommand(ViewCommand.COMMAND_WORD + " " + ViewProjectCommand.VIEW_PROJECT_KEYWORD + " "
+                + index.getOneBased());
+        assertEquals(index.getZeroBased(), getProjectListPanel().getSelectedCardIndex());
+    }
+    */
 
     /**
      * Deletes all employees in the pocket project.
