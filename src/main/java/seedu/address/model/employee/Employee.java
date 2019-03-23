@@ -16,13 +16,13 @@ import seedu.address.model.skill.Skill;
 public class Employee {
 
     // Identity fields
-    private Name name;
-    private Phone phone;
-    private Email email;
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
 
     // Data fields
-    private Address address;
-    private Set<Skill> skills = new HashSet<>();
+    private final Address address;
+    private final Set<Skill> skills = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -52,15 +52,6 @@ public class Employee {
         return address;
     }
 
-    public void editEmployee(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, address, skills);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.skills.addAll(skills);
-    }
-
     /**
      * Returns an immutable skill set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -86,9 +77,9 @@ public class Employee {
     /**
      * Returns a clone of this Employee object.
      */
-    public Employee clone() {
+    public Employee clone () {
         Set<Skill> newSkills = new HashSet<>();
-        for (Skill s: skills) {
+        for (Skill s : skills) {
             newSkills.add(s.clone());
         }
         return new Employee(this.name.clone(), this.phone.clone(), this.email.clone(), this.address.clone(),
@@ -100,7 +91,7 @@ public class Employee {
      * This defines a stronger notion of equality between two persons.
      */
     @Override
-    public boolean equals(Object other) {
+    public boolean equals (Object other) {
         if (other == this) {
             return true;
         }
@@ -118,13 +109,13 @@ public class Employee {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode () {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, skills);
     }
 
     @Override
-    public String toString() {
+    public String toString () {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
             .append(" Phone: ")
@@ -137,5 +128,4 @@ public class Employee {
         getSkills().forEach(builder::append);
         return builder.toString();
     }
-
 }
