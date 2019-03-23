@@ -176,6 +176,15 @@ public class AddCommandParserTest {
     }
 
     @Test
+    public void parse_allFieldPresentRandomlyProject_success() {
+        Project expectedProject = PROJECT_ALICE;
+
+        // whitespace only preamble
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
+                + CLIENT_DESC_ALICE + DEADLINE_DESC_ALICE + NAME_DESC_ALICE, new AddProjectCommand(expectedProject));
+    }
+
+    @Test
     public void parse_compulsoryFieldMissingProject_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE);
 

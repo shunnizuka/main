@@ -155,12 +155,20 @@ public abstract class PocketProjectSystemTest {
     }
 
     /**
-     * Deletes all employees in the address book.
+     * Deletes all employees in the pocket project.
      */
     protected void deleteAllEmployees() {
         executeCommand(ClearCommand.COMMAND_WORD);
         assertEquals(0, getModel().getPocketProject().getEmployeeList().size());
     }
+
+    /**
+     * Deletes all projects in the pocket project.
+     */
+     protected void deleteAllProjects() {
+         executeCommand(ClearCommand.COMMAND_WORD);
+         assertEquals(0, getModel().getPocketProject().getProjectList().size());
+     }
 
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays

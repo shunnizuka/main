@@ -1,19 +1,18 @@
 package systemtests;
 
+import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
+
 import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
+import seedu.address.model.project.Client;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 import seedu.address.testutil.ProjectUtil;
 
 import org.junit.Test;
-
-import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
-import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
 public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
@@ -30,8 +29,8 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
          * -> added
          */
 
-         Project toAdd = PROJECT_ZULU;
-         assertCommandSuccess(toAdd);
+        Project toAdd = PROJECT_ZULU;
+        assertCommandSuccess(toAdd);
 
         /* Case: undo adding Project Zulu to the list -> Project Zulu deleted */
         command = UndoCommand.COMMAND_WORD;
@@ -43,6 +42,16 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
         model.addProject(toAdd);
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
+
+        /* Case: add a employee with all fields same as another employee in the pocket project except name -> added */
+        toAdd = new Project(new ProjectName("Zululu"), new Client("Shunnizuka"),
+                new Deadline("04/09/2023"));
+        assertCommandSuccess(toAdd);
+
+        /* Case: add to empty pocket project -> added */
+        deleteAllProjects();
+        assertCommandSuccess(toAdd);
+
     }
 
     /**
