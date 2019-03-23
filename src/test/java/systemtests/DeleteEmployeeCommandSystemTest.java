@@ -110,8 +110,6 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertCommandFailure(DeleteEmployeeCommand.COMMAND_WORD
                 + " employee 1 abc", MESSAGE_INVALID_DELETE_COMMAND_FORMAT);
 
-        /* Case: mixed case command word -> rejected */
-        assertCommandFailure("DelETE employee 1", MESSAGE_UNKNOWN_COMMAND);
     }
 
     /**

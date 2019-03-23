@@ -36,7 +36,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        final String keyword = matcher.group("keyword");
+        final String keyword = matcher.group("keyword").toLowerCase();
         final String arguments = matcher.group("arguments");
         String[] nameKeywords = arguments.trim().split("\\s+");
 

@@ -95,10 +95,6 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* Case: invalid arguments (extra argument) -> rejected */
         assertCommandFailure(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD
                         + " 1 abc", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewEmployeeCommand.MESSAGE_USAGE));
-
-        /* Case: mixed case command word -> rejected */
-        assertCommandFailure("ViEw 1", MESSAGE_UNKNOWN_COMMAND);
-
         /* Case: view from empty address book -> rejected */
         deleteAllEmployees();
         assertCommandFailure(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD

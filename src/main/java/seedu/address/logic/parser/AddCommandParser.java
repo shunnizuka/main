@@ -52,7 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String keyword = matcher.group("keyword");
+        final String keyword = matcher.group("keyword").toLowerCase();
         final String arguments = matcher.group("arguments");
 
         if (keyword.equals(AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD)) {

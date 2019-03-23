@@ -36,7 +36,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddToCommand.MESSAGE_USAGE));
         }
         final ProjectName projectName = new ProjectName(matcher.group("project").trim());
-        final String keyword = matcher.group("keyword").trim();
+        final String keyword = matcher.group("keyword").trim().toLowerCase();
         final String arguments = matcher.group("arguments");
         if (keyword.equals(AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD)) {
             try {
