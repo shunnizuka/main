@@ -1,11 +1,11 @@
 package systemtests;
 
-import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
-import seedu.address.testutil.EmployeeUtil;
 import seedu.address.testutil.ProjectUtil;
 
 import org.junit.Test;
@@ -13,7 +13,7 @@ import org.junit.Test;
 import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
-import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
+import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
 public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
@@ -21,6 +21,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
     public void addProject() {
 
         Model model = getModel();
+        String command;
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
@@ -29,10 +30,19 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
          * -> added
          */
 
-         Project toAdd = PROJECT_ALICE;
-         String command = " " + AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE + CLIENT_DESC_ALICE
-            + DEADLINE_DESC_ALICE;
+         Project toAdd = PROJECT_ZULU;
+         assertCommandSuccess(toAdd);
 
+        /* Case: undo adding Project Zulu to the list -> Project Zulu deleted */
+        command = UndoCommand.COMMAND_WORD;
+        String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, model, expectedResultMessage);
+
+        /* Case: redo adding Project Zulu to the list -> Project Zulu added again */
+        command = RedoCommand.COMMAND_WORD;
+        model.addProject(toAdd);
+        expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, model, expectedResultMessage);
     }
 
     /**

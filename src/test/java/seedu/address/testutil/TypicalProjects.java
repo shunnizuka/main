@@ -15,7 +15,7 @@ import seedu.address.model.project.ProjectName;
 public class TypicalProjects {
 
     public static final Project PROJECT_ALICE = new Project(new ProjectName("Project Alice"), new Client("Dehui"),
-        new Deadline("11/02/2019"));
+            new Deadline("11/02/2019"));
 
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
             .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson")
@@ -53,6 +53,10 @@ public class TypicalProjects {
     public static final Project PROJECT_IDA = new ProjectBuilder()
             .withProjectName("Project Ida Mueller").withClient("FOS")
             .withDeadline("3/3/2013").withDescrption("An application for Ida Mueller").build();
+
+    public static final Project PROJECT_ZULU = new Project(new ProjectName("Zulu"), new Client("Shunnizuka"),
+            new Deadline("04/09/2023"));
+
     /*
     // Manually added - Project's details found in {@code CommandTestUtil}
     public static final Project AMY = new ProjectBuilder().withProjectName(VALID_NAME_AMY).withClient(VALID_PHONE_AMY)
