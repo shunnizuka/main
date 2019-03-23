@@ -77,7 +77,7 @@ public class Employee {
     /**
      * Returns a clone of this Employee object.
      */
-    public Employee clone () {
+    public Employee clone() {
         Set<Skill> newSkills = new HashSet<>();
         for (Skill s : skills) {
             newSkills.add(s.clone());
@@ -91,7 +91,7 @@ public class Employee {
      * This defines a stronger notion of equality between two persons.
      */
     @Override
-    public boolean equals (Object other) {
+    public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
@@ -109,13 +109,13 @@ public class Employee {
     }
 
     @Override
-    public int hashCode () {
+    public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, skills);
     }
 
     @Override
-    public String toString () {
+    public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
             .append(" Phone: ")
