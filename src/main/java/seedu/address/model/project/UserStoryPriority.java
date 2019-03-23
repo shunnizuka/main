@@ -28,6 +28,10 @@ public class UserStoryPriority {
         return this.priority;
     }
 
+    public boolean isHigherPriority(UserStoryPriority other) {
+        return this.priority > other.priority;
+    }
+
     /**
      * Returns true if a given string is a valid priority level.
      */

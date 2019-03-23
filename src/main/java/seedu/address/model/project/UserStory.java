@@ -60,4 +60,8 @@ public class UserStory {
         return new UserStory(this.priority.clone(), this.user.clone(), this.function.clone(),
                 this.benefit.clone());
     }
+
+    public boolean isHigherPriority(UserStory other) {
+        return this.priority.isHigherPriority(other.priority);
+    }
 }

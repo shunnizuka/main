@@ -18,6 +18,9 @@ import seedu.address.model.project.exceptions.UserStoryNotFoundException;
  * being added or updated is unique in terms of identity in the UniqueUserStoryList. However, the removal of a user
  * story uses UserStory#equals(Object) so as to ensure that the user story with exactly the same fields will be removed.
  *
+ * In addition, the user stories stored in UniqueUserStoryList is sorted by descending priority level upon addition.
+ * This is to facilitate operations on the list which requires the stories to be ordered by priority level.
+ *
  * Supports a minimal set of list operations.
  *
  * @see UserStory#isSameUserStory(UserStory)
@@ -37,7 +40,8 @@ public class UniqueUserStoryList implements Iterable<UserStory> {
     }
 
     /**
-     * Adds a user story to the list.
+     * Adds a user story to the list based on its priority level.
+     * Uses UserStoryPriority#isHigherPriority(UserStoryPriority) for comparison
      * The user story must not already exist in the list.
      */
     public void add(UserStory toAdd) {
@@ -45,6 +49,15 @@ public class UniqueUserStoryList implements Iterable<UserStory> {
         if (contains(toAdd)) {
             throw new DuplicateUserStoryException();
         }
+        //find the position to insert the new user story
+        for (int i = 0; i < internalList.size() - 1; i++) {
+            UserStory currentStory = internalList.get(i);
+            if (toAdd.isHigherPriority(currentStory)) {
+                internalList.add(i, toAdd);
+                break;
+            }
+        }
+        //if at the end it is still not added then add it to the back
         internalList.add(toAdd);
     }
 
