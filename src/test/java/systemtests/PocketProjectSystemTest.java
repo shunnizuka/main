@@ -189,8 +189,7 @@ public abstract class PocketProjectSystemTest {
         //        + index.getOneBased());
         //assertEquals(index.getZeroBased(), getProjectListPanel().getSelectedCardIndex());
     }
-
-
+    
     /**
      * Deletes all employees in the pocket project.
      */

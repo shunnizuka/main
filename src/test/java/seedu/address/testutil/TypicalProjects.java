@@ -14,7 +14,7 @@ import seedu.address.model.project.ProjectName;
  */
 public class TypicalProjects {
 
-    public static final Project PROJECT_ALICE = new ProjectBuilder().withProjectName("Project Alice")
+    public static final Project PROJECT_ALICE = new ProjectBuilder().withProjectName("Project hey Alice ")
             .withClient("Dehui").withDeadline("11/02/2019")
             .withDescrption("An application for Alice")
             .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
@@ -27,7 +27,7 @@ public class TypicalProjects {
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                     TypicalMilestones.TYPICAL_MILESTONE_END)).build();
 
-    public static final Project PROJECT_CARL = new ProjectBuilder().withProjectName("Project Carl").withClient("Darryl")
+    public static final Project PROJECT_CARL = new ProjectBuilder().withProjectName("Project hey Carl").withClient("Darryl")
             .withDeadline("12/12/2012").withDescrption("An application for Carl")
             .withEmployees(Arrays.asList(TypicalEmployees.DANIEL, TypicalEmployees.ELLE)).build();
 
