@@ -63,8 +63,8 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(PROJECT_YANKEE);
         assertCommandSuccess(PROJECT_WHISKEY);
 
-        showProjectsWithName(KEYWORD_MATCHING_YANKEE);
-        assertCommandSuccess(PROJECT_XAVIER);
+        //showProjectsWithName(KEYWORD_MATCHING_YANKEE);
+        //assertCommandSuccess(PROJECT_XAVIER);
 
         /* ------------------------ Perform add operation while a project card is selected ------------------------- */
 
