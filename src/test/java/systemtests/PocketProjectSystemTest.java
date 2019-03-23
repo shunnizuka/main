@@ -153,6 +153,8 @@ public abstract class PocketProjectSystemTest {
     protected void showEmployeesWithName(String keyword) {
         executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " " + keyword);
+        System.out.println(getModel().getFilteredEmployeeList());
+        System.out.println(getModel().getPocketProject().getEmployeeList());
         assertTrue(getModel().getFilteredEmployeeList().size()
                 < getModel().getPocketProject().getEmployeeList().size());
     }
@@ -163,8 +165,10 @@ public abstract class PocketProjectSystemTest {
     protected void showProjectsWithName(String keyword) {
         executeCommand(FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD
                 + " " + keyword);
+        System.out.println(getModel().getFilteredProjectList());
+        System.out.println(getModel().getPocketProject().getProjectList());
         assertTrue(getModel().getFilteredProjectList().size()
-                < getModel().getPocketProject().getProjectList().size());
+            < getModel().getPocketProject().getProjectList().size());
     }
 
     /**
@@ -308,4 +312,12 @@ public abstract class PocketProjectSystemTest {
     protected Model getModel() {
         return testApp.getModel();
     }
+
+    /**
+     * Returns a defensive copy of the current project model.
+     */
+    protected Model getProjectModel() {
+        return testApp.getProjectModel();
+    }
+
 }

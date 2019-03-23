@@ -1,6 +1,9 @@
 package systemtests;
 
+import static seedu.address.testutil.TypicalProjects.KEYWORD_MATCHING_YANKEE;
+import static seedu.address.testutil.TypicalProjects.PROJECT_WHISKEY;
 import static seedu.address.testutil.TypicalProjects.PROJECT_XAVIER;
+import static seedu.address.testutil.TypicalProjects.PROJECT_YANKEE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
 import seedu.address.logic.commands.AddProjectCommand;
@@ -12,7 +15,6 @@ import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.testutil.ProjectUtil;
-import seedu.address.testutil.TypicalProjects;
 
 import org.junit.Test;
 
@@ -21,7 +23,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
     @Test
     public void addProject() {
 
-        Model model = getModel();
+        Model model = getProjectModel();
         String command;
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
@@ -56,14 +58,18 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
         /* -------------------------- Perform add operation on the shown filtered list ------------------------------ */
 
-        /* Case: filters the employee list before adding -> added */
-        showProjectsWithName(TypicalProjects.KEYWORD_MATCHING_BENSON);
+        //TODO find then add -> find may be buggy?
+        /* Case: filters the project list before adding -> added */
+        assertCommandSuccess(PROJECT_YANKEE);
+        assertCommandSuccess(PROJECT_WHISKEY);
+
+        showProjectsWithName(KEYWORD_MATCHING_YANKEE);
         assertCommandSuccess(PROJECT_XAVIER);
 
         /* ------------------------ Perform add operation while a project card is selected ------------------------- */
 
         /* Case: selects first card in the project list, add a project -> added, card selection remains unchanged */
-        //TODO
+        //TODO view then add
     }
 
     /**

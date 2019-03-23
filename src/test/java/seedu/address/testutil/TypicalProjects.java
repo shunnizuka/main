@@ -58,8 +58,14 @@ public class TypicalProjects {
             .withProjectName("Project Ida Mueller").withClient("FOS")
             .withDeadline("3/3/2013").withDescrption("An application for Ida Mueller").build();
 
+    public static final Project PROJECT_WHISKEY = new Project(new ProjectName("Whiskey"), new Client("Curry S"),
+            new Deadline("10/10/2010"));
+
     public static final Project PROJECT_XAVIER = new Project(new ProjectName("Xavier"), new Client("JJ Pte Ltd"),
             new Deadline("02/03/2033"));
+
+    public static final Project PROJECT_YANKEE = new Project(new ProjectName("Yankee"), new Client("Pang Po"),
+            new Deadline("13/12/2011"));
 
     public static final Project PROJECT_ZULU = new Project(new ProjectName("Zulu"), new Client("Shunnizuka"),
             new Deadline("04/09/2023"));
@@ -72,7 +78,7 @@ public class TypicalProjects {
             .withDeadline(VALID_EMAIL_BOB).withClient(VALID_ADDRESS_BOB)
             .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
     */
-    public static final String KEYWORD_MATCHING_BENSON = "Benson"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_YANKEE = "Yankee"; // A keyword that matches YANKEE
 
     private TypicalProjects() {} // prevents instantiation
 
