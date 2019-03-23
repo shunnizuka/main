@@ -51,7 +51,6 @@ public class ClearCommandSystemTest extends PocketProjectSystemTest {
         /* Case: clear empty address book -> cleared */
         assertCommandSuccess(ClearCommand.COMMAND_WORD);
         assertSelectedCardUnchanged();
-        
     }
 
     /**
