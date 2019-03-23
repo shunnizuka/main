@@ -4,7 +4,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -18,6 +20,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -37,7 +40,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalEmployees.AMY;
 import static seedu.address.testutil.TypicalEmployees.BOB;
-import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
+import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
 import org.junit.Test;
 
@@ -168,12 +171,20 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresentProject_success() {
-        Project expectedProject = PROJECT_ALICE;
+        Project expectedProject = PROJECT_ZULU;
 
         // whitespace only preamble
-        /*assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
-            + NAME_DESC_ALICE + CLIENT_DESC_ALICE + DEADLINE_DESC_ALICE, new AddProjectCommand(expectedProject));*/
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
+            + NAME_DESC_ZULU + CLIENT_DESC_ZULU + DEADLINE_DESC_ZULU, new AddProjectCommand(expectedProject));
+    }
 
+    @Test
+    public void parse_allFieldPresentRandomlyProject_success() {
+        Project expectedProject = PROJECT_ZULU;
+
+        // whitespace only preamble
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
+            + CLIENT_DESC_ZULU + DEADLINE_DESC_ZULU + NAME_DESC_ZULU, new AddProjectCommand(expectedProject));
     }
 
     @Test
