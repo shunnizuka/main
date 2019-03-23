@@ -49,7 +49,7 @@ import seedu.address.testutil.EmployeeUtil;
 public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
     @Test
-    public void add() {
+    public void addEmployee() {
         Model model = getModel();
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
@@ -59,7 +59,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
          * -> added
          */
         Employee toAdd = AMY;
-        String command = "   " + AddEmployeeCommand.COMMAND_WORD + "  " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + " "
+        String command = " " + AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + " "
             + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
             + SKILL_DESC_C + " ";
         assertCommandSuccess(command, toAdd);

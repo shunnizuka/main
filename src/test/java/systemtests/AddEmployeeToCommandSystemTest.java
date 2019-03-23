@@ -18,7 +18,7 @@ import seedu.address.testutil.TypicalProjects;
 public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
 
     @Test
-    public void addTo() {
+    public void addEmployeeTo() {
 
         Model model = getModel();
 
