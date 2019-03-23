@@ -56,23 +56,23 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
     /**
      * Performs the same verification as {@code assertCommandSuccess(Employee)}. Executes {@code command}
      * instead.
-     * @see AddEmployeeCommandSystemTest#assertCommandSuccess(Employee)
+     * @see AddProjectCommandSystemTest#assertCommandSuccess(Project)
      */
-    private void assertCommandSuccess(String command, Employee toAdd) {
+    private void assertCommandSuccess(String command, Project toAdd) {
         Model expectedModel = getModel();
-        expectedModel.addEmployee(toAdd);
-        String expectedResultMessage = String.format(AddEmployeeCommand.MESSAGE_ADD_EMPLOYEE_SUCCESS, toAdd);
+        expectedModel.addProject(toAdd);
+        String expectedResultMessage = String.format(AddProjectCommand.MESSAGE_ADD_PROJECT_SUCCESS, toAdd);
 
         assertCommandSuccess(command, expectedModel, expectedResultMessage);
     }
 
     /**
-     * Performs the same verification as {@code assertCommandSuccess(String, Employee)} except asserts that
+     * Performs the same verification as {@code assertCommandSuccess(String, Project)} except asserts that
      * the,<br>
      * 1. Result display box displays {@code expectedResultMessage}.<br>
-     * 2. {@code Storage} and {@code EmployeeListPanel} equal to the corresponding components in
+     * 2. {@code Storage} and {@code ProjectListPanel} equal to the corresponding components in
      * {@code expectedModel}.<br>
-     * @see AddEmployeeCommandSystemTest#assertCommandSuccess(String, Employee)
+     * @see AddProjectCommandSystemTest#assertCommandSuccess(String, Project)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
         executeCommand(command);
@@ -87,7 +87,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
      * 1. Command box displays {@code command}.<br>
      * 2. Command box has the error style class.<br>
      * 3. Result display box displays {@code expectedResultMessage}.<br>
-     * 4. {@code Storage} and {@code EmployeeListPanel} remain unchanged.<br>
+     * 4. {@code Storage} and {@code ProjectListPanel} remain unchanged.<br>
      * 5. Browser url, selected card and status bar remain unchanged.<br>
      * Verifications 1, 3 and 4 are performed by
      * {@code PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
