@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
-    private static final Pattern LIST_COMMAND_FORMAT = Pattern.compile("(?<type>\\S+)");
+    private static final Pattern LIST_COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)");
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
@@ -32,14 +32,14 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        final String type = matcher.group("type").toLowerCase();
+        final String keyword = matcher.group("keyword").toLowerCase();
 
-        if (type.isEmpty()) {
+        if (keyword.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
-        if (type.equals(ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) || type.equals("e")) {
+        if (keyword.equals(ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
             return new ListEmployeeCommand();
-        } else if (type.equals(ListProjectCommand.LIST_PROJECT_KEYWORD) || type.equals("p")) {
+        } else if (keyword.equals(ListProjectCommand.LIST_PROJECT_KEYWORD) || keyword.equals("p")) {
             return new ListProjectCommand();
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
