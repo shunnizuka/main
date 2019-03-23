@@ -34,7 +34,6 @@ public class JsonSerializablePocketProjectTest {
         PocketProject pocketProjectFromFile = dataFromFile.toModelType();
         PocketProject typicalPocketProject =
                 TestUtil.typicalPocketProject();
-        System.out.println(pocketProjectFromFile.getEmployeeList().get(0).getSkills());
         assertEquals(pocketProjectFromFile, typicalPocketProject);
     }
 
