@@ -37,6 +37,22 @@ public class UserStory {
                 && benefit.equals(((UserStory) other).benefit);
     }
 
+    public UserStoryPriority getPriority() {
+        return priority;
+    }
+
+    public UserStoryBenefit getBenefit() {
+        return benefit;
+    }
+
+    public UserStoryFunction getFunction() {
+        return function;
+    }
+
+    public UserStoryUser getUser() {
+        return user;
+    }
+
     /**
      * Comparison between user stories. If two user stories are idential in all the string fields, then
      * it should be considered as the same story even if the priority level is different.
@@ -63,5 +79,17 @@ public class UserStory {
 
     public boolean isHigherPriority(UserStory other) {
         return this.priority.isHigherPriority(other.priority);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("User: ")
+                .append(getUser())
+                .append(" Function: ")
+                .append(getFunction())
+                .append(" Benefit: ")
+                .append(getBenefit());
+        return builder.toString();
     }
 }

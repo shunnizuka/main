@@ -15,17 +15,17 @@ import seedu.address.model.project.exceptions.UserStoryNotFoundException;
  * A list of user stories that enforces uniqueness between its elements and does not allow nulls.
  * A user story is considered unique by comparing using {@code UserStory#isSameUserStory(UserStory)}. As such, adding
  * and updating of user stories uses UserStory#isSameUserStory(Story) for equality so as to ensure that the user story
- * being added or updated is unique in terms of identity in the UniqueUserStoryList. However, the removal of a user
+ * being added or updated is unique in terms of identity in the SortedUserStoryList. However, the removal of a user
  * story uses UserStory#equals(Object) so as to ensure that the user story with exactly the same fields will be removed.
  *
- * In addition, the user stories stored in UniqueUserStoryList is sorted by descending priority level upon addition.
+ * In addition, the user stories stored in SortedUserStoryList is sorted by descending priority level upon addition.
  * This is to facilitate operations on the list which requires the stories to be ordered by priority level.
  *
  * Supports a minimal set of list operations.
  *
  * @see UserStory#isSameUserStory(UserStory)
  */
-public class UniqueUserStoryList implements Iterable<UserStory> {
+public class SortedUserStoryList implements Iterable<UserStory> {
 
     private final ObservableList<UserStory> internalList = FXCollections.observableArrayList();
     private final ObservableList<UserStory> internalUnmodifiableList =
@@ -72,7 +72,7 @@ public class UniqueUserStoryList implements Iterable<UserStory> {
         }
     }
 
-    public void setUserStories(seedu.address.model.project.UniqueUserStoryList replacement) {
+    public void setUserStories(SortedUserStoryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -98,10 +98,10 @@ public class UniqueUserStoryList implements Iterable<UserStory> {
     }
 
     /**
-     * Returns a clone of this UniqueUserStoryList object.
+     * Returns a clone of this SortedUserStoryList object.
      */
-    public seedu.address.model.project.UniqueUserStoryList clone() {
-        seedu.address.model.project.UniqueUserStoryList newList = new seedu.address.model.project.UniqueUserStoryList();
+    public SortedUserStoryList clone() {
+        SortedUserStoryList newList = new SortedUserStoryList();
         for (UserStory story : internalList) {
             newList.add(story.clone());
         }
@@ -116,8 +116,8 @@ public class UniqueUserStoryList implements Iterable<UserStory> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.project.UniqueUserStoryList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.project.UniqueUserStoryList) other).internalList));
+                || (other instanceof SortedUserStoryList // instanceof handles nulls
+                && internalList.equals(((SortedUserStoryList) other).internalList));
     }
 
     @Override
@@ -138,4 +138,5 @@ public class UniqueUserStoryList implements Iterable<UserStory> {
         }
         return true;
     }
+
 }
