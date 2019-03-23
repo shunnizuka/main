@@ -32,6 +32,7 @@ import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
+import seedu.address.logic.commands.ListProjectCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewEmployeeCommand;
 import seedu.address.logic.commands.ViewProjectCommand;
@@ -138,6 +139,15 @@ public abstract class PocketProjectSystemTest {
     }
 
     /**
+     * Displays all projects in the address book.
+     */
+    protected void showAllProjects() {
+        executeCommand(ListCommand.COMMAND_WORD + " " + ListProjectCommand.LIST_PROJECT_KEYWORD);
+        assertEquals(getModel().getPocketProject().getProjectList().size(),
+                getModel().getFilteredProjectList().size());
+    }
+
+    /**
      * Displays all employees with any parts of their names matching {@code keyword} (case-insensitive).
      */
     protected void showEmployeesWithName(String keyword) {
@@ -170,13 +180,13 @@ public abstract class PocketProjectSystemTest {
     /**
      * Views the project at {@code index} of the displayed list.
      */
-    /*
+
     protected void viewProject(Index index) {
-        executeCommand(ViewCommand.COMMAND_WORD + " " + ViewProjectCommand.VIEW_PROJECT_KEYWORD + " "
-                + index.getOneBased());
-        assertEquals(index.getZeroBased(), getProjectListPanel().getSelectedCardIndex());
+        //executeCommand(ViewCommand.COMMAND_WORD + " " + ViewProjectCommand.VIEW_PROJECT_KEYWORD + " "
+        //        + index.getOneBased());
+        //assertEquals(index.getZeroBased(), getProjectListPanel().getSelectedCardIndex());
     }
-    */
+
 
     /**
      * Deletes all employees in the pocket project.
