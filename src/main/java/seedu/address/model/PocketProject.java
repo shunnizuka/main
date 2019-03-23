@@ -150,11 +150,17 @@ public class PocketProject implements ReadOnlyPocketProject {
     }
 
     /**
-     * Removes {@code key} from this {@code PocketProject}.
-     * {@code key} must exist in the pocket project.
+     * Removes {@code employee} from this {@code PocketProject}.
+     * Will also remove from current projects that the {@code employee} is working on.
+     * {@code employee} must exist in the pocket project.
      */
-    public void removeEmployee(Employee key) {
-        employees.remove(key);
+    public void removeEmployee(Employee employee) {
+        employees.remove(employee);
+        for (Project p: projects) {
+            if (p.containsEmployee(employee)) {
+                p.removeEmployee(employee);
+            }
+        }
         indicateModified();
     }
 

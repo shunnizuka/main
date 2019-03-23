@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalProjects.PROJECT_BENSON;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -180,6 +181,7 @@ public class AddProjectCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
         //----------------------------methods related to project class ----------------------------------------
         @Override
         public void addProject(Project project) {
@@ -223,6 +225,10 @@ public class AddProjectCommandTest {
         }
         @Override
         public void addMilestoneTo(Project targetProject, Milestone targetMilestone) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public List<Project> getProjectsContaining(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
 

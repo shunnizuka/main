@@ -4,11 +4,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
 
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -26,6 +28,28 @@ public class DeleteProjectCommandTest {
     private Model model = new ModelManager(getTypicalPocketProjectWithProjects(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
+        Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(INDEX_FIRST_PROJECT);
+
+        String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
+        expectedModel.deleteProject(projectToDelete);
+        expectedModel.commitPocketProject();
+
+        assertCommandSuccess(deleteProjectCommand, model, commandHistory, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
+        DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(outOfBoundIndex);
+
+        assertCommandFailure(deleteProjectCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+    }
     @Test
     public void execute_validName_success() {
         Project projectToDelete = model.getProjectList().get(0);

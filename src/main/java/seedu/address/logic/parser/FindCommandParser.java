@@ -21,9 +21,11 @@ import seedu.address.model.skill.EmployeeSkillContainsKeywordsPredicate;
 public class FindCommandParser implements Parser<FindCommand> {
 
     private static final Pattern FIND_COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindEmployeeCommand
      * and returns an FindEmployeeCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
 
@@ -33,33 +35,27 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (!matcher.matches()) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        final String keyword = matcher.group("keyword");
+        final String keyword = matcher.group("keyword").toLowerCase();
         final String arguments = matcher.group("arguments");
         String[] nameKeywords = arguments.trim().split("\\s+");
 
         if (arguments.isEmpty()) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        switch (keyword) {
-
-        case FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD:
+        if (keyword.equals(FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
             return new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-
-        case FindProjectCommand.FIND_PROJECT_KEYWORD:
+        } else if (keyword.equals(FindProjectCommand.FIND_PROJECT_KEYWORD) || keyword.equals("p")) {
             return new FindProjectCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-
-        case FindSkillCommand.FIND_SKILL_KEYWORD:
+        } else if (keyword.equals(FindSkillCommand.FIND_SKILL_KEYWORD) || keyword.equals("s")) {
             return new FindSkillCommand(new EmployeeSkillContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-
-        default:
+        } else {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
     }
-
 }
