@@ -126,8 +126,8 @@ public class Project {
             cloneOfMilestones.add(m.clone());
         }
         return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
-                cloneOfMilestones,
-                this.description.clone(), this.employees.clone());
+            cloneOfMilestones,
+            this.description.clone(), this.employees.clone());
     }
 
 
@@ -192,6 +192,13 @@ public class Project {
     }
 
     /**
+     * Replace the existing employee with the new editedEmployee.
+     */
+    public void setEmployee(Employee target, Employee editedEmployee) {
+        employees.setEmployee(target, editedEmployee);
+    }
+
+    /**
      * Returns true if this project has the given projectName.
      */
     public boolean hasProjectName(ProjectName projectName) {
@@ -204,6 +211,7 @@ public class Project {
     public boolean containsEmployee(Employee employee) {
         return employees.contains(employee);
     }
+
     @Override
     public boolean equals (Object other) {
         if (other == this) {
