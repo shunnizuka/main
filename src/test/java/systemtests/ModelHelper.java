@@ -24,7 +24,6 @@ public class ModelHelper {
                 toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
         model.updateFilteredEmployeeList(predicate.orElse(PREDICATE_MATCHING_NO_EMPLOYEES));
     }
-
     /**
      * Updates {@code model}'s filtered list to display only {@code toDisplay}.
      */
@@ -33,7 +32,6 @@ public class ModelHelper {
                 toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
         model.updateFilteredProjectList(predicate.orElse(PREDICATE_MATCHING_NO_PROJECTS));
     }
-
 
     /**
      * @see ModelHelper#setFilteredList(Model, List)

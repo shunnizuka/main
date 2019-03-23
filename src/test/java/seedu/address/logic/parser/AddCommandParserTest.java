@@ -40,7 +40,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalEmployees.AMY;
 import static seedu.address.testutil.TypicalEmployees.BOB;
-import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
 import org.junit.Test;

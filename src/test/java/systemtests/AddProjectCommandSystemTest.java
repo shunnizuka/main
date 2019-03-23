@@ -4,6 +4,8 @@ import static seedu.address.testutil.TypicalProjects.PROJECT_WHISKEY;
 import static seedu.address.testutil.TypicalProjects.PROJECT_YANKEE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
+import org.junit.Test;
+
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -13,8 +15,6 @@ import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.testutil.ProjectUtil;
-
-import org.junit.Test;
 
 public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
