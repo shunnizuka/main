@@ -1,8 +1,6 @@
 package systemtests;
 
-import static seedu.address.testutil.TypicalProjects.KEYWORD_MATCHING_YANKEE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_WHISKEY;
-import static seedu.address.testutil.TypicalProjects.PROJECT_XAVIER;
 import static seedu.address.testutil.TypicalProjects.PROJECT_YANKEE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
