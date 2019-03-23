@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -221,6 +222,10 @@ public class AddEmployeeCommandTest {
         }
         @Override
         public void addMilestoneTo(Project targetProject, Milestone targetMilestone) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public List<Project> getProjectsContaining(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
         //--------------------------------------------------------------------------------------------------

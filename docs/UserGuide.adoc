@@ -156,12 +156,15 @@ of employees.
 ==== Delete a project from the application: `delete project`
 Deletes the project from the list of projects.
 
-Format: `delete project PROJECT_NAME`
+Format: `delete project PROJECT_NAME` or `delete project PROJECT_INDEX`
 
 Examples:
 
 `delete project Apollo` +
 Deletes project "Apollo" from project list.
+
+`delete project 2` +
+Deletes the second project shown in the most recent displayed list of projects.
 
 image:ug-lightbulb.png[width="50"]
 Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'

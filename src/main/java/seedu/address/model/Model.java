@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ReadOnlyProperty;
@@ -113,6 +114,7 @@ public interface Model {
     void setSelectedEmployee(Employee employee);
 
 
+
     //------------- Methods related to projects ----------------------------------------------------------
     /**
      * Returns true if a employee with the same identity as {@code employee} exists in the pocket project.
@@ -201,6 +203,11 @@ public interface Model {
      * {@code targetProject} must exist in the pocket project.
      */
     void addMilestoneTo(Project targetProject, Milestone milestone);
+
+    /**
+     * Returns the list of projects that this employee is working on.
+     */
+    List<Project> getProjectsContaining(Employee employee);
 
 
 
