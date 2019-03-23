@@ -116,6 +116,10 @@ public class Project {
         return employees.asUnmodifiableObservableList();
     }
 
+    public UniqueEmployeeList getModifiableEmployees() {
+        return employees;
+    }
+
     /**
      * Returns a clone of this Project object.
      */
@@ -125,8 +129,8 @@ public class Project {
             cloneOfMilestones.add(m.clone());
         }
         return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
-                cloneOfMilestones,
-                this.description.clone(), this.employees.clone());
+            cloneOfMilestones,
+            this.description.clone(), this.employees.clone());
     }
 
 

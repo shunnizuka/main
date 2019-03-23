@@ -28,6 +28,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.employee.Employee;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
+import seedu.address.testutil.PocketProjectBuilder;
+import seedu.address.testutil.TypicalEmployees;
+import seedu.address.testutil.TypicalProjects;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
@@ -59,10 +62,10 @@ public class EditCommandTest {
 
         EmployeeBuilder employeeInList = new EmployeeBuilder(lastEmployee);
         Employee editedEmployee = employeeInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withSkills(VALID_SKILL_JAVA).build();
+            .withSkills(VALID_SKILL_JAVA).build();
 
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_JAVA).build();
+            .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_JAVA).build();
         EditCommand editCommand = new EditCommand(indexLastEmployee, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
@@ -94,7 +97,7 @@ public class EditCommandTest {
         Employee employeeInFilteredList = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         Employee editedEmployee = new EmployeeBuilder(employeeInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE,
-                new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
@@ -121,7 +124,7 @@ public class EditCommandTest {
         // edit employee in filtered list into a duplicate in address book
         Employee employeeInList = model.getPocketProject().getEmployeeList().get(INDEX_SECOND_EMPLOYEE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE,
-                new EditEmployeeDescriptorBuilder(employeeInList).build());
+            new EditEmployeeDescriptorBuilder(employeeInList).build());
 
         assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
@@ -130,7 +133,7 @@ public class EditCommandTest {
     public void execute_invalidEmployeeIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
         EditCommand.EditEmployeeDescriptor descriptor =
-                new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build();
+            new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
@@ -148,7 +151,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPocketProject().getEmployeeList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
@@ -219,6 +222,27 @@ public class EditCommandTest {
         // redo -> edits same second employee in unfiltered employee list
         expectedModel.redoPocketProject();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void executeAddEmployeeTo_sameEmployeeinProjectEdited() {
+
+        PocketProjectBuilder builder = new PocketProjectBuilder().withProject(TypicalProjects.PROJECT_ALICE)
+            .withEmployee(TypicalEmployees.BENSON).withEmployee(TypicalEmployees.CARL);
+        model = new ModelManager(builder.build(), new UserPrefs());
+        System.out.println(model.getPocketProject());
+
+        Employee editedEmployee = new EmployeeBuilder().build();
+        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+
+        Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
+        expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
+        expectedModel.commitPocketProject();
+
+        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test

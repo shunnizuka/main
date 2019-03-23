@@ -133,6 +133,14 @@ public class PocketProject implements ReadOnlyPocketProject {
         requireNonNull(editedEmployee);
 
         employees.setEmployee(target, editedEmployee);
+
+        //to edit the same employees in the project
+        for (Project project : projects) {
+
+            if (project.getEmployees().contains(target)) {
+                project.getModifiableEmployees().setEmployee(target, editedEmployee);
+            }
+        }
         indicateModified();
     }
 
@@ -251,9 +259,9 @@ public class PocketProject implements ReadOnlyPocketProject {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PocketProject // instanceof handles nulls
-                && employees.equals(((PocketProject) other).employees)
-                && projects.equals(((PocketProject) other).projects));
+            || (other instanceof PocketProject // instanceof handles nulls
+            && employees.equals(((PocketProject) other).employees)
+            && projects.equals(((PocketProject) other).projects));
     }
 
     @Override

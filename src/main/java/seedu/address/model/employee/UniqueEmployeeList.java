@@ -26,7 +26,7 @@ public class UniqueEmployeeList implements Iterable<Employee> {
 
     private final ObservableList<Employee> internalList = FXCollections.observableArrayList();
     private final ObservableList<Employee> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent employee as the given argument.
@@ -123,8 +123,8 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueEmployeeList // instanceof handles nulls
-                        && internalList.equals(((UniqueEmployeeList) other).internalList));
+            || (other instanceof UniqueEmployeeList // instanceof handles nulls
+            && internalList.equals(((UniqueEmployeeList) other).internalList));
     }
 
     @Override

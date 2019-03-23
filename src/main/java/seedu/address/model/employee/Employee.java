@@ -16,13 +16,13 @@ import seedu.address.model.skill.Skill;
 public class Employee {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private Name name;
+    private Phone phone;
+    private Email email;
 
     // Data fields
-    private final Address address;
-    private final Set<Skill> skills = new HashSet<>();
+    private Address address;
+    private Set<Skill> skills = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -50,6 +50,15 @@ public class Employee {
 
     public Address getAddress() {
         return address;
+    }
+
+    public void editEmployee(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
+        requireAllNonNull(name, phone, email, address, skills);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.skills.addAll(skills);
     }
 
     /**
@@ -83,7 +92,7 @@ public class Employee {
             newSkills.add(s.clone());
         }
         return new Employee(this.name.clone(), this.phone.clone(), this.email.clone(), this.address.clone(),
-                newSkills);
+            newSkills);
     }
 
     /**
