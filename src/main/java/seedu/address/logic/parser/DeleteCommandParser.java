@@ -46,9 +46,13 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEmployeeCommand.MESSAGE_USAGE), pe);
             }
         } else if (keyword.equals(DeleteProjectCommand.DELETE_PROJECT_KEYWORD)) {
-            String projectNameToDelete = arguments.trim();
-            return new DeleteProjectCommand(new ProjectName(projectNameToDelete));
-
+            String argument = arguments.trim();
+            try {
+                Index index = ParserUtil.parseIndex(argument);
+                return new DeleteProjectCommand(index);
+            } catch (ParseException pe) {
+                return new DeleteProjectCommand(new ProjectName(argument));
+            }
         } else {
             throw new ParseException (
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE)
