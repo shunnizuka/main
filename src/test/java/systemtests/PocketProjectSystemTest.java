@@ -31,7 +31,8 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEmployeeCommand;
-import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewEmployeeCommand;
 import seedu.address.model.Model;
 import seedu.address.model.PocketProject;
 import seedu.address.testutil.TestUtil;
@@ -145,10 +146,11 @@ public abstract class PocketProjectSystemTest {
     }
 
     /**
-     * Selects the employee at {@code index} of the displayed list.
+     * Views the employee at {@code index} of the displayed list.
      */
-    protected void selectEmployee(Index index) {
-        executeCommand(SelectCommand.COMMAND_WORD + " " + index.getOneBased());
+    protected void viewEmployee(Index index) {
+        executeCommand(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
+                + index.getOneBased());
         assertEquals(index.getZeroBased(), getEmployeeListPanel().getSelectedCardIndex());
     }
 

@@ -21,6 +21,8 @@ import seedu.address.model.Model;
 import seedu.address.model.PocketProject;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 
 /**
@@ -149,7 +151,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the employee at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s employee list.
      */
     public static void showEmployeeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEmployeeList().size());
@@ -159,6 +161,20 @@ public class CommandTestUtil {
         model.updateFilteredEmployeeList(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredEmployeeList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the project at the given {@code targetIndex} in the
+     * {@code model}'s project list.
+     */
+    public static void showProjectAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
+
+        Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
+        final String[] splitName = project.getProjectName().projectName.split("\\s+");
+        model.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(splitName[1])));
+
+        assertEquals(1, model.getFilteredProjectList().size());
     }
 
     /**

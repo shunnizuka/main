@@ -80,7 +80,7 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
         expectedModel = getModel();
         Index selectedIndex = getLastIndex(expectedModel);
         Index expectedIndex = Index.fromZeroBased(selectedIndex.getZeroBased() - 1);
-        selectEmployee(selectedIndex);
+        viewEmployee(selectedIndex);
         command = DeleteEmployeeCommand.COMMAND_WORD + " employee " + selectedIndex.getOneBased();
         deletedEmployee = removeEmployee(expectedModel, selectedIndex);
         expectedResultMessage = String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, deletedEmployee);

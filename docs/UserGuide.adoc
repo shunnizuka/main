@@ -1,4 +1,4 @@
-= PocketProject - User Guide
+= Pocket Project - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
@@ -12,9 +12,11 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4
+:repoURL: https://github.com/cs2103-ay1819s2-w10-2/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+Authors: `Daryl Tan, Jeff Gan, Jothinandan Pillay, Lin Dehui, Shune Lei`
+
+Since: `August 2018` License: `MIT`
 
 == Introduction
 
@@ -30,8 +32,8 @@ working on particular project and all the projects currently under a single empl
 == Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `pocketproject.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for your Pocket Project.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -42,7 +44,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 * *`list employee`* : lists all employees
 * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named
-`John Doe` to the Address Book.
+`John Doe` to the Pocket Project.
 * **`delete`**`3` : deletes the 3rd employee shown in the current list
 * *`exit`* : exits the app
 
@@ -53,21 +55,24 @@ The following section details and previews a few legends that will
 be used throughout the user guide. These legends are used to represent
 special information such as tips and warnings.
 
-
 |===
 |Legend |Meaning
 
+|image:ug-notepadpencil.png[width="40"]
+|The note pad icon indicates any useful tips or things that users
+need to take note of while using the Pocket Project application.
+
 |image:ug-lightbulb.png[width="50"]
-|The light bulb icon will be used to indicate any useful tips or shortcuts
-that users can take note of while using the PocketProject application.
+|The light bulb icon indicates any shortcuts
+that users can use while using the Pocket Project application.
 
 |image:ug-exclamation.png[width="50"]
-|The exclamation mark icon will be used to indicate any warnings that users
- can take note of while using the PocketProject application.
+|The exclamation mark icon indicates any warnings that users
+ can take note of while using the Pocket Project application.
 
 |image:ug-smart.png[width="60"]
-|The graduation cap icon will be used to indicate any advanced usages or
- extra technical information about how a particular command works should
+|The graduation cap icon indicates any advanced usages or
+ extra technical information about how a particular command works should the
  users be interested to know.
 |===
 
@@ -80,59 +85,77 @@ that users can take note of while using the PocketProject application.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [s/Skill]` can be used as `n/John Doe s/Java` or as `n/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[s/Skill]...` can be used as `{nbsp}` (i.e. 0 times), `s/Java`, `s/Java s/HTML` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, then  `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
 
 === Viewing help : `help`
 
 Format: `help`
 
-=== Adding an employee or project to the application: `add`
+=== Add an employee or project to the application: `add`
 
-Adds an employee to the list of employees. +
+==== Add an employee to the application: `add employee`
+
+Adds an employee to the list of employees.
+
 Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SKILL]...`
-
-image:ug-lightbulb.png[width="50"]
-Tip: An employee can have any number of skills (including 0).
 
 Examples:
 
 * `add employee n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add employee n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add employee n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 s/HTML`
 
+image:ug-notepadpencil.png[width="40"]
+An employee can have any number of skills (including 0).
 
-Adds a project to the list of projects. +
+==== Add a project to the application: `add project`
+
+Adds a project to the list of projects.
+
 Format: `add project n/NAME d/DEADLINE c/CLIENT_NAME`
 
 Examples:
 
 * `add project n/Apollo d/12/12/2019 c/FairPrice`
+* `add project n/Xtreme c/John Smith d/13/04/2020`
 
 image:ug-lightbulb.png[width="50"]
-Shortcut: Users can simple use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
-=== Delete a project or an employee from the application `delete`
+=== Delete an employee or a project from the application `delete`
 
-Deletes the specified employee from the employee list. +
+==== Delete an employee from the application: `delete employee`
+
+Deletes the specified employee from the employee list.
+
 Format: `delete employee INDEX`
 
-****
-* Deletes the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed employee list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
+image:ug-notepadpencil.png[width="40"]
+Deletes the employee at the specified `INDEX`.
+The index refers to the index number (one-based) shown in the displayed list of employees.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer* and cannot be larger than the size of the list.
 
 Examples:
 
 * `list employees` +
 `delete employee 2` +
-Deletes the 2nd person in the employee list.
+Deletes the 2nd person in the displayed employee list.
+
 * `find employee Betsy` +
 `delete employee 1` +
-Deletes the 1st person in the results of the `find` command.
+Deletes the 1st person in the resultant employee list shown by the `find` command.
 
-Deletes the project from the list of projects. +
+image:ug-notepadpencil.png[width="40"]
+Either the `list employee` command or the `find employee` command needs to be invoked
+before calling the `delete employee` command as the index is referenced from the last returned list
+of employees.
+
+==== Delete a project from the application: `delete project`
+Deletes the project from the list of projects.
+
 Format: `delete project PROJECT_NAME`
 
 Examples:
@@ -140,44 +163,59 @@ Examples:
 `delete project Apollo` +
 Deletes project "Apollo" from project list.
 
-=== Listing all employees or projects : `list`
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+while keying in a command into the CLI.
 
-Shows a list of all employees in the employee list. +
+=== Listing all employees or projects in application : `list`
+==== List all employees in the application: `list employees`
+Shows a list of all employees in the employee list.
+
 Format: `list employees`
 
-Shows a list of all projects in the project list. +
+==== List all projects in the application: `list projects`
+Shows a list of all projects in the project list.
+
 Format: `list projects`
 
-=== Editing an employee : `edit`
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+while keying in a command into the CLI.
 
-Edits an existing employee. +
+=== Edit an employee in the application : `edit`
+
+Edits an existing employee.
+
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SKILL]...`
 
-****
-* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
-* You can remove all the person's skills by typing `s/` without specifying any skills after it.
-* When editing skills, the existing skills of the employee will be removed i.e adding of skills is not cumulative.
-* You can remove all the employee's skills by typing `t/` without specifying any skills after it.
-****
+image:ug-notepadpencil.png[width="40"]
+Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
+
+image:ug-notepadpencil.png[width="40"]
+At least one of the optional fields must be provided and all existing values will be updated with the input values.
+When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
 
 Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` +
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower s/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing skills.
-Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing skills.
+* `edit 2 n/Betsy Crower s/Java` +
+Edits the name of the 2nd person to be `Betsy Crower` and sets Java as the only skill.
+* `edit 2 n/Betsy Crower s/C++ s/HTML` +
+Edits the name of the 2nd employee to be `Betsy Crower` and sets C++ and HTML as the skills.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer* and cannot be larger than the size of the list.
+
+image:ug-lightbulb.png[width="50"]
+You can remove all the person's skills by typing `s/` without specifying any skills after it.
 
 === Locating employees, projects or skills by name: `find`
 
-There are 3 different commands that can be used to find entities in the PocketProject:
+==== Find employees in the application: `find employee`
 
-1. Finds employees whose names contain any of the given keywords. +
+Finds employees whose names contain any of the given keywords.
+
 Format: `find employee KEYWORD [MORE_KEYWORDS]`
 
 Examples:
@@ -189,41 +227,47 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 * `find Betsy Tim John` +
 Returns any employee having names `Betsy`, `Tim`, or `John`
 
-2.
-Finds projects whose names contain any of the given keywords. +
-Format: `find project KEYWORD [MORE_KEYWORDS]`
+==== Find projects in the application: `find project`
 
+Finds projects whose names contain any of the given keywords.
+
+Format: `find project KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
 * `find project Apollo` +
 Returns a list of projects with names that contain Apollo
 
-3.
-Finds employees with the chosen skill. +
+==== Find employees with skills: `find skill`
+Finds employees with the chosen skill.
+
 Format: `find skill KEYWORD [MORE_KEYWORDS]`
+
+image:ug-notepadpencil.png[width="40"]
+The search is case insensitive. e.g `hans` will match `Hans`
+
+image:ug-notepadpencil.png[width="40"]
+The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 
 Examples:
 
 * `find skill java` +
 Returns a list of employees who has java skill.
 
+* `find skill java C++`
+Returns a list of employees who have either java or C++ or both.
 
-****
-image:ug-lightbulb.png[width="50"]
+image:ug-notepadpencil.png[width="40"]
+Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-****
-
-****
 image:ug-exclamation.png[width="50"]
+Only full words will be matched e.g. `Han` will not match `Hans`
 
-* Only full words will be matched e.g. `Han` will not match `Hans`
-****
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee', 'p' as an alias for 'project', 's' as an alias for 'skills'
+while keying in a command into the CLI.
 
-An example usage scenario:
+==== Find Command Usage Scenario
 
 For example, to delete Bernice Yu from the employee list, you can follow these steps:
 
@@ -232,18 +276,18 @@ Step 1: `find employee Bernice` - to narrow down the list to all employees with 
 image::findEmployeeBernice.png[width="800"]
 
 Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
-=== View the details of employees or projects or milestones : `view`
 
-Returns the list of milestones and employees in a project. +
-Format: `view project PROJECT_NAME`
+=== View the details of employees or projects : `view`
 
-Examples:
+==== View details of an employee: `view employee`
 
-`view project Apollo` +
-Displays details of the project named “Apollo”
+Returns a view of details of the chosen employee.
 
-Returns a view of details of the chosen employee. +
 Format: `view employee EMPLOYEE_INDEX`
+
+image:ug-notepadpencil.png[width="40"]
+When viewing the employee, the GitHub page of the employee
+will also be loaded.
 
 Examples:
 
@@ -251,46 +295,99 @@ Examples:
 `view employee 3` +
 Displays details of the employee at index 3
 
+==== View details of a project: `view project`
+Returns the list of milestones and employees in a project.
+
+Format: `view project PROJECT_NAME`
+
+Examples:
+
+`view project Apollo` +
+Displays details (client, deadline, employees, milestones) of project “Apollo”.
+
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
+while keying in a command into the CLI.
+
 === Add an employee or milestone to a project : `addto`
 
-Adds an employee to a project. +
+==== Add an employee to a project: `addto employee`
+
+Adds an employee to a project.
+
 Format: `addto PROJECT_NAME employee EMPLOYEE_INDEX`
 
+image:ug-notepadpencil.png[width="40"]
+Adds the employee at the specified `INDEX`.
+The index refers to the index number (one-based) shown in the displayed list of employees.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer* and cannot be larger than the size of the list.
+
 Examples:
 
-`addto Apollo employee John Doe` +
-John Doe is added to Project Apollo.
+* `list employees` +
+`addto Apollo employee 2` +
+Adds the 2nd person in the displayed employee list to project "Apollo".
 
-`addto Starrer employee Vanessa Peterson` +
-Vanessa Peterson is added to Project Starrer.
+* `find employee John Han` +
+`addto Apollo employee 5` +
+Adds the 5th person in the displayed employee list to project "Apollo".
 
-Adds a milestone to a project +
+==== Add a milestone to a project: `addto milestone`
+
+Adds a milestone to a project.
+
 Format: `addto PROJECT_NAME milestone MS_DETAILS MS_DATE`
 
+image:ug-exclamation.png[width="50"]
+Date must be of the format DD/MM/YYYY
+
 Examples:
 
-`addto Apollo milestone “Completed UI for program” 23/11/2015` +
-Milestone added to Project Apollo
+`addto Apollo milestone Completed UI for program 23/11/2015` +
+Milestone added to project "Apollo".
+
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
+while keying in a command into the CLI.
 
 === Remove an employee or milestone from a project : `removefrom`
 
-Removing an employee from a project: +
+==== Remove an employee from a project: `removefrom employee`
+
+Removing an employee from a project.
+
 Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
 
 Examples:
 
 `view project Apollo` +
 `removefrom Apollo employee 3` +
-Removes the employee at index 3 from Project Apollo.
+Removes the employee at 3rd position at displayed list of employees from Project Apollo.
 
-Removing a milestone from a project: +
+==== Remove a milestone from a project: `removefrom milestone`
+
+Removing a milestone from a project.
+
 Format: `removefrom PROJECT_NAME milestone MS_INDEX`
 
 Examples:
 
 `view project Apollo` +
 `removefrom Apollo milestone 1` +
-Removes the milestone at index 1 from Project Apollo.
+Removes the milestone at 1st position of displayed list of milestone from Project Apollo.
+
+image:ug-notepadpencil.png[width="40"]
+Removes the employee at the specified `INDEX`.
+The index refers to the index number (one-based) shown in the displayed list of employees.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer* and cannot be larger than the size of the list.
+
+image:ug-lightbulb.png[width="50"]
+Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
+while keying in a command into the CLI.
 
 === To indicate the project has been completed : `complete`
 
@@ -304,23 +401,27 @@ Project Apollo has been finished and delivered to client.
 
 === Sort the projects by name or deadline : `sort`
 
-Returns a sorted list of projects by the sort key value. +
-Available keys: name, deadline +
-Name: returns list in lexicographical order +
-Deadline: returns list by earliest deadline first. +
+Returns a sorted list of projects by the sort key value.
+Available keys: name, deadline.
+
+Name: returns list in lexicographic order +
+Deadline: returns list by earliest deadline first.
+
 Format: `sort KEY_VALUE`
 
 Examples:
 
 `sort name` +
-Projects have been sorted by name.
+List of project have been sorted by name.
 
 `sort deadline` +
-Projects have been sorted by impending deadline.
+List of projects have been sorted by deadline with the
+earliest deadline displayed at the top of the list.
 
 === Display statistics regarding all the projects : `stats`
 
 Returns the number of completed projects and number of currently ongoing projects.
+
 Format: `stats`
 
 Examples:
@@ -329,26 +430,6 @@ Examples:
 Total number of ongoing projects: 4 +
 Total number of completed projects: 9
 
-=== Selects an employee or project : `select`
-
-Selects the employee identified by the index number used in the displayed employee list. +
-Format: `select INDEX`
-
-****
-* Selects the employee and loads the Google search page the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed employee list.
-* The index *must be a positive integer* `1, 2, 3, ...`
-****
-
-Examples:
-
-* `list` +
-`select 2` +
-Selects the 2nd employee in the address book.
-* `find Betsy` +
-`select 1` +
-Selects the 1st employee in the results of the `find` command.
-
 === Exiting the program : `exit`
 
 Exits the program. +
@@ -356,7 +437,7 @@ Format: `exit`
 
 === Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+Pocket Project data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
 // skill::dataencryption[]
@@ -371,17 +452,22 @@ _{Commands related to managing of project will be added soon.}_
 
 == FAQ
 
-*Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*Q*: How do I transfer my data to another Computer?
+
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
+data of your previous Pocket Project folder.
 
 == Glossary
 
 . `alphanumeric` only contains either digits (0-9) or letters of the English
 alphabet (A-Z).
 . `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
-program in the form of successive lines of text
+program in the form of successive lines of text.
+. `lexicographic` ordering of words based on how it would appear in a dictionary.
 . `milestone` a key event that is completed during the entire timeline
 of the project.
+. `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
+. `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
 
 == Command Summary
 
@@ -395,11 +481,10 @@ e.g. `list employee` `list project`
 e.g. `edit employee 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
 e.g. `find employee Jake` `find project Apollo` `find skill Java`
-//are we using view or select?
-* *View*: +
-e.g.
+* *View* : `view employee EMPLOYEE_INDEX` , `view project PROJECT_NAME` +
+e.g. `view employee 3` `view project Apollo`
 * *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE` +
-e.g. `addto Apollo employee John Doe` `addto Apollo milestone "Completed UI for program" 23/11/2015`
+e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015`
 * *Removefrom*: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` `removefrom PROJECT_NAME milestone MS_INDEX` +
 e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1`
 * *Complete* : `complete PROJECT_NAME` +

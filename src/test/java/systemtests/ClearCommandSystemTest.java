@@ -38,7 +38,7 @@ public class ClearCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: selects first card in employee list and clears address book -> cleared and no card selected */
         executeCommand(UndoCommand.COMMAND_WORD); // restores the original address book
-        selectEmployee(Index.fromOneBased(1));
+        viewEmployee(Index.fromOneBased(1));
         assertCommandSuccess(ClearCommand.COMMAND_WORD);
         assertSelectedCardDeselected();
 
