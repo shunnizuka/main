@@ -39,10 +39,10 @@ public class ProjectUtil extends PocketProjectSystemTest {
     /**
      * Returns an add milestone to command string for adding the {@code milestone} to {@code project}.
      */
-     public static String getAddMilestoneToCommand(Project project, Milestone milestone) {
+    public static String getAddMilestoneToCommand(Project project, Milestone milestone) {
         return AddToCommand.COMMAND_WORD + " " + project.getProjectName().projectName + " "
             + AddMilestoneToCommand.ADD_MILESTONE_KEYWORD + " " + getMilestoneDetails(milestone);
-     }
+    }
 
     /**
      * Returns the part of command string for the given {@code milestone}'s details.
