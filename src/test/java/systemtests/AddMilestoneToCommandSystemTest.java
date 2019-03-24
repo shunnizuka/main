@@ -1,7 +1,6 @@
 package systemtests;
 
 import seedu.address.logic.commands.AddMilestoneToCommand;
-import seedu.address.logic.commands.AddToCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
@@ -24,7 +23,7 @@ public class AddMilestoneToCommandSystemTest extends PocketProjectSystemTest {
          */
 
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        Milestone milestone = TypicalMilestones.TYPICAL_MILESTONE_START;
+        Milestone milestone = TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG;
         assertCommandSuccess(targetProject, milestone);
 
     }
