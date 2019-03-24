@@ -2,8 +2,8 @@ package systemtests;
 
 import static org.junit.Assert.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW;
+import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
-import static seedu.address.testutil.TypicalEmployees.CARL;
 import static seedu.address.testutil.TypicalEmployees.DANIEL;
 import static seedu.address.testutil.TypicalEmployees.KEYWORD_MATCHING_MEIER;
 
@@ -25,9 +25,9 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
          * -> 2 employees found
          */
         String command = "   " + FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD
-            + " " + KEYWORD_MATCHING_MEIER + "   ";
+            + " " + "java" + "   ";
         Model expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL); // first names of Benson and Daniel are "Meier"
+        ModelHelper.setFilteredList(expectedModel, ALICE, BENSON);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -35,30 +35,30 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
          * -> 2 employees found
          */
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " "
-            + KEYWORD_MATCHING_MEIER;
+            + "java";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find employee where employee list is not displaying the employee we are finding -> 1 employee found */
-        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Carl";
-        ModelHelper.setFilteredList(expectedModel, CARL);
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly";
+        ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find multiple employees in Pocket Project, 2 keywords -> 2 employees found */
-        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Benson Daniel";
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " CSS Assembly";
         ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find multiple employees in Pocket Project, 2 keywords in reversed order -> 2 employees found */
-        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Daniel Benson";
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly CSS";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find multiple employees in Pocket Project, 2 keywords with 1 repeat -> 2 employees found */
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD
-            + " Daniel Benson Daniel";
+            + " CSS Assembly CSS";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -66,7 +66,7 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
          * -> 2 employees found
          */
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD
-            + " Daniel Benson NonMatchingKeyWord";
+            + " Css Assembly suppppp";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -84,30 +84,30 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
         executeCommand(DeleteCommand.COMMAND_WORD + " employee 1");
         assertFalse(getModel().getPocketProject().getEmployeeList().contains(BENSON));
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " "
-            + KEYWORD_MATCHING_MEIER;
+            + "CSS Assembly";
         expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find employee in Pocket Project, keyword is same as name but of different case -> 1 employee found */
-        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " MeIeR";
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " aSseMBly";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find employee in Pocket Project, command word is of mixed case -> 1 employee found */
-        command = "FinD" + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Meier";
+        command = "FinD" + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find employee in Pocket Project, keyword is substring of name -> 0 employees found */
-        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Mei";
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Asa";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find employee in Pocket Project, name is substring of keyword -> 0 employees found */
-        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Meiers";
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " assemblyyyyyyyy";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
@@ -121,7 +121,7 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
         showAllEmployees();
         viewEmployee(Index.fromOneBased(1));
         assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
-        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Daniel";
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
@@ -129,7 +129,7 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
         /* Case: find employee in empty Pocket Project -> 0 employees found */
         deleteAllEmployees();
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " "
-            + KEYWORD_MATCHING_MEIER;
+            + "Assembly";
         expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
