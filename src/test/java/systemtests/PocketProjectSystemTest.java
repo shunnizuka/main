@@ -133,8 +133,8 @@ public abstract class PocketProjectSystemTest {
      */
     protected void showAllEmployees() {
         executeCommand(ListCommand.COMMAND_WORD + " " + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD);
-        assertEquals(getModel().getPocketProject().getEmployeeList().size(),
-                getModel().getFilteredEmployeeList().size());
+        assertEquals(getEmployeeModel().getPocketProject().getEmployeeList().size(),
+                getEmployeeModel().getFilteredEmployeeList().size());
     }
 
     /**
@@ -142,8 +142,8 @@ public abstract class PocketProjectSystemTest {
      */
     protected void showAllProjects() {
         executeCommand(ListCommand.COMMAND_WORD + " " + ListProjectCommand.LIST_PROJECT_KEYWORD);
-        assertEquals(getModel().getPocketProject().getProjectList().size(),
-                getModel().getFilteredProjectList().size());
+        assertEquals(getEmployeeModel().getPocketProject().getProjectList().size(),
+                getEmployeeModel().getFilteredProjectList().size());
     }
 
     /**
@@ -152,10 +152,10 @@ public abstract class PocketProjectSystemTest {
     protected void showEmployeesWithName(String keyword) {
         executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " " + keyword);
-        System.out.println(getModel().getFilteredEmployeeList());
-        System.out.println(getModel().getPocketProject().getEmployeeList());
-        assertTrue(getModel().getFilteredEmployeeList().size()
-                < getModel().getPocketProject().getEmployeeList().size());
+        System.out.println(getEmployeeModel().getFilteredEmployeeList());
+        System.out.println(getEmployeeModel().getPocketProject().getEmployeeList());
+        assertTrue(getEmployeeModel().getFilteredEmployeeList().size()
+                < getEmployeeModel().getPocketProject().getEmployeeList().size());
     }
 
     /**
@@ -164,10 +164,8 @@ public abstract class PocketProjectSystemTest {
     protected void showProjectsWithName(String keyword) {
         executeCommand(FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD
                 + " " + keyword);
-        System.out.println(getModel().getFilteredProjectList());
-        System.out.println(getModel().getPocketProject().getProjectList());
-        assertTrue(getModel().getFilteredProjectList().size()
-            < getModel().getPocketProject().getProjectList().size());
+        assertTrue(getProjectModel().getFilteredProjectList().size()
+            < getProjectModel().getPocketProject().getProjectList().size());
     }
 
     /**
@@ -196,7 +194,7 @@ public abstract class PocketProjectSystemTest {
      */
     protected void deleteAllEmployees() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getModel().getPocketProject().getEmployeeList().size());
+        assertEquals(0, getEmployeeModel().getPocketProject().getEmployeeList().size());
     }
 
     /**
@@ -204,7 +202,7 @@ public abstract class PocketProjectSystemTest {
      */
     protected void deleteAllProjects() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getModel().getPocketProject().getProjectList().size());
+        assertEquals(0, getEmployeeModel().getPocketProject().getProjectList().size());
     }
 
     /**
@@ -299,10 +297,17 @@ public abstract class PocketProjectSystemTest {
     private void assertApplicationStartingStateIsCorrect() {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
-        assertListMatching(getEmployeeListPanel(), getModel().getFilteredEmployeeList());
+        assertListMatching(getEmployeeListPanel(), getEmployeeModel().getFilteredEmployeeList());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
             getStatusBarFooter().getSaveLocation());
         assertEquals(SYNC_STATUS_INITIAL, getStatusBarFooter().getSyncStatus());
+    }
+
+    /**
+     * Returns a defensive copy of the current employee model.
+     */
+    protected Model getEmployeeModel() {
+        return testApp.getEmployeeModel();
     }
 
     /**

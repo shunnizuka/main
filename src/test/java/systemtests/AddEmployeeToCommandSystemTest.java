@@ -20,7 +20,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
     @Test
     public void addEmployeeTo() {
 
-        Model model = getModel();
+        Model model = getEmployeeModel();
 
         /* ------------------------ Perform addto operations on the shown unfiltered list -------------------------- */
 
@@ -92,7 +92,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
      */
 
     private void assertCommandSuccess(String command, Project targetProject, Employee targetEmployee) {
-        Model expectedModel = getModel();
+        Model expectedModel = getEmployeeModel();
         expectedModel.addEmployeeTo(targetProject, targetEmployee);
         String expectedResultMessage = String.format(AddEmployeeToCommand.MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS,
             targetEmployee, targetProject.getProjectName());
@@ -130,7 +130,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
      */
 
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getModel();
+        Model expectedModel = getEmployeeModel();
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertSelectedCardUnchanged();
