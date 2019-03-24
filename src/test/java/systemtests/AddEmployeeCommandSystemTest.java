@@ -50,7 +50,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
     @Test
     public void addEmployee() {
-        Model model = getEmployeeModel();
+        Model model = getProjectModel();
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
@@ -242,7 +242,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
      * @see AddEmployeeCommandSystemTest#assertCommandSuccess(Employee)
      */
     private void assertCommandSuccess(String command, Employee toAdd) {
-        Model expectedModel = getEmployeeModel();
+        Model expectedModel = getProjectModel();
         expectedModel.addEmployee(toAdd);
         String expectedResultMessage = String.format(AddEmployeeCommand.MESSAGE_ADD_EMPLOYEE_SUCCESS, toAdd);
 
@@ -277,7 +277,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getEmployeeModel();
+        Model expectedModel = getProjectModel();
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertSelectedCardUnchanged();

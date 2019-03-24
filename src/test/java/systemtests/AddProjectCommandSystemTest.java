@@ -94,7 +94,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
      * @see AddProjectCommandSystemTest#assertCommandSuccess(Project)
      */
     private void assertCommandSuccess(String command, Project toAdd) {
-        Model expectedModel = getEmployeeModel();
+        Model expectedModel = getProjectModel();
         expectedModel.addProject(toAdd);
         String expectedResultMessage = String.format(AddProjectCommand.MESSAGE_ADD_PROJECT_SUCCESS, toAdd);
 
