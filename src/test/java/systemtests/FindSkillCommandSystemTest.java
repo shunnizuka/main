@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_EMPLOYEES_LISTED_OVERV
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
 import static seedu.address.testutil.TypicalEmployees.DANIEL;
-import static seedu.address.testutil.TypicalEmployees.KEYWORD_MATCHING_MEIER;
 
 import org.junit.Test;
 
