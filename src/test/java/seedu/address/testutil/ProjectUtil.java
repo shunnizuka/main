@@ -10,12 +10,12 @@ import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
-import systemtests.PocketProjectSystemTest;
+
 
 /**
  * A utility class for project.
  */
-public class ProjectUtil extends PocketProjectSystemTest {
+public class ProjectUtil {
 
     /**
      * Returns an add command string for adding the {@code project}.
