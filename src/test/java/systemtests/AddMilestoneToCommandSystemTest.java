@@ -45,7 +45,59 @@ public class AddMilestoneToCommandSystemTest extends PocketProjectSystemTest {
      */
 
     private void assertCommandSuccess(Project targetProject, Milestone milestone) {
-        assertCommandSuccess(ProjectUtil.getAddMilestoneToCommand(toAdd), toAdd);
+        assertCommandSuccess(ProjectUtil.getAddMilestoneToCommand(targetProject, milestone), targetProject, milestone);
+    }
+
+    /**
+     * Performs the same verification as {@code assertCommandSuccess(Project, Milestone)}. Executes {@code command}
+     * instead. @see AddMilestoneToCommandSystemTest#assertCommandSuccess(Project, Milestone)
+     */
+
+    private void assertCommandSuccess(String command, Project targetProject, Milestone milestone) {
+        Model expectedModel = getProjectModel();
+        expectedModel.addMilestoneTo(targetProject, milestone);
+        String expectedResultMessage = String.format(AddMilestoneToCommand.MESSAGE_ADD_MILESTONE_SUCCESS,
+                milestone, targetProject.getProjectName());
+
+        assertCommandSuccess(command, expectedModel, expectedResultMessage);
+    }
+
+    /**
+     * Performs the same verification as {@code assertCommandSuccess(String, Project, Milestone)} except asserts that
+     * the,<br>
+     * 1. Result display box displays {@code expectedResultMessage}.<br>
+     * 2. {@code Storage} equal to the corresponding components in
+     * {@code expectedModel}.<br>
+     * @see AddMilestoneToCommandSystemTest#assertCommandSuccess(String, Project, Milestone)
+     */
+
+    private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
+        executeCommand(command);
+        assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
+        assertSelectedCardUnchanged();
+        assertCommandBoxShowsDefaultStyle();
+        assertStatusBarUnchangedExceptSyncStatus();
+    }
+
+    /**
+     * Executes {@code command} and asserts that the,<br>
+     * 1. Command box displays {@code command}.<br>
+     * 2. Command box has the error style class.<br>
+     * 3. Result display box displays {@code expectedResultMessage}.<br>
+     * 4. {@code Storage} remain unchanged.<br>
+     * 5. Browser url, selected card and status bar remain unchanged.<br>
+     * Verifications 1, 3 and 4 are performed by
+     * {@code PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     */
+
+    private void assertCommandFailure(String command, String expectedResultMessage) {
+        Model expectedModel = getModel();
+        executeCommand(command);
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
+        assertSelectedCardUnchanged();
+        assertCommandBoxShowsErrorStyle();
+        assertStatusBarUnchanged();
     }
 
 
