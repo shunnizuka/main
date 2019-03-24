@@ -1,6 +1,8 @@
 package systemtests;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddMilestoneToCommand;
+import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
@@ -11,6 +13,8 @@ import seedu.address.testutil.TypicalMilestones;
 import seedu.address.testutil.TypicalProjects;
 
 import org.junit.Test;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class AddMilestoneToCommandSystemTest extends PocketProjectSystemTest {
 
@@ -40,6 +44,33 @@ public class AddMilestoneToCommandSystemTest extends PocketProjectSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
+        /* ----------------------------------- Perform invalid addto operations --------------------------------------- */
+        /* Case: add a duplicate milestone to a project -> rejected */
+        command = ProjectUtil.getAddMilestoneToCommand(targetProject, milestone);
+        assertCommandFailure(command, AddMilestoneToCommand.MESSAGE_DUPLICATE_MILESTONE);
+
+        /* Case: missing command word -> rejected */
+        command = targetProject.getProjectName() + " " + AddMilestoneToCommand.ADD_MILESTONE_KEYWORD + " "
+            + ProjectUtil.getMilestoneDetails(TypicalMilestones.TYPICAL_MILESTONE_GUI_V2);
+        assertCommandFailure(command, String.format(Messages.MESSAGE_UNKNOWN_COMMAND));
+
+        /* Case: missing project name -> rejected */
+        command = AddToCommand.COMMAND_WORD + " " + AddMilestoneToCommand.ADD_MILESTONE_KEYWORD + " "
+            + ProjectUtil.getMilestoneDetails(TypicalMilestones.TYPICAL_MILESTONE_GUI_V2);;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToCommand.MESSAGE_USAGE));
+
+        /* Case: missing milestone keyword -> rejected */
+        command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
+            + ProjectUtil.getMilestoneDetails(TypicalMilestones.TYPICAL_MILESTONE_GUI_V2);
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToCommand.MESSAGE_USAGE));
+
+        /* Case: missing milestone details -> rejected */
+        command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
+            + AddMilestoneToCommand.ADD_MILESTONE_KEYWORD;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddToCommand.MESSAGE_USAGE));
     }
 
     /**

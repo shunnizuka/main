@@ -48,7 +48,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* ----------------------------------- Perform invalid add operations --------------------------------------- */
+        /* ----------------------------------- Perform invalid addto operations --------------------------------------- */
         /* Case: add a duplicate employee to a project -> rejected */
         command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
                 + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
