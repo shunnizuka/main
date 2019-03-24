@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="userStoryTableView" layoutY="41.0" prefHeight="366.0" prefWidth="500.0">
+        <columns>
+          <TableColumn fx:id="indexCol" prefWidth="31.0" text="Index" />
+          <TableColumn fx:id="priorityCol" prefWidth="43.0" text="Priority" />
+          <TableColumn fx:id="userCol" prefWidth="98.0" text="As a..." />
+          <TableColumn fx:id="functionCol" prefWidth="152.0" text="I can..." />
+          <TableColumn fx:id="reasonCol" prefWidth="175.0" text="So that..." />
+        </columns>
+      </TableView>
+      <Text fill="#f9fafc" layoutX="193.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USER STORIES" />
+   </children>
+</AnchorPane>
