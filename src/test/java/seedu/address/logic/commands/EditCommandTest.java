@@ -242,7 +242,7 @@ public class EditCommandTest {
         editCommand.execute(model, commandHistory);
 
         assertTrue(model.getPocketProject().getProjectList().get(0).getEmployees().get(0)
-            .isSameEmployee(editedEmployee));
+            .equals(editedEmployee));
     }
 
     @Test
