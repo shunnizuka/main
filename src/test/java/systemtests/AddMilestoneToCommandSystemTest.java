@@ -1,5 +1,9 @@
 package systemtests;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import org.junit.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddMilestoneToCommand;
 import seedu.address.logic.commands.AddToCommand;
@@ -11,10 +15,6 @@ import seedu.address.model.project.Project;
 import seedu.address.testutil.ProjectUtil;
 import seedu.address.testutil.TypicalMilestones;
 import seedu.address.testutil.TypicalProjects;
-
-import org.junit.Test;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class AddMilestoneToCommandSystemTest extends PocketProjectSystemTest {
 
@@ -44,7 +44,7 @@ public class AddMilestoneToCommandSystemTest extends PocketProjectSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* ----------------------------------- Perform invalid addto operations --------------------------------------- */
+        /* ----------------------------------- Perform invalid addto operations ------------------------------------- */
         /* Case: add a duplicate milestone to a project -> rejected */
         command = ProjectUtil.getAddMilestoneToCommand(targetProject, milestone);
         assertCommandFailure(command, AddMilestoneToCommand.MESSAGE_DUPLICATE_MILESTONE);
