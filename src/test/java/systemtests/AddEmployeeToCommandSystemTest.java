@@ -20,7 +20,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
     @Test
     public void addEmployeeTo() {
 
-        Model model = getModel();
+        Model model = getProjectModel();
 
         /* ------------------------ Perform addto operations on the shown unfiltered list -------------------------- */
 
