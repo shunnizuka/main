@@ -56,7 +56,7 @@ public class ProjectUserStories extends UiPart<Region> {
     public ObservableList<UserStoryCell> getUserStoryCells(ObservableList<UserStory> stories) {
         ObservableList<UserStoryCell> newList = FXCollections.observableArrayList();
         for (int i = 0; i < stories.size(); i++) {
-            UserStoryCell newCell = new UserStoryCell(stories.get(i));
+            UserStoryCell newCell = new UserStoryCell(stories.get(i), i + 1);
             newList.add(newCell);
         }
         return newList;
@@ -66,9 +66,15 @@ public class ProjectUserStories extends UiPart<Region> {
     public class UserStoryCell {
 
         public UserStory story;
+        public Integer index;
 
-        public UserStoryCell(UserStory s) {
+        public UserStoryCell(UserStory s, int index) {
             this.story = s;
+            this.index = index;
+        }
+
+        public String indexProperty() {
+            return this.index.toString();
         }
 
         public String importanceProperty() {
