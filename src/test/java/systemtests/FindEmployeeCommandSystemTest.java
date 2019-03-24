@@ -26,7 +26,8 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
         String command = "   " + FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " " + KEYWORD_MATCHING_MEIER + "   ";
         Model expectedModel = getEmployeeModel();
-        ModelHelper.setEmployeeFilteredList(expectedModel, BENSON, DANIEL); // first names of Benson and Daniel are "Meier"
+        ModelHelper.setEmployeeFilteredList(expectedModel, BENSON, DANIEL);
+        // first names of Benson and Daniel are "Meier"
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
