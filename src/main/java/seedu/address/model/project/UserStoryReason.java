@@ -3,7 +3,7 @@ package seedu.address.model.project;
 public class UserStoryReason {
 
     public static final String DEFAULT_REASON = "";
-    public static final String PREAMBLE_REASON = "so that I can";
+    public static final String PREAMBLE_REASON = "so that ";
 
     private String reason;
 

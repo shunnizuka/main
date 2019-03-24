@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
 public class UserStoryFunction {
 
     public static final String DEFAULT_FUNCTION = "Typical function";
-    public static final String PREAMBLE_FUNCTION = "I want to";
+    public static final String PREAMBLE_FUNCTION = "i can ";
     public static final String MESSAGE_CONSTRAINTS = "User story should have a valid function.";
 
     private String function;

@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class UserStoryUser {
 
     public static final String DEFAULT_USER = "Typical user";
-    public static final String PREAMBLE_USER = "as a";
+    public static final String PREAMBLE_USER = "as a ";
     public static final String MESSAGE_CONSTRAINTS = "User story should have a valid user.";
 
     /**

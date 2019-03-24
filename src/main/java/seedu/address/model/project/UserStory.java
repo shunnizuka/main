@@ -82,13 +82,13 @@ public class UserStory {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("User: ")
-                .append(getUserStoryUser())
+                .append(getUserStoryUser().getUser())
                 .append(" Function: ")
-                .append(getUserStoryFunction())
+                .append(getUserStoryFunction().getFunction())
                 .append(" Reason: ")
-                .append(getUserStoryReason())
+                .append(getUserStoryReason().getReason())
                 .append(" Importance: ")
-                .append(getUserStoryImportance());
+                .append(getUserStoryImportance().getImportance());
         return builder.toString();
     }
 }
