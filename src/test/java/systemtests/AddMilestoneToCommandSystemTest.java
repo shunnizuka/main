@@ -1,6 +1,8 @@
 package systemtests;
 
 import seedu.address.logic.commands.AddMilestoneToCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
@@ -15,6 +17,7 @@ public class AddMilestoneToCommandSystemTest extends PocketProjectSystemTest {
     @Test
     public void addMilestoneTo() {
         Model model = getProjectModel();
+        String command;
 
         /* ------------------------ Perform addto operations on the shown unfiltered list -------------------------- */
 
@@ -25,6 +28,17 @@ public class AddMilestoneToCommandSystemTest extends PocketProjectSystemTest {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
         Milestone milestone = TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG;
         assertCommandSuccess(targetProject, milestone);
+
+        /* Case: undo adding milestone to Project Alice */
+        command = UndoCommand.COMMAND_WORD;
+        String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, model, expectedResultMessage);
+
+        /* Case: redo adding milestone to the list -> milestone added again */
+        command = RedoCommand.COMMAND_WORD;
+        model.addMilestoneTo(targetProject, milestone);
+        expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(command, model, expectedResultMessage);
 
     }
 
