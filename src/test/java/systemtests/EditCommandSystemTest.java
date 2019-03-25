@@ -253,21 +253,6 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
     }
 
     /**
-     * To check if the employee in the project's employee list is also edited
-     * by checking if the old instance of the employee still exists
-     */
-    private boolean assertProjectEmployeeEditSuccess(Model expected, Employee toEdit) {
-
-        for (Project project: expected.getProjectList()) {
-            System.out.println("project " + project);
-            if (project.containsEmployee(toEdit)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} except that the
      * browser url and selected card remain unchanged.
      * @see EditCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
@@ -301,6 +286,21 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
             assertSelectedCardUnchanged();
         }
         assertStatusBarUnchangedExceptSyncStatus();
+    }
+
+    /**
+     * To check if the employee in the project's employee list is also edited
+     * by checking if the old instance of the employee still exists
+     */
+    private boolean assertProjectEmployeeEditSuccess(Model expected, Employee toEdit) {
+
+        for (Project project: expected.getProjectList()) {
+            System.out.println("project " + project);
+            if (project.containsEmployee(toEdit)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
