@@ -229,7 +229,7 @@ public class EditCommandTest {
      * Test if the employees in the projects are updated when editCommand is executed
      */
     @Test
-    public void execute_sameEmployeeinProjectEdited() throws CommandException {
+    public void executeUndoRedo_sameEmployeeinProjectEdited() throws CommandException {
 
         PocketProjectBuilder builder = new PocketProjectBuilder().withProject(TypicalProjects.PROJECT_ALICE)
             .withEmployee(TypicalEmployees.BENSON).withEmployee(TypicalEmployees.CARL);
@@ -240,6 +240,16 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor);
 
         editCommand.execute(model, commandHistory);
+
+        assertTrue(model.getPocketProject().getProjectList().get(0).getEmployees().get(0)
+            .equals(editedEmployee));
+
+        model.undoPocketProject();
+
+        assertTrue(model.getPocketProject().getProjectList().get(0).getEmployees().get(0)
+            .equals(TypicalEmployees.BENSON));
+
+        model.redoPocketProject();
 
         assertTrue(model.getPocketProject().getProjectList().get(0).getEmployees().get(0)
             .equals(editedEmployee));

@@ -44,6 +44,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.project.Project;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
@@ -61,7 +62,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
          */
         Index index = INDEX_FIRST_EMPLOYEE;
         String command = " " + EditCommand.COMMAND_WORD + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
-                + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + SKILL_DESC_JAVA + " ";
+            + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + SKILL_DESC_JAVA + " ";
         Employee editedEmployee = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_JAVA).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -74,12 +75,12 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         command = RedoCommand.COMMAND_WORD;
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         model.setEmployee(getModel().getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased()),
-                                                                        editedEmployee);
+            editedEmployee);
         assertCommandSuccess(command, model, expectedResultMessage);
 
         /* Case: edit a employee with new values same as existing values -> edited */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandSuccess(command, index, BOB);
 
         /* Case: edit a employee with new values same as another employee's values but with different name -> edited */
@@ -87,7 +88,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         index = INDEX_SECOND_EMPLOYEE;
         assertNotEquals(getModel().getFilteredEmployeeList().get(index.getZeroBased()), BOB);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         editedEmployee = new EmployeeBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -96,7 +97,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
          */
         index = INDEX_SECOND_EMPLOYEE;
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         editedEmployee = new EmployeeBuilder(BOB).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -124,7 +125,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         int invalidIndex = getModel().getPocketProject().getEmployeeList().size();
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
-                Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+            Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         /* --------------------- Performing edit operation while a employee card is selected ----------------------- */
 
@@ -135,7 +136,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         index = INDEX_FIRST_EMPLOYEE;
         viewEmployee(index);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + SKILL_DESC_C;
+            + ADDRESS_DESC_AMY + SKILL_DESC_C;
         // this can be misleading: card selection actually remains unchanged but the
         // browser's url is updated to reflect the new employee's name
         assertCommandSuccess(command, index, AMY, index);
@@ -144,44 +145,44 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: invalid index (0) -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " 0" + NAME_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (-1) -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " -1" + NAME_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
         invalidIndex = getModel().getFilteredEmployeeList().size() + 1;
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
-                Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+            Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         /* Case: missing index -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + NAME_DESC_BOB,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: missing all fields -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased(),
-                EditCommand.MESSAGE_NOT_EDITED);
+            EditCommand.MESSAGE_NOT_EDITED);
 
         /* Case: invalid name -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_NAME_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+            Name.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_PHONE_DESC,
-                Phone.MESSAGE_CONSTRAINTS);
+            Phone.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid email -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_EMAIL_DESC,
-                Email.MESSAGE_CONSTRAINTS);
+            Email.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid address -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_ADDRESS_DESC,
-                Address.MESSAGE_CONSTRAINTS);
+            Address.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid skill -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_SKILL_DESC,
-                Skill.MESSAGE_CONSTRAINTS);
+            Skill.MESSAGE_CONSTRAINTS);
 
         /* Case: edit a employee with new values same as another employee's values -> rejected */
         executeCommand(EmployeeUtil.getAddEmployeeCommand(BOB));
@@ -189,31 +190,31 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         index = INDEX_FIRST_EMPLOYEE;
         assertFalse(getModel().getFilteredEmployeeList().get(index.getZeroBased()).equals(BOB));
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different tags -> rejected*/
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_JAVA;
+            + ADDRESS_DESC_BOB + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit an employee with new values same as another employee's values but with different address ->
          * rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_AMY + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + ADDRESS_DESC_AMY + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different phone -> rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different email -> rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
-                + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
@@ -236,13 +237,34 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
      * @see EditCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
      */
     private void assertCommandSuccess(String command, Index toEdit, Employee editedEmployee,
-            Index expectedSelectedCardIndex) {
+                                      Index expectedSelectedCardIndex) {
         Model expectedModel = getModel();
+        Employee toEditEmployee = expectedModel.getFilteredEmployeeList().get(toEdit.getZeroBased());
         expectedModel.setEmployee(expectedModel.getFilteredEmployeeList().get(toEdit.getZeroBased()), editedEmployee);
         expectedModel.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
 
+        //if no change made to the employee then don't need to check
+        if (!toEditEmployee.equals(editedEmployee)) {
+            assertTrue(assertProjectEmployeeEditSuccess(expectedModel, toEditEmployee));
+        }
+
         assertCommandSuccess(command, expectedModel,
-                String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee), expectedSelectedCardIndex);
+            String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee), expectedSelectedCardIndex);
+    }
+
+    /**
+     * To check if the employee in the project's employee list is also edited
+     * by checking if the old instance of the employee still exists
+     */
+    private boolean assertProjectEmployeeEditSuccess(Model expected, Employee toEdit) {
+
+        for (Project project: expected.getProjectList()) {
+            System.out.println("project " + project);
+            if (project.containsEmployee(toEdit)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -268,7 +290,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertSelectedCardChanged(Index)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
-            Index expectedSelectedCardIndex) {
+                                      Index expectedSelectedCardIndex) {
         executeCommand(command);
         expectedModel.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
