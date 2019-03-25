@@ -1,5 +1,6 @@
 package seedu.address.model.project;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -43,5 +44,12 @@ public class UserStoryFunction {
      */
     public UserStoryFunction clone() {
         return new UserStoryFunction(this.function);
+    }
+
+    /**
+     * Checks if the input is empty
+     */
+    public static boolean isValdUserStoryFunction(UserStoryFunction func) {
+        return !isNull(func) && (!func.equals(""));
     }
 }

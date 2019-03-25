@@ -91,4 +91,13 @@ public class UserStory {
                 .append(getUserStoryImportance().getImportance());
         return builder.toString();
     }
+
+    /**
+     * Checks if the user story has the valid format by checking the relevant fields
+     */
+    public static boolean isValidUserStory(UserStory story) {
+        return UserStoryUser.isValidUserStoryUser(story.getUserStoryUser().toString())
+                && UserStoryImportance.isValidImportanceLevel(story.getUserStoryImportance().toString())
+                && UserStoryFunction.isValdUserStoryFunction(story.getUserStoryFunction());
+    }
 }

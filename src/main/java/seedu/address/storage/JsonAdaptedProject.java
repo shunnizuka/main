@@ -16,6 +16,8 @@ import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
+import seedu.address.model.project.UserStory;
+import seedu.address.model.project.UserStoryUser;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -89,6 +91,10 @@ class JsonAdaptedProject {
             modelEmployees.add(employee.toModelType());
         }
         for (JsonAdaptedUserStory userStory: userStories) {
+            if (!UserStory.isValidUserStory(userStory.toModelType())) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        UserStory.class.getSimpleName()));
+            }
             modelUserStories.add(userStory.toModelType());
         }
 
@@ -125,7 +131,7 @@ class JsonAdaptedProject {
         final Deadline modelDeadline = new Deadline(deadline);
 
         return new Project(modelProjectName, modelClient, modelDeadline, modelMilestones, modelDescription,
-                modelEmployees);
+                modelEmployees, modelUserStories);
     }
 
 }
