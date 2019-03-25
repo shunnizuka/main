@@ -24,8 +24,8 @@ public class UserStoryImportance {
         this.importance = Integer.parseInt(importance);
     }
 
-    public Integer getImportance() {
-        return this.importance;
+    public String getImportance() {
+        return this.importance.toString();
     }
 
     public boolean isHigherImportance(UserStoryImportance other) {
