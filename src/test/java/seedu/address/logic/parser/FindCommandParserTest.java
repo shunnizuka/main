@@ -14,6 +14,7 @@ import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.FindSkillCommand;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
+import seedu.address.model.skill.EmployeeSkillContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -42,21 +43,22 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " Alice Bob", expectedFindCommand);
 
+        assertParseSuccess(parser, "employee \t Alice \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, "e Alice Bob", expectedFindCommand);
+
         expectedFindCommand =
             new FindProjectCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList("Apollo", "Gemini")));
         assertParseSuccess(parser, FindProjectCommand.FIND_PROJECT_KEYWORD + " Apollo Gemini",
             expectedFindCommand);
+        assertParseSuccess(parser, "project \t Apollo  Gemini \t", expectedFindCommand);
+        assertParseSuccess(parser, "p Apollo Gemini", expectedFindCommand);
 
-        //TODO: to change the predicate after setting up FindSkillCommand
-        /*
         expectedFindCommand =
-            new FindSkillCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList("java", "html")));
+            new FindSkillCommand(new EmployeeSkillContainsKeywordsPredicate(Arrays.asList("java", "html")));
         assertParseSuccess(parser, FindSkillCommand.FIND_SKILL_KEYWORD + " java html",
             expectedFindCommand);
-        */
-        // multiple whitespaces between keywords
-        //TODO: need to fix parser to allow multiple whitespaces between keywords
-        //assertParseSuccess(parser, "employee Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, "skill \t java \t html  \t", expectedFindCommand);
+        assertParseSuccess(parser, "s java html", expectedFindCommand);
     }
 
 }
