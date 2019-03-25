@@ -211,6 +211,11 @@ public interface Model {
      */
     void addMilestoneTo(Project targetProject, Milestone milestone);
 
+    /**
+     * Adds the {@code userStory} to the {@code targetProject}.
+     * {@code targetProject} must exist in the pocket project.
+     */
+    void addUserStoryTo(Project targetProject, UserStory targetUserStory);
 
 
 

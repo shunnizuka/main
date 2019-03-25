@@ -186,6 +186,11 @@ public class ModelManager implements Model {
         versionedPocketProject.addMilestoneTo(targetProject, milestone);
     }
 
+    @Override
+    public void addUserStoryTo(Project targetProject, UserStory targetUserStory) {
+        versionedPocketProject.addUserStoryTo(targetProject, targetUserStory);
+    }
+
 
 
     //=========== Filtered Employee List Accessors =============================================================

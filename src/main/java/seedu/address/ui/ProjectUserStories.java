@@ -78,7 +78,7 @@ public class ProjectUserStories extends UiPart<Region> {
         }
 
         public String getImportance() {
-            return story.getUserStoryImportance().getImportance().toString();
+            return story.getUserStoryImportance().getImportance();
         }
 
         public String getFunction() {

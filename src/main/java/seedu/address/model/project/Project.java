@@ -79,6 +79,7 @@ public class Project {
         this.employees = emp;
         this.milestones = m;
         userStories = stories;
+
     }
 
     public ProjectName getProjectName() {
@@ -111,9 +112,10 @@ public class Project {
         for (Milestone m: this.milestones) {
             cloneOfMilestones.add(m.clone());
         }
+
         return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
                 cloneOfMilestones,
-                this.description.clone(), this.employees.clone());
+                this.description.clone(), this.employees.clone(), userStories.clone());
     }
 
     /**
