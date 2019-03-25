@@ -11,5 +11,6 @@ public abstract class RemoveFromCommand extends Command {
             + ": removes the employee/milestone identified by the index number used in"
             + " the displayed employee/milestone list.\n"
             + RemoveEmployeeFromCommand.MESSAGE_USAGE + "\n"
-            + RemoveMilestoneFromCommand.MESSAGE_USAGE;
+            + RemoveMilestoneFromCommand.MESSAGE_USAGE + "\n"
+            + RemoveUserStoryFromCommand.MESSAGE_USAGE;
 }

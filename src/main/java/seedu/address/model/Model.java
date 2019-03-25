@@ -10,6 +10,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.UserStory;
 
 /**
  * The API of the Model component.
@@ -189,6 +190,14 @@ public interface Model {
      * {@code targetProject}.
      */
     void removeMilestoneFrom(Project targetProject, Milestone targetMilestone);
+
+    /**
+     * Removes the {@code targetUserStory} from the {@code targetProject}.
+     * Both {@code targetProject} must exist in the pocket project and {@code targetUserStory} in the userstory list of
+     * {@code targetProject}.
+     */
+    void removeUserStoryFrom(Project targetProject, UserStory targetUserStory);
+
 
     /**
      * Adds the {@code targetEmployee} to the {@code targetProject}.

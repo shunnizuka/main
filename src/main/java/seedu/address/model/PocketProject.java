@@ -14,6 +14,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
+import seedu.address.model.project.UserStory;
 
 /**
  * Wraps all data at the pocket-project level
@@ -186,7 +187,16 @@ public class PocketProject implements ReadOnlyPocketProject {
     }
 
     /**
-     * Removes {@code targetEmployee} from the {@code targetProject} from this {@code AddressBook}.
+     * Removes {@code targetUserStory} from the {@code targetProject} from this {@code PocketProject}.
+     *  {@code targetProject} and {@code targetUserStory} must exist.
+     */
+    public void removeUserStoryFrom(Project targetProject, UserStory targetUserStory) {
+        projects.removeUserStoryFrom(targetProject, targetUserStory);
+        indicateModified();
+    }
+
+    /**
+     * Removes {@code targetEmployee} from the {@code targetProject} from this {@code PocketProject}.
      *  {@code targetProject} and {@code targetEmployee} must exist.
      */
     public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
@@ -195,11 +205,20 @@ public class PocketProject implements ReadOnlyPocketProject {
     }
 
     /**
-     * Removes {@code targetMilestone} from the {@code targetProject} from this {@code AddressBook}.
+     * Adds {@code targetMilestone} from the {@code targetProject} to this {@code PocketProject}.
      *  {@code targetProject} and {@code targetMilestone} must exist.
      */
     public void addMilestoneTo(Project targetProject, Milestone targetMilestone) {
         projects.addMilestoneTo(targetProject, targetMilestone);
+        indicateModified();
+    }
+
+    /**
+     * Adds {@code targetUserStory} from the {@code targetProject} to this {@code PocketProject}.
+     *  {@code targetProject} and {@code targetUserStory} must exist.
+     */
+    public void addUserStoryTo(Project targetProject, UserStory userStory) {
+        projects.addUserStoryTo(targetProject, userStory);
         indicateModified();
     }
 
