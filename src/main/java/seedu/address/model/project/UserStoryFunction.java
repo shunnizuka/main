@@ -49,7 +49,7 @@ public class UserStoryFunction {
     /**
      * Checks if the input is empty
      */
-    public static boolean isValdUserStoryFunction(UserStoryFunction func) {
+    public static boolean isValdUserStoryFunction(String func) {
         return !isNull(func) && (!func.equals(""));
     }
 }

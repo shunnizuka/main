@@ -98,6 +98,6 @@ public class UserStory {
     public static boolean isValidUserStory(UserStory story) {
         return UserStoryUser.isValidUserStoryUser(story.getUserStoryUser().toString())
                 && UserStoryImportance.isValidImportanceLevel(story.getUserStoryImportance().toString())
-                && UserStoryFunction.isValdUserStoryFunction(story.getUserStoryFunction());
+                && UserStoryFunction.isValdUserStoryFunction(story.getUserStoryFunction().toString());
     }
 }
