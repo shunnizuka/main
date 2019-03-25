@@ -295,7 +295,6 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
     private boolean assertProjectEmployeeEditSuccess(Model expected, Employee toEdit) {
 
         for (Project project: expected.getProjectList()) {
-            System.out.println("project " + project);
             if (project.containsEmployee(toEdit)) {
                 return false;
             }
