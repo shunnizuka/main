@@ -209,7 +209,7 @@ public class Project {
      * Returns true if this project contains the given Employee.
      */
     public boolean containsEmployee(Employee employee) {
-        return employees.contains(employee);
+        return employees.containsExactSameEmployee(employee);
     }
 
     @Override
