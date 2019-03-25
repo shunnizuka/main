@@ -26,17 +26,17 @@ public class AddUserStoryToCommand extends AddToCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME "
             + ADD_USERSTORY_KEYWORD + " "
-            + PREFIX_USER + "user "
-            + PREFIX_FUNCTION + "function "
-            + PREFIX_REASON + "reason(optional) "
-            + PREFIX_IMPORTANCE + "IMPORTANCE_LEVEL (positive integer from 1 - 3)"
+            + PREFIX_USER + "[user] "
+            + PREFIX_FUNCTION + "[function] "
+            + PREFIX_REASON + "[reason] "
+            + PREFIX_IMPORTANCE + "IMPORTANCE (positive integer from 1 - 3)"
             + ": add the specified user story to the project.\n"
             + "Example: "
-            + COMMAND_WORD + " Project Apollo"
+            + COMMAND_WORD + " Project Apollo "
             + ADD_USERSTORY_KEYWORD + " "
             + PREFIX_USER + "project manager "
-            + PREFIX_FUNCTION + "add employees into a project"
-            + PREFIX_REASON + "track which employees are in a project"
+            + PREFIX_FUNCTION + "add employees into a project "
+            + PREFIX_REASON + "track which employees are in a project "
             + PREFIX_IMPORTANCE + "2";
 
     public static final String MESSAGE_ADD_USER_STORY_SUCCESS = "Added user story: %1$s into %2$s";
