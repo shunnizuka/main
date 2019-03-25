@@ -73,23 +73,23 @@ public class ProjectUserStories extends UiPart<Region> {
             this.index = index;
         }
 
-        public String indexProperty() {
+        public String getIndex() {
             return this.index.toString();
         }
 
-        public String importanceProperty() {
+        public String getImportance() {
             return story.getUserStoryImportance().getImportance().toString();
         }
 
-        public String functionProperty() {
+        public String getFunction() {
             return story.getUserStoryFunction().getFunction();
         }
 
-        public String userProperty() {
+        public String getUser() {
             return story.getUserStoryUser().getUser();
         }
 
-        public String reasonProperty() {
+        public String getReason() {
             return story.getUserStoryReason().getReason();
         }
     }

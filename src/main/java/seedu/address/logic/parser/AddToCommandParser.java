@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ARGUMENTS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FUNCTION;
@@ -8,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USER;
 
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -85,11 +87,21 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                             AddUserStoryToCommand.MESSAGE_USAGE));
                 }
 
+                if (ArgumentTokenizer.hasDuplicatePrefixes(s, PREFIX_USER, PREFIX_FUNCTION, PREFIX_REASON,
+                        PREFIX_IMPORTANCE)) {
+                    throw new ParseException(String.format(MESSAGE_DUPLICATE_ARGUMENTS,
+                            AddUserStoryToCommand.MESSAGE_USAGE));
+                }
+
                 UserStoryImportance importanceLevel = ParserUtil.parseStoryImportance(
                         argMultimap.getValue(PREFIX_IMPORTANCE).get());
                 UserStoryUser user = ParserUtil.parseStoryUser(argMultimap.getValue(PREFIX_USER).get());
                 UserStoryFunction func = ParserUtil.parseStoryFunction(argMultimap.getValue(PREFIX_FUNCTION).get());
-                UserStoryReason reason = ParserUtil.parseStoryReason(argMultimap.getValue(PREFIX_REASON).get());
+                //since reason can be empty we initialise it to empty first then update it if present
+                UserStoryReason reason = new UserStoryReason(UserStoryReason.DEFAULT_REASON);
+                if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
+                    reason = ParserUtil.parseStoryReason(argMultimap.getValue(PREFIX_REASON).get());
+                }
 
                 UserStory story = new UserStory(importanceLevel, user, func, reason);
 
