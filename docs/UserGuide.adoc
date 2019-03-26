@@ -477,27 +477,25 @@ Restores the Pocket Project to the state before the previous _undoable_ command 
 
 Format: `undo`
 
-[NOTE]
-====
+image:ug-notepadpencil.png[width="40"]
 Undoable commands: those commands that modify the Pocket Project's content
-(`add`, `delete`, 'addto', `edit` and `clear`).
-====
+(`add`, `delete`, `addto`, `removefrom`, `edit` and `clear`).
 
 Examples:
 
-* `delete 1` +
+* `delete employee 1` +
 `list` +
-`undo` (reverses the `delete 1` command) +
+`undo` (reverses the `delete employee 1` command) +
 
-* `select 1` +
+* `view employee 1` +
 `list` +
 `undo` +
 The `undo` command fails as there are no undoable commands executed previously.
 
-* `delete 1` +
+* `delete project 1` +
 `clear` +
 `undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
+`undo` (reverses the `delete project 1` command) +
 
 === Exiting the program : `exit`
 
