@@ -53,7 +53,7 @@ public class ModelHelper {
     public static void setFilteredList(Model model, List<Employee> employeesToDisplay, List<Project> projectsToDisplay)
     {
         Optional<Predicate<Project>> predicateProject =
-                projectsToDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
+                projectsToDisplay.stream().map(ModelHelper::getProjectPredicateMatching).reduce(Predicate::or);
         model.updateFilteredProjectList(predicateProject.orElse(PREDICATE_MATCHING_NO_PROJECTS));
         Optional<Predicate<Employee>> predicateEmployee =
                 employeesToDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
