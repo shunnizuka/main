@@ -497,6 +497,40 @@ The `undo` command fails as there are no undoable commands executed previously.
 `undo` (reverses the `clear` command) +
 `undo` (reverses the `delete project 1` command) +
 
+=== Redoing the previously undone command : `redo`
+
+Reverses the most recent `undo` command.
+
+Format: `redo`
+
+Examples:
+
+* `delete employee 1` +
+`undo` (reverses the `delete employee 1` command) +
+`redo` (reapplies the `delete employee 1` command) +
+
+* `delete project 1` +
+`redo` +
+The `redo` command fails as there are no `undo` commands executed previously.
+
+* `delete project 1` +
+`clear` +
+`undo` (reverses the `clear` command) +
+`undo` (reverses the `delete project 1` command) +
+`redo` (reapplies the `delete project 1` command) +
+`redo` (reapplies the `clear` command) +
+
+image:ug-lightbulb.png[width="50"]
+The redo command can only be called if there is an undo command that has not been
+"redo-ne" yet.
+// end::undoredo[]
+
+=== Clearing all entries : `clear`
+
+Clears all entries from the Pocket Project.
+
+Format: `clear`
+
 === Exiting the program : `exit`
 
 Exits the program. +
