@@ -19,6 +19,7 @@ public class Milestone {
     public static final String MESSAGE_INVALID_STRING = "The milestone info must not be empty or consisting "
         + "of only spaces";
     public static final String MESSAGE_INVALID_DATE = "The date given must be in DD/MM/YYYY format";
+
     public final String milestone;
     public final String date;
 
@@ -70,6 +71,15 @@ public class Milestone {
     public Milestone clone() {
         return new Milestone(this.milestone, this.date);
     }
+
+    public String getMilestone() {
+        return milestone;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

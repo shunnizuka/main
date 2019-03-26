@@ -308,7 +308,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedEmployeeRemoved = change.getRemoved().stream()
-                    .anyMatch(removedEmployee -> selectedEmployee.getValue().isSameEmployee(removedEmployee));
+                    .anyMatch(removedEmployee -> selectedEmployee.getValue().equals(removedEmployee));
             if (wasSelectedEmployeeRemoved) {
                 // Select the employee that came before it in the list,
                 // or clear the selection if there is no such employee.
