@@ -48,6 +48,19 @@ public class ModelHelper {
     }
 
     /**
+     * Updates {@code model}'s filtered list to display only {@code toDisplay}.
+     */
+    public static void setFilteredList(Model model, List<Employee> employeesToDisplay, List<Project> projectsToDisplay)
+    {
+        Optional<Predicate<Project>> predicateProject =
+                projectsToDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
+        model.updateFilteredProjectList(predicateProject.orElse(PREDICATE_MATCHING_NO_PROJECTS));
+        Optional<Predicate<Employee>> predicateEmployee =
+                employeesToDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
+        model.updateFilteredEmployeeList(predicateEmployee.orElse(PREDICATE_MATCHING_NO_EMPLOYEES));
+    }
+
+    /**
      * Returns a predicate that evaluates to true if this {@code Employee} equals to {@code other}.
      */
     private static Predicate<Employee> getPredicateMatching(Employee other) {
