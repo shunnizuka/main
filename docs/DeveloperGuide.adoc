@@ -28,6 +28,20 @@ is currently involved with and key details of the project such the client, deadl
 Through the combination of the two main components, the application allows the storing and viewing of all the employees
 working on particular project and all the projects currently under a single employee among other functionalities.
 
+== Background Information
+
+When first seeing our application, many of you may wonder what is the significance
+behind this project. Well, the current issues cannot be seen at the surface level and requires
+a deeper look. To present all the information in a nutshell, our application provides
+everything that a manager will ever need at the tip of his fingertips. Being able to better
+handle project and man management leads to a more organized workflow and inevitably, a more
+productive environment which can set a strong foundation for the lifecycle of various projects.
+
+In addition, the inability to track the progress of a project has been cited as one of the top reasons
+as to why a product fails, and thus our application aims to potentially solve this problem
+by having both a milestones feature and a task manager to mainly see not only what has been completed, but
+also the proposed schedule for the weeks ahead until the project is due for completion.
+
 == Legends
 The following section details and previews a few legends that will
 be used throughout the user guide. These legends are used to represent
