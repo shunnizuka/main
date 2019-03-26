@@ -8,6 +8,13 @@ import seedu.address.model.project.Milestone;
 public class TypicalMilestones {
     public static final Milestone TYPICAL_MILESTONE_START = new Milestone("The project starts",
             "11/11/2011");
+
     public static final Milestone TYPICAL_MILESTONE_END = new Milestone("The project completes",
             "12/12/2012");
+
+    public static final Milestone TYPICAL_MILESTONE_COMPLETED_UG = new Milestone("The UG is completed",
+            "10/11/2012");
+
+    public static final Milestone TYPICAL_MILESTONE_GUI_V2 = new Milestone("GUI is in version 2",
+            "08/03/2012");
 }

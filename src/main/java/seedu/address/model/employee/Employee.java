@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.skill.Skill;
 
 /**
- * Represents a Employee in the address book.
+ * Represents a Employee in the pocket project.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Employee {
@@ -73,6 +73,11 @@ public class Employee {
             && otherEmployee.getName().equals(getName())
             && (otherEmployee.getPhone().equals(getPhone()) || otherEmployee.getEmail().equals(getEmail()));
     }
+
+    /**
+     * Returns the index of this employee in the list in model
+     */
+
 
     /**
      * Returns a clone of this Employee object.
