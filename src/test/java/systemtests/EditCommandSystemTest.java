@@ -237,7 +237,6 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
      * @see EditCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
      */
     private void assertCommandSuccess(String command, Index toEdit, Employee editedEmployee,
-
                                       Index expectedSelectedCardIndex) {
         Model expectedModel = getModel();
         Employee toEditEmployee = expectedModel.getFilteredEmployeeList().get(toEdit.getZeroBased());
