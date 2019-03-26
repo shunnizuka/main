@@ -790,6 +790,13 @@ A project often depends on third-party libraries. For example, Pocket Project de
 . Include those libraries in the repo (this bloats the repo size)
 . Require developers to download those libraries manually (this creates extra work for developers)
 
+== FAQ
+
+*Q*: How do I transfer my data to another Computer?
+
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
+data of your previous Pocket Project folder.
+
 [[GetStartedProgramming]]
 [appendix]
 == Suggested Programming Tasks to Get Started
