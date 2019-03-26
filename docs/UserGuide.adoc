@@ -97,7 +97,28 @@ that users can use while using the Pocket Project application.
  users be interested to know.
 |===
 
+=== Command Format
 
+====
+*Command Format*
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Items in square brackets are optional e.g `n/NAME [s/Skill]` can be used as `n/John Doe s/Java` or as `n/John Doe`.
+* Items with `…`​ after them can be used multiple times including zero times e.g. `[s/Skill]...` can be used as `{nbsp}` (i.e. 0 times), `s/Java`, `s/Java s/HTML` etc.
+* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, then  `p/PHONE_NUMBER n/NAME` is also acceptable.
+====
+
+=== Glossary
+
+. `alphanumeric` only contains either digits (0-9) or letters of the English
+alphabet (A-Z).
+. `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
+program in the form of successive lines of text.
+. `lexicographic` ordering of words based on how it would appear in a dictionary.
+. `milestone` a key event that is completed during the entire timeline
+of the project.
+. `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
+. `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
 
 [[Features]]
 == Features
