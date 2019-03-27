@@ -53,7 +53,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
 
     @Test
     public void edit() {
-        Model model = getModel();
+        Model model = getEmployeeModel();
 
         /* ----------------- Performing edit operation while an unfiltered list is being shown ---------------------- */
 
@@ -84,9 +84,9 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(command, index, BOB);
 
         /* Case: edit a employee with new values same as another employee's values but with different name -> edited */
-        assertTrue(getModel().getPocketProject().getEmployeeList().contains(BOB));
+        assertTrue(getEmployeeModel().getPocketProject().getEmployeeList().contains(BOB));
         index = INDEX_SECOND_EMPLOYEE;
-        assertNotEquals(getModel().getFilteredEmployeeList().get(index.getZeroBased()), BOB);
+        assertNotEquals(getEmployeeModel().getFilteredEmployeeList().get(index.getZeroBased()), BOB);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         editedEmployee = new EmployeeBuilder(BOB).withName(VALID_NAME_AMY).build();
@@ -104,7 +104,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         /* Case: clear tags -> cleared */
         index = INDEX_FIRST_EMPLOYEE;
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + PREFIX_SKILL.getPrefix();
-        Employee employeeToEdit = getModel().getFilteredEmployeeList().get(index.getZeroBased());
+        Employee employeeToEdit = getEmployeeModel().getFilteredEmployeeList().get(index.getZeroBased());
         editedEmployee = new EmployeeBuilder(employeeToEdit).withSkills().build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -113,9 +113,9 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         /* Case: filtered employee list, edit index within bounds of address book and employee list -> edited */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         index = INDEX_FIRST_EMPLOYEE;
-        assertTrue(index.getZeroBased() < getModel().getFilteredEmployeeList().size());
+        assertTrue(index.getZeroBased() < getEmployeeModel().getFilteredEmployeeList().size());
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + " " + NAME_DESC_BOB;
-        employeeToEdit = getModel().getFilteredEmployeeList().get(index.getZeroBased());
+        employeeToEdit = getEmployeeModel().getFilteredEmployeeList().get(index.getZeroBased());
         editedEmployee = new EmployeeBuilder(employeeToEdit).withName(VALID_NAME_BOB).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -123,7 +123,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
          * -> rejected
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getModel().getPocketProject().getEmployeeList().size();
+        int invalidIndex = getEmployeeModel().getPocketProject().getEmployeeList().size();
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
             Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
@@ -152,7 +152,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
-        invalidIndex = getModel().getFilteredEmployeeList().size() + 1;
+        invalidIndex = getEmployeeModel().getFilteredEmployeeList().size() + 1;
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
             Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
@@ -186,9 +186,9 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: edit a employee with new values same as another employee's values -> rejected */
         executeCommand(EmployeeUtil.getAddEmployeeCommand(BOB));
-        assertTrue(getModel().getPocketProject().getEmployeeList().contains(BOB));
+        assertTrue(getEmployeeModel().getPocketProject().getEmployeeList().contains(BOB));
         index = INDEX_FIRST_EMPLOYEE;
-        assertFalse(getModel().getFilteredEmployeeList().get(index.getZeroBased()).equals(BOB));
+        assertFalse(getEmployeeModel().getFilteredEmployeeList().get(index.getZeroBased()).equals(BOB));
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
@@ -313,7 +313,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getModel();
+        Model expectedModel = getEmployeeModel();
 
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);

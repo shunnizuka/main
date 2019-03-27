@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.DeleteEmployeeCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS;
 import static seedu.address.testutil.TestUtil.getEmployee;
-import static seedu.address.testutil.TestUtil.getLastIndex;
-import static seedu.address.testutil.TestUtil.getMidIndex;
+import static seedu.address.testutil.TestUtil.getEmployeeLastIndex;
+import static seedu.address.testutil.TestUtil.getEmployeeMidIndex;
 import static seedu.address.testutil.TypicalEmployees.KEYWORD_MATCHING_MEIER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 
@@ -29,7 +29,7 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* ----------------- Performing delete operation while an unfiltered list is being shown -------------------- */
 
         /* Case: delete the first employee in the list, command with leading spaces and trailing spaces -> deleted */
-        Model expectedModel = getModel();
+        Model expectedModel = getEmployeeModel();
         String command = "     " + DeleteEmployeeCommand.COMMAND_WORD + "      " + " employee "
                                 + INDEX_FIRST_EMPLOYEE.getOneBased() + "       ";
         Employee deletedEmployee = removeEmployee(expectedModel, INDEX_FIRST_EMPLOYEE);
@@ -37,8 +37,8 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(command, expectedModel, expectedResultMessage);
 
         /* Case: delete the last employee in the list -> deleted */
-        Model modelBeforeDeletingLast = getModel();
-        Index lastEmployeeIndex = getLastIndex(modelBeforeDeletingLast);
+        Model modelBeforeDeletingLast = getEmployeeModel();
+        Index lastEmployeeIndex = getEmployeeLastIndex(modelBeforeDeletingLast);
         assertCommandSuccess(lastEmployeeIndex);
 
         /* Case: undo deleting the last employee in the list -> last employee restored */
@@ -53,7 +53,7 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(command, modelBeforeDeletingLast, expectedResultMessage);
 
         /* Case: delete the middle employee in the list -> deleted */
-        Index middleEmployeeIndex = getMidIndex(getModel());
+        Index middleEmployeeIndex = getEmployeeMidIndex(getEmployeeModel());
         assertCommandSuccess(middleEmployeeIndex);
 
         /* ------------------ Performing delete operation while a filtered list is being shown ---------------------- */
@@ -61,14 +61,14 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* Case: filtered employee list, delete index within bounds of address book and employee list -> deleted */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         Index index = INDEX_FIRST_EMPLOYEE;
-        assertTrue(index.getZeroBased() < getModel().getFilteredEmployeeList().size());
+        assertTrue(index.getZeroBased() < getEmployeeModel().getFilteredEmployeeList().size());
         assertCommandSuccess(index);
 
         /* Case: filtered employee list, delete index within bounds of address book but out of bounds of employee list
          * -> rejected
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getModel().getPocketProject().getEmployeeList().size();
+        int invalidIndex = getEmployeeModel().getPocketProject().getEmployeeList().size();
         command = DeleteEmployeeCommand.COMMAND_WORD + " employee " + invalidIndex;
         assertCommandFailure(command, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
@@ -76,8 +76,8 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: delete the selected employee -> employee list panel selects the employee before the deleted employee */
         showAllEmployees();
-        expectedModel = getModel();
-        Index selectedIndex = getLastIndex(expectedModel);
+        expectedModel = getEmployeeModel();
+        Index selectedIndex = getEmployeeLastIndex(expectedModel);
         Index expectedIndex = Index.fromZeroBased(selectedIndex.getZeroBased() - 1);
         viewEmployee(selectedIndex);
         command = DeleteEmployeeCommand.COMMAND_WORD + " employee " + selectedIndex.getOneBased();
@@ -97,7 +97,7 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: invalid index (size + 1) -> rejected */
         Index outOfBoundsIndex = Index.fromOneBased(
-                getModel().getPocketProject().getEmployeeList().size() + 1);
+                getEmployeeModel().getPocketProject().getEmployeeList().size() + 1);
         command = DeleteEmployeeCommand.COMMAND_WORD + " employee " + outOfBoundsIndex.getOneBased();
         assertCommandFailure(command, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
@@ -128,7 +128,7 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
      * @see DeleteEmployeeCommandSystemTest#assertCommandSuccess(String, Model, String)
      */
     private void assertCommandSuccess(Index toDelete) {
-        Model expectedModel = getModel();
+        Model expectedModel = getEmployeeModel();
         Employee deletedEmployee = removeEmployee(expectedModel, toDelete);
         String expectedResultMessage = String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, deletedEmployee);
 
@@ -184,7 +184,7 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getModel();
+        Model expectedModel = getEmployeeModel();
 
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);

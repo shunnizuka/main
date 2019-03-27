@@ -26,7 +26,7 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
         String command = "   " + FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD
             + " " + "java" + "   ";
         Model expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, ALICE, BENSON);
+        ModelHelper.setEmployeeFilteredList(expectedModel, ALICE, BENSON);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -40,13 +40,13 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: find employee where employee list is not displaying the employee we are finding -> 1 employee found */
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly";
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        ModelHelper.setEmployeeFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find multiple employees in Pocket Project, 2 keywords -> 2 employees found */
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " CSS Assembly";
-        ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL);
+        ModelHelper.setEmployeeFilteredList(expectedModel, BENSON, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -85,7 +85,7 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " "
             + "CSS Assembly";
         expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        ModelHelper.setEmployeeFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -101,13 +101,13 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: find employee in Pocket Project, keyword is substring of name -> 0 employees found */
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Asa";
-        ModelHelper.setFilteredList(expectedModel);
+        ModelHelper.setEmployeeFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find employee in Pocket Project, name is substring of keyword -> 0 employees found */
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " assemblyyyyyyyy";
-        ModelHelper.setFilteredList(expectedModel);
+        ModelHelper.setEmployeeFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -121,7 +121,7 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
         viewEmployee(Index.fromOneBased(1));
         assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly";
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        ModelHelper.setEmployeeFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
 
@@ -130,7 +130,7 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " "
             + "Assembly";
         expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        ModelHelper.setEmployeeFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
     }

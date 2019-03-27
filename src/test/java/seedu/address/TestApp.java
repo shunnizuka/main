@@ -93,7 +93,19 @@ public class TestApp extends MainApp {
      */
     public Model getModel() {
         Model copy = new ModelManager((model.getPocketProject()), new UserPrefs());
-        ModelHelper.setFilteredList(copy, model.getFilteredEmployeeList());
+        ModelHelper.setEmployeeFilteredList(copy, model.getFilteredEmployeeList());
+        ModelHelper.setProjectFilteredList(copy, model.getFilteredProjectList());
+        return copy;
+    }
+
+
+
+    /**
+     * Returns a defensive copy of the model with employee list.
+     */
+    public Model getEmployeeModel() {
+        Model copy = new ModelManager((model.getPocketProject()), new UserPrefs());
+        ModelHelper.setEmployeeFilteredList(copy, model.getFilteredEmployeeList());
         return copy;
     }
 

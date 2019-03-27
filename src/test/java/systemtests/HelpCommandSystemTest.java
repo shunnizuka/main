@@ -61,7 +61,7 @@ public class HelpCommandSystemTest extends PocketProjectSystemTest {
         assertEquals("", getCommandBox().getInput());
         assertCommandBoxShowsDefaultStyle();
         assertNotEquals(HelpCommand.SHOWING_HELP_MESSAGE, getResultDisplay().getText());
-        assertListMatching(getEmployeeListPanel(), getModel().getFilteredEmployeeList());
+        assertListMatching(getEmployeeListPanel(), getEmployeeModel().getFilteredEmployeeList());
 
         // assert that the status bar too is updated correctly while the help window is open
         // note: the view command tested above does not update the status bar

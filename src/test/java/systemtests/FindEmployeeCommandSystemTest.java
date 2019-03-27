@@ -25,8 +25,9 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
          */
         String command = "   " + FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " " + KEYWORD_MATCHING_MEIER + "   ";
-        Model expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL); // first names of Benson and Daniel are "Meier"
+        Model expectedModel = getEmployeeModel();
+        ModelHelper.setEmployeeFilteredList(expectedModel, BENSON, DANIEL);
+        // first names of Benson and Daniel are "Meier"
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -40,13 +41,13 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: find employee where employee list is not displaying the employee we are finding -> 1 employee found */
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Carl";
-        ModelHelper.setFilteredList(expectedModel, CARL);
+        ModelHelper.setEmployeeFilteredList(expectedModel, CARL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find multiple employees in address book, 2 keywords -> 2 employees found */
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Benson Daniel";
-        ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL);
+        ModelHelper.setEmployeeFilteredList(expectedModel, BENSON, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -81,11 +82,11 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: find same employees in address book after deleting 1 of them -> 1 employee found */
         executeCommand(DeleteCommand.COMMAND_WORD + " employee 1");
-        assertFalse(getModel().getPocketProject().getEmployeeList().contains(BENSON));
+        assertFalse(getEmployeeModel().getPocketProject().getEmployeeList().contains(BENSON));
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
             + KEYWORD_MATCHING_MEIER;
-        expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        expectedModel = getEmployeeModel();
+        ModelHelper.setEmployeeFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -101,13 +102,13 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: find employee in address book, keyword is substring of name -> 0 employees found */
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Mei";
-        ModelHelper.setFilteredList(expectedModel);
+        ModelHelper.setEmployeeFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find employee in address book, name is substring of keyword -> 0 employees found */
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Meiers";
-        ModelHelper.setFilteredList(expectedModel);
+        ModelHelper.setEmployeeFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -121,7 +122,7 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
         viewEmployee(Index.fromOneBased(1));
         assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Daniel";
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        ModelHelper.setEmployeeFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
 
@@ -129,8 +130,8 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
         deleteAllEmployees();
         command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
             + KEYWORD_MATCHING_MEIER;
-        expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        expectedModel = getEmployeeModel();
+        ModelHelper.setEmployeeFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
     }
@@ -165,7 +166,7 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getModel();
+        Model expectedModel = getEmployeeModel();
 
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);

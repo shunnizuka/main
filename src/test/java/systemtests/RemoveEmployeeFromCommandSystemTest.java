@@ -1,78 +1,79 @@
 package systemtests;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX;
 
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddEmployeeToCommand;
-import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.RemoveEmployeeFromCommand;
+import seedu.address.logic.commands.RemoveFromCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.TypicalProjects;
 
-public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
+public class RemoveEmployeeFromCommandSystemTest extends PocketProjectSystemTest {
 
     @Test
-    public void addEmployeeTo() {
+    public void removeEmployeeFrom() {
 
         Model model = getProjectModel();
 
         /* ------------------------ Perform addto operations on the shown unfiltered list -------------------------- */
 
-        /* Case: add an employee to a project in the non-empty pocket project, command with leading spaces and trailing
+        /* Case: removes an employee from a project in the non-empty pocket project, command with leading spaces
+         * and trailing
          * spaces
          */
 
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        int validIndex = model.getFilteredEmployeeList().size() - 1;
-        Employee targetEmployee = model.getFilteredEmployeeList()
-            .get(Index.fromOneBased(model.getFilteredEmployeeList().size() - 1).getZeroBased());
-        String command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
-            + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
+        int validEmployeeIndex = model.getProjectWithName(targetProject.getProjectName()).getEmployees().size();
+        Employee targetEmployee = model.getProjectWithName(targetProject.getProjectName()).getEmployees()
+                .get(validEmployeeIndex - 1);
+        String command = RemoveEmployeeFromCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
+                + RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD + " " + validEmployeeIndex;
 
         assertCommandSuccess(command, targetProject, targetEmployee);
 
-        /* Case: undo adding employee to Project Alice */
+        /* Case: undo removing employee from Project Alice */
         command = UndoCommand.COMMAND_WORD;
         String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* Case: redo adding Amy to the list -> Amy added again */
+        /* Case: redo removing from the list -> removed again */
         command = RedoCommand.COMMAND_WORD;
-        model.addEmployeeTo(targetProject, targetEmployee);
+        model.removeEmployeeFrom(targetProject, targetEmployee);
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
-
-        /* ----------------------------------- Perform invalid addto operations ------------------------------------- */
-        /* Case: add a duplicate employee to a project -> rejected */
-        command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
-                + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
-        assertCommandFailure(command, AddEmployeeToCommand.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
+        /* ----------------------------------- Perform invalid add operations ------------------------------------- */
+        /* Case: add a non existing employee from a project -> rejected */
+        command = RemoveEmployeeFromCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
+                + RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD + " " + 99;
+        assertCommandFailure(command, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         /* Case: missing command word -> rejected */
-        command = targetProject.getProjectName() + " " + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
+        command = targetProject.getProjectName() + " " + RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD + " " + 1;
         assertCommandFailure(command, String.format(Messages.MESSAGE_UNKNOWN_COMMAND));
 
         /* Case: missing project name -> rejected */
-        command = AddToCommand.COMMAND_WORD + " " + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
+        command = RemoveEmployeeFromCommand.COMMAND_WORD + " " + RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD
+                + " " + 1;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            AddToCommand.MESSAGE_USAGE));
+                RemoveFromCommand.MESSAGE_USAGE));
 
         /* Case: missing employee keyword -> rejected */
-        command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " " + validIndex;
+        command = RemoveEmployeeFromCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " " + 1;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddToCommand.MESSAGE_USAGE));
+                RemoveFromCommand.MESSAGE_USAGE));
 
         /* Case: missing employee index -> rejected */
-        command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
-                + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD;
+        command = RemoveEmployeeFromCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
+                + RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddToCommand.MESSAGE_USAGE));
+                RemoveFromCommand.MESSAGE_USAGE));
     }
 
     /**
@@ -93,9 +94,9 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
 
     private void assertCommandSuccess(String command, Project targetProject, Employee targetEmployee) {
         Model expectedModel = getProjectModel();
-        expectedModel.addEmployeeTo(targetProject, targetEmployee);
-        String expectedResultMessage = String.format(AddEmployeeToCommand.MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS,
-            targetEmployee, targetProject.getProjectName());
+        expectedModel.removeEmployeeFrom(targetProject, targetEmployee);
+        String expectedResultMessage = String.format(RemoveEmployeeFromCommand.MESSAGE_REMOVE_EMPLOYEE_SUCCESS,
+                targetEmployee, targetProject.getProjectName());
 
         assertCommandSuccess(command, expectedModel, expectedResultMessage);
     }
@@ -106,7 +107,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
      * 1. Result display box displays {@code expectedResultMessage}.<br>
      * 2. {@code Storage} and {@code EmployeeListPanel} equal to the corresponding components in
      * {@code expectedModel}.<br>
-     * @see AddEmployeeToCommandSystemTest#assertCommandSuccess(String, Project, Employee)
+     * @see RemoveEmployeeFromCommandSystemTest#assertCommandSuccess(String, Project, Employee)
      */
 
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
@@ -130,7 +131,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
      */
 
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getProjectModel();
+        Model expectedModel = getEmployeeModel();
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertSelectedCardUnchanged();
