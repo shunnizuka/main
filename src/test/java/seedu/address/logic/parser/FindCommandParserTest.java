@@ -40,7 +40,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
             new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser,  FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
+        assertParseSuccess(parser, FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " Alice Bob", expectedFindCommand);
 
         assertParseSuccess(parser, "employee \t Alice \t Bob  \t", expectedFindCommand);
