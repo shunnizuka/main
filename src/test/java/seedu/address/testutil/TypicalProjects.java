@@ -79,7 +79,6 @@ public class TypicalProjects {
             .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
     */
     public static final String KEYWORD_MATCHING_YANKEE = "Yankee"; // A keyword that matches YANKEE
-    public static final String KEYWORD_MATCHING_BENSON = "Benson"; // A keyword that matches Benson
 
     private TypicalProjects() {} // prevents instantiation
 

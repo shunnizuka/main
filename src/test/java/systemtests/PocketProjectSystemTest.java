@@ -156,6 +156,8 @@ public abstract class PocketProjectSystemTest {
     protected void showEmployeesWithName(String keyword) {
         executeCommand(FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
             + " " + keyword);
+        System.out.println(getModel().getFilteredEmployeeList());
+        System.out.println(getModel().getPocketProject().getEmployeeList());
         assertTrue(getModel().getFilteredEmployeeList().size()
             < getModel().getPocketProject().getEmployeeList().size());
     }
@@ -166,6 +168,8 @@ public abstract class PocketProjectSystemTest {
     protected void showProjectsWithName(String keyword) {
         executeCommand(FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD
             + " " + keyword);
+        System.out.println(getModel().getFilteredProjectList());
+        System.out.println(getModel().getPocketProject().getProjectList());
         assertTrue(getModel().getFilteredProjectList().size()
             < getModel().getPocketProject().getProjectList().size());
     }
@@ -195,7 +199,7 @@ public abstract class PocketProjectSystemTest {
      */
     protected void deleteAllEmployees() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getEmployeeModel().getPocketProject().getEmployeeList().size());
+        assertEquals(0, getModel().getPocketProject().getEmployeeList().size());
     }
 
     /**
@@ -203,7 +207,7 @@ public abstract class PocketProjectSystemTest {
      */
     protected void deleteAllProjects() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getProjectModel().getPocketProject().getProjectList().size());
+        assertEquals(0, getModel().getPocketProject().getProjectList().size());
     }
 
     /**
@@ -303,17 +307,10 @@ public abstract class PocketProjectSystemTest {
     private void assertApplicationStartingStateIsCorrect() {
         assertEquals("", getCommandBox().getInput());
         assertEquals("", getResultDisplay().getText());
-        assertListMatching(getEmployeeListPanel(), getEmployeeModel().getFilteredEmployeeList());
+        assertListMatching(getEmployeeListPanel(), getModel().getFilteredEmployeeList());
         assertEquals(Paths.get(".").resolve(testApp.getStorageSaveLocation()).toString(),
             getStatusBarFooter().getSaveLocation());
         assertEquals(SYNC_STATUS_INITIAL, getStatusBarFooter().getSyncStatus());
-    }
-
-    /**
-     * Returns a defensive copy of the current employee model.
-     */
-    protected Model getEmployeeModel() {
-        return testApp.getEmployeeModel();
     }
 
     /**

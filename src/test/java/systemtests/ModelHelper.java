@@ -19,16 +19,16 @@ public class ModelHelper {
     /**
      * Updates {@code model}'s filtered list to display only {@code toDisplay}.
      */
-    public static void setEmployeeFilteredList(Model model, List<Employee> toDisplay) {
+    public static void setFilteredList(Model model, List<Employee> toDisplay) {
         Optional<Predicate<Employee>> predicate =
             toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
         model.updateFilteredEmployeeList(predicate.orElse(PREDICATE_MATCHING_NO_EMPLOYEES));
     }
     /**
-     * @see ModelHelper#setEmployeeFilteredList(Model, List)
+     * @see ModelHelper#setFilteredList(Model, List)
      */
-    public static void setEmployeeFilteredList(Model model, Employee... toDisplay) {
-        setEmployeeFilteredList(model, Arrays.asList(toDisplay));
+    public static void setFilteredList(Model model, Employee... toDisplay) {
+        setFilteredList(model, Arrays.asList(toDisplay));
     }
 
     /**
@@ -45,19 +45,6 @@ public class ModelHelper {
         Optional<Predicate<Project>> predicate =
             toDisplay.stream().map(ModelHelper::getProjectPredicateMatching).reduce(Predicate::or);
         model.updateFilteredProjectList(predicate.orElse(PREDICATE_MATCHING_NO_PROJECTS));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to display only {@code toDisplay}.
-     */
-    public static void setFilteredList(Model model, List<Employee> employeesToDisplay, List<Project> projectsToDisplay)
-    {
-        Optional<Predicate<Project>> predicateProject =
-                projectsToDisplay.stream().map(ModelHelper::getProjectPredicateMatching).reduce(Predicate::or);
-        model.updateFilteredProjectList(predicateProject.orElse(PREDICATE_MATCHING_NO_PROJECTS));
-        Optional<Predicate<Employee>> predicateEmployee =
-                employeesToDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
-        model.updateFilteredEmployeeList(predicateEmployee.orElse(PREDICATE_MATCHING_NO_EMPLOYEES));
     }
 
     /**

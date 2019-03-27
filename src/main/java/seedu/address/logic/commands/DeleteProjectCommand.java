@@ -51,12 +51,21 @@ public class DeleteProjectCommand extends DeleteCommand {
             }
             targetName = lastShownList.get(targetIndex.getZeroBased()).getProjectName();
         }
-        Project projectToDelete = model.getProjectWithName(targetName);
-        if (projectToDelete == null) {
+        List<Project> projectList = model.getProjectList();
+        Project projectToDelete = null;
+        boolean found = false;
+        for (Project p: projectList) {
+            if (p.hasProjectName(targetName)) {
+                found = true;
+                projectToDelete = p;
+                model.deleteProject(projectToDelete);
+                model.commitPocketProject();
+
+            }
+        }
+        if (!found) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
-        model.deleteProject(projectToDelete);
-        model.commitPocketProject();
 
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
     }
