@@ -203,7 +203,7 @@ public abstract class PocketProjectSystemTest {
      */
     protected void deleteAllProjects() {
         executeCommand(ClearCommand.COMMAND_WORD);
-        assertEquals(0, getEmployeeModel().getPocketProject().getProjectList().size());
+        assertEquals(0, getProjectModel().getPocketProject().getProjectList().size());
     }
 
     /**
