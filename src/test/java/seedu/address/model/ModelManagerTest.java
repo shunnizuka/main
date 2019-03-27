@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,7 +21,10 @@ import org.junit.rules.ExpectedException;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
+import seedu.address.model.project.Project;
 import seedu.address.testutil.PocketProjectBuilder;
+import seedu.address.testutil.TypicalEmployees;
+import seedu.address.testutil.TypicalProjects;
 
 public class ModelManagerTest {
     @Rule
@@ -115,6 +119,23 @@ public class ModelManagerTest {
         modelManager.setSelectedEmployee(BOB);
         modelManager.deleteEmployee(BOB);
         assertEquals(ALICE, modelManager.getSelectedEmployee());
+    }
+
+    @Test
+    public void getProjectsContaining_noProjectContains_returnsEmptyList() {
+        List<Project> list = modelManager.getProjectsContaining(TypicalEmployees.IDA);
+        assertEquals(list, Arrays.asList());
+    }
+    @Test
+    public void getProjectsContaining_projectContains_returnProjects() {
+        Project projectToAdd1 = TypicalProjects.PROJECT_IDA;
+        projectToAdd1.addEmployee(TypicalEmployees.IDA);
+        Project projectToAdd2 = TypicalProjects.PROJECT_HOON;
+        projectToAdd2.addEmployee(TypicalEmployees.IDA);
+        modelManager.addProject(projectToAdd1);
+        modelManager.addProject(projectToAdd2);
+        List<Project> list = modelManager.getProjectsContaining(TypicalEmployees.IDA);
+        assertTrue(list.containsAll(Arrays.asList(projectToAdd1, projectToAdd2)));
     }
 
     //TODO: find out why this test is failing

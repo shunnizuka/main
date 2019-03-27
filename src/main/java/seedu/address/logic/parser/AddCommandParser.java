@@ -52,7 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String keyword = matcher.group("keyword");
+        final String keyword = matcher.group("keyword").toLowerCase();
         final String arguments = matcher.group("arguments");
 
         if (keyword.equals(AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD)) {
@@ -75,7 +75,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             Employee employee = new Employee(name, phone, email, address, skillList);
 
             return new AddEmployeeCommand(employee);
-        } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD)) {
+        } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD) || keyword.equals("p")) {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_DEADLINE);
 

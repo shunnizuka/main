@@ -28,28 +28,59 @@ is currently involved with and key details of the project such the client, deadl
 Through the combination of the two main components, the application allows the storing and viewing of all the employees
 working on particular project and all the projects currently under a single employee among other functionalities.
 
-== Legends
+== Background Information
+
+When first seeing our application, many of you may wonder what is the significance
+behind this project. Well, the current issues cannot be seen at the surface level and requires
+a deeper look. To present all the information in a nutshell, our application provides
+everything that a manager will ever need at the tip of his fingertips. Being able to better
+handle project and man management leads to a more organized workflow and inevitably, a more
+productive environment which can set a strong foundation for the lifecycle of various projects.
+
+In addition, the inability to track the progress of a project has been cited as one of the top reasons
+as to why a product fails, and thus our application aims to potentially solve this problem
+by having both a milestones feature and a task manager to mainly see not only what has been completed, but
+also the proposed schedule for the weeks ahead until the project is due for completion.
+
+== Before We Begin
+
+=== Symbols
 The following section details and previews a few legends that will
 be used throughout the user guide. These legends are used to represent
 special information such as tips and warnings.
 
-
 |===
 |Legend |Meaning
 
+|image:ug-notepadpencil.png[width="40"]
+|The note pad icon indicates any useful tips or things that users
+need to take note of while using the Pocket Project application.
+
 |image:ug-lightbulb.png[width="50"]
-|The light bulb icon will be used to indicate any useful tips or shortcuts
-that users can take note of while using the PocketProject application.
+|The light bulb icon indicates any shortcuts
+that users can use while using the Pocket Project application.
 
 |image:ug-exclamation.png[width="50"]
-|The exclamation mark icon will be used to indicate any warnings that users
- can take note of while using the PocketProject application.
+|The exclamation mark icon indicates any warnings that users
+ can take note of while using the Pocket Project application.
 
 |image:ug-smart.png[width="60"]
-|The graduation cap icon will be used to indicate any advanced usages or
- extra technical information about how a particular command works should
+|The graduation cap icon indicates any advanced usages or
+ extra technical information about how a particular command works should the
  users be interested to know.
 |===
+
+=== Glossary
+
+. `alphanumeric` only contains either digits (0-9) or letters of the English
+alphabet (A-Z).
+. `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
+program in the form of successive lines of text.
+. `lexicographic` ordering of words based on how it would appear in a dictionary.
+. `milestone` a key event that is completed during the entire timeline
+of the project.
+. `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
+. `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
 
 == Setting up
 
@@ -758,6 +789,13 @@ A project often depends on third-party libraries. For example, Pocket Project de
 [loweralpha]
 . Include those libraries in the repo (this bloats the repo size)
 . Require developers to download those libraries manually (this creates extra work for developers)
+
+== FAQ
+
+*Q*: How do I transfer my data to another Computer?
+
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
+data of your previous Pocket Project folder.
 
 [[GetStartedProgramming]]
 [appendix]

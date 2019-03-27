@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -27,6 +28,8 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.UserStory;
+import seedu.address.testutil.Assert;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddEmployeeCommandTest {
@@ -216,11 +219,25 @@ public class AddEmployeeCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public void removeUserStoryFrom(Project targetProject, UserStory targetStory) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
         public void addMilestoneTo(Project targetProject, Milestone targetMilestone) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void addUserStoryTo(Project targetProject, UserStory targetStory) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Project> getProjectsContaining(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
         //--------------------------------------------------------------------------------------------------

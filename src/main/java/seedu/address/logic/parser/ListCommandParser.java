@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
-    private static final Pattern LIST_COMMAND_FORMAT = Pattern.compile("(?<type>\\S+)");
+    private static final Pattern LIST_COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)");
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
@@ -32,24 +32,18 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        final String type = matcher.group("type");
+        final String keyword = matcher.group("keyword").toLowerCase();
 
-        if (type.isEmpty()) {
+        if (keyword.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
-
-        switch (type) {
-
-        case ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD:
+        if (keyword.equals(ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD)) {
             return new ListEmployeeCommand();
-
-        case ListProjectCommand.LIST_PROJECT_KEYWORD:
+        } else if (keyword.equals(ListProjectCommand.LIST_PROJECT_KEYWORD)) {
             return new ListProjectCommand();
-
-        default:
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
-
     }
 
 }

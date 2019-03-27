@@ -34,10 +34,10 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        final String keyword = matcher.group("keyword");
+        final String keyword = matcher.group("keyword").toLowerCase();
         final String arguments = matcher.group("arguments");
 
-        if (keyword.equals(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD)) {
+        if (keyword.equals(ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new ViewEmployeeCommand(index);
@@ -45,7 +45,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewEmployeeCommand.MESSAGE_USAGE), pe);
             }
-        } else if (keyword.equals(ViewProjectCommand.VIEW_PROJECT_KEYWORD)) {
+        } else if (keyword.equals(ViewProjectCommand.VIEW_PROJECT_KEYWORD) || keyword.equals("p")) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new ViewProjectCommand(index);

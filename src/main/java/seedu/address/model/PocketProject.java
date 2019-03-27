@@ -134,6 +134,12 @@ public class PocketProject implements ReadOnlyPocketProject {
         requireNonNull(editedEmployee);
 
         employees.setEmployee(target, editedEmployee);
+
+        for (Project p: projects) {
+            if (p.containsEmployee(target)) {
+                p.setEmployee(target, editedEmployee);
+            }
+        }
         indicateModified();
     }
 
@@ -151,11 +157,17 @@ public class PocketProject implements ReadOnlyPocketProject {
     }
 
     /**
-     * Removes {@code key} from this {@code PocketProject}.
-     * {@code key} must exist in the pocket project.
+     * Removes {@code employee} from this {@code PocketProject}.
+     * Will also remove from current projects that the {@code employee} is working on.
+     * {@code employee} must exist in the pocket project.
      */
-    public void removeEmployee(Employee key) {
-        employees.remove(key);
+    public void removeEmployee(Employee employee) {
+        employees.remove(employee);
+        for (Project p: projects) {
+            if (p.containsEmployee(employee)) {
+                p.removeEmployee(employee);
+            }
+        }
         indicateModified();
     }
 
@@ -270,9 +282,9 @@ public class PocketProject implements ReadOnlyPocketProject {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PocketProject // instanceof handles nulls
-                && employees.equals(((PocketProject) other).employees)
-                && projects.equals(((PocketProject) other).projects));
+            || (other instanceof PocketProject // instanceof handles nulls
+            && employees.equals(((PocketProject) other).employees)
+            && projects.equals(((PocketProject) other).projects));
     }
 
     @Override

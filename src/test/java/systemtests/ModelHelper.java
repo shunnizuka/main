@@ -21,7 +21,7 @@ public class ModelHelper {
      */
     public static void setFilteredList(Model model, List<Employee> toDisplay) {
         Optional<Predicate<Employee>> predicate =
-                toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
+            toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
         model.updateFilteredEmployeeList(predicate.orElse(PREDICATE_MATCHING_NO_EMPLOYEES));
     }
     /**
@@ -32,11 +32,18 @@ public class ModelHelper {
     }
 
     /**
+     * @see ModelHelper#setProjectFilteredList(Model, List)
+     */
+    public static void setProjectFilteredList(Model model, Project... toDisplay) {
+        setProjectFilteredList(model, Arrays.asList(toDisplay));
+    }
+
+    /**
      * Updates {@code model}'s filtered list to display only {@code toDisplay}.
      */
     public static void setProjectFilteredList(Model model, List<Project> toDisplay) {
         Optional<Predicate<Project>> predicate =
-                toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
+            toDisplay.stream().map(ModelHelper::getProjectPredicateMatching).reduce(Predicate::or);
         model.updateFilteredProjectList(predicate.orElse(PREDICATE_MATCHING_NO_PROJECTS));
     }
 
@@ -50,7 +57,7 @@ public class ModelHelper {
     /**
      * Returns a predicate that evaluates to true if this {@code Project} equals to {@code other}.
      */
-    private static Predicate<Project> getPredicateMatching(Project other) {
+    private static Predicate<Project> getProjectPredicateMatching(Project other) {
         return project -> project.equals(other);
     }
 }

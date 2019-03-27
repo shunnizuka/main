@@ -36,7 +36,7 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveFromCommand.MESSAGE_USAGE));
         }
         final ProjectName projectName = new ProjectName(matcher.group("project").trim());
-        final String keyword = matcher.group("keyword").trim();
+        final String keyword = matcher.group("keyword").trim().toLowerCase();
         final String arguments = matcher.group("arguments");
         if (keyword.equals(RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD)) {
             try {

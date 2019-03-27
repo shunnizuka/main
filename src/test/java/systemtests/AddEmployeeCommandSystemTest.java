@@ -92,6 +92,36 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         deleteAllEmployees();
         assertCommandSuccess(ALICE);
 
+        /* Case: add a employee with mixed case command words
+         * -> added
+         */
+        toAdd = AMY;
+        command = "   " + "AdD" + "  " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + " "
+                + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
+                + SKILL_DESC_C + " ";
+        assertCommandSuccess(command, toAdd);
+        deleteAllEmployees();
+
+        /* Case: add a employee with mixed case key words
+         * -> added
+         */
+        toAdd = AMY;
+        command = "   " + AddEmployeeCommand.COMMAND_WORD + "  " + "EmPloyee" + " "
+                + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
+                + SKILL_DESC_C + " ";
+        assertCommandSuccess(command, toAdd);
+        deleteAllEmployees();
+
+        /* Case: add a employee with alias for employee
+         * -> added
+         */
+        toAdd = AMY;
+        command = "   " + AddEmployeeCommand.COMMAND_WORD + "  " + "e" + " "
+                + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
+                + SKILL_DESC_C + " ";
+        assertCommandSuccess(command, toAdd);
+        deleteAllEmployees();
+
         /* Case: add a employee with skills, command with parameters in random order -> added */
         toAdd = BOB;
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + SKILL_DESC_C

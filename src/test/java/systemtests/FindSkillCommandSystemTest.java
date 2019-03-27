@@ -2,70 +2,70 @@ package systemtests;
 
 import static org.junit.Assert.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW;
+import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
-import static seedu.address.testutil.TypicalEmployees.CARL;
 import static seedu.address.testutil.TypicalEmployees.DANIEL;
-import static seedu.address.testutil.TypicalEmployees.KEYWORD_MATCHING_MEIER;
 
 import org.junit.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.FindEmployeeCommand;
+import seedu.address.logic.commands.FindSkillCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 
-public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
+
+public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
 
     @Test
     public void find() {
-        /* Case: find multiple employees in address book, command with leading spaces and trailing spaces
+        /* Case: find multiple employees in Pocket Project, command with leading spaces and trailing spaces
          * -> 2 employees found
          */
-        String command = "   " + FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
-            + " " + KEYWORD_MATCHING_MEIER + "   ";
+        String command = "   " + FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD
+            + " " + "java" + "   ";
         Model expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL); // first names of Benson and Daniel are "Meier"
+        ModelHelper.setFilteredList(expectedModel, ALICE, BENSON);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: repeat previous find command where employee list is displaying the employees we are finding
          * -> 2 employees found
          */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
-            + KEYWORD_MATCHING_MEIER;
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " "
+            + "java";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find employee where employee list is not displaying the employee we are finding -> 1 employee found */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Carl";
-        ModelHelper.setFilteredList(expectedModel, CARL);
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly";
+        ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find multiple employees in address book, 2 keywords -> 2 employees found */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Benson Daniel";
+        /* Case: find multiple employees in Pocket Project, 2 keywords -> 2 employees found */
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " CSS Assembly";
         ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find multiple employees in address book, 2 keywords in reversed order -> 2 employees found */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Daniel Benson";
+        /* Case: find multiple employees in Pocket Project, 2 keywords in reversed order -> 2 employees found */
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly CSS";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find multiple employees in address book, 2 keywords with 1 repeat -> 2 employees found */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
-            + " Daniel Benson Daniel";
+        /* Case: find multiple employees in Pocket Project, 2 keywords with 1 repeat -> 2 employees found */
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD
+            + " CSS Assembly CSS";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find multiple employees in address book, 2 matching keywords and 1 non-matching keyword
+        /* Case: find multiple employees in Pocket Project, 2 matching keywords and 1 non-matching keyword
          * -> 2 employees found
          */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD
-            + " Daniel Benson NonMatchingKeyWord";
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD
+            + " Css Assembly suppppp";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -79,40 +79,40 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_FAILURE;
         assertCommandFailure(command, expectedResultMessage);
 
-        /* Case: find same employees in address book after deleting 1 of them -> 1 employee found */
+        /* Case: find same employees in Pocket Project after deleting 1 of them -> 1 employee found */
         executeCommand(DeleteCommand.COMMAND_WORD + " employee 1");
         assertFalse(getModel().getPocketProject().getEmployeeList().contains(BENSON));
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
-            + KEYWORD_MATCHING_MEIER;
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " "
+            + "CSS Assembly";
         expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find employee in address book, keyword is same as name but of different case -> 1 employee found */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " MeIeR";
+        /* Case: find employee in Pocket Project, keyword is same as name but of different case -> 1 employee found */
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " aSseMBly";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find employee in address book, command word is of mixed case -> 1 employee found */
-        command = "FinD" + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Meier";
+        /* Case: find employee in Pocket Project, command word is of mixed case -> 1 employee found */
+        command = "FinD" + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find employee in address book, keyword is substring of name -> 0 employees found */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Mei";
+        /* Case: find employee in Pocket Project, keyword is substring of name -> 0 employees found */
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Asa";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find employee in address book, name is substring of keyword -> 0 employees found */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Meiers";
+        /* Case: find employee in Pocket Project, name is substring of keyword -> 0 employees found */
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " assemblyyyyyyyy";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find employee not in address book -> 0 employees found */
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Mark";
+        /* Case: find employee not in Pocket Project -> 0 employees found */
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Mark";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -120,15 +120,15 @@ public class FindEmployeeCommandSystemTest extends PocketProjectSystemTest {
         showAllEmployees();
         viewEmployee(Index.fromOneBased(1));
         assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " Daniel";
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
 
-        /* Case: find employee in empty address book -> 0 employees found */
+        /* Case: find employee in empty Pocket Project -> 0 employees found */
         deleteAllEmployees();
-        command = FindEmployeeCommand.COMMAND_WORD + " " + FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD + " "
-            + KEYWORD_MATCHING_MEIER;
+        command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " "
+            + "Assembly";
         expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);

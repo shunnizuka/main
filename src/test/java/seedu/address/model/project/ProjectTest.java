@@ -9,6 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BO
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_CARL;
 
+import java.util.Arrays;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -27,6 +29,25 @@ public class ProjectTest {
         thrown.expect(UnsupportedOperationException.class);
     }
     */
+    @Test
+    public void addMilestone() {
+        //milestone is properly added
+        Project p = PROJECT_CARL;
+        Milestone m1 = new Milestone("1", "11/11/2011");
+        p.addMilestone(m1);
+        assertTrue(p.getMilestones().equals(Arrays.asList(m1)));
+
+        //milestone is sorted after being added
+        Milestone m2 = new Milestone("2", "09/11/2011");
+        p.addMilestone(m2);
+        assertTrue(p.getMilestones().equals(Arrays.asList(m2, m1)));
+        assertFalse(p.getMilestones().equals(Arrays.asList(m1, m2)));
+
+        //adding more
+        Milestone m3 = new Milestone("3", "10/11/2011");
+        p.addMilestone(m3);
+        assertTrue(p.getMilestones().equals(Arrays.asList(m2, m3, m1)));
+    }
 
     @Test
     public void isSameProject() {

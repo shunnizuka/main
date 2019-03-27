@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -185,6 +187,16 @@ public class ModelManager implements Model {
     public void addMilestoneTo(Project targetProject, Milestone milestone) {
         versionedPocketProject.addMilestoneTo(targetProject, milestone);
     }
+    @Override
+    public List<Project> getProjectsContaining(Employee employee) {
+        List<Project> list = new ArrayList<>();
+        for (Project p: versionedPocketProject.getProjectList()) {
+            if (p.containsEmployee(employee)) {
+                list.add(p);
+            }
+        }
+        return list;
+    }
 
     @Override
     public void addUserStoryTo(Project targetProject, UserStory targetUserStory) {
@@ -307,7 +319,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedEmployeeRemoved = change.getRemoved().stream()
-                    .anyMatch(removedEmployee -> selectedEmployee.getValue().isSameEmployee(removedEmployee));
+                    .anyMatch(removedEmployee -> selectedEmployee.getValue().equals(removedEmployee));
             if (wasSelectedEmployeeRemoved) {
                 // Select the employee that came before it in the list,
                 // or clear the selection if there is no such employee.

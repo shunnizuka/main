@@ -16,20 +16,41 @@ endif::[]
 
 Authors: `Daryl Tan, Jeff Gan, Jothinandan Pillay, Lin Dehui, Shune Lei`
 
-Since: `August 2018` License: `MIT`
+Since: `January 2019` License: `MIT`
 
 == Introduction
 
-PocketProject is primarily an application for software engineering project managers who are currently in-charge of
+Pocket Project is primarily an application for software engineering project managers who are currently in-charge of
 a team of large employees and many projects. This application employs the use of a Command Line Interface(CLI) to easily
 navigate through the application which contributes to the efficiency and user-friendliness of the end product.
 This application allows managers to keep track of all the employees and their related background information such as their
-GitHub account username and relevant skills. Additionally, it also helps to keep track of all the projects that the manager
+GitHub account username and relevant skills.
+
+Additionally, it also helps to keep track of all the projects that the manager
 is currently involved with and key details of the project such the client, deadline and milestones can also be stored.
 Through the combination of the two main components, the application allows the storing and viewing of all the employees
 working on particular project and all the projects currently under a single employee among other functionalities.
 
-== Quick Start
+== Background Information
+
+When first seeing our application, many of you may wonder what is the significance
+behind this project. Well, the current issues cannot be seen at the surface level and requires
+a deeper look. To present all the information in a nutshell, our application provides
+everything that a manager will ever need at the tip of his fingertips. Being able to better
+handle project and man management leads to a more organized workflow and inevitably, a more
+productive environment which can set a strong foundation for the lifecycle of various projects.
+
+In addition, the inability to track the progress of a project has been cited as one of the top reasons
+as to why a product fails, and thus our application aims to potentially solve this problem
+by having both a milestones feature and a task manager to mainly see not only what has been completed, but
+also the proposed schedule for the weeks ahead until the project is due for completion.
+
+== Before We Begin
+This section will outline key things to take note of before reading the user guide.
+The information provided in this section will be useful in understanding certain
+symbols and terms used further on in the user guide.
+
+=== Quick Start
 
 .  Ensure you have Java version `9` or later installed in your Computer.
 .  Download the latest `pocketproject.jar` link:{repoURL}/releases[here].
@@ -50,7 +71,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 .  Refer to <<Features>> for details of each command.
 
-== Legends
+=== Symbols
 The following section details and previews a few legends that will
 be used throughout the user guide. These legends are used to represent
 special information such as tips and warnings.
@@ -76,8 +97,7 @@ that users can use while using the Pocket Project application.
  users be interested to know.
 |===
 
-[[Features]]
-== Features
+=== Command Format
 
 ====
 *Command Format*
@@ -87,6 +107,23 @@ that users can use while using the Pocket Project application.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[s/Skill]...` can be used as `{nbsp}` (i.e. 0 times), `s/Java`, `s/Java s/HTML` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, then  `p/PHONE_NUMBER n/NAME` is also acceptable.
 ====
+
+=== Glossary
+
+. `alphanumeric` only contains either digits (0-9) or letters of the English
+alphabet (A-Z).
+. `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
+program in the form of successive lines of text.
+. `lexicographic` ordering of words based on how it would appear in a dictionary.
+. `milestone` a key event that is completed during the entire timeline
+of the project.
+. `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
+. `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
+
+[[Features]]
+== Features
+The following section will outline the various features and commands available to the user and will
+outline how the various commands can be used through examples and illustrations.
 
 === Viewing help : `help`
 
@@ -156,12 +193,15 @@ of employees.
 ==== Delete a project from the application: `delete project`
 Deletes the project from the list of projects.
 
-Format: `delete project PROJECT_NAME`
+Format: `delete project PROJECT_NAME` or `delete project PROJECT_INDEX`
 
 Examples:
 
 `delete project Apollo` +
 Deletes project "Apollo" from project list.
+
+`delete project 2` +
+Deletes the second project shown in the most recent displayed list of projects.
 
 image:ug-lightbulb.png[width="50"]
 Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
@@ -430,6 +470,67 @@ Examples:
 Total number of ongoing projects: 4 +
 Total number of completed projects: 9
 
+// tag::undoredo[]
+=== Undoing previous command : `undo`
+
+Restores the Pocket Project to the state before the previous _undoable_ command was executed.
+
+Format: `undo`
+
+image:ug-notepadpencil.png[width="40"]
+Undoable commands: those commands that modify the Pocket Project's content
+(`add`, `delete`, `addto`, `removefrom`, `edit` and `clear`).
+
+Examples:
+
+* `delete employee 1` +
+`list` +
+`undo` (reverses the `delete employee 1` command) +
+
+* `view employee 1` +
+`list` +
+`undo` +
+The `undo` command fails as there are no undoable commands executed previously.
+
+* `delete project 1` +
+`clear` +
+`undo` (reverses the `clear` command) +
+`undo` (reverses the `delete project 1` command) +
+
+=== Redoing the previously undone command : `redo`
+
+Reverses the most recent `undo` command.
+
+Format: `redo`
+
+Examples:
+
+* `delete employee 1` +
+`undo` (reverses the `delete employee 1` command) +
+`redo` (reapplies the `delete employee 1` command) +
+
+* `delete project 1` +
+`redo` +
+The `redo` command fails as there are no `undo` commands executed previously.
+
+* `delete project 1` +
+`clear` +
+`undo` (reverses the `clear` command) +
+`undo` (reverses the `delete project 1` command) +
+`redo` (reapplies the `delete project 1` command) +
+`redo` (reapplies the `clear` command) +
+
+image:ug-lightbulb.png[width="50"]
+The redo command can only be called if there is an undo command that has not been
+"redo-ne" yet.
+// end::undoredo[]
+
+=== Clearing all entries : `clear`
+
+Clears all entries from the Pocket Project.
+
+Format: `clear`
+
 === Exiting the program : `exit`
 
 Exits the program. +
@@ -456,18 +557,6 @@ _{Commands related to managing of project will be added soon.}_
 
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
 data of your previous Pocket Project folder.
-
-== Glossary
-
-. `alphanumeric` only contains either digits (0-9) or letters of the English
-alphabet (A-Z).
-. `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
-program in the form of successive lines of text.
-. `lexicographic` ordering of words based on how it would appear in a dictionary.
-. `milestone` a key event that is completed during the entire timeline
-of the project.
-. `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
-. `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
 
 == Command Summary
 
