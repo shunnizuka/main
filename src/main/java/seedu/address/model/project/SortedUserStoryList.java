@@ -50,11 +50,11 @@ public class SortedUserStoryList implements Iterable<UserStory> {
             throw new DuplicateUserStoryException();
         }
         //find the position to insert the new user story
-        for (int i = 0; i < internalList.size() - 1; i++) {
+        for (int i = 0; i < internalList.size(); i++) {
             UserStory currentStory = internalList.get(i);
             if (toAdd.isHigherImportance(currentStory)) {
                 internalList.add(i, toAdd);
-                break;
+                return;
             }
         }
         //if at the end it is still not added then add it to the back
