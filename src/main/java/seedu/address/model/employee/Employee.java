@@ -21,18 +21,18 @@ public class Employee {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final GitHubAccount gitHubAccount;
     private final Set<Skill> skills = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Employee(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, address, skills);
+    public Employee(Name name, Phone phone, Email email, GitHubAccount gitHubAccount, Set<Skill> skills) {
+        requireAllNonNull(name, phone, email, gitHubAccount, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.gitHubAccount = gitHubAccount;
         this.skills.addAll(skills);
     }
 
@@ -48,8 +48,8 @@ public class Employee {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public GitHubAccount getGitHubAccount() {
+        return gitHubAccount;
     }
 
     /**
@@ -87,7 +87,7 @@ public class Employee {
         for (Skill s: skills) {
             newSkills.add(s.clone());
         }
-        return new Employee(this.name.clone(), this.phone.clone(), this.email.clone(), this.address.clone(),
+        return new Employee(this.name.clone(), this.phone.clone(), this.email.clone(), this.gitHubAccount.clone(),
                 newSkills);
     }
 
@@ -109,14 +109,14 @@ public class Employee {
         return otherEmployee.getName().equals(getName())
             && otherEmployee.getPhone().equals(getPhone())
             && otherEmployee.getEmail().equals(getEmail())
-            && otherEmployee.getAddress().equals(getAddress())
+            && otherEmployee.getGitHubAccount().equals(getGitHubAccount())
             && otherEmployee.getSkills().equals(getSkills());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, skills);
+        return Objects.hash(name, phone, email, gitHubAccount, skills);
     }
 
     @Override
@@ -127,8 +127,8 @@ public class Employee {
             .append(getPhone())
             .append(" Email: ")
             .append(getEmail())
-            .append(" Address: ")
-            .append(getAddress())
+            .append(" GitHubAccount: ")
+            .append(getGitHubAccount())
             .append(" Tags: ");
         getSkills().forEach(builder::append);
         return builder.toString();

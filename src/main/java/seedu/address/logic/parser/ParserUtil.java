@@ -11,7 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddMilestoneToCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.Address;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
@@ -99,18 +99,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String address} into an {@code GitHubAccount}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static GitHubAccount parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (!GitHubAccount.isValidAccount(trimmedAddress)) {
+            throw new ParseException(GitHubAccount.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new GitHubAccount(trimmedAddress);
     }
 
     /**

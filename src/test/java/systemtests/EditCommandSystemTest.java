@@ -39,7 +39,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
-import seedu.address.model.employee.Address;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
@@ -178,7 +178,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: invalid address -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_ADDRESS_DESC,
-            Address.MESSAGE_CONSTRAINTS);
+            GitHubAccount.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid skill -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_SKILL_DESC,

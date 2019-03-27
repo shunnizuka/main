@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.employee.Address;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
@@ -24,14 +24,14 @@ public class EmployeeBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private GitHubAccount gitHubAccount;
     private Set<Skill> skills;
 
     public EmployeeBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        gitHubAccount = new GitHubAccount(DEFAULT_ADDRESS);
         skills = new HashSet<>();
     }
 
@@ -42,7 +42,7 @@ public class EmployeeBuilder {
         name = employeeToCopy.getName();
         phone = employeeToCopy.getPhone();
         email = employeeToCopy.getEmail();
-        address = employeeToCopy.getAddress();
+        gitHubAccount = employeeToCopy.getGitHubAccount();
         skills = new HashSet<>(employeeToCopy.getSkills());
     }
 
@@ -63,10 +63,10 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Employee} that we are building.
+     * Sets the {@code GitHubAccount} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.gitHubAccount = new GitHubAccount(address);
         return this;
     }
 
@@ -87,7 +87,7 @@ public class EmployeeBuilder {
     }
 
     public Employee build() {
-        return new Employee(name, phone, email, address, skills);
+        return new Employee(name, phone, email, gitHubAccount, skills);
     }
 
 }

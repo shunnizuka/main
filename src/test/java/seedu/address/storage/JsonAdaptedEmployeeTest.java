@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.employee.Address;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
@@ -27,7 +27,7 @@ public class JsonAdaptedEmployeeTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_ADDRESS = BENSON.getGitHubAccount().toString();
     private static final List<JsonAdaptedSkill> VALID_SKILLS = BENSON.getSkills().stream()
             .map(JsonAdaptedSkill::new)
             .collect(Collectors.toList());
@@ -90,7 +90,7 @@ public class JsonAdaptedEmployeeTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedEmployee employee =
                 new JsonAdaptedEmployee(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_SKILLS);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        String expectedMessage = GitHubAccount.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
 
@@ -98,7 +98,7 @@ public class JsonAdaptedEmployeeTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedEmployee employee =
                 new JsonAdaptedEmployee(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_SKILLS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, GitHubAccount.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
 

@@ -77,7 +77,7 @@ public class EmployeeCardHandle extends NodeHandle<Node> {
      */
     public boolean equals(Employee employee) {
         return getName().equals(employee.getName().fullName)
-                && getAddress().equals(employee.getAddress().value)
+                && getAddress().equals(employee.getGitHubAccount().value)
                 && getPhone().equals(employee.getPhone().value)
                 && getEmail().equals(employee.getEmail().value)
                 && ImmutableMultiset.copyOf(getSkills()).equals(ImmutableMultiset.copyOf(employee.getSkills().stream()

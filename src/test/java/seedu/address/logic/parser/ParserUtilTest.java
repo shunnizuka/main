@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.Address;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
@@ -122,15 +122,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+        GitHubAccount expectedGitHubAccount = new GitHubAccount(VALID_ADDRESS);
+        assertEquals(expectedGitHubAccount, ParserUtil.parseAddress(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+        GitHubAccount expectedGitHubAccount = new GitHubAccount(VALID_ADDRESS);
+        assertEquals(expectedGitHubAccount, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test

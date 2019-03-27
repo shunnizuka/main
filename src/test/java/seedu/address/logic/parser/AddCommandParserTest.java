@@ -47,7 +47,7 @@ import org.junit.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.model.employee.Address;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
@@ -152,7 +152,7 @@ public class AddCommandParserTest {
         // invalid address
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + SKILL_DESC_JAVA
-            + SKILL_DESC_C, Address.MESSAGE_CONSTRAINTS);
+            + SKILL_DESC_C, GitHubAccount.MESSAGE_CONSTRAINTS);
 
         // invalid skill
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
