@@ -53,6 +53,7 @@ public class ProjectBuilder {
         description = projectToCopy.getDescription();
         employees = new UniqueEmployeeList();
         this.milestones = new ArrayList<>();
+        this.userStories = new SortedUserStoryList();
         for (Employee e: projectToCopy.getEmployees()) {
             employees.add(e);
         }
