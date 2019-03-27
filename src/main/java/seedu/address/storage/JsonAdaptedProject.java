@@ -15,6 +15,8 @@ import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.SortedUserStoryList;
+import seedu.address.model.project.UserStory;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -29,6 +31,7 @@ class JsonAdaptedProject {
     private final String description;
     private final List<JsonAdaptedMilestone> milestones = new ArrayList<>();
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
+    private final List<JsonAdaptedUserStory> userStories = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -38,7 +41,8 @@ class JsonAdaptedProject {
                               @JsonProperty("deadline") String deadline,
                               @JsonProperty("description") String description,
                               @JsonProperty("milestones") List<JsonAdaptedMilestone> milestones,
-                              @JsonProperty("employees") List<JsonAdaptedEmployee> employees) {
+                              @JsonProperty("employees") List<JsonAdaptedEmployee> employees,
+                              @JsonProperty("userStories") List<JsonAdaptedUserStory> userStories) {
         this.projectName = projectName;
         this.client = client;
         this.deadline = deadline;
@@ -47,6 +51,7 @@ class JsonAdaptedProject {
             this.milestones.addAll(milestones);
         }
         this.employees.addAll(employees);
+        this.userStories.addAll(userStories);
     }
 
     /**
@@ -63,6 +68,9 @@ class JsonAdaptedProject {
         employees.addAll(source.getEmployees().stream()
                 .map(JsonAdaptedEmployee::new)
                 .collect(Collectors.toList()));
+        userStories.addAll(source.getUserStories().stream()
+                .map(JsonAdaptedUserStory::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -73,11 +81,20 @@ class JsonAdaptedProject {
     public Project toModelType() throws IllegalValueException {
         final List<Milestone> modelMilestones = new ArrayList<>();
         final UniqueEmployeeList modelEmployees = new UniqueEmployeeList();
+        final SortedUserStoryList modelUserStories = new SortedUserStoryList();
+
         for (JsonAdaptedMilestone milestone : milestones) {
             modelMilestones.add(milestone.toModelType());
         }
         for (JsonAdaptedEmployee employee: employees) {
             modelEmployees.add(employee.toModelType());
+        }
+        for (JsonAdaptedUserStory userStory: userStories) {
+            if (!UserStory.isValidUserStory(userStory.toModelType())) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        UserStory.class.getSimpleName()));
+            }
+            modelUserStories.add(userStory.toModelType());
         }
 
         if (projectName == null) {
@@ -112,11 +129,8 @@ class JsonAdaptedProject {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-
-
-
         return new Project(modelProjectName, modelClient, modelDeadline, modelMilestones, modelDescription,
-                modelEmployees);
+                modelEmployees, modelUserStories);
     }
 
 }

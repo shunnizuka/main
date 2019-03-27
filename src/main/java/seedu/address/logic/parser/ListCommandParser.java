@@ -37,9 +37,9 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (keyword.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
-        if (keyword.equals(ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
+        if (keyword.equals(ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD)) {
             return new ListEmployeeCommand();
-        } else if (keyword.equals(ListProjectCommand.LIST_PROJECT_KEYWORD) || keyword.equals("p")) {
+        } else if (keyword.equals(ListProjectCommand.LIST_PROJECT_KEYWORD)) {
             return new ListProjectCommand();
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));

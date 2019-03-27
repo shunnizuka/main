@@ -14,13 +14,16 @@ public class ProjectDetails {
     private Project project;
     private List<Node> projectDetailsList;
     private ProjectSummary projectSummary;
+    private ProjectUserStories projectUserStories;
 
     public ProjectDetails(Project project) {
         this.project = project;
         projectDetailsList = new ArrayList<>();
         projectSummary = new ProjectSummary(project);
+        projectUserStories = new ProjectUserStories(project);
 
         projectDetailsList.add(projectSummary.getRoot());
+        projectDetailsList.add(projectUserStories.getRoot());
     }
 
     public List<Node> getProjectDetails() {

@@ -11,6 +11,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.UserStory;
 
 /**
  * The API of the Model component.
@@ -193,6 +194,14 @@ public interface Model {
     void removeMilestoneFrom(Project targetProject, Milestone targetMilestone);
 
     /**
+     * Removes the {@code targetUserStory} from the {@code targetProject}.
+     * Both {@code targetProject} must exist in the pocket project and {@code targetUserStory} in the userstory list of
+     * {@code targetProject}.
+     */
+    void removeUserStoryFrom(Project targetProject, UserStory targetUserStory);
+
+
+    /**
      * Adds the {@code targetEmployee} to the {@code targetProject}.
      * Both {@code targetProject} must exist in the pocket project and {@code targetEmployee} in the employee list
      */
@@ -205,10 +214,15 @@ public interface Model {
     void addMilestoneTo(Project targetProject, Milestone milestone);
 
     /**
+     * Adds the {@code userStory} to the {@code targetProject}.
+     * {@code targetProject} must exist in the pocket project.
+     */
+    void addUserStoryTo(Project targetProject, UserStory targetUserStory);
+
+    /**
      * Returns the list of projects that this employee is working on.
      */
     List<Project> getProjectsContaining(Employee employee);
-
 
 
 

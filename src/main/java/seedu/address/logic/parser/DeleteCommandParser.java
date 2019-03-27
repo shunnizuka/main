@@ -38,7 +38,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         final String keyword = matcher.group("keyword").toLowerCase();
         final String arguments = matcher.group("arguments");
 
-        if (keyword.equals(DeleteEmployeeCommand.DELETE_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
+        if (keyword.equals(DeleteEmployeeCommand.DELETE_EMPLOYEE_KEYWORD)) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new DeleteEmployeeCommand(index);

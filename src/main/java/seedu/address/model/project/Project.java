@@ -22,6 +22,7 @@ public class Project {
     private final Client client;
     private final Deadline deadline;
     private final UniqueEmployeeList employees;
+    private final SortedUserStoryList userStories;
     private final Description description;
 
 
@@ -29,78 +30,62 @@ public class Project {
      * Constructor for each Project Object.
      */
     public Project (ProjectName pn, Client c, Deadline d) {
-        this.projectName = pn;
-        this.client = c;
-        this.deadline = d;
-        milestones = new ArrayList<>();
-        employees = new UniqueEmployeeList();
-        this.description = new Description();
+        this(pn, c, d, new ArrayList<>(), new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying milestones too.
      */
     public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m) {
-        this.projectName = pn;
-        this.client = c;
-        this.deadline = d;
-        this.milestones = m;
-        this.employees = new UniqueEmployeeList();
-        this.description = new Description();
+        this(pn, c, d, m, new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying description and milestone too.
      */
     public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc) {
-        this.projectName = pn;
-        this.client = c;
-        this.deadline = d;
-        this.milestones = m;
-        this.description = desc;
-        this.employees = new UniqueEmployeeList();
+        this(pn, c, d, m, desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying description.
      */
     public Project (ProjectName pn, Client c, Deadline d, Description desc) {
-        this.projectName = pn;
-        this.client = c;
-        this.deadline = d;
-        this.milestones = new ArrayList<>();
-        this.description = desc;
-        this.employees = new UniqueEmployeeList();
+        this(pn, c, d, new ArrayList<>(), desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying employees in the project.
      */
     public Project(ProjectName pn, Client c, Deadline d, Description desc, UniqueEmployeeList emp) {
-        this.projectName = pn;
-        this.client = c;
-        this.deadline = d;
-        this.description = desc;
-        this.employees = emp;
-        this.milestones = new ArrayList<>();
+        this(pn, c, d, new ArrayList<>(), desc, emp, new SortedUserStoryList());
+    }
+
+    /**
+     * Constructor specifying all fields except userstories.
+     */
+    public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp) {
+        this(pn, c, d, m, desc, emp, new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying all fields.
      */
-    public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp) {
+    public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
+                   SortedUserStoryList stories) {
         this.projectName = pn;
         this.client = c;
         this.deadline = d;
         this.description = desc;
         this.employees = emp;
         this.milestones = m;
+        userStories = stories;
+
     }
 
     public ProjectName getProjectName() {
         return projectName;
     }
-
     public List<Milestone> getMilestones() {
         return milestones;
     }
@@ -116,6 +101,9 @@ public class Project {
     public ObservableList<Employee> getEmployees() {
         return employees.asUnmodifiableObservableList();
     }
+    public ObservableList<UserStory> getUserStories() {
+        return userStories.asUnmodifiableObservableList();
+    }
 
     /**
      * Returns a clone of this Project object.
@@ -125,12 +113,11 @@ public class Project {
         for (Milestone m: this.milestones) {
             cloneOfMilestones.add(m.clone());
         }
+
         return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
-            cloneOfMilestones,
-            this.description.clone(), this.employees.clone());
+                cloneOfMilestones,
+                this.description.clone(), this.employees.clone(), userStories.clone());
     }
-
-
 
     /**
      * Returns true if both projects have the same name.
@@ -206,6 +193,21 @@ public class Project {
     }
 
     /**
+<<<<<<< HEAD
+     * Adds the given user story to this project.
+     */
+    public void addUserStory(UserStory story) {
+        userStories.add(story);
+    }
+
+    /**
+     * Removes the given user story from this project.
+     */
+    public void removeUserStory(UserStory story) {
+        userStories.remove(story);
+    }
+
+    /**
      * Returns true if this project contains the given Employee.
      */
     public boolean containsEmployee(Employee employee) {
@@ -228,13 +230,14 @@ public class Project {
             && otherProject.getDeadline().equals(getDeadline())
             && otherProject.getDescription().equals(getDescription())
             && otherProject.getMilestones().equals(getMilestones())
-            && otherProject.employees.equals(this.employees);
+            && otherProject.employees.equals(this.employees)
+            && otherProject.userStories.equals(this.userStories);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(projectName, client, deadline, description);
+        return Objects.hash(projectName, client, deadline, description, employees, userStories);
     }
 
     @Override
@@ -254,6 +257,11 @@ public class Project {
         builder.append("milestones:\n");
         for (Milestone m: milestones) {
             builder.append(m);
+            builder.append("\n");
+        }
+        builder.append("user stories:\n");
+        for (UserStory s: userStories) {
+            builder.append(s);
             builder.append("\n");
         }
 

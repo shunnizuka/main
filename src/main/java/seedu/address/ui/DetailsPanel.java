@@ -66,6 +66,7 @@ public class DetailsPanel extends UiPart<Region> {
         }));
     }
 
+
     /**
      * Refreshes the content of the panel to the most updated employee selection
      */

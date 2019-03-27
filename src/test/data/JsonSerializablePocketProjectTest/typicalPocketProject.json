@@ -65,7 +65,9 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "skills" : [ ]
-  }]},
+  }],
+    "userStories" : [ ]
+  },
   {"projectName" :  "Project Benson",
     "client" :  "Jeff",
     "deadline" :  "23/01/2011",
@@ -86,7 +88,9 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "skills" : [ "Assembly" ]
-  }]},
+  }],
+    "userStories" : [ ]
+  },
   {"projectName" :  "Project Carl",
     "client" :  "Darryl",
     "deadline" :  "12/12/2012",
@@ -104,7 +108,9 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "skills" : [ "Python"]
-  }]},
+  }],
+    "userStories" : [ ]
+  },
   {"projectName" :  "Project Daniel",
     "client" :  "Shune",
     "deadline" :  "21/12/2012",
@@ -122,7 +128,9 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "skills" : [ ]
-  }]},
+  }],
+    "userStories" : [ ]
+  },
   {"projectName" :  "Project Elle",
     "client" :  "Jothi",
     "deadline" :  "22/03/2019",
@@ -140,7 +148,9 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "skills" : [ ]
-  }]},
+  }],
+    "userStories" : [ ]
+  },
   {"projectName" :  "Project Fiona",
     "client" :  "SOC",
     "deadline" :  "01/01/2020",
@@ -157,9 +167,10 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "skills" : [ "Python", "Java"
-    ]
-  } ]},
+    "skills" : [ "Python", "Java" ]
+  }],
+    "userStories" : [ ]
+  },
   {"projectName" :  "Project George",
     "client" :  "FASS",
     "deadline" :  "11/02/2021",
@@ -177,7 +188,9 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "skills" : ["CSS", "HTML", "Java" ]
-  }]}
+  }],
+    "userStories" : [ ]
+  }
 
 ]
 }

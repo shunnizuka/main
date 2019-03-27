@@ -26,8 +26,6 @@ public class DeleteCommandParserTest {
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, "employee 1", new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE));
         assertParseSuccess(parser, "project 1", new DeleteProjectCommand(INDEX_FIRST_PROJECT));
-        assertParseSuccess(parser, "e 1", new DeleteEmployeeCommand(INDEX_FIRST_EMPLOYEE));
-        assertParseSuccess(parser, "p 1", new DeleteProjectCommand(INDEX_FIRST_PROJECT));
     }
 
     @Test

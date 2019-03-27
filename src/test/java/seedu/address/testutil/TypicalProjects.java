@@ -14,12 +14,15 @@ import seedu.address.model.project.ProjectName;
  */
 public class TypicalProjects {
 
+
     public static final Project PROJECT_ALICE = new ProjectBuilder().withProjectName("Project Alice hey")
-        .withClient("Dehui").withDeadline("11/02/2019")
-        .withDescrption("An application for Alice")
-        .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
-        .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
-            TypicalMilestones.TYPICAL_MILESTONE_END)).build();
+            .withClient("Dehui").withDeadline("11/02/2019")
+            .withDescrption("An application for Alice")
+            .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
+            .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
+                    TypicalMilestones.TYPICAL_MILESTONE_END))
+            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
+
 
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
         .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson")

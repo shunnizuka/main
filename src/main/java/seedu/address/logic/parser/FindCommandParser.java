@@ -47,11 +47,11 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        if (keyword.equals(FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
+        if (keyword.equals(FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD)) {
             return new FindEmployeeCommand(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (keyword.equals(FindProjectCommand.FIND_PROJECT_KEYWORD) || keyword.equals("p")) {
+        } else if (keyword.equals(FindProjectCommand.FIND_PROJECT_KEYWORD)) {
             return new FindProjectCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else if (keyword.equals(FindSkillCommand.FIND_SKILL_KEYWORD) || keyword.equals("s")) {
+        } else if (keyword.equals(FindSkillCommand.FIND_SKILL_KEYWORD)) {
             return new FindSkillCommand(new EmployeeSkillContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
             throw new ParseException(

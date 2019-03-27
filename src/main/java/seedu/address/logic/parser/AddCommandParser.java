@@ -55,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         final String keyword = matcher.group("keyword").toLowerCase();
         final String arguments = matcher.group("arguments");
 
-        if (keyword.equals(AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
+        if (keyword.equals(AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD)) {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                     PREFIX_SKILL);
@@ -102,7 +102,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 

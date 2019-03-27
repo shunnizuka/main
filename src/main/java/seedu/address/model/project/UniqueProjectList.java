@@ -126,6 +126,14 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
+     *  Removes the specified user story from the specified project. They must exist.
+     */
+    public void removeUserStoryFrom(Project project, UserStory userStory) {
+        requireAllNonNull(project, userStory);
+        internalList.get(internalList.indexOf(project)).removeUserStory(userStory);
+    }
+
+    /**
      *  Adds the specified employee to the specified project. They must exist.
      */
     public void addEmployeeTo(Project project, Employee employee) {
@@ -139,6 +147,14 @@ public class UniqueProjectList implements Iterable<Project> {
     public void addMilestoneTo(Project project, Milestone milestone) {
         requireAllNonNull(project, milestone);
         internalList.get(internalList.indexOf(project)).addMilestone(milestone);
+    }
+
+    /**
+     *  Adds the specified user story to the specified project. They must exist.
+     */
+    public void addUserStoryTo(Project project, UserStory userStory) {
+        requireAllNonNull(project, userStory);
+        internalList.get(internalList.indexOf(project)).addUserStory(userStory);
     }
 
 

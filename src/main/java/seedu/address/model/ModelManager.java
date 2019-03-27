@@ -22,6 +22,7 @@ import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.UserStory;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
@@ -174,6 +175,11 @@ public class ModelManager implements Model {
         versionedPocketProject.removeMilestoneFrom(targetProject, targetMilestone);
     }
     @Override
+    public void removeUserStoryFrom(Project targetProject, UserStory targetUserStory) {
+        versionedPocketProject.removeUserStoryFrom(targetProject, targetUserStory);
+    }
+
+    @Override
     public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
         versionedPocketProject.addEmployeeTo(targetProject, targetEmployee);
     }
@@ -190,6 +196,11 @@ public class ModelManager implements Model {
             }
         }
         return list;
+    }
+
+    @Override
+    public void addUserStoryTo(Project targetProject, UserStory targetUserStory) {
+        versionedPocketProject.addUserStoryTo(targetProject, targetUserStory);
     }
 
 

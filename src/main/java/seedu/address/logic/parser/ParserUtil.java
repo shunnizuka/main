@@ -19,6 +19,10 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.UserStoryFunction;
+import seedu.address.model.project.UserStoryImportance;
+import seedu.address.model.project.UserStoryReason;
+import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -195,4 +199,56 @@ public class ParserUtil {
         }
         return new ProjectName(trimmedName);
     }
+
+    /**
+     * Parses a {@code String user} into a {@code UserStoryUser user}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code user} is invalid.
+     */
+    public static UserStoryUser parseStoryUser(String user) throws ParseException {
+        requireNonNull(user);
+        String trimmedUser = user.trim();
+        if (!UserStoryUser.isValidUserStoryUser(trimmedUser)) {
+            throw new ParseException(UserStoryUser.MESSAGE_CONSTRAINTS);
+        }
+        return new UserStoryUser(trimmedUser);
+    }
+
+    /**
+     * Parses a {@code String function} into a {@code UserStoryFunction function}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static UserStoryFunction parseStoryFunction(String function) {
+        requireNonNull(function);
+        String trimmedFunction = function.trim();
+        return new UserStoryFunction(trimmedFunction);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code UserStoryReason reason}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static UserStoryReason parseStoryReason(String reason) {
+        String trimmedReason = reason.trim();
+        return new UserStoryReason(trimmedReason);
+    }
+
+    /**
+     * Parses a {@code String importance} into a {@code UserStoryImportance importance}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code input} is invalid.
+     */
+    public static UserStoryImportance parseStoryImportance(String input) throws ParseException {
+        requireNonNull(input);
+        String trimmedInput = input.trim();
+        if (!UserStoryImportance.isValidImportanceLevel(trimmedInput)) {
+            throw new ParseException(UserStoryImportance.MESSAGE_CONSTRAINTS);
+        }
+        return new UserStoryImportance(trimmedInput);
+    }
+
 }

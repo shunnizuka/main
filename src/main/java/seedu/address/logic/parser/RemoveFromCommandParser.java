@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveEmployeeFromCommand;
 import seedu.address.logic.commands.RemoveFromCommand;
 import seedu.address.logic.commands.RemoveMilestoneFromCommand;
+import seedu.address.logic.commands.RemoveUserStoryFromCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectName;
 
@@ -21,7 +22,7 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
      * Used for separation of type keyword and args.
      */
     private static final Pattern REMOVE_FROM_COMMAND_FORMAT = Pattern.compile("(?<project>(\\S+\\s)+)"
-        + "(?<keyword>employee\\s|milestone\\s)(?<arguments>.*)");
+        + "(?<keyword>employee\\s|milestone\\s|userstory\\s)(?<arguments>.*)");
 
     /**
      * Parses the given {@code String} of arguments in the context of the RemoveFromCommand
@@ -37,7 +38,7 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
         final ProjectName projectName = new ProjectName(matcher.group("project").trim());
         final String keyword = matcher.group("keyword").trim().toLowerCase();
         final String arguments = matcher.group("arguments");
-        if (keyword.equals(RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD) || keyword.equals("e")) {
+        if (keyword.equals(RemoveEmployeeFromCommand.REMOVE_EMPLOYEE_KEYWORD)) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new RemoveEmployeeFromCommand(index, projectName);
@@ -45,13 +46,22 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveEmployeeFromCommand.MESSAGE_USAGE), pe);
             }
-        } else if (keyword.equals(RemoveMilestoneFromCommand.REMOVE_MILESTONE_KEYWORD) || keyword.equals("m")) {
+        } else if (keyword.equals(RemoveMilestoneFromCommand.REMOVE_MILESTONE_KEYWORD)) {
             try {
                 Index index = ParserUtil.parseIndex(arguments.trim());
                 return new RemoveMilestoneFromCommand(index, projectName);
             } catch (ParseException pe) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveMilestoneFromCommand.MESSAGE_USAGE), pe);
+            }
+
+        } else if (keyword.equals(RemoveUserStoryFromCommand.REMOVE_USERSTORY_KEYWORD)) {
+            try {
+                Index index = ParserUtil.parseIndex(arguments.trim());
+                return new RemoveUserStoryFromCommand(index, projectName);
+            } catch (ParseException pe) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveUserStoryFromCommand.MESSAGE_USAGE), pe);
             }
 
         } else {

@@ -44,21 +44,18 @@ public class FindCommandParserTest {
             + " Alice Bob", expectedFindCommand);
 
         assertParseSuccess(parser, "employee \t Alice \t Bob  \t", expectedFindCommand);
-        assertParseSuccess(parser, "e Alice Bob", expectedFindCommand);
 
         expectedFindCommand =
             new FindProjectCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList("Apollo", "Gemini")));
         assertParseSuccess(parser, FindProjectCommand.FIND_PROJECT_KEYWORD + " Apollo Gemini",
             expectedFindCommand);
         assertParseSuccess(parser, "project \t Apollo  Gemini \t", expectedFindCommand);
-        assertParseSuccess(parser, "p Apollo Gemini", expectedFindCommand);
 
         expectedFindCommand =
             new FindSkillCommand(new EmployeeSkillContainsKeywordsPredicate(Arrays.asList("java", "html")));
         assertParseSuccess(parser, FindSkillCommand.FIND_SKILL_KEYWORD + " java html",
             expectedFindCommand);
         assertParseSuccess(parser, "skill \t java \t html  \t", expectedFindCommand);
-        assertParseSuccess(parser, "s java html", expectedFindCommand);
     }
 
 }

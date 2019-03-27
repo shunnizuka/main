@@ -30,6 +30,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.UserStory;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddProjectCommandTest {
@@ -220,6 +221,10 @@ public class AddProjectCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public void removeUserStoryFrom(Project targetProject, UserStory targetStory) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
             throw new AssertionError("This method should not be called.");
         }
@@ -227,6 +232,11 @@ public class AddProjectCommandTest {
         public void addMilestoneTo(Project targetProject, Milestone targetMilestone) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void addUserStoryTo(Project targetProject, UserStory targetStory) {
+            throw new AssertionError("This method should not be called");
+        }
+
         @Override
         public List<Project> getProjectsContaining(Employee employee) {
             throw new AssertionError("This method should not be called.");
