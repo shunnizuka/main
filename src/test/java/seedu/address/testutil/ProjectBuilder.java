@@ -120,6 +120,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(projectName, client, deadline, milestones, description, employees);
+        return new Project(projectName, client, deadline, milestones, description, employees,
+                userStories);
     }
 }

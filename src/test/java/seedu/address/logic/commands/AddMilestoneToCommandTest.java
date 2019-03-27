@@ -21,7 +21,7 @@ import seedu.address.testutil.TypicalProjects;
 
 /**
  * Contains unit tests for
- * {@code RemoveMilestoneFromCommand}.
+ * {@code AddMilestoneToCommand}.
  */
 public class AddMilestoneToCommandTest {
 
