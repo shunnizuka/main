@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_CARL;
+import static seedu.address.testutil.TypicalUserStories.USER_STORY_TYPICAL_MANAGER;
 
 import java.util.Arrays;
 
@@ -88,6 +89,11 @@ public class ProjectTest {
 
         // different deadline -> returns false
         editedAlice = new ProjectBuilder(PROJECT_ALICE).withDeadline(VALID_DEADLINE_BOB).build();
+        assertFalse(PROJECT_ALICE.equals(editedAlice));
+
+        //different userstory -> returns false
+        editedAlice = new ProjectBuilder(PROJECT_ALICE).withUserStories(Arrays.asList(USER_STORY_TYPICAL_MANAGER))
+                .build();
         assertFalse(PROJECT_ALICE.equals(editedAlice));
     }
 }

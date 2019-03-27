@@ -1,5 +1,7 @@
 package seedu.address.model.project;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a user story stored in pocket project.
  */
@@ -15,6 +17,10 @@ public class UserStory {
      */
     public UserStory(UserStoryImportance importance, UserStoryUser user, UserStoryFunction function,
                      UserStoryReason reason) {
+        requireNonNull(importance);
+        requireNonNull(user);
+        requireNonNull(function);
+        requireNonNull(reason);
         this.importance = importance;
         this.user = user;
         this.function = function;
@@ -98,6 +104,6 @@ public class UserStory {
     public static boolean isValidUserStory(UserStory story) {
         return UserStoryUser.isValidUserStoryUser(story.getUserStoryUser().getUser())
                 && UserStoryImportance.isValidImportanceLevel(story.getUserStoryImportance().getImportance())
-                && UserStoryFunction.isValdUserStoryFunction(story.getUserStoryFunction().getFunction());
+                && UserStoryFunction.isValidUserStoryFunction(story.getUserStoryFunction().getFunction());
     }
 }
