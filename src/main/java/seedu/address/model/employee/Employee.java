@@ -129,7 +129,7 @@ public class Employee {
             .append(getEmail())
             .append(" GitHubAccount: ")
             .append(getGitHubAccount())
-            .append(" Tags: ");
+            .append(" Skills: ");
         getSkills().forEach(builder::append);
         return builder.toString();
     }
