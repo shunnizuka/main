@@ -39,8 +39,8 @@ public class TypicalUserStories {
             .withImportance("2")
             .withUser("Software engineering project manager")
             .withFunction("See total number of projects listed as completed and ongoing")
-            .withReason("Keep track of how many projects have been successfully completed and the number of " +
-                    "ongoing projects at a glance")
+            .withReason("Keep track of how many projects have been successfully completed and the number of "
+                    + "ongoing projects at a glance")
             .build();
 
     private TypicalUserStories() {} //prevent instantiation

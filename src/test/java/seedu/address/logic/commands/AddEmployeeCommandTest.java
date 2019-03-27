@@ -29,7 +29,6 @@ import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UserStory;
-import seedu.address.testutil.Assert;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class AddEmployeeCommandTest {
