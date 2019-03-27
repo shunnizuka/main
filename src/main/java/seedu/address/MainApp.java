@@ -69,19 +69,19 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s pocket project and {@code userPrefs}. <br>
+     * The data from the sample pocket project will be used instead if {@code storage}'s pokcet project is not found,
+     * or an empty pocket project will be used instead if errors occur when reading {@code storage}'s pocket project.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPocketProject> addressBookOptional;
+        Optional<ReadOnlyPocketProject> pocketProjectOptional;
         ReadOnlyPocketProject initialData;
         try {
-            addressBookOptional = storage.readPocketProject();
-            if (!addressBookOptional.isPresent()) {
+            pocketProjectOptional = storage.readPocketProject();
+            if (!pocketProjectOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PocketProject");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSamplePocketProject);
+            initialData = pocketProjectOptional.orElseGet(SampleDataUtil::getSamplePocketProject);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PocketProject");
             initialData = new PocketProject();
