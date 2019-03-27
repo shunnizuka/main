@@ -15,7 +15,7 @@ public class ClearCommandSystemTest extends PocketProjectSystemTest {
 
     @Test
     public void clear() {
-        final Model defaultModel = getEmployeeModel();
+        final Model defaultModel = getModel();
 
         /* Case: clear non-empty address book, command with leading spaces and trailing alphanumeric characters and
          * spaces -> cleared
@@ -90,7 +90,7 @@ public class ClearCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getEmployeeModel();
+        Model expectedModel = getModel();
 
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
