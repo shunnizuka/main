@@ -92,7 +92,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
      */
 
     private void assertCommandSuccess(String command, Project targetProject, Employee targetEmployee) {
-        Model expectedModel = getProjectModel();
+        Model expectedModel = getModel();
         expectedModel.addEmployeeTo(targetProject, targetEmployee);
         String expectedResultMessage = String.format(AddEmployeeToCommand.MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS,
             targetEmployee, targetProject.getProjectName());
@@ -130,7 +130,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
      */
 
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getProjectModel();
+        Model expectedModel = getModel();
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertSelectedCardUnchanged();

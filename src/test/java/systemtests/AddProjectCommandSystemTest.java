@@ -129,7 +129,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getProjectModel();
+        Model expectedModel = getModel();
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertSelectedCardUnchanged();

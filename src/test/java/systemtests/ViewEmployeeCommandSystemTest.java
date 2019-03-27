@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.ViewEmployeeCommand.MESSAGE_VIEW_EMPLOYEE_SUCCESS;
-import static seedu.address.testutil.TestUtil.getEmployeeLastIndex;
-import static seedu.address.testutil.TestUtil.getEmployeeMidIndex;
+import static seedu.address.testutil.TestUtil.getLastIndex;
+import static seedu.address.testutil.TestUtil.getMidIndex;
 import static seedu.address.testutil.TypicalEmployees.KEYWORD_MATCHING_MEIER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 
@@ -31,7 +31,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(command, INDEX_FIRST_EMPLOYEE);
 
         /* Case: view the last card in the employee list -> selected */
-        Index personCount = getEmployeeLastIndex(getEmployeeModel());
+        Index personCount = getLastIndex(getModel());
         command = ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
                 + personCount.getOneBased();
         assertCommandSuccess(command, personCount);
@@ -47,7 +47,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertCommandFailure(command, expectedResultMessage);
 
         /* Case: view the middle card in the employee list -> selected */
-        Index middleIndex = getEmployeeMidIndex(getEmployeeModel());
+        Index middleIndex = getMidIndex(getModel());
         command = ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
                 + middleIndex.getOneBased();
         assertCommandSuccess(command, middleIndex);
@@ -61,13 +61,13 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
          * -> rejected
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getEmployeeModel().getPocketProject().getEmployeeList().size();
+        int invalidIndex = getModel().getPocketProject().getEmployeeList().size();
         assertCommandFailure(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD
                 + " " + invalidIndex, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         /* Case: filtered employee list, view index within bounds of address book and employee list -> selected */
         Index validIndex = Index.fromOneBased(1);
-        assertTrue(validIndex.getZeroBased() < getEmployeeModel().getFilteredEmployeeList().size());
+        assertTrue(validIndex.getZeroBased() < getModel().getFilteredEmployeeList().size());
         command = ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
                 + validIndex.getOneBased();
         assertCommandSuccess(command, validIndex);
@@ -83,7 +83,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
                         + " " + -1, String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
-        invalidIndex = getEmployeeModel().getFilteredEmployeeList().size() + 1;
+        invalidIndex = getModel().getFilteredEmployeeList().size() + 1;
         assertCommandFailure(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD
                 + " " + invalidIndex, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
@@ -115,7 +115,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertSelectedCardChanged(Index)
      */
     private void assertCommandSuccess(String command, Index expectedSelectedCardIndex) {
-        Model expectedModel = getEmployeeModel();
+        Model expectedModel = getModel();
         String expectedResultMessage = String.format(
                 MESSAGE_VIEW_EMPLOYEE_SUCCESS, expectedSelectedCardIndex.getOneBased());
         int preExecutionSelectedCardIndex = getEmployeeListPanel().getSelectedCardIndex();
@@ -145,7 +145,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
      * @see PocketProjectSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
-        Model expectedModel = getEmployeeModel();
+        Model expectedModel = getModel();
 
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
