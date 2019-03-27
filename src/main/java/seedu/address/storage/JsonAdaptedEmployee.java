@@ -27,7 +27,7 @@ class JsonAdaptedEmployee {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String gitHubAccount;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
 
     /**
@@ -35,12 +35,12 @@ class JsonAdaptedEmployee {
      */
     @JsonCreator
     public JsonAdaptedEmployee(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                               @JsonProperty("email") String email, @JsonProperty("address") String address,
+                               @JsonProperty("email") String email, @JsonProperty("gitHubAccount") String gitHubAccount,
                                @JsonProperty("skills") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.gitHubAccount = gitHubAccount;
         if (skills != null) {
             this.skills.addAll(skills);
         }
@@ -53,7 +53,7 @@ class JsonAdaptedEmployee {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getGitHubAccount().value;
+        gitHubAccount = source.getGitHubAccount().value;
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
@@ -94,13 +94,13 @@ class JsonAdaptedEmployee {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
+        if (gitHubAccount == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, GitHubAccount.class.getSimpleName()));
         }
-        if (!GitHubAccount.isValidAccount(address)) {
+        if (!GitHubAccount.isValidAccount(gitHubAccount)) {
             throw new IllegalValueException(GitHubAccount.MESSAGE_CONSTRAINTS);
         }
-        final GitHubAccount modelGitHubAccount = new GitHubAccount(address);
+        final GitHubAccount modelGitHubAccount = new GitHubAccount(gitHubAccount);
 
         final Set<Skill> modelSkills = new HashSet<>(employeeSkills);
         return new Employee(modelName, modelPhone, modelEmail, modelGitHubAccount, modelSkills);
