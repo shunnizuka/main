@@ -5,10 +5,10 @@ package seedu.address.model.project;
  */
 public class UserStory {
 
-    UserStoryImportance importance;
-    UserStoryUser user;
-    UserStoryFunction function;
-    UserStoryReason reason;
+    private UserStoryImportance importance;
+    private UserStoryUser user;
+    private UserStoryFunction function;
+    private UserStoryReason reason;
 
     /**
      * Constructor for a user story
@@ -25,13 +25,13 @@ public class UserStory {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
+        } else { //check all the fields for equality
+            return other instanceof UserStory
+                    && importance.equals(((UserStory) other).importance)
+                    && user.equals(((UserStory) other).user)
+                    && function.equals(((UserStory) other).function)
+                    && reason.equals(((UserStory) other).reason);
         }
-        //check all the fields for equality
-        else return other instanceof UserStory
-                &&  importance.equals(((UserStory) other).importance)
-                && user.equals(((UserStory) other).user)
-                && function.equals(((UserStory) other).function)
-                && reason.equals(((UserStory) other).reason);
     }
 
     public UserStoryImportance getUserStoryImportance() {
@@ -59,11 +59,11 @@ public class UserStory {
     public boolean isSameUserStory(UserStory story) {
         if (story == this) {
             return true;
+        } else { //check the string fields
+            return user.equals(story.user)
+                    && function.equals(story.function)
+                    && reason.equals(story.reason);
         }
-        //check the string fields
-        else return user.equals(story.user)
-                && function.equals(story.function)
-                && reason.equals(story.reason);
     }
 
     /**

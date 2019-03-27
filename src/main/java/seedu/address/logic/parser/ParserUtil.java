@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
@@ -20,7 +19,6 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;

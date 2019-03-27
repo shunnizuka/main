@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
-import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryUser;
 
 /**
@@ -84,7 +84,8 @@ class JsonAdaptedUserStory {
         }
         final UserStoryReason modelUserStoryReason = new UserStoryReason(reason);
 
-        return new UserStory(modelUserStoryImportance, modelUserStoryUser, modelUserStoryFunction, modelUserStoryReason);
+        return new UserStory(modelUserStoryImportance, modelUserStoryUser, modelUserStoryFunction,
+                modelUserStoryReason);
     }
 
 }

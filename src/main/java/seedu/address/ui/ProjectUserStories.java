@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-
-import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,8 +9,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UserStory;
-import seedu.address.model.project.UserStoryUser;
 
+/**
+ * UI component for a user story.
+ */
 public class ProjectUserStories extends UiPart<Region> {
 
     public static final String FXML = "ProjectUserStories.fxml";
@@ -62,11 +61,13 @@ public class ProjectUserStories extends UiPart<Region> {
         return newList;
     }
 
-
+    /**
+     * A cell which contains a user story.
+     */
     public class UserStoryCell {
 
-        public UserStory story;
-        public Integer index;
+        private UserStory story;
+        private Integer index;
 
         public UserStoryCell(UserStory s, int index) {
             this.story = s;

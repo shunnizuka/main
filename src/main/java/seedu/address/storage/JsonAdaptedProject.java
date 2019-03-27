@@ -17,7 +17,6 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
 import seedu.address.model.project.UserStory;
-import seedu.address.model.project.UserStoryUser;
 
 /**
  * Jackson-friendly version of {@link Project}.

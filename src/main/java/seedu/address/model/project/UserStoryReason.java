@@ -1,5 +1,8 @@
 package seedu.address.model.project;
 
+/**
+ *  Reason for a user story.
+ */
 public class UserStoryReason {
 
     public static final String DEFAULT_REASON = "";

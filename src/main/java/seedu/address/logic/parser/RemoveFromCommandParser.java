@@ -62,7 +62,7 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
             } catch (ParseException pe) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveUserStoryFromCommand.MESSAGE_USAGE), pe);
-                }
+            }
 
         } else {
             throw new ParseException (
