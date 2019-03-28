@@ -100,7 +100,7 @@ public class AddUserStoryToCommandSystemTest extends PocketProjectSystemTest {
 
     private void assertCommandSuccess(String command, Project targetProject, UserStory userStory) {
         Model expectedModel = getProjectModel();
-        expectedModel.addUserStoryTo(targetProject,userStory);
+        expectedModel.addUserStoryTo(targetProject, userStory);
         String expectedResultMessage = String.format(AddUserStoryToCommand.MESSAGE_ADD_USER_STORY_SUCCESS,
                 userStory, targetProject.getProjectName());
 
