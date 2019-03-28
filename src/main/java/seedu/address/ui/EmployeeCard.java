@@ -33,7 +33,7 @@ public class EmployeeCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label gitHubAccount;
+    private Label github;
     @FXML
     private Label email;
     @FXML
@@ -45,7 +45,7 @@ public class EmployeeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
         phone.setText(employee.getPhone().value);
-        gitHubAccount.setText(employee.getGithub().value);
+        github.setText(employee.getGithub().value);
         email.setText(employee.getEmail().value);
         employee.getSkills().forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));
     }

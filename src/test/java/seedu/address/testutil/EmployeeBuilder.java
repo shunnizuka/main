@@ -19,19 +19,19 @@ public class EmployeeBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_GITHUB = "terrylewis";
+    public static final String DEFAULT_GITHUB = "aliceballer";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private GitHubAccount gitHubAccount;
+    private GitHubAccount github;
     private Set<Skill> skills;
 
     public EmployeeBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        gitHubAccount = new GitHubAccount(DEFAULT_GITHUB);
+        github = new GitHubAccount(DEFAULT_GITHUB);
         skills = new HashSet<>();
     }
 
@@ -42,7 +42,7 @@ public class EmployeeBuilder {
         name = employeeToCopy.getName();
         phone = employeeToCopy.getPhone();
         email = employeeToCopy.getEmail();
-        gitHubAccount = employeeToCopy.getGithub();
+        github = employeeToCopy.getGithub();
         skills = new HashSet<>(employeeToCopy.getSkills());
     }
 
@@ -66,7 +66,7 @@ public class EmployeeBuilder {
      * Sets the {@code GitHubAccount} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withGitHubAccount(String account) {
-        this.gitHubAccount = new GitHubAccount(account);
+        this.github = new GitHubAccount(account);
         return this;
     }
 
@@ -87,7 +87,7 @@ public class EmployeeBuilder {
     }
 
     public Employee build() {
-        return new Employee(name, phone, email, gitHubAccount, skills);
+        return new Employee(name, phone, email, github, skills);
     }
 
 }
