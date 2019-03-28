@@ -99,7 +99,7 @@ public class EditCommand extends Command {
         Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
-        GitHubAccount updatedGitHubAccount = editEmployeeDescriptor.getGitHubAccount().orElse(employeeToEdit.getGitHubAccount());
+        GitHubAccount updatedGitHubAccount = editEmployeeDescriptor.getGitHubAccount().orElse(employeeToEdit.getGithub());
         Set<Skill> updatedSkills = editEmployeeDescriptor.getSkills().orElse(employeeToEdit.getSkills());
 
         return new Employee(updatedName, updatedPhone, updatedEmail, updatedGitHubAccount, updatedSkills);
