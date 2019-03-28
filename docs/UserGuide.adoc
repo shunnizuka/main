@@ -541,11 +541,11 @@ Format: `exit`
 Pocket Project data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// skill::dataencryption[]
+
 === Encrypting data files `[coming in v2.0]`
 
 _{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
+
 
 === Project commands `[coming in v2.0]`
 
