@@ -3,11 +3,11 @@ package systemtests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -62,7 +62,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
          */
         Index index = INDEX_FIRST_EMPLOYEE;
         String command = " " + EditCommand.COMMAND_WORD + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
-            + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + ADDRESS_DESC_BOB + " " + SKILL_DESC_JAVA + " ";
+            + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + GITHUB_DESC_BOB + " " + SKILL_DESC_JAVA + " ";
         Employee editedEmployee = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_JAVA).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -80,7 +80,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: edit a employee with new values same as existing values -> edited */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandSuccess(command, index, BOB);
 
         /* Case: edit a employee with new values same as another employee's values but with different name -> edited */
@@ -88,7 +88,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         index = INDEX_SECOND_EMPLOYEE;
         assertNotEquals(getModel().getFilteredEmployeeList().get(index.getZeroBased()), BOB);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         editedEmployee = new EmployeeBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -97,7 +97,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
          */
         index = INDEX_SECOND_EMPLOYEE;
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY
-            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         editedEmployee = new EmployeeBuilder(BOB).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -136,7 +136,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         index = INDEX_FIRST_EMPLOYEE;
         viewEmployee(index);
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-            + ADDRESS_DESC_AMY + SKILL_DESC_C;
+            + GITHUB_DESC_AMY + SKILL_DESC_C;
         // this can be misleading: card selection actually remains unchanged but the
         // browser's url is updated to reflect the new employee's name
         assertCommandSuccess(command, index, AMY, index);
@@ -177,7 +177,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
             Email.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid address -> rejected */
-        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_ADDRESS_DESC,
+        assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_GITHUB_DESC,
             GitHubAccount.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid skill -> rejected */
@@ -190,31 +190,31 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         index = INDEX_FIRST_EMPLOYEE;
         assertFalse(getModel().getFilteredEmployeeList().get(index.getZeroBased()).equals(BOB));
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different tags -> rejected*/
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + ADDRESS_DESC_BOB + SKILL_DESC_JAVA;
+            + GITHUB_DESC_BOB + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit an employee with new values same as another employee's values but with different address ->
          * rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + ADDRESS_DESC_AMY + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + GITHUB_DESC_AMY + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different phone -> rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
-            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different email -> rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
-            + ADDRESS_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+            + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 

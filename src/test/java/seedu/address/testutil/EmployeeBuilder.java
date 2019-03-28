@@ -19,7 +19,7 @@ public class EmployeeBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_GITHUB = "terrylewis";
 
     private Name name;
     private Phone phone;
@@ -31,7 +31,7 @@ public class EmployeeBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        gitHubAccount = new GitHubAccount(DEFAULT_ADDRESS);
+        gitHubAccount = new GitHubAccount(DEFAULT_GITHUB);
         skills = new HashSet<>();
     }
 
@@ -65,8 +65,8 @@ public class EmployeeBuilder {
     /**
      * Sets the {@code GitHubAccount} of the {@code Employee} that we are building.
      */
-    public EmployeeBuilder withAddress(String address) {
-        this.gitHubAccount = new GitHubAccount(address);
+    public EmployeeBuilder withGitHubAccount(String account) {
+        this.gitHubAccount = new GitHubAccount(account);
         return this;
     }
 

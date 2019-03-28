@@ -1,11 +1,11 @@
 package systemtests;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -16,7 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_C;
 import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -60,7 +60,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
          */
         Employee toAdd = AMY;
         String command = " " + AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + " "
-            + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
+            + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + GITHUB_DESC_AMY + "   "
             + SKILL_DESC_C + " ";
         assertCommandSuccess(command, toAdd);
 
@@ -78,7 +78,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* Case: add a employee with all fields same as another employee in the pocket project except name -> added */
         toAdd = new EmployeeBuilder(AMY).withName(VALID_NAME_BOB).build();
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB
-            + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + SKILL_DESC_C;
+            + PHONE_DESC_AMY + EMAIL_DESC_AMY + GITHUB_DESC_AMY + SKILL_DESC_C;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a employee with all fields same as another employee in the pocket project except phone and email
@@ -97,7 +97,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
          */
         toAdd = AMY;
         command = "   " + "AdD" + "  " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + " "
-                + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
+                + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + GITHUB_DESC_AMY + "   "
                 + SKILL_DESC_C + " ";
         assertCommandSuccess(command, toAdd);
         deleteAllEmployees();
@@ -107,7 +107,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
          */
         toAdd = AMY;
         command = "   " + AddEmployeeCommand.COMMAND_WORD + "  " + "EmPloyee" + " "
-                + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   "
+                + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " " + EMAIL_DESC_AMY + "   " + GITHUB_DESC_AMY + "   "
                 + SKILL_DESC_C + " ";
         assertCommandSuccess(command, toAdd);
         deleteAllEmployees();
@@ -115,7 +115,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* Case: add a employee with skills, command with parameters in random order -> added */
         toAdd = BOB;
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + SKILL_DESC_C
-            + PHONE_DESC_BOB + ADDRESS_DESC_BOB + NAME_DESC_BOB + SKILL_DESC_JAVA + EMAIL_DESC_BOB;
+            + PHONE_DESC_BOB + GITHUB_DESC_BOB + NAME_DESC_BOB + SKILL_DESC_JAVA + EMAIL_DESC_BOB;
         assertCommandSuccess(command, toAdd);
 
         /* Case: add a employee, missing skills -> added */
@@ -150,7 +150,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different address -> rejected */
-        toAdd = new EmployeeBuilder(HOON).withAddress(VALID_ADDRESS_BOB).build();
+        toAdd = new EmployeeBuilder(HOON).withGitHubAccount(VALID_GITHUB_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
@@ -160,17 +160,17 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: missing name -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + PHONE_DESC_AMY
-            + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
+            + EMAIL_DESC_AMY + GITHUB_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: missing phone -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY
-            + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
+            + EMAIL_DESC_AMY + GITHUB_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: missing email -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY
-            + PHONE_DESC_AMY + ADDRESS_DESC_AMY;
+            + PHONE_DESC_AMY + GITHUB_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: missing address -> rejected */
@@ -184,27 +184,27 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: invalid name -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + INVALID_NAME_DESC
-            + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
+            + PHONE_DESC_AMY + EMAIL_DESC_AMY + GITHUB_DESC_AMY;
         assertCommandFailure(command, Name.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY
-            + INVALID_PHONE_DESC + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
+            + INVALID_PHONE_DESC + EMAIL_DESC_AMY + GITHUB_DESC_AMY;
         assertCommandFailure(command, Phone.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid email -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY
-            + PHONE_DESC_AMY + INVALID_EMAIL_DESC + ADDRESS_DESC_AMY;
+            + PHONE_DESC_AMY + INVALID_EMAIL_DESC + GITHUB_DESC_AMY;
         assertCommandFailure(command, Email.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid address -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY
-            + PHONE_DESC_AMY + EMAIL_DESC_AMY + INVALID_ADDRESS_DESC;
+            + PHONE_DESC_AMY + EMAIL_DESC_AMY + INVALID_GITHUB_DESC;
         assertCommandFailure(command, GitHubAccount.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid skill -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY
-            + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + INVALID_SKILL_DESC;
+            + PHONE_DESC_AMY + EMAIL_DESC_AMY + GITHUB_DESC_AMY + INVALID_SKILL_DESC;
         assertCommandFailure(command, Skill.MESSAGE_CONSTRAINTS);
     }
 

@@ -36,8 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_GITHUB_AMY = "terrylewis";
+    public static final String VALID_GITHUB_BOB = "terrylewis";
     public static final String VALID_SKILL_JAVA = "Java";
     public static final String VALID_SKILL_C = "Python";
 
@@ -68,15 +68,15 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_GITHUB + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_GITHUB + VALID_ADDRESS_BOB;
+    public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
+    public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
     public static final String SKILL_DESC_C = " " + PREFIX_SKILL + VALID_SKILL_C;
     public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + VALID_SKILL_JAVA;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_GITHUB; // empty string not allowed for addresses
+    public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB; // empty string not allowed for git hub
     public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + "Java*"; // '*' not allowed in skills
 
     public static final String INVALID_PROJECT_NAME_DESC = " " + PREFIX_NAME + "Alice##"; // '#' not allowed in names
@@ -91,10 +91,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withGithubAccount(VALID_GITHUB_AMY)
                 .withSkills(VALID_SKILL_C).build();
         DESC_BOB = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withGithubAccount(VALID_GITHUB_BOB)
                 .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
     }
 
@@ -131,7 +131,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered employee list and selected employee in {@code actualModel} remain unchanged <br>
+     * - the pocket project, filtered employee list and selected employee in {@code actualModel} remain unchanged <br>
      * - {@code actualCommandHistory} remains unchanged.
      */
     public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,
@@ -185,7 +185,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Deletes the first employee in {@code model}'s filtered list from {@code model}'s address book.
+     * Deletes the first employee in {@code model}'s filtered list from {@code model}'s pocket project.
      */
     public static void deleteFirstEmployee(Model model) {
         Employee firstEmployee = model.getFilteredEmployeeList().get(0);

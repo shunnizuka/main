@@ -66,8 +66,8 @@ public class EditEmployeeDescriptorBuilder {
     /**
      * Sets the {@code GitHubAccount} of the {@code EditEmployeeDescriptor} that we are building.
      */
-    public EditEmployeeDescriptorBuilder withAddress(String address) {
-        descriptor.setGitHubAccount(new GitHubAccount(address));
+    public EditEmployeeDescriptorBuilder withGithubAccount(String account) {
+        descriptor.setGitHubAccount(new GitHubAccount(account));
         return this;
     }
 
