@@ -149,7 +149,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
-        /* Case: add a duplicate employee except with different address -> rejected */
+        /* Case: add a duplicate employee except with different github -> rejected */
         toAdd = new EmployeeBuilder(HOON).withGitHubAccount(VALID_GITHUB_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
@@ -173,7 +173,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
             + PHONE_DESC_AMY + GITHUB_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEmployeeCommand.MESSAGE_USAGE));
 
-        /* Case: missing address -> rejected */
+        /* Case: missing github -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY
             + PHONE_DESC_AMY + EMAIL_DESC_AMY;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEmployeeCommand.MESSAGE_USAGE));
@@ -197,7 +197,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
             + PHONE_DESC_AMY + INVALID_EMAIL_DESC + GITHUB_DESC_AMY;
         assertCommandFailure(command, Email.MESSAGE_CONSTRAINTS);
 
-        /* Case: invalid address -> rejected */
+        /* Case: invalid github -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY
             + PHONE_DESC_AMY + EMAIL_DESC_AMY + INVALID_GITHUB_DESC;
         assertCommandFailure(command, GitHubAccount.MESSAGE_CONSTRAINTS);

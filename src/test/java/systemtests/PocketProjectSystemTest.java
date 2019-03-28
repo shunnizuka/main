@@ -133,7 +133,7 @@ public abstract class PocketProjectSystemTest {
     }
 
     /**
-     * Displays all employees in the address book.
+     * Displays all employees in the pocket project
      */
     protected void showAllEmployees() {
         executeCommand(ListCommand.COMMAND_WORD + " " + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD);
@@ -142,7 +142,7 @@ public abstract class PocketProjectSystemTest {
     }
 
     /**
-     * Displays all projects in the address book.
+     * Displays all projects in the pocket project.
      */
     protected void showAllProjects() {
         executeCommand(ListCommand.COMMAND_WORD + " " + ListProjectCommand.LIST_PROJECT_KEYWORD);

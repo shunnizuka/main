@@ -110,7 +110,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
 
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
-        /* Case: filtered employee list, edit index within bounds of address book and employee list -> edited */
+        /* Case: filtered employee list, edit index within bounds of pocket project and employee list -> edited */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         index = INDEX_FIRST_EMPLOYEE;
         assertTrue(index.getZeroBased() < getModel().getFilteredEmployeeList().size());
@@ -119,7 +119,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         editedEmployee = new EmployeeBuilder(employeeToEdit).withName(VALID_NAME_BOB).build();
         assertCommandSuccess(command, index, editedEmployee);
 
-        /* Case: filtered employee list, edit index within bounds of address book but out of bounds of employee list
+        /* Case: filtered employee list, edit index within bounds of pocket project but out of bounds of employee list
          * -> rejected
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
@@ -176,7 +176,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_EMAIL_DESC,
             Email.MESSAGE_CONSTRAINTS);
 
-        /* Case: invalid address -> rejected */
+        /* Case: invalid github -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_GITHUB_DESC,
             GitHubAccount.MESSAGE_CONSTRAINTS);
 
@@ -198,7 +198,7 @@ public class EditCommandSystemTest extends PocketProjectSystemTest {
             + GITHUB_DESC_BOB + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
-        /* Case: edit an employee with new values same as another employee's values but with different address ->
+        /* Case: edit an employee with new values same as another employee's values but with different github ->
          * rejected
          */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
