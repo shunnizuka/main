@@ -106,11 +106,11 @@ public class ParserUtil {
      */
     public static GitHubAccount parseAccount(String account) throws ParseException {
         requireNonNull(account);
-        String trimmedAddress = account.trim();
-        if (!GitHubAccount.isValidAccount(trimmedAddress)) {
+        String trimmedAccount = account.trim();
+        if (!GitHubAccount.isValidAccount(trimmedAccount)) {
             throw new ParseException(GitHubAccount.MESSAGE_CONSTRAINTS);
         }
-        return new GitHubAccount(trimmedAddress);
+        return new GitHubAccount(trimmedAccount);
     }
 
     /**

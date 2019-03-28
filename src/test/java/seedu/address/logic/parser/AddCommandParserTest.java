@@ -9,6 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB2_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB3_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
@@ -153,6 +155,16 @@ public class AddCommandParserTest {
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + INVALID_GITHUB_DESC + SKILL_DESC_JAVA
             + SKILL_DESC_C, GitHubAccount.MESSAGE_CONSTRAINTS);
+
+        // invalid github 2
+        assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + INVALID_GITHUB2_DESC + SKILL_DESC_JAVA
+                + SKILL_DESC_C, GitHubAccount.MESSAGE_CONSTRAINTS);
+
+        // invalid github test 3
+        assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + INVALID_GITHUB3_DESC + SKILL_DESC_JAVA
+                + SKILL_DESC_C, GitHubAccount.MESSAGE_CONSTRAINTS);
 
         // invalid skill
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
