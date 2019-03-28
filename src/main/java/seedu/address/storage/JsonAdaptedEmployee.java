@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
@@ -95,7 +95,8 @@ class JsonAdaptedEmployee {
         final Email modelEmail = new Email(email);
 
         if (github == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, GitHubAccount.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                GitHubAccount.class.getSimpleName()));
         }
         if (!GitHubAccount.isValidAccount(github)) {
             throw new IllegalValueException(GitHubAccount.MESSAGE_CONSTRAINTS);

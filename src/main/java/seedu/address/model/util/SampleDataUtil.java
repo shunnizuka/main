@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.PocketProject;
 import seedu.address.model.ReadOnlyPocketProject;
-import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;

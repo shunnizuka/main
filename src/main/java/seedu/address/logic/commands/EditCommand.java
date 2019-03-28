@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -20,9 +20,9 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
@@ -99,7 +99,8 @@ public class EditCommand extends Command {
         Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
-        GitHubAccount updatedGitHubAccount = editEmployeeDescriptor.getGitHubAccount().orElse(employeeToEdit.getGithub());
+        GitHubAccount updatedGitHubAccount =
+            editEmployeeDescriptor.getGitHubAccount().orElse(employeeToEdit.getGithub());
         Set<Skill> updatedSkills = editEmployeeDescriptor.getSkills().orElse(employeeToEdit.getSkills());
 
         return new Employee(updatedName, updatedPhone, updatedEmail, updatedGitHubAccount, updatedSkills);

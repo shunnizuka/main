@@ -1,10 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -19,9 +19,9 @@ import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
