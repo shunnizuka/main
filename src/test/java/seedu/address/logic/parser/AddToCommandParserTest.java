@@ -39,8 +39,8 @@ public class AddToCommandParserTest {
                 new AddMilestoneToCommand(new ProjectName("Transformium"), new Milestone("Completed DG Today",
                         "25/09/2019")));
 
-        assertParseSuccess(parser, "Project X userstory i/2 as a user i want to do this so that im done"
-                , new AddUserStoryToCommand(new ProjectName("Project X"), new UserStory(
+        assertParseSuccess(parser, "Project X userstory i/2 as a user i want to do this so that im done",
+                new AddUserStoryToCommand(new ProjectName("Project X"), new UserStory(
                         new UserStoryImportance("2"), new UserStoryUser("user"), new UserStoryFunction("do this"),
                 new UserStoryReason("im done"))));
     }

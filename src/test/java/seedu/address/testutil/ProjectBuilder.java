@@ -120,6 +120,9 @@ public class ProjectBuilder {
         return this;
     }
 
+    /**
+     * Build the components into a {@code Project}
+     */
     public Project build() {
         return new Project(projectName, client, deadline, milestones, description, employees,
                 userStories);

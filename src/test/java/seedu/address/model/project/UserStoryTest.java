@@ -1,6 +1,5 @@
 package seedu.address.model.project;
 
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -48,7 +47,6 @@ public class UserStoryTest {
         //invalid function empty field
         assertFalse(UserStory.isValidUserStory(new UserStory(new UserStoryImportance("2"),
                 new UserStoryUser("user"), new UserStoryFunction(" "), new UserStoryReason("reason"))));
-
 
         // valid fields
         assertTrue(UserStory.isValidUserStory(new UserStory(new UserStoryImportance("2"),
