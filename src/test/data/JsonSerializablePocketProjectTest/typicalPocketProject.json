@@ -4,43 +4,43 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "github" : "terrylewis",
+    "github" : "aliceballer",
     "skills" : [ "Python", "Java" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "github" : "terrylewis",
+    "github" : "bensonballer",
     "skills" : [ "CSS", "HTML", "Java" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "github" : "terrylewis",
+    "github" : "carlballer",
     "skills" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "github" : "terrylewis",
+    "github" : "danielballer",
     "skills" : [ "Assembly" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "github" : "terrylewis",
+    "github" : "elleballer",
     "skills" : ["Python"]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "github" : "terrylewis",
+    "github" : "fionaballer",
     "skills" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "github" : "terrylewis",
+    "github" : "georgeballer",
     "skills" : [ ]
   } ], "projects" : [
   {"projectName" :  "Project Alice",
@@ -57,13 +57,13 @@
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "github" : "terrylewis",
+    "github" : "bensonballer",
     "skills" : [ "CSS", "HTML", "Java" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "github" : "terrylewis",
+    "github" : "carlballer",
     "skills" : [ ]
   }],
     "userStories" : [ ]
@@ -80,13 +80,13 @@
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "github" : "terrylewis",
+    "github" : "bensonballer",
     "skills" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "github" : "terrylewis",
+    "github" : "danielballer",
     "skills" : [ "Assembly" ]
   }],
     "userStories" : [ ]
@@ -100,13 +100,13 @@
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "github" : "terrylewis",
+    "github" : "danielballer",
     "skills" : [ "Assembly" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "github" : "terrylewis",
+    "github" : "elleballer",
     "skills" : [ "Python"]
   }],
     "userStories" : [ ]
@@ -120,13 +120,13 @@
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "github" : "terrylewis",
+    "github" : "danielballer",
     "skills" : [ "Python"]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "github" : "terrylewis",
+    "github" : "fionaballer",
     "skills" : [ ]
   }],
     "userStories" : [ ]
@@ -140,13 +140,13 @@
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "github" : "terrylewis",
+    "github" : "elleballer",
     "skills" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "github" : "terrylewis",
+    "github" : "georgeballer",
     "skills" : [ ]
   }],
     "userStories" : [ ]
@@ -160,13 +160,13 @@
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "github" : "terrylewis",
+    "github" : "georgeballer",
     "skills" : [ ]
   }, {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "github" : "terrylewis",
+    "github" : "aliceballer",
     "skills" : [ "Python", "Java" ]
   }],
     "userStories" : [ ]
@@ -180,13 +180,13 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "github" : "terrylewis",
+    "github" : "aliceballer",
     "skills" : [ "Python", "Java" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "github" : "terrylewis",
+    "github" : "bensonballer",
     "skills" : ["CSS", "HTML", "Java" ]
   }],
     "userStories" : [ ]

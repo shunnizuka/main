@@ -36,8 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_GITHUB_AMY = "terrylewis";
-    public static final String VALID_GITHUB_BOB = "terrylewis";
+    public static final String VALID_GITHUB_AMY = "amyballer";
+    public static final String VALID_GITHUB_BOB = "bobo";
     public static final String VALID_SKILL_JAVA = "Java";
     public static final String VALID_SKILL_C = "Python";
 
