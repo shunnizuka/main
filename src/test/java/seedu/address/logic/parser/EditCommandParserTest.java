@@ -83,7 +83,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_GITHUB_DESC, GitHubAccount.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_GITHUB_DESC, GitHubAccount.MESSAGE_CONSTRAINTS); //invalid gh
         assertParseFailure(parser, "1" + INVALID_SKILL_DESC, Skill.MESSAGE_CONSTRAINTS); // invalid skill
 
         // invalid phone followed by valid email
@@ -156,7 +156,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
+        // github
         userInput = targetIndex.getOneBased() + GITHUB_DESC_AMY;
         descriptor = new EditEmployeeDescriptorBuilder().withGithubAccount(VALID_GITHUB_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

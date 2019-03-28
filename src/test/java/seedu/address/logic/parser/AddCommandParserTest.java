@@ -86,7 +86,7 @@ public class AddCommandParserTest {
             + EMAIL_DESC_AMY + EMAIL_DESC_BOB + GITHUB_DESC_BOB + SKILL_DESC_C,
                 new AddEmployeeCommand(expectedEmployee));
 
-        // multiple addresses - last address accepted
+        // multiple github - last github accepted
         assertParseSuccess(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + GITHUB_DESC_AMY + GITHUB_DESC_BOB + SKILL_DESC_C,
                 new AddEmployeeCommand(expectedEmployee));
@@ -125,7 +125,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB
             + PHONE_DESC_BOB + VALID_EMAIL_BOB + GITHUB_DESC_BOB, expectedMessage);
 
-        // missing address prefix
+        // missing github prefix
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB
             + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_GITHUB_BOB, expectedMessage);
 
@@ -149,7 +149,7 @@ public class AddCommandParserTest {
             + INVALID_EMAIL_DESC + GITHUB_DESC_BOB + SKILL_DESC_JAVA
             + SKILL_DESC_C, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
+        // invalid github
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
             + EMAIL_DESC_BOB + INVALID_GITHUB_DESC + SKILL_DESC_JAVA
             + SKILL_DESC_C, GitHubAccount.MESSAGE_CONSTRAINTS);
