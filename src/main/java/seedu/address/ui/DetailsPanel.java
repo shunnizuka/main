@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.isNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -74,7 +76,7 @@ public class DetailsPanel extends UiPart<Region> {
      * If the last selection is an employee, then update the details.
      */
     public void refreshEmployeeContent(Employee e) {
-        if (isLastSelectedAnEmployee) {
+        if (isLastSelectedAnEmployee & !isNull(e)) {
             this.employeeDetails = new EmployeeDetails(e);
             refreshEmployeeContent();
         }
@@ -84,7 +86,8 @@ public class DetailsPanel extends UiPart<Region> {
      * If the last selection is a project, then update the details.
      */
     public void refreshProjectContent(Project p) {
-        if (!isLastSelectedAnEmployee) {
+
+        if (!isLastSelectedAnEmployee && !isNull(p)) {
             this.projectDetails = new ProjectDetails(p);
             refreshProjectContent();
         }
