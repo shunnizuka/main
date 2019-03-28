@@ -10,7 +10,6 @@ import seedu.address.logic.commands.AddUserStoryToCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
-import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UserStory;
 import seedu.address.testutil.ProjectUtil;
