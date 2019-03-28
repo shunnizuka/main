@@ -102,11 +102,11 @@ public class ParserUtil {
      * Parses a {@code String address} into an {@code GitHubAccount}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code account} is invalid.
      */
-    public static GitHubAccount parseAccount(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
+    public static GitHubAccount parseAccount(String account) throws ParseException {
+        requireNonNull(account);
+        String trimmedAddress = account.trim();
         if (!GitHubAccount.isValidAccount(trimmedAddress)) {
             throw new ParseException(GitHubAccount.MESSAGE_CONSTRAINTS);
         }

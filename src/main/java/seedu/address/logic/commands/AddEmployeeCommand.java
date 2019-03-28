@@ -31,7 +31,7 @@ public class AddEmployeeCommand extends AddCommand {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_GITHUB + "johnddd"
+            + PREFIX_GITHUB + "johnballer"
             + PREFIX_SKILL + "Java "
             + PREFIX_SKILL + "UI";
 

@@ -15,14 +15,14 @@ public class GitHubAccount {
      * The first character of the git hub account must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]*$";
 
     public final String value;
 
     /**
      * Constructs an {@code GitHubAccount}.
      *
-     * @param account A valid address.
+     * @param account A valid account.
      */
     public GitHubAccount(String account) {
         requireNonNull(account);

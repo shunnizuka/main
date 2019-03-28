@@ -75,6 +75,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             Employee employee = new Employee(name, phone, email, gitHubAccount, skillList);
 
             return new AddEmployeeCommand(employee);
+
         } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD) || keyword.equals("p")) {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_DEADLINE);
@@ -92,6 +93,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             Project project = new Project(projectName, client, deadline);
 
             return new AddProjectCommand(project);
+
         } else {
             throw new ParseException (String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
