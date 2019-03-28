@@ -91,7 +91,7 @@ public class AddCommandParserTest {
             + EMAIL_DESC_BOB + GITHUB_DESC_AMY + GITHUB_DESC_BOB + SKILL_DESC_C,
                 new AddEmployeeCommand(expectedEmployee));
 
-        // multiple tags - all accepted
+        // multiple skills - all accepted
         Employee expectedEmployeeMultipleTags =
                 new EmployeeBuilder(BOB).withSkills(VALID_SKILL_C, VALID_SKILL_JAVA)
                 .build();

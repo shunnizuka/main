@@ -9,11 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class GitHubAccount {
 
-    public static final String MESSAGE_CONSTRAINTS = "Github accounts can take any values, and it is optional";
+    public static final String MESSAGE_CONSTRAINTS = "Github accounts represent the Github username "
+        + "of the employee and thus accepts any alphanumeric characters without whitspaces.";
 
-    /*
-     * The first character of the git hub account must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+    /**
+     * The github account cannot contain a whitespace
+     * at all throughout the whole account name.
+     * " " (a blank string) is not a valid input.
      */
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]*$";
 
