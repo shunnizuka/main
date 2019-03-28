@@ -15,23 +15,23 @@ public class GitHubAccountTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new GitHubAccount(invalidAddress));
+    public void constructor_invalidGithub_throwsIllegalArgumentException() {
+        String invalidGitHub = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new GitHubAccount(invalidGitHub));
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
+    public void isValidGithub() {
+        // null github
         Assert.assertThrows(NullPointerException.class, () -> GitHubAccount.isValidAccount(null));
 
-        // invalid addresses
+        // invalid githubs
         assertFalse(GitHubAccount.isValidAccount("")); // empty string
         assertFalse(GitHubAccount.isValidAccount(" ")); // spaces only
 
-        // valid addresses
+        // valid githubs
         assertTrue(GitHubAccount.isValidAccount("Blk 456, Den Road, #01-355"));
         assertTrue(GitHubAccount.isValidAccount("-")); // one character
-        assertTrue(GitHubAccount.isValidAccount("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(GitHubAccount.isValidAccount("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
     }
 }
