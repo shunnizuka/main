@@ -199,6 +199,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            detailsPanel.refreshEmployeeContent(logic.selectedEmployeeProperty().getValue());
+            detailsPanel.refreshProjectContent(logic.selectedProjectProperty().getValue());
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
