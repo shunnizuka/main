@@ -30,8 +30,8 @@ public class GitHubAccountTest {
         assertFalse(GitHubAccount.isValidAccount(" ")); // spaces only
 
         // valid githubs
-        assertTrue(GitHubAccount.isValidAccount("Blk 456, Den Road, #01-355"));
-        assertTrue(GitHubAccount.isValidAccount("-")); // one character
-        assertTrue(GitHubAccount.isValidAccount("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
+        assertTrue(GitHubAccount.isValidAccount("spongebook"));
+        assertTrue(GitHubAccount.isValidAccount("a")); // one character
+        assertTrue(GitHubAccount.isValidAccount("sponge123patrick321"));
     }
 }
