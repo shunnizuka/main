@@ -85,7 +85,7 @@ public class DeleteProjectCommandTest {
         // delete -> first project deleted
         deleteProjectCommand.execute(model, commandHistory);
 
-        // undo -> reverts addressbook back to previous state and filtered project list to show all projects
+        // undo -> reverts pocket project back to previous state and filtered project list to show all projects
         expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
@@ -99,11 +99,11 @@ public class DeleteProjectCommandTest {
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(
             TypicalProjectNames.NON_EXISTENT_PROJECT_NAME);
 
-        // execution failed -> address book state not added into model
+        // execution failed -> pocket project state not added into model
         assertCommandFailure(deleteProjectCommand, model, commandHistory,
             Messages.MESSAGE_INVALID_PROJECT_NAME);
 
-        // single address book state in model -> undoCommand and redoCommand fail
+        // single pocket project state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
         assertCommandFailure(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_FAILURE);
     }

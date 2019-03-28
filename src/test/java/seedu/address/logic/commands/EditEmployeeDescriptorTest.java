@@ -47,7 +47,7 @@ public class EditEmployeeDescriptorTest {
         editedAmy = new EditEmployeeDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different address -> returns false
+        // different github -> returns false
         editedAmy = new EditEmployeeDescriptorBuilder(DESC_AMY).withGithubAccount(VALID_GITHUB_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
