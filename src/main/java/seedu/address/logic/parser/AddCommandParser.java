@@ -69,7 +69,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            GitHubAccount gitHubAccount = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_GITHUB).get());
+            GitHubAccount gitHubAccount = ParserUtil.parseAccount(argMultimap.getValue(PREFIX_GITHUB).get());
             Set<Skill> skillList = ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL));
 
             Employee employee = new Employee(name, phone, email, gitHubAccount, skillList);

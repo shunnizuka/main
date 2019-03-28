@@ -112,25 +112,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAccount((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseAccount(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         GitHubAccount expectedGitHubAccount = new GitHubAccount(VALID_ADDRESS);
-        assertEquals(expectedGitHubAccount, ParserUtil.parseAddress(VALID_ADDRESS));
+        assertEquals(expectedGitHubAccount, ParserUtil.parseAccount(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         GitHubAccount expectedGitHubAccount = new GitHubAccount(VALID_ADDRESS);
-        assertEquals(expectedGitHubAccount, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedGitHubAccount, ParserUtil.parseAccount(addressWithWhitespace));
     }
 
     @Test
