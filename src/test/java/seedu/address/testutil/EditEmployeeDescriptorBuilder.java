@@ -35,7 +35,7 @@ public class EditEmployeeDescriptorBuilder {
         descriptor.setName(employee.getName());
         descriptor.setPhone(employee.getPhone());
         descriptor.setEmail(employee.getEmail());
-        descriptor.setGitHubAccount(employee.getGitHubAccount());
+        descriptor.setGitHubAccount(employee.getGithub());
         descriptor.setSkills(employee.getSkills());
     }
 

@@ -27,7 +27,7 @@ public class JsonAdaptedEmployeeTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_GITHUB = BENSON.getGitHubAccount().toString();
+    private static final String VALID_GITHUB = BENSON.getGithub().toString();
     private static final List<JsonAdaptedSkill> VALID_SKILLS = BENSON.getSkills().stream()
             .map(JsonAdaptedSkill::new)
             .collect(Collectors.toList());

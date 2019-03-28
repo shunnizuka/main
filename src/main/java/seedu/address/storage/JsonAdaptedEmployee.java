@@ -53,7 +53,7 @@ class JsonAdaptedEmployee {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        gitHubAccount = source.getGitHubAccount().value;
+        gitHubAccount = source.getGithub().value;
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));

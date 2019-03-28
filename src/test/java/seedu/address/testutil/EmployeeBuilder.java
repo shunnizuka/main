@@ -42,7 +42,7 @@ public class EmployeeBuilder {
         name = employeeToCopy.getName();
         phone = employeeToCopy.getPhone();
         email = employeeToCopy.getEmail();
-        gitHubAccount = employeeToCopy.getGitHubAccount();
+        gitHubAccount = employeeToCopy.getGithub();
         skills = new HashSet<>(employeeToCopy.getSkills());
     }
 

@@ -46,7 +46,7 @@ public class GuiTestAssert {
         assertEquals(expectedEmployee.getName().fullName, actualCard.getName());
         assertEquals(expectedEmployee.getPhone().value, actualCard.getPhone());
         assertEquals(expectedEmployee.getEmail().value, actualCard.getEmail());
-        assertEquals(expectedEmployee.getGitHubAccount().value, actualCard.getGithub());
+        assertEquals(expectedEmployee.getGithub().value, actualCard.getGithub());
         assertEquals(expectedEmployee.getSkills().stream().map(skill -> skill.skillName).collect(Collectors.toList()),
                 actualCard.getSkills());
     }

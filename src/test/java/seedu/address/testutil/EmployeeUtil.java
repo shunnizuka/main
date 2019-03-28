@@ -35,7 +35,7 @@ public class EmployeeUtil {
         sb.append(PREFIX_NAME + employee.getName().fullName + " ");
         sb.append(PREFIX_PHONE + employee.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + employee.getEmail().value + " ");
-        sb.append(PREFIX_GITHUB + employee.getGitHubAccount().value + " ");
+        sb.append(PREFIX_GITHUB + employee.getGithub().value + " ");
         employee.getSkills().stream().forEach(
             s -> sb.append(PREFIX_SKILL + s.skillName + " ")
         );
