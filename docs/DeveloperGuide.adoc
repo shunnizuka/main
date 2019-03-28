@@ -299,7 +299,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 // skill::addTo[]
-=== Add employee/milestone to projects feature
+=== Add employee/milestone/user story to projects feature
 ==== Current Implementation
 
 This feature focuses on the adding of employees or milestones to a selected project and is mainly facilitated
@@ -307,12 +307,13 @@ by the model component of the PocketProject application. This feature supports t
 
 * `addto [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of all employees in the Pocket Project application.
 * `addto [project name] milestone [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
+* `addto [project name] userstory i/IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
 
-These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)` and `Model#addMilestoneTo(Project, Milestone)`.
-These two methods only take in the project and employee/milestone as arguments as the correct Employee/Milestone object would be located by
-`AddEmployeeToCommand#excute()` or `AddMilestoneToCommand#execute()` before the methods of `Model` are called.
+These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)`, `Model#addMilestoneTo(Project, Milestone)` and `Model#addUserStoryTo(Projectm UserStory)`.
+These three methods only take in the project and employee/milestone as arguments as the correct Employee/Milestone/UserStory object would be located by
+`AddEmployeeToCommand#excute()`, `AddMilestoneToCommand#execute()` or `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
 
-Given below is an example usage scenario and how the addition of employee/milestone to a project feature behaves at each step.
+Given below is an example usage scenario and how the addition of employee/milestone/user story to a project feature behaves at each step.
 
 `AddEmployeeTo Command`
 
@@ -325,12 +326,34 @@ The `AddToCommandParser` then creates command object and passes it to the `Logic
 `AddMilestoneTo Command`
 
 Step 1. The user enters the command `addto Apollo milestone [milestone details]'. The rest of the execution process is
-similar to Step 2 of the `AddEmployeeTo Command` mentioned above. Only the object added is decided between an employee or a
+similar to Step 2 of the `AddEmployeeTo Command` mentioned above. Only the object added is decided between an employee, user story or a
+milestone depending on the user input.
+
+`AddUserStoryTo Command`
+Step 1. The user enters the command `addto Apollo userstory i/1 as a user i want to view user stories so that i can track them`. The rest of the
+execution process is similar to Step 2 of the `AddEmployeeTo Command`.Only the object added is decided between an employee, user story or a
 milestone depending on the user input.
 
 image:ug-lightbulb.png[width="50"]
 Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` given must refer to some existing employee. Also,
 the milestone added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
+
+==== Design Considerations
+===== Aspect: How to structure the user story details to be inputted into the project
+
+Alternative 1: Use a `regex` to indicate the importance/priority of a user story, then have the user key in the user story in the specified format `as a...i want to...so that...`(Current implementation)
+
+Alternative 2: Use only `regex` to denote the different parts of a user story. For example, `i/` to denote the importance level, `u/` to denote user etc...
+
+Alternative 3: Store the entire string as given by the user as it is and not parse the input.
+
+Using alternative 3 is the simplest and most straight forward way to handle the user input, but it does not provide much functionality. As user stories should be organised and easy to read as a list,
+we will need to use some sort of `TableView` or `ListView` to view the stories. Thus, using alternative 3 will only allow the entire string to be generated and is not user friendly.
+Between alternative 2 and alternative 1, alternative 2 provides an easier way for the program to generate and partition the input using `regex` expressions. However, as there are many parts to a user
+story, having to remember 4 different `regex` expressions may be hard for a user to remember and may be inconvenient. Using alternative 1 is a mix of both 2 and 3, which allows abit more flexibility
+and smoothness for a user by allowing them to type in full sentences how they would normally do for a user story, while allowing proper classification of the components of the story to be able to
+be displayed in the UI component as a `TableView`.
+
 
 ==== Future Planned Implementations
 
@@ -351,22 +374,21 @@ The commands will be processed in the same way without any other changes.
 === Remove employee/milestone from projects feature
 ==== Current Implementation
 
-The removing of employee or milestone from projects is facilitated by the model component of the PocketProject.
-This feature currently supports these two commands:
+The removing of employee,milestone or user story from projects is facilitated by the model component of the PocketProject.
+This feature currently supports these three commands:
 
 * `removefrom [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of employees in the project named `[project name]`.
 * `removefrom [project name] milestone [milestone index]` -- removes the milestone at index `[milestone index]` in the list of milestones in the project named `[project name]`.
+* `removefrom [project name] userstory [userstory index]` -- removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
 
-
-These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(Project, Employee)` and `Model#removeMilestoneFrom(Project, Milestone)`.
-The methods does not take in indices as arguments since the corresponding Employee or Milestone object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`
-or `RemoveMilestoneFromCommand#execute()`
+These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(Project, Employee)`, `Model#removeMilestoneFrom(Project, Milestone)` and `Model#removeUserStoryFrom(Project, UserStory)`.
+The methods does not take in indices as arguments since the corresponding Employee,Milestone or UserStory object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`, `RemoveMilestoneFromCommand#execute()` or `RemoveUserStoryFromCommand#execute()`
 before the methods of `Model` are called.
-The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone is similar:
+The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone and user stories are similar:
 
 image::remove_employee_from_sequence_diagram.png[width="1000"]
 
-Given below is an example usage scenario and how the removal of employee/milestone feature behaves at each step.
+Given below is an example usage scenario and how the removal of employee/milestone/user story feature behaves at each step.
 
 Step 1. The user enters the command `view project Apollo'. The app displays the list of employees and milestones in the project named "Apollo" by executing the `view` command.
 
