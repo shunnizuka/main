@@ -3,8 +3,8 @@ package seedu.address.logic;
 import static org.junit.Assert.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.TypicalEmployees.AMY;
@@ -51,7 +51,8 @@ public class LogicManagerTest {
 
     @Before
     public void setUp() throws Exception {
-        JsonPocketProjectStorage pocketProjectStorage = new JsonPocketProjectStorage(temporaryFolder.newFile().toPath());
+        JsonPocketProjectStorage pocketProjectStorage = new
+            JsonPocketProjectStorage(temporaryFolder.newFile().toPath());
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.newFile().toPath());
         StorageManager storage = new StorageManager(pocketProjectStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);

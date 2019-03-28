@@ -2,8 +2,8 @@ package seedu.address.model.employee;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
@@ -54,7 +54,8 @@ public class EmployeeTest {
         assertTrue(ALICE.isSameEmployee(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB).withSkills(VALID_SKILL_JAVA).build();
+        editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB)
+            .withSkills(VALID_SKILL_JAVA).build();
         assertTrue(ALICE.isSameEmployee(editedAlice));
     }
 
