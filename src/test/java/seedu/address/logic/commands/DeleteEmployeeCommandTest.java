@@ -74,7 +74,7 @@ public class DeleteEmployeeCommandTest {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
 
         Index outOfBoundIndex = INDEX_SECOND_EMPLOYEE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of pocket project list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPocketProject().getEmployeeList().size());
 
         DeleteEmployeeCommand deleteEmployeeCommand = new DeleteEmployeeCommand(outOfBoundIndex);
@@ -94,7 +94,7 @@ public class DeleteEmployeeCommandTest {
         // delete -> first employee deleted
         deleteEmployeeCommand.execute(model, commandHistory);
 
-        // undo -> reverts addressbook back to previous state and filtered employee list to show all employees
+        // undo -> reverts pocket project back to previous state and filtered employee list to show all employees
         expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
@@ -108,11 +108,11 @@ public class DeleteEmployeeCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
         DeleteEmployeeCommand deleteEmployeeCommand = new DeleteEmployeeCommand(outOfBoundIndex);
 
-        // execution failed -> address book state not added into model
+        // execution failed -> pocket project state not added into model
         assertCommandFailure(deleteEmployeeCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
-        // single address book state in model -> undoCommand and redoCommand fail
+        // single pocket project state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
         assertCommandFailure(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_FAILURE);
     }

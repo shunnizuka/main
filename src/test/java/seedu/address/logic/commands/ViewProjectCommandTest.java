@@ -57,7 +57,7 @@ public class ViewProjectCommandTest {
         showProjectAtIndex(expectedModel, INDEX_FIRST_PROJECT);
 
         Index outOfBoundsIndex = INDEX_SECOND_PROJECT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of pocket project list
         assertTrue(outOfBoundsIndex.getZeroBased() < model.getPocketProject().getProjectList().size());
 
         assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);

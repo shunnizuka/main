@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,7 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.employee.Address;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.Name;
@@ -28,7 +28,7 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
 
 /**
- * Edits the details of an existing employee in the address book.
+ * Edits the details of an existing employee in the pocket project.
  */
 public class EditCommand extends Command {
 
@@ -41,7 +41,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_GITHUB + "GITHUB ACCOUNT] "
             + "[" + PREFIX_SKILL + "SKILL]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -49,7 +49,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_EMPLOYEE_SUCCESS = "Edited Employee: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the pocket project.";
 
     private final Index index;
     private final EditEmployeeDescriptor editEmployeeDescriptor;
@@ -99,10 +99,10 @@ public class EditCommand extends Command {
         Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
-        Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
+        GitHubAccount updatedGitHubAccount = editEmployeeDescriptor.getGitHubAccount().orElse(employeeToEdit.getGithub());
         Set<Skill> updatedSkills = editEmployeeDescriptor.getSkills().orElse(employeeToEdit.getSkills());
 
-        return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSkills);
+        return new Employee(updatedName, updatedPhone, updatedEmail, updatedGitHubAccount, updatedSkills);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private GitHubAccount gitHubAccount;
         private Set<Skill> skills;
 
         public EditEmployeeDescriptor() {}
@@ -144,7 +144,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setGitHubAccount(toCopy.gitHubAccount);
             setSkills(toCopy.skills);
         }
 
@@ -152,7 +152,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, skills);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gitHubAccount, skills);
         }
 
         public void setName(Name name) {
@@ -179,12 +179,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setGitHubAccount(GitHubAccount gitHubAccount) {
+            this.gitHubAccount = gitHubAccount;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<GitHubAccount> getGitHubAccount() {
+            return Optional.ofNullable(gitHubAccount);
         }
 
         /**
@@ -222,7 +222,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getGitHubAccount().equals(e.getGitHubAccount())
                     && getSkills().equals(e.getSkills());
         }
     }

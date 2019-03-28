@@ -46,7 +46,7 @@ public interface Logic {
     ObservableList<String> getHistory();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' pocket project file path.
      */
     Path getPocketProjectFilePath();
 

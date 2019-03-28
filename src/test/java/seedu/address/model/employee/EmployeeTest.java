@@ -2,7 +2,7 @@ package seedu.address.model.employee;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -44,17 +44,17 @@ public class EmployeeTest {
         assertFalse(ALICE.isSameEmployee(editedAlice));
 
         // same name, same phone, different attributes -> returns true
-        editedAlice = new EmployeeBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        editedAlice = new EmployeeBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withGitHubAccount(VALID_GITHUB_BOB)
                 .withSkills(VALID_SKILL_JAVA).build();
         assertTrue(ALICE.isSameEmployee(editedAlice));
 
         // same name, same email, different attributes -> returns true
-        editedAlice = new EmployeeBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
+        editedAlice = new EmployeeBuilder(ALICE).withPhone(VALID_PHONE_BOB).withGitHubAccount(VALID_GITHUB_BOB)
                 .withSkills(VALID_SKILL_JAVA).build();
         assertTrue(ALICE.isSameEmployee(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA).build();
+        editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB).withSkills(VALID_SKILL_JAVA).build();
         assertTrue(ALICE.isSameEmployee(editedAlice));
     }
 
@@ -89,7 +89,7 @@ public class EmployeeTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

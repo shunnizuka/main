@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 
 /**
- * Deletes a employee identified using it's displayed index from the address book.
+ * Deletes a employee identified using it's displayed index from the pocket project.
  */
 public class DeleteEmployeeCommand extends DeleteCommand {
 
