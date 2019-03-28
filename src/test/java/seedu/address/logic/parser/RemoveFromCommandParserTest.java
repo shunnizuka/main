@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveEmployeeFromCommand;
 import seedu.address.logic.commands.RemoveFromCommand;
 import seedu.address.logic.commands.RemoveMilestoneFromCommand;
+import seedu.address.logic.commands.RemoveUserStoryFromCommand;
 import seedu.address.model.project.ProjectName;
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -28,6 +29,8 @@ public class RemoveFromCommandParserTest {
                 new RemoveEmployeeFromCommand(Index.fromOneBased(1), new ProjectName("Project Apollo")));
         assertParseSuccess(parser, "Project X milestone 2",
                 new RemoveMilestoneFromCommand(Index.fromOneBased(2), new ProjectName("Project X")));
+        assertParseSuccess(parser, "Project Apollo userstory 1",
+                new RemoveUserStoryFromCommand(Index.fromOneBased(1), new ProjectName("Project Apollo")));
     }
 
     @Test
@@ -38,5 +41,7 @@ public class RemoveFromCommandParserTest {
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveEmployeeFromCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "Project Apollo milestone 0",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveMilestoneFromCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "Project Apollo userstory 0",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveUserStoryFromCommand.MESSAGE_USAGE));
     }
 }

@@ -43,7 +43,7 @@ public class UserStoryImportance {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UserStoryImportance // instanceof handles nulls
-                && (importance.equals(((UserStoryImportance) other).getImportance()))); // state check
+                && (importance.toString().equals(((UserStoryImportance) other).getImportance()))); // state check
     }
 
     @Override

@@ -53,6 +53,7 @@ public class ProjectBuilder {
         description = projectToCopy.getDescription();
         employees = new UniqueEmployeeList();
         this.milestones = new ArrayList<>();
+        this.userStories = new SortedUserStoryList();
         for (Employee e: projectToCopy.getEmployees()) {
             employees.add(e);
         }
@@ -119,7 +120,11 @@ public class ProjectBuilder {
         return this;
     }
 
+    /**
+     * Build the components into a {@code Project}
+     */
     public Project build() {
-        return new Project(projectName, client, deadline, milestones, description, employees);
+        return new Project(projectName, client, deadline, milestones, description, employees,
+                userStories);
     }
 }

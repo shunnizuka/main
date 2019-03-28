@@ -79,7 +79,7 @@ public class Project {
         this.description = desc;
         this.employees = emp;
         this.milestones = m;
-        userStories = stories;
+        this.userStories = stories;
 
     }
 

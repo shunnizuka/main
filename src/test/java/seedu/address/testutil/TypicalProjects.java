@@ -28,7 +28,8 @@ public class TypicalProjects {
         .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson")
         .withEmployees(Arrays.asList(TypicalEmployees.CARL, TypicalEmployees.DANIEL))
         .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
-            TypicalMilestones.TYPICAL_MILESTONE_END)).build();
+            TypicalMilestones.TYPICAL_MILESTONE_END))
+        .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_SECOND_MANAGER)).build();
 
     public static final Project PROJECT_CARL = new ProjectBuilder().withProjectName("Project Carl hey")
         .withClient("Darryl").withDeadline("12/12/2012").withDescrption("An application for Carl")
