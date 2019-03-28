@@ -24,29 +24,29 @@ import seedu.address.model.employee.Employee;
 public class TypicalEmployees {
 
     public static final Employee ALICE = new EmployeeBuilder().withName("Alice Pauline")
-            .withGitHubAccount("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withGitHubAccount("alicaballer").withEmail("alice@example.com")
             .withPhone("94351253")
             .withSkills("Python", "Java").build();
     public static final Employee BENSON = new EmployeeBuilder().withName("Benson Meier")
-            .withGitHubAccount("311, Clementi Ave 2, #02-25")
+            .withGitHubAccount("bensonballer")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withSkills("CSS", "HTML", "Java").build();
     public static final Employee CARL = new EmployeeBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withGitHubAccount("wall street").build();
+            .withEmail("heinz@example.com").withGitHubAccount("carlballer").build();
     public static final Employee DANIEL = new EmployeeBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withGitHubAccount("10th street").withSkills("Assembly").build();
+            .withEmail("cornelia@example.com").withGitHubAccount("danielballer").withSkills("Assembly").build();
     public static final Employee ELLE = new EmployeeBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withGitHubAccount("michegan ave").withSkills("Python").build();
+            .withEmail("werner@example.com").withGitHubAccount("elleballer").withSkills("Python").build();
     public static final Employee FIONA = new EmployeeBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withGitHubAccount("little tokyo").build();
+            .withEmail("lydia@example.com").withGitHubAccount("fionaballer").build();
     public static final Employee GEORGE = new EmployeeBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withGitHubAccount("4th street").build();
+            .withEmail("anna@example.com").withGitHubAccount("georgeballer").build();
 
     // Manually added
     public static final Employee HOON = new EmployeeBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withGitHubAccount("little india").build();
+            .withEmail("stefan@example.com").withGitHubAccount("hoonballer").build();
     public static final Employee IDA = new EmployeeBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withGitHubAccount("chicago ave").build();
+            .withEmail("hans@example.com").withGitHubAccount("idaballer").build();
 
     // Manually added - Employee's details found in {@code CommandTestUtil}
     public static final Employee AMY = new EmployeeBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

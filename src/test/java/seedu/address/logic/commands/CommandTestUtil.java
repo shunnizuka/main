@@ -37,7 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_GITHUB_AMY = "amyballer";
-    public static final String VALID_GITHUB_BOB = "bobo";
+    public static final String VALID_GITHUB_BOB = "bobballer";
     public static final String VALID_SKILL_JAVA = "Java";
     public static final String VALID_SKILL_C = "Python";
 
