@@ -99,7 +99,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code GitHubAccount}.
+     * Parses a {@code String account} into an {@code GitHubAccount}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code account} is invalid.
@@ -227,7 +227,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code UserStoryReason reason}.
+     * Parses a {@code String reason} into a {@code UserStoryReason reason}.
      * Leading and trailing whitespaces will be trimmed.
      *
      */
