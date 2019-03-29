@@ -25,7 +25,7 @@ public class EmployeeGitHub extends UiPart<Region> {
     }
 
     private void loadEmployeePage() {
-        String url = new String(PREFIX_GITHUB + employee.getName().fullName);
+        String url = PREFIX_GITHUB + employee.getGithub().value;
         loadPage(url);
     }
 

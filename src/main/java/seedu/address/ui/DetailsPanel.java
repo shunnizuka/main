@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.isNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -26,7 +28,7 @@ public class DetailsPanel extends UiPart<Region> {
     private static final String FXML = "DetailsPanel.fxml";
     private EmployeeDetails employeeDetails;
     private ProjectDetails projectDetails;
-
+    private boolean isLastSelectedAnEmployee = false;
     private List<Node> contentList;
     private int currentPanelIndex;
 
@@ -51,38 +53,67 @@ public class DetailsPanel extends UiPart<Region> {
 
         selectedEmployee.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                isLastSelectedAnEmployee = true;
                 logger.info("Loading new employee details");
                 employeeDetails = new EmployeeDetails(selectedEmployee.getValue());
+                resetPanelIndex();
                 refreshEmployeeContent();
             }
         });
 
         selectedProject.addListener(((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                isLastSelectedAnEmployee = false;
                 logger.info("loading new project details");
                 projectDetails = new ProjectDetails(selectedProject.getValue());
+                resetPanelIndex();
                 refreshProjectContent();
             }
         }));
     }
 
+    /**
+     * If the last selection is an employee, then update the details.
+     */
+    public void refreshEmployeeContent(Employee e) {
+        if (isLastSelectedAnEmployee & !isNull(e)) {
+            this.employeeDetails = new EmployeeDetails(e);
+            refreshEmployeeContent();
+        }
+    }
 
     /**
      * Refreshes the content of the panel to the most updated employee selection
      */
     private void refreshEmployeeContent() {
-        currentPanelIndex = INITIAL_PANEL_INDEX;
         setContent(employeeDetails.getEmployeeDetails());
         updateInformationPanel(contentList.get(currentPanelIndex));
+    }
+
+    /**
+     * If the last selection is a project, then update the details.
+     */
+    public void refreshProjectContent(Project p) {
+
+        if (!isLastSelectedAnEmployee && !isNull(p)) {
+            this.projectDetails = new ProjectDetails(p);
+            refreshProjectContent();
+        }
     }
 
     /**
      * Refreshes the content of the panel to the most updated project selection
      */
     private void refreshProjectContent() {
-        currentPanelIndex = INITIAL_PANEL_INDEX;
         setContent(projectDetails.getProjectDetails());
         updateInformationPanel(contentList.get(currentPanelIndex));
+    }
+
+    /**
+     * Sets the panel back to default.
+     */
+    private void resetPanelIndex() {
+        this.currentPanelIndex = 0;
     }
 
     /**
@@ -92,6 +123,7 @@ public class DetailsPanel extends UiPart<Region> {
         Pane pane = new Pane();
         contentList = new ArrayList<>();
         contentList.add(pane);
+        resetPanelIndex();
         updateInformationPanel(pane);
     }
 
