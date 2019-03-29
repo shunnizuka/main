@@ -57,7 +57,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* ------------------------ Perform view operations on the shown filtered list ---------------------------- */
 
-        /* Case: filtered employee list, view index within bounds of address book but out of bounds of employee list
+        /* Case: filtered employee list, view index within bounds of pocket project but out of bounds of employee list
          * -> rejected
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
@@ -65,7 +65,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertCommandFailure(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD
                 + " " + invalidIndex, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
-        /* Case: filtered employee list, view index within bounds of address book and employee list -> selected */
+        /* Case: filtered employee list, view index within bounds of pocket project and employee list -> selected */
         Index validIndex = Index.fromOneBased(1);
         assertTrue(validIndex.getZeroBased() < getModel().getFilteredEmployeeList().size());
         command = ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
@@ -94,7 +94,7 @@ public class ViewEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* Case: invalid arguments (extra argument) -> rejected */
         assertCommandFailure(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD
                         + " 1 abc", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewEmployeeCommand.MESSAGE_USAGE));
-        /* Case: view from empty address book -> rejected */
+        /* Case: view from empty pocket project -> rejected */
         deleteAllEmployees();
         assertCommandFailure(ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD
                         + " " + INDEX_FIRST_EMPLOYEE.getOneBased(), MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);

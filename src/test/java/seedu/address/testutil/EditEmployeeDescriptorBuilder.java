@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
@@ -35,7 +35,7 @@ public class EditEmployeeDescriptorBuilder {
         descriptor.setName(employee.getName());
         descriptor.setPhone(employee.getPhone());
         descriptor.setEmail(employee.getEmail());
-        descriptor.setAddress(employee.getAddress());
+        descriptor.setGitHubAccount(employee.getGithub());
         descriptor.setSkills(employee.getSkills());
     }
 
@@ -64,10 +64,10 @@ public class EditEmployeeDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditEmployeeDescriptor} that we are building.
+     * Sets the {@code GitHubAccount} of the {@code EditEmployeeDescriptor} that we are building.
      */
-    public EditEmployeeDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditEmployeeDescriptorBuilder withGithubAccount(String account) {
+        descriptor.setGitHubAccount(new GitHubAccount(account));
         return this;
     }
 

@@ -122,7 +122,7 @@ public class EditCommandTest {
     public void execute_duplicateEmployeeFilteredList_failure() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
 
-        // edit employee in filtered list into a duplicate in address book
+        // edit employee in filtered list into a duplicate in pocket project
         Employee employeeInList = model.getPocketProject().getEmployeeList().get(INDEX_SECOND_EMPLOYEE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE,
             new EditEmployeeDescriptorBuilder(employeeInList).build());
@@ -142,13 +142,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of pocket project
      */
     @Test
     public void execute_invalidEmployeeIndexFilteredList_failure() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
         Index outOfBoundIndex = INDEX_SECOND_EMPLOYEE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of pocket project list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPocketProject().getEmployeeList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
@@ -170,7 +170,7 @@ public class EditCommandTest {
         // edit -> first employee edited
         editCommand.execute(model, commandHistory);
 
-        // undo -> reverts addressbook back to previous state and filtered employee list to show all employees
+        // undo -> reverts pocket project back to previous state and filtered employee list to show all employees
         expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
@@ -185,10 +185,10 @@ public class EditCommandTest {
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        // execution failed -> address book state not added into model
+        // execution failed -> pocket project state not added into model
         assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
-        // single address book state in model -> undoCommand and redoCommand fail
+        // single pocket project state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
         assertCommandFailure(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_FAILURE);
     }

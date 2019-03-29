@@ -57,7 +57,7 @@ public class ViewEmployeeCommandTest {
         showEmployeeAtIndex(expectedModel, INDEX_FIRST_EMPLOYEE);
 
         Index outOfBoundsIndex = INDEX_SECOND_EMPLOYEE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of pocket project list
         assertTrue(outOfBoundsIndex.getZeroBased() < model.getPocketProject().getEmployeeList().size());
 
         assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);

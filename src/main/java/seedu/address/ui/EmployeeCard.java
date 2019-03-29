@@ -19,7 +19,7 @@ public class EmployeeCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on PocketProject level 4</a>
+     * @see <a href="https://github.com/se-edu/pocketproject/issues/336">The issue on PocketProject level 4</a>
      */
 
     public final Employee employee;
@@ -33,7 +33,7 @@ public class EmployeeCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label github;
     @FXML
     private Label email;
     @FXML
@@ -45,7 +45,7 @@ public class EmployeeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
         phone.setText(employee.getPhone().value);
-        address.setText(employee.getAddress().value);
+        github.setText(employee.getGithub().value);
         email.setText(employee.getEmail().value);
         employee.getSkills().forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));
     }

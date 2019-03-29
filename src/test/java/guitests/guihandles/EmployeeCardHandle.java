@@ -16,14 +16,14 @@ import seedu.address.model.employee.Employee;
 public class EmployeeCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
     private static final String NAME_FIELD_ID = "#name";
-    private static final String ADDRESS_FIELD_ID = "#address";
+    private static final String GITHUB_FIELD_ID = "#github";
     private static final String PHONE_FIELD_ID = "#phone";
     private static final String EMAIL_FIELD_ID = "#email";
     private static final String SKILLS_FIELD_ID = "#skills";
 
     private final Label idLabel;
     private final Label nameLabel;
-    private final Label addressLabel;
+    private final Label githubLabel;
     private final Label phoneLabel;
     private final Label emailLabel;
     private final List<Label> skillLabels;
@@ -33,7 +33,7 @@ public class EmployeeCardHandle extends NodeHandle<Node> {
 
         idLabel = getChildNode(ID_FIELD_ID);
         nameLabel = getChildNode(NAME_FIELD_ID);
-        addressLabel = getChildNode(ADDRESS_FIELD_ID);
+        githubLabel = getChildNode(GITHUB_FIELD_ID);
         phoneLabel = getChildNode(PHONE_FIELD_ID);
         emailLabel = getChildNode(EMAIL_FIELD_ID);
 
@@ -53,8 +53,8 @@ public class EmployeeCardHandle extends NodeHandle<Node> {
         return nameLabel.getText();
     }
 
-    public String getAddress() {
-        return addressLabel.getText();
+    public String getGithub() {
+        return githubLabel.getText();
     }
 
     public String getPhone() {
@@ -77,7 +77,7 @@ public class EmployeeCardHandle extends NodeHandle<Node> {
      */
     public boolean equals(Employee employee) {
         return getName().equals(employee.getName().fullName)
-                && getAddress().equals(employee.getAddress().value)
+                && getGithub().equals(employee.getGithub().value)
                 && getPhone().equals(employee.getPhone().value)
                 && getEmail().equals(employee.getEmail().value)
                 && ImmutableMultiset.copyOf(getSkills()).equals(ImmutableMultiset.copyOf(employee.getSkills().stream()

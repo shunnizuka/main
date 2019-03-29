@@ -58,13 +58,13 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* ------------------ Performing delete operation while a filtered list is being shown ---------------------- */
 
-        /* Case: filtered employee list, delete index within bounds of address book and employee list -> deleted */
+        /* Case: filtered employee list, delete index within bounds of pocket project and employee list -> deleted */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         Index index = INDEX_FIRST_EMPLOYEE;
         assertTrue(index.getZeroBased() < getModel().getFilteredEmployeeList().size());
         assertCommandSuccess(index);
 
-        /* Case: filtered employee list, delete index within bounds of address book but out of bounds of employee list
+        /* Case: filtered employee list, delete index within bounds of pocket project but out of bounds of employee list
          * -> rejected
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
@@ -112,7 +112,7 @@ public class DeleteEmployeeCommandSystemTest extends PocketProjectSystemTest {
     }
 
     /**
-     * Removes the {@code Employee} at the specified {@code index} in {@code model}'s address book.
+     * Removes the {@code Employee} at the specified {@code index} in {@code model}'s pocket project.
      * @return the removed employee
      */
     private Employee removeEmployee(Model model, Index index) {
