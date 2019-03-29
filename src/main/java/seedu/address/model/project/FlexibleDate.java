@@ -61,4 +61,35 @@ public class FlexibleDate {
         return DATE_FORMAT.format(newDate);
     }
 
+    public LocalDateTime getTargetDate() {
+        return targetDate;
+    }
+
+    public void setTargetDate(LocalDateTime targetDate) {
+        this.targetDate = targetDate;
+    }
+
+    /**
+     * Returns a clone of this FlexibleDate object.
+     */
+    public FlexibleDate clone() {
+        return new FlexibleDate();
+    }
+
+    @Override
+    public String toString() {
+        return DATE_FORMAT.format(this.targetDate);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FlexibleDate // instanceof handles nulls
+                && this.targetDate.equals(((FlexibleDate) other).targetDate)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return this.targetDate.hashCode();
+    }
 }
