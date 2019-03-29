@@ -19,9 +19,9 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 
@@ -87,8 +87,8 @@ public class EmployeeListPanelTest extends GuiUnitTest {
             Name name = new Name(i + "a");
             Phone phone = new Phone("000");
             Email email = new Email("a@aa");
-            Address address = new Address("a");
-            Employee employee = new Employee(name, phone, email, address, Collections.emptySet());
+            GitHubAccount gitHubAccount = new GitHubAccount("a");
+            Employee employee = new Employee(name, phone, email, gitHubAccount, Collections.emptySet());
             backingList.add(employee);
         }
         return backingList;

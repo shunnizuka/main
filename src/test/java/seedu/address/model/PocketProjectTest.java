@@ -3,9 +3,9 @@ package seedu.address.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWithEmployees;
@@ -61,8 +61,8 @@ public class PocketProjectTest {
     @Test
     public void resetData_withDuplicateEmployees_throwsDuplicateEmployeeException() {
         // Two employees with the same identity fields
-        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA)
-                .build();
+        Employee editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB)
+            .withSkills(VALID_SKILL_JAVA).build();
         List<Employee> newEmployees = Arrays.asList(ALICE, editedAlice);
         PocketProjectStub newData = new PocketProjectStub(newEmployees);
 
@@ -109,8 +109,8 @@ public class PocketProjectTest {
     @Test
     public void hasEmployee_employeeWithSameIdentityFieldsInPocketProject_returnsTrue() {
         pocketProject.addEmployee(ALICE);
-        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_JAVA)
-                .build();
+        Employee editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB)
+            .withSkills(VALID_SKILL_JAVA).build();
         assertTrue(pocketProject.hasEmployee(editedAlice));
     }
 

@@ -135,7 +135,7 @@ Format: `help`
 
 Adds an employee to the list of employees.
 
-Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SKILL]...`
+Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL g/GITHUB [s/SKILL]...`
 
 Examples:
 
@@ -226,7 +226,7 @@ while keying in a command into the CLI.
 
 Edits an existing employee.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SKILL]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
 
 image:ug-notepadpencil.png[width="40"]
 Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
@@ -596,13 +596,13 @@ data of your previous Pocket Project folder.
 
 == Command Summary
 
-* *Add* `add employee n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/Skill]...` +
+* *Add* `add employee n/NAME p/PHONE_NUMBER e/EMAIL g/GITHUB [s/Skill]...` +
 e.g. `add employee n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 s/Java s/Python`
 * *Delete* : `delete COMMAND_KEYWORD INDEX` +
 e.g. `delete employee 3` `delete project 1`
 * *List* : `list COMMAND_KEYWORD` +
 e.g. `list employee` `list project`
-* *Edit* : `edit employee INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/Skill]...` +
+* *Edit* : `edit employee INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB] [s/Skill]...` +
 e.g. `edit employee 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
 e.g. `find employee Jake` `find project Apollo` `find skill Java`

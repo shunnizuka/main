@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
@@ -27,7 +27,7 @@ class JsonAdaptedEmployee {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String github;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
 
     /**
@@ -35,12 +35,12 @@ class JsonAdaptedEmployee {
      */
     @JsonCreator
     public JsonAdaptedEmployee(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                               @JsonProperty("email") String email, @JsonProperty("address") String address,
+                               @JsonProperty("email") String email, @JsonProperty("github") String github,
                                @JsonProperty("skills") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.github = github;
         if (skills != null) {
             this.skills.addAll(skills);
         }
@@ -53,7 +53,7 @@ class JsonAdaptedEmployee {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        github = source.getGithub().value;
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
@@ -94,16 +94,17 @@ class JsonAdaptedEmployee {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (github == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                GitHubAccount.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!GitHubAccount.isValidAccount(github)) {
+            throw new IllegalValueException(GitHubAccount.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final GitHubAccount modelGitHubAccount = new GitHubAccount(github);
 
         final Set<Skill> modelSkills = new HashSet<>(employeeSkills);
-        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelSkills);
+        return new Employee(modelName, modelPhone, modelEmail, modelGitHubAccount, modelSkills);
     }
 
 }
