@@ -83,6 +83,14 @@ public class DetailsPanel extends UiPart<Region> {
     }
 
     /**
+     * Refreshes the content of the panel to the most updated employee selection
+     */
+    private void refreshEmployeeContent() {
+        setContent(employeeDetails.getEmployeeDetails());
+        updateInformationPanel(contentList.get(currentPanelIndex));
+    }
+
+    /**
      * If the last selection is a project, then update the details.
      */
     public void refreshProjectContent(Project p) {
@@ -94,26 +102,18 @@ public class DetailsPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets the panel back to default.
-     */
-    private void resetPanelIndex() {
-        this.currentPanelIndex = 0;
-    }
-
-    /**
-     * Refreshes the content of the panel to the most updated employee selection
-     */
-    private void refreshEmployeeContent() {
-        setContent(employeeDetails.getEmployeeDetails());
-        updateInformationPanel(contentList.get(currentPanelIndex));
-    }
-
-    /**
      * Refreshes the content of the panel to the most updated project selection
      */
     private void refreshProjectContent() {
         setContent(projectDetails.getProjectDetails());
         updateInformationPanel(contentList.get(currentPanelIndex));
+    }
+
+    /**
+     * Sets the panel back to default.
+     */
+    private void resetPanelIndex() {
+        this.currentPanelIndex = 0;
     }
 
     /**
@@ -123,6 +123,7 @@ public class DetailsPanel extends UiPart<Region> {
         Pane pane = new Pane();
         contentList = new ArrayList<>();
         contentList.add(pane);
+        resetPanelIndex();
         updateInformationPanel(pane);
     }
 
