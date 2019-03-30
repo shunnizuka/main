@@ -82,8 +82,9 @@ public class Task {
         final StringBuilder builder = new StringBuilder();
         builder.append("Task: ")
                 .append(getTaskName())
-                .append(" Status: ")
-                .append(getTaskStatus());
+                .append(" (Status: ")
+                .append(getTaskStatus())
+                .append(") ");
         return builder.toString();
     }
 
@@ -91,6 +92,6 @@ public class Task {
      * Checks if the task has the valid format by checking the relevant fields
      */
     public static boolean isValidTask(Task task) {
-        return true;
+        return TaskName.isValidTaskName(task.getTaskName().taskName);
     }
 }

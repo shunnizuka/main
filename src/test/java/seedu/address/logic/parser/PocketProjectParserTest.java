@@ -4,8 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MILESTONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_1;
+import static seedu.address.testutil.TypicalTasks.TASK_DO_SOMETHING;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +18,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddTaskToCommand;
 import seedu.address.logic.commands.AddToCommand;
@@ -158,8 +162,12 @@ public class PocketProjectParserTest {
 
     @Test
     public void parseCommand_addTaskTo() throws Exception {
-        assertTrue(parser.parseCommand("addto Apollo task n/Create feature XYZ m/v1.1")
-                        instanceof AddTaskToCommand);
+        final String taskName = "Do something";
+        AddTaskToCommand command = (AddTaskToCommand) parser.parseCommand(AddTaskToCommand.COMMAND_WORD + " "
+                + TYPICAL_PROJECT_NAME_1 + " " + AddTaskToCommand.ADD_TASK_KEYWORD + " " + PREFIX_NAME + taskName + " "
+                + PREFIX_MILESTONE + Index.fromOneBased(1).getOneBased());
+        assertEquals(new AddTaskToCommand(TYPICAL_PROJECT_NAME_1, TASK_DO_SOMETHING, Index.fromOneBased(1)),
+                command);
     }
 
     @Test
