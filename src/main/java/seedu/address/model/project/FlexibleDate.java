@@ -87,7 +87,7 @@ public class FlexibleDate {
         int currentMonth = LocalDateTime.now().getMonth().getValue();
         int currentDayOfMonth = LocalDateTime.now().getDayOfMonth();
         LocalDateTime targetDate = LocalDateTime.now().withMonth(currentMonth + NEXT);
-        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth);
+        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth + NEXT);
         return DATE_FORMAT.format(newDate);
     }
 

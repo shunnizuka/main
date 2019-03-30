@@ -14,8 +14,10 @@ import static seedu.address.testutil.TypicalFlexibleDateInputs.END_WEEK;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.MID_MONTH;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.MID_WEEK;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_MONTH_END;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_MONTH_MID;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_MONTH_START;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_WEEK_MONDAY;
-import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_WEEK_SATURDAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_WEEK_SUNDAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_WEEK_WEDNESDAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.START_MONTH;
@@ -133,6 +135,30 @@ public class FlexibleDateParserTest {
         String userInput = parser.parseFlexibleDate(NEXT_WEEK_SUNDAY);
 
         assertEquals(currentDate.nextWeekDate(END_WEEK), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_nextMonthStart() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(NEXT_MONTH_START);
+
+        assertEquals(currentDate.nextWeekDate(START_MONTH), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_nextMonthMid() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(NEXT_MONTH_MID);
+
+        assertEquals(currentDate.nextWeekDate(MID_MONTH), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_nextMonthEnd() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(NEXT_MONTH_END);
+
+        assertEquals(currentDate.nextWeekDate(END_MONTH), userInput);
     }
 
 
