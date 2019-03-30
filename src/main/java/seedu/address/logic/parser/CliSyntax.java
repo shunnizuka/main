@@ -25,11 +25,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_IMPORTANCE = new Prefix("i/");
 
     /* Flexible date definitions */
-    public static final String FUTURE_KEYWORD = "next";
-    public static final String CURRENT_KEYWORD = "this";
-    public static final String PAST_KEYWORD = "last";
-    public static final String TODAY_KEYWORD = "today";
-    public static final String TOMORROW_KEYWORD = "tomorrow";
-    public static final String YESTERDAY_KEYWORD = "yesterday";
+    public static final Prefix FUTURE_KEYWORD = new Prefix("next");
+    public static final Prefix CURRENT_KEYWORD = new Prefix("this");
+    public static final Prefix PAST_KEYWORD = new Prefix("last");
+    public static final Prefix TODAY_KEYWORD = new Prefix("today");
+    public static final Prefix TOMORROW_KEYWORD = new Prefix("tomorrow");
+    public static final Prefix YESTERDAY_KEYWORD = new Prefix("yesterday");
 
 }

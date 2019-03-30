@@ -35,7 +35,7 @@ public class FlexibleDateParser {
      */
     public static String parseFlexibleDate(String dateInput) throws ParseException {
 
-        if(!isFlexibleInput(dateInput)) {
+        if (!isFlexibleInput(dateInput)) {
             return dateInput;
         } else {
             final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(dateInput.trim());
@@ -46,18 +46,13 @@ public class FlexibleDateParser {
             final String keyword = matcher.group("keyword").toLowerCase();
             final String arguments = matcher.group("arguments");
 
-            switch(keyword) {
-
-            case CliSyntax.TODAY_KEYWORD:
+            if (keyword.equals(CliSyntax.TODAY_KEYWORD.toString())) {
                 return formatDate(CURRENT);
-
-            case CliSyntax.TOMORROW_KEYWORD:
+            } else if (keyword.equals(CliSyntax.TOMORROW_KEYWORD.toString())) {
                 return formatDate(NEXT);
-
-            case CliSyntax.YESTERDAY_KEYWORD:
+            } else if (keyword.equals(CliSyntax.YESTERDAY_KEYWORD.toString())) {
                 return formatDate(LAST);
-
-            default:
+            } else {
                 throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO CHANGE Message
             }
         }
