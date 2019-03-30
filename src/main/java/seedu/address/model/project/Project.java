@@ -34,35 +34,35 @@ public class Project {
     }
 
     /**
-     * Constructor specifying milestones too.
+     * Constructor specifying milestones too. (not used)
      */
     public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m) {
         this(pn, c, d, m, new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
-     * Constructor specifying description and milestone too.
+     * Constructor specifying description and milestone too. (not used)
      */
     public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc) {
         this(pn, c, d, m, desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
-     * Constructor specifying description.
+     * Constructor specifying description. (not used)
      */
     public Project (ProjectName pn, Client c, Deadline d, Description desc) {
         this(pn, c, d, new ArrayList<>(), desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
-     * Constructor specifying employees in the project.
+     * Constructor specifying employees in the project. (not used)
      */
     public Project(ProjectName pn, Client c, Deadline d, Description desc, UniqueEmployeeList emp) {
         this(pn, c, d, new ArrayList<>(), desc, emp, new SortedUserStoryList());
     }
 
     /**
-     * Constructor specifying all fields except userstories.
+     * Constructor specifying all fields except userstories. (not used)
      */
     public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp) {
         this(pn, c, d, m, desc, emp, new SortedUserStoryList());
@@ -80,7 +80,6 @@ public class Project {
         this.employees = emp;
         this.milestones = m;
         this.userStories = stories;
-
     }
 
     public ProjectName getProjectName() {
@@ -115,8 +114,8 @@ public class Project {
         }
 
         return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
-                cloneOfMilestones,
-                this.description.clone(), this.employees.clone(), userStories.clone());
+            cloneOfMilestones,
+            this.description.clone(), this.employees.clone(), userStories.clone());
     }
 
     /**
@@ -193,7 +192,7 @@ public class Project {
     }
 
     /**
-<<<<<<< HEAD
+     <<<<<<< HEAD
      * Adds the given user story to this project.
      */
     public void addUserStory(UserStory story) {
@@ -205,6 +204,11 @@ public class Project {
      */
     public void removeUserStory(UserStory story) {
         userStories.remove(story);
+    }
+
+    public Project editProject(ProjectName projectName, Client client, Deadline deadline, Description description) {
+        return new Project(projectName, client, deadline, this.milestones, description, this.employees,
+            this.userStories);
     }
 
     /**
@@ -267,7 +271,5 @@ public class Project {
 
         return builder.toString();
     }
-
-
 
 }
