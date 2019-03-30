@@ -17,6 +17,7 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.project.FlexibleDate;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UserStoryFunction;
@@ -177,25 +178,15 @@ public class ParserUtil {
      * @throws ParseException if the given {@code deadline} is invalid.
      */
     public static Deadline parseDeadline(String deadline) throws ParseException {
+
         requireNonNull(deadline);
         String trimmedDate = deadline.trim();
-        parseFlexibleDate(trimmedDate);
-        if (!Deadline.isValidDate(trimmedDate)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate);
+
+        if (!Deadline.isValidDate(formattedDate)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO NEED to check message constraints
         }
         return new Deadline(trimmedDate);
-    }
-
-    /**
-     * Parses a flexible input {@code flexibleDate} into a {@code String deadline}.
-     * @param flexibleDate the flexible date string input
-     * @return the flexible date converted to the fixed date format in DD/MM/YYYY
-     * @throws ParseException if the given {@code flexibleDate} is invalid.
-     */
-    public static String parseFlexibleDate(String flexibleDate) throws ParseException {
-
-
-        return "";
     }
 
     /**
