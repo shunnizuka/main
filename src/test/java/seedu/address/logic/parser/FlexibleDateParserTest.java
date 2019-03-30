@@ -10,6 +10,9 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.TODAY;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.TOMORROW;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.YESTERDAY;
 
 public class FlexibleDateParserTest {
 
@@ -23,21 +26,21 @@ public class FlexibleDateParserTest {
     @Test
     public void parseFlexibleDate_today() throws Exception {
         FlexibleDate currentDate = new FlexibleDate();
-        String userInput = parser.parseFlexibleDate("today");
+        String userInput = parser.parseFlexibleDate(TODAY);
         assertEquals(currentDate.currentDate(), userInput);
     }
 
     @Test
     public void parseFlexibleDate_tomorrow() throws Exception {
         FlexibleDate currentDate = new FlexibleDate();
-        String userInput = parser.parseFlexibleDate("tomorrow");
+        String userInput = parser.parseFlexibleDate(TOMORROW);
         assertEquals(currentDate.dateNumDaysLater(1), userInput);
     }
 
     @Test
     public void parseFlexibleDate_yesterday() throws Exception {
         FlexibleDate currentDate = new FlexibleDate();
-        String userInput = parser.parseFlexibleDate("yesterday");
+        String userInput = parser.parseFlexibleDate(YESTERDAY);
         assertEquals(currentDate.dateNumDaysBefore(1), userInput);
     }
 
