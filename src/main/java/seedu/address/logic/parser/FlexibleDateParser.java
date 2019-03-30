@@ -30,7 +30,7 @@ public class FlexibleDateParser {
     private static final int FIRST_DAY_OF_WEEK = 1;
     private static final int LAST_DAY_OF_WEEK = 7;
     private static final int FIRST_DAY_OF_MONTH = 1;
-    private static final int LAST_DAY_OF_MONTH = 1;     //TODO Need to check which month
+    private static final int LAST_DAY_OF_MONTH = 31;     //TODO Need to check which month
 
 
 
@@ -91,6 +91,8 @@ public class FlexibleDateParser {
 
             if (keyword.equals(CliSyntax.PREFIX_WEEK.toString())) {
                 return formatWeekDate(arguments.trim());
+            } else if (keyword.equals(CliSyntax.PREFIX_MONTH.toString())) {
+                return formatMonthDate(arguments.trim());
             }
 
             return ""; //TODO CHANGE
@@ -133,6 +135,21 @@ public class FlexibleDateParser {
 
         FlexibleDate date = new FlexibleDate();
         return date.thisWeekDate(dayOfWeek);
+    }
+
+    private static String formatMonthDate(String numberString) throws ParseException {
+
+        if(!isValidInput(numberString)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+        }
+
+        int dayOfMonth = Integer.parseInt(numberString);
+        if(dayOfMonth < FIRST_DAY_OF_MONTH || dayOfMonth > LAST_DAY_OF_MONTH) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+        }
+
+        FlexibleDate date = new FlexibleDate();
+        return date.thisMonthDate(dayOfMonth);
     }
 
 

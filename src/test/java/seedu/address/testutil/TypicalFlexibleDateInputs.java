@@ -17,4 +17,8 @@ public class TypicalFlexibleDateInputs {
     public static final String THIS_WEEK_FRIDAY = "this week 5";
     public static final String THIS_WEEK_SATURDAY = "this week 6";
     public static final String THIS_WEEK_SUNDAY = "this week 7";
+
+    public static final String THIS_MONTH_START = "this month 1";
+    public static final String THIS_MONTH_MID = "this month 15";
+    public static final String THIS_MONTH_END = "this month 30";
 }

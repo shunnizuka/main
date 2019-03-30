@@ -68,6 +68,12 @@ public class FlexibleDate {
         return DATE_FORMAT.format(newDate);
     }
 
+    public String thisMonthDate(int targetDayOfMonth) {
+        int currentDayOfMonth = LocalDateTime.now().getDayOfMonth();
+        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth);
+        return DATE_FORMAT.format(newDate);
+    }
+
     public LocalDateTime getTargetDate() {
         return targetDate;
     }

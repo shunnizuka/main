@@ -10,6 +10,9 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_MONTH_END;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_MONTH_MID;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_MONTH_START;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_WEEK_MONDAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_WEEK_SUNDAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_WEEK_WEDNESDAY;
@@ -73,5 +76,31 @@ public class FlexibleDateParserTest {
 
         assertEquals(currentDate.thisWeekDate(7), userInput);
     }
+
+    @Test
+    public void parseFlexibleDate_thisMonthStart() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(THIS_MONTH_START);
+
+        assertEquals(currentDate.thisMonthDate(1), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_thisMonthMid() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(THIS_MONTH_MID);
+
+        assertEquals(currentDate.thisMonthDate(15), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_thisMonthEnd() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(THIS_MONTH_END);
+
+        assertEquals(currentDate.thisMonthDate(30), userInput);
+    }
+
+
 
 }
