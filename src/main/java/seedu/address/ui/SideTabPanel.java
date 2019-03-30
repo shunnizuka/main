@@ -11,11 +11,11 @@ import javafx.scene.layout.Region;
  */
 public class SideTabPanel extends UiPart<Region> {
 
-    private static final String FXML = "SideTabPanel.fxml";
-
     public static final String[] SKILL_COLORS = {
-            "blue", "indigo", "mint", "pink", "salmon", "teal", "turquoise", "pale-blue", "purple", "yellow"
+        "blue", "indigo", "mint", "pink", "salmon", "teal", "turquoise", "pale-blue", "purple", "yellow"
     };
+
+    private static final String FXML = "SideTabPanel.fxml";
 
     @FXML
     private TabPane sideTabPanel;
