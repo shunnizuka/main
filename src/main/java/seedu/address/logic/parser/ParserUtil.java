@@ -186,7 +186,7 @@ public class ParserUtil {
         if (!Deadline.isValidDate(formattedDate)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO NEED to check message constraints
         }
-        return new Deadline(trimmedDate);
+        return new Deadline(formattedDate);
     }
 
     /**
