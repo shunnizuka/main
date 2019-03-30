@@ -75,10 +75,8 @@ public class FlexibleDateParser {
 
         FlexibleDate date = new FlexibleDate();
 
-        if (days > DAY_ZERO) {
+        if (days != DAY_ZERO) {
             return date.dateNumDaysLater(days);
-        } else if (days < DAY_ZERO) {
-            return date.dateNumDaysBefore(days);
         } else {
              return date.currentDate();
         }

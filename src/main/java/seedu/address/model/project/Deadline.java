@@ -22,7 +22,7 @@ public class Deadline {
 
     public static final String VALIDATION_REGEX = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
 
-    private final String deadline;
+    public final String deadline;
 
     public Deadline (String date) {
         requireNonNull(date);
