@@ -45,12 +45,12 @@ also the proposed schedule for the weeks ahead until the project is due for comp
 == Before We Begin
 
 === Symbols
-The following section details and previews a few legends that will
-be used throughout the user guide. These legends are used to represent
+The following section details and previews a few symbols that will
+be used throughout the user guide. These symbols are used to represent
 special information such as tips and warnings.
 
 |===
-|Legend |Meaning
+|Symbol |Meaning
 
 |image:ug-notepadpencil.png[width="40"]
 |The note pad icon indicates any useful tips or things that users
@@ -71,16 +71,33 @@ that users can use while using the Pocket Project application.
 |===
 
 === Glossary
+The following section details a few key technical terms that are used
+through the course of the Developer Guide.
 
-. `alphanumeric` only contains either digits (0-9) or letters of the English
-alphabet (A-Z).
-. `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
-program in the form of successive lines of text.
-. `lexicographic` ordering of words based on how it would appear in a dictionary.
-. `milestone` a key event that is completed during the entire timeline
-of the project.
-. `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
-. `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
+
+|===
+
+
+|Alphanumeric|Only contains either digits (0-9) or letters of the English
+                alphabet (A-Z).
+
+|Command Line Interface (CLI)
+|A means of interacting with a computer program where the user issues commands to the
+ program in the form of successive lines of text.
+
+|Lexicographic
+|Ordering of words based on how it would appear in a dictionary.
+
+|Milestone
+|A key event that is completed during the entire timeline
+ of the project.
+
+|One-Based Indexing
+|Way of numbering in which the initial element of a sequence is assigned the index 1.
+
+|Zero-Based Indexing
+|Way of numbering in which the initial element of a sequence is assigned the index 0.
+|===
 
 == Setting up
 
