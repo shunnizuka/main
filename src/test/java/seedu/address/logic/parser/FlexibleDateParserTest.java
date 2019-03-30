@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import seedu.address.model.project.FlexibleDate;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.Rule;

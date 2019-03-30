@@ -64,39 +64,39 @@ public class FlexibleDateParser {
                 return formatDate(NEXT);
             } else if (keyword.equals(CliSyntax.PREFIX_YESTERDAY.toString())) {
                 return formatDate(LAST);
-            } else if (keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
-                return parseThisKeyword(arguments.trim());
-            }
-
-            else {
+            } else if ((keyword.equals(CliSyntax.PREFIX_CURRENT.toString()))
+                || (keyword.equals(CliSyntax.PREFIX_FUTURE.toString()))
+                || (keyword.equals(CliSyntax.PREFIX_PAST.toString()))) {
+                return parseKeyword(keyword, arguments.trim());
+            } else {
                 throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO CHANGE Message
             }
         }
     }
 
     /**
+     * @param keyword they keyword which indicates if it is current (this), past(last) or future(next).
      * @param secondPart the second part of the command input that needs to be parsed.
-     * @return a date string in the form of DD/MM/YYYY
-     * @throws ParseException if the user input does not conform the expected format
+     * @return a date string in the form of DD/MM/YYYY.
+     * @throws ParseException if the user input does not conform the expected format.
      */
-    private static String parseThisKeyword(String secondPart) throws ParseException {
+    private static String parseKeyword(String keyword, String secondPart) throws ParseException {
 
         final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(secondPart.trim());
             if (!matcher.matches()) {
                 throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
             }
 
-            final String keyword = matcher.group("keyword").toLowerCase();
+            final String weekOrMonth = matcher.group("keyword").toLowerCase();
             final String arguments = matcher.group("arguments");
 
-            if (keyword.equals(CliSyntax.PREFIX_WEEK.toString())) {
-                return formatWeekDate(arguments.trim());
-            } else if (keyword.equals(CliSyntax.PREFIX_MONTH.toString())) {
-                return formatMonthDate(arguments.trim());
+            if (weekOrMonth.equals(CliSyntax.PREFIX_WEEK.toString())) {
+                return formatWeekDate(keyword, arguments.trim());
+            } else if (weekOrMonth.equals(CliSyntax.PREFIX_MONTH.toString())) {
+                return formatMonthDate(keyword, arguments.trim());
+            } else {
+                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO CHANGE Message
             }
-
-            return ""; //TODO CHANGE
-
     }
 
     private static boolean isFlexibleInput(String flexibleDateInput) {
@@ -122,7 +122,7 @@ public class FlexibleDateParser {
         }
     }
 
-    private static String formatWeekDate(String numberString) throws ParseException {
+    private static String formatWeekDate(String keyword, String numberString) throws ParseException {
 
         if(!isValidInput(numberString)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
@@ -134,10 +134,14 @@ public class FlexibleDateParser {
         }
 
         FlexibleDate date = new FlexibleDate();
-        return date.thisWeekDate(dayOfWeek);
+
+        if(keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
+            return date.thisWeekDate(dayOfWeek);
+        }
+        return "";
     }
 
-    private static String formatMonthDate(String numberString) throws ParseException {
+    private static String formatMonthDate(String keyword, String numberString) throws ParseException {
 
         if(!isValidInput(numberString)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
@@ -149,7 +153,12 @@ public class FlexibleDateParser {
         }
 
         FlexibleDate date = new FlexibleDate();
-        return date.thisMonthDate(dayOfMonth);
+
+        if(keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
+            return date.thisMonthDate(dayOfMonth);
+        }
+
+        return "";
     }
 
 
