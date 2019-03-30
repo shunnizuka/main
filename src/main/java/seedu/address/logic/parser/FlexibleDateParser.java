@@ -22,6 +22,18 @@ public class FlexibleDateParser {
      */
     private static final String ALPHA_NUMERIC_VALIDATION_REGEX = "^[a-zA-Z0-9]*$";
 
+    /**
+     * Used to check if input is a valid integer
+     */
+    private static final String INTEGER_STRING_FORMAT = "(-?)[0-9]+";
+
+    private static final int FIRST_DAY_OF_WEEK = 1;
+    private static final int LAST_DAY_OF_WEEK = 7;
+    private static final int FIRST_DAY_OF_MONTH = 1;
+    private static final int LAST_DAY_OF_MONTH = 1;     //TODO Need to check which month
+
+
+
     private static final int NEXT = 1;
     private static final int LAST = -1;
     private static final int CURRENT = 0;
@@ -46,34 +58,82 @@ public class FlexibleDateParser {
             final String keyword = matcher.group("keyword").toLowerCase();
             final String arguments = matcher.group("arguments");
 
-            if (keyword.equals(CliSyntax.TODAY_KEYWORD.toString())) {
+            if (keyword.equals(CliSyntax.PREFIX_TODAY.toString())) {
                 return formatDate(CURRENT);
-            } else if (keyword.equals(CliSyntax.TOMORROW_KEYWORD.toString())) {
+            } else if (keyword.equals(CliSyntax.PREFIX_TOMORROW.toString())) {
                 return formatDate(NEXT);
-            } else if (keyword.equals(CliSyntax.YESTERDAY_KEYWORD.toString())) {
+            } else if (keyword.equals(CliSyntax.PREFIX_YESTERDAY.toString())) {
                 return formatDate(LAST);
-            } else {
+            } else if (keyword.equals(CliSyntax.PREFIX_CURRENT)) {
+                return parseThisKeyword(arguments.trim());
+            }
+
+            else {
                 throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO CHANGE Message
             }
         }
+    }
+
+    /**
+     * @param secondPart the second part of the command input that needs to be parsed.
+     * @return a date string in the form of DD/MM/YYYY
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private static String parseThisKeyword(String secondPart) throws ParseException {
+
+        final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(secondPart.trim());
+            if (!matcher.matches()) {
+                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+            }
+
+            final String keyword = matcher.group("keyword").toLowerCase();
+            final String arguments = matcher.group("arguments");
+
+            if (keyword.equals(CliSyntax.PREFIX_WEEK.toString())) {
+                return formatWeekDate(arguments.trim());
+            }
+
+            return ""; //TODO CHANGE
+
     }
 
     private static boolean isFlexibleInput(String flexibleDateInput) {
         return flexibleDateInput.matches(ALPHA_NUMERIC_VALIDATION_REGEX);
     }
 
+    private static boolean isValidInput(String input) {
+        return input.matches(INTEGER_STRING_FORMAT);
+    }
+
     /**
      * Gets and formats target date based on DD/MM/YYYY
+     * @param days no of days of offset from current date.
      * @return formatted target date.
      */
     private static String formatDate(int days) {
 
         FlexibleDate date = new FlexibleDate();
-
         if (days != DAY_ZERO) {
             return date.dateNumDaysLater(days);
         } else {
              return date.currentDate();
         }
     }
+
+    private static String formatWeekDate(String numberString) throws ParseException {
+
+        if(!isValidInput(numberString)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+        }
+
+        int dayOfWeek = Integer.parseInt(numberString);
+        if(dayOfWeek < FIRST_DAY_OF_WEEK || dayOfWeek > LAST_DAY_OF_WEEK) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+        }
+
+        FlexibleDate date = new FlexibleDate();
+        return date.thisWeekDate(dayOfWeek);
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package seedu.address.model.project;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -58,6 +59,12 @@ public class FlexibleDate {
 
     public String dateNumYearsBefore(long numYears) {
         LocalDateTime newDate = targetDate.minusYears(numYears);
+        return DATE_FORMAT.format(newDate);
+    }
+
+    public String thisWeekDate(int targetDayOfWeek) {
+        int currentDayOfWeek = LocalDateTime.now().getDayOfWeek().getValue();
+        LocalDateTime newDate = targetDate.plusDays(targetDayOfWeek - currentDayOfWeek);
         return DATE_FORMAT.format(newDate);
     }
 
