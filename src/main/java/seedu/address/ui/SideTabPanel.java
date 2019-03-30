@@ -13,8 +13,9 @@ public class SideTabPanel extends UiPart<Region> {
 
     private static final String FXML = "SideTabPanel.fxml";
 
-    public static final String[] SKILL_COLORS =
-            {"salmon", "mint", "teal", "turquoise", "pink", "pale-blue", "purple", "blue", "indigo", "yellow"};
+    public static final String[] SKILL_COLORS = {
+            "blue", "indigo", "mint", "pink", "salmon", "teal", "turquoise", "pale-blue", "purple", "yellow"
+    };
 
     @FXML
     private TabPane sideTabPanel;
