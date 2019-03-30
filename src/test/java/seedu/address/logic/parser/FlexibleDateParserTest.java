@@ -11,6 +11,12 @@ import org.junit.rules.ExpectedException;
 import static org.junit.Assert.assertEquals;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_MONTH;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_WEEK;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.LAST_MONTH_END;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.LAST_MONTH_MID;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.LAST_MONTH_START;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.LAST_WEEK_MONDAY;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.LAST_WEEK_SUNDAY;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.LAST_WEEK_WEDNESDAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.MID_MONTH;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.MID_WEEK;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT;
@@ -159,6 +165,54 @@ public class FlexibleDateParserTest {
         String userInput = parser.parseFlexibleDate(NEXT_MONTH_END);
 
         assertEquals(currentDate.nextWeekDate(END_MONTH), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_lastWeekStart() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(LAST_WEEK_MONDAY);
+
+        assertEquals(currentDate.lastWeekDate(START_WEEK), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_lastWeekMid() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(LAST_WEEK_WEDNESDAY);
+
+        assertEquals(currentDate.lastWeekDate(MID_WEEK), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_lastWeekEnd() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(LAST_WEEK_SUNDAY);
+
+        assertEquals(currentDate.lastWeekDate(END_WEEK), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_lastMonthStart() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(LAST_MONTH_START);
+
+        assertEquals(currentDate.lastMonthDate(START_MONTH), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_lastMonthMid() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(LAST_MONTH_MID);
+
+        assertEquals(currentDate.lastMonthDate(MID_MONTH), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_lastMonthEnd() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(LAST_MONTH_END);
+
+        assertEquals(currentDate.lastMonthDate(END_MONTH), userInput);
     }
 
 

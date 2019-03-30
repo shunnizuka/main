@@ -28,9 +28,21 @@ public class TypicalFlexibleDateInputs {
     public static final String NEXT_WEEK_SATURDAY = "next week 6";
     public static final String NEXT_WEEK_SUNDAY = "next week 7";
 
-     public static final String NEXT_MONTH_START = "next month 1";
+    public static final String NEXT_MONTH_START = "next month 1";
     public static final String NEXT_MONTH_MID = "next month 15";
     public static final String NEXT_MONTH_END = "next month 30";
+
+    public static final String LAST_WEEK_MONDAY = "last week 1";
+    public static final String LAST_WEEK_TUESDAY = "last week 2";
+    public static final String LAST_WEEK_WEDNESDAY = "last week 3";
+    public static final String LAST_WEEK_THURSDAY = "last week 4";
+    public static final String LAST_WEEK_FRIDAY = "last week 5";
+    public static final String LAST_WEEK_SATURDAY = "last week 6";
+    public static final String LAST_WEEK_SUNDAY = "last week 7";
+
+    public static final String LAST_MONTH_START = "last month 1";
+    public static final String LAST_MONTH_MID = "last month 15";
+    public static final String LAST_MONTH_END = "last month 30";
 
     public static final String THIS_WEEK_MONDAY = "this week 1";
     public static final String THIS_WEEK_TUESDAY = "this week 2";
