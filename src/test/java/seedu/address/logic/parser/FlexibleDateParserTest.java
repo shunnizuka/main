@@ -1,13 +1,5 @@
 package seedu.address.logic.parser;
 
-import seedu.address.model.project.FlexibleDate;
-
-import java.time.format.DateTimeFormatter;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 import static org.junit.Assert.assertEquals;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_MONTH;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_WEEK;
@@ -37,6 +29,14 @@ import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_WEEK_WEDNESD
 import static seedu.address.testutil.TypicalFlexibleDateInputs.TODAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.TOMORROW;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.YESTERDAY;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.time.format.DateTimeFormatter;
+
+import seedu.address.model.project.FlexibleDate;
 
 public class FlexibleDateParserTest {
 
