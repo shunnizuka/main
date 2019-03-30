@@ -9,6 +9,17 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.END_MONTH;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.END_WEEK;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.MID_MONTH;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.MID_WEEK;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_WEEK_MONDAY;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_WEEK_SATURDAY;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_WEEK_SUNDAY;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.NEXT_WEEK_WEDNESDAY;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.START_MONTH;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.START_WEEK;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_MONTH_END;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_MONTH_MID;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.THIS_MONTH_START;
@@ -41,7 +52,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(TOMORROW);
 
-        assertEquals(currentDate.dateNumDaysLater(1), userInput);
+        assertEquals(currentDate.dateNumDaysLater(NEXT), userInput);
     }
 
     @Test
@@ -49,7 +60,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(YESTERDAY);
 
-        assertEquals(currentDate.dateNumDaysBefore(1), userInput);
+        assertEquals(currentDate.dateNumDaysBefore(NEXT), userInput);
     }
 
     @Test
@@ -57,7 +68,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(THIS_WEEK_MONDAY);
 
-        assertEquals(currentDate.thisWeekDate(1), userInput);
+        assertEquals(currentDate.thisWeekDate(START_WEEK), userInput);
     }
 
     @Test
@@ -65,7 +76,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(THIS_WEEK_WEDNESDAY);
 
-        assertEquals(currentDate.thisWeekDate(3), userInput);
+        assertEquals(currentDate.thisWeekDate(MID_WEEK), userInput);
     }
 
     @Test
@@ -73,7 +84,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(THIS_WEEK_SUNDAY);
 
-        assertEquals(currentDate.thisWeekDate(7), userInput);
+        assertEquals(currentDate.thisWeekDate(END_WEEK), userInput);
     }
 
     @Test
@@ -81,7 +92,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(THIS_MONTH_START);
 
-        assertEquals(currentDate.thisMonthDate(1), userInput);
+        assertEquals(currentDate.thisMonthDate(START_MONTH), userInput);
     }
 
     @Test
@@ -89,7 +100,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(THIS_MONTH_MID);
 
-        assertEquals(currentDate.thisMonthDate(15), userInput);
+        assertEquals(currentDate.thisMonthDate(MID_MONTH), userInput);
     }
 
     @Test
@@ -97,7 +108,31 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(THIS_MONTH_END);
 
-        assertEquals(currentDate.thisMonthDate(30), userInput);
+        assertEquals(currentDate.thisMonthDate(END_MONTH), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_nextWeekStart() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(NEXT_WEEK_MONDAY);
+
+        assertEquals(currentDate.nextWeekDate(START_WEEK), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_nextWeekMid() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(NEXT_WEEK_WEDNESDAY);
+
+        assertEquals(currentDate.nextWeekDate(MID_WEEK), userInput);
+    }
+
+    @Test
+    public void parseFlexibleDate_nextWeekEnd() throws Exception {
+        FlexibleDate currentDate = new FlexibleDate();
+        String userInput = parser.parseFlexibleDate(NEXT_WEEK_SUNDAY);
+
+        assertEquals(currentDate.nextWeekDate(END_WEEK), userInput);
     }
 
 

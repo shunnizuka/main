@@ -135,27 +135,31 @@ public class FlexibleDateParser {
 
         FlexibleDate date = new FlexibleDate();
 
-        if(keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
+        if (keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
             return date.thisWeekDate(dayOfWeek);
+        } else if (keyword.equals(CliSyntax.PREFIX_FUTURE.toString())) {
+            return date.nextWeekDate(dayOfWeek);
         }
         return "";
     }
 
     private static String formatMonthDate(String keyword, String numberString) throws ParseException {
 
-        if(!isValidInput(numberString)) {
+        if (!isValidInput(numberString)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
         }
 
         int dayOfMonth = Integer.parseInt(numberString);
-        if(dayOfMonth < FIRST_DAY_OF_MONTH || dayOfMonth > LAST_DAY_OF_MONTH) {
+        if (dayOfMonth < FIRST_DAY_OF_MONTH || dayOfMonth > LAST_DAY_OF_MONTH) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
         }
 
         FlexibleDate date = new FlexibleDate();
 
-        if(keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
+        if (keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
             return date.thisMonthDate(dayOfMonth);
+        } else if (keyword.equals(CliSyntax.PREFIX_FUTURE.toString())) {
+            return date.nextMonthDate(dayOfMonth);
         }
 
         return "";

@@ -13,6 +13,9 @@ public class FlexibleDate {
     private LocalDateTime targetDate;
 
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final int LENGTH_OF_WEEK = 7;
+    private static final int NEXT = 1;
+    private static final int LAST = -1;
 
     public FlexibleDate() {
         this.targetDate = LocalDateTime.now();
@@ -70,6 +73,20 @@ public class FlexibleDate {
 
     public String thisMonthDate(int targetDayOfMonth) {
         int currentDayOfMonth = LocalDateTime.now().getDayOfMonth();
+        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth);
+        return DATE_FORMAT.format(newDate);
+    }
+
+    public String nextWeekDate(int targetDayOfWeek) {
+        int currentDayOfWeek = LocalDateTime.now().getDayOfWeek().getValue();
+        LocalDateTime newDate = targetDate.plusDays(LENGTH_OF_WEEK);
+        return DATE_FORMAT.format(newDate.plusDays(targetDayOfWeek - currentDayOfWeek));
+    }
+
+    public String nextMonthDate(int targetDayOfMonth) {
+        int currentMonth = LocalDateTime.now().getMonth().getValue();
+        int currentDayOfMonth = LocalDateTime.now().getDayOfMonth();
+        LocalDateTime targetDate = LocalDateTime.now().withMonth(currentMonth + NEXT);
         LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth);
         return DATE_FORMAT.format(newDate);
     }
