@@ -28,8 +28,10 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
+         <Label fx:id="email" styleClass="cell_small_label" text="email" />
+         <Label fx:id="phone" styleClass="cell_small_label"  text="Label" />
       <Label fx:id="github" styleClass="cell_small_label" text="\$github" />
-      <FlowPane id="skill" fx:id="skills" />
+      <FlowPane id="skills" fx:id="skills" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

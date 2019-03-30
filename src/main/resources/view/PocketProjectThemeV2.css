@@ -40,16 +40,16 @@
 .button {
     -fx-border-width: 0;
     -fx-background-radius: 0;
-    -fx-background-color: derive(#5AC2BC, 20%);
+    -fx-background-color: #d4d8d8;
     -fx-font-family: "Proxima Nova Alt", "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-text-fill: #7A8492;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
-    -fx-effect: dropshadow(three-pass-box, grey, 5, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, grey, 4, 0, 0, 0);
 }
 
 .button:hover {
     -fx-cursor: hand;
-    -fx-background-color: #5AC2BC;
+    -fx-background-color: derive(#5AC2BC, 40%);
 }
 
 .button:focused {
@@ -57,9 +57,6 @@
     -fx-background-radius: 0, 0;
 }
 
-.button:pressed, .button:default:hover:pressed {
-  -fx-text-fill: #8E9AAAF;
-}
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
@@ -73,7 +70,7 @@
 }
 
 .button:default:hover {
-    -fx-background-color: #EFF2F5;
+    -fx-background-color: derive(#EFF2F5, 20%);
 }
 
 
@@ -183,14 +180,14 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Gotham Rounded Medium";
-    -fx-font-size: 16px;
+    -fx-font-family: "Proxima Nova Alt";
+    -fx-font-size: 18px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Gotham Rounded Book";
-    -fx-font-size: 12px;
+    -fx-font-family: "Proxima Nova Alt";
+    -fx-font-size: 11px;
     -fx-padding: 2 0 0 0;
     -fx-text-fill: derive(#010504, -40%);
 }
@@ -267,13 +264,13 @@
 }
 
 
-#skill {
+#skills {
     -fx-hgap: 5;
     -fx-vgap: 3;
     -fx-padding: 5 0 3 0;
 }
 
-#skill .label {
+#skills .label {
     -fx-text-fill: white;
     -fx-padding: 3 4 3 4;
     -fx-border-radius: 2;
@@ -281,43 +278,43 @@
     -fx-font-size: 11px;
 }
 
-#skill .salmon {
+#skills .salmon {
     -fx-background-color: #E57373;
 }
 
-#skill .mint {
+#skills .mint {
     -fx-background-color: #80CBC4;
 }
 
-#skill .teal {
+#skills .teal {
     -fx-background-color: #26A69A;
 }
 
-#skill .turquoise {
+#skills .turquoise {
     -fx-background-color: #4DD0E1;
 }
 
-#skill .pink {
+#skills .pink {
     -fx-background-color: #F06292;
 }
 
-#skill .blue {
+#skills .blue {
     -fx-background-color: #42A5F5;
 }
 
-#skill .purple {
+#skills .purple {
     -fx-background-color: #9575CD;
 }
 
-#skill .pale-blue {
+#skills .pale-blue {
     -fx-background-color: #82B1FF;
 }
 
-#skill .indigo {
+#skills .indigo {
     -fx-background-color: #5C6BC0;
 }
 
-#skill .yellow {
+#skills .yellow {
     -fx-background-color: #FFC107;
 }
 
@@ -344,7 +341,7 @@
     -fx-faint-focus-color:-fx-control-inner-background;
     -fx-background-color: derive(#d4d8d8, -10%);
     -fx-border-color: derive(#d4d8d8, -10%);
-    -fx-font: "Gotham Rounded Book";
+    -fx-font-family: "Gotham Rounded Book";
     -fx-font-size: 12pt;
 
 }

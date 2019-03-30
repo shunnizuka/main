@@ -18,7 +18,7 @@ public class EmployeeCardHandle extends NodeHandle<Node> {
     private static final String NAME_FIELD_ID = "#name";
     private static final String GITHUB_FIELD_ID = "#github";
     private static final String PHONE_FIELD_ID = "#phone";
-    private static final String EMAIL_FIELD_ID = "#email";
+   private static final String EMAIL_FIELD_ID = "#email";
     private static final String SKILLS_FIELD_ID = "#skills";
 
     private final Label idLabel;

@@ -35,6 +35,12 @@ public class EmployeeCard extends UiPart<Region> {
     private Label id;
 
     @FXML
+    private Label phone;
+
+    @FXML
+    private Label email;
+
+    @FXML
     private Label github;
 
     @FXML
@@ -45,7 +51,9 @@ public class EmployeeCard extends UiPart<Region> {
         this.employee = employee;
         id.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
-        github.setText(GITHUB_PREFIX + employee.getGithub().value);
+        github.setText(employee.getGithub().value);
+        phone.setText(employee.getPhone().value);
+        email.setText(employee.getEmail().value);
         employee.getSkills().forEach(skill -> {
             Label label = new Label(skill.skillName);
             label.getStyleClass().add(SideTabPanel.getSkillLabelColor(skill.skillName));
