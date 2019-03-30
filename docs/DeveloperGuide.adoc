@@ -76,8 +76,6 @@ through the course of the Developer Guide.
 
 
 |===
-
-
 |Alphanumeric|Only contains either digits (0-9) or letters of the English
                 alphabet (A-Z).
 
@@ -105,16 +103,18 @@ through the course of the Developer Guide.
 
 . *JDK `9`* or later
 +
-[WARNING]
-JDK `10` on Windows will fail to run tests in <<UsingGradle#Running-Tests, headless mode>> due to a https://github.com/javafxports/openjdk-jfx/issues/66[JavaFX bug].
-Windows developers are highly recommended to use JDK `9`.
+
+|===
+|image:ug-exclamation.png[width="50"]|JDK `10` on Windows will fail to run tests in <<UsingGradle#Running-Tests, headless mode>> due to a https://github.com/javafxports/openjdk-jfx/issues/66[JavaFX bug].
+                                      Windows developers are highly recommended to use JDK `9`.
+|===
 
 . *IntelliJ* IDE
 +
-[NOTE]
-IntelliJ by default has Gradle and JavaFx plugins installed. +
-Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
-
+|===
+|image:ug-notepadpencil.png[width="40"]|IntelliJ by default has Gradle and JavaFx plugins installed. +
+                                      Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
+|===
 
 === Setting up the project in your computer
 
@@ -170,13 +170,16 @@ Set up Travis to perform Continuous Integration (CI) for your fork. See <<UsingT
 
 After setting up Travis, you can optionally set up coverage reporting for your team fork (see <<UsingCoveralls#, UsingCoveralls.adoc>>).
 
-[NOTE]
-Coverage reporting could be useful for a team repository that hosts the final version but it is not that useful for your personal fork.
+|===
+|image:ug-notepadpencil.png[width="40"]|Coverage reporting could be useful for a team repository that hosts the final version but it is not that useful for your personal fork.
+|===
 
 Optionally, you can set up AppVeyor as a second CI (see <<UsingAppVeyor#, UsingAppVeyor.adoc>>).
 
-[NOTE]
-Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
+|===
+|image:ug-notepadpencil.png[width="40"]|Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
+|===
+
 
 ==== Getting started with coding
 
