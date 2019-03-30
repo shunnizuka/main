@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
 
 public class TaskName {
 
-    public static final String MESSAGE_CONSTRAINTS =  "Task names should not be empty or consisting of only spaces.";
+    public static final String MESSAGE_CONSTRAINTS = "Task names should not be empty or consisting of only spaces.";
 
     public final String taskName;
 
@@ -23,7 +23,7 @@ public class TaskName {
     /**
      * Returns true if given string is valid for a task name string
      */
-    public static boolean isValidTaskNameString(String info) {
+    public static boolean isValidTaskName(String info) {
         return !info.trim().isEmpty();
     }
 
@@ -42,8 +42,8 @@ public class TaskName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-        || (other instanceof TaskName // instanceof handles nulls
-        && taskName.equals(((TaskName) other).taskName)); // state check
+            || (other instanceof TaskName // instanceof handles nulls
+            && taskName.equals(((TaskName) other).taskName)); // state check
     }
 
     @Override

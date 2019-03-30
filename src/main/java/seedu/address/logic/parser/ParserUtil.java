@@ -19,6 +19,7 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.TaskName;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
@@ -251,4 +252,18 @@ public class ParserUtil {
         return new UserStoryImportance(trimmedInput);
     }
 
+    /**
+     * Parses a {@code String name} into a {@code Task Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code task name} is invalid.
+     */
+    public static TaskName parseTaskName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TaskName.isValidTaskName(trimmedName)) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
+        }
+        return new TaskName(trimmedName);
+    }
 }

@@ -7,66 +7,49 @@ package seedu.address.model.project;
 
 public class TaskStatus {
 
-    public enum Status {
-        ONGOING("ongoing"), COMPLETED("completed"), DELAYED("delayed");
 
-        private String statusString;
+    public static final String MESSAGE_CONSTRAINTS = "Task statuses can only be set to ongoing or complete";
 
-        private Status(String s) {
-            this.statusString = s;
-        }
-
-        public String getStatusString() {
-            return this.statusString;
-        }
-    }
-
-    public static final String MESSAGE_CONSTRAINTS =  "Task statuses can only be ongoing, complete or delayed";
-
-    public final Status taskStatus;
+    public final Boolean taskComplete;
 
     /**
      * Defaul constructor for TaskStatus.
      */
     public TaskStatus() {
-        this.taskStatus = Status.ONGOING;
+        this.taskComplete = false;
     }
 
     /**
      * Constructor for TaskStatus specifying status.
      */
-    public TaskStatus(Status status) {
-        this.taskStatus = status;
-    }
-
-    /**
-     * Returns true if given status is valid for a task status
-     */
-    public static boolean isValidTaskStatus(Status test) {
-        return true;
+    public TaskStatus(Boolean status) {
+        this.taskComplete = status;
     }
 
     /**
      * Returns a clone of this TaskStatus object.
      */
     public TaskStatus clone() {
-        return new TaskStatus(this.taskStatus);
+        return new TaskStatus(this.taskComplete);
     }
 
     @Override
     public String toString() {
-        return this.taskStatus.getStatusString();
+        if (this.taskComplete) {
+            return "Complete";
+        }
+        return "Ongoing";
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-        || (other instanceof TaskStatus // instanceof handles nulls
-        && taskStatus.equals(((TaskStatus) other).taskStatus)); // state check
+                || (other instanceof TaskStatus // instanceof handles nulls
+                && taskComplete.equals(((TaskStatus) other).taskComplete)); // state check
     }
 
     @Override
     public int hashCode() {
-        return taskStatus.hashCode();
+        return taskComplete.hashCode();
     }
 }

@@ -17,6 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SKILL = new Prefix("s/");
     public static final Prefix PREFIX_CLIENT = new Prefix("c/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
+    public static final Prefix PREFIX_MILESTONE = new Prefix("m/");
 
     /* User story prefixes */
     public static final Prefix PREFIX_USER = new Prefix(PREAMBLE_USER);

@@ -42,7 +42,7 @@ public class Task {
         }
 
         if (!(other instanceof Task)) {
-                return false;
+            return false;
         }
 
         Task otherTask = (Task) other;
@@ -67,7 +67,7 @@ public class Task {
             return true;
         }
         return otherTask != null
-        && otherTask.getTaskName().equals(getTaskName());
+            && otherTask.getTaskName().equals(getTaskName());
     }
 
     /**
@@ -81,9 +81,9 @@ public class Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Task: ")
-        .append(getTaskName())
-        .append(" Status: ")
-        .append(getTaskStatus());
+                .append(getTaskName())
+                .append(" Status: ")
+                .append(getTaskStatus());
         return builder.toString();
     }
 

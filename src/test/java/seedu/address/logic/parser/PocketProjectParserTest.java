@@ -16,6 +16,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.AddEmployeeCommand;
+import seedu.address.logic.commands.AddTaskToCommand;
+import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
@@ -152,6 +154,12 @@ public class PocketProjectParserTest {
     public void parseCommand_undoCommandWord_returnsUndoCommand() throws Exception {
         assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
         assertTrue(parser.parseCommand("undo 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_addTaskTo() throws Exception {
+        assertTrue(parser.parseCommand("addto Apollo task n/Create feature XYZ m/v1.1")
+                        instanceof AddTaskToCommand);
     }
 
     @Test
