@@ -20,7 +20,7 @@ public class FlexibleDateParser {
     /**
      * To check if input is given in the fixed format.
      */
-    private static final String ALPHANUMERIC_VALIDATION_REGEX = "^\\S+[a-zA-Z0-9]*$";
+    private static final String NUMERIC_VALIDATION_REGEX = "^\\S+[0-9]*$";
 
     private static final int NEXT = 1;
     private static final int LAST = -1;
@@ -35,7 +35,7 @@ public class FlexibleDateParser {
      */
     public static String parseFlexibleDate(String dateInput) throws ParseException {
 
-        if(!isFlexibleInput(dateInput)) {
+        if(isFixedInput(dateInput)) {
             return dateInput;
         } else {
             final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(dateInput.trim());
@@ -63,8 +63,8 @@ public class FlexibleDateParser {
         }
     }
 
-    private static boolean isFlexibleInput(String flexibleDateInput) {
-        return flexibleDateInput.matches(ALPHANUMERIC_VALIDATION_REGEX);
+    private static boolean isFixedInput(String flexibleDateInput) {
+        return flexibleDateInput.matches(NUMERIC_VALIDATION_REGEX);
     }
 
     /**

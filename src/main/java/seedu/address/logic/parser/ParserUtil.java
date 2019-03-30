@@ -181,7 +181,7 @@ public class ParserUtil {
 
         requireNonNull(deadline);
         String trimmedDate = deadline.trim();
-        String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate);
+        String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate).trim();
 
         if (!Deadline.isValidDate(formattedDate)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO NEED to check message constraints
