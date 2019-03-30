@@ -20,7 +20,7 @@ public class FlexibleDateParser {
     /**
      * To check if input is given in the fixed format.
      */
-    private static final String ALPHA_NUMERIC_VALIDATION_REGEX = "^[a-zA-Z0-9]*$";
+    private static final String ALPHA_NUMERIC_VALIDATION_REGEX = "^((?!/).)*$";
 
     /**
      * Used to check if input is a valid integer
@@ -55,8 +55,8 @@ public class FlexibleDateParser {
                 throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
             }
 
-            final String keyword = matcher.group("keyword").toLowerCase();
-            final String arguments = matcher.group("arguments");
+            final String keyword = matcher.group("keyword").toLowerCase().trim();
+            final String arguments = matcher.group("arguments").trim();
 
             if (keyword.equals(CliSyntax.PREFIX_TODAY.toString())) {
                 return formatDate(CURRENT);
@@ -64,7 +64,7 @@ public class FlexibleDateParser {
                 return formatDate(NEXT);
             } else if (keyword.equals(CliSyntax.PREFIX_YESTERDAY.toString())) {
                 return formatDate(LAST);
-            } else if (keyword.equals(CliSyntax.PREFIX_CURRENT)) {
+            } else if (keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
                 return parseThisKeyword(arguments.trim());
             }
 
