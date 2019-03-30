@@ -139,8 +139,11 @@ public class FlexibleDateParser {
             return date.thisWeekDate(dayOfWeek);
         } else if (keyword.equals(CliSyntax.PREFIX_FUTURE.toString())) {
             return date.nextWeekDate(dayOfWeek);
+        } else if (keyword.equals(CliSyntax.PREFIX_PAST.toString())) {
+            return date.lastWeekDate(dayOfWeek);
+        } else {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
         }
-        return "";
     }
 
     private static String formatMonthDate(String keyword, String numberString) throws ParseException {
@@ -160,9 +163,11 @@ public class FlexibleDateParser {
             return date.thisMonthDate(dayOfMonth);
         } else if (keyword.equals(CliSyntax.PREFIX_FUTURE.toString())) {
             return date.nextMonthDate(dayOfMonth);
+        } else if (keyword.equals(CliSyntax.PREFIX_PAST.toString())) {
+            return date.lastMonthDate(dayOfMonth);
+        } else {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
         }
-
-        return "";
     }
 
 
