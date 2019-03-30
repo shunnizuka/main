@@ -40,6 +40,14 @@ public class FlexibleDateParser {
             final String keyword = matcher.group("keyword").toLowerCase();
             final String arguments = matcher.group("arguments");
 
+            switch(keyword) {
+
+
+
+
+
+
+            }
 
         }
 

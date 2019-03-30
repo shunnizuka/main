@@ -23,4 +23,13 @@ public class CliSyntax {
     public static final Prefix PREFIX_FUNCTION = new Prefix(PREAMBLE_FUNCTION);
     public static final Prefix PREFIX_REASON = new Prefix(PREAMBLE_REASON);
     public static final Prefix PREFIX_IMPORTANCE = new Prefix("i/");
+
+    /* Flexible date definitions */
+    public static final Prefix FUTURE_KEYWORD = new Prefix("next");
+    public static final Prefix CURRENT_KEYWORD = new Prefix("this");
+    public static final Prefix PAST_KEYWORD = new Prefix("last");
+    public static final Prefix TODAY_KEYWORD = new Prefix("today");
+    public static final Prefix TOMORROW_KEYWORD = new Prefix("tomorrow");
+    public static final Prefix YESTERDAY_KEYWORD = new Prefix("yesterday");
+
 }
