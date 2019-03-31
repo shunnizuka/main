@@ -1,8 +1,12 @@
 package seedu.address.logic.parser;
 
 import static org.junit.Assert.assertEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_MONTH;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_WEEK;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.INVALID_MISSING_DAY;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.INVALID_MISSING_KEYWORD;
+import static seedu.address.testutil.TypicalFlexibleDateInputs.INVALID_MISSING_WEEK_MONTH;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.LAST_MONTH_END;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.LAST_MONTH_MID;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.LAST_MONTH_START;
@@ -36,6 +40,8 @@ import org.junit.rules.ExpectedException;
 
 import java.time.format.DateTimeFormatter;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.util.FlexibleDate;
 
 public class FlexibleDateParserTest {
@@ -218,10 +224,35 @@ public class FlexibleDateParserTest {
     @Test
     public void parseFlexibleDate_keywordMissing_failure() throws Exception {
 
-
-
+        String expectedMessage = String.format(Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_MISSING_KEYWORD, expectedMessage);
     }
 
+    @Test
+    public void parseFlexibleDate_weekMonthMissing_failure() throws Exception {
 
+        String expectedMessage = String.format(FlexibleDate.FLEXI_DATE_MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_MISSING_WEEK_MONTH, expectedMessage);
+    }
+
+    @Test
+    public void parseFlexibleDate_targetDayMissing_failure() throws Exception {
+
+        String expectedMessage = String.format(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_MISSING_DAY, expectedMessage);
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
+     * equals to {@code expectedMessage}.
+     */
+    public static void assertParseFailure(FlexibleDateParser parser, String userInput, String expectedMessage) {
+        try {
+            parser.parseFlexibleDate(userInput);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (ParseException pe) {
+            assertEquals(expectedMessage, pe.getMessage());
+        }
+    }
 
 }

@@ -56,5 +56,9 @@ public class TypicalFlexibleDateInputs {
     public static final String THIS_MONTH_MID = "this month 15";
     public static final String THIS_MONTH_END = "this month 30";
 
+    public static final String INVALID_MISSING_KEYWORD = "month 20";
+    public static final String INVALID_MISSING_WEEK_MONTH = "this 20";
+    public static final String INVALID_MISSING_DAY = "this month";
+
 
 }
