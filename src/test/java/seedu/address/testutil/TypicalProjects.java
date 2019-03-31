@@ -72,7 +72,7 @@ public class TypicalProjects {
         new Deadline("13/12/2011"));
 
     public static final Project PROJECT_ZULU = new Project(new ProjectName("Zulu"), new Client("Shunnizuka"),
-        new Deadline("04/09/2023"));
+        new Deadline("09/04/2019"));
 
     /*
     // Manually added - Project's details found in {@code CommandTestUtil}
