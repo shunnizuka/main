@@ -10,11 +10,11 @@
    <children>
       <TableView fx:id="userStoryTableView" fixedCellSize="0.0" layoutY="64.0" prefHeight="388.0" prefWidth="698.0" styleClass="table-view">
         <columns>
-          <TableColumn fx:id="indexCol" reorderable="false" editable="false" maxWidth="58.0" prefWidth="58.0" sortable="false" text="No." />
-          <TableColumn fx:id="priorityCol" reorderable="false" editable="false" prefWidth="101.0" sortable="false" text="Priority" />
+          <TableColumn fx:id="indexCol" reorderable="false" editable="false" minWidth="50.0" maxWidth="50.0" prefWidth="50.0" sortable="false" text="No." />
+          <TableColumn fx:id="priorityCol" reorderable="false" editable="false" prefWidth="70.0" sortable="false" text="Priority" />
           <TableColumn fx:id="userCol" reorderable="false" editable="false" prefWidth="143.0" sortable="false" text="As a" />
           <TableColumn fx:id="functionCol" reorderable="false" editable="false" prefWidth="212.0" sortable="false" text="I want to" />
-          <TableColumn fx:id="reasonCol" reorderable="false" editable="false" prefWidth="183.0" sortable="false" text="So that" />
+          <TableColumn fx:id="reasonCol" reorderable="false" editable="false" prefWidth="213.0" maxWidth="Infinity" sortable="false" text="So that" />
         </columns>
       </TableView>
       <Text fill="#127a6f" layoutX="240.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USER STORIES" wrappingWidth="217.51953125">
