@@ -215,6 +215,13 @@ public class FlexibleDateParserTest {
         assertEquals(currentDate.lastMonthDate(END_MONTH), userInput);
     }
 
+    @Test
+    public void parseFlexibleDate_keywordMissing_failure() throws Exception {
+
+
+
+    }
+
 
 
 }

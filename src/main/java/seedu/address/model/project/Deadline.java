@@ -12,8 +12,10 @@ import java.text.ParseException;
 
 public class Deadline {
 
-    //TODO
-    public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD/MM/YYYY";
+    public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD/MM/YYYY. User can also "
+        + "choose to go for a flexible date input which supports the following: today, tomorrow, yesterday, "
+        + "this/next/last month DAY_OF_MONTH & "
+        + "this/next/last week DAY_OF_WEEK";
 
     /**
      * The first character of the name must not be a whitespace,

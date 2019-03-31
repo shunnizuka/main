@@ -32,8 +32,6 @@ public class FlexibleDateParser {
     private static final int FIRST_DAY_OF_MONTH = 1;
     private static final int LAST_DAY_OF_MONTH = 31;     //TODO Need to check which month
 
-
-
     private static final int NEXT = 1;
     private static final int LAST = -1;
     private static final int CURRENT = 0;
@@ -52,7 +50,7 @@ public class FlexibleDateParser {
         } else {
             final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(dateInput.trim());
             if (!matcher.matches()) {
-                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
             }
 
             final String keyword = matcher.group("keyword").toLowerCase().trim();
@@ -69,7 +67,7 @@ public class FlexibleDateParser {
                 || (keyword.equals(CliSyntax.PREFIX_PAST.toString()))) {
                 return parseKeyword(keyword, arguments.trim());
             } else {
-                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO CHANGE Message
+                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
             }
         }
     }
@@ -84,7 +82,7 @@ public class FlexibleDateParser {
 
         final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(secondPart.trim());
             if (!matcher.matches()) {
-                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
             }
 
             final String weekOrMonth = matcher.group("keyword").toLowerCase();
@@ -95,7 +93,7 @@ public class FlexibleDateParser {
             } else if (weekOrMonth.equals(CliSyntax.PREFIX_MONTH.toString())) {
                 return formatMonthDate(keyword, arguments.trim());
             } else {
-                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO CHANGE Message
+                throw new ParseException(FlexibleDate.FLEXI_DATE_MESSAGE_CONSTRAINTS);
             }
     }
 
@@ -125,12 +123,12 @@ public class FlexibleDateParser {
     private static String formatWeekDate(String keyword, String numberString) throws ParseException {
 
         if(!isValidInput(numberString)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
         int dayOfWeek = Integer.parseInt(numberString);
         if(dayOfWeek < FIRST_DAY_OF_WEEK || dayOfWeek > LAST_DAY_OF_WEEK) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
         FlexibleDate date = new FlexibleDate();
@@ -142,19 +140,19 @@ public class FlexibleDateParser {
         } else if (keyword.equals(CliSyntax.PREFIX_PAST.toString())) {
             return date.lastWeekDate(dayOfWeek);
         } else {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
     }
 
     private static String formatMonthDate(String keyword, String numberString) throws ParseException {
 
         if (!isValidInput(numberString)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
         int dayOfMonth = Integer.parseInt(numberString);
         if (dayOfMonth < FIRST_DAY_OF_MONTH || dayOfMonth > LAST_DAY_OF_MONTH) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
         FlexibleDate date = new FlexibleDate();
@@ -166,7 +164,7 @@ public class FlexibleDateParser {
         } else if (keyword.equals(CliSyntax.PREFIX_PAST.toString())) {
             return date.lastMonthDate(dayOfMonth);
         } else {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO change msg constraints
+            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
     }
 

@@ -1,6 +1,5 @@
 package seedu.address.model.project;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,6 +10,13 @@ import java.time.format.DateTimeFormatter;
 public class FlexibleDate {
 
     private LocalDateTime targetDate;
+
+    public static final String FLEXI_DATE_MESSAGE_CONSTRAINTS = "Flexible date inputs only allow choosing between "
+        + "this/next/last week or month. They keyword week/month has to be included";
+
+    public static final String DAY_OF_WEEK_MONTH_CONSTRAINTS = "The day of week has to be an integer between 1 and 7 "
+        + "inclusive and the day of month has to be an integer between 1 and 31 and correspond to the max number of "
+        + "days in particular month";
 
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final int LENGTH_OF_WEEK = 7;
