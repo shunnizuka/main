@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.Test;
 
@@ -43,7 +43,7 @@ public class AddEmployeeToCommandTest {
         ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.addEmployeeTo(targetProject, targetEmployee);
         expectedModel.commitPocketProject();
-        // assertCommandSuccess(addEmployeeToCommand, model, commandHistory, expectedMessage, expectedModel);
+         assertCommandSuccess(addEmployeeToCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
 

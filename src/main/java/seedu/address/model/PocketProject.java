@@ -213,7 +213,12 @@ public class PocketProject implements ReadOnlyPocketProject {
      *  {@code targetProject} and {@code targetEmployee} must exist.
      */
     public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
-        projects.addEmployeeTo(targetProject, targetEmployee);
+        Project editedTargetProject = targetProject.clone();
+        editedTargetProject.addEmployee(targetEmployee);
+        projects.setProject(targetProject, editedTargetProject);
+        Employee editedEmployee = targetEmployee.clone();
+        editedEmployee.join(targetProject);
+        employees.setEmployee(targetEmployee, editedEmployee);
         indicateModified();
     }
 
