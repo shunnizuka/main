@@ -213,12 +213,22 @@ public class PocketProject implements ReadOnlyPocketProject {
      *  {@code targetProject} and {@code targetEmployee} must exist.
      */
     public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
-        Project editedTargetProject = targetProject.clone();
-        editedTargetProject.addEmployee(targetEmployee);
-        projects.setProject(targetProject, editedTargetProject);
-        Employee editedEmployee = targetEmployee.clone();
-        editedEmployee.join(targetProject);
-        employees.setEmployee(targetEmployee, editedEmployee);
+        Project localTargetProject = null;
+        Employee localTargetEmployee = null;
+        for (Project p : projects) {
+            if (p.isSameProject(targetProject)) {
+                localTargetProject = p;
+            }
+        }
+        for (Employee e : employees) {
+            if (e.isSameEmployee(targetEmployee)) {
+                localTargetEmployee = e;
+            }
+        }
+        assert localTargetEmployee != null;
+        assert localTargetProject != null;
+        localTargetProject.addEmployee(localTargetEmployee);
+        localTargetEmployee.join(localTargetProject);
         indicateModified();
     }
 

@@ -93,8 +93,10 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
     private void assertCommandSuccess(String command, Project targetProject, Employee targetEmployee) {
         Model expectedModel = getModel();
         expectedModel.addEmployeeTo(targetProject, targetEmployee);
+        Employee clone = targetEmployee.clone();
+        clone.join(targetProject);
         String expectedResultMessage = String.format(AddEmployeeToCommand.MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS,
-            targetEmployee, targetProject.getProjectName());
+            clone, targetProject.getProjectName());
 
         assertCommandSuccess(command, expectedModel, expectedResultMessage);
     }
