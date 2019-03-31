@@ -965,19 +965,45 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a employee
+=== Deleting an employee
 
 . Deleting a employee while all employees are listed
 
 .. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
+.. Test case: `delete employee 1` +
+   Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `delete employee 0` +
    Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+.. Other incorrect delete commands to try: `delete employee`, `delete employee y`,  (where y is not a positive integer), `delete employee x`, (where x is larger than the list size) +
    Expected: Similar to previous.
 
-_{ more test cases ... }_
+=== Deleting a project
+
+. Deleting a project while all projects are listed
+
+.. Prerequisites: List all projects using the `list projects` command. Multiple projects in the list.
+.. Test case: `delete project 1` +
+   Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `delete project p` +
+   Expected: project with the name 'p' is deleted if it exists in the app and the details of the deleted project shown in the status message. If no project with the name 'p' exists, error details shown in the status message. Status bar remains the same.
+.. Test case: `delete project 0` +
+   Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size or is negative) +
+   Expected: Similar to previous.
+
+=== Removing an employee from a project
+
+. Removing an employee from a project
+
+.. prerequisites: project with the name 'Apollo' exists and has 3 employees in it.
+.. Test case: `removefrom Apollo employee 1` +
+   Expected: First employee in Apollo is removed from it. Details of the removed employee is shown in the status message and timestamp in the status bar is updated.
+.. Test case: `removefrom Apollo employee 4` +
+   Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
+.. Test case: `removefrom Apollo employee x` where x is not a positive integer +
+   Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
+.. Test case: `removefrom X employee 1` where no project in the app has the name 'X' +
+   Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
 
 === Saving data
 
