@@ -9,10 +9,6 @@ import java.time.format.DateTimeFormatter;
 
 public class FlexibleDate {
 
-    private LocalDateTime targetDate;
-
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
     public static final String DAY_OF_WEEK_MONTH_CONSTRAINTS = "The day of week has to be an integer between 1 and 7 "
         + "inclusive and the day of month has to be an integer between 1 and 31 and correspond to the max number of "
         + "days in particular month";
@@ -20,9 +16,14 @@ public class FlexibleDate {
     public static final String FLEXI_DATE_MESSAGE_CONSTRAINTS = "Flexible date inputs only allow choosing between "
         + "this/next/last week or month. They keyword week/month has to be included";
 
+
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     private static final int LAST = -1;
     private static final int LENGTH_OF_WEEK = 7;
     private static final int NEXT = 1;
+
+    private LocalDateTime targetDate;
 
     /**
      * Constructor

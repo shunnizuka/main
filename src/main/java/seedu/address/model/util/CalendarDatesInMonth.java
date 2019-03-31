@@ -12,6 +12,12 @@ import seedu.address.logic.parser.CliSyntax;
 public class CalendarDatesInMonth {
 
     /**
+     * Message constraints.
+     */
+    public static final String DAY_MONTH_CONSTRAINTS = "The selected month does not have the chosen day or "
+        + "the selected month does not exist in the calendar.";
+
+    /**
      * HashMap mapping the key(month) to the value (number of days in the month).
      */
     private static HashMap<Integer, Integer> daysInMonth;
@@ -55,12 +61,7 @@ public class CalendarDatesInMonth {
     private static final int LAST_MONTH = 12;
     private static final int NEXT = 1;
 
-    /**
-     * Message constraints and identifiers.
-     */
-    public static final String DATE_IDENTIFIER = "/";
-    public static final String DAY_MONTH_CONSTRAINTS = "The selected month does not have the chosen day or "
-        + "the selected month does not exist in the calendar.";
+    private static final String DATE_IDENTIFIER = "/";
 
     /**
      * Static initializer for Calendar Dates In Month
@@ -126,7 +127,7 @@ public class CalendarDatesInMonth {
 
         int numOfDays = calendar.getActualMaximum(Calendar.DAY_OF_YEAR);
 
-        if (numOfDays > 365){
+        if (numOfDays > 365) {
             return true;
         }
         return false;
@@ -149,12 +150,12 @@ public class CalendarDatesInMonth {
         if (keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
             return isValidDayInMonth(generateDateFormat(dayOfMonth, currentMonth, currentYear));
         } else if (keyword.equals(CliSyntax.PREFIX_FUTURE.toString())) {
-            return  isValidDayInMonth(generateDateFormat(dayOfMonth, (currentMonth + NEXT) % LAST_MONTH,
+            return isValidDayInMonth(generateDateFormat(dayOfMonth, (currentMonth + NEXT) % LAST_MONTH,
                 currentYear));
-         } else {
-            return  isValidDayInMonth(generateDateFormat(dayOfMonth, (currentMonth - NEXT) % LAST_MONTH,
+        } else {
+            return isValidDayInMonth(generateDateFormat(dayOfMonth, (currentMonth - NEXT) % LAST_MONTH,
                 currentYear));
-         }
+        }
     }
 
     /**
@@ -174,5 +175,5 @@ public class CalendarDatesInMonth {
         sb.append(year);
 
         return sb.toString().trim();
-     }
+    }
 }

@@ -137,7 +137,7 @@ public class FlexibleDateParser {
         }
 
         int dayOfWeek = Integer.parseInt(numberString);
-        if( dayOfWeek < FIRST_DAY_OF_WEEK || dayOfWeek > LAST_DAY_OF_WEEK) {
+        if (dayOfWeek < FIRST_DAY_OF_WEEK || dayOfWeek > LAST_DAY_OF_WEEK) {
             throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
