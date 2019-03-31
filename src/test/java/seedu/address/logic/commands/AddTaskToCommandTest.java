@@ -51,7 +51,7 @@ public class AddTaskToCommandTest {
         AddTaskToCommand addTaskToCommand = new AddTaskToCommand(new ProjectName("INVALID"),
                 new ProjectTask(new ProjectTaskName("Something happened!")), INDEX_FIRST_PROJECT_MILESTONE);
         assertCommandFailure(addTaskToCommand, model, commandHistory,
-        Messages.MESSAGE_INVALID_PROJECT_NAME);
+                Messages.MESSAGE_INVALID_PROJECT_NAME);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class AddTaskToCommandTest {
                 new ProjectTask(new ProjectTaskName("Something happened!")), outOfBoundIndex);
 
         assertCommandFailure(addTaskToCommand, model, commandHistory,
-        Messages.MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX);
+                Messages.MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX);
     }
 
     @Test
