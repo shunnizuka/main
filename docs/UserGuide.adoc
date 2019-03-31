@@ -467,13 +467,17 @@ Removes the user story at the 1st position of the displayed list of user stories
 
 === To indicate the project has been completed : `complete`
 
-Indicates that a project is completed.
-Format: `complete PROJ_NAME`
+Indicates that a project is completed +
+Format: `complete PROJECT_NAME`
+or `complete PROJECT_INDEX`
 
 Examples:
 
 `complete Project Apollo` +
-Project Apollo has been finished and delivered to client.
+Project Apollo is indicated as completed.
+
+`complete 1`
+The first project in the most recently display list of projects is completed.
 
 === Sort the projects by name or deadline : `sort`
 
