@@ -150,6 +150,12 @@ public interface Model {
     ObservableList<Project> getProjectList();
 
     /**
+     * Returns an unmodifiable view of the list of completed {@code Project} backed by the internal list of
+     * {@code versionedPocketProject}
+     */
+    ObservableList<Project> getCompletedProjectList();
+
+    /**
      * Completes a project and move it to the list of completed projects.
      */
     void completeProject(Project project);

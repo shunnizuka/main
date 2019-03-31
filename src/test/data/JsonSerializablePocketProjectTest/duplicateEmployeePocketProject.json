@@ -11,5 +11,5 @@
     "email": "alice@example.com",
     "github": "aliceballer",
     "skills": ["Python", "Java" ]
-  } ],"projects" : [ ]
+  } ],"projects" : [ ], "completedProjects" : []
 }

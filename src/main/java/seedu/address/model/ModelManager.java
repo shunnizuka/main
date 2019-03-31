@@ -254,6 +254,15 @@ public class ModelManager implements Model {
         return versionedPocketProject.getProjectList();
     }
 
+    /**
+     * Returns an unmodifiable view of the list of completed {@code Project} backed by the internal list of
+     * {@code versionedPocketProject}
+     */
+    @Override
+    public ObservableList<Project> getCompletedProjectList() {
+        return versionedPocketProject.getCompletedProjectList();
+    }
+
 
     //=========== Undo/Redo =================================================================================
 

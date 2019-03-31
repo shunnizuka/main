@@ -122,6 +122,14 @@ public class PocketProject implements ReadOnlyPocketProject {
     }
 
     /**
+     * Returns true if a completed project with the same name as {@code project} exists in the pocket project.
+     */
+    public boolean hasCompletedProject(Project project) {
+        requireNonNull(project);
+        return completedProjects.contains(project);
+    }
+
+    /**
      * Adds a employee to the pocket project.
      * The employee must not already exist in the pocket project.
      */
@@ -177,6 +185,13 @@ public class PocketProject implements ReadOnlyPocketProject {
      */
     public void completeProject(Project project) {
         removeProject(project);
+        completedProjects.add(project);
+    }
+
+    /**
+     * Add a {@code project} into the list of completed projects.
+     */
+    public void addCompletedProject(Project project) {
         completedProjects.add(project);
     }
 
