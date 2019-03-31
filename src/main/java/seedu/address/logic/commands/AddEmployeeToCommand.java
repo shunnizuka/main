@@ -62,6 +62,7 @@ public class AddEmployeeToCommand extends AddToCommand {
         if (targetList.contains(employeeToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
         }
+        employeeToAdd.join(targetProject);
         targetProject.addEmployee(employeeToAdd);
         model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS, employeeToAdd,

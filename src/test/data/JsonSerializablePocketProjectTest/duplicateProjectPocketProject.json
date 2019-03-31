@@ -15,13 +15,13 @@
       "phone" : "98765432",
       "email" : "johnd@example.com",
       "github" : "bensonballer",
-      "skills" : [ "CSS", "HTML", "Java"]
+      "skills" : [ "CSS", "HTML", "Java"], "projectNames" : []
     }, {
       "name" : "Carl Kurz",
       "phone" : "95352563",
       "email" : "heinz@example.com",
       "github" : "carlballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : []
     }],
     "userStories" : [ ]
   },
@@ -39,13 +39,13 @@
       "phone" : "98765432",
       "email" : "johnd@example.com",
       "github" : "bensonballer",
-      "skills" : ["CSS", "HTML", "Java" ]
+      "skills" : ["CSS", "HTML", "Java" ], "projectNames" : []
     }, {
       "name" : "Carl Kurz",
       "phone" : "95352563",
       "email" : "heinz@example.com",
       "github" : "carlballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : []
     }],
     "userStories" : [ ]
   },
@@ -63,13 +63,13 @@
       "phone" : "95352563",
       "email" : "heinz@example.com",
       "github" : "carlballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : []
     }, {
       "name" : "Daniel Meier",
       "phone" : "87652533",
       "email" : "cornelia@example.com",
       "github" : "danielballer",
-      "skills" : [ "Assembly" ]
+      "skills" : [ "Assembly" ], "projectNames" : []
     }],
     "userStories" : [ ]
   },
@@ -83,13 +83,13 @@
       "phone" : "87652533",
       "email" : "cornelia@example.com",
       "github" : "danielballer",
-      "skills" : [ "Assembly" ]
+      "skills" : [ "Assembly" ], "projectNames" : []
     }, {
       "name" : "Elle Meyer",
       "phone" : "9482224",
       "email" : "werner@example.com",
       "github" : "elleballer",
-      "skills" : ["Python" ]
+      "skills" : ["Python" ], "projectNames" : []
     }],
     "userStories" : [ ]
   },
@@ -109,7 +109,7 @@
       "phone" : "9482427",
       "email" : "lydia@example.com",
       "github" : "fionaballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : []
     }],
     "userStories" : [ ]
   },
@@ -123,13 +123,13 @@
       "phone" : "9482427",
       "email" : "lydia@example.com",
       "github" : "fionaballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : []
     }, {
       "name" : "George Best",
       "phone" : "9482442",
       "email" : "anna@example.com",
       "github" : "georgeballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : []
     }],
     "userStories" : [ ]
   },
@@ -143,13 +143,13 @@
       "phone" : "9482442",
       "email" : "anna@example.com",
       "github" : "georgeballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : []
     }, {
       "name" : "Alice Pauline",
       "phone" : "94351253",
       "email" : "alice@example.com",
       "github" : "aliceballer",
-      "skills" : [ "Python", "Java" ]
+      "skills" : [ "Python", "Java" ], "projectNames" : []
     } ],
     "userStories" : [ ]
   },
@@ -163,13 +163,13 @@
       "phone" : "94351253",
       "email" : "alice@example.com",
       "github" : "aliceballer",
-      "skills" : [ "Python", "Java" ]
+      "skills" : [ "Python", "Java" ], "projectNames" : []
     }, {
       "name" : "Benson Meier",
       "phone" : "98765432",
       "email" : "johnd@example.com",
       "github" : "bensonballer",
-      "skills" : [ "CSS", "HTML", "Java" ]
+      "skills" : [ "CSS", "HTML", "Java" ], "projectNames" : []
     }],
     "userStories" : [ ]}
 

@@ -2,11 +2,15 @@ package seedu.address.model.employee;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -23,6 +27,7 @@ public class Employee {
     // Data fields
     private final GitHubAccount github;
     private final Set<Skill> skills = new HashSet<>();
+    private final List<ProjectName> currentProjects = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -34,6 +39,20 @@ public class Employee {
         this.email = email;
         this.github = github;
         this.skills.addAll(skills);
+    }
+
+    /**
+     * Constructor including the list of projects the employee is in.
+     */
+    public Employee(Name name, Phone phone, Email email, GitHubAccount github, Set<Skill> skills,
+                    List<ProjectName> projectNames) {
+        requireAllNonNull(name, phone, email, github, skills, projectNames);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.github = github;
+        this.skills.addAll(skills);
+        this.currentProjects.addAll(projectNames);
     }
 
     public Name getName() {
@@ -50,6 +69,13 @@ public class Employee {
 
     public GitHubAccount getGithub() {
         return github;
+    }
+
+    /**
+     * Returns the list of project names of the projects this employee is in.
+     */
+    public List<ProjectName> getCurrentProjects() {
+        return this.currentProjects;
     }
 
     /**
@@ -75,8 +101,18 @@ public class Employee {
     }
 
     /**
-     * Returns the index of this employee in the list in model
+     * Indicates that this employee is in a certain project.
      */
+    public void join(Project project) {
+        this.currentProjects.add(project.getProjectName());
+    }
+
+    /**
+     * Indicates that this employee has left a certain project.
+     */
+    public void leave(Project project) {
+        this.currentProjects.remove(project.getProjectName());
+    }
 
 
     /**
@@ -87,8 +123,12 @@ public class Employee {
         for (Skill s: skills) {
             newSkills.add(s.clone());
         }
+        List<ProjectName> newProjectNames = new ArrayList<>();
+        for (ProjectName pn: currentProjects) {
+            newProjectNames.add(pn.clone());
+        }
         return new Employee(this.name.clone(), this.phone.clone(), this.email.clone(), this.github.clone(),
-                newSkills);
+                newSkills, newProjectNames);
     }
 
     /**
@@ -110,7 +150,8 @@ public class Employee {
             && otherEmployee.getPhone().equals(getPhone())
             && otherEmployee.getEmail().equals(getEmail())
             && otherEmployee.getGithub().equals(getGithub())
-            && otherEmployee.getSkills().equals(getSkills());
+            && otherEmployee.getSkills().equals(getSkills())
+            && otherEmployee.getCurrentProjects().equals(getCurrentProjects());
     }
 
     @Override
