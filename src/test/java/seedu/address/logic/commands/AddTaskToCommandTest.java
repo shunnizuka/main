@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.AddTaskToCommand.MESSAGE_ADD_PROJECT_
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 
 import org.junit.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 

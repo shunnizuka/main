@@ -27,7 +27,6 @@ public class ProjectTask {
         this.name = name;
         requireNonNull(status);
         this.status = status;
-
     }
 
 
@@ -92,6 +91,7 @@ public class ProjectTask {
      * Checks if the task has the valid format by checking the relevant fields
      */
     public static boolean isValidTask(ProjectTask task) {
-        return ProjectTaskName.isValidTaskName(task.getTaskName().taskName);
+        return ProjectTaskName.isValidTaskName(task.getTaskName().taskName)
+            && ProjectTaskStatus.isValidTaskStatus(task.getTaskStatus().taskComplete);
     }
 }

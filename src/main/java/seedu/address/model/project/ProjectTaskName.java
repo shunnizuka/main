@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Name of the project task in the Pocket Project.
@@ -18,6 +19,7 @@ public class ProjectTaskName {
      */
     public ProjectTaskName(String taskName) {
         requireNonNull(taskName);
+        checkArgument(isValidTaskName(taskName), MESSAGE_CONSTRAINTS);
         this.taskName = taskName;
     }
 

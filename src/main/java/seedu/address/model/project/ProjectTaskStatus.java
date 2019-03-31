@@ -1,6 +1,9 @@
 package seedu.address.model.project;
 
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Current status of the project task in the Pocket Project.
  */
@@ -23,7 +26,16 @@ public class ProjectTaskStatus {
      * Constructor for TaskStatus specifying status.
      */
     public ProjectTaskStatus(Boolean status) {
+        requireNonNull(status);
+        checkArgument(isValidTaskStatus(status), MESSAGE_CONSTRAINTS);
         this.taskComplete = status;
+    }
+
+    /**
+     * Returns true if given boolean is valid for task status
+     */
+    public static boolean isValidTaskStatus(Boolean status) {
+        return status == true || status == false;
     }
 
     /**
