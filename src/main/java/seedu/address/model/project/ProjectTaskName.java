@@ -23,6 +23,9 @@ public class ProjectTaskName {
         this.taskName = taskName;
     }
 
+    public String getTaskName() {
+        return this.taskName;
+    }
     /**
      * Returns true if given string is valid for a task name string
      */

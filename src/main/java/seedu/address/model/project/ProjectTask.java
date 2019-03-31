@@ -92,6 +92,6 @@ public class ProjectTask {
      */
     public static boolean isValidTask(ProjectTask task) {
         return ProjectTaskName.isValidTaskName(task.getTaskName().taskName)
-            && ProjectTaskStatus.isValidTaskStatus(task.getTaskStatus().taskComplete);
+            && ProjectTaskStatus.isValidTaskStatus(task.getTaskStatus().taskStatus);
     }
 }

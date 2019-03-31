@@ -1,6 +1,5 @@
 package seedu.address.model.project;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -13,55 +12,59 @@ public class ProjectTaskStatus {
 
     public static final String MESSAGE_CONSTRAINTS = "Task statuses can only be set to ongoing or complete";
 
-    public final Boolean taskComplete;
+    public static final String STATUS_COMPLETE = "complete";
+    public static final String STATUS_ONGOING = "ongoing";
+
+    public final String taskStatus;
 
     /**
      * Default constructor for ProjectTaskStatus.
      */
     public ProjectTaskStatus() {
-        this.taskComplete = false;
+        this.taskStatus = STATUS_ONGOING;
     }
 
     /**
      * Constructor for TaskStatus specifying status.
      */
-    public ProjectTaskStatus(Boolean status) {
+    public ProjectTaskStatus(String status) {
         requireNonNull(status);
         checkArgument(isValidTaskStatus(status), MESSAGE_CONSTRAINTS);
-        this.taskComplete = status;
+        this.taskStatus = status;
+    }
+
+    public String getTaskStatusString() {
+        return this.taskStatus;
     }
 
     /**
-     * Returns true if given boolean is valid for task status
+     * Returns true if given string is valid for task status
      */
-    public static boolean isValidTaskStatus(Boolean status) {
-        return status == true || status == false;
+    public static boolean isValidTaskStatus(String status) {
+        return STATUS_COMPLETE .equalsIgnoreCase(status)|| STATUS_ONGOING.equalsIgnoreCase(status);
     }
 
     /**
      * Returns a clone of this TaskStatus object.
      */
     public ProjectTaskStatus clone() {
-        return new ProjectTaskStatus(this.taskComplete);
+        return new ProjectTaskStatus(this.taskStatus);
     }
 
     @Override
     public String toString() {
-        if (this.taskComplete) {
-            return "Complete";
-        }
-        return "Ongoing";
+        return this.taskStatus;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ProjectTaskStatus // instanceof handles nulls
-                && taskComplete.equals(((ProjectTaskStatus) other).taskComplete)); // state check
+                && taskStatus.equals(((ProjectTaskStatus) other).taskStatus)); // state check
     }
 
     @Override
     public int hashCode() {
-        return taskComplete.hashCode();
+        return taskStatus.hashCode();
     }
 }
