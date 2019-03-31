@@ -22,7 +22,7 @@ public class EmployeeDetails {
         employeeDetailsList = new ArrayList<>();
         employeeSummary = new EmployeeSummary(employee);
         employeeProjects = new EmployeeProjects(employee.getCurrentProjects());
-        gitHubProfile = new EmployeeGitHub(employee);
+        gitHubProfile = new EmployeeGitHub(employee.getGithub());
 
         employeeDetailsList.add(employeeSummary.getRoot());
         employeeDetailsList.add(employeeProjects.getRoot());

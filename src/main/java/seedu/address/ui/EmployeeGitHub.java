@@ -19,14 +19,14 @@ public class EmployeeGitHub extends UiPart<Region> {
     @FXML
     private WebView webView;
 
-    public EmployeeGitHub(GitHubAccount employeeGitHub) {
+    public EmployeeGitHub(GitHubAccount employeeGithub) {
         super(FXML);
         this.employeeGithub = employeeGithub;
         loadEmployeePage();
     }
 
     private void loadEmployeePage() {
-        String url = PREFIX_GITHUB + employeeGithub.getGithubAccount();
+        String url = PREFIX_GITHUB + employeeGithub.toString();
         loadPage(url);
     }
 
