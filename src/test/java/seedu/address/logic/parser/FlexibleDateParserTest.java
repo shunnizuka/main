@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import java.time.format.DateTimeFormatter;
 
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_MONTH;
@@ -35,13 +39,6 @@ import static seedu.address.testutil.TypicalFlexibleDateInputs.TODAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.TOMORROW;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.YESTERDAY;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import java.time.format.DateTimeFormatter;
-
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.util.FlexibleDate;
 
