@@ -165,6 +165,10 @@ public class ModelManager implements Model {
         }
         return targetProject;
     }
+    @Override
+    public void completeProject(Project project) {
+        versionedPocketProject.completeProject(project);
+    }
 
     @Override
     public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {

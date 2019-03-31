@@ -150,6 +150,11 @@ public interface Model {
     ObservableList<Project> getProjectList();
 
     /**
+     * Completes a project and move it to the list of completed projects.
+     */
+    void completeProject(Project project);
+
+    /**
      * Selected project in the filtered projects list.
      * null if no project is selected.
      */
