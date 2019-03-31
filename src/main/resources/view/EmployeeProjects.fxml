@@ -9,15 +9,15 @@
 
 <AnchorPane prefHeight="462.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="308.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projects">
+      <Text fill="#127a6f" layoutX="308.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projects">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <TableView layoutX="250.0" layoutY="82.0" prefHeight="337.0" prefWidth="200.0">
+      <TableView fx:id="projectTableView" layoutX="250.0" layoutY="82.0" prefHeight="337.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="indexCol" editable="false" prefWidth="75.0" sortable="false" text="C1" />
-          <TableColumn fx:id="projectNameCol" editable="false" prefWidth="124.0" sortable="false" text="C2" />
+          <TableColumn fx:id="indexCol" editable="false" prefWidth="75.0" sortable="false" reorderable="false" text="No." />
+          <TableColumn fx:id="projectNameCol" editable="false" prefWidth="124.0" sortable="false" reorderable="false" text="Project" />
         </columns>
       </TableView>
    </children>

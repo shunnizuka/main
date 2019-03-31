@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 
 /**
  * UI component to represent projects an employee is working on.
@@ -16,9 +19,9 @@ public class EmployeeProjects extends UiPart<Region>{
 
     public static final String FXML = "EmployeeProjects.fxml";
 
-    private ObservableList<Project> projects;
+    private List<ProjectName> projects;
 
-    private ObservableList<EmployeeProjects.ProjectCell> projectCells;
+    private ObservableList<ProjectCell> projectCells;
 
     @FXML
     private TableView<ProjectCell> projectTableView;
@@ -29,9 +32,9 @@ public class EmployeeProjects extends UiPart<Region>{
     @FXML
     private TableColumn<ProjectCell, String> projectNameCol;
 
-    public EmployeeProjects(ObservableList<Project> projects) {
+    public EmployeeProjects(List<ProjectName> projectNames) {
         super(FXML);
-        this.projects = projects;
+        this.projects = projectNames;
         this.projectCells = getProjectCells(projects);
         projectTableView.setItems(projectCells);
 
@@ -39,7 +42,7 @@ public class EmployeeProjects extends UiPart<Region>{
         projectNameCol.setCellValueFactory(new PropertyValueFactory<>("projectName"));
     }
 
-    private ObservableList<ProjectCell> getProjectCells(ObservableList<Project> projects) {
+    private ObservableList<ProjectCell> getProjectCells(List<ProjectName> projects) {
         ObservableList<ProjectCell> newList = FXCollections.observableArrayList();
         for (int i = 0; i < projects.size(); i++) {
             ProjectCell newCell = new ProjectCell(projects.get(i), i + 1);
@@ -54,10 +57,10 @@ public class EmployeeProjects extends UiPart<Region>{
      */
     public class ProjectCell {
 
-        private Project project;
+        private ProjectName project;
         private Integer index;
 
-        public ProjectCell(Project project, int index) {
+        public ProjectCell(ProjectName project, int index) {
             this.project = project;
             this.index = index;
         }
@@ -67,7 +70,7 @@ public class EmployeeProjects extends UiPart<Region>{
         }
 
         public String getProjectName() {
-            return project.getProjectName().projectName;
+            return project.projectName;
         }
     }
 }

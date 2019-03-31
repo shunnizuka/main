@@ -14,19 +14,19 @@ public class EmployeeDetails {
     private Employee employee;
     private List<Node> employeeDetailsList;
     private EmployeeSummary employeeSummary;
-    //private EmployeeProjects employeeProjects;
+    private EmployeeProjects employeeProjects;
     private EmployeeGitHub gitHubProfile;
 
     public EmployeeDetails(Employee employee) {
         this.employee = employee;
         employeeDetailsList = new ArrayList<>();
         employeeSummary = new EmployeeSummary(employee);
-        //employeeProjects = new EmployeeProjects(employee.getProjects());
+        employeeProjects = new EmployeeProjects(employee.getCurrentProjects());
         gitHubProfile = new EmployeeGitHub(employee);
 
         employeeDetailsList.add(employeeSummary.getRoot());
+        employeeDetailsList.add(employeeProjects.getRoot());
         employeeDetailsList.add(gitHubProfile.getRoot());
-        //employeeDetailsList.add(employeeProjects.getRoot());
     }
 
     public List<Node> getEmployeeDetails() {
