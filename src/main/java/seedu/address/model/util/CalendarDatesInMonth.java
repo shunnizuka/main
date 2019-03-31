@@ -1,9 +1,10 @@
 package seedu.address.model.util;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.HashMap;
+
+import seedu.address.logic.parser.CliSyntax;
 
 /**
  * Contains methods for checking if a input date is valid according to the calendar year.
@@ -51,7 +52,7 @@ public class CalendarDatesInMonth {
      private static final int YEAR_FIELD = 2;
      private static final int FIRST_DAY_MONTH = 1;
      private static final int LAST_MONTH = 12;
-
+     private static final int NEXT = 1;
 
     /**
      * Message constraints.
@@ -110,6 +111,9 @@ public class CalendarDatesInMonth {
      /**
      * This method checks whether a year is leap or not by checking the number of days in the
      * year exceed 365 days. Leap years have 366 days in a year.
+     *
+     * @param year the target year.
+     * @return true is leap year and false otherwise.
      */
    public static boolean isLeapYear(int year){
        Calendar calendar = Calendar.getInstance();
@@ -122,5 +126,49 @@ public class CalendarDatesInMonth {
        }
        return false;
    }
+
+    /**
+     * Used to reformat the flexible date input to DD/MM/YYYY so that input can be checked to see
+     * if it is a valid day in the month.
+     * @param keyword indicates whether this, next or last month.
+     * @param dayOfMonth the target day of the month.
+     *
+     * @return if it is a valid day in the selected month.
+     */
+     public static boolean doesMonthContainDay(String keyword, int dayOfMonth) {
+
+         LocalDateTime localDateTime = LocalDateTime.now();
+         int currentYear = localDateTime.getYear();
+         int currentMonth = localDateTime.getMonth().getValue();
+
+         if(keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
+            return isValidDayInMonth(generateDateFormat(dayOfMonth, currentMonth, currentYear));
+         } else if (keyword.equals(CliSyntax.PREFIX_FUTURE.toString())) {
+            return  isValidDayInMonth(generateDateFormat(dayOfMonth, (currentMonth + NEXT) % LAST_MONTH,
+                currentYear));
+         } else {
+            return  isValidDayInMonth(generateDateFormat(dayOfMonth, (currentMonth - NEXT) % LAST_MONTH,
+                currentYear));
+         }
+     }
+
+    /**
+     * Used to reformat the flexible date input to DD/MM/YYYY
+     * @param day day of month
+     * @param month month of year
+     * @param year year
+     * @return Date formatted in DD/MM/YYYY
+     */
+     private static String generateDateFormat(int day, int month, int year) {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(day);
+        sb.append(DATE_IDENTIFIER);
+        sb.append(month);
+        sb.append(DATE_IDENTIFIER);
+        sb.append(year);
+
+        return sb.toString().trim();
+     }
 
 }

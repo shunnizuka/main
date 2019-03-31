@@ -36,5 +36,16 @@ public class CalendarDatesInMonthTest {
         assertFalse(CalendarDatesInMonth.isValidDayInMonth("29/02/2019"));
         assertFalse(CalendarDatesInMonth.isValidDayInMonth("29/02/2022"));
         assertFalse(CalendarDatesInMonth.isValidDayInMonth("29/02/2035"));
+
+        //testing invalid days in months using alternate methods
+        assertFalse(CalendarDatesInMonth.doesMonthContainDay("this", 31));
+        assertFalse(CalendarDatesInMonth.doesMonthContainDay("this", 0));
+        assertFalse(CalendarDatesInMonth.doesMonthContainDay("next", 0));
+        assertFalse(CalendarDatesInMonth.doesMonthContainDay("last", 32));
+
+        //testing valid days in month using alternate methods
+        assertTrue(CalendarDatesInMonth.doesMonthContainDay("this", 30));
+        assertTrue(CalendarDatesInMonth.doesMonthContainDay("last", 30));
+        assertTrue(CalendarDatesInMonth.doesMonthContainDay("next", 30));
     }
 }

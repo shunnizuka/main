@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.FlexibleDate;
+import seedu.address.model.util.CalendarDatesInMonth;
 
 /**
  * Parses the flexible date input.
@@ -153,6 +154,11 @@ public class FlexibleDateParser {
         int dayOfMonth = Integer.parseInt(numberString);
         if (dayOfMonth < FIRST_DAY_OF_MONTH || dayOfMonth > LAST_DAY_OF_MONTH) {
             throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
+        }
+
+        boolean validDayInMonth = CalendarDatesInMonth.doesMonthContainDay(keyword, dayOfMonth);
+        if(!validDayInMonth) {
+            throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
         }
 
         FlexibleDate date = new FlexibleDate();
