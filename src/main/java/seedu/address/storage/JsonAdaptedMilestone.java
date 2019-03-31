@@ -1,11 +1,12 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectTask;
@@ -65,7 +66,7 @@ class JsonAdaptedMilestone {
         if (!Milestone.isValidMilestone(milestone, date)) {
             throw new IllegalValueException(Milestone.MESSAGE_CONSTRAINTS);
         }
-        return new Milestone(milestone, date);
+        return new Milestone(milestone, date, modelProjectTasks);
     }
 
 }
