@@ -4,9 +4,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.AddTaskToCommand.MESSAGE_ADD_PROJECT_TASK_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT_MILESTONE;
+import static seedu.address.testutil.TypicalMilestones.TYPICAL_MILESTONE_START;
 
 import org.junit.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 
@@ -26,14 +30,39 @@ public class AddTaskToCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute() {
+    public void execute_validProjectTaskNameValidIndex_success() {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
         ProjectName projectName = targetProject.getProjectName();
-        ProjectTaskName taskName = new ProjectTaskName("Do something");
-        ProjectTask task = new ProjectTask(taskName);
-        Index validIndex = Index.fromOneBased(targetProject.getMilestones().size());
-        assertCommandFailure(new AddTaskToCommand(projectName, task, validIndex), model, new CommandHistory(),
-                String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, task, projectName));
+        ProjectTask task = new ProjectTask(new ProjectTaskName("Do something"));
+        AddTaskToCommand addTaskToCommand = new AddTaskToCommand(projectName, task,
+                INDEX_FIRST_PROJECT_MILESTONE);
+        String expectedMessage = String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, task,
+                INDEX_FIRST_PROJECT_MILESTONE.getOneBased(), projectName);
+
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
+        expectedModel.addProjectTaskTo(targetProject, TYPICAL_MILESTONE_START, task);
+        expectedModel.commitPocketProject();
+
+        assertCommandSuccess(addTaskToCommand, model, commandHistory, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidProjectName_throwsCommandException() {
+        AddTaskToCommand addTaskToCommand = new AddTaskToCommand(new ProjectName("INVALID"),
+                new ProjectTask(new ProjectTaskName("Something happened!")), INDEX_FIRST_PROJECT_MILESTONE);
+        assertCommandFailure(addTaskToCommand, model, commandHistory,
+        Messages.MESSAGE_INVALID_PROJECT_NAME);
+    }
+
+    @Test
+    public void execute_invalidIndexValidProjectName_throwsCommandException() {
+        Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
+        Index outOfBoundIndex = Index.fromOneBased(targetProject.getMilestones().size() + 1);
+        AddTaskToCommand addTaskToCommand = new AddTaskToCommand(targetProject.getProjectName(),
+                new ProjectTask(new ProjectTaskName("Something happened!")), outOfBoundIndex);
+
+        assertCommandFailure(addTaskToCommand, model, commandHistory,
+        Messages.MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX);
     }
 
     @Test

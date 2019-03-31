@@ -22,6 +22,7 @@ import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
@@ -202,6 +203,12 @@ public class ModelManager implements Model {
     public void addUserStoryTo(Project targetProject, UserStory targetUserStory) {
         versionedPocketProject.addUserStoryTo(targetProject, targetUserStory);
     }
+
+    @Override
+    public void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task) {
+        versionedPocketProject.addProjectTaskTo(targetProject, milestone, task);
+    }
+
 
 
 

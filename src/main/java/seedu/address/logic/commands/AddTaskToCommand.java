@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
@@ -25,7 +26,7 @@ public class AddTaskToCommand extends AddToCommand {
             + ": adds the specified project task to the list of tasks in a project's milestone specified by index.\n"
             + "Example: " + COMMAND_WORD + " Apollo projecttask n/Create feature XYZ m/1";
 
-    public static final String MESSAGE_ADD_PROJECT_TASK_SUCCESS = "Added %1$s to %2$s in %3$s";
+    public static final String MESSAGE_ADD_PROJECT_TASK_SUCCESS = "Added %1$s to milestone %2$d in %3$s";
     public static final String MESSAGE_DUPLICATE_PROJECT_TASK =
             "This project task already exists in this milestone.";
 
@@ -62,7 +63,7 @@ public class AddTaskToCommand extends AddToCommand {
 
         model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, taskToAdd,
-        targetMilestone.getMilestone(), targetProject.getProjectName()));
+                targetIndex.getOneBased(), targetProject.getProjectName()));
     }
 
     @Override

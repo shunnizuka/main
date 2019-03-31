@@ -13,7 +13,7 @@ import seedu.address.model.project.ProjectTaskStatus;
  */
 class JsonAdaptedProjectTask {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "User story's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project task's %s field is missing!";
 
     private final String taskName;
     private final String taskStatus;
