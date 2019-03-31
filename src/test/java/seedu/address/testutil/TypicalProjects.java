@@ -17,7 +17,7 @@ public class TypicalProjects {
 
     public static final Project PROJECT_ALICE = new ProjectBuilder().withProjectName("Project Alice hey")
             .withClient("Dehui").withDeadline("11/02/2019")
-            .withDescrption("An application for Alice software")
+            .withDescrption("An application for Alice software hello")
             .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                     TypicalMilestones.TYPICAL_MILESTONE_END))
@@ -25,14 +25,14 @@ public class TypicalProjects {
 
 
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
-        .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson")
+        .withClient("Jeff software").withDeadline("23/01/2011").withDescrption("An application for Benson")
         .withEmployees(Arrays.asList(TypicalEmployees.CARL, TypicalEmployees.DANIEL))
         .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
             TypicalMilestones.TYPICAL_MILESTONE_END))
         .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_SECOND_MANAGER)).build();
 
     public static final Project PROJECT_CARL = new ProjectBuilder().withProjectName("Project Carl hey")
-        .withClient("Darryl").withDeadline("12/12/2012").withDescrption("An application for Carl")
+        .withClient("Darryl").withDeadline("12/12/2012").withDescrption("An application for Carl hello")
         .withEmployees(Arrays.asList(TypicalEmployees.DANIEL, TypicalEmployees.ELLE)).build();
 
     public static final Project PROJECT_DANIEL = new ProjectBuilder().withProjectName("Project Daniel")

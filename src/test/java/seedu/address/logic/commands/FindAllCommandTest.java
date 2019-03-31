@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
+import static seedu.address.testutil.TypicalProjects.PROJECT_BENSON;
 import static seedu.address.testutil.TypicalProjects.PROJECT_CARL;
 import static seedu.address.testutil.TypicalProjects.PROJECT_DANIEL;
 import static seedu.address.testutil.TypicalProjects.PROJECT_GEORGE;
@@ -67,13 +68,13 @@ public class FindAllCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleProjectsFound() {
-        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 4);
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 5);
         ProjectContainsKeywordsPredicate predicate = preparePredicate(
             "hey FASS software");
         FindAllCommand command = new FindAllCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROJECT_ALICE, PROJECT_CARL, PROJECT_DANIEL, PROJECT_GEORGE),
+        assertEquals(Arrays.asList(PROJECT_ALICE, PROJECT_BENSON, PROJECT_CARL, PROJECT_DANIEL, PROJECT_GEORGE),
             model.getFilteredProjectList());
     }
 
