@@ -13,6 +13,7 @@ import seedu.address.model.employee.Employee;
 public class EmployeeCard extends UiPart<Region> {
 
     private static final String FXML = "EmployeeListCard.fxml";
+    private static final String GITHUB_PREFIX = "GitHub: ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,16 +27,22 @@ public class EmployeeCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+
     @FXML
     private Label name;
+
     @FXML
     private Label id;
+
     @FXML
     private Label phone;
-    @FXML
-    private Label github;
+
     @FXML
     private Label email;
+
+    @FXML
+    private Label github;
+
     @FXML
     private FlowPane skills;
 
@@ -44,10 +51,14 @@ public class EmployeeCard extends UiPart<Region> {
         this.employee = employee;
         id.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
-        phone.setText(employee.getPhone().value);
         github.setText(employee.getGithub().value);
+        phone.setText(employee.getPhone().value);
         email.setText(employee.getEmail().value);
-        employee.getSkills().forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));
+        employee.getSkills().forEach(skill -> {
+            Label label = new Label(skill.skillName);
+            label.getStyleClass().add(SideTabPanel.getSkillLabelColor(skill.skillName));
+            skills.getChildren().add(label);
+        });
     }
 
     @Override
