@@ -38,19 +38,19 @@ import static seedu.address.testutil.TypicalFlexibleDateInputs.YESTERDAY;
 
 import java.time.format.DateTimeFormatter;
 
-import org.junit.rules.ExpectedException;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import seedu.address.model.project.Deadline;
 import seedu.address.model.util.FlexibleDate;
 
 public class FlexibleDateParserTest {
 
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private final FlexibleDateParser parser = new FlexibleDateParser();
 
