@@ -11,7 +11,6 @@ public class ProjectTaskStatus {
 
 
     public static final String MESSAGE_CONSTRAINTS = "Task statuses can only be set to ongoing or complete";
-
     public static final String STATUS_COMPLETE = "complete";
     public static final String STATUS_ONGOING = "ongoing";
 

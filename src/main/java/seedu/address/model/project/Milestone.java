@@ -1,11 +1,11 @@
 package seedu.address.model.project;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+
 import javafx.collections.ObservableList;
 
 /**
@@ -70,6 +70,13 @@ public class Milestone {
      */
     public static boolean isValidMilestoneString(String info) {
         return !info.trim().isEmpty();
+    }
+
+    /**
+     * Adds the given project task to this milestone.
+     */
+    public void addTask(ProjectTask task) {
+        this.projectTasks.add(task);
     }
 
     /**

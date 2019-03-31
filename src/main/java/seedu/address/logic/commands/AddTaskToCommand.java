@@ -1,11 +1,16 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.project.Milestone;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 
@@ -20,9 +25,9 @@ public class AddTaskToCommand extends AddToCommand {
             + ": adds the specified project task to the list of tasks in a project's milestone specified by index.\n"
             + "Example: " + COMMAND_WORD + " Apollo projecttask n/Create feature XYZ m/1";
 
-    public static final String MESSAGE_ADD_PROJECT_TASK_SUCCESS = "Added %1$s to %2$s";
+    public static final String MESSAGE_ADD_PROJECT_TASK_SUCCESS = "Added %1$s to %2$s in %3$s";
     public static final String MESSAGE_DUPLICATE_PROJECT_TASK =
-            "This project task already exists in this project milestone.";
+            "This project task already exists in this milestone.";
 
     private final Index targetIndex;
     private final ProjectName targetProjectName;
@@ -37,28 +42,27 @@ public class AddTaskToCommand extends AddToCommand {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        throw new CommandException(String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, taskToAdd, targetProjectName));
-        /*requireNonNull(model);
+        requireNonNull(model);
 
-        Project targetProject = null;
-        List<Project> projectList = model.getProjectList();
-        for (Project p: projectList) {
-            if (p.hasProjectName(targetProjectName)) {
-                targetProject = p;
-            }
-        }
+        Project targetProject = model.getProjectWithName(targetProjectName);
         if (targetProject == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
 
         List<Milestone> milestoneList = targetProject.getMilestones();
-        if (milestoneList.contains(milestoneToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
+        if (targetIndex.getZeroBased() >= milestoneList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX);
         }
-        targetProject.addMilestone(milestoneToAdd);
+
+        Milestone targetMilestone = milestoneList.get(targetIndex.getZeroBased());
+        if (targetMilestone.getProjectTaskList().contains(taskToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PROJECT_TASK);
+        }
+        targetMilestone.addTask(taskToAdd);
+
         model.commitPocketProject();
-        return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, taskToAdd,
-        targetProject.getProjectName()));*/
+        return new CommandResult(String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, taskToAdd,
+        targetMilestone.getMilestone(), targetProject.getProjectName()));
     }
 
     @Override

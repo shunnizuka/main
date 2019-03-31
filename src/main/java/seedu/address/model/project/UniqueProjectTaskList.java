@@ -104,8 +104,8 @@ public class UniqueProjectTaskList implements Iterable<ProjectTask> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-        || (other instanceof UniqueProjectTaskList // instanceof handles nulls
-        && internalList.equals(((UniqueProjectTaskList) other).internalList));
+            || (other instanceof UniqueProjectTaskList // instanceof handles nulls
+            && internalList.equals(((UniqueProjectTaskList) other).internalList));
     }
 
     @Override
@@ -113,8 +113,9 @@ public class UniqueProjectTaskList implements Iterable<ProjectTask> {
         return internalList.hashCode();
     }
 
+
     /**
-     * Returns true if {@code Projects} contains only unique Projects.
+     * Returns true if {@code projectTasks} contains only unique Project Tasks.
      */
     private boolean projectTasksAreUnique(List<ProjectTask> projectTasks) {
         for (int i = 0; i < projectTasks.size() - 1; i++) {

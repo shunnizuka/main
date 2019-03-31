@@ -72,7 +72,7 @@ public class ProjectTask {
 
         ProjectTask otherTask = (ProjectTask) other;
         return otherTask.getTaskName().equals(getTaskName())
-        && otherTask.getTaskStatus().equals(getTaskStatus());
+            && otherTask.getTaskStatus().equals(getTaskStatus());
     }
 
     @Override
