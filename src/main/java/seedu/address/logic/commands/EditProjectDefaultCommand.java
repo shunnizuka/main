@@ -34,6 +34,7 @@ public class EditProjectDefaultCommand extends EditProjectCommand {
         + "[" + PREFIX_DESCRIPTION + "An application to manage projects] ";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "Project is not edited";
 
     private final ProjectName projectName;
     private final EditProjectDescriptor editProjectDescriptor;
@@ -47,7 +48,7 @@ public class EditProjectDefaultCommand extends EditProjectCommand {
         requireNonNull(editProjectDescriptor);
 
         this.projectName = projectName;
-        this.editProjectDescriptor = editProjectDescriptor;
+        this.editProjectDescriptor = new EditProjectDescriptor(editProjectDescriptor);
     }
 
     @Override
@@ -67,7 +68,7 @@ public class EditProjectDefaultCommand extends EditProjectCommand {
 
         Project editedProject = createEditedProject(projectToEdit, editProjectDescriptor);
 
-        if (!editedProject.equals(projectToEdit) && model.hasProject(editedProject)) {
+        if (!editedProject.isSameProject(projectToEdit) && model.hasProject(editedProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
 

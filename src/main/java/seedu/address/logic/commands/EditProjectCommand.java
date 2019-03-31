@@ -5,7 +5,7 @@ package seedu.address.logic.commands;
  */
 public abstract class EditProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "editproj";
+    public static final String COMMAND_WORD = "editproject";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME milestone/userstory ARGUMENTS"
         + " or " + EditProjectDefaultCommand.MESSAGE_USAGE
