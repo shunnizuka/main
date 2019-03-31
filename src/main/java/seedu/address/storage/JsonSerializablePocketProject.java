@@ -27,7 +27,7 @@ class JsonSerializablePocketProject {
 
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
-    private final List<JsonAdaptedProject> completeProjects = new ArrayList<>();
+    private final List<JsonAdaptedProject> completedProjects = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializablePocketProject} with the given employees and projects.
@@ -36,10 +36,10 @@ class JsonSerializablePocketProject {
     public JsonSerializablePocketProject(
             @JsonProperty("employees") List<JsonAdaptedEmployee> employees,
             @JsonProperty("projects") List<JsonAdaptedProject> projects,
-            @JsonProperty("completedProjects") List<JsonAdaptedProject> completeProjects) {
+            @JsonProperty("completedProjects") List<JsonAdaptedProject> completedProjects) {
         this.employees.addAll(employees);
         this.projects.addAll(projects);
-        this.completeProjects.addAll(completeProjects);
+        this.completedProjects.addAll(completedProjects);
     }
 
     /**
@@ -50,7 +50,7 @@ class JsonSerializablePocketProject {
     public JsonSerializablePocketProject(ReadOnlyPocketProject source) {
         employees.addAll(source.getEmployeeList().stream().map(JsonAdaptedEmployee::new).collect(Collectors.toList()));
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
-        completeProjects.addAll(source.getCompletedProjectList().stream()
+        completedProjects.addAll(source.getCompletedProjectList().stream()
                 .map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
 
@@ -76,7 +76,7 @@ class JsonSerializablePocketProject {
             }
             pocketProject.addProject(project);
         }
-        for (JsonAdaptedProject jsonAdaptedProject : completeProjects) {
+        for (JsonAdaptedProject jsonAdaptedProject : completedProjects) {
             Project project = jsonAdaptedProject.toModelType();
             if (pocketProject.hasCompletedProject(project)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_COMPLETED_PROJECT);
