@@ -150,8 +150,7 @@ public class Employee {
             && otherEmployee.getPhone().equals(getPhone())
             && otherEmployee.getEmail().equals(getEmail())
             && otherEmployee.getGithub().equals(getGithub())
-            && otherEmployee.getSkills().equals(getSkills())
-            && otherEmployee.getCurrentProjects().equals(getCurrentProjects());
+            && otherEmployee.getSkills().equals(getSkills());
     }
 
     @Override
@@ -172,8 +171,6 @@ public class Employee {
             .append(getGithub())
             .append(" Skills: ");
         getSkills().forEach(builder::append);
-        builder.append("\nprojects: ");
-        getCurrentProjects().forEach(builder::append);
         return builder.toString();
     }
 
