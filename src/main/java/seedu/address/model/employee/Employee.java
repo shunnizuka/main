@@ -172,6 +172,8 @@ public class Employee {
             .append(getGithub())
             .append(" Skills: ");
         getSkills().forEach(builder::append);
+        builder.append("\nprojects: ");
+        getCurrentProjects().forEach(builder::append);
         return builder.toString();
     }
 

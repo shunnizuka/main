@@ -75,6 +75,7 @@ public class PocketProject implements ReadOnlyPocketProject {
         requireNonNull(newData);
         List<Employee> employeeList = new ArrayList<>();
         List<Project> projectList = new ArrayList<>();
+        List<Project> completedProjectList = new ArrayList<>();
         for (Employee e: newData.getEmployeeList()) {
             employeeList.add(e.clone());
         }
