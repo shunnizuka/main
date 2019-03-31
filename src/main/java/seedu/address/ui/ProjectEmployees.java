@@ -53,7 +53,7 @@ public class ProjectEmployees extends UiPart<Region> {
     private ObservableList<ProjectEmployees.EmployeeCell> getEmployeeCells(ObservableList<Employee> employees) {
         ObservableList<ProjectEmployees.EmployeeCell> newList = FXCollections.observableArrayList();
         for (int i = 0; i < employees.size(); i++) {
-           ProjectEmployees.EmployeeCell newCell = new ProjectEmployees.EmployeeCell(employees.get(i), i + 1);
+            ProjectEmployees.EmployeeCell newCell = new ProjectEmployees.EmployeeCell(employees.get(i), i + 1);
             newList.add(newCell);
         }
         return newList;

@@ -14,7 +14,7 @@ import seedu.address.model.project.ProjectName;
 /**
  * UI component to represent projects an employee is working on.
  */
-public class EmployeeProjects extends UiPart<Region>{
+public class EmployeeProjects extends UiPart<Region> {
 
     public static final String FXML = "EmployeeProjects.fxml";
 

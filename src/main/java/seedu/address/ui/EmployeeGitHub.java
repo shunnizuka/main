@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.GitHubAccount;
 
 /**
