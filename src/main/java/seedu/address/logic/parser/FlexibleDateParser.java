@@ -5,8 +5,9 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.util.FlexibleDate;
 import seedu.address.model.util.CalendarDatesInMonth;
+import seedu.address.model.util.FlexibleDate;
+
 
 /**
  * Parses the flexible date input.
@@ -31,7 +32,7 @@ public class FlexibleDateParser {
     private static final int FIRST_DAY_OF_WEEK = 1;
     private static final int LAST_DAY_OF_WEEK = 7;
     private static final int FIRST_DAY_OF_MONTH = 1;
-    private static final int LAST_DAY_OF_MONTH = 31;     //TODO Need to check which month
+    private static final int LAST_DAY_OF_MONTH = 31;
 
     private static final int NEXT = 1;
     private static final int LAST = -1;
@@ -82,20 +83,20 @@ public class FlexibleDateParser {
     private static String parseKeyword(String keyword, String secondPart) throws ParseException {
 
         final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(secondPart.trim());
-            if (!matcher.matches()) {
-                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
-            }
+        if (!matcher.matches()) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
 
-            final String weekOrMonth = matcher.group("keyword").toLowerCase();
-            final String arguments = matcher.group("arguments");
+        final String weekOrMonth = matcher.group("keyword").toLowerCase();
+        final String arguments = matcher.group("arguments");
 
-            if (weekOrMonth.equals(CliSyntax.PREFIX_WEEK.toString())) {
-                return formatWeekDate(keyword, arguments.trim());
-            } else if (weekOrMonth.equals(CliSyntax.PREFIX_MONTH.toString())) {
-                return formatMonthDate(keyword, arguments.trim());
-            } else {
-                throw new ParseException(FlexibleDate.FLEXI_DATE_MESSAGE_CONSTRAINTS);
-            }
+        if (weekOrMonth.equals(CliSyntax.PREFIX_WEEK.toString())) {
+            return formatWeekDate(keyword, arguments.trim());
+        } else if (weekOrMonth.equals(CliSyntax.PREFIX_MONTH.toString())) {
+            return formatMonthDate(keyword, arguments.trim());
+        } else {
+            throw new ParseException(FlexibleDate.FLEXI_DATE_MESSAGE_CONSTRAINTS);
+        }
     }
 
     private static boolean isFlexibleInput(String flexibleDateInput) {
@@ -117,18 +118,26 @@ public class FlexibleDateParser {
         if (days != DAY_ZERO) {
             return date.dateNumDaysLater(days);
         } else {
-             return date.currentDate();
+            return date.currentDate();
         }
     }
 
+    /**
+     * Formats date of week if user choose with reference to this, next or last week.
+     * @param keyword this, next or last.
+     * @param numberString target day of the week.
+     * @return formatted string in the form DD/MM/YYYY
+     * @throws ParseException if the user input does not conform the expected format.
+     */
+
     private static String formatWeekDate(String keyword, String numberString) throws ParseException {
 
-        if(!isValidInput(numberString)) {
+        if (!isValidInput(numberString)) {
             throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
         int dayOfWeek = Integer.parseInt(numberString);
-        if(dayOfWeek < FIRST_DAY_OF_WEEK || dayOfWeek > LAST_DAY_OF_WEEK) {
+        if( dayOfWeek < FIRST_DAY_OF_WEEK || dayOfWeek > LAST_DAY_OF_WEEK) {
             throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
@@ -145,6 +154,13 @@ public class FlexibleDateParser {
         }
     }
 
+    /**
+     * Formats date if user choose with reference to this, next or last month.
+     * @param keyword this, next or last.
+     * @param numberString target day of the week.
+     * @return formatted string in the form DD/MM/YYYY
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     private static String formatMonthDate(String keyword, String numberString) throws ParseException {
 
         if (!isValidInput(numberString)) {
@@ -157,7 +173,7 @@ public class FlexibleDateParser {
         }
 
         boolean validDayInMonth = CalendarDatesInMonth.doesMonthContainDay(keyword, dayOfMonth);
-        if(!validDayInMonth) {
+        if (!validDayInMonth) {
             throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
         }
 
