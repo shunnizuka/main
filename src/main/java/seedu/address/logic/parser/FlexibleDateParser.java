@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.FlexibleDate;
+import seedu.address.model.util.FlexibleDate;
 import seedu.address.model.util.CalendarDatesInMonth;
 
 /**

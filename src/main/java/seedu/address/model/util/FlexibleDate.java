@@ -1,4 +1,4 @@
-package seedu.address.model.project;
+package seedu.address.model.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

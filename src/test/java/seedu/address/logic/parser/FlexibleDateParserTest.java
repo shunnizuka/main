@@ -36,7 +36,7 @@ import org.junit.rules.ExpectedException;
 
 import java.time.format.DateTimeFormatter;
 
-import seedu.address.model.project.FlexibleDate;
+import seedu.address.model.util.FlexibleDate;
 
 public class FlexibleDateParserTest {
 
@@ -148,7 +148,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(NEXT_MONTH_START);
 
-        assertEquals(currentDate.nextWeekDate(START_MONTH), userInput);
+        assertEquals(currentDate.nextMonthDate(START_MONTH), userInput);
     }
 
     @Test
@@ -156,7 +156,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(NEXT_MONTH_MID);
 
-        assertEquals(currentDate.nextWeekDate(MID_MONTH), userInput);
+        assertEquals(currentDate.nextMonthDate(MID_MONTH), userInput);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class FlexibleDateParserTest {
         FlexibleDate currentDate = new FlexibleDate();
         String userInput = parser.parseFlexibleDate(NEXT_MONTH_END);
 
-        assertEquals(currentDate.nextWeekDate(END_MONTH), userInput);
+        assertEquals(currentDate.nextMonthDate(END_MONTH), userInput);
     }
 
     @Test
