@@ -25,6 +25,7 @@ import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
+import seedu.address.model.util.CalendarDatesInMonth;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -184,8 +185,13 @@ public class ParserUtil {
         String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate).trim();
 
         if (!Deadline.isValidDate(formattedDate)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS); //TODO NEED to check message constraints
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
+
+        if (!CalendarDatesInMonth.isValidDayInMonth(formattedDate)) {
+            throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
+        }
+
         return new Deadline(formattedDate);
     }
 

@@ -55,8 +55,8 @@ public class CalendarDatesInMonth {
     /**
      * Message constraints.
      */
-    private static final String DAY_MONTH_CONSTRAINTS = "The selected month does not have the chosen day.";
-    private static final String MONTH_CONSTRAINTS = "The selected month does not exist in the calendar.";
+    public static final String DAY_MONTH_CONSTRAINTS = "The selected month does not have the chosen day or "
+        + "the selected month does not exist in the calendar.";
 
     /**
      * Static initializer for Calendar Dates In Month
@@ -78,7 +78,7 @@ public class CalendarDatesInMonth {
         daysInMonth.put(DECEMBER, DEC_MAX_DAYS);
     }
 
-    public static boolean isValidDayInMonth (String dateInput) throws Exception {
+    public static boolean isValidDayInMonth (String dateInput) {
 
         String[] date = dateInput.split("/");
 
@@ -87,17 +87,17 @@ public class CalendarDatesInMonth {
         int yearField = Integer.parseInt(date[YEAR_FIELD].trim());
 
         if (monthField < FIRST_MONTH || monthField > LAST_MONTH) {
-            throw new ParseException(MONTH_CONSTRAINTS);
+            return false;
         }
 
         int maxDays = daysInMonth.get(monthField);
         if(dayField > maxDays) {
-            throw new ParseException(DAY_MONTH_CONSTRAINTS);
+            return false;
         }
 
         if(monthField == FEBRUARY && dayField == FEB_MAX_DAYS) {
             if(!isLeapYear(yearField)) {
-                throw new ParseException(DAY_MONTH_CONSTRAINTS);
+                return false;
             }
         }
 
