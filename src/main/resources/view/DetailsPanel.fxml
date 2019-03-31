@@ -5,17 +5,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane fx:id="borderPanel" minHeight="400" minWidth="600" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="detailsPanel" fx:id="borderPanel" minHeight="400" minWidth="600" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <Button fx:id="prevBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="77.0" text="Previous" BorderPane.alignment="CENTER">
+      <Button id="prevBtn" fx:id="prevBtn" mnemonicParsing="false" prefHeight="70.0" prefWidth="78.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="5.0" />
+            <Insets left="10.0" />
          </BorderPane.margin></Button>
    </left>
    <right>
-      <Button fx:id="nextBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="77.0" text="Next" BorderPane.alignment="CENTER">
+      <Button id="nextBtn" fx:id="nextBtn" mnemonicParsing="false" prefHeight="70.0" prefWidth="78.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets right="5.0" />
+            <Insets right="10.0" />
          </BorderPane.margin></Button>
    </right>
    <center>
