@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_MONTH;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_WEEK;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.INVALID_MISSING_DAY;
@@ -241,18 +242,4 @@ public class FlexibleDateParserTest {
         String expectedMessage = String.format(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         assertParseFailure(parser, INVALID_MISSING_DAY, expectedMessage);
     }
-
-    /**
-     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
-     * equals to {@code expectedMessage}.
-     */
-    public static void assertParseFailure(FlexibleDateParser parser, String userInput, String expectedMessage) {
-        try {
-            parser.parseFlexibleDate(userInput);
-            throw new AssertionError("The expected ParseException was not thrown.");
-        } catch (ParseException pe) {
-            assertEquals(expectedMessage, pe.getMessage());
-        }
-    }
-
 }
