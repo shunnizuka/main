@@ -193,7 +193,8 @@ public class AddProjectCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void completeProject(Project project) { throw new AssertionError("This method should not be called."); }
+        public void completeProject(Project project) {
+            throw new AssertionError("This method should not be called."); }
         @Override
         public boolean hasProject(Project project) {
             throw new AssertionError("This method should not be called.");
