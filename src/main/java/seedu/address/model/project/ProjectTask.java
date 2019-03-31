@@ -29,26 +29,6 @@ public class ProjectTask {
         this.status = status;
     }
 
-
-    /**
-     * Returns true if both project tasks have the same name and status.
-     * This defines a stronger notion of equality between two project tasks.
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof ProjectTask)) {
-            return false;
-        }
-
-        ProjectTask otherTask = (ProjectTask) other;
-        return otherTask.getTaskName().equals(getTaskName())
-            && otherTask.getTaskStatus().equals(getTaskStatus());
-    }
-
     public ProjectTaskName getTaskName() {
         return name;
     }
@@ -74,6 +54,25 @@ public class ProjectTask {
      */
     public ProjectTask clone() {
         return new ProjectTask(getTaskName().clone(), getTaskStatus().clone());
+    }
+
+    /**
+     * Returns true if both project tasks have the same name and status.
+     * This defines a stronger notion of equality between two project tasks.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ProjectTask)) {
+            return false;
+        }
+
+        ProjectTask otherTask = (ProjectTask) other;
+        return otherTask.getTaskName().equals(getTaskName())
+        && otherTask.getTaskStatus().equals(getTaskStatus());
     }
 
     @Override

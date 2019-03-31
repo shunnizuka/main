@@ -2,9 +2,11 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import javafx.collections.ObservableList;
 
 /**
  * Milestone achieved in the project timeline.
@@ -22,16 +24,21 @@ public class Milestone {
 
     public final String milestone;
     public final String date;
-
+    public final UniqueProjectTaskList projectTasks;
 
 
     public Milestone(String milestone, String date) {
-        requireNonNull(milestone);
+        this(milestone, date, new UniqueProjectTaskList());
+    }
+
+    public Milestone(String milestone, String date, UniqueProjectTaskList projectTasks) {
+        requireAllNonNull(milestone, date, projectTasks);
         checkArgument(isValidMilestoneString(milestone), MESSAGE_INVALID_STRING);
-        requireNonNull(date);
         checkArgument(isValidMilestoneDate(date), MESSAGE_INVALID_DATE);
+
         this.milestone = milestone;
         this.date = date;
+        this.projectTasks = projectTasks;
     }
 
     /**
@@ -69,7 +76,8 @@ public class Milestone {
      * Returns a clone of this Milestone object.
      */
     public Milestone clone() {
-        return new Milestone(this.milestone, this.date);
+
+        return new Milestone(this.milestone, this.date, this.projectTasks.clone());
     }
 
     public String getMilestone() {
@@ -80,12 +88,17 @@ public class Milestone {
         return date;
     }
 
+    public ObservableList<ProjectTask> getProjectTaskList() {
+        return this.projectTasks.asUnmodifiableObservableList();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Milestone // instanceof handles nulls
                 && milestone.equals(((Milestone) other).milestone)
-                && date.equals(((Milestone) other).date)); // state check
+                && date.equals(((Milestone) other).date)
+                && projectTasks.equals(((Milestone) other).projectTasks)); // state check
     }
     @Override
     public String toString() {

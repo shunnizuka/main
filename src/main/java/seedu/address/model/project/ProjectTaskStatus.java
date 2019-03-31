@@ -41,7 +41,7 @@ public class ProjectTaskStatus {
      * Returns true if given string is valid for task status
      */
     public static boolean isValidTaskStatus(String status) {
-        return STATUS_COMPLETE .equalsIgnoreCase(status)|| STATUS_ONGOING.equalsIgnoreCase(status);
+        return STATUS_COMPLETE.equalsIgnoreCase(status) || STATUS_ONGOING.equalsIgnoreCase(status);
     }
 
     /**
