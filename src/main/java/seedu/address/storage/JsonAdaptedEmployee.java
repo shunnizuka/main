@@ -15,6 +15,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -29,6 +30,7 @@ class JsonAdaptedEmployee {
     private final String email;
     private final String github;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
+    private final List<JsonAdaptedProjectName> projectNames = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEmployee} with the given employee details.
@@ -36,13 +38,17 @@ class JsonAdaptedEmployee {
     @JsonCreator
     public JsonAdaptedEmployee(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                @JsonProperty("email") String email, @JsonProperty("github") String github,
-                               @JsonProperty("skills") List<JsonAdaptedSkill> skills) {
+                               @JsonProperty("skills") List<JsonAdaptedSkill> skills,
+                               @JsonProperty("projectNames") List<JsonAdaptedProjectName> projectNames) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.github = github;
         if (skills != null) {
             this.skills.addAll(skills);
+        }
+        if (projectNames != null) {
+            this.projectNames.addAll(projectNames);
         }
     }
 
@@ -57,6 +63,8 @@ class JsonAdaptedEmployee {
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
+        projectNames.addAll(source.getCurrentProjects().stream()
+                .map(JsonAdaptedProjectName::new).collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +76,10 @@ class JsonAdaptedEmployee {
         final List<Skill> employeeSkills = new ArrayList<>();
         for (JsonAdaptedSkill skill : skills) {
             employeeSkills.add(skill.toModelType());
+        }
+        final List<ProjectName> modelProjectNames = new ArrayList<>();
+        for (JsonAdaptedProjectName pn: projectNames) {
+            modelProjectNames.add(pn.toModelType());
         }
 
         if (name == null) {
@@ -104,7 +116,7 @@ class JsonAdaptedEmployee {
         final GitHubAccount modelGitHubAccount = new GitHubAccount(github);
 
         final Set<Skill> modelSkills = new HashSet<>(employeeSkills);
-        return new Employee(modelName, modelPhone, modelEmail, modelGitHubAccount, modelSkills);
+        return new Employee(modelName, modelPhone, modelEmail, modelGitHubAccount, modelSkills, modelProjectNames);
     }
 
 }
