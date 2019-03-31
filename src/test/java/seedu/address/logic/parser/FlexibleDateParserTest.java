@@ -1,12 +1,9 @@
 package seedu.address.logic.parser;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import java.time.format.DateTimeFormatter;
 
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_MONTH;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.END_WEEK;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.INVALID_MISSING_DAY;
@@ -39,6 +36,12 @@ import static seedu.address.testutil.TypicalFlexibleDateInputs.TODAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.TOMORROW;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.YESTERDAY;
 
+import java.time.format.DateTimeFormatter;
+
+import org.junit.rules.ExpectedException;
+import org.junit.Rule;
+import org.junit.Test;
+
 import seedu.address.model.project.Deadline;
 import seedu.address.model.util.FlexibleDate;
 
@@ -47,9 +50,9 @@ public class FlexibleDateParserTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final FlexibleDateParser parser = new FlexibleDateParser();
-
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    private final FlexibleDateParser parser = new FlexibleDateParser();
 
     @Test
     public void parseFlexibleDate_today() throws Exception {
