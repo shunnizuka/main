@@ -3,19 +3,20 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Name of the task in the Pocket Project.
+ * Name of the project task in the Pocket Project.
  */
 
-public class TaskName {
+public class ProjectTaskName {
 
-    public static final String MESSAGE_CONSTRAINTS = "Task names should not be empty or consisting of only spaces.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Project task names should not be empty or consisting of only spaces.";
 
     public final String taskName;
 
     /**
-     * Constructor for TaskName.
+     * Constructor for ProjectTaskName.
      */
-    public TaskName(String taskName) {
+    public ProjectTaskName(String taskName) {
         requireNonNull(taskName);
         this.taskName = taskName;
     }
@@ -30,8 +31,8 @@ public class TaskName {
     /**
      * Returns a clone of this TaskName object.
      */
-    public TaskName clone() {
-        return new TaskName(this.taskName);
+    public ProjectTaskName clone() {
+        return new ProjectTaskName(this.taskName);
     }
 
     @Override
@@ -42,8 +43,8 @@ public class TaskName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof TaskName // instanceof handles nulls
-            && taskName.equals(((TaskName) other).taskName)); // state check
+            || (other instanceof ProjectTaskName // instanceof handles nulls
+            && taskName.equals(((ProjectTaskName) other).taskName)); // state check
     }
 
     @Override

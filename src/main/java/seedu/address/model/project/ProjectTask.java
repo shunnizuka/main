@@ -3,26 +3,26 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a task stored in a project milestone.
+ * Represents a project task stored in a project milestone.
  */
-public class Task {
+public class ProjectTask {
 
-    private TaskStatus status;
-    private TaskName name;
+    private ProjectTaskStatus status;
+    private ProjectTaskName name;
 
     /**
-     * Default constructor for a task
+     * Default constructor for a project task
      */
-    public Task(TaskName name) {
+    public ProjectTask(ProjectTaskName name) {
         requireNonNull(name);
         this.name = name;
-        this.status = new TaskStatus();
+        this.status = new ProjectTaskStatus();
     }
 
     /**
-     * Constructor for a task specifying task status.
+     * Constructor for a project task specifying project task status.
      */
-    public Task(TaskName name, TaskStatus status) {
+    public ProjectTask(ProjectTaskName name, ProjectTaskStatus status) {
         requireNonNull(name);
         this.name = name;
         requireNonNull(status);
@@ -32,8 +32,8 @@ public class Task {
 
 
     /**
-     * Returns true if both tasks have the same name and status.
-     * This defines a stronger notion of equality between two tasks.
+     * Returns true if both project tasks have the same name and status.
+     * This defines a stronger notion of equality between two project tasks.
      */
     @Override
     public boolean equals(Object other) {
@@ -41,20 +41,20 @@ public class Task {
             return true;
         }
 
-        if (!(other instanceof Task)) {
+        if (!(other instanceof ProjectTask)) {
             return false;
         }
 
-        Task otherTask = (Task) other;
+        ProjectTask otherTask = (ProjectTask) other;
         return otherTask.getTaskName().equals(getTaskName())
             && otherTask.getTaskStatus().equals(getTaskStatus());
     }
 
-    public TaskName getTaskName() {
+    public ProjectTaskName getTaskName() {
         return name;
     }
 
-    public TaskStatus getTaskStatus() {
+    public ProjectTaskStatus getTaskStatus() {
         return status;
     }
 
@@ -62,7 +62,7 @@ public class Task {
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.
      */
-    public boolean isSameTask(Task otherTask) {
+    public boolean isSameTask(ProjectTask otherTask) {
         if (otherTask == this) {
             return true;
         }
@@ -73,14 +73,14 @@ public class Task {
     /**
      * Returns a clone of this task.
      */
-    public Task clone() {
-        return new Task(getTaskName().clone(), getTaskStatus().clone());
+    public ProjectTask clone() {
+        return new ProjectTask(getTaskName().clone(), getTaskStatus().clone());
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Task: ")
+        builder.append("Project Task: ")
                 .append(getTaskName())
                 .append(" (Status: ")
                 .append(getTaskStatus())
@@ -91,7 +91,7 @@ public class Task {
     /**
      * Checks if the task has the valid format by checking the relevant fields
      */
-    public static boolean isValidTask(Task task) {
-        return TaskName.isValidTaskName(task.getTaskName().taskName);
+    public static boolean isValidTask(ProjectTask task) {
+        return ProjectTaskName.isValidTaskName(task.getTaskName().taskName);
     }
 }

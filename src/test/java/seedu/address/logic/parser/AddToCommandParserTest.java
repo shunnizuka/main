@@ -14,8 +14,8 @@ import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.AddUserStoryToCommand;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.Task;
-import seedu.address.model.project.TaskName;
+import seedu.address.model.project.ProjectTask;
+import seedu.address.model.project.ProjectTaskName;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
@@ -47,9 +47,9 @@ public class AddToCommandParserTest {
                         new UserStoryImportance("2"), new UserStoryUser("user"), new UserStoryFunction("do this"),
                 new UserStoryReason("im done"))));
 
-        assertParseSuccess(parser, "Project Apollo task n/Fix this bug m/1",
+        assertParseSuccess(parser, "Project Apollo projecttask n/Fix this bug m/1",
                 new AddTaskToCommand(new ProjectName("Project Apollo"),
-                        new Task(new TaskName("Fix this bug")), Index.fromOneBased(1)));
+                        new ProjectTask(new ProjectTaskName("Fix this bug")), Index.fromOneBased(1)));
     }
 
     @Test
@@ -76,11 +76,11 @@ public class AddToCommandParserTest {
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddUserStoryToCommand.MESSAGE_USAGE));
 
         //index of milestone should be an integer
-        assertParseFailure(parser, "Apollo task n/Fix this bug m/uno",
+        assertParseFailure(parser, "Apollo projecttask n/Fix this bug m/uno",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddTaskToCommand.MESSAGE_USAGE));
 
         //index of milestone should be bigger than 0
-        assertParseFailure(parser, " Project Apollo task n/Fix this bug m/0",
+        assertParseFailure(parser, " Project Apollo projecttask n/Fix this bug m/0",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddTaskToCommand.MESSAGE_USAGE));
     }
 
@@ -112,11 +112,11 @@ public class AddToCommandParserTest {
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddUserStoryToCommand.MESSAGE_USAGE));
 
         //missing milestone for add task to project command
-        assertParseFailure(parser, "Project Apollo task n/Fix this bug",
+        assertParseFailure(parser, "Project Apollo projecttask n/Fix this bug",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddTaskToCommand.MESSAGE_USAGE));
 
         //missing task name for add task to project command
-        assertParseFailure(parser, "Project Apollo task m/1",
+        assertParseFailure(parser, "Project Apollo projecttask m/1",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddTaskToCommand.MESSAGE_USAGE));
 
     }

@@ -6,9 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT_MILESTONE;
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_1;
-import static seedu.address.testutil.TypicalTasks.TASK_DO_SOMETHING;
+import static seedu.address.testutil.TypicalProjectTasks.PROJECT_TASK_DO_SOMETHING;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,10 +20,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddTaskToCommand;
-import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
@@ -164,10 +164,10 @@ public class PocketProjectParserTest {
     public void parseCommand_addTaskTo() throws Exception {
         final String taskName = "Do something";
         AddTaskToCommand command = (AddTaskToCommand) parser.parseCommand(AddTaskToCommand.COMMAND_WORD + " "
-                + TYPICAL_PROJECT_NAME_1 + " " + AddTaskToCommand.ADD_TASK_KEYWORD + " " + PREFIX_NAME + taskName + " "
-                + PREFIX_MILESTONE + Index.fromOneBased(1).getOneBased());
-        assertEquals(new AddTaskToCommand(TYPICAL_PROJECT_NAME_1, TASK_DO_SOMETHING, Index.fromOneBased(1)),
-                command);
+                + TYPICAL_PROJECT_NAME_1 + " " + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + PREFIX_NAME + taskName
+                + " " + PREFIX_MILESTONE + INDEX_FIRST_PROJECT_MILESTONE.getOneBased());
+        assertEquals(new AddTaskToCommand(TYPICAL_PROJECT_NAME_1, PROJECT_TASK_DO_SOMETHING,
+                INDEX_FIRST_PROJECT_MILESTONE), command);
     }
 
     @Test

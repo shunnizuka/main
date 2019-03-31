@@ -2,10 +2,10 @@ package seedu.address.model.project;
 
 
 /**
- * Current status of the task in the Pocket Project.
+ * Current status of the project task in the Pocket Project.
  */
 
-public class TaskStatus {
+public class ProjectTaskStatus {
 
 
     public static final String MESSAGE_CONSTRAINTS = "Task statuses can only be set to ongoing or complete";
@@ -13,24 +13,24 @@ public class TaskStatus {
     public final Boolean taskComplete;
 
     /**
-     * Defaul constructor for TaskStatus.
+     * Default constructor for ProjectTaskStatus.
      */
-    public TaskStatus() {
+    public ProjectTaskStatus() {
         this.taskComplete = false;
     }
 
     /**
      * Constructor for TaskStatus specifying status.
      */
-    public TaskStatus(Boolean status) {
+    public ProjectTaskStatus(Boolean status) {
         this.taskComplete = status;
     }
 
     /**
      * Returns a clone of this TaskStatus object.
      */
-    public TaskStatus clone() {
-        return new TaskStatus(this.taskComplete);
+    public ProjectTaskStatus clone() {
+        return new ProjectTaskStatus(this.taskComplete);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class TaskStatus {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TaskStatus // instanceof handles nulls
-                && taskComplete.equals(((TaskStatus) other).taskComplete)); // state check
+                || (other instanceof ProjectTaskStatus // instanceof handles nulls
+                && taskComplete.equals(((ProjectTaskStatus) other).taskComplete)); // state check
     }
 
     @Override

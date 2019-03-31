@@ -7,27 +7,28 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.Task;
+import seedu.address.model.project.ProjectTask;
 
 /**
  * Adds a milestone to a project in the projects list.
  */
 public class AddTaskToCommand extends AddToCommand {
 
-    public static final String ADD_TASK_KEYWORD = "task";
+    public static final String ADD_PROJECTTASK_KEYWORD = "projecttask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME task n/TASK_NAME m/MILESTONE_INDEX"
-            + ": adds the specified task to the list of tasks in a project's milestone specified by index.\n"
-            + "Example: " + COMMAND_WORD + " Apollo task n/Create feature XYZ m/1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME projecttask n/TASK_NAME m/MILESTONE_INDEX"
+            + ": adds the specified project task to the list of tasks in a project's milestone specified by index.\n"
+            + "Example: " + COMMAND_WORD + " Apollo projecttask n/Create feature XYZ m/1";
 
-    public static final String MESSAGE_ADD_TASK_SUCCESS = "Added %1$s to %2$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in this project milestone.";
+    public static final String MESSAGE_ADD_PROJECT_TASK_SUCCESS = "Added %1$s to %2$s";
+    public static final String MESSAGE_DUPLICATE_PROJECT_TASK =
+            "This project task already exists in this project milestone.";
 
     private final Index targetIndex;
     private final ProjectName targetProjectName;
-    private final Task taskToAdd;
+    private final ProjectTask taskToAdd;
 
-    public AddTaskToCommand(ProjectName targetProject, Task task, Index index) {
+    public AddTaskToCommand(ProjectName targetProject, ProjectTask task, Index index) {
         requireAllNonNull(targetProject, task, index);
         this.targetIndex = index;
         this.taskToAdd = task;
@@ -36,7 +37,7 @@ public class AddTaskToCommand extends AddToCommand {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        throw new CommandException(String.format(MESSAGE_ADD_TASK_SUCCESS, taskToAdd, targetProjectName));
+        throw new CommandException(String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, taskToAdd, targetProjectName));
         /*requireNonNull(model);
 
         Project targetProject = null;
