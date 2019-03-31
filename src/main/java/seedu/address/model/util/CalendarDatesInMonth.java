@@ -49,14 +49,17 @@ public class CalendarDatesInMonth {
      private static final int DAY_FIELD = 0;
      private static final int MONTH_FIELD = 1;
      private static final int YEAR_FIELD = 2;
-     private static final int FIRST_MONTH = 1;
+     private static final int FIRST_DAY_MONTH = 1;
      private static final int LAST_MONTH = 12;
+
 
     /**
      * Message constraints.
      */
     public static final String DAY_MONTH_CONSTRAINTS = "The selected month does not have the chosen day or "
         + "the selected month does not exist in the calendar.";
+
+    public static final String DATE_IDENTIFIER = "/";
 
     /**
      * Static initializer for Calendar Dates In Month
@@ -80,18 +83,18 @@ public class CalendarDatesInMonth {
 
     public static boolean isValidDayInMonth (String dateInput) {
 
-        String[] date = dateInput.split("/");
+        String[] date = dateInput.split(DATE_IDENTIFIER);
 
         int dayField = Integer.parseInt(date[DAY_FIELD].trim());
         int monthField = Integer.parseInt(date[MONTH_FIELD].trim());
         int yearField = Integer.parseInt(date[YEAR_FIELD].trim());
 
-        if (monthField < FIRST_MONTH || monthField > LAST_MONTH) {
+        if (monthField < FIRST_DAY_MONTH || monthField > LAST_MONTH) {
             return false;
         }
 
         int maxDays = daysInMonth.get(monthField);
-        if(dayField > maxDays) {
+        if(dayField < FIRST_DAY_MONTH || dayField > maxDays) {
             return false;
         }
 
