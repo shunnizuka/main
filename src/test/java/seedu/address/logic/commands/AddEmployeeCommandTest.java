@@ -190,6 +190,10 @@ public class AddEmployeeCommandTest {
         public boolean hasProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void completeProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deleteProject(Project target) {

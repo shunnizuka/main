@@ -51,7 +51,6 @@ public class CompleteCommand extends Command {
             }
             targetName = lastShownList.get(targetIndex.getZeroBased()).getProjectName();
         }
-        List<Project> projectList = model.getProjectList();
         Project projectToComplete = model.getProjectWithName(targetName);
         if (projectToComplete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
