@@ -9,7 +9,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
 /**
