@@ -21,8 +21,7 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
         return keywords.stream()
             .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getProjectName().projectName, keyword)
                 || StringUtil.containsWordIgnoreCase(project.getDescription().description, keyword)
-                || StringUtil.containsWordIgnoreCase(project.getClient().client, keyword)
-                || StringUtil.containsWordIgnoreCase(project.getDeadline().deadline, keyword));
+                || StringUtil.containsWordIgnoreCase(project.getClient().client, keyword));
     }
 
     @Override
