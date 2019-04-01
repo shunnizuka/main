@@ -94,6 +94,7 @@ public class TestApp extends MainApp {
     public Model getModel() {
         Model copy = new ModelManager((model.getPocketProject()), new UserPrefs());
         ModelHelper.setFilteredList(copy, model.getFilteredEmployeeList());
+        ModelHelper.setProjectFilteredList(copy, model.getFilteredProjectList());
         return copy;
     }
 

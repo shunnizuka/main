@@ -33,7 +33,9 @@ public class EmployeeSummary extends UiPart<Region> {
         super(FXML);
         name.setText(employee.getName().fullName);
         employee.getSkills().forEach(skill -> {
-            skillsList.getChildren().add(new Label(skill.skillName));
+            Label label = new Label(skill.skillName);
+            label.getStyleClass().add(SideTabPanel.getSkillLabelColor(skill.skillName));
+            skillsList.getChildren().add(label);
         });
     }
 }

@@ -8,11 +8,13 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import seedu.address.logic.commands.FindAllCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.FindSkillCommand;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.skill.EmployeeSkillContainsKeywordsPredicate;
 
@@ -32,6 +34,9 @@ public class FindCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, FindSkillCommand.FIND_SKILL_KEYWORD + "  ",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, FindAllCommand.FIND_ALL_KEYWORD + "  ",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
@@ -56,6 +61,11 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, FindSkillCommand.FIND_SKILL_KEYWORD + " java html",
             expectedFindCommand);
         assertParseSuccess(parser, "skill \t java \t html  \t", expectedFindCommand);
+
+        expectedFindCommand =
+            new FindAllCommand(new ProjectContainsKeywordsPredicate(Arrays.asList("hey" , "alice")));
+        assertParseSuccess(parser, FindAllCommand.FIND_ALL_KEYWORD + " hey alice", expectedFindCommand);
+        assertParseSuccess(parser, "all \t hey  \t alice \t", expectedFindCommand);
     }
 
 }

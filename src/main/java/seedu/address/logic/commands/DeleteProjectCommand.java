@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
@@ -58,6 +59,9 @@ public class DeleteProjectCommand extends DeleteCommand {
             if (p.hasProjectName(targetName)) {
                 found = true;
                 projectToDelete = p;
+                for (Employee employee: p.getEmployees()) {
+                    employee.leave(projectToDelete);
+                }
                 model.deleteProject(projectToDelete);
                 model.commitPocketProject();
 

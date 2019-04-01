@@ -11,6 +11,10 @@ import javafx.scene.layout.Region;
  */
 public class SideTabPanel extends UiPart<Region> {
 
+    public static final String[] SKILL_COLORS = {
+        "blue", "indigo", "mint", "pink", "salmon", "teal", "turquoise", "pale-blue", "purple", "yellow"
+    };
+
     private static final String FXML = "SideTabPanel.fxml";
 
     @FXML
@@ -26,5 +30,13 @@ public class SideTabPanel extends UiPart<Region> {
         super(FXML);
         employeeTab.setContent(employeeListNode);
         projectTab.setContent(projectListNode);
+    }
+
+    /**
+     * Hashes the {@code name} to get a random value to indicate the colour of the label
+     */
+    public static String getSkillLabelColor(String name) {
+        int index = Math.abs(name.hashCode()) % SKILL_COLORS.length;
+        return SKILL_COLORS[index];
     }
 }

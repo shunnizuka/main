@@ -283,12 +283,6 @@ Finds employees with the chosen skill.
 
 Format: `find skill KEYWORD [MORE_KEYWORDS]`
 
-image:ug-notepadpencil.png[width="40"]
-The search is case insensitive. e.g `hans` will match `Hans`
-
-image:ug-notepadpencil.png[width="40"]
-The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-
 Examples:
 
 * `find skill java` +
@@ -296,6 +290,23 @@ Returns a list of employees who has java skill.
 
 * `find skill java C++`
 Returns a list of employees who have either java or C++ or both.
+
+==== Find projects with any keywords: `find all`
+
+Find projects that contain any of the keywords in the project name, description, deadline.
+
+Format: `find all KEYWORDS [MORE KEYWORDS]`
+
+Examples:
+
+* `find all software food`
+Returns a list of projects which contains either software or food or both.
+
+image:ug-notepadpencil.png[width="40"]
+The search is case insensitive. e.g `hans` will match `Hans`
+
+image:ug-notepadpencil.png[width="40"]
+The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 
 image:ug-notepadpencil.png[width="40"]
 Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -464,8 +475,28 @@ Examples:
 `removefrom Apollo userstory 1` +
 Removes the user story at the 1st position of the displayed list of user stories from Project Apollo.
 
+=== Edits a project in the application: `editproject`
 
-=== To indicate the project has been completed : `complete`
+==== Edits name/client/deadline/description of a project: `editproject`
+
+Edits the existing project components such as project name, client, deadline, description of the project.
+
+Format: `editproject PROJECT_NAME [n/name] [c/client] [d/deadline] [desc/description]`
+
+Examples:
+
+`editproject Apollo n/Gemini c/John d/12/09/2020 desc/An application for project management` +
+Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
+
+==== Edits milestone of a project: `editproject PROJECT_NAME milestone` [coming in v2.0]
+
+Edits the existing milestone in the milestone list of a project.
+
+==== Edits UserStory of a project: `editproject PROJECT_NAME userstory` [coming in v2.0]
+
+Edits the existing userstory in the userstory list of a project.
+
+=== To indicate the project has been completed : `complete` [coming in v2.0]
 
 Indicates that a project is completed +
 Format: `complete PROJECT_NAME`
@@ -479,7 +510,7 @@ Project Apollo is indicated as completed.
 `complete 1`
 The first project in the most recently display list of projects is completed.
 
-=== Sort the projects by name or deadline : `sort`
+=== Sort the projects by name or deadline : `sort` [coming in v2.0]
 
 Returns a sorted list of projects by the sort key value.
 Available keys: name, deadline.

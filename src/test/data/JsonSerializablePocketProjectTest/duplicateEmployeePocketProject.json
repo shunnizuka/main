@@ -4,12 +4,12 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "github": "aliceballer",
-    "skills": ["Python", "Java" ]
+    "skills": ["Python", "Java" ], "projectNames" : ["Project Fiona", "Project George"]
   },  {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "github": "aliceballer",
-    "skills": ["Python", "Java" ]
-  } ],"projects" : [ ], "completedProjects" : []
+    "skills": ["Python", "Java" ], "projectNames" : ["Project Fiona", "Project George"]
+  } ],"projects" : [ ]
 }
