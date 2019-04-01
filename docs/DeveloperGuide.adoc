@@ -904,17 +904,37 @@ Priorities: High (must have) - `* * \*`, Medium (good to have) - `* \*`, Low (un
 
 |`* *` |project manager |to be able to have flexibility when keying in dates |can have greater efficiency in keying inputs and speed up administrative procedures.
 
+|`* *` |project manager |see total number of projects listed as completed and ongoing|keep track of how many projects have been successfully completed and the number of ongoing projects at a glance
+
+|`* *` |project manager |sort the employees by total number of projects contributed | keep track of each employees contribution to the company.
+
+|`* *` |project manager |sort the employees by name | find an employee more easily.
+
+|`* *` |project manager |sort the project by name | find a project more easily.
+
+|`* *` |project manager |sort the project by deadline | see which projects need to be more urgently completed.
+
 4.1+^s| Software Engineering Project Manager Related Stories
 
-|`* * *` |Software engineering project manager |Find all employees that have a certain skill |Assign the right people with the required skills to the right projects
+|`* * *` |Software engineering project manager |add/delete skills/frameworks to an employee |know what sort of background knowledge he has and what tasks he is suitable for.
 
-|`* * *` |Software engineering project manager |Add/delete skills from employees |Update the skills possessed by employees as and when required
+|`* * *` |Software engineering project manager |add/delete skills/frameworks to a project |know what are the relevant skills required to complete a particular project.
 
-|`* *` |Software engineering project manager |See total number of projects listed as completed and ongoing|Keep track of how many projects have been successfully completed and the number of ongoing projects at a glance
+|`* * *` |Software engineering project manager |find all employees that have a certain skill |assign the right people with the required skills to the right projects
 
-|`* *` |Software engineering project manager |See a recommended list of employees based on the skill requirement of a project|Easily assign employees with the required skills to the project
+|`* * *` |Software engineering project manager |add/delete milestones to a project |keep track of major completion points during the course of the project
+
+|`* * *` |Software engineering project manager |add/delete tasks to a milestone  |keep track of all the tasks associated with a particular milestone
+
+|`* * *` |Software engineering project manager |add/delete user stories to a project |formulate ideas and prioritize the features that need to be implemented.
+
+|`* *` |Software engineering project manager |edit milestones in a project |update any changes in my current milestone
+
+|`* *` |Software engineering project manager |edit tasks in a milestone |update any changes in my current tasks.
+
+|`* *` |Software engineering project manager |edit user stories in a project |update any changes in my current user stories
+
 |=======================================================================
-
 
 [appendix]
 == Use Cases
