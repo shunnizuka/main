@@ -945,10 +945,11 @@ Priorities: High (must have) - `* * \*`, Medium (good to have) - `* \*`, Low (un
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `PocketProject` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `PocketProject` and the *Actor*
+is the `user`, unless specified otherwise)
 
-[discrete]
-=== Use case: Delete employee
+=== Use case: Delete Command
+==== Deleting an employee
 
 *MSS*
 
@@ -973,7 +974,7 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-=== Use case: Delete project
+==== Deleting a project
 
 *MSS*
 
@@ -1004,7 +1005,8 @@ Use case resumes at step 2.
 +
 Use case resumes at step 2.
 
-=== Use case: Add employee to project
+=== Use case: Add Employee/Milestone/UserStory/Task To Project Command
+==== Adding an employee to project
 
 *MSS*
 
@@ -1041,7 +1043,60 @@ Use case resumes at step 2.
 +
 Use case resumes at step 2.
 
-=== Use case: Remove employee from project
+==== Adding a milestone to a project
+
+*MSS*
+
+1.  User requests to add a milestone to the project
+2.  PocketProject adds the milestone to the project specified.
++
+Use case ends.
+
+*Extensions*
+* 1a. The milestone to be added is already specified in the project.
++
+[none]
+** 1a1. PocketProject shows an error message.
++
+Use case ends.
+
+==== Adding a task to a milestone in a project
+
+*MSS*
+
+1.  User requests to add a project task to the project
+2.  PocketProject adds the project task to the project specified.
++
+Use case ends.
+
+*Extensions*
+* 1a. The project task to be added is already specified in the project.
++
+[none]
+** 1a1. PocketProject shows an error message.
++
+Use case ends.
+
+==== Adding an user story to a project
+
+*MSS*
+
+1.  User requests to add a user story to the project
+2.  PocketProject adds the user story to the project specified.
++
+Use case ends.
+
+*Extensions*
+* 1a. The user story to be added is already specified in the project.
++
+[none]
+** 1a1. PocketProject shows an error message.
++
+Use case ends.
+
+
+=== Use case: Remove Employee/Milestone From Project Command
+==== Removing an employee from a project
 
 *MSS*
 
@@ -1072,44 +1127,7 @@ Use case resumes at step 2.
 +
 Use case resumes at step 2.
 
-=== Use case: Editting an employee details
-
-*MSS*
-
-1.  User requests to view an employee in a project
-2.  PocketProject shows the employee details
-3.  User requests to edit an employee details
-4.  PocketProject edits the employee's details
-+
-Use case ends.
-
-*Extensions*
-
-* 3a. The new employee has the exact same details as another employee.
-+
-[none]
-** 3a1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-
-=== Use case: Add milestone to project
-
-*MSS*
-
-1.  User requests to add a milestone to the project
-2.  PocketProject adds the milestone to the project specified.
-+
-Use case ends.
-
-*Extensions*
-* 1a. The milestone to be added is already specified in the project.
-+
-[none]
-** 1a1. PocketProject shows an error message.
-+
-Use case ends.
-
-=== Use case: Remove milestone from project
+==== Removing a milestone from a project
 
 *MSS*
 
@@ -1140,72 +1158,7 @@ Use case resumes at step 2.
 +
 Use case resumes at step 2.
 
-=== Use case: Add user story to project
-
-*MSS*
-
-1.  User requests to add a user story to the project
-2.  PocketProject adds the user story to the project specified.
-+
-Use case ends.
-
-*Extensions*
-* 1a. The user story to be added is already specified in the project.
-+
-[none]
-** 1a1. PocketProject shows an error message.
-+
-Use case ends.
-
-=== Use case: Remove user story from project
-
-*MSS*
-
-1.  User requests to view user stories in a project
-2.  PocketProject shows a list of user stories in the project
-3.  User requests to delete a specific user story in the list
-4.  PocketProject deletes the user story from the project
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. The list is empty.
-+
-Use case ends.
-
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-* 3b. The project name given is invalid.
-+
-[none]
-** 3b1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-
-=== Use case: Add project task to project
-
-*MSS*
-
-1.  User requests to add a project task to the project
-2.  PocketProject adds the project task to the project specified.
-+
-Use case ends.
-
-*Extensions*
-* 1a. The project task to be added is already specified in the project.
-+
-[none]
-** 1a1. PocketProject shows an error message.
-+
-Use case ends.
-
-=== Use case: Remove project task from project
+==== Removing a project task from a milestone in a project
 
 *MSS*
 
@@ -1236,7 +1189,60 @@ Use case resumes at step 2.
 +
 Use case resumes at step 2.
 
-=== Use case: Finding all keywords
+==== Removing an user story from a project
+
+*MSS*
+
+1.  User requests to view user stories in a project
+2.  PocketProject shows a list of user stories in the project
+3.  User requests to delete a specific user story in the list
+4.  PocketProject deletes the user story from the project
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. PocketProject shows an error message.
++
+Use case resumes at step 2.
+* 3b. The project name given is invalid.
++
+[none]
+** 3b1. PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+=== Use case: Edit Command
+==== Editing an employee's details
+
+*MSS*
+
+1.  User requests to view an employee in a project
+2.  PocketProject shows the employee details
+3.  User requests to edit an employee details
+4.  PocketProject edits the employee's details
++
+Use case ends.
+
+*Extensions*
+
+* 3a. The new employee has the exact same details as another employee.
++
+[none]
+** 3a1. PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+=== Use case: Find Command
+==== Finding all keywords in  project
 
 *MSS*
 
