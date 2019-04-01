@@ -358,3 +358,13 @@
 #menuBar {
     -fx-background-color: derive(#dee0e2, -5%);
 }
+
+#namePane {
+    -fx-background-color: #26A69A;
+}
+
+#namePane .label {
+    -fx-font-size: 24pt;
+    -fx-padding: 20 20 20 20;
+    -fx-text-fill: white;
+}
