@@ -16,7 +16,7 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 
 /**
- * Adds a milestone to a project in the projects list.
+ * Adds a task to a project milestone.
  */
 public class AddTaskToCommand extends AddToCommand {
 
