@@ -7,7 +7,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import seedu.address.model.project.Project;
 import seedu.address.model.project.UserStory;
 
 /**
@@ -39,9 +38,9 @@ public class ProjectUserStories extends UiPart<Region> {
     @FXML
     private TableColumn<UserStoryCell, String> reasonCol;
 
-    public ProjectUserStories(Project project) {
+    public ProjectUserStories(ObservableList<UserStory> stories) {
         super(FXML);
-        this.userStories = project.getUserStories();
+        this.userStories = stories;
         userStoryCells = getUserStoryCells(userStories);
         userStoryTableView.setItems(userStoryCells);
 
