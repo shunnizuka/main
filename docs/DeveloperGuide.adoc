@@ -1028,6 +1028,16 @@ Assuming that the employees added here do not exist in the app beforehand.
 .. Test case: `removefrom X employee 1` where no project in the app has the name 'X' +
    Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
 
+=== Removing a milestone from a porject
+
+.. Test case: `removefrom Apollo milestone 1` where the project named 'Apollo' exists in app and is ongoing and there is at least one +
+   milestone for the project.
+   Expected: The first milestone in the list of milestones for the project is removed.
+.. Test case: `remove from Apollo milestone 0` +
+   Expected: Command fails and an error message is returned.
+.. Test case: `remove from invalid milestone 1` where no project named 'invalid' exists +
+   Expected: Command fails and an error message is returned.
+
 === Finding an employee/project by keywords in their names
 
 .. Test case: `find project a b c` +
@@ -1043,6 +1053,11 @@ Assuming that the employees added here do not exist in the app beforehand.
    Expected: All employees with the skill java will be listed
 .. Test case: `find abc java` +
    Expected: error will be returned
+
+=== Finding projects with specific keywords in their name, description or deadline
+
+.. Test case: `find all software food` +
+   Expected: Returns a list of projects containing the word 'software' or 'food' or both in their name, description or deadline.
 
 === Indicating a project as completed
 
