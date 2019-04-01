@@ -359,12 +359,29 @@
     -fx-background-color: derive(#dee0e2, -5%);
 }
 
-#namePane {
-    -fx-background-color: #26A69A;
-}
 
-#namePane .label {
+#nameSummary {
     -fx-font-size: 24pt;
     -fx-padding: 20 20 20 20;
     -fx-text-fill: white;
+    -fx-background-color:#26A69A;
+    -fx-font-weight: bold;
 }
+
+#labelSummaryheader {
+    -fx-font-size: 12pt;
+    -fx-text-fill: #44524e;
+    -fx-font-family: "Proxima Nova Alt";
+    -fx-font-weight: bold;
+}
+
+#labelSummary {
+    -fx-font-size: 12pt;
+    -fx-text-fill: #44524e;
+    -fx-font-family: "Proxima Nova Alt";
+}
+
+#boxSummary {
+    -fx-background-color: rgba(205, 216, 214, 0.62);
+}
+
