@@ -965,13 +965,6 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Listing the list of projects/employees
-
-. Listing employees/projects from a pocket project with several of each in the storage
-
-.. Test case: `list employees" +
-   Expected: The list of all employees are listed
-
 === Deleting an employee
 
 . Deleting a employee while all employees are listed
@@ -1011,6 +1004,28 @@ _{ more test cases ... }_
    Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
 .. Test case: `removefrom X employee 1` where no project in the app has the name 'X' +
    Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
+
+=== Finding an employee/project by keywords in their names
+
+. Finding the list of employees/projects with the given keywords in their names
+
+.. Test case: `find project a b c` +
+   Expected: projects with 'a', 'b' or 'c' in their names as separate words would be listed
+.. Test case: `find employee x y z` +
+   Expected: employees with 'x', 'y' or 'z' in their names as separate words would be listed
+.. Test case `find abc` +
+   Expected: error will be returned
+
+=== Finding employees with specific skills
+
+. Finding the list of employees with the given skills
+
+.. Test case: `find skill java` +
+   Expected: All employees with the skill java will be listed
+.. Test case: `find abc java` +
+   Expected: error will be returned
+
+
 
 === Saving data
 
