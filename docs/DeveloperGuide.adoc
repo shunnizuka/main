@@ -1084,9 +1084,9 @@ Assumption: all the objects being manipulated in these test cases exist in the a
 .. Test case: `delete employee 1` followed by `list employee` followed by `undo` +
    Expected: The first employee in the list is deleted by the delete command. The list command lists all the remaining employees. The undo command +
    restores the deleted employee. The undo command ignores the list command which does not modify internal data and will only undo the last data modifying command.
-.. Test case: `undo` is entered as the first command on start-up
+.. Test case: `undo` is entered as the first command on start-up +
    Expected: Output Messages says that there is no more command to undo.
-.. Test case: `delete employee 1` is followed by 'undo' followed by 'redo' followed `undo`...
+.. Test case: `delete employee 1` is followed by repetitions of `undo` and `redo` +
    Expected: The `undo` and `redo` can go on forever because redo is a data modification that can be undone.
 
 === Redoing a data modification that has been undone
@@ -1095,7 +1095,7 @@ Assumption: all the objects being manipulated in these test cases exist in the a
 
 .. Test case: `delete employee 1` followed by `undo` followed by `redo` +
    Expected: The first command will delete the first employee in the list from the app while the undo command will restore it. The redo command deletes it again.
-.. Test case: `redo` is entered as the first command on start-up
+.. Test case: `redo` is entered as the first command on start-up +
    Expected: Output error message. There is no undone command to redo.
 
 === Saving data
