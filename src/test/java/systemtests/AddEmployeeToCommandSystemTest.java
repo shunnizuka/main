@@ -20,7 +20,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
     @Test
     public void addEmployeeTo() {
 
-        Model model = getProjectModel();
+        Model model = getModel();
 
         /* ------------------------ Perform addto operations on the shown unfiltered list -------------------------- */
 
@@ -34,7 +34,6 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
             .get(Index.fromOneBased(model.getFilteredEmployeeList().size() - 1).getZeroBased());
         String command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
             + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
-
         assertCommandSuccess(command, targetProject, targetEmployee);
 
         /* Case: undo adding employee to Project Alice */
