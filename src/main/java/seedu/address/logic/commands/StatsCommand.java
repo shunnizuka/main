@@ -17,6 +17,7 @@ public class StatsCommand extends Command {
 
     public static final String MESSAGE_STATS =
             "Number of ongoing projects: %d\nNumber of completed projects: %d\n"
+            + "%s\n"
             + "%s\n";
 
     @Override
@@ -24,8 +25,10 @@ public class StatsCommand extends Command {
         int numOngoing = model.getProjectList().size();
         int numCompleted = model.getCompletedProjectList().size();
         String projectWithMostEmployeeString = SearchingUtil.projectWithMostEmployee(model.getProjectList());
+        String projectWithEarliestDeadlineString = SearchingUtil.projectWithEarliestDeadline(model.getProjectList());
 
-        return new CommandResult(String.format(MESSAGE_STATS, numOngoing, numCompleted, projectWithMostEmployeeString));
+        return new CommandResult(String.format(MESSAGE_STATS, numOngoing, numCompleted,
+                projectWithEarliestDeadlineString, projectWithMostEmployeeString));
 
     }
 

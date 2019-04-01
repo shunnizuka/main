@@ -21,7 +21,7 @@ public class SearchingUtil {
         Comparator<? super Project> comparator = new Comparator<Project>() {
             @Override
             public int compare(Project o1, Project o2) {
-                return o2.getEmployees().size() - o1.getEmployees().size();
+                return o1.getEmployees().size() - o2.getEmployees().size();
             }
         };
         Optional<Project> projectWithMostEmployee = projects.stream().max(comparator);
@@ -35,5 +35,30 @@ public class SearchingUtil {
             projectWithMostEmployeeString = "There is no ongoing project.";
         }
         return projectWithMostEmployeeString;
+    }
+
+    /**
+     * Look through a list of projects to find the project with the earliest deadline.
+     * Returns a string describing it.
+     */
+    public static String projectWithEarliestDeadline(List<Project> projects) {
+        Comparator<? super Project> comparator = new Comparator<Project>() {
+            @Override
+            public int compare(Project o1, Project o2) {
+                return Project.DATE_STRING_COMPARATOR.compare(o1.getDeadline().deadline,
+                        o2.getDeadline().deadline);
+            }
+        };
+        Optional<Project> projectWithEarliestDeadline = projects.stream().min(comparator);
+        String projectWithEarliestDeadlineString = null;
+        if (projectWithEarliestDeadline.isPresent()) {
+            int numEmployees = projectWithEarliestDeadline.get().getEmployees().size();
+            projectWithEarliestDeadlineString = "The project with the earliest deadline is "
+                    + projectWithEarliestDeadline.get().getProjectName().projectName
+                    + " at " + projectWithEarliestDeadline.get().getDeadline().deadline;
+        } else {
+            projectWithEarliestDeadlineString = "There is no ongoing project.";
+        }
+        return projectWithEarliestDeadlineString;
     }
 }
