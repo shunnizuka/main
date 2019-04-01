@@ -20,6 +20,7 @@ import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemoveFromCommand;
+import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -76,6 +77,8 @@ public class PocketProjectParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommand();
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();
