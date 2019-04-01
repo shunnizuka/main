@@ -428,7 +428,7 @@ There is no specific order for either the user story or the importance level so 
 
 === Remove an employee/milestone/user story from a project : `removefrom`
 
-==== Remove an employee from a project: `removefrom employee`
+==== Remove an employee from a project: `removefrom PROJECT_NAME employee`
 
 Removing an employee from a project.
 
@@ -440,7 +440,7 @@ Examples:
 `removefrom Apollo employee 3` +
 Removes the employee at 3rd position at displayed list of employees from Project Apollo.
 
-==== Remove a milestone from a project: `removefrom milestone`
+==== Remove a milestone from a project: `removefrom PROJECT_NAME milestone`
 
 Removing a milestone from a project.
 
@@ -488,6 +488,7 @@ Examples:
 `editproject Apollo n/Gemini c/John d/12/09/2020 desc/An application for project management` +
 Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
 
+
 ==== Edits milestone of a project: `editproject PROJECT_NAME milestone` [coming in v2.0]
 
 Edits the existing milestone in the milestone list of a project.
@@ -496,15 +497,6 @@ Edits the existing milestone in the milestone list of a project.
 
 Edits the existing userstory in the userstory list of a project.
 
-=== To indicate the project has been completed : `complete` [coming in v2.0]
-
-Indicates that a project is completed.
-Format: `complete PROJ_NAME`
-
-Examples:
-
-`complete Project Apollo` +
-Project Apollo has been finished and delivered to client.
 
 === Sort the projects by name or deadline : `sort` [coming in v2.0]
 
@@ -524,6 +516,21 @@ List of project have been sorted by name.
 `sort deadline` +
 List of projects have been sorted by deadline with the
 earliest deadline displayed at the top of the list.
+
+=== To indicate the project has been completed : `complete`
+
+Indicates that a project is completed.
+Format: `complete PROJ_NAME` or `complete PROJECT_INDEX`
+
+Examples:
+
+`complete Project Apollo` +
+Project Apollo has been indicated as completed and removed from the list of ongoing projects.
+
+`list projects` +
+The list of ongoing projects are listed.
+`complete 1` +
+The first project in the shown list is indicated as completed.
 
 === Display statistics regarding all the projects : `stats`
 
