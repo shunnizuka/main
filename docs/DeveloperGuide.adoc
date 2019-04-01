@@ -1059,7 +1059,7 @@ Assuming that the employees added here do not exist in the app beforehand.
    Expected: All data of employees and projects are deleted from the app.
 .. Test case: `clear q23rfdq3w` +
    Expected: All data cleared. The string of characters after the word clear is ignored.
-.. Test case: `    clear ` +
+.. Test case: `clear` with leading and trailing whitespaces +
    Expected: Data still cleared. Leading and trailing spaces are ignored.
 .. Test case: `abc clear` +
    Expected: Error message about unrecognized command is returned.
@@ -1070,7 +1070,7 @@ Assuming that the employees added here do not exist in the app beforehand.
    Expected: The window of the app should close. The effect is the same as clicking on the cross icon on the top right.
 .. Test case: `exit q23rfdq3w` +
    Expected: The app ends. The string of characters after the word clear is ignored.
-.. Test case: `    exit ` +
+.. Test case: `exit` with leading and trailing whitespaces +
    Expected: The app ends. Leading and trailing spaces are ignored.
 .. Test case: `abc exit` +
    Expected: Error message about unrecognized command is returned.
