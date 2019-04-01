@@ -295,6 +295,7 @@ public class ModelManager implements Model {
         if (employee != null && !filteredEmployees.contains(employee)) {
             throw new EmployeeNotFoundException();
         }
+        selectedProject.setValue((Project) null);
         selectedEmployee.setValue(employee);
     }
 
@@ -346,6 +347,7 @@ public class ModelManager implements Model {
         if (project != null && !filteredProjects.contains(project)) {
             throw new ProjectNotFoundException();
         }
+        selectedEmployee.setValue((Employee) null);
         selectedProject.setValue(project);
     }
 
