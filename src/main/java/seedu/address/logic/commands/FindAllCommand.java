@@ -5,23 +5,23 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectContainsKeywordsPredicate;
 
 /**
- * Finds and lists all projects in PocketProject with name containing any of the argument keywords.
+ * Finds and lists all projects in Pocket project that contians any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindProjectCommand extends FindCommand {
+public class FindAllCommand extends FindCommand {
 
-    public static final String FIND_PROJECT_KEYWORD = "project";
+    public static final String FIND_ALL_KEYWORD = "all";
 
-    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + " " + FIND_PROJECT_KEYWORD
+    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + " " + FIND_ALL_KEYWORD
         + " [ARGUMENTS]" + "\n"
         + ": Find all projects with names containing [ARGUMENTS]";
 
-    private final ProjectNameContainsKeywordsPredicate predicate;
+    private final ProjectContainsKeywordsPredicate predicate;
 
-    public FindProjectCommand(ProjectNameContainsKeywordsPredicate predicate) {
+    public FindAllCommand(ProjectContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +36,7 @@ public class FindProjectCommand extends FindCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof FindProjectCommand // instanceof handles nulls
-            && predicate.equals(((FindProjectCommand) other).predicate)); // state check
+            || (other instanceof FindAllCommand // instanceof handles nulls
+            && predicate.equals(((FindAllCommand) other).predicate)); // state check
     }
 }

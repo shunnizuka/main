@@ -1,26 +1,70 @@
 {
-  "_comment": "Pocket Project save file which contains the same Employee values as in TypicalEmployees#getPocketProject()",
-  "employees": [ ], "projects" : [
+  "_comment": "Pocket Project save file which contains the same Employee values as in TypicalEmployees#getTypicalPocketProject()",
+  "employees": [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351drfb253",
+    "email" : "alice@example.com",
+    "github" : "aliceballer",
+    "skills" : [ "Python", "Java" ], "projectNames" : ["Project Fiona", "Project Geroge"]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "github" : "bensonballer",
+    "skills" : [ "CSS", "HTML", "Java" ], "projectNames" : ["Project George", "Project Alice hey"]
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "github" : "carlballer",
+    "skills" : [ ], "projectNames" : ["Project Alice hey", "Project Benson"]
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "github" : "danielballer",
+    "skills" : [ "Assembly" ], "projectNames" : ["Project Benson", "Project Carl hey"]
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "github" : "elleballer",
+    "skills" : ["Python"], "projectNames" : ["Project Carl hey", "project Daniel"]
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "github" : "fionaballer",
+    "skills" : [ ], "projectNames" : ["Project Daniel", "Project Elle"]
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "github" : "georgeballer",
+    "skills" : [ ], "projectNames" : ["Project Elle", "Project Kunz"]
+  } ], "projects" : [
   {"projectName" :  "Project Alice",
     "client" :  "Dehui",
     "deadline" :  "11/02/2019",
     "description" : "An application for Alice",
-    "milestones" :  [{"milestone" : "The project starts",
-      "date" :  "11/11/2011"},
+    "milestones" :  [
+      {"milestone" : "The project starts",
+        "date" :  "11/11/2011"},
       {"milestone" :  "The project completes",
-        "date" :  "12/12/2012"}],
+        "date" :  "12/12/2012"}
+    ],
     "employees" :  [{
       "name" : "Benson Meier",
-      "phone" : "INVALID",
+      "phone" : "98765432",
       "email" : "johnd@example.com",
       "github" : "bensonballer",
-      "skills" : [ "CSS", "HTML", "Java"]
+      "skills" : [ "CSS", "HTML", "Java" ], "projectNames" : ["Project George", "Project Alice hey"]
     }, {
       "name" : "Carl Kurz",
       "phone" : "95352563",
       "email" : "heinz@example.com",
       "github" : "carlballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : ["Project Alice hey", "Project Benson"]
     }],
     "userStories" : [ ]
   },
@@ -37,13 +81,13 @@
       "phone" : "95352563",
       "email" : "heinz@example.com",
       "github" : "bensonballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : ["Project Alice hey", "Project Benson"]
     }, {
       "name" : "Daniel Meier",
       "phone" : "87652533",
       "email" : "cornelia@example.com",
       "github" : "danielballer",
-      "skills" : [ "Assembly" ]
+      "skills" : [ "Assembly" ], "projectNames" : ["Project Benson", "Project Carl hey"]
     }],
     "userStories" : [ ]
   },
@@ -57,13 +101,13 @@
       "phone" : "87652533",
       "email" : "cornelia@example.com",
       "github" : "danielballer",
-      "skills" : [ "Assembly" ]
+      "skills" : [ "Assembly" ], "projectNames" : ["Project Benson", "Project Carl hey"]
     }, {
       "name" : "Elle Meyer",
       "phone" : "9482224",
       "email" : "werner@example.com",
       "github" : "elleballer",
-      "skills" : [ "Python"]
+      "skills" : [ "Python"], "projectNames" : ["Project Carl hey", "Project Daniel"]
     }],
     "userStories" : [ ]
   },
@@ -76,14 +120,14 @@
       "name" : "Elle Meyer",
       "phone" : "9482224",
       "email" : "werner@example.com",
-      "github" : "elleballer",
-      "skills" : ["Python" ]
+      "github" : "danielballer",
+      "skills" : [ "Python"], "projectNames" : ["Project Carl hey", "Project Daniel"]
     }, {
       "name" : "Fiona Kunz",
       "phone" : "9482427",
       "email" : "lydia@example.com",
       "github" : "fionaballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : ["Project Daniel", "Project Elle"]
     }],
     "userStories" : [ ]
   },
@@ -96,14 +140,14 @@
       "name" : "Fiona Kunz",
       "phone" : "9482427",
       "email" : "lydia@example.com",
-      "github" : "fionaballer",
-      "skills" : [ ]
+      "github" : "elleballer",
+      "skills" : [ ], "projectNames" : ["Project Daniel", "Project Elle"]
     }, {
       "name" : "George Best",
       "phone" : "9482442",
       "email" : "anna@example.com",
       "github" : "georgeballer",
-      "skills" : [ ]
+      "skills" : [ ], "projectNames" : ["Project Elle", "Project Fiona"]
     }],
     "userStories" : [ ]
   },
@@ -116,15 +160,15 @@
       "name" : "George Best",
       "phone" : "9482442",
       "email" : "anna@example.com",
-      "github" : "fionaballer",
-      "skills" : [ ]
+      "github" : "georgeballer",
+      "skills" : [ ], "projectNames" : ["Project Elle", "Project Fiona"]
     }, {
       "name" : "Alice Pauline",
       "phone" : "94351253",
       "email" : "alice@example.com",
       "github" : "aliceballer",
-      "skills" : ["Python", "Java" ]
-    } ],
+      "skills" : [ "Python", "Java" ], "projectNames" : ["Project Fiona", "Project Geroge"]
+    }],
     "userStories" : [ ]
   },
   {"projectName" :  "Project George",
@@ -137,17 +181,16 @@
       "phone" : "94351253",
       "email" : "alice@example.com",
       "github" : "aliceballer",
-      "skills" : [ "Python", "Java"]
+      "skills" : [ "Python", "Java" ], "projectNames" : ["Project Fiona", "Project George"]
     }, {
       "name" : "Benson Meier",
       "phone" : "98765432",
       "email" : "johnd@example.com",
       "github" : "bensonballer",
-      "skills" : [ "CSS", "HTML", "Java" ]
+      "skills" : ["CSS", "HTML", "Java" ], "projectNames" : ["Project Geroge", "Project Alice hey"]
     }],
     "userStories" : [ ]
   }
 
 ]
 }
-
