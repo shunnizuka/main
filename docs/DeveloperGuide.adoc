@@ -965,6 +965,13 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
+=== Listing the list of projects/employees
+
+. Listing employees/projects from a pocket project with several of each in the storage
+
+.. Test case: `list employees" +
+   Expected: The list of all employees are listed
+
 === Deleting an employee
 
 . Deleting a employee while all employees are listed
