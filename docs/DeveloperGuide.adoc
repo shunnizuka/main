@@ -435,13 +435,14 @@ There will also be less clutter in `PocketProjectParser` as there are already a 
 
 // end::removefrom[]
 
-=== Find Employee/Project/Skill feature
+=== Find Employee/Project/Skill/All feature
 ==== Current Implementation
-For the current `find` feature, there are 3 main commands that the user can execute:
+For the current `find` feature, there are 4 main commands that the user can execute:
 
     1. `find employee [keywords]` - display employees with name containing keywords
     2. `find project [keywords]` - display projects with name containing keywords
     3. `find skill [keywords]` - display employees who has skills matching the keywords
+    4. `find all [keywords]` - display projects which contains words matching the keywords
 
 The `FindCommandParser` differentiate these 3 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill).
 
@@ -454,11 +455,16 @@ Usage Scenario example for `find employee`:
 1. User executes `find employee John` to look for employees whose names contains the word 'John'.
 2. `PocketProjectParser` will parse and identify the command as a `FindCommand` and pass on the argument `employee John` to `FindCommandParser`.
 3.  `FindCommandParser` identify the command based on the `COMMAND_KEYWORD` employee.
-4. `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist and the `filteredEmployees` list which is the list displayed on the ui is updated.
+4. `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist. The filtering is done using a predicate that checks through the names of the employee int the application.
+5. Finally, the `filteredEmployees` list which is the list displayed on the ui is updated.
 
 The working mechanism for `find project` is similar to `find employee`. Instead of updating the `filteredEmployees`, `filteredProjects` is updated instead to display the list of projects with name consisting the keywords.
 
+For `find all` command, the predicate is used to check for the matching keywords in the project name , description, client and deadline, thereby filtering out any projects that contains the keyword in any component of the project.
+
 For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
+
+
 
 ==== Design Considerations
 
