@@ -965,6 +965,19 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
+=== Adding an employee
+
+Assuming that the employees added here do not exist in the app beforehand.
+
+.. Test case: `add employee n/John p/12345678 e/a@gmail.com g/abc.com` +
+   Expected: An employee named 'John', with phone number '12345678', email 'a@gmail.com' and github address 'abc.com' is added.
+.. Test case: `add employee n/John p/12a345678 e/a@gmail.com g/abc.com` +
+   Expected: Adding of employees fails. Message about phone numbers can only contain numbers is returned.
+.. Test case: `add employee n/Peter p/12345678 e/a@gmail.com g/abc.com` twice in a row +
+   Expected: The second addition fails because the employee already exists.
+.. Test case: `add employee n/Jack p/12345678 e/a.gmail.com g/abc.com` +
+   Expected: Addition failed because of lack of '@' in the given email.
+
 === Deleting an employee
 
 . Deleting a employee while all employees are listed
@@ -976,6 +989,18 @@ _{ more test cases ... }_
    Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete employee`, `delete employee y`,  (where y is not a positive integer), `delete employee x`, (where x is larger than the list size) +
    Expected: Similar to previous.
+
+=== Editing an employee
+
+. Assumption: Two addition of employee commands has been called on a blank pocket project: `add employee n/Peter p/12345678 e/a@gmail.com g/abc.com`
++ and `add employee n/John p/87654321 e/b@gmail.com g/cba.com`. Peter is the first in the display list and John second.
+
+.. `edit 1 n/Peter p/22345678 e/a@gmail.com g/abc.com` +
+   Expected: Command is executed successfully and the phone number of peter is changed.
+.. `edit 1 n/John p/22345678 e/a@gmail.com g/abc.com` +
+   Expected: Command fails as John already exists.
+.. `edit 3 n/Alice p/32345678 e/c@gmail.com g/ccc.com` +
+    Expected: Command fails as there is no employee at index 3.
 
 === Deleting a project
 
@@ -993,9 +1018,7 @@ _{ more test cases ... }_
 
 === Removing an employee from a project
 
-. Removing an employee from a project
-
-.. prerequisites: project with the name 'Apollo' exists and has 3 employees in it.
+. prerequisites: project with the name 'Apollo' exists and has 3 employees in it.
 .. Test case: `removefrom Apollo employee 1` +
    Expected: First employee in Apollo is removed from it. Details of the removed employee is shown in the status message and timestamp in the status bar is updated.
 .. Test case: `removefrom Apollo employee 4` +
@@ -1007,8 +1030,6 @@ _{ more test cases ... }_
 
 === Finding an employee/project by keywords in their names
 
-. Finding the list of employees/projects with the given keywords in their names
-
 .. Test case: `find project a b c` +
    Expected: projects with 'a', 'b' or 'c' in their names as separate words would be listed
 .. Test case: `find employee x y z` +
@@ -1018,8 +1039,6 @@ _{ more test cases ... }_
 
 === Finding employees with specific skills
 
-. Finding the list of employees with the given skills
-
 .. Test case: `find skill java` +
    Expected: All employees with the skill java will be listed
 .. Test case: `find abc java` +
@@ -1027,14 +1046,57 @@ _{ more test cases ... }_
 
 === Indicating a project as completed
 
-. Indicating a project as completed
-
 .. Test case: `complete 1` where there this at least one project shown in the list of projects +
    Expected: The first project in the list is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
 .. Test case: `complete Project Apollo` where there is a project named 'Project Apollo' in the app +
    Expected: The project named 'Project Apollo' is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
 .. Test case: `complete x` where x is neither the index of a displayed project nor the name of an existing project +
    Expected: Error detail shown. The Timestamp in the status bar is not updated.
+
+=== clearing all data from the app
+
+.. Test case: `clear` +
+   Expected: All data of employees and projects are deleted from the app.
+.. Test case: `clear q23rfdq3w` +
+   Expected: All data cleared. The string of characters after the word clear is ignored.
+.. Test case: `    clear ` +
+   Expected: Data still cleared. Leading and trailing spaces are ignored.
+.. Test case: `abc clear` +
+   Expected: Error message about unrecognized command is returned.
+
+=== Exiting from the app
+
+.. Test case: `exit` +
+   Expected: The window of the app should close. The effect is the same as clicking on the cross icon on the top right.
+.. Test case: `exit q23rfdq3w` +
+   Expected: The app ends. The string of characters after the word clear is ignored.
+.. Test case: `    exit ` +
+   Expected: The app ends. Leading and trailing spaces are ignored.
+.. Test case: `abc exit` +
+   Expected: Error message about unrecognized command is returned.
+
+=== Undoing a data modification
+
+Assumption: all the objects being manipulated in these test cases exist in the app.
+
+.. Test case: `delete employee 1` followed by `undo` +
+   Expected: The first command will delete the first employee in the list from the app while the undo command will restore it.
+.. Test case: `delete employee 1` followed by `list employee` followed by `undo` +
+   Expected: The first employee in the list is deleted by the delete command. The list command lists all the remaining employees. The undo command +
+   restores the deleted employee. The undo command ignores the list command which does not modify internal data and will only undo the last data modifying command.
+.. Test case: `undo` is entered as the first command on start-up
+   Expected: Output Messages says that there is no more command to undo.
+.. Test case: `delete employee 1` is followed by 'undo' followed by 'redo' followed `undo`...
+   Expected: The `undo` and `redo` can go on forever because redo is a data modification that can be undone.
+
+=== Redoing a data modification that has been undone
+
+Assumption: all the objects being manipulated in these test cases exist in the app.
+
+.. Test case: `delete employee 1` followed by `undo` followed by `redo` +
+   Expected: The first command will delete the first employee in the list from the app while the undo command will restore it. The redo command deletes it again.
+.. Test case: `redo` is entered as the first command on start-up
+   Expected: Output error message. There is no undone command to redo.
 
 === Saving data
 
