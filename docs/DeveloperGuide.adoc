@@ -945,303 +945,295 @@ Priorities: High (must have) - `* * \*`, Medium (good to have) - `* \*`, Low (un
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `PocketProject` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `PocketProject` and the *Actor*
+is the `user`, unless specified otherwise)
 
-[discrete]
-=== Use case: Delete employee
+=== Use case: Delete Command
+==== Deleting an employee
 
 *MSS*
 
-1.  User requests to list employees
-2.  PocketProject shows a list of employees
-3.  User requests to delete a specific employee in the list
-4.  PocketProject deletes the employee
+.  User requests to list employees
+.  PocketProject shows a list of employees
+.  User requests to delete a specific employee in the list
+.  PocketProject deletes the employee
 +
 Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The list is empty.
+
+.. The list is empty.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+.. The given index is invalid.
 +
-[none]
-** 3a1. PocketProject shows an error message.
+** PocketProject shows an error message.
 +
 Use case resumes at step 2.
 
-=== Use case: Delete project
+==== Deleting a project
 
 *MSS*
 
-1.  User requests to list projects
-2.  PocketProject shows a list of projects
-3.  User requests to delete a specific project in the list
-4.  PocketProject deletes the project
+.  User requests to list projects
+.  PocketProject shows a list of projects
+.  User requests to delete a specific project in the list
+.  PocketProject deletes the project
 +
 Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The list is empty.
+.. The list is empty.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+.. The given index is invalid.
 +
-[none]
-** 3a1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-* 3b. The project name specified is invalid.
-+
-[none]
-** 3b1. PocketProject shows an error message.
+** PocketProject shows an error message.
 +
 Use case resumes at step 2.
 
-=== Use case: Add employee to project
+.. The project name specified is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+=== Use case: Add Employee/Milestone/UserStory/Task To Project Command
+==== Adding an employee to project
 
 *MSS*
 
-1.  User requests to list employees
-2.  PocketProject shows a list of employees
-3.  User requests to add a specific employee in the list to the project
-4.  PocketProject adds the employee to the project specified.
+.  User requests to list employees
+.  PocketProject shows a list of employees
+.  User requests to add a specific employee in the list to the project
+.  PocketProject adds the employee to the project specified.
 +
 Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The list is empty.
+.. The list is empty.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+.. The given index is invalid.
 +
-[none]
-** 3a1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-* 3b. The project name given is invalid.
-+
-[none]
-** 3b1. PocketProject shows an error message.
+** PocketProject shows an error message.
 +
 Use case resumes at step 2.
-* 3c. The employee is already in the project.
+.. The project name given is invalid.
 +
-[none]
-** 3c1. PocketProject shows an error message.
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+.. The employee is already in the project.
++
+** PocketProject shows an error message.
 +
 Use case resumes at step 2.
 
-=== Use case: Remove employee from project
+==== Adding a milestone to a project
 
 *MSS*
 
-1.  User requests to view employees in a project
-2.  PocketProject shows a list of employees in the project
-3.  User requests to delete a specific employee in the list
-4.  PocketProject deletes the employee from the project
+. User requests to add a milestone to the project
+. PocketProject adds the milestone to the project specified.
 +
 Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The list is empty.
+.. The milestone to be added is already specified in the project.
++
+** PocketProject shows an error message.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-* 3b. The project name given is invalid.
-+
-[none]
-** 3b1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-
-=== Use case: Editting an employee details
+==== Adding a task to a milestone in a project
 
 *MSS*
 
-1.  User requests to view an employee in a project
-2.  PocketProject shows the employee details
-3.  User requests to edit an employee details
-4.  PocketProject edits the employee's details
+. User requests to add a project task to the project
+. PocketProject adds the project task to the project specified.
 +
 Use case ends.
 
 *Extensions*
 
-* 3a. The new employee has the exact same details as another employee.
+.. The project task to be added is already specified in the project.
 +
-[none]
-** 3a1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-
-=== Use case: Add milestone to project
-
-*MSS*
-
-1.  User requests to add a milestone to the project
-2.  PocketProject adds the milestone to the project specified.
+** PocketProject shows an error message.
 +
 Use case ends.
 
-*Extensions*
-* 1a. The milestone to be added is already specified in the project.
-+
-[none]
-** 1a1. PocketProject shows an error message.
-+
-Use case ends.
-
-=== Use case: Remove milestone from project
+==== Adding an user story to a project
 
 *MSS*
 
-1.  User requests to view milestones in a project
-2.  PocketProject shows a list of milestones in the project
-3.  User requests to delete a specific milestone in the list
-4.  PocketProject deletes the milestone from the project
+. User requests to add a user story to the project
+. PocketProject adds the user story to the project specified.
 +
 Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The list is empty.
+.. The user story to be added is already specified in the project.
++
+** PocketProject shows an error message.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-* 3b. The project name given is invalid.
-+
-[none]
-** 3b1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
 
-=== Use case: Add user story to project
+=== Use case: Remove Employee/Milestone/UserStory/Task From Project Command
+==== Removing an employee from a project
 
 *MSS*
 
-1.  User requests to add a user story to the project
-2.  PocketProject adds the user story to the project specified.
-+
-Use case ends.
-
-*Extensions*
-* 1a. The user story to be added is already specified in the project.
-+
-[none]
-** 1a1. PocketProject shows an error message.
-+
-Use case ends.
-
-=== Use case: Remove user story from project
-
-*MSS*
-
-1.  User requests to view user stories in a project
-2.  PocketProject shows a list of user stories in the project
-3.  User requests to delete a specific user story in the list
-4.  PocketProject deletes the user story from the project
+.  User requests to view employees in a project
+.  PocketProject shows a list of employees in the project
+.  User requests to delete a specific employee in the list
+.  PocketProject deletes the employee from the project
 +
 Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The list is empty.
+.. The list is empty.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+.. The given index is invalid.
 +
-[none]
-** 3a1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-* 3b. The project name given is invalid.
-+
-[none]
-** 3b1. PocketProject shows an error message.
+
+** PocketProject shows an error message.
 +
 Use case resumes at step 2.
 
-=== Use case: Add project task to project
+.. The project name given is invalid.
++
+
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+==== Removing a milestone from a project
 
 *MSS*
 
-1.  User requests to add a project task to the project
-2.  PocketProject adds the project task to the project specified.
-+
-Use case ends.
-
-*Extensions*
-* 1a. The project task to be added is already specified in the project.
-+
-[none]
-** 1a1. PocketProject shows an error message.
-+
-Use case ends.
-
-=== Use case: Remove project task from project
-
-*MSS*
-
-1.  User requests to view project tasks in a project
-2.  PocketProject shows a list of project tasks in the project in the specific milestone
-3.  User requests to delete a specific task in the list
-4.  PocketProject deletes the task from the project
+. User requests to view milestones in a project
+. PocketProject shows a list of milestones in the project
+. User requests to delete a specific milestone in the list
+. PocketProject deletes the milestone from the project
 +
 Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The list is empty.
+.. The list is empty.
 +
 Use case ends.
 
-* 3a. The given milestone index is invalid.
+.. The given index is invalid.
 +
-[none]
-** 3a1. PocketProject shows an error message.
-+
-Use case resumes at step 2.
-* 3b. The project name given is invalid.
-+
-[none]
-** 3b1. PocketProject shows an error message.
+** PocketProject shows an error message.
 +
 Use case resumes at step 2.
 
-=== Use case: Finding all keywords
+.. The project name given is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+==== Removing a project task from a milestone in a project
 
 *MSS*
 
-1.  User requests to find all occurences of a keyword in a project
-2.  PocketProject returns any project found with the keyword specified
+. User requests to view project tasks in a project
+. PocketProject shows a list of project tasks in the project in the specific milestone
+. User requests to delete a specific task in the list
+. PocketProject deletes the task from the project
++
+Use case ends.
+
+*Extensions*
+
+.. The list is empty.
++
+Use case ends.
+
+.. The given milestone index is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+.. The project name given is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+==== Removing an user story from a project
+
+*MSS*
+
+. User requests to view user stories in a project
+.  PocketProject shows a list of user stories in the project
+.  User requests to delete a specific user story in the list
+.  PocketProject deletes the user story from the project
++
+Use case ends.
+
+*Extensions*
+
+.. The list is empty.
++
+Use case ends.
+
+.. The given index is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+.. The project name given is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+=== Use case: Edit Command
+==== Editing an employee's details
+
+*MSS*
+
+. User requests to view an employee in a project
+. PocketProject shows the employee details
+. User requests to edit an employee details
+. PocketProject edits the employee's details
++
+Use case ends.
+
+*Extensions*
+
+.. The new employee has the exact same details as another employee.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+=== Use case: Find Command
+==== Finding all keywords in  project
+
+*MSS*
+
+. User requests to find all occurences of a keyword in a project
+.  PocketProject returns any project found with the keyword specified
 +
 Use case ends.
 
@@ -1303,30 +1295,46 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Adding an employee
+=== Add Command
+==== Adding an employee
 
 Assuming that the employees added here do not exist in the app beforehand.
 
-.. Test case: `add employee n/John p/12345678 e/a@gmail.com g/abc.com` +
-   Expected: An employee named 'John', with phone number '12345678', email 'a@gmail.com' and github address 'abc.com' is added.
-.. Test case: `add employee n/John p/12a345678 e/a@gmail.com g/abc.com` +
-   Expected: Adding of employees fails. Message about phone numbers can only contain numbers is returned.
-.. Test case: `add employee n/Peter p/12345678 e/a@gmail.com g/abc.com` twice in a row +
-   Expected: The second addition fails because the employee already exists.
-.. Test case: `add employee n/Jack p/12345678 e/a.gmail.com g/abc.com` +
-   Expected: Addition failed because of lack of '@' in the given email.
+. Test case: `add employee n/John p/12345678 e/a@gmail.com g/abc.com` +
+  Expected: An employee named 'John', with phone number '12345678', email 'a@gmail.com' and github address 'abc.com' is added.
+. Test case: `add employee n/John p/12a345678 e/a@gmail.com g/abc.com` +
+  Expected: Adding of employees fails. Message about phone numbers can only contain numbers is returned.
+. Test case: `add employee n/Peter p/12345678 e/a@gmail.com g/abc.com` twice in a row +
+  Expected: The second addition fails because the employee already exists.
+. Test case: `add employee n/Jack p/12345678 e/a.gmail.com g/abc.com` +
+  Expected: Addition failed because of lack of '@' in the given email.
 
-=== Deleting an employee
+=== Delete Command
+==== Deleting an employee
 
-. Deleting a employee while all employees are listed
+Deleting a employee while all employees are listed
 
-.. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
-.. Test case: `delete employee 1` +
-   Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete employee 0` +
-   Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete employee`, `delete employee y`,  (where y is not a positive integer), `delete employee x`, (where x is larger than the list size) +
-   Expected: Similar to previous.
+. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+. Test case: `delete employee 1` +
+  Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message. Timestamp in the status bar is updated.
+. Test case: `delete employee 0` +
+  Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
+. Other incorrect delete commands to try: `delete employee`, `delete employee y`,  (where y is not a positive integer), `delete employee x`, (where x is larger than the list size) +
+  Expected: Similar to previous.
+
+==== Deleting a project
+
+Deleting a project while all projects are listed
+
+. Prerequisites: List all projects using the `list projects` command. Multiple projects in the list.
+. Test case: `delete project 1` +
+  Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+. Test case: `delete project p` +
+  Expected: project with the name 'p' is deleted if it exists in the app and the details of the deleted project shown in the status message. If no project with the name 'p' exists, error details shown in the status message. Status bar remains the same.
+. Test case: `delete project 0` +
+  Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size or is negative) +
+  Expected: Similar to previous.
 
 === Editing an employee
 
@@ -1406,7 +1414,7 @@ Assuming that the employees added here do not exist in the app beforehand.
 .. Test case: `complete x` where x is neither the index of a displayed project nor the name of an existing project +
    Expected: Error detail shown. The Timestamp in the status bar is not updated.
 
-=== clearing all data from the app
+=== Clearing all data from the app
 
 .. Test case: `clear` +
    Expected: All data of employees and projects are deleted from the app.
@@ -1450,6 +1458,74 @@ Assumption: all the objects being manipulated in these test cases exist in the a
    Expected: The first command will delete the first employee in the list from the app while the undo command will restore it. The redo command deletes it again.
 .. Test case: `redo` is entered as the first command on start-up +
    Expected: Output error message. There is no undone command to redo.
+
+=== Adding a project
+
+. Adding a new project
+
+.. Prerequisite: Project list doesn't already contain a project named 'Apollo'.
+.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
+   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `add project n/Ap.ollo c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Invalid project name error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/Symb.Corp d/23/11/2020` +
+   Expected: No new project is added. Invalid client name error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp d/30/02/2020` +
+   Expected: No new project is added. Invalid date error details shown in the status message. Status bar remains the same.
+.. Test case: `add project c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo d/23/11/2020` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+
+. Adding a new project that has at most 1 field different from an existing project.
+
+.. Prerequisite: This test case assumes that the command `add project n/Apollo c/SymbCorp d/23/11/2020` has been entered successfully at least once before.
+.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+.. Test case: `add project n/Apollo1 c/SymbCorp d/23/11/2020` +
+   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `add project n/Apollo c/SymbCorp1 d/23/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp d/10/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+
+=== Adding a milestone
+
+. Adding a milestone to a project
+
+.. Prerequisite: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'. 'Apollo' doesn't already contain milestones with names 'Finished UserGuide' and 'Finished DevGuide'.
+.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Not Found milestone Finished UserGuide 23/04/2019` +
+   Expected: No new milestone is added. Invalid project name error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone 23/04/2019` +
+   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone Finished UserGuide 234/04/2019` +
+   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
+
+. Adding a new milestone that has at most 1 field different from an existing milestone in a project.
+
+.. Prerequisite: This test case assumes that the command `addto Apollo milestone Finished UserGuide 23/04/2019` has been entered successfully at least once before.
+.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
+   Expected: No new milestone is added. Duplicate milestone error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone Finished DevGuide 23/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo milestone Finished UserGuide 11/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+
+=== Adding a UserStory
+
+. Adding a new user story to a project
+
+.. Prerequisites: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'.
+.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/2` +
+   Expected: A new user story is added to 'Apollo'. Details of the added user story shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/4` +
+   Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
+.. Other invalid add userstory commands to try: `addto Apollo userstory x AAA y AAA z AAA` (where expected `x` = as a, `y` = i want to, `z` = so that, `AAA` can be anything. Modify `x` or `y` or `z` to be different from expected.) +
+   Expected: Similar to previous.
 
 === Saving data
 

@@ -11,6 +11,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
 
 /**
@@ -223,6 +224,12 @@ public interface Model {
      * Returns the list of projects that this employee is working on.
      */
     List<Project> getProjectsContaining(Employee employee);
+
+    /**
+     * Adds the {@code task} to the {@code milestone}.
+     * {@code milestone} must exist in the pocket project.
+     */
+    void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task);
 
 
 

@@ -7,6 +7,6 @@ public abstract class AddToCommand extends Command {
 
     public static final String COMMAND_WORD = "addto";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME employee/milestone/userstory"
-            + ": adds the employee/milestone/user story into the selected project.\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME employee/milestone/userstory/projecttask"
+            + ": adds the employee/milestone/user story/project task into the selected project.\n";
 }
