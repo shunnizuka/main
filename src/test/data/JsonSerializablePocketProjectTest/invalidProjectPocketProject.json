@@ -49,9 +49,11 @@
     "description" : "An application for Alice",
     "milestones" :  [
       {"milestone" : "The project starts",
-        "date" :  "11/11/2011"},
+        "date" :  "11/11/2011",
+        "projectTasks" : [ ]},
       {"milestone" :  "The project completes",
-        "date" :  "12/12/2012"}
+        "date" :  "12/12/2012",
+        "projectTasks" : [ ]}
     ],
     "employees" :  [{
       "name" : "Benson Meier",
@@ -73,7 +75,8 @@
     "deadline" :  "23/01/2011",
     "description" : "An application for Benson",
     "milestones" :  [{"milestone" : "The project starts",
-      "date" :  "11/11/2011"},
+      "date" :  "11/11/2011",
+      "projectTasks" : [ ]},
       {"milestone" :  "The project completes",
         "date" :  "12/12/2012"}],
     "employees" :  [{

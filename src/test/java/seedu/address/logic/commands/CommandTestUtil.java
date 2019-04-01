@@ -45,6 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_NAME_BOB = "Project Bob";
     public static final String VALID_PROJECT_NAME_ALICE = "Project Alice";
     public static final String VALID_PROJECT_NAME_ZULU = "Zulu";
+    public static final String VALID_PROJECT_TASK_ALPHA = "Task Alpha";
+    public static final String VALID_PROJECT_TASK_BETA = "Task Beta";
     public static final String VALID_CLIENT_AMY = "SOC";
     public static final String VALID_CLIENT_BOB = "FOS";
     public static final String VALID_CLIENT_ALICE = "Dehui";
