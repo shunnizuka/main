@@ -850,19 +850,61 @@ data of your previous Pocket Project folder.
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: manage employees and projects faster than a typical mouse/GUI driven app
+*Value proposition*: manage employees and projects faster than a typical mouse/GUI driven application
+which enhances administrative procedures and improves efficiency.
 
 [appendix]
 == User Stories
 
-Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * \*`, Medium (good to have) - `* \*`, Low (unlikely to have) - `*`
 
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |Software engineering project manager |Be able to add/delete projects in the app |Keep track of any new projects and remove unnecessary entries
 
-|`* * *` |Software engineering project manager |See all the current ongoing projects listed by importance |Keep track of which projects require immediate attention
+4.1+^s| First-Time User Related Stories
+
+|`* * *` |first-time user |see the usages of different instructions |refer to it if I forget the format and purpose of different commands
+
+|`* * *` |first-time user |be able to read a detailed but simple the user guide |easily understand how to use the features of the application
+
+|`* * *` |first-time user |see a list of available instructions |navigate and use the application effectively by knowing what commands are available to me
+
+|`* *` |first-time user |clear the application and remove all data | trial the very various features and reset the application after
+
+4.1+^s| General User Related Stories
+
+|`* * *` |general user |have a help function |refer to it if I forget the format and purpose of different features and commands
+
+|`* * *` |general user |to be able to undo/revert my commands |quickly revert back and forth any of my latest commands
+
+|`* *` |general user |to be able to have flexibility when keying in dates |can improve speed and efficiency.
+
+4.1+^s| Project Manager Related Stories
+
+|`* * *` |project manager |be able to add/delete employees in the application |keep track of any new employees and remove employees who have left
+
+|`* * *` |project manager |be able to view personal details such as contact number and email of my employees in the application |easily retrieve certain information that would be useful in handling administrative matters.
+
+|`* * *` |project manager |be able to add/delete projects in the application |keep track of any new projects and remove unnecessary entries
+
+|`* * *` |project manager |be able to view details of the project such as description and client in the application |easily view important project details that would be useful in handling administrative matters.
+
+|`* * *` |project manager |see all the current ongoing projects listed by deadline |keep track of which projects require immediate attention
+
+|`* * *` |project manager |assign employees to project |keep track of all employees working on particular project
+
+|`* *` |project manager |keep track of all projects a particular employee is working on |better allocate or re-allocate any workload to achieve better balance
+
+|`* *` |project manager |be able to find a particular employee/project |quickly refer or retrieve details of a particular employee/project
+
+|`* *` |project manager |be able to edit a particular employee/project |update or change details of a particular employee/project
+
+|`* *` |project manager |be able to clear all the date in the application |quickly reset and have an empty application should I change team or company
+
+|`* *` |project manager |to be able to have flexibility when keying in dates |can have greater efficiency in keying inputs and speed up administrative procedures.
+
+4.1+^s| Software Engineering Project Manager Related Stories
 
 |`* * *` |Software engineering project manager |Find all employees that have a certain skill |Assign the right people with the required skills to the right projects
 
@@ -873,7 +915,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* *` |Software engineering project manager |See a recommended list of employees based on the skill requirement of a project|Easily assign employees with the required skills to the project
 |=======================================================================
 
-_{More to be added}_
 
 [appendix]
 == Use Cases
