@@ -137,7 +137,7 @@ public class FindProjectCommandSystemTest extends PocketProjectSystemTest {
         command = FindProjectCommand.COMMAND_WORD + " " + FindProjectCommand.FIND_PROJECT_KEYWORD + " "
             + "hey";
         expectedModel = getModel();
-        ModelHelper.setProjectFilteredList(expectedModel, PROJECT_DANIEL);
+        ModelHelper.setProjectFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedProjectCardUnchanged();
     }

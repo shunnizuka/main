@@ -15,15 +15,18 @@ public class ProjectDetails {
     private List<Node> projectDetailsList;
     private ProjectSummary projectSummary;
     private ProjectUserStories projectUserStories;
+    private ProjectEmployees projectEmployees;
 
     public ProjectDetails(Project project) {
         this.project = project;
         projectDetailsList = new ArrayList<>();
         projectSummary = new ProjectSummary(project);
-        projectUserStories = new ProjectUserStories(project);
+        projectUserStories = new ProjectUserStories(project.getUserStories());
+        projectEmployees = new ProjectEmployees(project.getEmployees());
 
         projectDetailsList.add(projectSummary.getRoot());
         projectDetailsList.add(projectUserStories.getRoot());
+        projectDetailsList.add(projectEmployees.getRoot());
     }
 
     public List<Node> getProjectDetails() {
