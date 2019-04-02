@@ -2,7 +2,7 @@
   "_comment": "Pocket Project save file which contains the same Employee values as in TypicalEmployees#getTypicalPocketProject()",
   "employees": [ {
     "name" : "Alice Pauline",
-    "phone" : "94351drfb253",
+    "phone" : "94351dfg253",
     "email" : "alice@example.com",
     "github" : "aliceballer",
     "skills" : [ "Python", "Java" ], "projectNames" : ["Project Fiona", "Project Geroge"]
@@ -45,7 +45,7 @@
   } ], "projects" : [
   {"projectName" :  "Project Alice",
     "client" :  "Dehui",
-    "deadline" :  "11/02/2019",
+    "deadline" :  "11/02/2019", "completionDate" : "null",
     "description" : "An application for Alice",
     "milestones" :  [
       {"milestone" : "The project starts",
@@ -70,7 +70,7 @@
   },
   {"projectName" :  "Project Benson",
     "client" :  "Jeff",
-    "deadline" :  "23/01/2011",
+    "deadline" :  "23/01/2011", "completionDate" : "null",
     "description" : "An application for Benson",
     "milestones" :  [{"milestone" : "The project starts",
       "date" :  "11/11/2011"},
@@ -93,7 +93,7 @@
   },
   {"projectName" :  "Project Carl",
     "client" :  "Darryl",
-    "deadline" :  "12/12/2012",
+    "deadline" :  "12/12/2012", "completionDate" : "null",
     "description" : "An application for Carl",
     "milestones" :  [],
     "employees" :  [{
@@ -113,7 +113,7 @@
   },
   {"projectName" :  "Project Daniel",
     "client" :  "Shune",
-    "deadline" :  "21/12/2012",
+    "deadline" :  "21/12/2012", "completionDate" : "null",
     "description" : "An application for Daniel",
     "milestones" :  [],
     "employees" :  [{
@@ -133,7 +133,7 @@
   },
   {"projectName" :  "Project Elle",
     "client" :  "Jothi",
-    "deadline" :  "22/03/2019",
+    "deadline" :  "22/03/2019", "completionDate" : "null",
     "description" : "An application for Elle",
     "milestones" :  [],
     "employees" : [{
@@ -153,7 +153,7 @@
   },
   {"projectName" :  "Project Fiona",
     "client" :  "SOC",
-    "deadline" :  "01/01/2020",
+    "deadline" :  "01/01/2020", "completionDate" : "null",
     "description" : "An application for Fiona",
     "milestones" :  [],
     "employees" :  [{
@@ -173,7 +173,7 @@
   },
   {"projectName" :  "Project George",
     "client" :  "FASS",
-    "deadline" :  "11/02/2021",
+    "deadline" :  "11/02/2021", "completionDate" : "null",
     "description" : "An application for George",
     "milestones" :  [],
     "employees" :  [{
@@ -192,5 +192,7 @@
     "userStories" : [ ]
   }
 
-], "completedProjects" : []
+],
+  "completedProjects" : []
 }
+

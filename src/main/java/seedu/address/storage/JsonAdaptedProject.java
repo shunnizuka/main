@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
 import seedu.address.model.project.UserStory;
@@ -28,6 +28,7 @@ class JsonAdaptedProject {
     private final String projectName;
     private final String client;
     private final String deadline;
+    private final String completionDate;
     private final String description;
     private final List<JsonAdaptedMilestone> milestones = new ArrayList<>();
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
@@ -42,7 +43,8 @@ class JsonAdaptedProject {
                               @JsonProperty("description") String description,
                               @JsonProperty("milestones") List<JsonAdaptedMilestone> milestones,
                               @JsonProperty("employees") List<JsonAdaptedEmployee> employees,
-                              @JsonProperty("userStories") List<JsonAdaptedUserStory> userStories) {
+                              @JsonProperty("userStories") List<JsonAdaptedUserStory> userStories,
+                              @JsonProperty("completionDate") String completionDate) {
         this.projectName = projectName;
         this.client = client;
         this.deadline = deadline;
@@ -52,6 +54,7 @@ class JsonAdaptedProject {
         }
         this.employees.addAll(employees);
         this.userStories.addAll(userStories);
+        this.completionDate = completionDate;
     }
 
     /**
@@ -71,6 +74,11 @@ class JsonAdaptedProject {
         userStories.addAll(source.getUserStories().stream()
                 .map(JsonAdaptedUserStory::new)
                 .collect(Collectors.toList()));
+        if (source.getCompletionDate() == null) {
+            completionDate = "null";
+        } else {
+            completionDate = source.getCompletionDate().date;
+        }
     }
 
     /**
@@ -95,6 +103,18 @@ class JsonAdaptedProject {
                         UserStory.class.getSimpleName()));
             }
             modelUserStories.add(userStory.toModelType());
+        }
+        ProjectDate modelCompletionDate = null;
+        if (completionDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ProjectDate.class.getSimpleName()));
+        }
+        if (!completionDate.equals("null")) {
+            if (!ProjectDate.isValidDate(completionDate)) {
+                throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
+            } else {
+                modelCompletionDate = new ProjectDate(completionDate);
+            }
         }
 
         if (projectName == null) {
@@ -130,7 +150,7 @@ class JsonAdaptedProject {
         final ProjectDate modelDeadline = new ProjectDate(deadline);
 
         return new Project(modelProjectName, modelClient, modelDeadline, modelMilestones, modelDescription,
-                modelEmployees, modelUserStories);
+                modelEmployees, modelUserStories, modelCompletionDate);
     }
 
 }
