@@ -47,6 +47,7 @@ public class RemoveEmployeeFromCommand extends RemoveFromCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
         Employee targetEmployee = targetList.get(targetIndex.getZeroBased());
+        targetEmployee.leave(targetProject);
         model.removeEmployeeFrom(targetProject, targetEmployee);
         model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_SUCCESS, targetEmployee,

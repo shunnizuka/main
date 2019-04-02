@@ -26,21 +26,31 @@ public class TypicalEmployees {
     public static final Employee ALICE = new EmployeeBuilder().withName("Alice Pauline")
             .withGitHubAccount("alicaballer").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withSkills("Python", "Java").build();
+            .withSkills("Python", "Java").withProjects("Project George", "Project Fiona").build();
     public static final Employee BENSON = new EmployeeBuilder().withName("Benson Meier")
             .withGitHubAccount("bensonballer")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withSkills("CSS", "HTML", "Java").build();
+            .withSkills("CSS", "HTML", "Java")
+            .withProjects("Project Alice hey", "Project George").build();
     public static final Employee CARL = new EmployeeBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withGitHubAccount("carlballer").build();
+            .withEmail("heinz@example.com")
+            .withProjects("Project Alice hey", "Project Benson")
+            .withGitHubAccount("carlballer").build();
     public static final Employee DANIEL = new EmployeeBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withGitHubAccount("danielballer").withSkills("Assembly").build();
+            .withEmail("cornelia@example.com")
+            .withProjects("Project Benson", "Project Carl hey")
+            .withGitHubAccount("danielballer").withSkills("Assembly").build();
     public static final Employee ELLE = new EmployeeBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withGitHubAccount("elleballer").withSkills("Python").build();
+            .withEmail("werner@example.com")
+            .withProjects("Project Carl hey", "Project Daniel")
+            .withGitHubAccount("elleballer").withSkills("Python").build();
     public static final Employee FIONA = new EmployeeBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withGitHubAccount("fionaballer").build();
+            .withEmail("lydia@example.com").withGitHubAccount("fionaballer")
+            .withProjects("Project Daniel", "Project Elle").build();
     public static final Employee GEORGE = new EmployeeBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withGitHubAccount("georgeballer").build();
+            .withEmail("anna@example.com")
+            .withProjects("Project Elle", "Project Fiona")
+            .withGitHubAccount("georgeballer").build();
 
     // Manually added
     public static final Employee HOON = new EmployeeBuilder().withName("Hoon Meier").withPhone("8482424")

@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.employee.Email;
@@ -8,6 +10,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,6 +29,7 @@ public class EmployeeBuilder {
     private Email email;
     private GitHubAccount github;
     private Set<Skill> skills;
+    private List<ProjectName> projectNames;
 
     public EmployeeBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -33,6 +37,7 @@ public class EmployeeBuilder {
         email = new Email(DEFAULT_EMAIL);
         github = new GitHubAccount(DEFAULT_GITHUB);
         skills = new HashSet<>();
+        projectNames = new ArrayList<>();
     }
 
     /**
@@ -44,6 +49,7 @@ public class EmployeeBuilder {
         email = employeeToCopy.getEmail();
         github = employeeToCopy.getGithub();
         skills = new HashSet<>(employeeToCopy.getSkills());
+        projectNames = new ArrayList<>(employeeToCopy.getCurrentProjects());
     }
 
     /**
@@ -86,8 +92,15 @@ public class EmployeeBuilder {
         return this;
     }
 
+    /**
+     * Sets the names of the lists of projects working on of this employee.
+     */
+    public EmployeeBuilder withProjects(String... projectNames) {
+        this.projectNames.addAll(SampleDataUtil.getProjectNamesList(projectNames));
+        return this;
+    }
     public Employee build() {
-        return new Employee(name, phone, email, github, skills);
+        return new Employee(name, phone, email, github, skills, projectNames);
     }
 
 }

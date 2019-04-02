@@ -6,18 +6,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Label?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="userStoryTableView" fixedCellSize="0.0" layoutY="64.0" prefHeight="388.0" prefWidth="698.0" styleClass="table-view">
-        <columns>
-          <TableColumn fx:id="indexCol" reorderable="false" editable="false" maxWidth="58.0" prefWidth="58.0" sortable="false" text="No." />
-          <TableColumn fx:id="priorityCol" reorderable="false" editable="false" prefWidth="101.0" sortable="false" text="Priority" />
+        <placeholder>
+            <Label text="No user stories found" />
+        </placeholder>
+          <columns>
+          <TableColumn fx:id="indexCol" reorderable="false" editable="false" minWidth="50.0" maxWidth="50.0" prefWidth="50.0" sortable="false" text="No." />
+          <TableColumn fx:id="priorityCol" reorderable="false" editable="false" prefWidth="70.0" sortable="false" text="Priority" />
           <TableColumn fx:id="userCol" reorderable="false" editable="false" prefWidth="143.0" sortable="false" text="As a" />
           <TableColumn fx:id="functionCol" reorderable="false" editable="false" prefWidth="212.0" sortable="false" text="I want to" />
-          <TableColumn fx:id="reasonCol" reorderable="false" editable="false" prefWidth="183.0" sortable="false" text="So that" />
+          <TableColumn fx:id="reasonCol" reorderable="false" editable="false" prefWidth="213.0" maxWidth="Infinity" sortable="false" text="So that" />
         </columns>
       </TableView>
-      <Text fill="#f9fafc" layoutX="240.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USER STORIES" wrappingWidth="217.51953125">
+      <Text fill="#127a6f" layoutX="240.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USER STORIES" wrappingWidth="217.51953125">
          <font>
             <Font size="24.0" />
          </font></Text>

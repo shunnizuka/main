@@ -20,11 +20,22 @@ public class CliSyntax {
     public static final Prefix PREFIX_CLIENT = new Prefix("c/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("desc/");
-    
+    public static final Prefix PREFIX_MILESTONE = new Prefix("m/");
 
     /* User story prefixes */
     public static final Prefix PREFIX_USER = new Prefix(PREAMBLE_USER);
     public static final Prefix PREFIX_FUNCTION = new Prefix(PREAMBLE_FUNCTION);
     public static final Prefix PREFIX_REASON = new Prefix(PREAMBLE_REASON);
     public static final Prefix PREFIX_IMPORTANCE = new Prefix("i/");
+
+    /* Flexible date definitions */
+    public static final Prefix PREFIX_CURRENT = new Prefix("this");
+    public static final Prefix PREFIX_FUTURE = new Prefix("next");
+    public static final Prefix PREFIX_MONTH = new Prefix("month");
+    public static final Prefix PREFIX_PAST = new Prefix("last");
+    public static final Prefix PREFIX_TODAY = new Prefix("today");
+    public static final Prefix PREFIX_TOMORROW = new Prefix("tomorrow");
+    public static final Prefix PREFIX_WEEK = new Prefix("week");
+    public static final Prefix PREFIX_YESTERDAY = new Prefix("yesterday");
+
 }

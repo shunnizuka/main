@@ -17,7 +17,7 @@ public class TypicalProjects {
 
     public static final Project PROJECT_ALICE = new ProjectBuilder().withProjectName("Project Alice hey")
             .withClient("Dehui").withDeadline("11/02/2019")
-            .withDescrption("An application for Alice")
+            .withDescrption("An application for Alice software hello")
             .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                     TypicalMilestones.TYPICAL_MILESTONE_END))
@@ -25,18 +25,18 @@ public class TypicalProjects {
 
 
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
-        .withClient("Jeff").withDeadline("23/01/2011").withDescrption("An application for Benson")
+        .withClient("Jeff software").withDeadline("23/01/2011").withDescrption("An application for Benson")
         .withEmployees(Arrays.asList(TypicalEmployees.CARL, TypicalEmployees.DANIEL))
         .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
             TypicalMilestones.TYPICAL_MILESTONE_END))
         .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_SECOND_MANAGER)).build();
 
     public static final Project PROJECT_CARL = new ProjectBuilder().withProjectName("Project Carl hey")
-        .withClient("Darryl").withDeadline("12/12/2012").withDescrption("An application for Carl")
+        .withClient("Darryl").withDeadline("12/12/2012").withDescrption("An application for Carl hello")
         .withEmployees(Arrays.asList(TypicalEmployees.DANIEL, TypicalEmployees.ELLE)).build();
 
     public static final Project PROJECT_DANIEL = new ProjectBuilder().withProjectName("Project Daniel")
-        .withClient("Shune").withDeadline("21/12/2012").withDescrption("An application for Daniel")
+        .withClient("Shune").withDeadline("21/12/2012").withDescrption("An application for Daniel software")
         .withEmployees(Arrays.asList(TypicalEmployees.ELLE, TypicalEmployees.FIONA)).build();
 
     public static final Project PROJECT_ELLE = new ProjectBuilder().withProjectName("Project Elle").withClient("Jothi")
@@ -72,7 +72,7 @@ public class TypicalProjects {
         new Deadline("13/12/2011"));
 
     public static final Project PROJECT_ZULU = new Project(new ProjectName("Zulu"), new Client("Shunnizuka"),
-        new Deadline("04/09/2023"));
+        new Deadline("09/04/2019"));
 
     /*
     // Manually added - Project's details found in {@code CommandTestUtil}

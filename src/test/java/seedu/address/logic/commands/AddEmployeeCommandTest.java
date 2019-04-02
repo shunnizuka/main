@@ -28,6 +28,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
 import seedu.address.testutil.EmployeeBuilder;
 
@@ -234,7 +235,10 @@ public class AddEmployeeCommandTest {
         public void addUserStoryTo(Project targetProject, UserStory targetStory) {
             throw new AssertionError("This method should not be called.");
         }
-
+        @Override
+        public void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public List<Project> getProjectsContaining(Employee employee) {
             throw new AssertionError("This method should not be called.");

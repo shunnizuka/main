@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -41,11 +43,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyPocketProject getSamplePocketProject() {
-        PocketProject sampleAb = new PocketProject();
+        PocketProject samplePp = new PocketProject();
         for (Employee sampleEmployee : getSampleEmployees()) {
-            sampleAb.addEmployee(sampleEmployee);
+            samplePp.addEmployee(sampleEmployee);
         }
-        return sampleAb;
+        return samplePp;
     }
 
     /**
@@ -57,4 +59,10 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a list of project names containing the strings given.
+     */
+    public static List<ProjectName> getProjectNamesList(String... strings) {
+        return Arrays.stream(strings).map(ProjectName::new).collect(Collectors.toList());
+    }
 }
