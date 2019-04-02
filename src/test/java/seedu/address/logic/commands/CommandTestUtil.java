@@ -92,8 +92,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditEmployeeDescriptor DESC_AMY;
-    public static final EditCommand.EditEmployeeDescriptor DESC_BOB;
+    public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_AMY;
+    public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)

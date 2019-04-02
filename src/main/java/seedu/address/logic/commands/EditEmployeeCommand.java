@@ -30,7 +30,7 @@ import seedu.address.model.skill.Skill;
 /**
  * Edits the details of an existing employee in the pocket project.
  */
-public class EditCommand extends Command {
+public class EditEmployeeCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -58,7 +58,7 @@ public class EditCommand extends Command {
      * @param index of the employee in the filtered employee list to edit
      * @param editEmployeeDescriptor details to edit the employee with
      */
-    public EditCommand(Index index, EditEmployeeDescriptor editEmployeeDescriptor) {
+    public EditEmployeeCommand(Index index, EditEmployeeDescriptor editEmployeeDescriptor) {
         requireNonNull(index);
         requireNonNull(editEmployeeDescriptor);
 
@@ -114,12 +114,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditEmployeeCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditEmployeeCommand e = (EditEmployeeCommand) other;
         return index.equals(e.index)
                 && editEmployeeDescriptor.equals(e.editEmployeeDescriptor);
     }

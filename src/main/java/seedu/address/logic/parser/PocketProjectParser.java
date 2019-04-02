@@ -11,7 +11,7 @@ import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditEmployeeCommand;
 import seedu.address.logic.commands.EditProjectCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -64,7 +64,7 @@ public class PocketProjectParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case EditEmployeeCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case EditProjectCommand.COMMAND_WORD:

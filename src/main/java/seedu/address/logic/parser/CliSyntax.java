@@ -15,7 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_GITHUB = new Prefix("g/");
     public static final Prefix PREFIX_SKILL = new Prefix("s/");
-    
+
     /* Project prefixes*/
     public static final Prefix PREFIX_CLIENT = new Prefix("c/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");

@@ -20,7 +20,7 @@ import org.junit.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
+import seedu.address.logic.commands.EditEmployeeCommand.EditEmployeeDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -34,9 +34,9 @@ import seedu.address.testutil.TypicalEmployees;
 import seedu.address.testutil.TypicalProjects;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditEmployeeCommand.
  */
-public class EditCommandTest {
+public class EditEmployeeCommandTest {
 
     private Model model = new ModelManager(getTypicalPocketProjectWithEmployees(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
@@ -44,16 +44,16 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Employee editedEmployee = new EmployeeBuilder().build();
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor);
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditEmployeeCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
         expectedModel.commitPocketProject();
 
-        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
+        assertCommandSuccess(editEmployeeCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -67,28 +67,28 @@ public class EditCommandTest {
 
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withSkills(VALID_SKILL_JAVA).build();
-        EditCommand editCommand = new EditCommand(indexLastEmployee, descriptor);
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(indexLastEmployee, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditEmployeeCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.setEmployee(lastEmployee, editedEmployee);
         expectedModel.commitPocketProject();
 
-        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
+        assertCommandSuccess(editEmployeeCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, new EditEmployeeDescriptor());
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, new EditEmployeeDescriptor());
         Employee editedEmployee = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditEmployeeCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.commitPocketProject();
 
-        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
+        assertCommandSuccess(editEmployeeCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -97,25 +97,25 @@ public class EditCommandTest {
 
         Employee employeeInFilteredList = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         Employee editedEmployee = new EmployeeBuilder(employeeInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE,
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE,
             new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditEmployeeCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
 
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.setEmployee(model.getFilteredEmployeeList().get(0), editedEmployee);
         expectedModel.commitPocketProject();
 
-        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
+        assertCommandSuccess(editEmployeeCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateEmployeeUnfilteredList_failure() {
         Employee firstEmployee = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(firstEmployee).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_EMPLOYEE, descriptor);
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_SECOND_EMPLOYEE, descriptor);
 
-        assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
     @Test
@@ -124,20 +124,20 @@ public class EditCommandTest {
 
         // edit employee in filtered list into a duplicate in pocket project
         Employee employeeInList = model.getPocketProject().getEmployeeList().get(INDEX_SECOND_EMPLOYEE.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE,
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE,
             new EditEmployeeDescriptorBuilder(employeeInList).build());
 
-        assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
     @Test
     public void execute_invalidEmployeeIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
-        EditCommand.EditEmployeeDescriptor descriptor =
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor =
             new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 
     /**
@@ -151,10 +151,10 @@ public class EditCommandTest {
         // ensures that outOfBoundIndex is still in bounds of pocket project list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPocketProject().getEmployeeList().size());
 
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(outOfBoundIndex,
             new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 
     @Test
@@ -162,13 +162,13 @@ public class EditCommandTest {
         Employee editedEmployee = new EmployeeBuilder().build();
         Employee employeeToEdit = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor);
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor);
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.setEmployee(employeeToEdit, editedEmployee);
         expectedModel.commitPocketProject();
 
         // edit -> first employee edited
-        editCommand.execute(model, commandHistory);
+        editEmployeeCommand.execute(model, commandHistory);
 
         // undo -> reverts pocket project back to previous state and filtered employee list to show all employees
         expectedModel.undoPocketProject();
@@ -183,10 +183,10 @@ public class EditCommandTest {
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(outOfBoundIndex, descriptor);
 
         // execution failed -> pocket project state not added into model
-        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         // single pocket project state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
@@ -203,8 +203,8 @@ public class EditCommandTest {
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameEmployeeEdited() throws Exception {
         Employee editedEmployee = new EmployeeBuilder().build();
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor);
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor);
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
 
         showEmployeeAtIndex(model, INDEX_SECOND_EMPLOYEE);
@@ -213,7 +213,7 @@ public class EditCommandTest {
         expectedModel.commitPocketProject();
 
         // edit -> edits second employee in unfiltered employee list / first employee in filtered employee list
-        editCommand.execute(model, commandHistory);
+        editEmployeeCommand.execute(model, commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered employee list to show all employees
         expectedModel.undoPocketProject();
@@ -236,10 +236,10 @@ public class EditCommandTest {
         model = new ModelManager(builder.build(), new UserPrefs());
 
         Employee editedEmployee = new EmployeeBuilder().build();
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor);
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor);
 
-        editCommand.execute(model, commandHistory);
+        editEmployeeCommand.execute(model, commandHistory);
 
         assertTrue(model.getPocketProject().getProjectList().get(0).getEmployees().get(0)
             .equals(editedEmployee));
@@ -257,11 +257,11 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_EMPLOYEE, DESC_AMY);
+        final EditEmployeeCommand standardCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, DESC_AMY);
 
         // same values -> returns true
         EditEmployeeDescriptor copyDescriptor = new EditEmployeeDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_EMPLOYEE, copyDescriptor);
+        EditEmployeeCommand commandWithSameValues = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -274,10 +274,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_EMPLOYEE, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditEmployeeCommand(INDEX_SECOND_EMPLOYEE, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_EMPLOYEE, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, DESC_BOB)));
     }
 
 }

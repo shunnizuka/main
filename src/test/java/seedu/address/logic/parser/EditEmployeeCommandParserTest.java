@@ -34,7 +34,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_EMPLOYEE;
 import org.junit.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditEmployeeCommand;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
@@ -42,12 +42,12 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditEmployeeCommandParserTest {
 
     private static final String SKILL_EMPTY = " " + PREFIX_SKILL;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEmployeeCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -57,7 +57,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditEmployeeCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -114,10 +114,10 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + SKILL_DESC_JAVA
                 + EMAIL_DESC_AMY + GITHUB_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_C;
 
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withGithubAccount(VALID_GITHUB_AMY)
                 .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -127,9 +127,9 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_EMPLOYEE;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -139,33 +139,33 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_EMPLOYEE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditCommand.EditEmployeeDescriptor descriptor =
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor =
                 new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
         descriptor = new EditEmployeeDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditEmployeeDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // github
         userInput = targetIndex.getOneBased() + GITHUB_DESC_AMY;
         descriptor = new EditEmployeeDescriptorBuilder().withGithubAccount(VALID_GITHUB_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // skills
         userInput = targetIndex.getOneBased() + SKILL_DESC_C;
         descriptor = new EditEmployeeDescriptorBuilder().withSkills(VALID_SKILL_C).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -176,10 +176,10 @@ public class EditCommandParserTest {
                 + SKILL_DESC_C + PHONE_DESC_AMY + GITHUB_DESC_AMY + EMAIL_DESC_AMY + SKILL_DESC_C
                 + PHONE_DESC_BOB + GITHUB_DESC_BOB + EMAIL_DESC_BOB + SKILL_DESC_JAVA;
 
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withGithubAccount(VALID_GITHUB_BOB)
                 .withSkills(VALID_SKILL_C, VALID_SKILL_JAVA).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -189,9 +189,9 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_EMPLOYEE;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditCommand.EditEmployeeDescriptor descriptor =
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor =
                 new EditEmployeeDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
@@ -199,7 +199,7 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB;
         descriptor = new EditEmployeeDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withGithubAccount(VALID_GITHUB_BOB).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -208,8 +208,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_EMPLOYEE;
         String userInput = targetIndex.getOneBased() + SKILL_EMPTY;
 
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withSkills().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withSkills().build();
+        EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

@@ -25,7 +25,7 @@ import seedu.address.logic.commands.AddTaskToCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditEmployeeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
@@ -78,10 +78,10 @@ public class PocketProjectParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Employee employee = new EmployeeBuilder().build();
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(employee).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(employee).build();
+        EditEmployeeCommand command = (EditEmployeeCommand) parser.parseCommand(EditEmployeeCommand.COMMAND_WORD + " "
             + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor), command);
+        assertEquals(new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor), command);
     }
 
     @Test
