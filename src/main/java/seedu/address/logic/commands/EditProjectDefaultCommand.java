@@ -27,7 +27,9 @@ import seedu.address.model.project.ProjectName;
  */
 public class EditProjectDefaultCommand extends EditProjectCommand {
 
-    public static final String MESSAGE_USAGE = "Parameters: " + COMMAND_WORD
+    public static final String EDIT_INFO_KEYWORD = "info";
+
+    public static final String MESSAGE_USAGE = "Parameters: " + COMMAND_WORD + " PROJECT_NAME" + EDIT_INFO_KEYWORD
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_DEADLINE + "11/12/2019] "
         + "[" + PREFIX_CLIENT + "John] "
