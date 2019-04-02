@@ -32,7 +32,6 @@ public class CompleteCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         CompleteCommand completeCommand = new CompleteCommand(INDEX_FIRST_PROJECT);
-
         String expectedMessage = String.format(CompleteCommand.MESSAGE_COMPLETE_PROJECT_SUCCESS, projectToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
