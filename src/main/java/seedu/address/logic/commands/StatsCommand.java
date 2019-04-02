@@ -1,48 +1,13 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.util.SearchingUtil;
-
 /**
- * Displays the number of ongoing and completed projects
+ * Represents a Stats command with hidden internal logic and the ability to be executed.
  */
-public class StatsCommand extends Command {
-
+public abstract class StatsCommand extends Command {
     public static final String COMMAND_WORD = "stats";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays the number of ongoing and completed projects.\n";
 
-    public static final String MESSAGE_STATS =
-            "Number of ongoing projects: %d\nNumber of completed projects: %d\n"
-            + "%s\n"
-            + "%s\n"
-            + "%s\n"
-            + "%s\n"
-            + "%s\n";
-
-    @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        int numOngoing = model.getProjectList().size();
-        int numCompleted = model.getCompletedProjectList().size();
-        String projectWithMostEmployeeString = SearchingUtil.projectWithMostEmployee(model.getProjectList());
-        String projectWithEarliestDeadlineString = SearchingUtil.projectWithEarliestDeadline(model.getProjectList());
-        String employeeWithLeastProjectString = SearchingUtil
-                .employeeWithLeastProject(model.getPocketProject().getEmployeeList());
-        String employeeWithMostProjectString = SearchingUtil
-                .employeeWithMostProject(model.getPocketProject().getEmployeeList());
-        String projectWithLeastEmployeeString = SearchingUtil.projectWithLeastEmployee(model.getProjectList());
-        return new CommandResult(
-                String.format(MESSAGE_STATS, numOngoing, numCompleted, projectWithEarliestDeadlineString,
-                projectWithLeastEmployeeString, projectWithMostEmployeeString, employeeWithLeastProjectString,
-                employeeWithMostProjectString));
-
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other instanceof StatsCommand;
-    }
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": display an overview of all the projects or "
+            + "the progress of an individual project.\n"
+            + OverallStatsCommand.MESSAGE_USAGE + "\n";
 }
