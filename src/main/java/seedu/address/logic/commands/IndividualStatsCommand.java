@@ -58,12 +58,12 @@ public class IndividualStatsCommand extends StatsCommand {
     public boolean equals(Object other) {
         if (projectName != null) {
             return other == this // short circuit if same object
-                    || (other instanceof CompleteCommand // instanceof handles nulls
+                    || (other instanceof IndividualStatsCommand // instanceof handles nulls
                     && projectName.equals(((IndividualStatsCommand) other).projectName));
             // state check
         } else {
             return other == this // short circuit if same object
-                    || (other instanceof CompleteCommand // instanceof handles nulls
+                    || (other instanceof IndividualStatsCommand // instanceof handles nulls
                     && targetIndex.equals(((IndividualStatsCommand) other).targetIndex)); // state check
         }
     }
