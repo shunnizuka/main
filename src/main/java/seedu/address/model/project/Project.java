@@ -193,7 +193,6 @@ public class Project {
     }
 
     /**
-<<<<<<< HEAD
      * Adds the given user story to this project.
      */
     public void addUserStory(UserStory story) {

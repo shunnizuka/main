@@ -4,6 +4,7 @@ import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
+import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.project.UserStoryUser;
 
 /**
@@ -20,22 +21,25 @@ public class UserStoryBuilder {
     private UserStoryUser user;
     private UserStoryFunction function;
     private UserStoryReason reason;
+    private UserStoryStatus status;
 
     public UserStoryBuilder() {
         importance = new UserStoryImportance(DEFAULT_IMPORTANCE);
         user = new UserStoryUser(DEFAULT_USER);
         function = new UserStoryFunction(DEFAULT_FUNCTION);
         reason = new UserStoryReason(DEFAULT_REASON);
+        status = new UserStoryStatus();
     }
 
     /**
      * Initializes the UserStoryBuilder with the data of {@code userStoryToCopy}.
      */
     public UserStoryBuilder(UserStory userStoryToCopy) {
-        importance = userStoryToCopy.getUserStoryImportance();
-        user = userStoryToCopy.getUserStoryUser();
-        function = userStoryToCopy.getUserStoryFunction();
-        reason = userStoryToCopy.getUserStoryReason();
+        this.importance = new UserStoryImportance(userStoryToCopy.getUserStoryImportance());
+        this.user = new UserStoryUser(userStoryToCopy.getUserStoryUser());
+        this.function = new UserStoryFunction(userStoryToCopy.getUserStoryFunction());
+        this.reason = new UserStoryReason(userStoryToCopy.getUserStoryReason());
+        this.status = new UserStoryStatus(userStoryToCopy.getUserStoryStatus());
     }
 
     /**
@@ -67,6 +71,14 @@ public class UserStoryBuilder {
      */
     public UserStoryBuilder withReason(String reason) {
         this.reason = new UserStoryReason(reason);
+        return this;
+    }
+
+    /**
+     * Sets the {@code UserStoryStatus} of the {@code UserStory} that we are building.
+     */
+    public UserStoryBuilder withStatus(String status) {
+        this.status = new UserStoryStatus(status);
         return this;
     }
 

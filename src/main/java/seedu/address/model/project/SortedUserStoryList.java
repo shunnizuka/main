@@ -52,7 +52,7 @@ public class SortedUserStoryList implements Iterable<UserStory> {
         //find the position to insert the new user story
         for (int i = 0; i < internalList.size(); i++) {
             UserStory currentStory = internalList.get(i);
-            if (toAdd.isHigherImportance(currentStory)) {
+            if (toAdd.isHigherImportance(currentStory) || toAdd.isUserLexicographicallySmaller(currentStory)) {
                 internalList.add(i, toAdd);
                 return;
             }

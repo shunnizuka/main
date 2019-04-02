@@ -38,10 +38,10 @@ class JsonAdaptedUserStory {
      * Converts a given {@code User Story} into this class for Jackson use.
      */
     public JsonAdaptedUserStory(UserStory source) {
-        this.importance = source.getUserStoryImportance().getImportance();
-        this.user = source.getUserStoryUser().getUser();
-        this.function = source.getUserStoryFunction().getFunction();
-        this.reason = source.getUserStoryReason().getReason();
+        this.importance = source.getUserStoryImportance();
+        this.user = source.getUserStoryUser();
+        this.function = source.getUserStoryFunction();
+        this.reason = source.getUserStoryReason();
     }
 
     /**

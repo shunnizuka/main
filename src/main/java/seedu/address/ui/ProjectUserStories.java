@@ -38,6 +38,9 @@ public class ProjectUserStories extends UiPart<Region> {
     @FXML
     private TableColumn<UserStoryCell, String> reasonCol;
 
+    @FXML
+    private TableColumn<UserStoryCell, String> statusCol;
+
     public ProjectUserStories(ObservableList<UserStory> stories) {
         super(FXML);
         this.userStories = stories;
@@ -49,6 +52,8 @@ public class ProjectUserStories extends UiPart<Region> {
         priorityCol.setCellValueFactory(new PropertyValueFactory<>("importance"));
         functionCol.setCellValueFactory(new PropertyValueFactory<>("function"));
         reasonCol.setCellValueFactory(new PropertyValueFactory<>("reason"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+
     }
 
     public ObservableList<UserStoryCell> getUserStoryCells(ObservableList<UserStory> stories) {
@@ -78,19 +83,23 @@ public class ProjectUserStories extends UiPart<Region> {
         }
 
         public String getImportance() {
-            return story.getUserStoryImportance().getImportance();
+            return story.getUserStoryImportance();
         }
 
         public String getFunction() {
-            return story.getUserStoryFunction().getFunction();
+            return story.getUserStoryFunction();
         }
 
         public String getUser() {
-            return story.getUserStoryUser().getUser();
+            return story.getUserStoryUser();
         }
 
         public String getReason() {
-            return story.getUserStoryReason().getReason();
+            return story.getUserStoryReason();
+        }
+
+        public String getStatus() {
+            return story.getUserStoryStatus();
         }
     }
 
