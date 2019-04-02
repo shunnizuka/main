@@ -61,8 +61,9 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
          * -> edited
          */
         Index index = INDEX_FIRST_EMPLOYEE;
-        String command = " " + EditEmployeeCommand.COMMAND_WORD + "  " + index.getOneBased() + "  " + NAME_DESC_BOB + "  "
-            + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  " + GITHUB_DESC_BOB + " " + SKILL_DESC_JAVA + " ";
+        String command = " " + EditEmployeeCommand.COMMAND_WORD + "  " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + "  " + NAME_DESC_BOB + "  " + PHONE_DESC_BOB + " " + EMAIL_DESC_BOB + "  "
+            + GITHUB_DESC_BOB + " " + SKILL_DESC_JAVA + " ";
         Employee editedEmployee = new EmployeeBuilder(BOB).withSkills(VALID_SKILL_JAVA).build();
         assertCommandSuccess(command, index, editedEmployee);
 
@@ -79,7 +80,8 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(command, model, expectedResultMessage);
 
         /* Case: edit a employee with new values same as existing values -> edited */
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " "
+            + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandSuccess(command, index, BOB);
 
@@ -87,7 +89,8 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertTrue(getModel().getPocketProject().getEmployeeList().contains(BOB));
         index = INDEX_SECOND_EMPLOYEE;
         assertNotEquals(getModel().getFilteredEmployeeList().get(index.getZeroBased()), BOB);
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         editedEmployee = new EmployeeBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandSuccess(command, index, editedEmployee);
@@ -96,14 +99,16 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
          * -> edited
          */
         index = INDEX_SECOND_EMPLOYEE;
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY
             + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         editedEmployee = new EmployeeBuilder(BOB).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         assertCommandSuccess(command, index, editedEmployee);
 
         /* Case: clear tags -> cleared */
         index = INDEX_FIRST_EMPLOYEE;
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + " " + PREFIX_SKILL.getPrefix();
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + " " + PREFIX_SKILL.getPrefix();
         Employee employeeToEdit = getModel().getFilteredEmployeeList().get(index.getZeroBased());
         editedEmployee = new EmployeeBuilder(employeeToEdit).withSkills().build();
         assertCommandSuccess(command, index, editedEmployee);
@@ -114,7 +119,8 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         index = INDEX_FIRST_EMPLOYEE;
         assertTrue(index.getZeroBased() < getModel().getFilteredEmployeeList().size());
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + " " + NAME_DESC_BOB;
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + " " + NAME_DESC_BOB;
         employeeToEdit = getModel().getFilteredEmployeeList().get(index.getZeroBased());
         editedEmployee = new EmployeeBuilder(employeeToEdit).withName(VALID_NAME_BOB).build();
         assertCommandSuccess(command, index, editedEmployee);
@@ -124,7 +130,8 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
          */
         showEmployeesWithName(KEYWORD_MATCHING_MEIER);
         int invalidIndex = getModel().getPocketProject().getEmployeeList().size();
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " "
+                + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + invalidIndex + NAME_DESC_BOB,
             Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         /* --------------------- Performing edit operation while a employee card is selected ----------------------- */
@@ -135,7 +142,8 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
         showAllEmployees();
         index = INDEX_FIRST_EMPLOYEE;
         viewEmployee(index);
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
             + GITHUB_DESC_AMY + SKILL_DESC_C;
         // this can be misleading: card selection actually remains unchanged but the
         // browser's url is updated to reflect the new employee's name
@@ -144,44 +152,49 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* --------------------------------- Performing invalid edit operation -------------------------------------- */
 
         /* Case: invalid index (0) -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " 0" + NAME_DESC_BOB,
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+                + " 0" + NAME_DESC_BOB,
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (-1) -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " -1" + NAME_DESC_BOB,
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+                + " -1" + NAME_DESC_BOB,
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
         invalidIndex = getModel().getFilteredEmployeeList().size() + 1;
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + invalidIndex + NAME_DESC_BOB,
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " "
+                + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + invalidIndex + NAME_DESC_BOB,
             Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         /* Case: missing index -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + NAME_DESC_BOB,
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " "
+                + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + NAME_DESC_BOB,
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: missing all fields -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased(),
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased(),
             EditEmployeeCommand.MESSAGE_NOT_EDITED);
 
         /* Case: invalid name -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_NAME_DESC,
-            Name.MESSAGE_CONSTRAINTS);
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_PHONE_DESC,
-            Phone.MESSAGE_CONSTRAINTS);
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid email -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_EMAIL_DESC,
-            Email.MESSAGE_CONSTRAINTS);
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid github -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_GITHUB_DESC,
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_GITHUB_DESC,
             GitHubAccount.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid skill -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_SKILL_DESC,
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+                + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_SKILL_DESC,
             Skill.MESSAGE_CONSTRAINTS);
 
         /* Case: edit a employee with new values same as another employee's values -> rejected */
@@ -189,31 +202,36 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
         assertTrue(getModel().getPocketProject().getEmployeeList().contains(BOB));
         index = INDEX_FIRST_EMPLOYEE;
         assertFalse(getModel().getFilteredEmployeeList().get(index.getZeroBased()).equals(BOB));
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " "
+            + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + GITHUB_DESC_BOB + SKILL_DESC_C
+            + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different tags -> rejected*/
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + GITHUB_DESC_BOB + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit an employee with new values same as another employee's values but with different github ->
          * rejected
          */
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + GITHUB_DESC_AMY + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different phone -> rejected
          */
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_BOB
             + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: edit a employee with new values same as another employee's values but with different email -> rejected
          */
-        command = EditEmployeeCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
+        command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
+            + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY
             + GITHUB_DESC_BOB + SKILL_DESC_C + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
@@ -249,7 +267,8 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
         }
 
         assertCommandSuccess(command, expectedModel,
-            String.format(EditEmployeeCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee), expectedSelectedCardIndex);
+            String.format(EditEmployeeCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee),
+            expectedSelectedCardIndex);
     }
 
     /**
