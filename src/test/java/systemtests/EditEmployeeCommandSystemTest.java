@@ -152,8 +152,8 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* --------------------------------- Performing invalid edit operation -------------------------------------- */
 
         /* Case: invalid index (0) -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
-                + " 0" + NAME_DESC_BOB,
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " "
+                + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 0" + NAME_DESC_BOB,
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (-1) -> rejected */
@@ -173,7 +173,8 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditEmployeeCommand.MESSAGE_USAGE));
 
         /* Case: missing all fields -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased(),
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " "
+                + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased(),
             EditEmployeeCommand.MESSAGE_NOT_EDITED);
 
         /* Case: invalid name -> rejected */
@@ -189,7 +190,9 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
             + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid github -> rejected */
-        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_GITHUB_DESC,
+        assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " "
+                + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + INDEX_FIRST_EMPLOYEE.getOneBased()
+                + INVALID_GITHUB_DESC,
             GitHubAccount.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid skill -> rejected */

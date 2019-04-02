@@ -54,7 +54,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser,EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + VALID_NAME_AMY,
+            MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1",
@@ -67,11 +68,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser,  EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " -5" + NAME_DESC_AMY,
+        assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " -5" + NAME_DESC_AMY,
             MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser,  EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 0" + NAME_DESC_AMY,
+        assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 0" + NAME_DESC_AMY,
             MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
@@ -128,9 +129,9 @@ public class EditCommandParserTest {
         String userInput = EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + targetIndex.getOneBased()
             + PHONE_DESC_BOB + SKILL_DESC_JAVA + EMAIL_DESC_AMY + GITHUB_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_C;
 
-        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withGithubAccount(VALID_GITHUB_AMY)
-            .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder()
+            .withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
+            .withGithubAccount(VALID_GITHUB_AMY).withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
         EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -224,7 +225,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_EMPLOYEE;
         String userInput = EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + targetIndex.getOneBased() + SKILL_EMPTY;
 
-        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder().withSkills().build();
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder()
+            .withSkills().build();
         EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
