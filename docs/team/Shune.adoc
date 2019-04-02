@@ -1,0 +1,58 @@
+= Shune Lei Yee Tun - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: Pocket Project
+
+---
+
+== Overview
+
+Our team has decided to morph AddressBook Level 4 into Pocket Project. Pocket Project is a project management application which is designed to suit the needs of software engineering managers.
+
+== Summary of contributions
+
+* *Major enhancement*: Implemented Find commands
+** What it does: allows the user to search for projects and employees in the application by using keywords such as name, skill, or any matching words.
+** Justification: This feature improves the product significantly because it is difficult for the user to look through the whole list of employees or projects just to look for a certain project/employee. Hence this find command provide a convenient way for the user to navigate within the applicaiton.
+** Highlights: This enhancement can be be used together with other commands and make it more convenient for the users to execute other commands.
+** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+
+* *Minor enhancement*: 
+
+* *Code contributed*: _
+
+* *Other contributions*:
+
+** Project management:
+** Enhancements to existing features:
+** Documentation:
+** Community:
+** Tools:
+
+_{you can add/remove categories in the list above}_
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=find]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=find]
+
+
+== PROJECT: PowerPointLabs
+
+---
+
+_{Optionally, you may include other projects in your portfolio.}_

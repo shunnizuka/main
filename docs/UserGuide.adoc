@@ -250,6 +250,7 @@ The index must be a *positive integer* and cannot be larger than the size of the
 image:ug-lightbulb.png[width="50"]
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
 
+//tag::find[]
 === Locating employees, projects or skills by name: `find`
 
 ==== Find employees in the application: `find employee`
@@ -327,6 +328,8 @@ Step 1: `find employee Bernice` - to narrow down the list to all employees with 
 image::findEmployeeBernice.png[width="800"]
 
 Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
+
+//end::find[]
 
 === View the details of employees or projects : `view`
 
