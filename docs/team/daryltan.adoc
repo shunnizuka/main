@@ -27,7 +27,7 @@ Note the following symbols and formatting used in this document:
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
 *Enhancement added*: I added the ability to add, edit and remove tasks to and from a project in the application.
-[grid="none", frame="none"]
+[grid="none", frame="none", cols = "1,4"]
 |===
 |image:ug-notepadpencil.png[width="40"]| Milestones in a project give a broad overview of what needs to be done to complete a project. Tasks in a milestone are like a to-do list for keeping track of what needs to be done to reach the next milestone.
 |===
