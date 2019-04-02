@@ -20,7 +20,7 @@
             <FlowPane id="skills" fx:id="skills" alignment="CENTER" layoutX="19.0" layoutY="98.0" prefHeight="17.0" prefWidth="563.0" />
          </VBox>
          <Label id="labelSummaryheader" alignment="CENTER" prefWidth="600" text="Details" />
-         <ListView id="boxSummary" prefHeight="400.0" prefWidth="569.0">
+         <ListView prefHeight="400.0" prefWidth="569.0" focusTraversable="false" mouseTransparent="true">
             <HBox prefHeight="20" prefWidth="500.0">
                <Label id="labelSummaryheader" prefWidth="68" text="Phone:  " />
                <Label id="labelSummary" fx:id="phone" text="phone" />
@@ -29,9 +29,6 @@
                <Label id="labelSummaryheader" prefWidth="68.0" text="Email:  " />
                <Label id="labelSummary" fx:id="email" text="email" />
             </HBox>
-            <padding>
-               <Insets bottom="5" left="20" right="5" top="5" />
-            </padding>
          </ListView>
          <Label fx:id="projects" layoutX="30.0" layoutY="234.0" text="projects" />
       </VBox>
