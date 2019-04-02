@@ -11,46 +11,46 @@ public class DeadlineTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Deadline(null));
+        Assert.assertThrows(NullPointerException.class, () -> new ProjectDate(null));
     }
 
     @Test
     public void constructor_invalidDeadline_throwsIllegalArgumentException() {
         String invalidDeadline = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Deadline(invalidDeadline));
+        Assert.assertThrows(IllegalArgumentException.class, () -> new ProjectDate(invalidDeadline));
     }
 
     @Test
     public void isValidDeadline() {
         // null date
-        Assert.assertThrows(NullPointerException.class, () -> Deadline.isValidDate(null));
+        Assert.assertThrows(NullPointerException.class, () -> ProjectDate.isValidDate(null));
 
         // blank email
-        assertFalse(Deadline.isValidDate("")); // empty string
-        assertFalse(Deadline.isValidDate(" ")); // spaces only
+        assertFalse(ProjectDate.isValidDate("")); // empty string
+        assertFalse(ProjectDate.isValidDate(" ")); // spaces only
 
         // missing parts
-        assertFalse(Deadline.isValidDate("12")); // missing both the month/date and the year value
-        assertFalse(Deadline.isValidDate("12/12")); // missing the year value
-        assertFalse(Deadline.isValidDate("12/2019")); // missing the month/date value
+        assertFalse(ProjectDate.isValidDate("12")); // missing both the month/date and the year value
+        assertFalse(ProjectDate.isValidDate("12/12")); // missing the year value
+        assertFalse(ProjectDate.isValidDate("12/2019")); // missing the month/date value
 
         // invalid parts
-        assertFalse(Deadline.isValidDate("12//12/2019")); // wrong input pattern
-        assertFalse(Deadline.isValidDate("12/12/12/2019")); // too many fields
-        assertFalse(Deadline.isValidDate("111/11/2019")); // too many digits in the date field
-        assertFalse(Deadline.isValidDate("11/111/2019")); // too many digits in the month field
-        assertFalse(Deadline.isValidDate("11/11/11111")); // too many digits in the date field
-        assertFalse(Deadline.isValidDate(" 11/11/2019")); // leading space
-        assertFalse(Deadline.isValidDate("11/11/2019 ")); // trailing space
-        assertFalse(Deadline.isValidDate("aa/11/2019")); // alphabetical date
-        assertFalse(Deadline.isValidDate("11/aa/2019")); // alphabetical month
-        assertFalse(Deadline.isValidDate("11/11/aaaa")); // alphabetical year
-        assertFalse(Deadline.isValidDate("44/11/2019")); // invalid date
-        assertFalse(Deadline.isValidDate("11/44/aaaa")); // invalid month
-        assertFalse(Deadline.isValidDate("11/11/1800")); // invalid year too old
+        assertFalse(ProjectDate.isValidDate("12//12/2019")); // wrong input pattern
+        assertFalse(ProjectDate.isValidDate("12/12/12/2019")); // too many fields
+        assertFalse(ProjectDate.isValidDate("111/11/2019")); // too many digits in the date field
+        assertFalse(ProjectDate.isValidDate("11/111/2019")); // too many digits in the month field
+        assertFalse(ProjectDate.isValidDate("11/11/11111")); // too many digits in the date field
+        assertFalse(ProjectDate.isValidDate(" 11/11/2019")); // leading space
+        assertFalse(ProjectDate.isValidDate("11/11/2019 ")); // trailing space
+        assertFalse(ProjectDate.isValidDate("aa/11/2019")); // alphabetical date
+        assertFalse(ProjectDate.isValidDate("11/aa/2019")); // alphabetical month
+        assertFalse(ProjectDate.isValidDate("11/11/aaaa")); // alphabetical year
+        assertFalse(ProjectDate.isValidDate("44/11/2019")); // invalid date
+        assertFalse(ProjectDate.isValidDate("11/44/aaaa")); // invalid month
+        assertFalse(ProjectDate.isValidDate("11/11/1800")); // invalid year too old
 
         // valid deadlines
-        assertTrue(Deadline.isValidDate("11/11/2019"));
-        assertTrue(Deadline.isValidDate("1/1/2000")); // minimal
+        assertTrue(ProjectDate.isValidDate("11/11/2019"));
+        assertTrue(ProjectDate.isValidDate("1/1/2000")); // minimal
     }
 }

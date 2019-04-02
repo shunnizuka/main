@@ -11,7 +11,7 @@ public class ProjectCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
     private static final String PROJECTNAME_FIELD_ID = "#name";
     private static final String CLIENT_FIELD_ID = "#client";
-    private static final String DEADLINE_FIELD_ID = "#date";
+    private static final String DEADLINE_FIELD_ID = "#deadline";
 
     private final Label idLabel;
     private final Label projectNameLabel;

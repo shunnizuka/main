@@ -21,7 +21,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.Deadline;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
@@ -167,7 +167,7 @@ public class ModelManager implements Model {
         return targetProject;
     }
     @Override
-    public void completeProject(Project project, Deadline completionDate) {
+    public void completeProject(Project project, ProjectDate completionDate) {
         versionedPocketProject.completeProject(project, completionDate);
     }
 
