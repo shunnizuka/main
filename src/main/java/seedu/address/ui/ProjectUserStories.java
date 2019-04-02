@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Shape;
 import seedu.address.model.project.UserStory;
 
 /**
@@ -72,11 +73,14 @@ public class ProjectUserStories extends UiPart<Region> {
 
         private UserStory story;
         private Integer index;
+        private Shape shape;
 
         public UserStoryCell(UserStory s, int index) {
             this.story = s;
             this.index = index;
         }
+
+        private void instantiateColour
 
         public String getIndex() {
             return this.index.toString();
