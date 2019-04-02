@@ -137,7 +137,9 @@ public class Project {
     public ObservableList<UserStory> getUserStories() {
         return userStories.asUnmodifiableObservableList();
     }
-    public ProjectDate getCompletionDate() { return completionDate; }
+    public ProjectDate getCompletionDate() {
+        return completionDate;
+    }
     /**
      * Returns a clone of this Project object.
      */
