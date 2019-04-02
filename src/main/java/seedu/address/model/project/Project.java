@@ -38,58 +38,59 @@ public class Project {
     private final ProjectName projectName;
     private final List<Milestone> milestones;
     private final Client client;
-    private final Deadline deadline;
+    private final ProjectDate deadline;
     private final UniqueEmployeeList employees;
     private final SortedUserStoryList userStories;
     private final Description description;
-
+    private ProjectDate completionDate = null;
 
     /**
      * Constructor for each Project Object.
      */
-    public Project (ProjectName pn, Client c, Deadline d) {
+    public Project (ProjectName pn, Client c, ProjectDate d) {
         this(pn, c, d, new ArrayList<>(), new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying milestones too.
      */
-    public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m) {
+    public Project (ProjectName pn, Client c, ProjectDate d, List<Milestone> m) {
         this(pn, c, d, m, new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying description and milestone too.
      */
-    public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc) {
+    public Project (ProjectName pn, Client c, ProjectDate d, List<Milestone> m, Description desc) {
         this(pn, c, d, m, desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying description.
      */
-    public Project (ProjectName pn, Client c, Deadline d, Description desc) {
+    public Project (ProjectName pn, Client c, ProjectDate d, Description desc) {
         this(pn, c, d, new ArrayList<>(), desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying employees in the project.
      */
-    public Project(ProjectName pn, Client c, Deadline d, Description desc, UniqueEmployeeList emp) {
+    public Project(ProjectName pn, Client c, ProjectDate d, Description desc, UniqueEmployeeList emp) {
         this(pn, c, d, new ArrayList<>(), desc, emp, new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying all fields except userstories.
      */
-    public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp) {
+    public Project(ProjectName pn, Client c, ProjectDate d, List<Milestone> m, Description desc,
+                   UniqueEmployeeList emp) {
         this(pn, c, d, m, desc, emp, new SortedUserStoryList());
     }
 
     /**
-     * Constructor specifying all fields.
+     * Constructor specifying all fields except completion date.
      */
-    public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
+    public Project(ProjectName pn, Client c, ProjectDate d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
                    SortedUserStoryList stories) {
         this.projectName = pn;
         this.client = c;
@@ -98,7 +99,21 @@ public class Project {
         this.employees = emp;
         this.milestones = m;
         this.userStories = stories;
+    }
 
+    /**
+     * Constructor specifying all fields.
+     */
+    public Project(ProjectName pn, Client c, ProjectDate d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
+                   SortedUserStoryList stories, ProjectDate comp) {
+        this.projectName = pn;
+        this.client = c;
+        this.deadline = d;
+        this.description = desc;
+        this.employees = emp;
+        this.milestones = m;
+        this.userStories = stories;
+        this.completionDate = comp;
     }
 
     public ProjectName getProjectName() {
@@ -110,7 +125,7 @@ public class Project {
     public Client getClient() {
         return client;
     }
-    public Deadline getDeadline() {
+    public ProjectDate getDeadline() {
         return deadline;
     }
     public Description getDescription() {
@@ -168,6 +183,13 @@ public class Project {
             }
         };
         milestones.sort(comparator);
+    }
+
+    /**
+     * Completes the project, specifying the completion date.
+     */
+    public void setCompletionDate(ProjectDate completionDate) {
+        this.completionDate = completionDate;
     }
 
     /**

@@ -5,7 +5,7 @@ import java.util.List;
 
 import seedu.address.model.PocketProject;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
@@ -63,16 +63,16 @@ public class TypicalProjects {
         .withDeadline("3/3/2013").withDescrption("An application for Ida Mueller").build();
 
     public static final Project PROJECT_WHISKEY = new Project(new ProjectName("Whiskey"), new Client("Curry S"),
-        new Deadline("10/10/2010"));
+        new ProjectDate("10/10/2010"));
 
     public static final Project PROJECT_XAVIER = new Project(new ProjectName("Xavier"), new Client("JJ Pte Ltd"),
-        new Deadline("02/03/2033"));
+        new ProjectDate("02/03/2033"));
 
     public static final Project PROJECT_YANKEE = new Project(new ProjectName("Yankee"), new Client("Pang Po"),
-        new Deadline("13/12/2011"));
+        new ProjectDate("13/12/2011"));
 
     public static final Project PROJECT_ZULU = new Project(new ProjectName("Zulu"), new Client("Shunnizuka"),
-        new Deadline("04/09/2023"));
+        new ProjectDate("04/09/2023"));
 
     /*
     // Manually added - Project's details found in {@code CommandTestUtil}

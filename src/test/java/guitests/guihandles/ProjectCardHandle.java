@@ -11,7 +11,7 @@ public class ProjectCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
     private static final String PROJECTNAME_FIELD_ID = "#name";
     private static final String CLIENT_FIELD_ID = "#client";
-    private static final String DEADLINE_FIELD_ID = "#deadline";
+    private static final String DEADLINE_FIELD_ID = "#date";
 
     private final Label idLabel;
     private final Label projectNameLabel;
@@ -50,6 +50,6 @@ public class ProjectCardHandle extends NodeHandle<Node> {
     public boolean equals(Project project) {
         return getProjectName().equals(project.getProjectName().projectName)
                 && getClient().equals(project.getClient().client)
-                && getDeadline().equals(project.getDeadline().deadline);
+                && getDeadline().equals(project.getDeadline().date);
     }
 }

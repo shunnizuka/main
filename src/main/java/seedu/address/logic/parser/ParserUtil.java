@@ -16,7 +16,7 @@ import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UserStoryFunction;
@@ -174,15 +174,15 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deadline} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Deadline parseDeadline(String deadline) throws ParseException {
+    public static ProjectDate parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDate = deadline.trim();
-        if (!Deadline.isValidDate(trimmedDate)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!ProjectDate.isValidDate(trimmedDate)) {
+            throw new ParseException(ProjectDate.MESSAGE_CONSTRAINTS);
         }
-        return new Deadline(trimmedDate);
+        return new ProjectDate(trimmedDate);
     }
 
     /**

@@ -56,7 +56,7 @@ import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
@@ -212,7 +212,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE
                 + VALID_CLIENT_ALICE + DEADLINE_DESC_ALICE, expectedMessage);
 
-        // missing deadline prefix
+        // missing date prefix
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE
                 + CLIENT_DESC_ALICE + VALID_DEADLINE_ALICE, expectedMessage);
 
@@ -231,9 +231,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE
             + INVALID_CLIENT_DESC + DEADLINE_DESC_ALICE, Client.MESSAGE_CONSTRAINTS);
 
-        // invalid deadline
+        // invalid date
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE + CLIENT_DESC_ALICE
-                + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
+                + INVALID_DEADLINE_DESC, ProjectDate.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + INVALID_PROJECT_NAME_DESC

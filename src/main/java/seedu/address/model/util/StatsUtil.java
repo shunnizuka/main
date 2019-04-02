@@ -99,23 +99,23 @@ public class StatsUtil {
     }
 
     /**
-     * Look through a list of projects to find the project with the earliest deadline.
+     * Look through a list of projects to find the project with the earliest date.
      * Returns a string describing it.
      */
     private static String projectWithEarliestDeadline(List<Project> projects) {
         Comparator<? super Project> comparator = new Comparator<Project>() {
             @Override
             public int compare(Project o1, Project o2) {
-                return Project.DATE_STRING_COMPARATOR.compare(o1.getDeadline().deadline,
-                        o2.getDeadline().deadline);
+                return Project.DATE_STRING_COMPARATOR.compare(o1.getDeadline().date,
+                        o2.getDeadline().date);
             }
         };
         Optional<Project> projectWithEarliestDeadline = projects.stream().min(comparator);
         String projectWithEarliestDeadlineString = null;
         if (projectWithEarliestDeadline.isPresent()) {
-            projectWithEarliestDeadlineString = "The project with the earliest deadline is "
+            projectWithEarliestDeadlineString = "The project with the earliest date is "
                     + projectWithEarliestDeadline.get().getProjectName().projectName
-                    + " at " + projectWithEarliestDeadline.get().getDeadline().deadline;
+                    + " at " + projectWithEarliestDeadline.get().getDeadline().date;
         } else {
             projectWithEarliestDeadlineString = "There is no ongoing project";
         }

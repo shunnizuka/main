@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UserStory;
 import seedu.address.testutil.EmployeeBuilder;
@@ -195,7 +196,7 @@ public class AddEmployeeCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void completeProject(Project project) {
+        public void completeProject(Project project, ProjectDate completionDate) {
             throw new AssertionError("This method should not be called.");
         }
 

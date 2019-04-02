@@ -87,7 +87,7 @@ public class ProjectTest {
         editedAlice = new ProjectBuilder(PROJECT_ALICE).withClient(VALID_CLIENT_BOB).build();
         assertFalse(PROJECT_ALICE.equals(editedAlice));
 
-        // different deadline -> returns false
+        // different date -> returns false
         editedAlice = new ProjectBuilder(PROJECT_ALICE).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(PROJECT_ALICE.equals(editedAlice));
 

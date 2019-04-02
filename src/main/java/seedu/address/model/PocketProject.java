@@ -13,6 +13,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.project.UserStory;
 
@@ -183,8 +184,9 @@ public class PocketProject implements ReadOnlyPocketProject {
      * Removes {@code project} from the list of ongoing projects and add it to the list of completed projects.
      * {@code project} must exist in the pocket project.
      */
-    public void completeProject(Project project) {
+    public void completeProject(Project project, ProjectDate completionDate) {
         removeProject(project);
+        project.setCompletionDate(completionDate);
         completedProjects.add(project);
     }
 
@@ -215,6 +217,9 @@ public class PocketProject implements ReadOnlyPocketProject {
      * {@code project} must exist in the pocket project.
      */
     public void removeProject(Project project) {
+        for (Employee e: employees) {
+            e.getCurrentProjects().remove(project.getProjectName());
+        }
         projects.remove(project);
         indicateModified();
     }

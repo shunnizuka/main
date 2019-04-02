@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CompleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -18,7 +19,8 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
     /**
      * Used for separation of delete type word and args.
      */
-    private static final Pattern COMPLETE_COMMAND_FORMAT = Pattern.compile("(?<arguments>.*)");
+    private static final Pattern COMPLETE_COMMAND_FORMAT =
+            Pattern.compile("(?<project>((-?)[0-9]+)|(.*)\\s?<date>.*)");
     private static final String INTEGER_STRING_FORMAT = "(-?)[0-9]+";
 
     /**
@@ -32,18 +34,19 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompleteCommand.MESSAGE_USAGE));
         }
-        final String arguments = matcher.group("arguments");
-        String argument = arguments.trim();
+        final String projectReference = matcher.group("project");
+        final ProjectDate date = ParserUtil.parseDeadline(matcher.group("date"));
+        String argument = projectReference.trim();
         if (argument.matches(INTEGER_STRING_FORMAT)) {
             try {
                 Index index = ParserUtil.parseIndex(argument);
-                return new CompleteCommand(index);
+                return new CompleteCommand(index, date);
             } catch (ParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         CompleteCommand.MESSAGE_USAGE, pe));
             }
         } else {
-            return new CompleteCommand(new ProjectName(argument));
+            return new CompleteCommand(new ProjectName(argument), date);
         }
     }
 

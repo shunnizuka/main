@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.testutil.TypicalProjectNames;
 import seedu.address.testutil.TypicalProjects;
 
@@ -24,18 +25,18 @@ import seedu.address.testutil.TypicalProjects;
  * {@code CompleteCommand}.
  */
 public class CompleteCommandTest {
-
+    private static final ProjectDate VALID_DATE = new ProjectDate("11/11/2011");
     private Model model = new ModelManager(getTypicalPocketProjectWithProjects(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        CompleteCommand completeCommand = new CompleteCommand(INDEX_FIRST_PROJECT);
+        CompleteCommand completeCommand = new CompleteCommand(INDEX_FIRST_PROJECT, VALID_DATE);
         String expectedMessage = String.format(CompleteCommand.MESSAGE_COMPLETE_PROJECT_SUCCESS, projectToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
-        expectedModel.completeProject(projectToDelete);
+        expectedModel.completeProject(projectToDelete, VALID_DATE);
         expectedModel.commitPocketProject();
 
         assertCommandSuccess(completeCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -44,7 +45,7 @@ public class CompleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
-        CompleteCommand completeCommand = new CompleteCommand(outOfBoundIndex);
+        CompleteCommand completeCommand = new CompleteCommand(outOfBoundIndex, VALID_DATE);
 
         assertCommandFailure(completeCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
@@ -52,12 +53,12 @@ public class CompleteCommandTest {
     @Test
     public void execute_validName_success() {
         Project projectToDelete = model.getProjectList().get(0);
-        CompleteCommand completeCommand = new CompleteCommand(projectToDelete.getProjectName());
+        CompleteCommand completeCommand = new CompleteCommand(projectToDelete.getProjectName(), VALID_DATE);
 
         String expectedMessage = String.format(CompleteCommand.MESSAGE_COMPLETE_PROJECT_SUCCESS, projectToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
-        expectedModel.completeProject(projectToDelete);
+        expectedModel.completeProject(projectToDelete, VALID_DATE);
         expectedModel.commitPocketProject();
 
         assertCommandSuccess(completeCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -66,7 +67,7 @@ public class CompleteCommandTest {
     @Test
     public void execute_invalidName_throwsCommandException() {
         CompleteCommand completeCommand = new CompleteCommand(
-                TypicalProjectNames.NON_EXISTENT_PROJECT_NAME);
+                TypicalProjectNames.NON_EXISTENT_PROJECT_NAME, VALID_DATE);
 
         assertCommandFailure(completeCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECT_NAME);
@@ -76,9 +77,9 @@ public class CompleteCommandTest {
     @Test
     public void executeUndoRedo_validName_success() throws Exception {
         Project projectToDelete = model.getProjectList().get(0);
-        CompleteCommand completeCommand = new CompleteCommand(projectToDelete.getProjectName());
+        CompleteCommand completeCommand = new CompleteCommand(projectToDelete.getProjectName(), VALID_DATE);
         Model expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
-        expectedModel.completeProject(projectToDelete);
+        expectedModel.completeProject(projectToDelete, VALID_DATE);
         expectedModel.commitPocketProject();
 
         // complete -> first project completed
@@ -96,7 +97,7 @@ public class CompleteCommandTest {
     @Test
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
         CompleteCommand completeCommand = new CompleteCommand(
-                TypicalProjectNames.NON_EXISTENT_PROJECT_NAME);
+                TypicalProjectNames.NON_EXISTENT_PROJECT_NAME, VALID_DATE);
 
         // execution failed -> pocket project state not added into model
         assertCommandFailure(completeCommand, model, commandHistory,
@@ -111,16 +112,16 @@ public class CompleteCommandTest {
     @Test
     public void equals() {
         CompleteCommand completeAliceCommand = new CompleteCommand(
-                TypicalProjects.PROJECT_ALICE.getProjectName());
+                TypicalProjects.PROJECT_ALICE.getProjectName(), VALID_DATE);
         CompleteCommand completeBensonCommand = new CompleteCommand(
-                TypicalProjects.PROJECT_BENSON.getProjectName());
+                TypicalProjects.PROJECT_BENSON.getProjectName(), VALID_DATE);
 
         // same object -> returns true
         assertTrue(completeAliceCommand.equals(completeAliceCommand));
 
         // same values -> returns true
         CompleteCommand completeAliceCommandCopy = new CompleteCommand(
-                TypicalProjects.PROJECT_ALICE.getProjectName());
+                TypicalProjects.PROJECT_ALICE.getProjectName(), VALID_DATE);
         assertTrue(completeAliceCommand.equals(completeAliceCommandCopy));
 
         // different types -> returns false

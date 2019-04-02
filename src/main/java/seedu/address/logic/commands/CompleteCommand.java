@@ -10,6 +10,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -29,15 +30,18 @@ public class CompleteCommand extends Command {
 
     private final ProjectName projectName;
     private final Index targetIndex;
+    private final ProjectDate completionDate;
 
-    public CompleteCommand(ProjectName targetName) {
+    public CompleteCommand(ProjectName targetName, ProjectDate completionDate) {
         this.projectName = targetName;
         this.targetIndex = null;
+        this.completionDate = completionDate;
     }
 
-    public CompleteCommand(Index index) {
+    public CompleteCommand(Index index, ProjectDate completionDate) {
         this.targetIndex = index;
         this.projectName = null;
+        this.completionDate = completionDate;
     }
 
     @Override
@@ -55,7 +59,7 @@ public class CompleteCommand extends Command {
         if (projectToComplete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
-        model.completeProject(projectToComplete);
+        model.completeProject(projectToComplete, this.completionDate);
         model.commitPocketProject();
 
         return new CommandResult(String.format(MESSAGE_COMPLETE_PROJECT_SUCCESS, projectToComplete));
@@ -66,12 +70,14 @@ public class CompleteCommand extends Command {
         if (projectName != null) {
             return other == this // short circuit if same object
                     || (other instanceof CompleteCommand // instanceof handles nulls
-                    && projectName.equals(((CompleteCommand) other).projectName));
+                    && projectName.equals(((CompleteCommand) other).projectName)
+                    && completionDate.equals(((CompleteCommand) other).completionDate));
             // state check
         } else {
             return other == this // short circuit if same object
                     || (other instanceof CompleteCommand // instanceof handles nulls
-                    && targetIndex.equals(((CompleteCommand) other).targetIndex)); // state check
+                    && targetIndex.equals(((CompleteCommand) other).targetIndex)
+                    && completionDate.equals(((CompleteCommand) other).completionDate)); // state check
         }
     }
 }
