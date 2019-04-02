@@ -10,7 +10,7 @@ import java.text.ParseException;
  * The A date object.
  */
 
-public class ProjectDate {
+public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format DD/MM/YYYY";
 
@@ -22,7 +22,7 @@ public class ProjectDate {
 
     public final String date;
 
-    public ProjectDate(String date) {
+    public Deadline(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = date;
@@ -45,8 +45,8 @@ public class ProjectDate {
     /**
      * Returns a clone of this Deadline object.
      */
-    public ProjectDate clone() {
-        return new ProjectDate(this.date);
+    public Deadline clone() {
+        return new Deadline(this.date);
     }
 
     @Override
@@ -57,8 +57,8 @@ public class ProjectDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ProjectDate // instanceof handles nulls
-                && date.equals(((ProjectDate) other).date)); // state check
+                || (other instanceof Deadline // instanceof handles nulls
+                && date.equals(((Deadline) other).date)); // state check
     }
 
     @Override

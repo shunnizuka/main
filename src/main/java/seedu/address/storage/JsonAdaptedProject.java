@@ -13,7 +13,7 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
 import seedu.address.model.project.UserStory;
@@ -104,16 +104,16 @@ class JsonAdaptedProject {
             }
             modelUserStories.add(userStory.toModelType());
         }
-        ProjectDate modelCompletionDate = null;
+        Deadline modelCompletionDate = null;
         if (completionDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectDate.class.getSimpleName()));
+                    Deadline.class.getSimpleName()));
         }
         if (!completionDate.equals("null")) {
-            if (!ProjectDate.isValidDate(completionDate)) {
-                throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
+            if (!Deadline.isValidDate(completionDate)) {
+                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
             } else {
-                modelCompletionDate = new ProjectDate(completionDate);
+                modelCompletionDate = new Deadline(completionDate);
             }
         }
 
@@ -142,12 +142,12 @@ class JsonAdaptedProject {
 
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ProjectDate.class.getSimpleName()));
+                Deadline.class.getSimpleName()));
         }
-        if (!ProjectDate.isValidDate(deadline)) {
-            throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
+        if (!Deadline.isValidDate(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        final ProjectDate modelDeadline = new ProjectDate(deadline);
+        final Deadline modelDeadline = new Deadline(deadline);
 
         return new Project(modelProjectName, modelClient, modelDeadline, modelMilestones, modelDescription,
                 modelEmployees, modelUserStories, modelCompletionDate);

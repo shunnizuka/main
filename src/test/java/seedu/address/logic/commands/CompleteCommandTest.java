@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
+import seedu.address.model.project.Deadline;
 import seedu.address.testutil.TypicalProjectNames;
 import seedu.address.testutil.TypicalProjects;
 
@@ -25,7 +25,7 @@ import seedu.address.testutil.TypicalProjects;
  * {@code CompleteCommand}.
  */
 public class CompleteCommandTest {
-    private static final ProjectDate VALID_DATE = new ProjectDate("11/11/2011");
+    private static final Deadline VALID_DATE = new Deadline("11/11/2011");
     private Model model = new ModelManager(getTypicalPocketProjectWithProjects(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
