@@ -381,4 +381,14 @@
     -fx-font-family: "Proxima Nova Alt";
 }
 
+#redCircle {
+    -fx-fill: #ed7676;
+}
 
+#greenCircle {
+    -fx-fill: #84f984;
+}
+
+#orangeCircle {
+    -fx-fill: #ffcd77;
+}

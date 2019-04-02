@@ -19,7 +19,7 @@
           <TableColumn fx:id="userCol" reorderable="false" editable="false" prefWidth="123.0" sortable="false" text="As a" />
           <TableColumn fx:id="functionCol" reorderable="false" editable="false" prefWidth="180.0" sortable="false" text="I want to" />
           <TableColumn fx:id="reasonCol" reorderable="false" editable="false" prefWidth="180.0" maxWidth="Infinity" sortable="false" text="So that" />
-          <TableColumn fx:id="statusCol" reorderable="false" editable="false" prefWidth="100.0" maxWidth="Infinity" sortable="true" text="Status" />
+          <TableColumn fx:id="statusCol" reorderable="false" editable="false" prefWidth="90.0" maxWidth="Infinity" sortable="true" text="Status" />
           </columns>
       </TableView>
       <Text fill="#127a6f" layoutX="240.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USER STORIES" wrappingWidth="217.51953125">

@@ -7,8 +7,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Shape;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.project.UserStoryStatus;
 
 /**
  * UI component for a user story.
@@ -16,6 +18,12 @@ import seedu.address.model.project.UserStory;
 public class ProjectUserStories extends UiPart<Region> {
 
     public static final String FXML = "ProjectUserStories.fxml";
+
+    public static final String STATUS_COLOUR_RED = "redCircle";
+    public static final String STATUS_COLOUR_GREEN = "greenCircle";
+    public static final String STATUS_COLOUR_ORANGE = "orangeCircle";
+    public static final String STATUS_COLOUR_BLACK = "blackCircle";
+
 
     private ObservableList<UserStory> userStories;
 
@@ -40,7 +48,7 @@ public class ProjectUserStories extends UiPart<Region> {
     private TableColumn<UserStoryCell, String> reasonCol;
 
     @FXML
-    private TableColumn<UserStoryCell, String> statusCol;
+    private TableColumn<UserStoryCell, Circle> statusCol;
 
     public ProjectUserStories(ObservableList<UserStory> stories) {
         super(FXML);
@@ -53,8 +61,7 @@ public class ProjectUserStories extends UiPart<Region> {
         priorityCol.setCellValueFactory(new PropertyValueFactory<>("importance"));
         functionCol.setCellValueFactory(new PropertyValueFactory<>("function"));
         reasonCol.setCellValueFactory(new PropertyValueFactory<>("reason"));
-        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("circle"));
     }
 
     public ObservableList<UserStoryCell> getUserStoryCells(ObservableList<UserStory> stories) {
@@ -73,14 +80,35 @@ public class ProjectUserStories extends UiPart<Region> {
 
         private UserStory story;
         private Integer index;
-        private Shape shape;
+        private Circle circle;
 
         public UserStoryCell(UserStory s, int index) {
             this.story = s;
             this.index = index;
+            instantiateColour(s.getUserStoryStatus());
         }
 
-        private void instantiateColour
+        private void instantiateColour(String status) {
+            this.circle = new Circle(0, 0, 10);
+
+            switch (status) {
+            case UserStoryStatus.STATUS_COMPLETE:
+                circle.setId(STATUS_COLOUR_GREEN);
+                break;
+            case UserStoryStatus.STATUS_ON_HOLD:
+                circle.setId(STATUS_COLOUR_RED);
+                break;
+            case UserStoryStatus.STATUS_ONGOING:
+                circle.setId(STATUS_COLOUR_ORANGE);
+                break;
+            default:
+                circle.setId(STATUS_COLOUR_BLACK);
+            }
+        }
+
+        public Circle getCircle() {
+            return this.circle;
+        }
 
         public String getIndex() {
             return this.index.toString();
