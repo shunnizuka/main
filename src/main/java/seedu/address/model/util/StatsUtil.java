@@ -12,13 +12,41 @@ import seedu.address.model.project.Project;
  * information. Returns the result as a string contain the information.
  */
 public class StatsUtil {
+    private static final String MESSAGE_STATS =
+            "Number of ongoing projects: %d\nNumber of completed projects: %d\n"
+                    + "%s\n"
+                    + "%s\n"
+                    + "%s\n"
+                    + "%s\n"
+                    + "%s\n";
+
+    /**
+     * Returns a string describing the overall state of all the projects.
+     */
+    public static String overAllStatsString(List<Employee> employees, List<Project> currentProjects,
+                                     List<Project> completedProjects) {
+        int numOngoing = currentProjects.size();
+        int numCompleted = completedProjects.size();
+        String projectWithMostEmployeeString = StatsUtil.projectWithMostEmployee(currentProjects);
+        String projectWithEarliestDeadlineString = StatsUtil.projectWithEarliestDeadline(currentProjects);
+        String employeeWithLeastProjectString = StatsUtil
+                .employeeWithLeastProject(employees);
+        String employeeWithMostProjectString = StatsUtil
+                .employeeWithMostProject(employees);
+        String projectWithLeastEmployeeString = StatsUtil.projectWithLeastEmployee(currentProjects);
+        return String.format(MESSAGE_STATS, numOngoing, numCompleted, projectWithEarliestDeadlineString,
+                        projectWithLeastEmployeeString, projectWithMostEmployeeString, employeeWithLeastProjectString,
+                        employeeWithMostProjectString);
+
+    }
+
 
     /**
      * Look through a list of projects to find the project with the most number of employees.
      * Returns a string describing it.
      * @param projects The list of projects to look through.
      */
-    public static String projectWithMostEmployee(List<Project> projects) {
+    private static String projectWithMostEmployee(List<Project> projects) {
         Comparator<? super Project> comparator = new Comparator<Project>() {
             @Override
             public int compare(Project o1, Project o2) {
@@ -50,7 +78,7 @@ public class StatsUtil {
      * Returns a string describing it.
      * @param projects The list of projects to look through.
      */
-    public static String projectWithLeastEmployee(List<Project> projects) {
+    private static String projectWithLeastEmployee(List<Project> projects) {
         Comparator<? super Project> comparator = new Comparator<Project>() {
             @Override
             public int compare(Project o1, Project o2) {
@@ -74,7 +102,7 @@ public class StatsUtil {
      * Look through a list of projects to find the project with the earliest deadline.
      * Returns a string describing it.
      */
-    public static String projectWithEarliestDeadline(List<Project> projects) {
+    private static String projectWithEarliestDeadline(List<Project> projects) {
         Comparator<? super Project> comparator = new Comparator<Project>() {
             @Override
             public int compare(Project o1, Project o2) {
@@ -98,7 +126,7 @@ public class StatsUtil {
      * Look through a list of employees to find the employee with the least number of projects.
      * Returns a string describing the employee.
      */
-    public static String employeeWithLeastProject(List<Employee> employees) {
+    private static String employeeWithLeastProject(List<Employee> employees) {
         Comparator<? super Employee> comparator = new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {
@@ -123,7 +151,7 @@ public class StatsUtil {
      * Look through a list of employees to find the employee with the most number of projects.
      * Returns a string describing the employee.
      */
-    public static String employeeWithMostProject(List<Employee> employees) {
+    private static String employeeWithMostProject(List<Employee> employees) {
         Comparator<? super Employee> comparator = new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {

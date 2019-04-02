@@ -23,19 +23,8 @@ public class OverallStatsCommand extends StatsCommand {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        int numOngoing = model.getProjectList().size();
-        int numCompleted = model.getCompletedProjectList().size();
-        String projectWithMostEmployeeString = StatsUtil.projectWithMostEmployee(model.getProjectList());
-        String projectWithEarliestDeadlineString = StatsUtil.projectWithEarliestDeadline(model.getProjectList());
-        String employeeWithLeastProjectString = StatsUtil
-                .employeeWithLeastProject(model.getPocketProject().getEmployeeList());
-        String employeeWithMostProjectString = StatsUtil
-                .employeeWithMostProject(model.getPocketProject().getEmployeeList());
-        String projectWithLeastEmployeeString = StatsUtil.projectWithLeastEmployee(model.getProjectList());
-        return new CommandResult(
-                String.format(MESSAGE_STATS, numOngoing, numCompleted, projectWithEarliestDeadlineString,
-                projectWithLeastEmployeeString, projectWithMostEmployeeString, employeeWithLeastProjectString,
-                employeeWithMostProjectString));
+        return new CommandResult(StatsUtil.overAllStatsString(model.getPocketProject().getEmployeeList(),
+                model.getProjectList(), model.getCompletedProjectList()));
 
     }
 
