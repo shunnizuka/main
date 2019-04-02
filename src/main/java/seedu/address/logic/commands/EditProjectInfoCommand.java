@@ -95,6 +95,24 @@ public class EditProjectInfoCommand extends EditProjectCommand {
         return projectToEdit.editProject(updatedName, updatedClient, updatedDeadline, updatedDescription);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditProjectInfoCommand)) {
+            return false;
+        }
+
+        // state check
+        EditProjectInfoCommand e = (EditProjectInfoCommand) other;
+        return projectName.equals(e.projectName)
+            && editProjectDescriptor.equals(e.editProjectDescriptor);
+    }
+
     /**
      * Stores the details to edit the project with. Each non-empty field value will replace the
      * corresponding field value of the project.

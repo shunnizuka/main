@@ -1,20 +1,32 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLIENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FLEXI_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_C;
 import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
@@ -22,6 +34,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_C;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -35,19 +50,31 @@ import org.junit.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditEmployeeCommand;
+import seedu.address.logic.commands.EditProjectCommand;
+import seedu.address.logic.commands.EditProjectInfoCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.project.Client;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Description;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
+import seedu.address.testutil.EditProjectDescriptorBuilder;
 
 public class EditCommandParserTest {
 
     private static final String SKILL_EMPTY = " " + PREFIX_SKILL;
 
-    private static final String MESSAGE_INVALID_FORMAT =
+    private static final String MESSAGE_EMPLOYEE_INVALID_FORMAT =
         String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEmployeeCommand.MESSAGE_USAGE);
+
+    private static final String MESSAGE_PROJECT_INVALID_FORMAT =
+        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditProjectCommand.MESSAGE_USAGE);
+
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -55,33 +82,66 @@ public class EditCommandParserTest {
     public void parse_missingParts_failure() {
         // no index specified
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + VALID_NAME_AMY,
-            MESSAGE_INVALID_FORMAT);
+            MESSAGE_EMPLOYEE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1",
             EditEmployeeCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + "",
+            MESSAGE_EMPLOYEE_INVALID_FORMAT);
+
+        //=========== EditProjectCommand ==============================================================================
+        // no project name specified
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " "
+                + EditProjectInfoCommand.EDIT_INFO_KEYWORD + " n/ " + VALID_PROJECT_NAME_ALICE,
+            MESSAGE_PROJECT_INVALID_FORMAT);
+        // no field specified
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_BOB,
+            MESSAGE_PROJECT_INVALID_FORMAT);
+        // no name and no field specified
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + "" ,
+            MESSAGE_PROJECT_INVALID_FORMAT);
+
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " -5" + NAME_DESC_AMY,
-            MESSAGE_INVALID_FORMAT);
+            MESSAGE_EMPLOYEE_INVALID_FORMAT);
 
         // zero index
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 0" + NAME_DESC_AMY,
-            MESSAGE_INVALID_FORMAT);
+            MESSAGE_EMPLOYEE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1 some random string",
-            MESSAGE_INVALID_FORMAT);
+            MESSAGE_EMPLOYEE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1 i/ string",
-            MESSAGE_INVALID_FORMAT);
+            MESSAGE_EMPLOYEE_INVALID_FORMAT);
+
+        //=========== EditProjectCommand ==============================================================================
+        // invalid project name
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + " 23423/34///`"
+                + EditProjectInfoCommand.EDIT_INFO_KEYWORD + " n/" + VALID_PROJECT_NAME_ALICE ,
+            MESSAGE_PROJECT_INVALID_FORMAT);
+
+        //missing keyword arguments
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " "
+            + VALID_PROJECT_NAME_ALICE + " " + "Alice" + " n/John", MESSAGE_PROJECT_INVALID_FORMAT);
+
+        //invalid argument
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
+            + EditProjectInfoCommand.EDIT_INFO_KEYWORD + " lalalalalal" , MESSAGE_PROJECT_INVALID_FORMAT);
+
+        //invalid prefix
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD
+                + " " + VALID_PROJECT_NAME_ALICE + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + " j/john",
+            MESSAGE_PROJECT_INVALID_FORMAT);
     }
 
     @Test
@@ -121,10 +181,31 @@ public class EditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1" + INVALID_NAME_DESC
             + INVALID_EMAIL_DESC + VALID_GITHUB_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
+
+        System.out.println(EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
+            + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_PROJECT_NAME_DESC);
+
+        //=========== EditProjectCommand ==============================================================================
+
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
+                + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_PROJECT_NAME_DESC,
+            ProjectName.MESSAGE_CONSTRAINTS); //invalid name
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
+                + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_CLIENT_DESC,
+            Client.MESSAGE_CONSTRAINTS); //invalid client
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
+                + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_DEADLINE_DESC,
+            Deadline.MESSAGE_CONSTRAINTS); //invalid deadline
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
+                + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_FLEXI_DATE_DESC,
+            Deadline.MESSAGE_CONSTRAINTS); //invalid deadline
+        assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
+                + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_DESCRIPTION_DESC,
+            Description.MESSAGE_CONSTRAINT); //invalid description
     }
 
     @Test
-    public void parse_allFieldsSpecified_success() {
+    public void parse_allFieldsSpecified_success() throws ParseException {
         Index targetIndex = INDEX_SECOND_EMPLOYEE;
         String userInput = EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " " + targetIndex.getOneBased()
             + PHONE_DESC_BOB + SKILL_DESC_JAVA + EMAIL_DESC_AMY + GITHUB_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_C;
@@ -135,6 +216,22 @@ public class EditCommandParserTest {
         EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        //=========== EditProjectCommand ==============================================================================
+
+        ProjectName targetName = new ProjectName(VALID_PROJECT_NAME_ZULU);
+        userInput = EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ZULU + " "
+            + EditProjectInfoCommand.EDIT_INFO_KEYWORD + NAME_DESC_ALICE + CLIENT_DESC_ZULU
+            + DEADLINE_DESC_ALICE + DESCRIPTION_DESC;
+
+        EditProjectInfoCommand.EditProjectDescriptor descriptorProj = new EditProjectDescriptorBuilder()
+            .withName("Project Apollo").withClient(VALID_CLIENT_ZULU).withDeadline(VALID_DEADLINE_ALICE)
+            .withDescription(VALID_DESCRIPTION).build();
+        EditProjectInfoCommand expectedProjectCommand = new EditProjectInfoCommand(targetName, descriptorProj);
+
+        System.out.println(userInput);
+        
+        assertParseSuccess(parser, userInput, expectedProjectCommand);
     }
 
     @Test
@@ -148,6 +245,17 @@ public class EditCommandParserTest {
         EditEmployeeCommand expectedCommand = new EditEmployeeCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        ProjectName targetName = new ProjectName(VALID_PROJECT_NAME_ZULU);
+        userInput = EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ZULU + " "
+            + EditProjectInfoCommand.EDIT_INFO_KEYWORD + NAME_DESC_ALICE + CLIENT_DESC_ZULU;
+
+        EditProjectInfoCommand.EditProjectDescriptor descriptorProj = new EditProjectDescriptorBuilder()
+            .withName("Project Apollo").withClient(VALID_CLIENT_ZULU).build();
+        EditProjectInfoCommand expectedProjectCommand = new EditProjectInfoCommand(targetName, descriptorProj);
+
+        assertParseSuccess(parser, userInput, expectedProjectCommand);
+
     }
 
     @Test
