@@ -90,6 +90,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
 
             return new EditProjectDefaultCommand(name, editProjectDescriptor);
 
+            //TODO add implementation for milestone and userstory
         } else {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditProjectCommand.MESSAGE_USAGE));

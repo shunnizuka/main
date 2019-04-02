@@ -23,7 +23,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
 /**
- * Edits the details (name, deadline, client, description) of an existing project in the pocket project.
+ * Edits the information (name, deadline, client, description) of an existing project in the pocket project.
  */
 public class EditProjectDefaultCommand extends EditProjectCommand {
 
