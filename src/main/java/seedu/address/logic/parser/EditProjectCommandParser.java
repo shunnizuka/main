@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditProjectCommand;
 import seedu.address.logic.commands.EditProjectInfoCommand.EditProjectDescriptor;
 import seedu.address.logic.commands.EditProjectInfoCommand;
@@ -22,7 +23,7 @@ import seedu.address.model.project.ProjectName;
 /**
  * Parse input arguments and creates a new EditProjectCommand object
  */
-public class EditProjectCommandParser implements Parser<EditProjectCommand> {
+public class EditProjectCommandParser {
 
     /**
      * Used for separation of type keyword and args.
@@ -30,8 +31,13 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
     private static final Pattern EDIT_PROJECT_COMMAND_FORMAT = Pattern.compile("(?<project>(\\S+\\s)+)"
         + "(?<keyword>milestone\\s|userstory\\s|info\\s)(?<arguments>.*)");
 
-    @Override
-    public EditProjectCommand parse(String userInput) throws ParseException {
+    /**
+     * Parse the input for the EditProjectCommand
+     * @param userInput
+     * @return
+     * @throws ParseException
+     */
+    public EditProjectCommand parseProjectCommand(String userInput) throws ParseException {
 
         System.out.println(userInput);
         final Matcher matcher = EDIT_PROJECT_COMMAND_FORMAT.matcher(userInput.trim());
@@ -56,6 +62,10 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 EditProjectCommand.MESSAGE_USAGE), pe);
         }
+
+        System.out.println(name);
+        System.out.println(keyword);
+        System.out.println(arguments);
 
         if (keyword.equals(EditProjectInfoCommand.EDIT_INFO_KEYWORD)) {
             requireNonNull(arguments);
