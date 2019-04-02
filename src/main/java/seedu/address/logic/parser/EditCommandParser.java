@@ -50,8 +50,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         final String keyword = matcher.group("keyword").toLowerCase();
         final String arguments = matcher.group("arguments");
-        System.out.println(keyword);
-        System.out.println(arguments);
 
         if (keyword.equals(EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD)) {
 
