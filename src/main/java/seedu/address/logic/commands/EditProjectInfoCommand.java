@@ -25,7 +25,7 @@ import seedu.address.model.project.ProjectName;
 /**
  * Edits the information (name, deadline, client, description) of an existing project in the pocket project.
  */
-public class EditProjectDefaultCommand extends EditProjectCommand {
+public class EditProjectInfoCommand extends EditProjectCommand {
 
     public static final String EDIT_INFO_KEYWORD = "info";
 
@@ -45,7 +45,7 @@ public class EditProjectDefaultCommand extends EditProjectCommand {
      * @param projectName of the project in the project list to edit
      * @param editProjectDescriptor details to edit the employee with
      */
-    public EditProjectDefaultCommand(ProjectName projectName, EditProjectDescriptor editProjectDescriptor) {
+    public EditProjectInfoCommand(ProjectName projectName, EditProjectDescriptor editProjectDescriptor) {
         requireNonNull(projectName);
         requireNonNull(editProjectDescriptor);
 

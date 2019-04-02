@@ -11,8 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.EditProjectCommand;
-import seedu.address.logic.commands.EditProjectDefaultCommand.EditProjectDescriptor;
-import seedu.address.logic.commands.EditProjectDefaultCommand;
+import seedu.address.logic.commands.EditProjectInfoCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.EditProjectInfoCommand;
 import seedu.address.logic.commands.EditProjectMilestoneCommand;
 import seedu.address.logic.commands.EditProjectUserStoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -57,7 +57,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
                 EditProjectCommand.MESSAGE_USAGE), pe);
         }
 
-        if (keyword.equals(EditProjectDefaultCommand.EDIT_INFO_KEYWORD)) {
+        if (keyword.equals(EditProjectInfoCommand.EDIT_INFO_KEYWORD)) {
             requireNonNull(arguments);
             String s = " " + arguments;
             ArgumentMultimap argMultimap =
@@ -85,10 +85,10 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
             }
 
             if (!editProjectDescriptor.isAnyFieldEdited()) {
-                throw new ParseException(EditProjectDefaultCommand.MESSAGE_NOT_EDITED);
+                throw new ParseException(EditProjectInfoCommand.MESSAGE_NOT_EDITED);
             }
 
-            return new EditProjectDefaultCommand(name, editProjectDescriptor);
+            return new EditProjectInfoCommand(name, editProjectDescriptor);
 
             //TODO add implementation for milestone and userstory
         } else {
@@ -108,9 +108,9 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
 
         Integer index = Integer.MAX_VALUE;
 
-        if (userinput.contains(EditProjectDefaultCommand.EDIT_INFO_KEYWORD)) {
-            if (userinput.indexOf(EditProjectDefaultCommand.EDIT_INFO_KEYWORD) < index) {
-                index = userinput.indexOf(EditProjectDefaultCommand.EDIT_INFO_KEYWORD);
+        if (userinput.contains(EditProjectInfoCommand.EDIT_INFO_KEYWORD)) {
+            if (userinput.indexOf(EditProjectInfoCommand.EDIT_INFO_KEYWORD) < index) {
+                index = userinput.indexOf(EditProjectInfoCommand.EDIT_INFO_KEYWORD);
             }
         }
 
