@@ -8,10 +8,10 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
 
 /**
- * Provides static methods for returning strings about projects/employees
- * with specific properties from a list of projects.
+ * Provides static methods for looking through the list of projects/employees/single project for
+ * information. Returns the result as a string contain the information.
  */
-public class SearchingUtil {
+public class StatsUtil {
 
     /**
      * Look through a list of projects to find the project with the most number of employees.
@@ -36,6 +36,13 @@ public class SearchingUtil {
             projectWithMostEmployeeString = "There is no ongoing project";
         }
         return projectWithMostEmployeeString;
+    }
+
+    /**
+     * Returns a string describing the progress of an individual project.
+     */
+    public static String projectProgress(Project project) {
+        return "";
     }
 
     /**

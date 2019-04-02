@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.util.SearchingUtil;
+import seedu.address.model.util.StatsUtil;
 
 /**
  * Displays a summary of all the projects
@@ -25,13 +25,13 @@ public class OverallStatsCommand extends StatsCommand {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         int numOngoing = model.getProjectList().size();
         int numCompleted = model.getCompletedProjectList().size();
-        String projectWithMostEmployeeString = SearchingUtil.projectWithMostEmployee(model.getProjectList());
-        String projectWithEarliestDeadlineString = SearchingUtil.projectWithEarliestDeadline(model.getProjectList());
-        String employeeWithLeastProjectString = SearchingUtil
+        String projectWithMostEmployeeString = StatsUtil.projectWithMostEmployee(model.getProjectList());
+        String projectWithEarliestDeadlineString = StatsUtil.projectWithEarliestDeadline(model.getProjectList());
+        String employeeWithLeastProjectString = StatsUtil
                 .employeeWithLeastProject(model.getPocketProject().getEmployeeList());
-        String employeeWithMostProjectString = SearchingUtil
+        String employeeWithMostProjectString = StatsUtil
                 .employeeWithMostProject(model.getPocketProject().getEmployeeList());
-        String projectWithLeastEmployeeString = SearchingUtil.projectWithLeastEmployee(model.getProjectList());
+        String projectWithLeastEmployeeString = StatsUtil.projectWithLeastEmployee(model.getProjectList());
         return new CommandResult(
                 String.format(MESSAGE_STATS, numOngoing, numCompleted, projectWithEarliestDeadlineString,
                 projectWithLeastEmployeeString, projectWithMostEmployeeString, employeeWithLeastProjectString,
