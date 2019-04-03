@@ -358,3 +358,29 @@
 #menuBar {
     -fx-background-color: derive(#dee0e2, -5%);
 }
+
+
+#nameSummary {
+    -fx-background-color:#26A69A;
+}
+
+#nameSummaryLabel {
+    -fx-font-size: 24pt;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#labelSummaryheader {
+    -fx-font-size: 12pt;
+    -fx-text-fill: #44524e;
+    -fx-font-family: "Proxima Nova Alt";
+    -fx-font-weight: bold;
+}
+
+#labelSummary {
+    -fx-font-size: 12pt;
+    -fx-text-fill: #44524e;
+    -fx-font-family: "Proxima Nova Alt";
+}
+
+
