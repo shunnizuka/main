@@ -99,24 +99,24 @@ public class CommandTestUtil {
 
     public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_AMY;
     public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_BOB;
-    
+
     public static final EditProjectInfoCommand.EditProjectDescriptor DESC_PROJECT_1;
     public static final EditProjectInfoCommand.EditProjectDescriptor DESC_PROJECT_2;
 
     static {
         DESC_AMY = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withGithubAccount(VALID_GITHUB_AMY)
-                .withSkills(VALID_SKILL_C).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withGithubAccount(VALID_GITHUB_AMY)
+            .withSkills(VALID_SKILL_C).build();
         DESC_BOB = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withGithubAccount(VALID_GITHUB_BOB)
-                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withGithubAccount(VALID_GITHUB_BOB)
+            .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
         DESC_PROJECT_1 = new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB).withClient(VALID_CLIENT_BOB)
             .withDescription(VALID_DESCRIPTION).build();
         DESC_PROJECT_2 = new EditProjectDescriptorBuilder().withName(VALID_NAME_AMY).withClient(VALID_CLIENT_ALICE)
             .withDescription(VALID_DESCRIPTION).build();
     }
 
-    
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -124,7 +124,7 @@ public class CommandTestUtil {
      * - the {@code actualCommandHistory} remains unchanged.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            CommandResult expectedCommandResult, Model expectedModel) {
+                                            CommandResult expectedCommandResult, Model expectedModel) {
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
         try {
             CommandResult result = command.execute(actualModel, actualCommandHistory);
@@ -141,7 +141,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            String expectedMessage, Model expectedModel) {
+                                            String expectedMessage, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, actualCommandHistory, expectedCommandResult, expectedModel);
     }
@@ -154,7 +154,7 @@ public class CommandTestUtil {
      * - {@code actualCommandHistory} remains unchanged.
      */
     public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            String expectedMessage) {
+                                            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         PocketProject expectedPocketProject = new PocketProject(actualModel.getPocketProject());
