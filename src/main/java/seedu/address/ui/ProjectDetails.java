@@ -16,6 +16,7 @@ public class ProjectDetails {
     private ProjectSummary projectSummary;
     private ProjectUserStories projectUserStories;
     private ProjectEmployees projectEmployees;
+    private ProjectMilestones projectMilestones;
 
     public ProjectDetails(Project project) {
         this.project = project;
@@ -23,10 +24,12 @@ public class ProjectDetails {
         projectSummary = new ProjectSummary(project);
         projectUserStories = new ProjectUserStories(project.getUserStories());
         projectEmployees = new ProjectEmployees(project.getEmployees());
+        projectMilestones = new ProjectMilestones(project.getMilestones());
 
         projectDetailsList.add(projectSummary.getRoot());
         projectDetailsList.add(projectUserStories.getRoot());
         projectDetailsList.add(projectEmployees.getRoot());
+        projectDetailsList.add(projectMilestones.getRoot());
     }
 
     public List<Node> getProjectDetails() {
