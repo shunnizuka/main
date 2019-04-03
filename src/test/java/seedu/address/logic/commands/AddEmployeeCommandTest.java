@@ -139,6 +139,15 @@ public class AddEmployeeCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public String individualStats(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String overallStats() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public ObservableList<Project> getCompletedProjectList() {
             throw new AssertionError("This method should not be called.");
         }

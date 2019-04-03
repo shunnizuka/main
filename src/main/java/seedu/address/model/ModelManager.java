@@ -25,6 +25,7 @@ import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
+import seedu.address.model.util.StatsUtil;
 
 /**
  * Represents the in-memory model of the pocket project data.
@@ -210,6 +211,14 @@ public class ModelManager implements Model {
     @Override
     public void addUserStoryTo(Project targetProject, UserStory targetUserStory) {
         versionedPocketProject.addUserStoryTo(targetProject, targetUserStory);
+    }
+    @Override
+    public String overallStats() {
+        return StatsUtil.overAllStatsString(getEmployeeList(), getProjectList(), getCompletedProjectList());
+    }
+    @Override
+    public String individualStats(Project project) {
+        return StatsUtil.projectProgress(project);
     }
 
 

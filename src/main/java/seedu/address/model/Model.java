@@ -242,7 +242,15 @@ public interface Model {
      */
     List<Project> getProjectsContaining(Employee employee);
 
+    /**
+     * Returns a string describing the overview of all projects.
+     */
+    String overallStats();
 
+    /**
+     * Returns a string describing the progress of an individual project.
+     */
+    String individualStats(Project project);
 
 
     //-------------------------------------------------------------------------------------------

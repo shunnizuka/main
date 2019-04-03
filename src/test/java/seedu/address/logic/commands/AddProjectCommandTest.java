@@ -135,6 +135,10 @@ public class AddProjectCommandTest {
         public void setPocketProject(ReadOnlyPocketProject pocketProject) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public String individualStats(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public ObservableList<Project> getProjectList() {
@@ -152,6 +156,10 @@ public class AddProjectCommandTest {
 
         @Override
         public ReadOnlyPocketProject getPocketProject() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public String overallStats() {
             throw new AssertionError("This method should not be called.");
         }
 
