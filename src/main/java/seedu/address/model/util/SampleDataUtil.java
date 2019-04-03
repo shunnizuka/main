@@ -43,11 +43,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyPocketProject getSamplePocketProject() {
-        PocketProject sampleAb = new PocketProject();
+        PocketProject samplePp = new PocketProject();
         for (Employee sampleEmployee : getSampleEmployees()) {
-            sampleAb.addEmployee(sampleEmployee);
+            samplePp.addEmployee(sampleEmployee);
         }
-        return sampleAb;
+        return samplePp;
     }
 
     /**

@@ -19,11 +19,13 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.ProjectTaskName;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
+import seedu.address.model.util.CalendarDatesInMonth;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -171,18 +173,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Deadline}.
+     * Parses a {@code String date} into a {@code ProjectDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static ProjectDate parseDeadline(String deadline) throws ParseException {
-        requireNonNull(deadline);
-        String trimmedDate = deadline.trim();
-        if (!ProjectDate.isValidDate(trimmedDate)) {
+    public static ProjectDate parseDate(String date) throws ParseException {
+
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate).trim();
+
+        if (!ProjectDate.isValidDate(formattedDate)) {
             throw new ParseException(ProjectDate.MESSAGE_CONSTRAINTS);
         }
-        return new ProjectDate(trimmedDate);
+
+        if (!CalendarDatesInMonth.isValidDayInMonth(formattedDate)) {
+            throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
+        }
+
+        return new ProjectDate(formattedDate);
+
     }
 
     /**
@@ -251,4 +262,18 @@ public class ParserUtil {
         return new UserStoryImportance(trimmedInput);
     }
 
+    /**
+     * Parses a {@code String name} into a {@code ProjectTask Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ProjectTaskName parseTaskName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ProjectTaskName.isValidTaskName(trimmedName)) {
+            throw new ParseException(ProjectTaskName.MESSAGE_CONSTRAINTS);
+        }
+        return new ProjectTaskName(trimmedName);
+    }
 }

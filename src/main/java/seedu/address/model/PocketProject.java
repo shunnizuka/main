@@ -14,6 +14,7 @@ import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDate;
+import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.project.UserStory;
 
@@ -290,6 +291,15 @@ public class PocketProject implements ReadOnlyPocketProject {
      */
     public void addUserStoryTo(Project targetProject, UserStory userStory) {
         projects.addUserStoryTo(targetProject, userStory);
+        indicateModified();
+    }
+
+    /**
+     * Adds {@code task} to the {@code milestone} in this {@code PocketProject}.
+     *  {@code task} and {@code milestone} must exist.
+     */
+    public void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task) {
+        projects.addProjectTaskTo(targetProject, milestone, task);
         indicateModified();
     }
 

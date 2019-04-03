@@ -73,7 +73,6 @@ public class TypicalProjects {
 
     public static final Project PROJECT_ZULU = new Project(new ProjectName("Zulu"), new Client("Shunnizuka"),
         new ProjectDate("04/09/2023"));
-
     /*
     // Manually added - Project's details found in {@code CommandTestUtil}
     public static final Project AMY = new ProjectBuilder().withProjectName(VALID_NAME_AMY).withClient(VALID_PHONE_AMY)

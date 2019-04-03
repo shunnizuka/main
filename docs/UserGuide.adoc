@@ -428,7 +428,7 @@ There is no specific order for either the user story or the importance level so 
 
 === Remove an employee/milestone/user story from a project : `removefrom`
 
-==== Remove an employee from a project: `removefrom employee`
+==== Remove an employee from a project: `removefrom PROJECT_NAME employee`
 
 Removing an employee from a project.
 
@@ -440,7 +440,7 @@ Examples:
 `removefrom Apollo employee 3` +
 Removes the employee at 3rd position at displayed list of employees from Project Apollo.
 
-==== Remove a milestone from a project: `removefrom milestone`
+==== Remove a milestone from a project: `removefrom PROJECT_NAME milestone`
 
 Removing a milestone from a project.
 
@@ -488,6 +488,7 @@ Examples:
 `editproject Apollo n/Gemini c/John d/12/09/2020 desc/An application for project management` +
 Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
 
+
 ==== Edits milestone of a project: `editproject PROJECT_NAME milestone` [coming in v2.0]
 
 Edits the existing milestone in the milestone list of a project.
@@ -495,6 +496,7 @@ Edits the existing milestone in the milestone list of a project.
 ==== Edits UserStory of a project: `editproject PROJECT_NAME userstory` [coming in v2.0]
 
 Edits the existing userstory in the userstory list of a project.
+
 
 === To indicate the project has been completed : `complete`
 
@@ -528,6 +530,21 @@ List of project have been sorted by name.
 `sort deadline` +
 List of projects have been sorted by deadline with the
 earliest deadline displayed at the top of the list.
+
+=== To indicate the project has been completed : `complete`
+
+Indicates that a project is completed.
+Format: `complete PROJ_NAME` or `complete PROJECT_INDEX`
+
+Examples:
+
+`complete Project Apollo` +
+Project Apollo has been indicated as completed and removed from the list of ongoing projects.
+
+`list projects` +
+The list of ongoing projects are listed.
+`complete 1` +
+The first project in the shown list is indicated as completed.
 
 === Display statistics regarding all the projects : `stats`
 
@@ -645,10 +662,10 @@ e.g. `add employee n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi R
 e.g. `delete employee 3` `delete project 1`
 * *List* : `list COMMAND_KEYWORD` +
 e.g. `list employee` `list project`
-* *Edit* : `edit employee INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB] [s/Skill]...` +
-e.g. `edit employee 2 n/James Lee e/jameslee@example.com`
+* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB] [s/Skill]...` +
+e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
-e.g. `find employee Jake` `find project Apollo` `find skill Java`
+e.g. `find employee Jake` `find project Apollo` `find skill Java` `find all software`
 * *View* : `view employee EMPLOYEE_INDEX` , `view project PROJECT_NAME` +
 e.g. `view employee 3` `view project Apollo`
 * *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE` +

@@ -435,13 +435,14 @@ There will also be less clutter in `PocketProjectParser` as there are already a 
 
 // end::removefrom[]
 
-=== Find Employee/Project/Skill feature
+=== Find Employee/Project/Skill/All feature
 ==== Current Implementation
-For the current `find` feature, there are 3 main commands that the user can execute:
+For the current `find` feature, there are 4 main commands that the user can execute:
 
     1. `find employee [keywords]` - display employees with name containing keywords
     2. `find project [keywords]` - display projects with name containing keywords
     3. `find skill [keywords]` - display employees who has skills matching the keywords
+    4. `find all [keywords]` - display projects which contains words matching the keywords
 
 The `FindCommandParser` differentiate these 3 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill).
 
@@ -454,11 +455,16 @@ Usage Scenario example for `find employee`:
 1. User executes `find employee John` to look for employees whose names contains the word 'John'.
 2. `PocketProjectParser` will parse and identify the command as a `FindCommand` and pass on the argument `employee John` to `FindCommandParser`.
 3.  `FindCommandParser` identify the command based on the `COMMAND_KEYWORD` employee.
-4. `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist and the `filteredEmployees` list which is the list displayed on the ui is updated.
+4. `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist. The filtering is done using a predicate that checks through the names of the employee int the application.
+5. Finally, the `filteredEmployees` list which is the list displayed on the ui is updated.
 
 The working mechanism for `find project` is similar to `find employee`. Instead of updating the `filteredEmployees`, `filteredProjects` is updated instead to display the list of projects with name consisting the keywords.
 
+For `find all` command, the predicate is used to check for the matching keywords in the project name , description, client and deadline, thereby filtering out any projects that contains the keyword in any component of the project.
+
 For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
+
+
 
 ==== Design Considerations
 
@@ -856,63 +862,387 @@ data of your previous Pocket Project folder.
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: manage employees and projects faster than a typical mouse/GUI driven app
+*Value proposition*: manage employees and projects faster than a typical mouse/GUI driven application
+which enhances administrative procedures and improves efficiency.
 
 [appendix]
 == User Stories
 
-Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * \*`, Medium (good to have) - `* \*`, Low (unlikely to have) - `*`
 
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |Software engineering project manager |Be able to add/delete projects in the app |Keep track of any new projects and remove unnecessary entries
 
-|`* * *` |Software engineering project manager |See all the current ongoing projects listed by importance |Keep track of which projects require immediate attention
+4.1+^s| First-Time User Related Stories
 
-|`* * *` |Software engineering project manager |Find all employees that have a certain skill |Assign the right people with the required skills to the right projects
+|`* * *` |first-time user |see the usages of different instructions |refer to it if I forget the format and purpose of different commands
 
-|`* * *` |Software engineering project manager |Add/delete skills from employees |Update the skills possessed by employees as and when required
+|`* * *` |first-time user |be able to read a detailed but simple the user guide |easily understand how to use the features of the application
 
-|`* *` |Software engineering project manager |See total number of projects listed as completed and ongoing|Keep track of how many projects have been successfully completed and the number of ongoing projects at a glance
+|`* * *` |first-time user |see a list of available instructions |navigate and use the application effectively by knowing what commands are available to me
 
-|`* *` |Software engineering project manager |See a recommended list of employees based on the skill requirement of a project|Easily assign employees with the required skills to the project
+|`* *` |first-time user |clear the application and remove all data | trial the very various features and reset the application after
+
+4.1+^s| General User Related Stories
+
+|`* * *` |general user |have a help function |refer to it if I forget the format and purpose of different features and commands
+
+|`* * *` |general user |to be able to undo/revert my commands |quickly revert back and forth any of my latest commands
+
+|`* *` |general user |to be able to have flexibility when keying in dates |can improve speed and efficiency.
+
+4.1+^s| Project Manager Related Stories
+
+|`* * *` |project manager |be able to add/delete employees in the application |keep track of any new employees and remove employees who have left
+
+|`* * *` |project manager |be able to view personal details such as contact number and email of my employees in the application |easily retrieve certain information that would be useful in handling administrative matters.
+
+|`* * *` |project manager |be able to add/delete projects in the application |keep track of any new projects and remove unnecessary entries
+
+|`* * *` |project manager |be able to view details of the project such as description and client in the application |easily view important project details that would be useful in handling administrative matters.
+
+|`* * *` |project manager |see all the current ongoing projects listed by deadline |keep track of which projects require immediate attention
+
+|`* * *` |project manager |assign employees to project |keep track of all employees working on particular project
+
+|`* *` |project manager |keep track of all projects a particular employee is working on |better allocate or re-allocate any workload to achieve better balance
+
+|`* *` |project manager |be able to find a particular employee/project |quickly refer or retrieve details of a particular employee/project
+
+|`* *` |project manager |be able to edit a particular employee/project |update or change details of a particular employee/project
+
+|`* *` |project manager |be able to clear all the date in the application |quickly reset and have an empty application should I change team or company
+
+|`* *` |project manager |to be able to have flexibility when keying in dates |can have greater efficiency in keying inputs and speed up administrative procedures.
+
+|`* *` |project manager |see total number of projects listed as completed and ongoing|keep track of how many projects have been successfully completed and the number of ongoing projects at a glance
+
+|`* *` |project manager |sort the employees by total number of projects contributed | keep track of each employees contribution to the company.
+
+|`* *` |project manager |sort the employees by name | find an employee more easily.
+
+|`* *` |project manager |sort the project by name | find a project more easily.
+
+|`* *` |project manager |sort the project by deadline | see which projects need to be more urgently completed.
+
+4.1+^s| Software Engineering Project Manager Related Stories
+
+|`* * *` |Software engineering project manager |add/delete skills/frameworks to an employee |know what sort of background knowledge he has and what tasks he is suitable for.
+
+|`* * *` |Software engineering project manager |add/delete skills/frameworks to a project |know what are the relevant skills required to complete a particular project.
+
+|`* * *` |Software engineering project manager |find all employees that have a certain skill |assign the right people with the required skills to the right projects
+
+|`* * *` |Software engineering project manager |add/delete milestones to a project |keep track of major completion points during the course of the project
+
+|`* * *` |Software engineering project manager |add/delete tasks to a milestone  |keep track of all the tasks associated with a particular milestone
+
+|`* * *` |Software engineering project manager |add/delete user stories to a project |formulate ideas and prioritize the features that need to be implemented.
+
+|`* *` |Software engineering project manager |edit milestones in a project |update any changes in my current milestone
+
+|`* *` |Software engineering project manager |edit tasks in a milestone |update any changes in my current tasks.
+
+|`* *` |Software engineering project manager |edit user stories in a project |update any changes in my current user stories
+
 |=======================================================================
-
-_{More to be added}_
 
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `PocketProject` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `PocketProject` and the *Actor*
+is the `user`, unless specified otherwise)
 
-[discrete]
-=== Use case: Delete employee
+=== Use case: Delete Command
+==== Deleting an employee
 
 *MSS*
 
-1.  User requests to list employees
-2.  PocketProject shows a list of employees
-3.  User requests to delete a specific employee in the list
-4.  PocketProject deletes the employee
+.  User requests to list employees
+.  PocketProject shows a list of employees
+.  User requests to delete a specific employee in the list
+.  PocketProject deletes the employee
 +
 Use case ends.
 
 *Extensions*
 
-[none]
-* 2a. The list is empty.
+
+.. The list is empty.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+.. The given index is invalid.
 +
-[none]
-** 3a1. PocketProject shows an error message.
+** PocketProject shows an error message.
 +
 Use case resumes at step 2.
 
-_{More to be added}_
+==== Deleting a project
+
+*MSS*
+
+.  User requests to list projects
+.  PocketProject shows a list of projects
+.  User requests to delete a specific project in the list
+.  PocketProject deletes the project
++
+Use case ends.
+
+*Extensions*
+
+.. The list is empty.
++
+Use case ends.
+
+.. The given index is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+.. The project name specified is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+=== Use case: Add Employee/Milestone/UserStory/Task To Project Command
+==== Adding an employee to project
+
+*MSS*
+
+.  User requests to list employees
+.  PocketProject shows a list of employees
+.  User requests to add a specific employee in the list to the project
+.  PocketProject adds the employee to the project specified.
++
+Use case ends.
+
+*Extensions*
+
+.. The list is empty.
++
+Use case ends.
+
+.. The given index is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+.. The project name given is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+.. The employee is already in the project.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+==== Adding a milestone to a project
+
+*MSS*
+
+. User requests to add a milestone to the project
+. PocketProject adds the milestone to the project specified.
++
+Use case ends.
+
+*Extensions*
+
+.. The milestone to be added is already specified in the project.
++
+** PocketProject shows an error message.
++
+Use case ends.
+
+==== Adding a task to a milestone in a project
+
+*MSS*
+
+. User requests to add a project task to the project
+. PocketProject adds the project task to the project specified.
++
+Use case ends.
+
+*Extensions*
+
+.. The project task to be added is already specified in the project.
++
+** PocketProject shows an error message.
++
+Use case ends.
+
+==== Adding an user story to a project
+
+*MSS*
+
+. User requests to add a user story to the project
+. PocketProject adds the user story to the project specified.
++
+Use case ends.
+
+*Extensions*
+
+.. The user story to be added is already specified in the project.
++
+** PocketProject shows an error message.
++
+Use case ends.
+
+
+=== Use case: Remove Employee/Milestone/UserStory/Task From Project Command
+==== Removing an employee from a project
+
+*MSS*
+
+.  User requests to view employees in a project
+.  PocketProject shows a list of employees in the project
+.  User requests to delete a specific employee in the list
+.  PocketProject deletes the employee from the project
++
+Use case ends.
+
+*Extensions*
+
+.. The list is empty.
++
+Use case ends.
+
+.. The given index is invalid.
++
+
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+.. The project name given is invalid.
++
+
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+==== Removing a milestone from a project
+
+*MSS*
+
+. User requests to view milestones in a project
+. PocketProject shows a list of milestones in the project
+. User requests to delete a specific milestone in the list
+. PocketProject deletes the milestone from the project
++
+Use case ends.
+
+*Extensions*
+
+.. The list is empty.
++
+Use case ends.
+
+.. The given index is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+.. The project name given is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+==== Removing a project task from a milestone in a project
+
+*MSS*
+
+. User requests to view project tasks in a project
+. PocketProject shows a list of project tasks in the project in the specific milestone
+. User requests to delete a specific task in the list
+. PocketProject deletes the task from the project
++
+Use case ends.
+
+*Extensions*
+
+.. The list is empty.
++
+Use case ends.
+
+.. The given milestone index is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+.. The project name given is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+==== Removing an user story from a project
+
+*MSS*
+
+. User requests to view user stories in a project
+.  PocketProject shows a list of user stories in the project
+.  User requests to delete a specific user story in the list
+.  PocketProject deletes the user story from the project
++
+Use case ends.
+
+*Extensions*
+
+.. The list is empty.
++
+Use case ends.
+
+.. The given index is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+.. The project name given is invalid.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+=== Use case: Edit Command
+==== Editing an employee's details
+
+*MSS*
+
+. User requests to view an employee in a project
+. PocketProject shows the employee details
+. User requests to edit an employee details
+. PocketProject edits the employee's details
++
+Use case ends.
+
+*Extensions*
+
+.. The new employee has the exact same details as another employee.
++
+** PocketProject shows an error message.
++
+Use case resumes at step 2.
+
+=== Use case: Find Command
+==== Finding all keywords in  project
+
+*MSS*
+
+. User requests to find all occurences of a keyword in a project
+.  PocketProject returns any project found with the keyword specified
++
+Use case ends.
+
 
 [appendix]
 == Non Functional Requirements
@@ -971,19 +1301,237 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a employee
+=== Add Command
+==== Adding an employee
 
-. Deleting a employee while all employees are listed
+Assuming that the employees added here do not exist in the app beforehand.
 
-.. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
-   Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+. Test case: `add employee n/John p/12345678 e/a@gmail.com g/abc.com` +
+  Expected: An employee named 'John', with phone number '12345678', email 'a@gmail.com' and github address 'abc.com' is added.
+. Test case: `add employee n/John p/12a345678 e/a@gmail.com g/abc.com` +
+  Expected: Adding of employees fails. Message about phone numbers can only contain numbers is returned.
+. Test case: `add employee n/Peter p/12345678 e/a@gmail.com g/abc.com` twice in a row +
+  Expected: The second addition fails because the employee already exists.
+. Test case: `add employee n/Jack p/12345678 e/a.gmail.com g/abc.com` +
+  Expected: Addition failed because of lack of '@' in the given email.
+
+=== Delete Command
+==== Deleting an employee
+
+Deleting a employee while all employees are listed
+
+. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
+. Test case: `delete employee 1` +
+  Expected: First employee is deleted from the list. Details of the deleted employee shown in the status message. Timestamp in the status bar is updated.
+. Test case: `delete employee 0` +
+  Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
+. Other incorrect delete commands to try: `delete employee`, `delete employee y`,  (where y is not a positive integer), `delete employee x`, (where x is larger than the list size) +
+  Expected: Similar to previous.
+
+==== Deleting a project
+
+Deleting a project while all projects are listed
+
+. Prerequisites: List all projects using the `list projects` command. Multiple projects in the list.
+. Test case: `delete project 1` +
+  Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+. Test case: `delete project p` +
+  Expected: project with the name 'p' is deleted if it exists in the app and the details of the deleted project shown in the status message. If no project with the name 'p' exists, error details shown in the status message. Status bar remains the same.
+. Test case: `delete project 0` +
+  Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size or is negative) +
+  Expected: Similar to previous.
+
+=== Editing an employee
+
+. Assumption: Two addition of employee commands has been called on a blank pocket project: `add employee n/Peter p/12345678 e/a@gmail.com g/abc.com`
++ and `add employee n/John p/87654321 e/b@gmail.com g/cba.com`. Peter is the first in the display list and John second.
+
+.. `edit 1 n/Peter p/22345678 e/a@gmail.com g/abc.com` +
+   Expected: Command is executed successfully and the phone number of peter is changed.
+.. `edit 1 n/John p/22345678 e/a@gmail.com g/abc.com` +
+   Expected: Command fails as John already exists.
+.. `edit 3 n/Alice p/32345678 e/c@gmail.com g/ccc.com` +
+    Expected: Command fails as there is no employee at index 3.
+
+=== Deleting a project
+
+. Deleting a project while all projects are listed
+
+.. Prerequisites: List all projects using the `list projects` command. Multiple projects in the list.
+.. Test case: `delete project 1` +
+   Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `delete project p` +
+   Expected: project with the name 'p' is deleted if it exists in the app and the details of the deleted project shown in the status message. If no project with the name 'p' exists, error details shown in the status message. Status bar remains the same.
+.. Test case: `delete project 0` +
+   Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size or is negative) +
    Expected: Similar to previous.
 
-_{ more test cases ... }_
+=== Removing an employee from a project
+
+. prerequisites: project with the name 'Apollo' exists and has 3 employees in it.
+.. Test case: `removefrom Apollo employee 1` +
+   Expected: First employee in Apollo is removed from it. Details of the removed employee is shown in the status message and timestamp in the status bar is updated.
+.. Test case: `removefrom Apollo employee 4` +
+   Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
+.. Test case: `removefrom Apollo employee x` where x is not a positive integer +
+   Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
+.. Test case: `removefrom X employee 1` where no project in the app has the name 'X' +
+   Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
+
+=== Removing a milestone from a porject
+
+.. Test case: `removefrom Apollo milestone 1` where the project named 'Apollo' exists in app and is ongoing and there is at least one +
+   milestone for the project.
+   Expected: The first milestone in the list of milestones for the project is removed.
+.. Test case: `remove from Apollo milestone 0` +
+   Expected: Command fails and an error message is returned.
+.. Test case: `remove from invalid milestone 1` where no project named 'invalid' exists +
+   Expected: Command fails and an error message is returned.
+
+=== Finding an employee/project by keywords in their names
+
+.. Test case: `find project a b c` +
+   Expected: projects with 'a', 'b' or 'c' in their names as separate words would be listed
+.. Test case: `find employee x y z` +
+   Expected: employees with 'x', 'y' or 'z' in their names as separate words would be listed
+.. Test case `find abc` +
+   Expected: error will be returned
+
+=== Finding employees with specific skills
+
+.. Test case: `find skill java` +
+   Expected: All employees with the skill java will be listed
+.. Test case: `find abc java` +
+   Expected: error will be returned
+
+=== Finding projects with specific keywords in their name, description or deadline
+
+.. Test case: `find all software food` +
+   Expected: Returns a list of projects containing the word 'software' or 'food' or both in their name, description or deadline.
+
+=== Indicating a project as completed
+
+.. Test case: `complete 1` where there this at least one project shown in the list of projects +
+   Expected: The first project in the list is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
+.. Test case: `complete Project Apollo` where there is a project named 'Project Apollo' in the app +
+   Expected: The project named 'Project Apollo' is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
+.. Test case: `complete x` where x is neither the index of a displayed project nor the name of an existing project +
+   Expected: Error detail shown. The Timestamp in the status bar is not updated.
+
+=== Clearing all data from the app
+
+.. Test case: `clear` +
+   Expected: All data of employees and projects are deleted from the app.
+.. Test case: `clear q23rfdq3w` +
+   Expected: All data cleared. The string of characters after the word clear is ignored.
+.. Test case: `clear` with leading and trailing whitespaces +
+   Expected: Data still cleared. Leading and trailing spaces are ignored.
+.. Test case: `abc clear` +
+   Expected: Error message about unrecognized command is returned.
+
+=== Exiting from the app
+
+.. Test case: `exit` +
+   Expected: The window of the app should close. The effect is the same as clicking on the cross icon on the top right.
+.. Test case: `exit q23rfdq3w` +
+   Expected: The app ends. The string of characters after the word clear is ignored.
+.. Test case: `exit` with leading and trailing whitespaces +
+   Expected: The app ends. Leading and trailing spaces are ignored.
+.. Test case: `abc exit` +
+   Expected: Error message about unrecognized command is returned.
+
+=== Undoing a data modification
+
+Assumption: all the objects being manipulated in these test cases exist in the app.
+
+.. Test case: `delete employee 1` followed by `undo` +
+   Expected: The first command will delete the first employee in the list from the app while the undo command will restore it.
+.. Test case: `delete employee 1` followed by `list employee` followed by `undo` +
+   Expected: The first employee in the list is deleted by the delete command. The list command lists all the remaining employees. The undo command +
+   restores the deleted employee. The undo command ignores the list command which does not modify internal data and will only undo the last data modifying command.
+.. Test case: `undo` is entered as the first command on start-up +
+   Expected: Output Messages says that there is no more command to undo.
+.. Test case: `delete employee 1` is followed by repetitions of `undo` and `redo` +
+   Expected: The `undo` and `redo` can go on forever because redo is a data modification that can be undone.
+
+=== Redoing a data modification that has been undone
+
+Assumption: all the objects being manipulated in these test cases exist in the app.
+
+.. Test case: `delete employee 1` followed by `undo` followed by `redo` +
+   Expected: The first command will delete the first employee in the list from the app while the undo command will restore it. The redo command deletes it again.
+.. Test case: `redo` is entered as the first command on start-up +
+   Expected: Output error message. There is no undone command to redo.
+
+=== Adding a project
+
+. Adding a new project
+
+.. Prerequisite: Project list doesn't already contain a project named 'Apollo'.
+.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
+   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `add project n/Ap.ollo c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Invalid project name error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/Symb.Corp d/23/11/2020` +
+   Expected: No new project is added. Invalid client name error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp d/30/02/2020` +
+   Expected: No new project is added. Invalid date error details shown in the status message. Status bar remains the same.
+.. Test case: `add project c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo d/23/11/2020` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+
+. Adding a new project that has at most 1 field different from an existing project.
+
+.. Prerequisite: This test case assumes that the command `add project n/Apollo c/SymbCorp d/23/11/2020` has been entered successfully at least once before.
+.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+.. Test case: `add project n/Apollo1 c/SymbCorp d/23/11/2020` +
+   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `add project n/Apollo c/SymbCorp1 d/23/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp d/10/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+
+=== Adding a milestone
+
+. Adding a milestone to a project
+
+.. Prerequisite: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'. 'Apollo' doesn't already contain milestones with names 'Finished UserGuide' and 'Finished DevGuide'.
+.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Not Found milestone Finished UserGuide 23/04/2019` +
+   Expected: No new milestone is added. Invalid project name error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone 23/04/2019` +
+   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone Finished UserGuide 234/04/2019` +
+   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
+
+. Adding a new milestone that has at most 1 field different from an existing milestone in a project.
+
+.. Prerequisite: This test case assumes that the command `addto Apollo milestone Finished UserGuide 23/04/2019` has been entered successfully at least once before.
+.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
+   Expected: No new milestone is added. Duplicate milestone error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone Finished DevGuide 23/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo milestone Finished UserGuide 11/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+
+=== Adding a UserStory
+
+. Adding a new user story to a project
+
+.. Prerequisites: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'.
+.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/2` +
+   Expected: A new user story is added to 'Apollo'. Details of the added user story shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/4` +
+   Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
+.. Other invalid add userstory commands to try: `addto Apollo userstory x AAA y AAA z AAA` (where expected `x` = as a, `y` = i want to, `z` = so that, `AAA` can be anything. Modify `x` or `y` or `z` to be different from expected.) +
+   Expected: Similar to previous.
 
 === Saving data
 

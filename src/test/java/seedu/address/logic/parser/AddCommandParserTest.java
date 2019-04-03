@@ -8,11 +8,13 @@ import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.FLEXI_DEADLINE_DESC_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FLEXI_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB2_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB3_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
@@ -33,6 +35,7 @@ import static seedu.address.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FLEXIDATE_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -186,18 +189,26 @@ public class AddCommandParserTest {
     public void parse_allFieldsPresentProject_success() {
         Project expectedProject = PROJECT_ZULU;
 
-        // whitespace only preamble
+        // whitespace only preamble fixed date
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
             + NAME_DESC_ZULU + CLIENT_DESC_ZULU + DEADLINE_DESC_ZULU, new AddProjectCommand(expectedProject));
+
+        // whitespace only preamble flexible date
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
+            + NAME_DESC_ZULU + CLIENT_DESC_ZULU + FLEXI_DEADLINE_DESC_ZULU, new AddProjectCommand(expectedProject));
     }
 
     @Test
     public void parse_allFieldPresentRandomlyProject_success() {
         Project expectedProject = PROJECT_ZULU;
 
-        // whitespace only preamble
+        // whitespace only preamble fixed date
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
             + CLIENT_DESC_ZULU + DEADLINE_DESC_ZULU + NAME_DESC_ZULU, new AddProjectCommand(expectedProject));
+
+        // whitespace only preamble flexible date
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
+            + CLIENT_DESC_ZULU + FLEXI_DEADLINE_DESC_ZULU + NAME_DESC_ZULU, new AddProjectCommand(expectedProject));
     }
 
     @Test
@@ -216,6 +227,10 @@ public class AddCommandParserTest {
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE
                 + CLIENT_DESC_ALICE + VALID_DEADLINE_ALICE, expectedMessage);
 
+        // missing deadline prefix
+        assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE
+                + CLIENT_DESC_ALICE + VALID_FLEXIDATE_ZULU, expectedMessage);
+
         // all prefixes missing
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
                 + VALID_CLIENT_ALICE + VALID_DEADLINE_ALICE, expectedMessage);
@@ -230,10 +245,13 @@ public class AddCommandParserTest {
         // invalid client
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE
             + INVALID_CLIENT_DESC + DEADLINE_DESC_ALICE, Client.MESSAGE_CONSTRAINTS);
-
-        // invalid date
+        // invalid deadline fixed format
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE + CLIENT_DESC_ALICE
                 + INVALID_DEADLINE_DESC, ProjectDate.MESSAGE_CONSTRAINTS);
+
+        // invalid deadline flexible format
+        assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ALICE + CLIENT_DESC_ALICE
+                + INVALID_FLEXI_DATE_DESC, ProjectDate.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, AddProjectCommand.ADD_PROJECT_KEYWORD + INVALID_PROJECT_NAME_DESC
