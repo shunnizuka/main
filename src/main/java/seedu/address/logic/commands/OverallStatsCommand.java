@@ -15,7 +15,7 @@ public class OverallStatsCommand extends StatsCommand {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        return new CommandResult(StatsUtil.overAllStatsString(model.getPocketProject().getEmployeeList(),
+        return new CommandResult(StatsUtil.overAllStatsString(model.getEmployeeList(),
                 model.getProjectList(), model.getCompletedProjectList()));
 
     }

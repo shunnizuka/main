@@ -202,6 +202,10 @@ public class ModelManager implements Model {
         }
         return list;
     }
+    @Override
+    public ObservableList<Employee> getEmployeeList() {
+        return versionedPocketProject.getEmployeeList();
+    }
 
     @Override
     public void addUserStoryTo(Project targetProject, UserStory targetUserStory) {

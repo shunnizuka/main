@@ -502,8 +502,8 @@ Alternative 2: Let `PocketProjectParser` handle parsing of all the `list` comman
 Using Alternative 1 is better as it provides better abstraction as the `listCommandParser` will handle all `list` commands. It also reduces the cluttering in the main `PocketProjectParser`.
 
 // skill::stats[]
-=== [Proposed] Stats feature
-==== Planned Implementation
+=== Stats feature
+==== Implementation
 
 The displaying of statistics in Pocket Project will be facilitated by the model component. This feature is
 planned to support 1 main command:

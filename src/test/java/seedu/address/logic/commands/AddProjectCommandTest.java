@@ -142,8 +142,13 @@ public class AddProjectCommandTest {
         }
         @Override
         public ObservableList<Project> getCompletedProjectList() {
-            throw new AssertionError("this method should not be called.");
+            throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public ObservableList<Employee> getEmployeeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public ReadOnlyPocketProject getPocketProject() {

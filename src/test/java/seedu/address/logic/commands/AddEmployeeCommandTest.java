@@ -248,6 +248,10 @@ public class AddEmployeeCommandTest {
         public List<Project> getProjectsContaining(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public ObservableList<Employee> getEmployeeList() {
+            throw new AssertionError("This method should not be called.");
+        }
         //--------------------------------------------------------------------------------------------------
 
         @Override
