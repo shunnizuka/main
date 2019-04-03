@@ -25,6 +25,7 @@ import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
+import seedu.address.testutil.EditProjectDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -98,6 +99,9 @@ public class CommandTestUtil {
 
     public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_AMY;
     public static final EditEmployeeCommand.EditEmployeeDescriptor DESC_BOB;
+    
+    public static final EditProjectInfoCommand.EditProjectDescriptor DESC_PROJECT_1;
+    public static final EditProjectInfoCommand.EditProjectDescriptor DESC_PROJECT_2;
 
     static {
         DESC_AMY = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -106,8 +110,13 @@ public class CommandTestUtil {
         DESC_BOB = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withGithubAccount(VALID_GITHUB_BOB)
                 .withSkills(VALID_SKILL_JAVA, VALID_SKILL_C).build();
+        DESC_PROJECT_1 = new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB).withClient(VALID_CLIENT_BOB)
+            .withDescription(VALID_DESCRIPTION).build();
+        DESC_PROJECT_2 = new EditProjectDescriptorBuilder().withName(VALID_NAME_AMY).withClient(VALID_CLIENT_ALICE)
+            .withDescription(VALID_DESCRIPTION).build();
     }
 
+    
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>

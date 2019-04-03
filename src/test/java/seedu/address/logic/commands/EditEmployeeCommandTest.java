@@ -34,7 +34,8 @@ import seedu.address.testutil.TypicalEmployees;
 import seedu.address.testutil.TypicalProjects;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditEmployeeCommand.
+ * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests 
+ * for EditEmployeeCommand.
  */
 public class EditEmployeeCommandTest {
 
@@ -44,7 +45,8 @@ public class EditEmployeeCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Employee editedEmployee = new EmployeeBuilder().build();
-        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee)
+            .build();
         EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor);
 
         String expectedMessage = String.format(EditEmployeeCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
@@ -80,7 +82,8 @@ public class EditEmployeeCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, new EditEmployeeDescriptor());
+        EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE,
+            new EditEmployeeDescriptor());
         Employee editedEmployee = model.getFilteredEmployeeList().get(INDEX_FIRST_EMPLOYEE.getZeroBased());
 
         String expectedMessage = String.format(EditEmployeeCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
@@ -115,7 +118,8 @@ public class EditEmployeeCommandTest {
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(firstEmployee).build();
         EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_SECOND_EMPLOYEE, descriptor);
 
-        assertCommandFailure(editEmployeeCommand, model, commandHistory, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory,
+            EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
     @Test
@@ -127,7 +131,8 @@ public class EditEmployeeCommandTest {
         EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE,
             new EditEmployeeDescriptorBuilder(employeeInList).build());
 
-        assertCommandFailure(editEmployeeCommand, model, commandHistory, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory,
+            EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
     @Test
@@ -137,7 +142,8 @@ public class EditEmployeeCommandTest {
             new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editEmployeeCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory,
+            Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 
     /**
@@ -154,7 +160,8 @@ public class EditEmployeeCommandTest {
         EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(outOfBoundIndex,
             new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editEmployeeCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory,
+            Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
 
     @Test
@@ -186,7 +193,8 @@ public class EditEmployeeCommandTest {
         EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(outOfBoundIndex, descriptor);
 
         // execution failed -> pocket project state not added into model
-        assertCommandFailure(editEmployeeCommand, model, commandHistory, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(editEmployeeCommand, model, commandHistory,
+            Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
 
         // single pocket project state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
@@ -203,7 +211,8 @@ public class EditEmployeeCommandTest {
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameEmployeeEdited() throws Exception {
         Employee editedEmployee = new EmployeeBuilder().build();
-        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee)
+            .build();
         EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor);
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
 
@@ -215,7 +224,7 @@ public class EditEmployeeCommandTest {
         // edit -> edits second employee in unfiltered employee list / first employee in filtered employee list
         editEmployeeCommand.execute(model, commandHistory);
 
-        // undo -> reverts addressbook back to previous state and filtered employee list to show all employees
+        // undo -> reverts pocket project back to previous state and filtered employee list to show all employees
         expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
@@ -236,7 +245,8 @@ public class EditEmployeeCommandTest {
         model = new ModelManager(builder.build(), new UserPrefs());
 
         Employee editedEmployee = new EmployeeBuilder().build();
-        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee)
+            .build();
         EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor);
 
         editEmployeeCommand.execute(model, commandHistory);

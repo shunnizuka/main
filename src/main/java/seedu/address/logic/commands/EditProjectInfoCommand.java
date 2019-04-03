@@ -35,8 +35,9 @@ public class EditProjectInfoCommand extends EditProjectCommand {
         + "[" + PREFIX_CLIENT + "John] "
         + "[" + PREFIX_DESCRIPTION + "An application to manage projects] ";
 
-    public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
+    public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Project edited successfully!";
     public static final String MESSAGE_NOT_EDITED = "Project is not edited";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "The project already exists.";
 
     private final ProjectName projectName;
     private final EditProjectDescriptor editProjectDescriptor;
