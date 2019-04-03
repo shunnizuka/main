@@ -1,13 +1,15 @@
 package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PROJECT_1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PROJECT_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
@@ -17,6 +19,8 @@ import static seedu.address.testutil.TypicalProjectNames.NON_EXISTENT_PROJECT_NA
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_1;
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_2;
 import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
+
+import java.util.Arrays;
 
 import org.junit.Test;
 
@@ -31,6 +35,11 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.TypicalEmployees;
+import seedu.address.testutil.TypicalMilestones;
+import seedu.address.testutil.TypicalUserStories;
+
+
 
 
 public class EditProjectInfoCommandTest {
@@ -40,7 +49,12 @@ public class EditProjectInfoCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Project editedProject = new ProjectBuilder().build();
+        Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE)
+            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
+            .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
+            .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
+                TypicalMilestones.TYPICAL_MILESTONE_END))
+            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
             .build();
         EditProjectInfoCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1,
@@ -145,14 +159,20 @@ public class EditProjectInfoCommandTest {
     }
 
     @Test
-    public void executeUndoRedo_validProjectNameUnfilteredList_success() throws Exception {
-        Project editedProject = new ProjectBuilder().build();
-        Project ProjectToEdit = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+    public void executeUndoRedo_validProjectName_success() throws Exception {
+        Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE)
+            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
+            .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
+            .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
+                TypicalMilestones.TYPICAL_MILESTONE_END))
+            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
+
+        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
             .build();
         EditProjectCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1, descriptor);
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
-        expectedModel.setProject(ProjectToEdit, editedProject);
+        expectedModel.setProject(projectToEdit, editedProject);
         expectedModel.commitPocketProject();
 
         // edit -> first Project edited
@@ -168,8 +188,7 @@ public class EditProjectInfoCommandTest {
     }
 
     @Test
-    public void executeUndoRedo_invalidProjectNameUnfilteredList_failure() throws ParseException {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
+    public void executeUndoRedo_invalidProjectName_failure() {
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
             .withName(VALID_NAME_BOB).build();
         EditProjectInfoCommand editProjectCommand = new EditProjectInfoCommand(NON_EXISTENT_PROJECT_NAME, descriptor);
@@ -181,39 +200,6 @@ public class EditProjectInfoCommandTest {
         // single pocket project state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
         assertCommandFailure(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_FAILURE);
-    }
-
-    /**
-     * 1. Edits a {@code Project} from a filtered list.
-     * 2. Undo the edit.
-     * 3. The unfiltered list should be shown now. Verify that the index of the previously edited Project in the
-     * unfiltered list is different from the index at the filtered list.
-     * 4. Redo the edit. This ensures {@code RedoCommand} edits the Project object regardless of indexing.
-     */
-    @Test
-    public void executeUndoRedo_validProjectNameFilteredList_sameProjectEdited() throws Exception {
-        Project editedProject = new ProjectBuilder().build();
-        EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
-            .build();
-        EditProjectCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1, descriptor);
-        Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
-
-        showProjectAtIndex(model, INDEX_SECOND_PROJECT);
-        Project ProjectToEdit = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        expectedModel.setProject(ProjectToEdit, editedProject);
-        expectedModel.commitPocketProject();
-
-        // edit -> edits second Project in unfiltered Project list / first Project in filtered Project list
-        editProjectCommand.execute(model, commandHistory);
-
-        // undo -> reverts pocket project back to previous state and filtered Project list to show all Projects
-        expectedModel.undoPocketProject();
-        assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
-
-        assertNotEquals(model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased()), ProjectToEdit);
-        // redo -> edits same second Project in unfiltered Project list
-        expectedModel.redoPocketProject();
-        assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

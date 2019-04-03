@@ -26,12 +26,12 @@ public class EditProjectDescriptorBuilder {
     /**
      * Returns an {@code EditProjectDescriptor} with fields containing {@code Project}'s details
      */
-    public EditProjectDescriptorBuilder(Project Project) {
+    public EditProjectDescriptorBuilder(Project project) {
         descriptor = new EditProjectInfoCommand.EditProjectDescriptor();
-        descriptor.setProjectName(Project.getProjectName());
-        descriptor.setClient(Project.getClient());
-        descriptor.setDeadline(Project.getDeadline());
-        descriptor.setDescription(Project.getDescription());
+        descriptor.setProjectName(project.getProjectName());
+        descriptor.setClient(project.getClient());
+        descriptor.setDeadline(project.getDeadline());
+        descriptor.setDescription(project.getDescription());
     }
 
     /**
