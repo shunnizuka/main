@@ -109,7 +109,7 @@ class JsonAdaptedProject {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ProjectDate.class.getSimpleName()));
         }
-        if (!completionDate.equals("null")) {
+        if (!"null".equals(completionDate)) {
             if (!ProjectDate.isValidDate(completionDate)) {
                 throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
             } else {

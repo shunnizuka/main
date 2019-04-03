@@ -136,7 +136,6 @@ public class StatsUtil {
         Optional<Employee> employeeWithLeastProject = employees.stream().min(comparator);
         String employeeWithLeastProjectString = null;
         if (employeeWithLeastProject.isPresent()) {
-            int numProjects = employeeWithLeastProject.get().getCurrentProjects().size();
             employeeWithLeastProjectString = "The employee with the least number of projects is "
                     + employeeWithLeastProject.get().getName().fullName
                     + " with " + employeeWithLeastProject.get().getCurrentProjects().size()
@@ -161,7 +160,6 @@ public class StatsUtil {
         Optional<Employee> employeeWithMostProject = employees.stream().max(comparator);
         String employeeWithMostProjectString = null;
         if (employeeWithMostProject.isPresent()) {
-            int numProjects = employeeWithMostProject.get().getCurrentProjects().size();
             employeeWithMostProjectString = "The employee with the most number of projects is "
                     + employeeWithMostProject.get().getName().fullName
                     + " with " + employeeWithMostProject.get().getCurrentProjects().size()
