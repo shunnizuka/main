@@ -27,6 +27,7 @@ import seedu.address.model.project.ProjectName;
  */
 public class EditProjectInfoCommand extends EditProjectCommand {
 
+    //TODO need to edit the project name in the employee
     public static final String EDIT_INFO_KEYWORD = "info";
 
     public static final String MESSAGE_USAGE = "Parameters: " + COMMAND_WORD + " PROJECT_NAME" + EDIT_INFO_KEYWORD
@@ -44,7 +45,7 @@ public class EditProjectInfoCommand extends EditProjectCommand {
 
     /**
      * @param projectName of the project in the project list to edit
-     * @param editProjectDescriptor details to edit the employee with
+     * @param editProjectDescriptor details to edit the project with
      */
     public EditProjectInfoCommand(ProjectName projectName, EditProjectDescriptor editProjectDescriptor) {
         requireNonNull(projectName);
@@ -82,8 +83,8 @@ public class EditProjectInfoCommand extends EditProjectCommand {
     }
 
     /**
-     * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
-     * edited with {@code editEmployeeDescriptor}.
+     * Creates and returns a {@code project} with the details of {@code projectToEdit}
+     * edited with {@code editProjectDescriptor}.
      */
     private static Project createEditedProject(Project projectToEdit, EditProjectDescriptor editProjectDescriptor) {
         assert projectToEdit != null;
@@ -130,7 +131,6 @@ public class EditProjectInfoCommand extends EditProjectCommand {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code skills} is used internally.
          */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setProjectName(toCopy.projectName);
