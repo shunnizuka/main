@@ -44,9 +44,17 @@ public class Milestone {
     /**
      * Returns true if given strings are valid fields for a milestone.
      */
+    public static boolean isValidMilestone(Milestone m) {
+        return Milestone.isValidMilestoneDate(m.date)
+                && Milestone.isValidMilestoneString(m.milestone);
+    }
+
+    /**
+     * Returns true if given strings are valid fields for a milestone.
+     */
     public static boolean isValidMilestone(String info, String date) {
         return Milestone.isValidMilestoneDate(date)
-                && Milestone.isValidMilestoneString(info);
+        && Milestone.isValidMilestoneString(info);
     }
 
     /**
@@ -97,6 +105,19 @@ public class Milestone {
 
     public ObservableList<ProjectTask> getProjectTaskList() {
         return this.projectTasks.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns true if both milestones have the same name and date.
+     * This defines a weaker notion of equality between two milestones.
+     */
+    public boolean isSameMilestone(Milestone otherMilestone) {
+        if (otherMilestone == this) {
+            return true;
+        }
+        return otherMilestone != null
+            && otherMilestone.getMilestone().equals(getMilestone())
+            && otherMilestone.getDate().equals(getDate());
     }
 
     @Override
