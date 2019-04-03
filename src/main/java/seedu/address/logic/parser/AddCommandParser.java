@@ -88,7 +88,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_NAME).get());
             Client client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get());
-            ProjectDate deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+            ProjectDate deadline = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE).get());
 
             Project project = new Project(projectName, client, deadline);
 

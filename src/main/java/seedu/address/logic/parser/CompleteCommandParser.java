@@ -35,7 +35,7 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompleteCommand.MESSAGE_USAGE));
         }
         final String projectReference = matcher.group("project");
-        final ProjectDate date = ParserUtil.parseDeadline(matcher.group("date"));
+        final ProjectDate date = ParserUtil.parseDate(matcher.group("date"));
         String argument = projectReference.trim();
         if (argument.matches(INTEGER_STRING_FORMAT)) {
             try {
