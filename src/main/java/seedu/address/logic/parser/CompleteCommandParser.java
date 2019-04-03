@@ -20,7 +20,7 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
      * Used for separation of delete type word and args.
      */
     private static final Pattern COMPLETE_COMMAND_FORMAT =
-            Pattern.compile("(?<project>(((-?)[0-9]+)|(.*))\\s?<date>.*)");
+            Pattern.compile("(?<project>\\S+)\\s(?<date>\\S+)");
     private static final String INTEGER_STRING_FORMAT = "(-?)[0-9]+";
 
     /**
