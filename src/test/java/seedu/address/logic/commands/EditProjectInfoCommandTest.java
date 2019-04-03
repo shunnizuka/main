@@ -95,7 +95,6 @@ public class EditProjectInfoCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditProjectCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1,
             new EditProjectInfoCommand.EditProjectDescriptor());
-        Project editedProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
 
         String expectedMessage = EditProjectInfoCommand.MESSAGE_EDIT_PROJECT_SUCCESS;
 
