@@ -11,7 +11,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.util.StatsUtil;
 
 /**
  * Displays a summary of the progress of a project
@@ -49,7 +48,7 @@ public class IndividualStatsCommand extends StatsCommand {
         if (targetProject == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
-        String result = StatsUtil.projectProgress(targetProject);
+        String result = model.individualStats(targetProject);
 
         return new CommandResult(String.format(MESSAGE_STATS, targetName.projectName, result));
     }

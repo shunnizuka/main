@@ -218,7 +218,7 @@ public class ModelManager implements Model {
     }
     @Override
     public String individualStats(Project project) {
-        return StatsUtil.projectProgress(project);
+        return StatsUtil.individualStatsString(project);
     }
 
 

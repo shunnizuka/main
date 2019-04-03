@@ -69,7 +69,7 @@ public class StatsUtil {
     /**
      * Returns a string describing the progress of an individual project.
      */
-    public static String projectProgress(Project project) {
+    public static String individualStatsString(Project project) {
         return "";
     }
 

@@ -35,7 +35,7 @@ public class IndividualStatsCommandTest {
         IndividualStatsCommand individualStatsCommand = new IndividualStatsCommand(INDEX_FIRST_PROJECT);
 
         String expectedMessage = String.format(IndividualStatsCommand.MESSAGE_STATS,
-                targetProject.getProjectName().projectName, StatsUtil.projectProgress(targetProject));
+                targetProject.getProjectName().projectName, StatsUtil.individualStatsString(targetProject));
 
         ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
 
@@ -56,7 +56,7 @@ public class IndividualStatsCommandTest {
         IndividualStatsCommand individualStatsCommand = new IndividualStatsCommand(targetProject.getProjectName());
 
         String expectedMessage = String.format(IndividualStatsCommand.MESSAGE_STATS,
-                targetProject.getProjectName().projectName, StatsUtil.projectProgress(targetProject));
+                targetProject.getProjectName().projectName, StatsUtil.individualStatsString(targetProject));
 
         ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
 
