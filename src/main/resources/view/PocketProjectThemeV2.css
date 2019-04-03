@@ -361,10 +361,12 @@
 
 
 #nameSummary {
-    -fx-font-size: 24pt;
-    -fx-padding: 20 20 20 20;
-    -fx-text-fill: white;
     -fx-background-color:#26A69A;
+}
+
+#nameSummaryLabel {
+    -fx-font-size: 24pt;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 

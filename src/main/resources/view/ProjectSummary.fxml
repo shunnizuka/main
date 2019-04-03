@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="projectDetails" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <ListView prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #4D6D9A;" />
-        <Label fx:id="projectName" layoutX="24.0" layoutY="27.0" text="name" />
-    </children>
-</Pane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="440.0" style="-fx-background-color: white" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane id="nameSummary" prefHeight="64.0" prefWidth="440.0">
+         <children>
+            <Label id="nameSummaryLabel" fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="5.0" prefHeight="55.0" prefWidth="404.0" text="DETAILS" textAlignment="CENTER" />
+         </children>
+      </Pane>
+      <Label id="labelSummaryheader" layoutX="187.0" layoutY="117.0" text="DETAILS" textAlignment="CENTER" />
+      <ListView layoutX="9.0" layoutY="170.0" prefHeight="257.0" prefWidth="421.0">
+       <HBox prefHeight="27.0" prefWidth="359.0">
+           <Label id="labelSummaryheader" prefHeight="27.0" prefWidth="90.0" text="Client:  " />
+           <Label id="labelSummary" fx:id="client" />
+       </HBox>
+       <HBox prefHeight="20" prefWidth="359">
+           <Label id="labelSummaryheader" prefHeight="27.0" prefWidth="90.0" text="Deadline:  " />
+           <Label id="labelSummary" fx:id="deadline" />
+       </HBox>
+      </ListView>
+   </children>
+</AnchorPane>
