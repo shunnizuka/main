@@ -24,7 +24,7 @@ public class CompleteCommand extends Command {
             + ": Completes the project identified by the name or index(must be positive integer) of the project.\n"
             + "Parameters: PROJECT_NAME/PROJECT_INDEX\n"
             + "Example: " + COMMAND_WORD + " Apollo\n"
-            + "Example: " + COMMAND_WORD + "1\n";
+            + "Example: " + COMMAND_WORD + " 1\n";
 
     public static final String MESSAGE_COMPLETE_PROJECT_SUCCESS = "Completed Project: %1$s";
 
