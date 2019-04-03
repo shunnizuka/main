@@ -22,6 +22,7 @@ import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
@@ -203,6 +204,12 @@ public class ModelManager implements Model {
         versionedPocketProject.addUserStoryTo(targetProject, targetUserStory);
     }
 
+    @Override
+    public void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task) {
+        versionedPocketProject.addProjectTaskTo(targetProject, milestone, task);
+    }
+
+
 
 
     //=========== Filtered Employee List Accessors =============================================================
@@ -295,6 +302,7 @@ public class ModelManager implements Model {
         if (employee != null && !filteredEmployees.contains(employee)) {
             throw new EmployeeNotFoundException();
         }
+        selectedProject.setValue((Project) null);
         selectedEmployee.setValue(employee);
     }
 
@@ -346,6 +354,7 @@ public class ModelManager implements Model {
         if (project != null && !filteredProjects.contains(project)) {
             throw new ProjectNotFoundException();
         }
+        selectedEmployee.setValue((Employee) null);
         selectedProject.setValue(project);
     }
 

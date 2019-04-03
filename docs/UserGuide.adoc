@@ -197,10 +197,10 @@ Format: `delete project PROJECT_NAME` or `delete project PROJECT_INDEX`
 
 Examples:
 
-`delete project Apollo` +
+* `delete project Apollo` +
 Deletes project "Apollo" from project list.
 
-`delete project 2` +
+* `delete project 2` +
 Deletes the second project shown in the most recent displayed list of projects.
 
 image:ug-lightbulb.png[width="50"]
@@ -345,7 +345,7 @@ will also be loaded.
 
 Examples:
 
-`list employees` +
+* `list employees` +
 `view employee 3` +
 Displays details of the employee at index 3
 
@@ -356,7 +356,7 @@ Format: `view project PROJECT_NAME`
 
 Examples:
 
-`view project Apollo` +
+* `view project Apollo` +
 Displays details (client, deadline, employees, milestones) of project “Apollo”.
 
 image:ug-lightbulb.png[width="50"]
@@ -399,14 +399,38 @@ Date must be of the format DD/MM/YYYY
 
 Examples:
 
-`addto Apollo milestone Completed UI for program 23/11/2015` +
+* `addto Apollo milestone Completed UI for program 23/11/2015` +
 Milestone added to project "Apollo".
 
 image:ug-lightbulb.png[width="50"]
 Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
 while keying in a command into the CLI.
 
-==== Add a user story to a project `addto userstory`
+==== Add a task to a project milestone: `addto projecttask`
+
+Adds a task to a project milestone.
+
+Format: `addto PROJECT_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]`
+
+image:ug-notepadpencil.png[width="40"]
+Adds the project task to the milestone at the specified `MILESTONE_INDEX`.
+The index refers to the index number (one-based) shown in the displayed list of milestones.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer* and cannot be larger than the size of the list.
+
+Example:
+
+* `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Adds to the milestone at index 1 in project with name "Apollo", a new project task called "Create feature XYZ".
+
+* `addto Apollo projecttask m/2 n/Modify feature XYZ` +
+   Adds to the milestone at index 2 in project with name "Apollo", a new project task called "Modify feature XYZ".
+
+image:ug-lightbulb.png[width="50"]
+There is no specific order for either the project task name or the milestone index so either way is acceptable.
+
+==== Add a user story to a project: `addto userstory`
 
 Adds a user story to a project.
 
@@ -422,9 +446,9 @@ Note that `as a`, `i want to` and `so that` are keywords which are required in a
 
 Examples:
 
-`addto Apollo userstory i/1 as a user i want to try out new things so that i can have fun`
+* `addto Apollo userstory i/1 as a user i want to try out new things so that i can have fun`
 
-`addto Apollo userstory as a lazy user i want to have shortcuts for my commands i/2`
+* `addto Apollo userstory as a lazy user i want to have shortcuts for my commands i/2`
 
 image:ug-lightbulb.png[width="50"]
 There is no specific order for either the user story or the importance level so either way is acceptable.
@@ -439,7 +463,7 @@ Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
 
 Examples:
 
-`view project Apollo` +
+* `view project Apollo` +
 `removefrom Apollo employee 3` +
 Removes the employee at 3rd position at displayed list of employees from Project Apollo.
 
@@ -451,7 +475,7 @@ Format: `removefrom PROJECT_NAME milestone MS_INDEX`
 
 Examples:
 
-`view project Apollo` +
+* `view project Apollo` +
 `removefrom Apollo milestone 1` +
 Removes the milestone at 1st position of displayed list of milestone from Project Apollo.
 
@@ -474,7 +498,7 @@ Format: `removefrom PROJ_NAME userstory INDEX`
 
 Examples:
 
-`view project Apollo` +
+* `view project Apollo` +
 `removefrom Apollo userstory 1` +
 Removes the user story at the 1st position of the displayed list of user stories from Project Apollo.
 
@@ -488,7 +512,7 @@ Format: `editproject PROJECT_NAME [n/name] [c/client] [d/deadline] [desc/descrip
 
 Examples:
 
-`editproject Apollo n/Gemini c/John d/12/09/2020 desc/An application for project management` +
+* `editproject Apollo n/Gemini c/John d/12/09/2020 desc/An application for project management` +
 Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
 
 
@@ -513,10 +537,10 @@ Format: `sort KEY_VALUE`
 
 Examples:
 
-`sort name` +
+* `sort name` +
 List of project have been sorted by name.
 
-`sort deadline` +
+* `sort deadline` +
 List of projects have been sorted by deadline with the
 earliest deadline displayed at the top of the list.
 
@@ -527,10 +551,10 @@ Format: `complete PROJ_NAME` or `complete PROJECT_INDEX`
 
 Examples:
 
-`complete Project Apollo` +
+* `complete Project Apollo` +
 Project Apollo has been indicated as completed and removed from the list of ongoing projects.
 
-`list projects` +
+* `list projects` +
 The list of ongoing projects are listed.
 `complete 1` +
 The first project in the shown list is indicated as completed.
@@ -543,7 +567,7 @@ Format: `stats`
 
 Examples:
 
-`stats` +
+* `stats` +
 Total number of ongoing projects: 4 +
 Total number of completed projects: 9
 
@@ -649,8 +673,8 @@ e.g. `edit 2 n/James Lee e/jameslee@example.com`
 e.g. `find employee Jake` `find project Apollo` `find skill Java` `find all software`
 * *View* : `view employee EMPLOYEE_INDEX` , `view project PROJECT_NAME` +
 e.g. `view employee 3` `view project Apollo`
-* *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE` +
-e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015`
+* *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE`, `addto PROJECT_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]` +
+e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015` `addto Apollo projecttask n/Create feature XYZ m/1`
 * *Removefrom*: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` `removefrom PROJECT_NAME milestone MS_INDEX` +
 e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1`
 * *Complete* : `complete PROJECT_NAME` +
