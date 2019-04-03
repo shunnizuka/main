@@ -134,12 +134,4 @@ public class CompleteCommandTest {
         assertFalse(completeAliceCommand.equals(completeBensonCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoProject(Model model) {
-        model.updateFilteredProjectList(p -> false);
-
-        assertTrue(model.getFilteredProjectList().isEmpty());
-    }
 }

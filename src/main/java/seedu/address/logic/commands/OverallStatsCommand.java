@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.util.StatsUtil;
 
 /**
  * Displays a summary of all the projects
