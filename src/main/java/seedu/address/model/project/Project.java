@@ -192,7 +192,6 @@ public class Project {
     }
 
     /**
-     <<<<<<< HEAD
      * Adds the given user story to this project.
      */
     public void addUserStory(UserStory story) {
@@ -206,6 +205,9 @@ public class Project {
         userStories.remove(story);
     }
 
+    /**
+     * Edits the details of the project specifically projectName, client, deadline and description
+     */
     public Project editProject(ProjectName projectName, Client client, Deadline deadline, Description description) {
         return new Project(projectName, client, deadline, this.milestones, description, this.employees,
             this.userStories);
