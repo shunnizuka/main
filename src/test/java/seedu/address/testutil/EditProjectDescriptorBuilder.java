@@ -1,6 +1,9 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditProjectInfoCommand;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
@@ -36,32 +39,32 @@ public class EditProjectDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditProjectDescriptor} that we are building.
      */
-    public seedu.address.testutil.EditProjectDescriptorBuilder withName(String name) {
-        descriptor.setProjectName(new ProjectName(name));
+    public seedu.address.testutil.EditProjectDescriptorBuilder withName(String name) throws ParseException {
+        descriptor.setProjectName(ParserUtil.parseProjectName(name));
         return this;
     }
 
     /**
      * Sets the {@code Phone} of the {@code EditProjectDescriptor} that we are building.
      */
-    public seedu.address.testutil.EditProjectDescriptorBuilder withClient(String client) {
-        descriptor.setClient(new Client(client));
+    public seedu.address.testutil.EditProjectDescriptorBuilder withClient(String client) throws ParseException {
+        descriptor.setClient(ParserUtil.parseClient(client));
         return this;
     }
 
     /**
      * Sets the {@code Email} of the {@code EditProjectDescriptor} that we are building.
      */
-    public seedu.address.testutil.EditProjectDescriptorBuilder withDescription(String description) {
-        descriptor.setDescription(new Description(description));
+    public seedu.address.testutil.EditProjectDescriptorBuilder withDescription(String description) throws ParseException {
+        descriptor.setDescription(ParserUtil.parseDescription(description));
         return this;
     }
 
     /**
      * Sets the {@code GitHubAccount} of the {@code EditProjectDescriptor} that we are building.
      */
-    public seedu.address.testutil.EditProjectDescriptorBuilder withDeadline(String deadline) {
-        descriptor.setDeadline(new Deadline(deadline));
+    public seedu.address.testutil.EditProjectDescriptorBuilder withDeadline(String deadline) throws ParseException {
+        descriptor.setDeadline(ParserUtil.parseDeadline(deadline));
         return this;
     }
 

@@ -16,7 +16,6 @@ import seedu.address.logic.commands.EditProjectInfoCommand.EditProjectDescriptor
 import seedu.address.logic.commands.EditProjectInfoCommand;
 import seedu.address.logic.commands.EditProjectMilestoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -37,7 +36,7 @@ public class EditProjectCommandParser {
      * @throws ParseException
      */
     public EditProjectCommand parseProjectCommand(String userInput) throws ParseException {
-        
+
         final Matcher matcher = EDIT_PROJECT_COMMAND_FORMAT.matcher(userInput.trim());
 
         if (!matcher.matches()) {
