@@ -531,13 +531,16 @@ Usage Scenario example for `stats`:
 
 ==== Design Considerations
 ===== Aspect: How the string is constructed.
-Alternative 1:
+Alternative 1: Retrieve all the relevant project(s), find out the relevant information and construct the string in the `execute()` method
+of the command object.
 
-Alternative 2: Let `UniqueProjectList` keep track of the number of projects and implement a `UniqueProjectList#getSize()` method which is called by `StatsCommand`.
+Alternative 2: Do the construction in the model.
 
-Using Alternative 1 is better as the Pocket Project statistics only need to be displayed when the user executes `stats`.
-Alternative 2 would require additional checks to ensure that there is live update of project statistics in `UniqueProjectList` every time a project is added, deleted or completed.
+Alternative 3: Do it somewhere else.
 
+I have decided to use alternative 3 and create a specialized helper class to scrap the relevant information from the list of projects/employees to
+produce the string. This is chosen because I have decided to have several helper methods to construct the different parts of the string(e.g. about the number of ongoing projects, project with closest deadline etc..).
+It would be inappropriate to put these methods under the command class or the model because they are not very related.
 
 // end::stats[]
 
