@@ -202,7 +202,7 @@ public class PocketProjectDate extends CalendarDate {
         int currentMonth = LocalDateTime.now().getMonth().getValue();
         int currentDayOfMonth = LocalDateTime.now().getDayOfMonth();
         LocalDateTime targetDate = LocalDateTime.now().withMonth(currentMonth + NEXT);
-        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth + NEXT); //TODO check bug
+        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth);
         return DATE_FORMAT.format(newDate);
     }
 
@@ -226,7 +226,7 @@ public class PocketProjectDate extends CalendarDate {
         int currentMonth = LocalDateTime.now().getMonth().getValue();
         int currentDayOfMonth = LocalDateTime.now().getDayOfMonth();
         LocalDateTime targetDate = LocalDateTime.now().withMonth(currentMonth + LAST);
-        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth + NEXT); //TODO check bug
+        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth);
         return DATE_FORMAT.format(newDate);
     }
 
