@@ -55,9 +55,10 @@ symbols and terms used further on in the user guide.
 .  Ensure you have Java version `9` or later installed in your Computer.
 .  Download the latest `pocketproject.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Pocket Project.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+.  Double-click the file to start the app. The GUI should appear in a few seconds as shown below.
 +
-image::Ui.png[width="790"]
+.Pocket Project UI
+image::startup_ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -70,6 +71,27 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
+
+=== Navigating the interface
+
+.Pocket Project UI with different components
+image::ui_annotated.png[]
+
+As shown above, there are 5 main components in Pocket Project interface:
+
+. Command Box: where you key in the command
+. Result Box: show the result of the command that is keyed in
+. Side tab Panel: display either project list or employee list
+. Prev/Next Button: to navigate through the project/employee details
+. Detail panel: display details of an employee/project
+
+There are several detail panels to display the details of the employees and the projects as shown below. You can toggle between these panel by using the Prev/Next Button.
+
+.Detail Panels of an employee [1] Summary: display name, skills, phone, email of the employee [2] Projects: the list of projects the employee is working on [3] Github: github page of the employee 
+image::employee_detail_panel.png[]
+
+.Detail Panels of a project [1] Summary: display project name, client and deadline of the project [2] User Stories for the project [3] List of employees working on the project
+image::project_detail_panel.png[]
 
 === Symbols
 The following section details and previews a few legends that will
