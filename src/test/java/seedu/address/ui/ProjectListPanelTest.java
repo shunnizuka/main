@@ -17,8 +17,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Project;
-import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.util.PocketProjectDate;
 
 public class ProjectListPanelTest extends GuiUnitTest {
     private static final ObservableList<Project> TYPICAL_PROJECTS =

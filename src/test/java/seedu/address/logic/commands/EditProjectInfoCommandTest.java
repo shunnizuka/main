@@ -74,8 +74,8 @@ public class EditProjectInfoCommandTest {
         Index indexLastProject = Index.fromOneBased(model.getFilteredProjectList().size());
         Project lastProject = model.getFilteredProjectList().get(indexLastProject.getZeroBased());
 
-        ProjectBuilder ProjectInList = new ProjectBuilder(lastProject);
-        Project editedProject = ProjectInList.withProjectName(VALID_NAME_BOB).withClient(VALID_CLIENT_BOB)
+        ProjectBuilder projectInList = new ProjectBuilder(lastProject);
+        Project editedProject = projectInList.withProjectName(VALID_NAME_BOB).withClient(VALID_CLIENT_BOB)
             .withDescrption(VALID_DESCRIPTION).build();
 
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
@@ -108,9 +108,9 @@ public class EditProjectInfoCommandTest {
     public void execute_filteredList_success() {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
-        Project ProjectInFilteredList = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        Project editedProject = new ProjectBuilder(ProjectInFilteredList).withProjectName(VALID_NAME_BOB).build();
-        EditProjectCommand editProjectCommand = new EditProjectInfoCommand(ProjectInFilteredList.getProjectName(),
+        Project projectInFilteredList = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        Project editedProject = new ProjectBuilder(projectInFilteredList).withProjectName(VALID_NAME_BOB).build();
+        EditProjectCommand editProjectCommand = new EditProjectInfoCommand(projectInFilteredList.getProjectName(),
             new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = EditProjectInfoCommand.MESSAGE_EDIT_PROJECT_SUCCESS;
@@ -139,9 +139,9 @@ public class EditProjectInfoCommandTest {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
         // edit Project in filtered list into a duplicate in pocket project
-        Project ProjectInList = model.getPocketProject().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
+        Project projectInList = model.getPocketProject().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
         EditProjectCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1,
-            new EditProjectDescriptorBuilder(ProjectInList).build());
+            new EditProjectDescriptorBuilder(projectInList).build());
 
         assertCommandFailure(editProjectCommand, model, commandHistory,
             EditProjectInfoCommand.MESSAGE_DUPLICATE_PROJECT);

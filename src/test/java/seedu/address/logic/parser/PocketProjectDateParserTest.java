@@ -36,7 +36,6 @@ import static seedu.address.testutil.TypicalFlexibleDateInputs.TODAY;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.TOMORROW;
 import static seedu.address.testutil.TypicalFlexibleDateInputs.YESTERDAY;
 
-
 import java.time.format.DateTimeFormatter;
 
 import org.junit.Rule;
@@ -64,7 +63,7 @@ public class PocketProjectDateParserTest {
 
     @Test
     public void parsePocketProjectDate_tomorrow() throws Exception {
-        PocketProjectDate  currentDate = new PocketProjectDate ();
+        PocketProjectDate currentDate = new PocketProjectDate ();
         String userInput = parser.parsePocketProjectDate(TOMORROW);
 
         assertEquals(currentDate.dateNumDaysLater(NEXT), userInput);
@@ -72,7 +71,7 @@ public class PocketProjectDateParserTest {
 
     @Test
     public void parsePocketProjectDate_yesterday() throws Exception {
-        PocketProjectDate  currentDate = new PocketProjectDate ();
+        PocketProjectDate currentDate = new PocketProjectDate ();
         String userInput = parser.parsePocketProjectDate(YESTERDAY);
 
         assertEquals(currentDate.dateNumDaysBefore(NEXT), userInput);
@@ -80,7 +79,7 @@ public class PocketProjectDateParserTest {
 
     @Test
     public void parsePocketProjectDate_thisWeekStart() throws Exception {
-        PocketProjectDate  currentDate = new PocketProjectDate ();
+        PocketProjectDate currentDate = new PocketProjectDate ();
         String userInput = parser.parsePocketProjectDate(THIS_WEEK_MONDAY);
 
         assertEquals(currentDate.thisWeekDate(START_WEEK), userInput);
@@ -88,7 +87,7 @@ public class PocketProjectDateParserTest {
 
     @Test
     public void parsePocketProjectDate_thisWeekMid() throws Exception {
-        PocketProjectDate  currentDate = new PocketProjectDate();
+        PocketProjectDate currentDate = new PocketProjectDate();
         String userInput = parser.parsePocketProjectDate(THIS_WEEK_WEDNESDAY);
 
         assertEquals(currentDate.thisWeekDate(MID_WEEK), userInput);
@@ -96,7 +95,7 @@ public class PocketProjectDateParserTest {
 
     @Test
     public void parsePocketProjectDate_thisWeekEnd() throws Exception {
-        PocketProjectDate  currentDate = new PocketProjectDate();
+        PocketProjectDate currentDate = new PocketProjectDate();
         String userInput = parser.parsePocketProjectDate(THIS_WEEK_SUNDAY);
 
         assertEquals(currentDate.thisWeekDate(END_WEEK), userInput);
