@@ -240,7 +240,7 @@ public class Project {
     /**
      * Edits the details of the project specifically projectName, client, deadline and description
      */
-    public Project editProject(ProjectName projectName, Client client, Deadline deadline, Description description) {
+    public Project editProject(ProjectName projectName, Client client, ProjectDate deadline, Description description) {
         return new Project(projectName, client, deadline, this.milestones, description, this.employees,
             this.userStories);
     }

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -17,9 +17,9 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -90,7 +90,7 @@ public class EditProjectInfoCommand extends EditProjectCommand {
         assert projectToEdit != null;
 
         ProjectName updatedName = editProjectDescriptor.getProjectName().orElse(projectToEdit.getProjectName());
-        Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
+        ProjectDate updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
         Description updatedDescription = editProjectDescriptor.getDescription().orElse(projectToEdit.getDescription());
         Client updatedClient = editProjectDescriptor.getClient().orElse(projectToEdit.getClient());
 
@@ -122,7 +122,7 @@ public class EditProjectInfoCommand extends EditProjectCommand {
     public static class EditProjectDescriptor {
 
         private ProjectName projectName;
-        private Deadline deadline;
+        private ProjectDate deadline;
         private Description description;
         private Client client;
 
@@ -154,11 +154,11 @@ public class EditProjectInfoCommand extends EditProjectCommand {
             return Optional.ofNullable(projectName);
         }
 
-        public void setDeadline(Deadline deadline) {
+        public void setDeadline(ProjectDate deadline) {
             this.deadline = deadline;
         }
 
-        public Optional<Deadline> getDeadline() {
+        public Optional<ProjectDate> getDeadline() {
             return Optional.ofNullable(deadline);
         }
 

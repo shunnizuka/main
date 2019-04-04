@@ -16,6 +16,7 @@ import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
