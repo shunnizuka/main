@@ -81,7 +81,7 @@ public class EditProjectCommandParser {
                 editProjectDescriptor.setClient(ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get()));
             }
             if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-                editProjectDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap
+                editProjectDescriptor.setDeadline(ParserUtil.parseDate(argMultimap
                     .getValue(PREFIX_DEADLINE).get()));
             }
             if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {

@@ -62,7 +62,7 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code GitHubAccount} of the {@code EditProjectDescriptor} that we are building.
      */
     public seedu.address.testutil.EditProjectDescriptorBuilder withDeadline(String deadline) throws ParseException {
-        descriptor.setDeadline(ParserUtil.parseDeadline(deadline));
+        descriptor.setDeadline(ParserUtil.parseDate(deadline));
         return this;
     }
 
