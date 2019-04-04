@@ -1,7 +1,5 @@
 package seedu.address.model.util;
 
-import seedu.address.model.project.Project;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,6 +7,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import seedu.address.model.project.Project;
 
 /**
  * The class that it used to present all date objects use throughout the application
@@ -29,6 +29,12 @@ public class PocketProjectDate extends CalendarDate {
         + "this/next/last week or month. They keyword week/month has to be included";
 
     /**
+     * The first character of the name must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
+
+    /**
      * Target date format.
      */
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -42,12 +48,6 @@ public class PocketProjectDate extends CalendarDate {
      * Number of components in a date.
      */
     private static final int NUM_COMPONENTS = 4;
-
-    /**
-     * The first character of the name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
 
     private static final int LAST = -1;
     private static final int LENGTH_OF_WEEK = 7;

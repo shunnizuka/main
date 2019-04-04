@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CompleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Parses input arguments and creates a new CompleteCommand object

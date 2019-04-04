@@ -91,8 +91,8 @@ public class Project {
     /**
      * Constructor specifying all fields except completion date.
      */
-    public Project(ProjectName pn, Client c, PocketProjectDate d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
-                   SortedUserStoryList stories) {
+    public Project(ProjectName pn, Client c, PocketProjectDate d, List<Milestone> m, Description desc,
+        UniqueEmployeeList emp, SortedUserStoryList stories) {
         this.projectName = pn;
         this.client = c;
         this.deadline = d;
@@ -105,8 +105,8 @@ public class Project {
     /**
      * Constructor specifying all fields.
      */
-    public Project(ProjectName pn, Client c, PocketProjectDate d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
-                   SortedUserStoryList stories, PocketProjectDate comp) {
+    public Project(ProjectName pn, Client c, PocketProjectDate d, List<Milestone> m, Description desc,
+        UniqueEmployeeList emp, SortedUserStoryList stories, PocketProjectDate comp) {
         this.projectName = pn;
         this.client = c;
         this.deadline = d;
@@ -241,7 +241,8 @@ public class Project {
     /**
      * Edits the details of the project specifically projectName, client, deadline and description
      */
-    public Project editProject(ProjectName projectName, Client client, PocketProjectDate deadline, Description description) {
+    public Project editProject(ProjectName projectName, Client client, PocketProjectDate deadline,
+        Description description) {
         return new Project(projectName, client, deadline, this.milestones, description, this.employees,
             this.userStories);
     }

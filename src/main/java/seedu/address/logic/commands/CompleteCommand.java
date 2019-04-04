@@ -10,8 +10,9 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
-import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.util.PocketProjectDate;
+
 
 /**
  * Deletes a project identified using it's displayed index/name from the pocket project.

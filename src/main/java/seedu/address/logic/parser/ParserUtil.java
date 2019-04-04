@@ -18,7 +18,6 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
-import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTaskName;
 import seedu.address.model.project.UserStoryFunction;
@@ -27,6 +26,7 @@ import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.CalendarDate;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

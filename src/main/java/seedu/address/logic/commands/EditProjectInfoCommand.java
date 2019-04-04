@@ -19,8 +19,9 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
-import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.util.PocketProjectDate;
+
 
 /**
  * Edits the information (name, deadline, client, description) of an existing project in the pocket project.

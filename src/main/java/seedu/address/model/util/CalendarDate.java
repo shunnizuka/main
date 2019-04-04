@@ -18,6 +18,16 @@ public class CalendarDate {
         + "the selected month does not exist in the calendar.";
 
     /**
+     * Constants to represent different fields.
+     */
+    protected static final int DAY_FIELD = 0;
+    protected static final int MONTH_FIELD = 1;
+    protected static final int YEAR_FIELD = 2;
+    private static final int FIRST_DAY_MONTH = 1;
+    private static final int LAST_MONTH = 12;
+    private static final int NEXT = 1;
+
+    /**
      * HashMap mapping the key(month) to the value (number of days in the month).
      */
     private static HashMap<Integer, Integer> daysInMonth;
@@ -55,16 +65,6 @@ public class CalendarDate {
      */
     private static final int LEAP_YEAR_DAYS = 366;
     private static final int NON_LEAP_YEAR_DAYS = 365;
-
-    /**
-     * Constants to represent different fields.
-     */
-    protected static final int DAY_FIELD = 0;
-    protected static final int MONTH_FIELD = 1;
-    protected static final int YEAR_FIELD = 2;
-    private static final int FIRST_DAY_MONTH = 1;
-    private static final int LAST_MONTH = 12;
-    private static final int NEXT = 1;
 
     /**
      * Static initializer for Calendar Dates In Month
@@ -130,11 +130,11 @@ public class CalendarDate {
         if (keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
             return isValidDayInMonth(PocketProjectDate.generateStringDateFormat(dayOfMonth, currentMonth, currentYear));
         } else if (keyword.equals(CliSyntax.PREFIX_FUTURE.toString())) {
-            return isValidDayInMonth(PocketProjectDate.generateStringDateFormat(dayOfMonth,
-                (currentMonth + NEXT) % LAST_MONTH, currentYear));
+            return isValidDayInMonth(PocketProjectDate.generateStringDateFormat(dayOfMonth, (currentMonth + NEXT)
+                 % LAST_MONTH, currentYear));
         } else {
-            return isValidDayInMonth(PocketProjectDate.generateStringDateFormat(dayOfMonth,
-                (currentMonth - NEXT) % LAST_MONTH, currentYear));
+            return isValidDayInMonth(PocketProjectDate.generateStringDateFormat(dayOfMonth, (currentMonth - NEXT)
+                 % LAST_MONTH, currentYear));
         }
     }
 
