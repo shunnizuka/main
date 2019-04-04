@@ -58,7 +58,7 @@ symbols and terms used further on in the user guide.
 .  Double-click the file to start the app. The GUI should appear in a few seconds as shown below.
 +
 .Pocket Project UI
-image::startup_ui.png[width="790"]
+image::Startup_ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
