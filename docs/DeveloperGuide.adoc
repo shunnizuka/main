@@ -87,8 +87,7 @@ through the course of the Developer Guide.
 |Ordering of words based on how it would appear in a dictionary.
 
 |Milestone
-|A key event that is completed during the entire timeline
- of the project.
+|A key event that is completed during the entire timeline of the project.
 
 |One-Based Indexing
 |Way of numbering in which the initial element of a sequence is assigned the index 1.
@@ -435,6 +434,7 @@ There will also be less clutter in `PocketProjectParser` as there are already a 
 
 // end::removefrom[]
 
+// tag::find[]
 === Find Employee/Project/Skill/All feature
 ==== Current Implementation
 For the current `find` feature, there are 4 main commands that the user can execute:
@@ -474,6 +474,7 @@ Alternative 1: Have a nested `FindCommandParser` (current implementation)
 Alternative 2: Let `PocketProjectParser` handle parsing of all the `find` commands
 
 Using Alternative 1 is better as it provides better abstraction as the details of the 3 different commands will be hidden away. Hence it is more in line with OOP principles. There will also be less clutter in `FindCommandParser` as there are already a lot of other commands being parsed.
+// end::find[]
 
 // skill::undoredo[]
 
