@@ -6,7 +6,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import org.junit.Test;
 
 import seedu.address.logic.commands.CompleteCommand;
-import seedu.address.model.project.ProjectDate;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,6 +22,6 @@ public class CompleteCommandParserTest {
     @Test
     public void parse_validArgs_returnsCompleteCommand() {
         assertParseSuccess(parser, "1 11/11/2011",
-                new CompleteCommand(INDEX_FIRST_PROJECT, new ProjectDate("11/11/2011")));
+                new CompleteCommand(INDEX_FIRST_PROJECT, new PocketProjectDate("11/11/2011")));
     }
 }

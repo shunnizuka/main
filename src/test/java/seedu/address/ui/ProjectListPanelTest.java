@@ -17,8 +17,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.util.PocketProjectDate;
 
 public class ProjectListPanelTest extends GuiUnitTest {
     private static final ObservableList<Project> TYPICAL_PROJECTS =
@@ -79,7 +79,7 @@ public class ProjectListPanelTest extends GuiUnitTest {
         for (int i = 0; i < projectCount; i++) {
             ProjectName name = new ProjectName(i + "a");
             Client client = new Client("a");
-            ProjectDate deadline = new ProjectDate("12/12/2012");
+            PocketProjectDate deadline = new PocketProjectDate("12/12/2012");
             Project project = new Project(name, client, deadline);
             backingList.add(project);
         }

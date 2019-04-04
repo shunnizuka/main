@@ -57,26 +57,26 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: missing command word -> rejected */
         command = targetProject.getProjectName() + " " + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " "
-        + ProjectUtil.getProjectTaskDetails(TypicalProjectTasks.PROJECT_TASK_COMPLETED, index);
+                + ProjectUtil.getProjectTaskDetails(TypicalProjectTasks.PROJECT_TASK_COMPLETED, index);
         assertCommandFailure(command, String.format(Messages.MESSAGE_UNKNOWN_COMMAND));
 
         /* Case: missing project name -> rejected */
         command = AddToCommand.COMMAND_WORD + " " + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " "
-        + ProjectUtil.getProjectTaskDetails(TypicalProjectTasks.PROJECT_TASK_COMPLETED, index);
+                + ProjectUtil.getProjectTaskDetails(TypicalProjectTasks.PROJECT_TASK_COMPLETED, index);
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-        AddToCommand.MESSAGE_USAGE));
+                AddToCommand.MESSAGE_USAGE));
 
         /* Case: missing project task keyword -> rejected */
         command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
-        + ProjectUtil.getProjectTaskDetails(TypicalProjectTasks.PROJECT_TASK_COMPLETED, index);
+                + ProjectUtil.getProjectTaskDetails(TypicalProjectTasks.PROJECT_TASK_COMPLETED, index);
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-        AddToCommand.MESSAGE_USAGE));
+                AddToCommand.MESSAGE_USAGE));
 
         /* Case: missing project task details -> rejected */
         command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
-        + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD;
+                + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-        AddToCommand.MESSAGE_USAGE));
+                AddToCommand.MESSAGE_USAGE));
     }
 
     /**

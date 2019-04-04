@@ -213,7 +213,7 @@ public class ParserUtilTest {
     @Test
     public void parseTaskName_validName_returnsTrimmedProjectTaskName() throws Exception {
         String projectTaskNameWithWhitespace = WHITESPACE + VALID_TASKNAME + WHITESPACE;
-        ProjectTaskName expectedProjectTaskName= new ProjectTaskName(VALID_TASKNAME);
+        ProjectTaskName expectedProjectTaskName = new ProjectTaskName(VALID_TASKNAME);
         assertEquals(expectedProjectTaskName, ParserUtil.parseProjectTaskName(projectTaskNameWithWhitespace));
     }
 

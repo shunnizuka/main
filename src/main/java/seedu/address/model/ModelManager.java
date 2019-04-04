@@ -21,11 +21,11 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.util.StatsUtil;
 
 /**
@@ -169,7 +169,7 @@ public class ModelManager implements Model {
         return targetProject;
     }
     @Override
-    public void completeProject(Project project, ProjectDate completionDate) {
+    public void completeProject(Project project, PocketProjectDate completionDate) {
         versionedPocketProject.completeProject(project, completionDate);
     }
 

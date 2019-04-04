@@ -4,10 +4,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FUNCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORTANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MILESTONE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
@@ -67,7 +67,7 @@ public class ProjectUtil {
      */
     public static String getAddProjectTaskToCommand(Project project, Index index, ProjectTask task) {
         return AddToCommand.COMMAND_WORD + " " + project.getProjectName().projectName + " "
-        + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + getProjectTaskDetails(task, index);
+            + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + getProjectTaskDetails(task, index);
     }
 
     /**

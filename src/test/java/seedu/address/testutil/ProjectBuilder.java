@@ -8,11 +8,11 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
 import seedu.address.model.project.UniqueMilestoneList;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * A utility class to help with building Project objects.
@@ -26,7 +26,7 @@ public class ProjectBuilder {
 
 
     private ProjectName projectName;
-    private ProjectDate deadline;
+    private PocketProjectDate deadline;
     private Client client;
     private Description description;
     private UniqueEmployeeList employees;
@@ -35,7 +35,7 @@ public class ProjectBuilder {
 
     public ProjectBuilder() {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
-        deadline = new ProjectDate(DEFAULT_DEADLINE);
+        deadline = new PocketProjectDate(DEFAULT_DEADLINE);
         client = new Client(DEFAULT_CLIENT);
         description = new Description((DEFAULT_DESCRIPTION));
         employees = new UniqueEmployeeList();
@@ -78,7 +78,7 @@ public class ProjectBuilder {
      * Sets the {@code Deadline} of the {@code Project} that we are building.
      */
     public ProjectBuilder withDeadline(String deadline) {
-        this.deadline = new ProjectDate(deadline);
+        this.deadline = new PocketProjectDate(deadline);
         return this;
     }
 
