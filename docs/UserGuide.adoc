@@ -87,7 +87,7 @@ As shown above, there are 5 main components in Pocket Project interface:
 
 There are several detail panels to display the details of the employees and the projects as shown below. You can toggle between these panel by using the Prev/Next Button.
 
-.Detail Panels of an employee [1] Summary: display name, skills, phone, email of the employee [2] Projects: the list of projects the employee is working on [3] Github: github page of the employee 
+.Detail Panels of an employee [1] Summary: display name, skills, phone, email of the employee [2] Projects: the list of projects the employee is working on [3] Github: github page of the employee
 image::employee_detail_panel.png[]
 
 .Detail Panels of a project [1] Summary: display project name, client and deadline of the project [2] User Stories for the project [3] List of employees working on the project
