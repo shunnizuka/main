@@ -570,11 +570,11 @@ The list of ongoing projects are listed.
 `complete 1` +
 The first project in the shown list is indicated as completed.
 
-=== Display statistics regarding all the projects : `stats`
+=== Display statistics regarding the projects : `stats`
 
 Returns an overview of all ongoing projects/the progress of an individual project.
 
-Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX`
+Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX` 
 
 Examples:
 
@@ -587,7 +587,7 @@ The project with the most number of employees is Apollo with 4 employees +
 The employee with the least number of projects is Daniel with 0 projects +
 The employee with the most number of projects is Bob with 3 projects +
 
-`stats 1` +
+`stats 1` (not implemented yet) + 
 
 // tag::undoredo[]
 === Undoing previous command : `undo`
