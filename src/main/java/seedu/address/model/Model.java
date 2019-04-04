@@ -10,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
@@ -151,6 +152,23 @@ public interface Model {
     ObservableList<Project> getProjectList();
 
     /**
+     * Returns an unmodifiable view of the list of completed {@code Project} backed by the internal list of
+     * {@code versionedPocketProject}
+     */
+    ObservableList<Project> getCompletedProjectList();
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Employee} backed by the internal list of
+     * {@code versionedPocketProject}
+     */
+    ObservableList<Employee> getEmployeeList();
+
+    /**
+     * Completes a project and move it to the list of completed projects.
+     */
+    void completeProject(Project project, ProjectDate completionDate);
+
+    /**
      * Selected project in the filtered projects list.
      * null if no project is selected.
      */
@@ -226,12 +244,20 @@ public interface Model {
     List<Project> getProjectsContaining(Employee employee);
 
     /**
+<<<<<<< HEAD
+     * Returns a string describing the overview of all projects.
+     */
+    String overallStats();
+    /**
      * Adds the {@code task} to the {@code milestone}.
      * {@code milestone} must exist in the pocket project.
      */
     void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task);
 
-
+    /**
+     * Returns a string describing the progress of an individual project.
+     */
+    String individualStats(Project project);
 
 
     //-------------------------------------------------------------------------------------------

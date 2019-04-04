@@ -26,6 +26,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditEmployeeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
@@ -78,10 +79,11 @@ public class PocketProjectParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Employee employee = new EmployeeBuilder().build();
-        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(employee).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_EMPLOYEE, descriptor), command);
+        EditEmployeeCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(employee).build();
+        EditEmployeeCommand command = (EditEmployeeCommand) parser.parseCommand(
+            EditCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " "
+                + INDEX_FIRST_EMPLOYEE.getOneBased() + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
+        assertEquals(new EditEmployeeCommand(INDEX_FIRST_EMPLOYEE, descriptor), command);
     }
 
     @Test
@@ -140,11 +142,11 @@ public class PocketProjectParserTest {
     public void parseCommand_view() throws Exception {
         ViewEmployeeCommand employeeCommand = (ViewEmployeeCommand) parser.parseCommand(
             ViewCommand.COMMAND_WORD + " " + ViewEmployeeCommand.VIEW_EMPLOYEE_KEYWORD + " "
-                    + INDEX_FIRST_EMPLOYEE.getOneBased());
+                + INDEX_FIRST_EMPLOYEE.getOneBased());
         assertEquals(new ViewEmployeeCommand(INDEX_FIRST_EMPLOYEE), employeeCommand);
         ViewProjectCommand projectCommand = (ViewProjectCommand) parser.parseCommand(
-                ViewCommand.COMMAND_WORD + " " + ViewProjectCommand.VIEW_PROJECT_KEYWORD + " "
-                        + INDEX_FIRST_PROJECT.getOneBased());
+            ViewCommand.COMMAND_WORD + " " + ViewProjectCommand.VIEW_PROJECT_KEYWORD + " "
+                + INDEX_FIRST_PROJECT.getOneBased());
         assertEquals(new ViewProjectCommand(INDEX_FIRST_PROJECT), projectCommand);
     }
 
@@ -164,10 +166,10 @@ public class PocketProjectParserTest {
     public void parseCommand_addTaskTo() throws Exception {
         final String taskName = "Do something";
         AddTaskToCommand command = (AddTaskToCommand) parser.parseCommand(AddTaskToCommand.COMMAND_WORD + " "
-                + TYPICAL_PROJECT_NAME_1 + " " + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + PREFIX_NAME + taskName
-                + " " + PREFIX_MILESTONE + INDEX_FIRST_PROJECT_MILESTONE.getOneBased());
+            + TYPICAL_PROJECT_NAME_1 + " " + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + PREFIX_NAME + taskName
+            + " " + PREFIX_MILESTONE + INDEX_FIRST_PROJECT_MILESTONE.getOneBased());
         assertEquals(new AddTaskToCommand(TYPICAL_PROJECT_NAME_1, PROJECT_TASK_DO_SOMETHING,
-                INDEX_FIRST_PROJECT_MILESTONE), command);
+            INDEX_FIRST_PROJECT_MILESTONE), command);
     }
 
     @Test

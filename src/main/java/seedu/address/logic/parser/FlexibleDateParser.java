@@ -4,9 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Deadline;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.util.CalendarDatesInMonth;
 import seedu.address.model.util.FlexibleDate;
+
 
 
 /**
@@ -52,7 +53,7 @@ public class FlexibleDateParser {
         } else {
             final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(dateInput.trim());
             if (!matcher.matches()) {
-                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+                throw new ParseException(ProjectDate.MESSAGE_CONSTRAINTS);
             }
 
             final String keyword = matcher.group("keyword").toLowerCase().trim();
@@ -69,7 +70,7 @@ public class FlexibleDateParser {
                 || (keyword.equals(CliSyntax.PREFIX_PAST.toString()))) {
                 return parseKeyword(keyword, arguments.trim());
             } else {
-                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+                throw new ParseException(ProjectDate.MESSAGE_CONSTRAINTS);
             }
         }
     }
@@ -84,7 +85,7 @@ public class FlexibleDateParser {
 
         final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(secondPart.trim());
         if (!matcher.matches()) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ProjectDate.MESSAGE_CONSTRAINTS);
         }
 
         final String weekOrMonth = matcher.group("keyword").toLowerCase();

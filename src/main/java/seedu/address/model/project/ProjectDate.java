@@ -7,11 +7,10 @@ import java.text.DateFormat;
 import java.text.ParseException;
 
 /**
- * The date at which the project is due.
+ * The A date object.
  */
 
-public class Deadline {
-
+public class ProjectDate {
     public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD/MM/YYYY. User can also "
         + "choose to go for a flexible date input which supports the following: today, tomorrow, yesterday, "
         + "this/next/last month DAY_OF_MONTH & "
@@ -24,12 +23,12 @@ public class Deadline {
 
     public static final String VALIDATION_REGEX = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
 
-    public final String deadline;
+    public final String date;
 
-    public Deadline (String date) {
+    public ProjectDate(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.deadline = date;
+        this.date = date;
     }
 
     /**
@@ -49,24 +48,24 @@ public class Deadline {
     /**
      * Returns a clone of this Deadline object.
      */
-    public Deadline clone() {
-        return new Deadline(this.deadline);
+    public ProjectDate clone() {
+        return new ProjectDate(this.date);
     }
 
     @Override
     public String toString() {
-        return deadline;
+        return date;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Deadline // instanceof handles nulls
-                && deadline.equals(((Deadline) other).deadline)); // state check
+                || (other instanceof ProjectDate // instanceof handles nulls
+                && date.equals(((ProjectDate) other).date)); // state check
     }
 
     @Override
     public int hashCode() {
-        return deadline.hashCode();
+        return date.hashCode();
     }
 }

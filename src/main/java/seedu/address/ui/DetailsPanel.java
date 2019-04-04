@@ -119,7 +119,7 @@ public class DetailsPanel extends UiPart<Region> {
     /**
      * Initialises a default list of panels to show when nothing is selected.
      */
-    private void initDefaultView() {
+    public void initDefaultView() {
         Pane pane = new Pane();
         contentList = new ArrayList<>();
         contentList.add(pane);

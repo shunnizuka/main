@@ -11,8 +11,8 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.testutil.ProjectUtil;
 
@@ -26,7 +26,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
-        /* Case: add a project with only name, client and deadline to a non-empty pocket project, command with leading
+        /* Case: add a project with only name, client and date to a non-empty pocket project, command with leading
          * spaces and trailing spaces
          * -> added
          */
@@ -47,7 +47,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: add a employee with all fields same as another employee in the pocket project except name -> added */
         toAdd = new Project(new ProjectName("Zululu"), new Client("Shunnizuka"),
-                new Deadline("04/09/2023"));
+                new ProjectDate("04/09/2023"));
         assertCommandSuccess(toAdd);
 
         /* Case: add to empty pocket project -> added */
