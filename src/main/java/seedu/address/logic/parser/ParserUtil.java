@@ -18,7 +18,6 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
-import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTaskName;
 import seedu.address.model.project.UserStoryFunction;
@@ -26,7 +25,8 @@ import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
-import seedu.address.model.util.CalendarDatesInMonth;
+import seedu.address.model.util.CalendarDate;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -174,26 +174,26 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code ProjectDate}.
+     * Parses a {@code String date} into a {@code PocketProjectDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static ProjectDate parseDate(String date) throws ParseException {
+    public static PocketProjectDate parseDate(String date) throws ParseException {
 
         requireNonNull(date);
         String trimmedDate = date.trim();
-        String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate).trim();
+        String formattedDate = PocketProjectDateParser.parsePocketProjectDate(trimmedDate).trim();
 
-        if (!ProjectDate.isValidDate(formattedDate)) {
-            throw new ParseException(ProjectDate.MESSAGE_CONSTRAINTS);
+        if (!PocketProjectDate.isValidDate(formattedDate)) {
+            throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
         }
 
-        if (!CalendarDatesInMonth.isValidDayInMonth(formattedDate)) {
-            throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
+        if (!CalendarDate.isValidDayInMonth(formattedDate)) {
+            throw new ParseException(CalendarDate.DAY_MONTH_CONSTRAINTS);
         }
 
-        return new ProjectDate(formattedDate);
+        return new PocketProjectDate(formattedDate);
 
     }
 
