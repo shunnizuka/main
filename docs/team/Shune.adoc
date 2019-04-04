@@ -19,7 +19,7 @@ Our team has decided to morph AddressBook Level 4 into Pocket Project. Pocket Pr
 ** Highlights: This enhancement can be be used together with other commands and make it more convenient for the users to execute other commands.
 ** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
 
-* *Minor enhancement*: 
+* *Minor enhancement*:
 
 * *Code contributed*: _
 

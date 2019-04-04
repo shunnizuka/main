@@ -87,8 +87,7 @@ through the course of the Developer Guide.
 |Ordering of words based on how it would appear in a dictionary.
 
 |Milestone
-|A key event that is completed during the entire timeline
- of the project.
+|A key event that is completed during the entire timeline of the project.
 
 |One-Based Indexing
 |Way of numbering in which the initial element of a sequence is assigned the index 1.
