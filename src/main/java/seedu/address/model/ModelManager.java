@@ -229,7 +229,6 @@ public class ModelManager implements Model {
 
 
 
-
     //=========== Filtered Employee List Accessors =============================================================
 
     /**
@@ -344,8 +343,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedEmployeeReplaced = change.wasReplaced()
-                    && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedEmployee.getValue());
+                && change.getAddedSize() == change.getRemovedSize()
+                && change.getRemoved().contains(selectedEmployee.getValue());
             if (wasSelectedEmployeeReplaced) {
                 // Update selectedEmployee to its new value.
                 int index = change.getRemoved().indexOf(selectedEmployee.getValue());
@@ -354,7 +353,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedEmployeeRemoved = change.getRemoved().stream()
-                    .anyMatch(removedEmployee -> selectedEmployee.getValue().equals(removedEmployee));
+                .anyMatch(removedEmployee -> selectedEmployee.getValue().equals(removedEmployee));
             if (wasSelectedEmployeeRemoved) {
                 // Select the employee that came before it in the list,
                 // or clear the selection if there is no such employee.
@@ -396,8 +395,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedProjectReplaced = change.wasReplaced()
-                    && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedProject.getValue());
+                && change.getAddedSize() == change.getRemovedSize()
+                && change.getRemoved().contains(selectedProject.getValue());
             if (wasSelectedProjectReplaced) {
                 // Update selectedProject to its new value.
                 int index = change.getRemoved().indexOf(selectedProject.getValue());
@@ -406,7 +405,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedProjectRemoved = change.getRemoved().stream()
-                    .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
+                .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
             if (wasSelectedProjectRemoved) {
                 // Select the project that came before it in the list,
                 // or clear the selection if there is no such project.
@@ -432,9 +431,11 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return versionedPocketProject.equals(other.versionedPocketProject)
-                && userPrefs.equals(other.userPrefs)
-                && filteredEmployees.equals(other.filteredEmployees)
-                && Objects.equals(selectedEmployee.get(), other.selectedEmployee.get());
+            && userPrefs.equals(other.userPrefs)
+            && filteredEmployees.equals(other.filteredEmployees)
+            && filteredProjects.equals(other.filteredProjects)
+            && Objects.equals(selectedEmployee.get(), other.selectedEmployee.get())
+            && Objects.equals(selectedProject.get(), other.selectedProject.get());
     }
 
 }

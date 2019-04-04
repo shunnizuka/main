@@ -16,6 +16,7 @@ import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
@@ -194,6 +195,22 @@ public class ParserUtil {
 
         return new ProjectDate(formattedDate);
 
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINT);
+        }
+        return new Description(trimmedDescription);
     }
 
     /**

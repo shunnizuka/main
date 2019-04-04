@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddEmployeeCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditEmployeeCommand;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.skill.Skill;
 
@@ -45,7 +45,7 @@ public class EmployeeUtil {
     /**
      * Returns the part of command string for the given {@code EditEmployeeDescriptor}'s details.
      */
-    public static String getEditEmployeeDescriptorDetails(EditCommand.EditEmployeeDescriptor descriptor) {
+    public static String getEditEmployeeDescriptorDetails(EditEmployeeCommand.EditEmployeeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

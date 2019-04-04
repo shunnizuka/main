@@ -574,8 +574,9 @@ The first project in the shown list is indicated as completed.
 
 Returns an overview of all ongoing projects/the progress of an individual project.
 
-Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX` 
-
+Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX`
++
+add something here.
 Examples:
 
 `stats` +
@@ -587,7 +588,10 @@ The project with the most number of employees is Apollo with 4 employees +
 The employee with the least number of projects is Daniel with 0 projects +
 The employee with the most number of projects is Bob with 3 projects +
 
-`stats 1` (not implemented yet) + 
+
+`stats 1` +
+fill in stuff (not implemeted yet).
+
 
 // tag::undoredo[]
 === Undoing previous command : `undo`
@@ -615,6 +619,7 @@ The `undo` command fails as there are no undoable commands executed previously.
 `clear` +
 `undo` (reverses the `clear` command) +
 `undo` (reverses the `delete project 1` command) +
+
 
 === Redoing the previously undone command : `redo`
 
