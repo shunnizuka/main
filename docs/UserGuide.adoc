@@ -55,9 +55,10 @@ symbols and terms used further on in the user guide.
 .  Ensure you have Java version `9` or later installed in your Computer.
 .  Download the latest `pocketproject.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Pocket Project.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+.  Double-click the file to start the app. The GUI should appear in a few seconds as shown below.
 +
-image::Ui.png[width="790"]
+.Pocket Project UI
+image::Startup_ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -70,6 +71,27 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
+
+=== Navigating the interface
+
+.Pocket Project UI with different components
+image::ui_annotated.png[]
+
+As shown above, there are 5 main components in Pocket Project interface:
+
+. Command Box: where you key in the command
+. Result Box: show the result of the command that is keyed in
+. Side tab Panel: display either project list or employee list
+. Prev/Next Button: to navigate through the project/employee details
+. Detail panel: display details of an employee/project
+
+There are several detail panels to display the details of the employees and the projects as shown below. You can toggle between these panel by using the Prev/Next Button.
+
+.Detail Panels of an employee [1] Summary: display name, skills, phone, email of the employee [2] Projects: the list of projects the employee is working on [3] Github: github page of the employee
+image::employee_detail_panel.png[]
+
+.Detail Panels of a project [1] Summary: display project name, client and deadline of the project [2] User Stories for the project [3] List of employees working on the project
+image::project_detail_panel.png[]
 
 === Symbols
 The following section details and previews a few legends that will
@@ -222,11 +244,13 @@ image:ug-lightbulb.png[width="50"]
 Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
-=== Edit an employee in the application : `edit`
+=== Edit an employee/project in the application : `edit`
+
+==== Edit an employee in the application: `edit employee`
 
 Edits an existing employee.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
+Format: `edit employee INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
 
 image:ug-notepadpencil.png[width="40"]
 Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
@@ -237,12 +261,13 @@ When editing skills, the existing skills of the person will be removed i.e addin
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
+* `edit employee 1 p/91234567 e/johndoe@example.com` +
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower s/Java` +
+* `edit employee 2 n/Betsy Crower s/Java` +
 Edits the name of the 2nd person to be `Betsy Crower` and sets Java as the only skill.
-* `edit 2 n/Betsy Crower s/C++ s/HTML` +
-Edits the name of the 2nd employee to be `Betsy Crower` and sets C++ and HTML as the skills.
+
+* `edit employee 2 n/Betsy Crower s/C s/HTML` +
+Edits the name of the 2nd employee to be `Betsy Crower` and sets C and HTML as the skills.
 
 image:ug-exclamation.png[width="50"]
 The index must be a *positive integer* and cannot be larger than the size of the list.
@@ -250,6 +275,27 @@ The index must be a *positive integer* and cannot be larger than the size of the
 image:ug-lightbulb.png[width="50"]
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
 
+==== Edits name/client/deadline/description of a project: `edit project info`
+
+Edits the existing project components such as project name, client, deadline, description of the project.
+
+Format: `edit project PROJECT_NAME info[n/name] [c/client] [d/deadline] [desc/description]`
+
+Examples:
+
+* `edit project Apollo info n/Gemini c/John d/12/09/2020 desc/An application for project management` +
+Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
+
+
+==== Edits milestone of a project: `edit project milestone` [coming in v2.0]
+
+Edits the existing milestone in the milestone list of a project.
+
+==== Edits UserStory of a project: `edit project userstory` [coming in v2.0]
+
+Edits the existing userstory in the userstory list of a project.
+
+//tag::find[]
 === Locating employees, projects or skills by name: `find`
 
 ==== Find employees in the application: `find employee`
@@ -324,9 +370,9 @@ For example, to delete Bernice Yu from the employee list, you can follow these s
 
 Step 1: `find employee Bernice` - to narrow down the list to all employees with name containing Bernice
 
-image::findEmployeeBernice.png[width="800"]
-
 Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
+
+//end::find[]
 
 === View the details of employees or projects : `view`
 
@@ -498,29 +544,6 @@ Examples:
 * `view project Apollo` +
 `removefrom Apollo userstory 1` +
 Removes the user story at the 1st position of the displayed list of user stories from Project Apollo.
-
-=== Edits a project in the application: `editproject`
-
-==== Edits name/client/deadline/description of a project: `editproject`
-
-Edits the existing project components such as project name, client, deadline, description of the project.
-
-Format: `editproject PROJECT_NAME [n/name] [c/client] [d/deadline] [desc/description]`
-
-Examples:
-
-* `editproject Apollo n/Gemini c/John d/12/09/2020 desc/An application for project management` +
-Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
-
-
-==== Edits milestone of a project: `editproject PROJECT_NAME milestone` [coming in v2.0]
-
-Edits the existing milestone in the milestone list of a project.
-
-==== Edits UserStory of a project: `editproject PROJECT_NAME userstory` [coming in v2.0]
-
-Edits the existing userstory in the userstory list of a project.
-
 
 === To indicate the project has been completed : `complete`
 
