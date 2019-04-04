@@ -9,36 +9,39 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 
 /**
  * Deletes a project identified using it's displayed index/name from the pocket project.
  */
-public class DeleteProjectCommand extends DeleteCommand {
+public class CompleteCommand extends Command {
 
-    public static final String DELETE_PROJECT_KEYWORD = "project";
+    public static final String COMMAND_WORD = "complete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " project"
-            + ": Deletes the project identified by the name or index(must be positive integer) of the project.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Completes the project identified by the name or index(must be positive integer) of the project.\n"
             + "Parameters: PROJECT_NAME/PROJECT_INDEX\n"
-            + "Example: " + COMMAND_WORD + " project" + " Apollo\n"
-            + "Example: " + COMMAND_WORD + " project" + " 1\n";
+            + "Example: " + COMMAND_WORD + " Apollo\n"
+            + "Example: " + COMMAND_WORD + " 1\n";
 
-    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
+    public static final String MESSAGE_COMPLETE_PROJECT_SUCCESS = "Completed Project: %1$s";
 
     private final ProjectName projectName;
     private final Index targetIndex;
+    private final ProjectDate completionDate;
 
-    public DeleteProjectCommand(ProjectName targetName) {
+    public CompleteCommand(ProjectName targetName, ProjectDate completionDate) {
         this.projectName = targetName;
         this.targetIndex = null;
+        this.completionDate = completionDate;
     }
 
-    public DeleteProjectCommand(Index index) {
+    public CompleteCommand(Index index, ProjectDate completionDate) {
         this.targetIndex = index;
         this.projectName = null;
+        this.completionDate = completionDate;
     }
 
     @Override
@@ -52,39 +55,29 @@ public class DeleteProjectCommand extends DeleteCommand {
             }
             targetName = lastShownList.get(targetIndex.getZeroBased()).getProjectName();
         }
-        List<Project> projectList = model.getProjectList();
-        Project projectToDelete = null;
-        boolean found = false;
-        for (Project p: projectList) {
-            if (p.hasProjectName(targetName)) {
-                found = true;
-                projectToDelete = p;
-                for (Employee employee: p.getEmployees()) {
-                    employee.leave(projectToDelete);
-                }
-                model.deleteProject(projectToDelete);
-                model.commitPocketProject();
-
-            }
-        }
-        if (!found) {
+        Project projectToComplete = model.getProjectWithName(targetName);
+        if (projectToComplete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
+        model.completeProject(projectToComplete, this.completionDate);
+        model.commitPocketProject();
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
+        return new CommandResult(String.format(MESSAGE_COMPLETE_PROJECT_SUCCESS, projectToComplete));
     }
 
     @Override
     public boolean equals(Object other) {
         if (projectName != null) {
             return other == this // short circuit if same object
-                    || (other instanceof DeleteProjectCommand // instanceof handles nulls
-                    && projectName.equals(((DeleteProjectCommand) other).projectName));
+                    || (other instanceof CompleteCommand // instanceof handles nulls
+                    && projectName.equals(((CompleteCommand) other).projectName)
+                    && completionDate.equals(((CompleteCommand) other).completionDate));
             // state check
         } else {
             return other == this // short circuit if same object
-                    || (other instanceof DeleteProjectCommand // instanceof handles nulls
-                    && targetIndex.equals(((DeleteProjectCommand) other).targetIndex)); // state check
+                    || (other instanceof CompleteCommand // instanceof handles nulls
+                    && targetIndex.equals(((CompleteCommand) other).targetIndex)
+                    && completionDate.equals(((CompleteCommand) other).completionDate)); // state check
         }
     }
 }

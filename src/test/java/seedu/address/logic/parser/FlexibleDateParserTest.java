@@ -42,7 +42,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.project.Deadline;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.util.FlexibleDate;
 
 public class FlexibleDateParserTest {
@@ -225,7 +225,7 @@ public class FlexibleDateParserTest {
     @Test
     public void parseFlexibleDate_keywordMissing_failure() throws Exception {
 
-        String expectedMessage = String.format(Deadline.MESSAGE_CONSTRAINTS);
+        String expectedMessage = String.format(ProjectDate.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, INVALID_MISSING_KEYWORD, expectedMessage);
     }
 
