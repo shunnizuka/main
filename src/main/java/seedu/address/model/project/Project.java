@@ -49,7 +49,8 @@ public class Project {
      * Constructor for each Project Object.
      */
     public Project (ProjectName pn, Client c, PocketProjectDate d) {
-        this(pn, c, d, new UniqueMilestoneList(), new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
+        this(pn, c, d, new UniqueMilestoneList(), new Description(), new UniqueEmployeeList(),
+                new SortedUserStoryList());
     }
 
     /**
