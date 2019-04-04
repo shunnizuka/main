@@ -62,7 +62,6 @@ public class Milestone {
      */
     public static boolean isValidMilestoneDate(String date) {
 
-
         DateFormat format = Project.DATE_FORMAT;
         format.setLenient(false);
         try {

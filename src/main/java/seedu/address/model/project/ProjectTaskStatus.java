@@ -36,6 +36,10 @@ public class ProjectTaskStatus {
         return this.taskStatus;
     }
 
+    public boolean isComplete() {
+        return this.taskStatus == STATUS_COMPLETE;
+    }
+
     /**
      * Returns true if given string is valid for task status
      */
