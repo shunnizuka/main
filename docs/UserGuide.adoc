@@ -575,7 +575,7 @@ The first project in the shown list is indicated as completed.
 Returns an overview of all ongoing projects/the progress of an individual project.
 
 Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX`
-
++
 Examples:
 
 `stats` +
@@ -588,6 +588,7 @@ The employee with the least number of projects is Daniel with 0 projects +
 The employee with the most number of projects is Bob with 3 projects +
 
 `stats 1` +
+//TODO fill in stuff
 
 // tag::undoredo[]
 === Undoing previous command : `undo`
