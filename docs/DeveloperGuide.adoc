@@ -508,39 +508,45 @@ Alternative 2: Let `PocketProjectParser` handle parsing of all the `list` comman
 Using Alternative 1 is better as it provides better abstraction as the `listCommandParser` will handle all `list` commands. It also reduces the cluttering in the main `PocketProjectParser`.
 
 // skill::stats[]
-=== [Proposed] Stats feature
-==== Planned Implementation
+=== Stats feature
+==== Implementation
 
 The displaying of statistics in Pocket Project will be facilitated by the model component. This feature is
-planned to support 1 main command:
+planned to support 2 main commands:
 
-* `stats` -- Displays the total number of projects and the respective number of ongoing and completed projects
+* `stats` -- Displays an overview of all the projects: the number of ongoing projects, closest deadline etc.
+* `stats PROJECT_INDEX` or `stats PROJECT_NAME` -- Display a summary of the progress of the project with the given PROJECT_INDEX or PROJECT_NAME.
 
-The operation will be supported by the methods in the `Model` interface: `Model#getProjectList()` and `Model#getCompletedProjectList`.
-These two methods each will retrieve an unmodifiable list of ongoing projects and completed projects respectively.
+The operation will be supported by the methods in the `Model` interface: `Model#overallStats()` and `Model#individualStats(Project)`.
+`Model#overallStats()` will retrieve the data on all the projects/employees to pass to `StatsUtil`, an utility class to produce a string which describes
+the status of all projects. `Model#individualStats(Project)` passes the given project to `StatsUtil` to produce a string in a similar fashion.
 
 
-The following sequence diagram shows how the stats command will work:
+The following sequence diagrams show how the stats command will work:
 
-image::stats_sequence_diagram.png[width="1000"]
-
+Overview of all projects:
+image::OverallStatsSequenceDiagram.png[width="1000"]
+Individual Project:
+image::IndividualStatsSequenceDiagram.png[width="1000"]
 Usage Scenario example for `stats`:
 
-1.	User executes `stats` to view project statistics in Pocket Project.
-2.	`PocketProjectParser` will parse and identify the command as a `StatsCommand` and returns a `StatsCommand`.
-3.	`LogicManager` then executes `StatsCommand`, calling the `Model#getProjectList()` and `Model#getCompletedProjectList()` methods
- which return the list of ongoing and completed projects respectively.
-4.  `StatsCommand` then returns the total number of projects and the respective number of ongoing and completed projects.
+1.	User executes `stats`/`stats PROJECT_INDEX`/`stats PROJECT_NAME` to view project statistics in Pocket Project.
+2.	`PocketProjectParser` will parse and identify the command as a `IndividualStatsCommand` or `OverallStatsCommand`, parse any additional argument accordingly and return the command object.
+3.	`LogicManager` then executes the returned command, calling the `Model#individualStats()` or `Model#overallStats(Project)` accordingly to obtain the string describing the status of concern.
+4.  The returned string is used to construct the result of the command.
 
 ==== Design Considerations
-===== Aspect: How the number of projects is obtained.
-Alternative 1: Obtain the required project lists through `Model` and and get the size of the lists.
+===== Aspect: How the string is constructed.
+Alternative 1: Retrieve all the relevant project(s), find out the relevant information and construct the string in the `execute()` method
+of the command object.
 
-Alternative 2: Let `UniqueProjectList` keep track of the number of projects and implement a `UniqueProjectList#getSize()` method which is called by `StatsCommand`.
+Alternative 2: Do the construction in the model.
 
-Using Alternative 1 is better as the Pocket Project statistics only need to be displayed when the user executes `stats`.
-Alternative 2 would require additional checks to ensure that there is live update of project statistics in `UniqueProjectList` every time a project is added, deleted or completed.
+Alternative 3: Do it somewhere else.
 
+I have decided to use alternative 3 and create a specialized helper class to scrap the relevant information from the list of projects/employees to
+produce the string. This is chosen because I have decided to have several helper methods to construct the different parts of the string(e.g. about the number of ongoing projects, project with closest deadline etc..).
+It would be inappropriate to put these methods under the command class or the model because they are not very related.
 
 // end::stats[]
 

@@ -21,10 +21,12 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
+import seedu.address.model.util.StatsUtil;
 
 /**
  * Represents the in-memory model of the pocket project data.
@@ -166,6 +168,10 @@ public class ModelManager implements Model {
         }
         return targetProject;
     }
+    @Override
+    public void completeProject(Project project, ProjectDate completionDate) {
+        versionedPocketProject.completeProject(project, completionDate);
+    }
 
     @Override
     public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
@@ -198,10 +204,22 @@ public class ModelManager implements Model {
         }
         return list;
     }
+    @Override
+    public ObservableList<Employee> getEmployeeList() {
+        return versionedPocketProject.getEmployeeList();
+    }
 
     @Override
     public void addUserStoryTo(Project targetProject, UserStory targetUserStory) {
         versionedPocketProject.addUserStoryTo(targetProject, targetUserStory);
+    }
+    @Override
+    public String overallStats() {
+        return StatsUtil.overAllStatsString(getEmployeeList(), getProjectList(), getCompletedProjectList());
+    }
+    @Override
+    public String individualStats(Project project) {
+        return StatsUtil.individualStatsString(project);
     }
 
     @Override
@@ -255,6 +273,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Project> getProjectList() {
         return versionedPocketProject.getProjectList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of completed {@code Project} backed by the internal list of
+     * {@code versionedPocketProject}
+     */
+    @Override
+    public ObservableList<Project> getCompletedProjectList() {
+        return versionedPocketProject.getCompletedProjectList();
     }
 
 

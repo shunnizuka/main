@@ -16,8 +16,8 @@ import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTaskName;
 import seedu.address.model.project.UserStoryFunction;
@@ -173,26 +173,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Parses a {@code String date} into a {@code ProjectDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deadline} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Deadline parseDeadline(String deadline) throws ParseException {
+    public static ProjectDate parseDate(String date) throws ParseException {
 
-        requireNonNull(deadline);
-        String trimmedDate = deadline.trim();
+        requireNonNull(date);
+        String trimmedDate = date.trim();
         String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate).trim();
 
-        if (!Deadline.isValidDate(formattedDate)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!ProjectDate.isValidDate(formattedDate)) {
+            throw new ParseException(ProjectDate.MESSAGE_CONSTRAINTS);
         }
 
         if (!CalendarDatesInMonth.isValidDayInMonth(formattedDate)) {
             throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
         }
 
-        return new Deadline(formattedDate);
+        return new ProjectDate(formattedDate);
+
     }
 
     /**

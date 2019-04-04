@@ -164,10 +164,12 @@ public class PocketProjectTest {
     private static class PocketProjectStub implements ReadOnlyPocketProject {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
+        private final ObservableList<Project> completedProjects = FXCollections.observableArrayList();
 
         PocketProjectStub(Collection<Employee> employees) {
             this.projects.setAll(projects);
             this.employees.setAll(employees);
+            this.completedProjects.setAll(completedProjects);
         }
 
 
@@ -176,6 +178,10 @@ public class PocketProjectTest {
             return employees;
         }
 
+        @Override
+        public ObservableList<Project> getCompletedProjectList() {
+            return completedProjects;
+        }
         @Override
         public ObservableList<Project> getProjectList() {
             return projects;
