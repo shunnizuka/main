@@ -550,6 +550,48 @@ It would be inappropriate to put these methods under the command class or the mo
 
 // end::stats[]
 
+=== User Story feature
+==== Implementation
+
+The implementation of user stories in Pocket Project is facilitated by the `model` component, and in particular, the `Project` class
+which will store the relevant user stories as a `SortedUserStoryList`.
+
+Currently, the user stories feature supports the following commands:
+
+* `addto PROJECT_NAME userstory [story]` -- Adds the `story` to the project indicated by the `PROJECT_NAME`.
+* `removefrom PROJECT_NAME userstory INDEX` -- Removes the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `PROJECT_NAME`.
+* `edit project PROJECT_NAME userstory INDEX [story]` -- Edits the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `PROJECT_NAME`.
+
+In addition, the `SortedUserStoryList` maintains a sorted order of user stories according to descending importance level of the user story, followed by ascending lexicographical order of the `UserStoryUser` name.
+
+For example, suppose we have 3 user stories with the following importance level and user names:
+
+|===
+| Importance | User name
+| 1          | John
+| 2          | David
+| 2          | Alan
+|===
+
+In the `SortedUserStoryList` these user stories would appear in the following order and index:
+
+|===
+| Index  | Importance | User name
+| 1      | 2          | Alan
+| 2      | 2          | David
+| 3      | 1          | John
+|===
+
+Since the user stories with users David and Alan have a higher importance level than John, they will appear above John in the sorted list. Afterwards, since Alan is lexicographically smaller than David, it appears before David in the list.
+
+This is to faciliate users to find important user stories by ensuring a neatly ordered list by relevance of the user story. If a user wishes to do so, they can also sort the list by `UserStoryStatus` using the JavaFX `TableColumn` built-in sort to see which user stories are in progress or on hold. Note that doing so would directly change the
+order of the user stories in the `SortedUserStoryList` hence changing the index of the user story. In general, the GUI is updated to reflect the actual list stored within `SortedUserStoryList` hence any command which acts on an index would affect the user story in that index shown on the GUI.
+
+For example usage scenarios for adding user stories as removing of user stories, refer to the following:
+
+* `addto PROJECT_NAME userstory [story]` -- <<Add employee/milestone/user story to projects feature>>
+* `removefrom PROJECT_NAME userstory INDEX` -- <<Remove employee/milestone from projects feature>>
+
 === Undo/Redo feature
 ==== Current Implementation
 
