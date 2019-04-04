@@ -11,11 +11,6 @@ import seedu.address.testutil.Assert;
 public class DeadlineTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new PocketProjectDate(null));
-    }
-
-    @Test
     public void constructor_invalidDeadline_throwsIllegalArgumentException() {
         String invalidDeadline = "";
         Assert.assertThrows(IllegalArgumentException.class, () -> new PocketProjectDate(invalidDeadline));
