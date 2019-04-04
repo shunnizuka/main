@@ -222,11 +222,13 @@ image:ug-lightbulb.png[width="50"]
 Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
-=== Edit an employee in the application : `edit`
+=== Edit an employee/project in the application : `edit`
+
+==== Edit an employee in the application: `edit employee`
 
 Edits an existing employee.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
+Format: `edit employee INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
 
 image:ug-notepadpencil.png[width="40"]
 Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
@@ -237,18 +239,39 @@ When editing skills, the existing skills of the person will be removed i.e addin
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
+* `edit employee 1 p/91234567 e/johndoe@example.com` +
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower s/Java` +
+* `edit employee 2 n/Betsy Crower s/Java` +
 Edits the name of the 2nd person to be `Betsy Crower` and sets Java as the only skill.
-* `edit 2 n/Betsy Crower s/C++ s/HTML` +
-Edits the name of the 2nd employee to be `Betsy Crower` and sets C++ and HTML as the skills.
+
+* `edit employee 2 n/Betsy Crower s/C s/HTML` +
+Edits the name of the 2nd employee to be `Betsy Crower` and sets C and HTML as the skills.
 
 image:ug-exclamation.png[width="50"]
 The index must be a *positive integer* and cannot be larger than the size of the list.
 
 image:ug-lightbulb.png[width="50"]
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
+
+==== Edits name/client/deadline/description of a project: `edit project info`
+
+Edits the existing project components such as project name, client, deadline, description of the project.
+
+Format: `edit project PROJECT_NAME info[n/name] [c/client] [d/deadline] [desc/description]`
+
+Examples:
+
+* `edit project Apollo info n/Gemini c/John d/12/09/2020 desc/An application for project management` +
+Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
+
+
+==== Edits milestone of a project: `edit project milestone` [coming in v2.0]
+
+Edits the existing milestone in the milestone list of a project.
+
+==== Edits UserStory of a project: `edit project userstory` [coming in v2.0]
+
+Edits the existing userstory in the userstory list of a project.
 
 //tag::find[]
 === Locating employees, projects or skills by name: `find`
@@ -501,29 +524,6 @@ Examples:
 * `view project Apollo` +
 `removefrom Apollo userstory 1` +
 Removes the user story at the 1st position of the displayed list of user stories from Project Apollo.
-
-=== Edits a project in the application: `editproject`
-
-==== Edits name/client/deadline/description of a project: `editproject`
-
-Edits the existing project components such as project name, client, deadline, description of the project.
-
-Format: `editproject PROJECT_NAME [n/name] [c/client] [d/deadline] [desc/description]`
-
-Examples:
-
-* `editproject Apollo n/Gemini c/John d/12/09/2020 desc/An application for project management` +
-Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
-
-
-==== Edits milestone of a project: `editproject PROJECT_NAME milestone` [coming in v2.0]
-
-Edits the existing milestone in the milestone list of a project.
-
-==== Edits UserStory of a project: `editproject PROJECT_NAME userstory` [coming in v2.0]
-
-Edits the existing userstory in the userstory list of a project.
-
 
 === To indicate the project has been completed : `complete`
 
