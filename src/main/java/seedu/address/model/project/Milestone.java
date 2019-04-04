@@ -54,7 +54,7 @@ public class Milestone {
      */
     public static boolean isValidMilestone(String info, String date) {
         return Milestone.isValidMilestoneDate(date)
-        && Milestone.isValidMilestoneString(info);
+            && Milestone.isValidMilestoneString(info);
     }
 
     /**

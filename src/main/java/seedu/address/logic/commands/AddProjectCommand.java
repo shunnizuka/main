@@ -24,7 +24,8 @@ public class AddProjectCommand extends AddCommand {
             + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT + "CLIENT "
             + PREFIX_DEADLINE + "DEADLINE "
-            + "Example: " + COMMAND_WORD + " project" + " Apollo"
+            + "Example: " + COMMAND_WORD + " project "
+            + PREFIX_NAME + "Apollo "
             + PREFIX_CLIENT + "SymbCorp "
             + PREFIX_DEADLINE + "23/11/2020 ";
 

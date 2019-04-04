@@ -66,7 +66,7 @@ public class ParserUtil {
         String dateInput = trimmedMilestone.substring(position + 1);
         Deadline deadline = parseDeadline(dateInput);
         String tempDate = deadline.toString();
-        String dateParts[] = tempDate.split("/");
+        String[] dateParts = tempDate.split("/");
         String date = "";
         if (dateParts[0].length() != 2) {
             dateParts[0] = "0" + dateParts[0];
@@ -279,7 +279,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static ProjectTaskName parseTaskName(String name) throws ParseException {
+    public static ProjectTaskName parseProjectTaskName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ProjectTaskName.isValidTaskName(trimmedName)) {

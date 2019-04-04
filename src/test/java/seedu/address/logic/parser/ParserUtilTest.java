@@ -20,6 +20,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.project.ProjectTaskName;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.Assert;
 
@@ -29,6 +30,7 @@ public class ParserUtilTest {
     private static final String INVALID_GITHUB = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "#friend";
+    private static final String INVALID_TASKNAME = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -36,6 +38,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "friend";
     private static final String VALID_SKILL_2 = "neighbour";
+    private static final String VALID_TASKNAME = "valid task";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -205,5 +208,24 @@ public class ParserUtilTest {
                 new HashSet<Skill>(Arrays.asList(new Skill(VALID_SKILL_1), new Skill(VALID_SKILL_2)));
 
         assertEquals(expectedSkillSet, actualSkillSet);
+    }
+
+    @Test
+    public void parseTaskName_validName_returnsTrimmedProjectTaskName() throws Exception {
+        String projectTaskNameWithWhitespace = WHITESPACE + VALID_TASKNAME + WHITESPACE;
+        ProjectTaskName expectedProjectTaskName= new ProjectTaskName(VALID_TASKNAME);
+        assertEquals(expectedProjectTaskName, ParserUtil.parseProjectTaskName(projectTaskNameWithWhitespace));
+    }
+
+    @Test
+    public void parseProjectTaskName_nullName_throwsNullPointerException() throws Exception {
+        thrown.expect(NullPointerException.class);
+        ParserUtil.parseProjectTaskName(null);
+    }
+
+    @Test
+    public void parseProjectTaskName_invalidTaskName_throwsParseException() throws Exception {
+        thrown.expect(ParseException.class);
+        ParserUtil.parseProjectTaskName(INVALID_TASKNAME);
     }
 }

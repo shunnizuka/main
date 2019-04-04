@@ -32,6 +32,9 @@ public class ProjectMilestones extends UiPart<Region> {
         milestonesTreeView.setShowRoot(false);
     }
 
+    /**
+     * Adds existing milestones into the tree view with root as the parent.
+     */
     public void addMilestoneBranches(TreeItem<String> root) {
         int index = 1;
         for (Milestone m: milestones) {
@@ -42,6 +45,9 @@ public class ProjectMilestones extends UiPart<Region> {
         }
     }
 
+    /**
+     * Adds existing project tasks in {@code m} into the tree view with branch as the parent.
+     */
     public void addTaskLeaves(TreeItem<String> branch, Milestone m) {
         ObservableList<ProjectTask> projectTaskList = m.getProjectTaskList();
         for (ProjectTask pt: projectTaskList) {

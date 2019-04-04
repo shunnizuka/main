@@ -28,7 +28,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
 
     private final ObservableList<Milestone> internalList = FXCollections.observableArrayList();
     private final ObservableList<Milestone> internalUnmodifiableList =
-    FXCollections.unmodifiableObservableList(internalList);
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent Milestone as the given argument.
@@ -124,8 +124,8 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-        || (other instanceof UniqueMilestoneList // instanceof handles nulls
-        && internalList.equals(((UniqueMilestoneList) other).internalList));
+            || (other instanceof UniqueMilestoneList // instanceof handles nulls
+            && internalList.equals(((UniqueMilestoneList) other).internalList));
     }
 
     @Override
