@@ -68,7 +68,7 @@ import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
-import seedu.address.model.project.ProjectDate;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
@@ -204,10 +204,10 @@ public class EditCommandParserTest {
             Client.MESSAGE_CONSTRAINTS); //invalid client
         assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
                 + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_DEADLINE_DESC,
-            ProjectDate.MESSAGE_CONSTRAINTS); //invalid deadline
+            PocketProjectDate.MESSAGE_CONSTRAINTS); //invalid deadline
         assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
                 + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_FLEXI_DATE_DESC,
-            ProjectDate.MESSAGE_CONSTRAINTS); //invalid deadline
+            PocketProjectDate.MESSAGE_CONSTRAINTS); //invalid deadline
         assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
                 + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_DESCRIPTION_DESC,
             Description.MESSAGE_CONSTRAINT); //invalid description

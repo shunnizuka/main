@@ -10,6 +10,7 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Represents a project in the pocket project.
@@ -38,51 +39,51 @@ public class Project {
     private final ProjectName projectName;
     private final List<Milestone> milestones;
     private final Client client;
-    private final ProjectDate deadline;
+    private final PocketProjectDate deadline;
     private final UniqueEmployeeList employees;
     private final SortedUserStoryList userStories;
     private final Description description;
-    private ProjectDate completionDate = null;
+    private PocketProjectDate completionDate = null;
 
     /**
      * Constructor for each Project Object.
      */
-    public Project (ProjectName pn, Client c, ProjectDate d) {
+    public Project (ProjectName pn, Client c, PocketProjectDate d) {
         this(pn, c, d, new ArrayList<>(), new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying milestones too. (not used)
      */
-    public Project (ProjectName pn, Client c, ProjectDate d, List<Milestone> m) {
+    public Project (ProjectName pn, Client c, PocketProjectDate d, List<Milestone> m) {
         this(pn, c, d, m, new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying description and milestone too. (not used)
      */
-    public Project (ProjectName pn, Client c, ProjectDate d, List<Milestone> m, Description desc) {
+    public Project (ProjectName pn, Client c, PocketProjectDate d, List<Milestone> m, Description desc) {
         this(pn, c, d, m, desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying description. (not used)
      */
-    public Project (ProjectName pn, Client c, ProjectDate d, Description desc) {
+    public Project (ProjectName pn, Client c, PocketProjectDate d, Description desc) {
         this(pn, c, d, new ArrayList<>(), desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying employees in the project. (not used)
      */
-    public Project(ProjectName pn, Client c, ProjectDate d, Description desc, UniqueEmployeeList emp) {
+    public Project(ProjectName pn, Client c, PocketProjectDate d, Description desc, UniqueEmployeeList emp) {
         this(pn, c, d, new ArrayList<>(), desc, emp, new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying all fields except userstories. (not used)
      */
-    public Project(ProjectName pn, Client c, ProjectDate d, List<Milestone> m, Description desc,
+    public Project(ProjectName pn, Client c, PocketProjectDate d, List<Milestone> m, Description desc,
                    UniqueEmployeeList emp) {
         this(pn, c, d, m, desc, emp, new SortedUserStoryList());
     }
@@ -90,7 +91,7 @@ public class Project {
     /**
      * Constructor specifying all fields except completion date.
      */
-    public Project(ProjectName pn, Client c, ProjectDate d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
+    public Project(ProjectName pn, Client c, PocketProjectDate d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
                    SortedUserStoryList stories) {
         this.projectName = pn;
         this.client = c;
@@ -104,8 +105,8 @@ public class Project {
     /**
      * Constructor specifying all fields.
      */
-    public Project(ProjectName pn, Client c, ProjectDate d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
-                   SortedUserStoryList stories, ProjectDate comp) {
+    public Project(ProjectName pn, Client c, PocketProjectDate d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
+                   SortedUserStoryList stories, PocketProjectDate comp) {
         this.projectName = pn;
         this.client = c;
         this.deadline = d;
@@ -126,7 +127,7 @@ public class Project {
     public Client getClient() {
         return client;
     }
-    public ProjectDate getDeadline() {
+    public PocketProjectDate getDeadline() {
         return deadline;
     }
     public Description getDescription() {
@@ -138,7 +139,7 @@ public class Project {
     public ObservableList<UserStory> getUserStories() {
         return userStories.asUnmodifiableObservableList();
     }
-    public ProjectDate getCompletionDate() {
+    public PocketProjectDate getCompletionDate() {
         return completionDate;
     }
     /**
@@ -191,7 +192,7 @@ public class Project {
     /**
      * Completes the project, specifying the completion date.
      */
-    public void setCompletionDate(ProjectDate completionDate) {
+    public void setCompletionDate(PocketProjectDate completionDate) {
         this.completionDate = completionDate;
     }
 
@@ -240,7 +241,7 @@ public class Project {
     /**
      * Edits the details of the project specifically projectName, client, deadline and description
      */
-    public Project editProject(ProjectName projectName, Client client, ProjectDate deadline, Description description) {
+    public Project editProject(ProjectName projectName, Client client, PocketProjectDate deadline, Description description) {
         return new Project(projectName, client, deadline, this.milestones, description, this.employees,
             this.userStories);
     }

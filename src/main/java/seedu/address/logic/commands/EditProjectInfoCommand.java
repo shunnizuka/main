@@ -19,7 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -90,7 +90,7 @@ public class EditProjectInfoCommand extends EditProjectCommand {
         assert projectToEdit != null;
 
         ProjectName updatedName = editProjectDescriptor.getProjectName().orElse(projectToEdit.getProjectName());
-        ProjectDate updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
+        PocketProjectDate updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
         Description updatedDescription = editProjectDescriptor.getDescription().orElse(projectToEdit.getDescription());
         Client updatedClient = editProjectDescriptor.getClient().orElse(projectToEdit.getClient());
 
@@ -122,7 +122,7 @@ public class EditProjectInfoCommand extends EditProjectCommand {
     public static class EditProjectDescriptor {
 
         private ProjectName projectName;
-        private ProjectDate deadline;
+        private PocketProjectDate deadline;
         private Description description;
         private Client client;
 
@@ -154,11 +154,11 @@ public class EditProjectInfoCommand extends EditProjectCommand {
             return Optional.ofNullable(projectName);
         }
 
-        public void setDeadline(ProjectDate deadline) {
+        public void setDeadline(PocketProjectDate deadline) {
             this.deadline = deadline;
         }
 
-        public Optional<ProjectDate> getDeadline() {
+        public Optional<PocketProjectDate> getDeadline() {
             return Optional.ofNullable(deadline);
         }
 

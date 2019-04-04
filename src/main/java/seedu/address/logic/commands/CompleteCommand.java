@@ -10,7 +10,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -30,15 +30,15 @@ public class CompleteCommand extends Command {
 
     private final ProjectName projectName;
     private final Index targetIndex;
-    private final ProjectDate completionDate;
+    private final PocketProjectDate completionDate;
 
-    public CompleteCommand(ProjectName targetName, ProjectDate completionDate) {
+    public CompleteCommand(ProjectName targetName, PocketProjectDate completionDate) {
         this.projectName = targetName;
         this.targetIndex = null;
         this.completionDate = completionDate;
     }
 
-    public CompleteCommand(Index index, ProjectDate completionDate) {
+    public CompleteCommand(Index index, PocketProjectDate completionDate) {
         this.targetIndex = index;
         this.projectName = null;
         this.completionDate = completionDate;

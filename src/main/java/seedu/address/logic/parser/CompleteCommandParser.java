@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CompleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.ProjectDate;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -35,7 +35,7 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompleteCommand.MESSAGE_USAGE));
         }
         final String projectReference = matcher.group("project");
-        final ProjectDate date = ParserUtil.parseDate(matcher.group("date"));
+        final PocketProjectDate date = ParserUtil.parseDate(matcher.group("date"));
         String argument = projectReference.trim();
         if (argument.matches(INTEGER_STRING_FORMAT)) {
             try {

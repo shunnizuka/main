@@ -161,7 +161,7 @@ public class FlexibleDate {
         int currentMonth = LocalDateTime.now().getMonth().getValue();
         int currentDayOfMonth = LocalDateTime.now().getDayOfMonth();
         LocalDateTime targetDate = LocalDateTime.now().withMonth(currentMonth + NEXT);
-        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth + NEXT);
+        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth + NEXT); //TODO check bug
         return DATE_FORMAT.format(newDate);
     }
 
@@ -185,7 +185,7 @@ public class FlexibleDate {
         int currentMonth = LocalDateTime.now().getMonth().getValue();
         int currentDayOfMonth = LocalDateTime.now().getDayOfMonth();
         LocalDateTime targetDate = LocalDateTime.now().withMonth(currentMonth + LAST);
-        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth + NEXT);
+        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth + NEXT); //TODO check bug
         return DATE_FORMAT.format(newDate);
     }
 

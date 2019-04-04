@@ -1,4 +1,6 @@
-package seedu.address.model.project;
+package seedu.address.model.util;
+
+import seedu.address.model.project.Project;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -10,7 +12,7 @@ import java.text.ParseException;
  * The A date object.
  */
 
-public class ProjectDate {
+public class PocketProjectDate {
     public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD/MM/YYYY. User can also "
         + "choose to go for a flexible date input which supports the following: today, tomorrow, yesterday, "
         + "this/next/last month DAY_OF_MONTH & "
@@ -25,7 +27,7 @@ public class ProjectDate {
 
     public final String date;
 
-    public ProjectDate(String date) {
+    public PocketProjectDate(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = date;
@@ -48,8 +50,8 @@ public class ProjectDate {
     /**
      * Returns a clone of this Deadline object.
      */
-    public ProjectDate clone() {
-        return new ProjectDate(this.date);
+    public PocketProjectDate clone() {
+        return new PocketProjectDate(this.date);
     }
 
     @Override
@@ -60,8 +62,8 @@ public class ProjectDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ProjectDate // instanceof handles nulls
-                && date.equals(((ProjectDate) other).date)); // state check
+                || (other instanceof PocketProjectDate // instanceof handles nulls
+                && date.equals(((PocketProjectDate) other).date)); // state check
     }
 
     @Override

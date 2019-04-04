@@ -10,7 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
@@ -166,7 +166,7 @@ public interface Model {
     /**
      * Completes a project and move it to the list of completed projects.
      */
-    void completeProject(Project project, ProjectDate completionDate);
+    void completeProject(Project project, PocketProjectDate completionDate);
 
     /**
      * Selected project in the filtered projects list.

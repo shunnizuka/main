@@ -13,7 +13,7 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
 import seedu.address.model.project.UserStory;
@@ -104,16 +104,16 @@ class JsonAdaptedProject {
             }
             modelUserStories.add(userStory.toModelType());
         }
-        ProjectDate modelCompletionDate = null;
+        PocketProjectDate modelCompletionDate = null;
         if (completionDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectDate.class.getSimpleName()));
+                    PocketProjectDate.class.getSimpleName()));
         }
         if (!"null".equals(completionDate)) {
-            if (!ProjectDate.isValidDate(completionDate)) {
-                throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
+            if (!PocketProjectDate.isValidDate(completionDate)) {
+                throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
             } else {
-                modelCompletionDate = new ProjectDate(completionDate);
+                modelCompletionDate = new PocketProjectDate(completionDate);
             }
         }
 
@@ -142,12 +142,12 @@ class JsonAdaptedProject {
 
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ProjectDate.class.getSimpleName()));
+                PocketProjectDate.class.getSimpleName()));
         }
-        if (!ProjectDate.isValidDate(deadline)) {
-            throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
+        if (!PocketProjectDate.isValidDate(deadline)) {
+            throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
         }
-        final ProjectDate modelDeadline = new ProjectDate(deadline);
+        final PocketProjectDate modelDeadline = new PocketProjectDate(deadline);
 
         return new Project(modelProjectName, modelClient, modelDeadline, modelMilestones, modelDescription,
                 modelEmployees, modelUserStories, modelCompletionDate);
