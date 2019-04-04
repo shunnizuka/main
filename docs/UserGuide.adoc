@@ -616,6 +616,7 @@ The `undo` command fails as there are no undoable commands executed previously.
 `undo` (reverses the `clear` command) +
 `undo` (reverses the `delete project 1` command) +
 
+
 === Redoing the previously undone command : `redo`
 
 Reverses the most recent `undo` command.
