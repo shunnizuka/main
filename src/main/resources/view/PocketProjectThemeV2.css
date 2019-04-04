@@ -224,6 +224,11 @@
     -fx-border-width: 1;
 }
 
+.tree-cell {
+    -fx-background-color: #0aa999 ;
+    -fx-text-fill: white ;
+}
+
 
 .scroll-bar {
     -fx-background-color: #EFF2F5;

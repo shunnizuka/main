@@ -1,15 +1,12 @@
 package seedu.address.ui;
 
-import java.util.Set;
-
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.Region;
-import jdk.nashorn.api.tree.Tree;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.ProjectTask;
 
 /**
  * UI component to represent employees in a project
@@ -29,23 +26,40 @@ public class ProjectMilestones extends UiPart<Region> {
 
         TreeItem<String> root = new TreeItem<>();
         root.setExpanded(true);
-        TreeItem<String> ms1, ms2, ms3, ms4;
-        ms1 = makeBranch("v1.1", root);
-        makeBranch("Refactor classes in AB4 to match Pocket Project", ms1);
-        makeBranch("Implement project classes and dependencies", ms1);
-        makeBranch("Implement skeleton classes for additional parsers", ms1);
+        addMilestoneBranches(root);
 
         milestonesTreeView.setRoot(root);
         milestonesTreeView.setShowRoot(false);
     }
 
-    public TreeItem<String> makeBranch(String title, TreeItem<String> parent) {
-        TreeItem<String> item = new TreeItem<>(title);
+    public void addMilestoneBranches(TreeItem<String> root) {
+        int index = 1;
+        for (Milestone m: milestones) {
+            String mInfo = index + ". " + m.getMilestone() + " (" + m.getDate() + ")";
+            TreeItem<String> item = setTreeItem(mInfo, root);
+            addTaskLeaves(item, m);
+            index++;
+        }
+    }
+
+    public void addTaskLeaves(TreeItem<String> branch, Milestone m) {
+        ObservableList<ProjectTask> projectTaskList = m.getProjectTaskList();
+        for (ProjectTask pt: projectTaskList) {
+            String ptInfo = "";
+            if (pt.isComplete()) {
+                ptInfo += "Complete: ";
+            } else {
+                ptInfo += "Ongoing:  ";
+            }
+            ptInfo += pt.getTaskName();
+            setTreeItem(ptInfo, branch);
+        }
+    }
+
+    public TreeItem<String> setTreeItem(String itemName, TreeItem<String> parent) {
+        TreeItem<String> item = new TreeItem<>(itemName);
         item.setExpanded(true);
         parent.getChildren().add(item);
         return item;
     }
-
-
-
 }
