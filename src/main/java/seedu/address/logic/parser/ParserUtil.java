@@ -26,7 +26,7 @@ import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
-import seedu.address.model.util.CalendarDatesInMonth;
+import seedu.address.model.util.CalendarDate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -183,14 +183,14 @@ public class ParserUtil {
 
         requireNonNull(date);
         String trimmedDate = date.trim();
-        String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate).trim();
+        String formattedDate = PocketProjectDateParser.parsePocketProjectDate(trimmedDate).trim();
 
         if (!PocketProjectDate.isValidDate(formattedDate)) {
             throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
         }
 
-        if (!CalendarDatesInMonth.isValidDayInMonth(formattedDate)) {
-            throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
+        if (!CalendarDate.isValidDayInMonth(formattedDate)) {
+            throw new ParseException(CalendarDate.DAY_MONTH_CONSTRAINTS);
         }
 
         return new PocketProjectDate(formattedDate);

@@ -4,16 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.PocketProject;
+import seedu.address.model.util.CalendarDate;
 import seedu.address.model.util.PocketProjectDate;
-import seedu.address.model.util.CalendarDatesInMonth;
-import seedu.address.model.util.FlexibleDate;
-
-
 
 /**
  * Parses the flexible date input.
  */
-public class FlexibleDateParser {
+public class PocketProjectDateParser {
 
     /**
      * Used for initial separation of flexible date command word and args.
@@ -46,7 +44,7 @@ public class FlexibleDateParser {
      * @return a date string in the form of DD/MM/YYYY
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static String parseFlexibleDate(String dateInput) throws ParseException {
+    public static String parsePocketProjectDate(String dateInput) throws ParseException {
 
         if (!isFlexibleInput(dateInput)) {
             return dateInput;
@@ -96,7 +94,7 @@ public class FlexibleDateParser {
         } else if (weekOrMonth.equals(CliSyntax.PREFIX_MONTH.toString())) {
             return formatMonthDate(keyword, arguments.trim());
         } else {
-            throw new ParseException(FlexibleDate.FLEXI_DATE_MESSAGE_CONSTRAINTS);
+            throw new ParseException(PocketProjectDate.FLEXI_DATE_MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -115,7 +113,7 @@ public class FlexibleDateParser {
      */
     private static String formatDate(int days) {
 
-        FlexibleDate date = new FlexibleDate();
+        PocketProjectDate date = new PocketProjectDate();
         if (days != DAY_ZERO) {
             return date.dateNumDaysLater(days);
         } else {
@@ -134,15 +132,15 @@ public class FlexibleDateParser {
     private static String formatWeekDate(String keyword, String numberString) throws ParseException {
 
         if (!isValidInput(numberString)) {
-            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
+            throw new ParseException(PocketProjectDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
         int dayOfWeek = Integer.parseInt(numberString);
         if (dayOfWeek < FIRST_DAY_OF_WEEK || dayOfWeek > LAST_DAY_OF_WEEK) {
-            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
+            throw new ParseException(PocketProjectDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
-        FlexibleDate date = new FlexibleDate();
+        PocketProjectDate date = new PocketProjectDate();
 
         if (keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
             return date.thisWeekDate(dayOfWeek);
@@ -151,7 +149,7 @@ public class FlexibleDateParser {
         } else if (keyword.equals(CliSyntax.PREFIX_PAST.toString())) {
             return date.lastWeekDate(dayOfWeek);
         } else {
-            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
+            throw new ParseException(PocketProjectDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
     }
 
@@ -165,20 +163,20 @@ public class FlexibleDateParser {
     private static String formatMonthDate(String keyword, String numberString) throws ParseException {
 
         if (!isValidInput(numberString)) {
-            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
+            throw new ParseException(PocketProjectDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
         int dayOfMonth = Integer.parseInt(numberString);
         if (dayOfMonth < FIRST_DAY_OF_MONTH || dayOfMonth > LAST_DAY_OF_MONTH) {
-            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
+            throw new ParseException(PocketProjectDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
-        boolean validDayInMonth = CalendarDatesInMonth.doesMonthContainDay(keyword, dayOfMonth);
+        boolean validDayInMonth = CalendarDate.doesMonthContainDay(keyword, dayOfMonth);
         if (!validDayInMonth) {
-            throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
+            throw new ParseException(CalendarDate.DAY_MONTH_CONSTRAINTS);
         }
 
-        FlexibleDate date = new FlexibleDate();
+        PocketProjectDate date = new PocketProjectDate();
 
         if (keyword.equals(CliSyntax.PREFIX_CURRENT.toString())) {
             return date.thisMonthDate(dayOfMonth);
@@ -187,7 +185,7 @@ public class FlexibleDateParser {
         } else if (keyword.equals(CliSyntax.PREFIX_PAST.toString())) {
             return date.lastMonthDate(dayOfMonth);
         } else {
-            throw new ParseException(FlexibleDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
+            throw new ParseException(PocketProjectDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
     }
 

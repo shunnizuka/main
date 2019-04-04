@@ -9,7 +9,7 @@ import seedu.address.logic.parser.CliSyntax;
 /**
  * Contains methods for checking if a input date is valid according to the calendar year.
  */
-public class CalendarDatesInMonth {
+public class CalendarDate {
 
     /**
      * Message constraints.
@@ -50,6 +50,11 @@ public class CalendarDatesInMonth {
     private static final int DECEMBER = 12;
     private static final int DEC_MAX_DAYS = 31;
 
+    /**
+     * Standard number of days in a leap and non-leap year.
+     */
+    private static final int LEAP_YEAR_DAYS = 365;
+    private static final int NON_LEAP_YEAR_DAYS = 366;
 
     /**
      * Constants to represent different fields.
@@ -127,7 +132,7 @@ public class CalendarDatesInMonth {
 
         int numOfDays = calendar.getActualMaximum(Calendar.DAY_OF_YEAR);
 
-        if (numOfDays > 365) {
+        if (numOfDays == LEAP_YEAR_DAYS) {
             return true;
         }
         return false;
