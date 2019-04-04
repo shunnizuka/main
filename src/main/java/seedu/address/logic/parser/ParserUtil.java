@@ -16,8 +16,9 @@ import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTaskName;
 import seedu.address.model.project.UserStoryFunction;
@@ -64,8 +65,8 @@ public class ParserUtil {
         }
         String milestoneDesc = trimmedMilestone.substring(0, position);
         String dateInput = trimmedMilestone.substring(position + 1);
-        Deadline deadline = parseDeadline(dateInput);
-        String tempDate = deadline.toString();
+        ProjectDate projectDate = parseDate(dateInput);
+        String tempDate = projectDate.toString();
         String[] dateParts = tempDate.split("/");
         String date = "";
         if (dateParts[0].length() != 2) {
@@ -185,26 +186,43 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Parses a {@code String date} into a {@code ProjectDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deadline} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Deadline parseDeadline(String deadline) throws ParseException {
+    public static ProjectDate parseDate(String date) throws ParseException {
 
-        requireNonNull(deadline);
-        String trimmedDate = deadline.trim();
+        requireNonNull(date);
+        String trimmedDate = date.trim();
         String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate).trim();
 
-        if (!Deadline.isValidDate(formattedDate)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!ProjectDate.isValidDate(formattedDate)) {
+            throw new ParseException(ProjectDate.MESSAGE_CONSTRAINTS);
         }
 
         if (!CalendarDatesInMonth.isValidDayInMonth(formattedDate)) {
             throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
         }
 
-        return new Deadline(formattedDate);
+        return new ProjectDate(formattedDate);
+
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINT);
+        }
+        return new Description(trimmedDescription);
     }
 
     /**

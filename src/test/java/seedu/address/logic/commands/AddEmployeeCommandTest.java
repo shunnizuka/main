@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
@@ -138,6 +139,19 @@ public class AddEmployeeCommandTest {
         public ObservableList<Project> getProjectList() {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public String individualStats(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String overallStats() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ObservableList<Project> getCompletedProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public ReadOnlyPocketProject getPocketProject() {
@@ -191,6 +205,10 @@ public class AddEmployeeCommandTest {
         public boolean hasProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void completeProject(Project project, ProjectDate completionDate) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deleteProject(Project target) {
@@ -241,6 +259,10 @@ public class AddEmployeeCommandTest {
         }
         @Override
         public List<Project> getProjectsContaining(Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ObservableList<Employee> getEmployeeList() {
             throw new AssertionError("This method should not be called.");
         }
         //--------------------------------------------------------------------------------------------------

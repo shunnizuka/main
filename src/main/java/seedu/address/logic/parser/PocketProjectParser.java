@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CompleteCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -17,8 +18,10 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OverallStatsCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemoveFromCommand;
+import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -62,7 +65,8 @@ public class PocketProjectParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-
+        case CompleteCommand.COMMAND_WORD:
+            return new CompleteCommandParser().parse(arguments);
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
@@ -74,6 +78,12 @@ public class PocketProjectParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case StatsCommand.COMMAND_WORD:
+            if (arguments.trim().equals("")) {
+                return new OverallStatsCommand();
+            } else {
+                return new IndividualStatsCommandParser().parse(arguments);
+            }
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();

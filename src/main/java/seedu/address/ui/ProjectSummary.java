@@ -26,6 +26,6 @@ public class ProjectSummary extends UiPart<Region> {
         super(FXML);
         name.setText(project.getProjectName().projectName);
         client.setText(project.getClient().client);
-        deadline.setText(project.getDeadline().deadline);
+        deadline.setText(project.getDeadline().date);
     }
 }

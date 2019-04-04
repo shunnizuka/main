@@ -61,6 +61,10 @@ public class AddProjectCommand extends AddCommand {
                 || (other instanceof AddProjectCommand // instanceof handles nulls
                 && toAdd.equals(((AddProjectCommand) other).toAdd));
     }
+    @Override
+    public String toString() {
+        return this.toAdd.toString();
+    }
 
 
 }

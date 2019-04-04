@@ -51,19 +51,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
         Comparator<? super Milestone> comparator = new Comparator<Milestone>() {
             @Override
             public int compare(Milestone m1, Milestone m2) {
-                int dd1 = Integer.parseInt(m1.date.substring(0, 2));
-                int mm1 = Integer.parseInt(m1.date.substring(3, 5));
-                int yy1 = Integer.parseInt(m1.date.substring(6, 10));
-                int dd2 = Integer.parseInt(m2.date.substring(0, 2));
-                int mm2 = Integer.parseInt(m2.date.substring(3, 5));
-                int yy2 = Integer.parseInt(m2.date.substring(6, 10));
-                if (yy1 != yy2) {
-                    return yy1 - yy2;
-                } else if (mm1 != mm2) {
-                    return mm1 - mm2;
-                } else {
-                    return dd1 - dd2;
-                }
+                return Project.DATE_STRING_COMPARATOR.compare(m1.date, m2.date);
             }
         };
         internalList.sort(comparator);

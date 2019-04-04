@@ -522,6 +522,20 @@ Edits the existing milestone in the milestone list of a project.
 Edits the existing userstory in the userstory list of a project.
 
 
+=== To indicate the project has been completed : `complete`
+
+Indicates that a project is completed on a certain date+
+Format: `complete PROJECT_NAME DATE`
+or `complete PROJECT_INDEX DATE`
+
+Examples:
+
+`complete Project Apollo 11/11/2011` +
+Project Apollo is indicated as completed on 11/11/2011.
+
+`complete 1 11/11/2011`
+The first project in the most recently display list of projects is completed on 11/11/2011.
+
 === Sort the projects by name or deadline : `sort` [coming in v2.0]
 
 Returns a sorted list of projects by the sort key value.
@@ -556,17 +570,28 @@ The list of ongoing projects are listed.
 `complete 1` +
 The first project in the shown list is indicated as completed.
 
-=== Display statistics regarding all the projects : `stats`
+=== Display statistics regarding the projects : `stats`
 
-Returns the number of completed projects and number of currently ongoing projects.
+Returns an overview of all ongoing projects/the progress of an individual project.
 
-Format: `stats`
-
+Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX`
++
+add something here.
 Examples:
 
-* `stats` +
-Total number of ongoing projects: 4 +
-Total number of completed projects: 9
+`stats` +
+Number of ongoing projects: 4 +
+Number of completed projects: 0 +
+The project with the earliest date is Project ABC at 10/11/2011 +
+The project with the least number of employees is Project ABC with 0 employees +
+The project with the most number of employees is Apollo with 4 employees +
+The employee with the least number of projects is Daniel with 0 projects +
+The employee with the most number of projects is Bob with 3 projects +
+
+
+`stats 1` +
+fill in stuff (not implemeted yet).
+
 
 // tag::undoredo[]
 === Undoing previous command : `undo`
@@ -594,6 +619,7 @@ The `undo` command fails as there are no undoable commands executed previously.
 `clear` +
 `undo` (reverses the `clear` command) +
 `undo` (reverses the `delete project 1` command) +
+
 
 === Redoing the previously undone command : `redo`
 

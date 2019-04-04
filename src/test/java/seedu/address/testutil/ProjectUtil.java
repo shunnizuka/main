@@ -42,7 +42,7 @@ public class ProjectUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + project.getProjectName().projectName + " ");
         sb.append(PREFIX_CLIENT + project.getClient().client + " ");
-        sb.append(PREFIX_DEADLINE + project.getDeadline().deadline + " ");
+        sb.append(PREFIX_DEADLINE + project.getDeadline().date + " ");
         return sb.toString();
     }
 

@@ -199,6 +199,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isClear()) {
+                detailsPanel.initDefaultView();
+            }
+
             detailsPanel.refreshEmployeeContent(logic.selectedEmployeeProperty().getValue());
             detailsPanel.refreshProjectContent(logic.selectedProjectProperty().getValue());
 
