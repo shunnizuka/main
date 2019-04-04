@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import seedu.address.model.PocketProject;
 import seedu.address.model.project.Project;
 
 import static java.util.Objects.requireNonNull;
@@ -15,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  * The class that it used to present all date objects use throughout the application
  */
 
-public class PocketProjectDate {
+public class PocketProjectDate extends CalendarDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD/MM/YYYY. User can also "
         + "choose to go for a flexible date input which supports the following: today, tomorrow, yesterday, "
@@ -29,8 +28,20 @@ public class PocketProjectDate {
     public static final String FLEXI_DATE_MESSAGE_CONSTRAINTS = "Flexible date inputs only allow choosing between "
         + "this/next/last week or month. They keyword week/month has to be included";
 
-
+    /**
+     * Target date format.
+     */
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    /**
+     * Character used to identify dates in DD/MM/YYYY.
+     */
+    private static final String DATE_IDENTIFIER = "/";
+
+    /**
+     * Number of components in a date.
+     */
+    private static final int NUM_COMPONENTS = 4;
 
     /**
      * The first character of the name must not be a whitespace,
@@ -42,7 +53,7 @@ public class PocketProjectDate {
     private static final int LENGTH_OF_WEEK = 7;
     private static final int NEXT = 1;
 
-    private final LocalDateTime targetDate;
+    public final String date;
 
     /**
      * Constructor to create a Pocket Project Date object when receiving fixed entries.
@@ -51,14 +62,14 @@ public class PocketProjectDate {
     public PocketProjectDate(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.targetDate = convertToLocalDateTimeFormat(date);
+        this.date = date;
     }
 
     /**
      * Constructor to create a Pocket Project Date object when receiving flexible entries.
      */
     public PocketProjectDate() {
-        this.targetDate = LocalDateTime.now();
+        this.date = DATE_FORMAT.format(LocalDateTime.now());
     }
 
     /**
@@ -66,7 +77,7 @@ public class PocketProjectDate {
      * @param date that date to be stored.
      */
     public PocketProjectDate(LocalDateTime date) {
-        this.targetDate = date;
+        this.date = DATE_FORMAT.format(date);
     }
 
     /**
@@ -74,7 +85,7 @@ public class PocketProjectDate {
      * @return current date according to given format
      */
     public String currentDate() {
-        return DATE_FORMAT.format(targetDate);
+        return DATE_FORMAT.format(LocalDateTime.now());
     }
 
     /**
@@ -83,7 +94,8 @@ public class PocketProjectDate {
      * @return target date according to given format
      */
     public String dateNumDaysLater(long numDays) {
-        return DATE_FORMAT.format(targetDate.plusDays(numDays));
+
+        return DATE_FORMAT.format(convertToLocalDateTimeFormat(date).plusDays(numDays));
     }
 
     /**
@@ -92,7 +104,7 @@ public class PocketProjectDate {
      * @return target date according to given format
      */
     public String dateNumDaysBefore(long numDays) {
-        return DATE_FORMAT.format(targetDate.minusDays(numDays));
+        return DATE_FORMAT.format(convertToLocalDateTimeFormat(date).minusDays(numDays));
     }
 
     /**
@@ -101,8 +113,7 @@ public class PocketProjectDate {
      * @return target date according to given format
      */
     public String dateNumWeeksLater(long numWeeks) {
-        LocalDateTime newDate = targetDate.plusWeeks(numWeeks);
-        return DATE_FORMAT.format(newDate);
+        return DATE_FORMAT.format(convertToLocalDateTimeFormat(date).plusWeeks(numWeeks));
     }
     /**
      * Method that subtracts specified number of weeks from current date.
@@ -110,8 +121,7 @@ public class PocketProjectDate {
      * @return target date according to given format
      */
     public String dateNumWeeksBefore(long numWeeks) {
-        LocalDateTime newDate = targetDate.minusWeeks(numWeeks);
-        return DATE_FORMAT.format(newDate);
+        return DATE_FORMAT.format(convertToLocalDateTimeFormat(date).minusWeeks(numWeeks));
     }
 
     /**
@@ -120,8 +130,7 @@ public class PocketProjectDate {
      * @return target date according to given format
      */
     public String dateNumMonthsLater(long numMonths) {
-        LocalDateTime newDate = targetDate.plusMonths(numMonths);
-        return DATE_FORMAT.format(newDate);
+        return DATE_FORMAT.format(convertToLocalDateTimeFormat(date).plusMonths(numMonths));
     }
 
     /**
@@ -130,8 +139,7 @@ public class PocketProjectDate {
      * @return target date according to given format
      */
     public String dateNumMonthsBefore(long numMonths) {
-        LocalDateTime newDate = targetDate.minusMonths(numMonths);
-        return DATE_FORMAT.format(newDate);
+        return DATE_FORMAT.format(convertToLocalDateTimeFormat(date).minusMonths(numMonths));
     }
 
     /**
@@ -140,8 +148,7 @@ public class PocketProjectDate {
      * @return target date according to given format
      */
     public String dateNumYearsLater(long numYears) {
-        LocalDateTime newDate = targetDate.plusYears(numYears);
-        return DATE_FORMAT.format(newDate);
+        return DATE_FORMAT.format(convertToLocalDateTimeFormat(date).plusYears(numYears));
     }
 
     /**
@@ -150,8 +157,7 @@ public class PocketProjectDate {
      * @return target date according to given format
      */
     public String dateNumYearsBefore(long numYears) {
-        LocalDateTime newDate = targetDate.minusYears(numYears);
-        return DATE_FORMAT.format(newDate);
+        return DATE_FORMAT.format(convertToLocalDateTimeFormat(date).minusYears(numYears));
     }
 
     /**
@@ -161,7 +167,7 @@ public class PocketProjectDate {
      */
     public String thisWeekDate(int targetDayOfWeek) {
         int currentDayOfWeek = LocalDateTime.now().getDayOfWeek().getValue();
-        LocalDateTime newDate = targetDate.plusDays(targetDayOfWeek - currentDayOfWeek);
+        LocalDateTime newDate = convertToLocalDateTimeFormat(date).plusDays(targetDayOfWeek - currentDayOfWeek);
         return DATE_FORMAT.format(newDate);
     }
 
@@ -172,7 +178,7 @@ public class PocketProjectDate {
      */
     public String thisMonthDate(int targetDayOfMonth) {
         int currentDayOfMonth = LocalDateTime.now().getDayOfMonth();
-        LocalDateTime newDate = targetDate.plusDays(targetDayOfMonth - currentDayOfMonth);
+        LocalDateTime newDate = convertToLocalDateTimeFormat(date).plusDays(targetDayOfMonth - currentDayOfMonth);
         return DATE_FORMAT.format(newDate);
     }
 
@@ -183,7 +189,7 @@ public class PocketProjectDate {
      */
     public String nextWeekDate(int targetDayOfWeek) {
         int currentDayOfWeek = LocalDateTime.now().getDayOfWeek().getValue();
-        LocalDateTime newDate = targetDate.plusDays(LENGTH_OF_WEEK);
+        LocalDateTime newDate = convertToLocalDateTimeFormat(date).plusDays(LENGTH_OF_WEEK);
         return DATE_FORMAT.format(newDate.plusDays(targetDayOfWeek - currentDayOfWeek));
     }
 
@@ -207,7 +213,7 @@ public class PocketProjectDate {
      */
     public String lastWeekDate(int targetDayOfWeek) {
         int currentDayOfWeek = LocalDateTime.now().getDayOfWeek().getValue();
-        LocalDateTime newDate = targetDate.minusDays(LENGTH_OF_WEEK);
+        LocalDateTime newDate = convertToLocalDateTimeFormat(date).minusDays(LENGTH_OF_WEEK);
         return DATE_FORMAT.format(newDate.plusDays(targetDayOfWeek - currentDayOfWeek));
     }
 
@@ -240,33 +246,94 @@ public class PocketProjectDate {
         return input.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Used to reformat string DD/MM/YYYY to LocalDateTime object.
+     * @param input the DD/MM/YYYY string
+     * @return the date as a LocalDateTime object.
+     */
+
     private LocalDateTime convertToLocalDateTimeFormat(String input) {
 
+        String[] date = input.split(DATE_IDENTIFIER);
 
-        return null;
+        int dayField = Integer.parseInt(date[DAY_FIELD].trim());
+        int monthField = Integer.parseInt(date[MONTH_FIELD].trim());
+        int yearField = Integer.parseInt(date[YEAR_FIELD].trim());
+
+        LocalDateTime createDate = LocalDateTime.now();
+
+        createDate.withDayOfMonth(dayField);
+        createDate.withMonth(monthField);
+        createDate.withYear(yearField);
+
+        return createDate;
+    }
+
+    /**
+     * Splits up the DD/MM/YYYY into day, month, field int components.
+     * @param input the date string in DD/MM/YYYY
+     * @return an integer array containing the values of individual components.
+     */
+    public static Integer[] splitComponents(String input) {
+
+        Integer[] dateComponents = new Integer[NUM_COMPONENTS];
+        String[] inputDate = input.split(DATE_IDENTIFIER);
+
+        dateComponents[DAY_FIELD] = Integer.parseInt(inputDate[DAY_FIELD].trim());
+        dateComponents[MONTH_FIELD] = Integer.parseInt(inputDate[MONTH_FIELD].trim());
+        dateComponents[YEAR_FIELD] = Integer.parseInt(inputDate[YEAR_FIELD].trim());
+
+        return dateComponents;
+    }
+
+    /**
+     * Used to reformat the flexible date input to DD/MM/YYYY
+     * @param day day of month
+     * @param month month of year
+     * @param year year
+     * @return Date formatted in DD/MM/YYYY
+     */
+    public static String generateStringDateFormat(int day, int month, int year) {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(day);
+        sb.append(DATE_IDENTIFIER);
+        sb.append(month);
+        sb.append(DATE_IDENTIFIER);
+        sb.append(year);
+
+        return sb.toString().trim();
+    }
+
+    /**
+     * Getter for the target date.
+     * @return the value of the date
+     */
+    public String getDate() {
+        return date;
     }
 
     /**
      * Returns a clone of this PocketProjectDate object.
      */
     public PocketProjectDate clone() {
-        return new PocketProjectDate(this.targetDate);
+        return new PocketProjectDate(this.date);
     }
 
     @Override
     public String toString() {
-        return DATE_FORMAT.format(this.targetDate);
+        return this.date;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PocketProjectDate // instanceof handles nulls
-                && this.targetDate.equals(((PocketProjectDate) other).targetDate)); // state check
+                && this.date.equals(((PocketProjectDate) other).date)); // state check
     }
 
     @Override
     public int hashCode() {
-        return this.targetDate.hashCode();
+        return this.date.hashCode();
     }
 }

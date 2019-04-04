@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.PocketProject;
 import seedu.address.model.util.CalendarDate;
 import seedu.address.model.util.PocketProjectDate;
 
@@ -171,7 +170,7 @@ public class PocketProjectDateParser {
             throw new ParseException(PocketProjectDate.DAY_OF_WEEK_MONTH_CONSTRAINTS);
         }
 
-        boolean validDayInMonth = CalendarDate.doesMonthContainDay(keyword, dayOfMonth);
+        boolean validDayInMonth = CalendarDate.isValidDayInMonth(keyword, dayOfMonth);
         if (!validDayInMonth) {
             throw new ParseException(CalendarDate.DAY_MONTH_CONSTRAINTS);
         }

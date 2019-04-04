@@ -38,14 +38,14 @@ public class CalendarDateTest {
         assertFalse(CalendarDate.isValidDayInMonth("29/02/2035"));
 
         //testing invalid days in months using alternate methods
-        assertFalse(CalendarDate.doesMonthContainDay("this", 31));
-        assertFalse(CalendarDate.doesMonthContainDay("this", 0));
-        assertFalse(CalendarDate.doesMonthContainDay("next", 0));
-        assertFalse(CalendarDate.doesMonthContainDay("last", 32));
+        assertFalse(CalendarDate.isValidDayInMonth("this", 31));
+        assertFalse(CalendarDate.isValidDayInMonth("this", 0));
+        assertFalse(CalendarDate.isValidDayInMonth("next", 0));
+        assertFalse(CalendarDate.isValidDayInMonth("last", 32));
 
         //testing valid days in month using alternate methods
-        assertTrue(CalendarDate.doesMonthContainDay("this", 30));
-        assertTrue(CalendarDate.doesMonthContainDay("last", 30));
-        assertTrue(CalendarDate.doesMonthContainDay("next", 30));
+        assertTrue(CalendarDate.isValidDayInMonth("this", 30));
+        assertTrue(CalendarDate.isValidDayInMonth("last", 30));
+        assertTrue(CalendarDate.isValidDayInMonth("next", 30));
     }
 }
