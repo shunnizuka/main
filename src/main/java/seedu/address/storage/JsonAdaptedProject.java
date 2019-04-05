@@ -15,6 +15,7 @@ import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
+import seedu.address.model.project.UniqueMilestoneList;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.util.PocketProjectDate;
 
@@ -87,11 +88,15 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
-        final List<Milestone> modelMilestones = new ArrayList<>();
+        final UniqueMilestoneList modelMilestones = new UniqueMilestoneList();
         final UniqueEmployeeList modelEmployees = new UniqueEmployeeList();
         final SortedUserStoryList modelUserStories = new SortedUserStoryList();
 
         for (JsonAdaptedMilestone milestone : milestones) {
+            if (!Milestone.isValidMilestone(milestone.toModelType())) {
+                throw new IllegalValueException((String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Milestone.class.getSimpleName())));
+            }
             modelMilestones.add(milestone.toModelType());
         }
         for (JsonAdaptedEmployee employee: employees) {

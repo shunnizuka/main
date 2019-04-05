@@ -64,7 +64,19 @@ public class ParserUtil {
                 AddMilestoneToCommand.MESSAGE_USAGE));
         }
         String milestoneDesc = trimmedMilestone.substring(0, position);
-        String date = trimmedMilestone.substring(position + 1);
+        String dateInput = trimmedMilestone.substring(position + 1);
+        PocketProjectDate projectDate = parseDate(dateInput);
+        String tempDate = projectDate.toString();
+        String[] dateParts = tempDate.split("/");
+        String date = "";
+        if (dateParts[0].length() != 2) {
+            dateParts[0] = "0" + dateParts[0];
+        }
+        date += dateParts[0] + "/";
+        if (dateParts[1].length() != 2) {
+            dateParts[1] = "0" + dateParts[1];
+        }
+        date += dateParts[1] + "/" + dateParts[2];
         if (!Milestone.isValidMilestone(milestoneDesc.trim(), date.trim())) {
             throw new ParseException(Milestone.MESSAGE_CONSTRAINTS);
         }
@@ -285,7 +297,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static ProjectTaskName parseTaskName(String name) throws ParseException {
+    public static ProjectTaskName parseProjectTaskName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ProjectTaskName.isValidTaskName(trimmedName)) {
