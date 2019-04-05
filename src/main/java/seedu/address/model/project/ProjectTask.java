@@ -37,6 +37,17 @@ public class ProjectTask {
         return status;
     }
 
+    public String getTaskStatusString() {
+        return getTaskStatus().getTaskStatusString();
+    }
+
+    public String getTaskNameString() {
+        return getTaskName().getTaskName();
+    }
+
+    public boolean isComplete() {
+        return getTaskStatus().isComplete();
+    }
     /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.

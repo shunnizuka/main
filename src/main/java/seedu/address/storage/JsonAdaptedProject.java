@@ -13,10 +13,11 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
+import seedu.address.model.project.UniqueMilestoneList;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -87,11 +88,15 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
-        final List<Milestone> modelMilestones = new ArrayList<>();
+        final UniqueMilestoneList modelMilestones = new UniqueMilestoneList();
         final UniqueEmployeeList modelEmployees = new UniqueEmployeeList();
         final SortedUserStoryList modelUserStories = new SortedUserStoryList();
 
         for (JsonAdaptedMilestone milestone : milestones) {
+            if (!Milestone.isValidMilestone(milestone.toModelType())) {
+                throw new IllegalValueException((String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Milestone.class.getSimpleName())));
+            }
             modelMilestones.add(milestone.toModelType());
         }
         for (JsonAdaptedEmployee employee: employees) {
@@ -104,16 +109,16 @@ class JsonAdaptedProject {
             }
             modelUserStories.add(userStory.toModelType());
         }
-        ProjectDate modelCompletionDate = null;
+        PocketProjectDate modelCompletionDate = null;
         if (completionDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectDate.class.getSimpleName()));
+                    PocketProjectDate.class.getSimpleName()));
         }
         if (!"null".equals(completionDate)) {
-            if (!ProjectDate.isValidDate(completionDate)) {
-                throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
+            if (!PocketProjectDate.isValidDate(completionDate)) {
+                throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
             } else {
-                modelCompletionDate = new ProjectDate(completionDate);
+                modelCompletionDate = new PocketProjectDate(completionDate);
             }
         }
 
@@ -142,12 +147,12 @@ class JsonAdaptedProject {
 
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ProjectDate.class.getSimpleName()));
+                PocketProjectDate.class.getSimpleName()));
         }
-        if (!ProjectDate.isValidDate(deadline)) {
-            throw new IllegalValueException(ProjectDate.MESSAGE_CONSTRAINTS);
+        if (!PocketProjectDate.isValidDate(deadline)) {
+            throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
         }
-        final ProjectDate modelDeadline = new ProjectDate(deadline);
+        final PocketProjectDate modelDeadline = new PocketProjectDate(deadline);
 
         return new Project(modelProjectName, modelClient, modelDeadline, modelMilestones, modelDescription,
                 modelEmployees, modelUserStories, modelCompletionDate);

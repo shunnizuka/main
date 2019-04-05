@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.employee.Employee;
@@ -9,10 +8,11 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDate;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
+import seedu.address.model.project.UniqueMilestoneList;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * A utility class to help with building Project objects.
@@ -26,20 +26,20 @@ public class ProjectBuilder {
 
 
     private ProjectName projectName;
-    private ProjectDate deadline;
+    private PocketProjectDate deadline;
     private Client client;
     private Description description;
     private UniqueEmployeeList employees;
-    private List<Milestone> milestones;
+    private UniqueMilestoneList milestones;
     private SortedUserStoryList userStories;
 
     public ProjectBuilder() {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
-        deadline = new ProjectDate(DEFAULT_DEADLINE);
+        deadline = new PocketProjectDate(DEFAULT_DEADLINE);
         client = new Client(DEFAULT_CLIENT);
         description = new Description((DEFAULT_DESCRIPTION));
         employees = new UniqueEmployeeList();
-        milestones = new ArrayList<>();
+        milestones = new UniqueMilestoneList();
         userStories = new SortedUserStoryList();
     }
 
@@ -52,7 +52,7 @@ public class ProjectBuilder {
         client = projectToCopy.getClient();
         description = projectToCopy.getDescription();
         employees = new UniqueEmployeeList();
-        this.milestones = new ArrayList<>();
+        this.milestones = new UniqueMilestoneList();
         this.userStories = new SortedUserStoryList();
         for (Employee e: projectToCopy.getEmployees()) {
             employees.add(e);
@@ -78,7 +78,7 @@ public class ProjectBuilder {
      * Sets the {@code Deadline} of the {@code Project} that we are building.
      */
     public ProjectBuilder withDeadline(String deadline) {
-        this.deadline = new ProjectDate(deadline);
+        this.deadline = new PocketProjectDate(deadline);
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ProjectBuilder {
      * Sets the milestones of the {@code Project} that we are building.
      */
     public ProjectBuilder withMilestones(List<Milestone> milestones) {
-        this.milestones.addAll(milestones);
+        this.milestones.setMilestones(milestones);
         return this;
     }
     /**
