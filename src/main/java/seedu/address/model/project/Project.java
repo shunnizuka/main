@@ -215,7 +215,7 @@ public class Project {
     }
 
     /**
-     * Edits the details of the project specifically projectName, client, start date, deadline and description
+     * Edits the details of the project specifically projectName, client, deadline and description
      */
     public Project editProject(ProjectName projectName, Client client, PocketProjectDate startDate,
         PocketProjectDate deadline, Description description) {

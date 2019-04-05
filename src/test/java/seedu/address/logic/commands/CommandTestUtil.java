@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,11 +61,17 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_ZULU = "09/04/2019";
     public static final String VALID_FLEXIDATE_ZULU = "this month 9";
     public static final String VALID_DESCRIPTION = "This project is targeted towards youth.";
+    public static final String VALID_START_AMY = "10/11/2011";
+    public static final String VALID_START_BOB = "11/12/2012";
+    public static final String VALID_START_ALICE = "10/02/2019";
+    public static final String VALID_START_ZULU = "09/10/2010";
 
     public static final String NAME_DESC_ALICE = " " + PREFIX_NAME + VALID_PROJECT_NAME_ALICE;
     public static final String NAME_DESC_ZULU = " " + PREFIX_NAME + VALID_PROJECT_NAME_ZULU;
     public static final String CLIENT_DESC_ALICE = " " + PREFIX_CLIENT + VALID_CLIENT_ALICE;
     public static final String CLIENT_DESC_ZULU = " " + PREFIX_CLIENT + VALID_CLIENT_ZULU;
+    public static final String START_DESC_ALICE = " " + PREFIX_START_DATE + VALID_START_ALICE;
+    public static final String START_DESC_ZULU = " " + PREFIX_START_DATE + VALID_START_ZULU;
     public static final String DEADLINE_DESC_ALICE = " " + PREFIX_DEADLINE + VALID_DEADLINE_ALICE;
     public static final String DEADLINE_DESC_ZULU = " " + PREFIX_DEADLINE + VALID_DEADLINE_ZULU;
     public static final String FLEXI_DEADLINE_DESC_ZULU = " " + PREFIX_DEADLINE + VALID_FLEXIDATE_ZULU;
@@ -91,6 +98,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_PROJECT_NAME_DESC = " " + PREFIX_NAME + "Alice##"; // '#' not allowed in names
     public static final String INVALID_CLIENT_DESC = " " + PREFIX_CLIENT + "Apollo#&"; // '#' not allowed in client
+    public static final String INVALID_START_DESC = " " + PREFIX_START_DATE + "12/222/2123"; //Format DD/MM/YYYY
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "222/11/2019"; // Format: DD/MM/YYYY
     public static final String INVALID_FLEXI_DATE_DESC = " " + PREFIX_DEADLINE + "after month 3";
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "";

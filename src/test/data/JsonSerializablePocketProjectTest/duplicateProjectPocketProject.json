@@ -45,7 +45,7 @@
   } ], "projects" : [
   {"projectName" :  "Project Alice",
     "client" :  "Dehui",
-    "deadline" :  "11/02/2019", "completionDate" : "null",
+    "startDate": "10/10/2010","deadline" :  "11/02/2019", "completionDate" : "null",
     "description" : "An application for Alice",
     "milestones" :  [
       {"milestone" : "The project starts",
@@ -72,7 +72,7 @@
   },
   {"projectName" :  "Project Alice",
     "client" :  "Dehui",
-    "deadline" :  "11/02/2019", "completionDate" : "null",
+    "startDate": "10/10/2010","deadline" :  "11/02/2019", "completionDate" : "null",
     "description" : "An application for Alice",
     "milestones" :  [
       {"milestone" : "The project starts",
@@ -99,7 +99,7 @@
   },
   {"projectName" :  "Project Benson",
     "client" :  "Jeff",
-    "deadline" :  "23/01/2011", "completionDate" : "null",
+    "startDate": "11/10/2010","deadline" :  "23/01/2011", "completionDate" : "null",
     "description" : "An application for Benson",
     "milestones" :  [
       {"milestone" : "The project starts",
@@ -125,7 +125,7 @@
   },
   {"projectName" :  "Project Carl",
     "client" :  "Darryl",
-    "deadline" :  "12/12/2012", "completionDate" : "null",
+    "startDate": "12/10/2010","deadline" :  "12/12/2012", "completionDate" : "null",
     "description" : "An application for Carl",
     "milestones" :  [],
     "employees" :  [{
@@ -145,7 +145,7 @@
   },
   {"projectName" :  "Project Daniel",
     "client" :  "Shune",
-    "deadline" :  "21/12/2012", "completionDate" : "null",
+    "startDate": "13/10/2010","deadline" :  "21/12/2012", "completionDate" : "null",
     "description" : "An application for Daniel",
     "milestones" :  [],
     "employees" :  [{
@@ -165,7 +165,7 @@
   },
   {"projectName" :  "Project Elle",
     "client" :  "Jothi",
-    "deadline" :  "22/03/2019", "completionDate" : "null",
+    "startDate": "14/10/2010","deadline" :  "22/03/2019", "completionDate" : "null",
     "description" : "An application for Elle",
     "milestones" :  [],
     "employees" : [{
@@ -185,7 +185,7 @@
   },
   {"projectName" :  "Project Fiona",
     "client" :  "SOC",
-    "deadline" :  "01/01/2020", "completionDate" : "null",
+    "startDate": "15/10/2010","deadline" :  "01/01/2020", "completionDate" : "null",
     "description" : "An application for Fiona",
     "milestones" :  [],
     "employees" :  [{
@@ -205,7 +205,7 @@
   },
   {"projectName" :  "Project George",
     "client" :  "FASS",
-    "deadline" :  "11/02/2021", "completionDate" : "null",
+    "startDate": "16/10/2010","deadline" :  "11/02/2021", "completionDate" : "null",
     "description" : "An application for George",
     "milestones" :  [],
     "employees" :  [{

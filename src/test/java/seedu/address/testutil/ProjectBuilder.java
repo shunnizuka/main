@@ -20,12 +20,14 @@ import seedu.address.model.util.PocketProjectDate;
 public class ProjectBuilder {
 
     public static final String DEFAULT_PROJECT_NAME = "Apollo";
+    public static final String DEFAULT_START_DATE = "22/01/2019";
     public static final String DEFAULT_DEADLINE = "03/03/2019";
     public static final String DEFAULT_CLIENT = "NUS";
     public static final String DEFAULT_DESCRIPTION = "build an application that manages projects";
 
 
     private ProjectName projectName;
+    private PocketProjectDate startDate;
     private PocketProjectDate deadline;
     private Client client;
     private Description description;
@@ -35,6 +37,7 @@ public class ProjectBuilder {
 
     public ProjectBuilder() {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
+        startDate = new PocketProjectDate(DEFAULT_START_DATE);
         deadline = new PocketProjectDate(DEFAULT_DEADLINE);
         client = new Client(DEFAULT_CLIENT);
         description = new Description((DEFAULT_DESCRIPTION));
@@ -48,6 +51,7 @@ public class ProjectBuilder {
      */
     public ProjectBuilder(Project projectToCopy) {
         projectName = projectToCopy.getProjectName();
+        startDate = projectToCopy.getStartDate();
         deadline = projectToCopy.getDeadline();
         client = projectToCopy.getClient();
         description = projectToCopy.getDescription();
@@ -73,6 +77,13 @@ public class ProjectBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code StartDate} of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withStartDate(String startDate) {
+        this.startDate = new PocketProjectDate(startDate);
+        return this;
+    }
 
     /**
      * Sets the {@code Deadline} of the {@code Project} that we are building.
@@ -124,7 +135,7 @@ public class ProjectBuilder {
      * Build the components into a {@code Project}
      */
     public Project build() {
-        return new Project(projectName, client, deadline, milestones, description, employees,
+        return new Project(projectName, client, startDate, deadline, milestones, description, employees,
                 userStories);
     }
 }
