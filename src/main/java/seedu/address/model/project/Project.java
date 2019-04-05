@@ -15,27 +15,6 @@ import seedu.address.model.util.PocketProjectDate;
  */
 public class Project {
 
-    public static final Comparator<String> DATE_STRING_COMPARATOR = new Comparator<String>() {
-        @Override
-        public int compare(String s1, String s2) {
-            int dd1 = Integer.parseInt(s1.substring(0, 2));
-            int mm1 = Integer.parseInt(s1.substring(3, 5));
-            int yy1 = Integer.parseInt(s1.substring(6, 10));
-            int dd2 = Integer.parseInt(s2.substring(0, 2));
-            int mm2 = Integer.parseInt(s2.substring(3, 5));
-            int yy2 = Integer.parseInt(s2.substring(6, 10));
-            if (yy1 != yy2) {
-                return yy1 - yy2;
-            } else if (mm1 != mm2) {
-                return mm1 - mm2;
-            } else {
-                return dd1 - dd2;
-            }
-        }
-    };
-
-    public static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
-
     private final ProjectName projectName;
     private final UniqueMilestoneList milestones;
     private final Client client;

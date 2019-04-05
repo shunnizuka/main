@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Milestone achieved in the project timeline.
@@ -62,7 +63,7 @@ public class Milestone {
      */
     public static boolean isValidMilestoneDate(String date) {
 
-        DateFormat format = Project.DATE_FORMAT;
+        DateFormat format = PocketProjectDate.SIMPLE_DATE_FORMAT;
         format.setLenient(false);
         try {
             format.parse(date);

@@ -106,7 +106,7 @@ public class StatsUtil {
         Comparator<? super Project> comparator = new Comparator<Project>() {
             @Override
             public int compare(Project o1, Project o2) {
-                return Project.DATE_STRING_COMPARATOR.compare(o1.getDeadline().date,
+                return PocketProjectDate.DATE_STRING_COMPARATOR.compare(o1.getDeadline().date,
                         o2.getDeadline().date);
             }
         };
