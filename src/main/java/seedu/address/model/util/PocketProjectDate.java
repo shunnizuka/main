@@ -28,6 +28,9 @@ public class PocketProjectDate extends CalendarDate {
     public static final String FLEXI_DATE_MESSAGE_CONSTRAINTS = "Flexible date inputs only allow choosing between "
         + "this/next/last week or month. They keyword week/month has to be included";
 
+    public static final String START_END_DATE_CONSTRAINTS = "The provided start date of the project has to be earlier "
+        + "than the proposed deadline. Projects with same start date and deadlines will not be accepted";
+
     /**
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -81,6 +84,9 @@ public class PocketProjectDate extends CalendarDate {
     private static final int START_YEAR_FIELD = 6;
     private static final int END_YEAR_FIELD = 10;
 
+    private static final int DATE_IS_EARLIER = -1;
+    private static final int DATE_IS_LATER = 1;
+    private static final int DATE_IS_SAME = 0;
 
     private static final int LAST = -1;
     private static final int LENGTH_OF_WEEK = 7;
@@ -336,6 +342,18 @@ public class PocketProjectDate extends CalendarDate {
         sb.append(year);
 
         return sb.toString().trim();
+    }
+
+    public static boolean isEarlierThan(PocketProjectDate start, PocketProjectDate end) {
+
+        int result = DATE_STRING_COMPARATOR.compare(start.date, end.date);
+        if (result >= DATE_IS_LATER) {
+            return false;
+        } else if (result <= DATE_IS_EARLIER) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

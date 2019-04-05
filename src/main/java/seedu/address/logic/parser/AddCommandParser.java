@@ -43,11 +43,6 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static final Pattern ADD_COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
 
     /**
-     * Used as a project alias
-     */
-    private static final char PROJECT_ALIAS = 'p';
-
-    /**
      * Parses the given {@code String} of arguments in the context of the AddEmployeeCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
@@ -83,7 +78,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             return new AddEmployeeCommand(employee);
 
-        } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD) || keyword.equals(PROJECT_ALIAS)) {
+        } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD)) {
             ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_START_DATE, PREFIX_DEADLINE);
 
@@ -97,6 +92,10 @@ public class AddCommandParser implements Parser<AddCommand> {
             Client client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get());
             PocketProjectDate startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             PocketProjectDate deadline = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE).get());
+
+            if(!startDate.isEarlierThan(startDate, deadline)) {
+                throw new ParseException(String.format(PocketProjectDate.START_END_DATE_CONSTRAINTS));
+            }
 
             Project project = new Project(projectName, client, startDate, deadline);
 
