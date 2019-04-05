@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.project.exceptions.DuplicateMilestoneException;
 import seedu.address.model.project.exceptions.MilestoneNotFoundException;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * A list of Milestones that enforces uniqueness between its elements and does not allow nulls.
@@ -51,7 +52,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
         Comparator<? super Milestone> comparator = new Comparator<Milestone>() {
             @Override
             public int compare(Milestone m1, Milestone m2) {
-                return Project.DATE_STRING_COMPARATOR.compare(m1.date, m2.date);
+                return PocketProjectDate.DATE_STRING_COMPARATOR.compare(m1.date, m2.date);
             }
         };
         internalList.sort(comparator);
