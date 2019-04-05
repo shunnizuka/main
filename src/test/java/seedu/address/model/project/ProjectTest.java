@@ -23,6 +23,7 @@ public class ProjectTest {
     public ExpectedException thrown = ExpectedException.none();
 
     //TODO: Make it throw unsupported operation exception
+
     /*
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -30,6 +31,7 @@ public class ProjectTest {
         thrown.expect(UnsupportedOperationException.class);
     }
     */
+
     @Test
     public void addMilestone() {
         //milestone is properly added

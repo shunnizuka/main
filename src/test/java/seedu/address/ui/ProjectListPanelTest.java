@@ -79,8 +79,9 @@ public class ProjectListPanelTest extends GuiUnitTest {
         for (int i = 0; i < projectCount; i++) {
             ProjectName name = new ProjectName(i + "a");
             Client client = new Client("a");
+            PocketProjectDate startDate = new PocketProjectDate("10/10/2010");
             PocketProjectDate deadline = new PocketProjectDate("12/12/2012");
-            Project project = new Project(name, client, deadline);
+            Project project = new Project(name, client, startDate, deadline);
             backingList.add(project);
         }
         return backingList;
