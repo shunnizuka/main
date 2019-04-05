@@ -15,7 +15,6 @@ import guitests.guihandles.ProjectListPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.PocketProject;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
