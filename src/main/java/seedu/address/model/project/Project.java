@@ -1,8 +1,5 @@
 package seedu.address.model.project;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
