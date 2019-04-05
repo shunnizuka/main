@@ -96,7 +96,8 @@ public class EditProjectInfoCommand extends EditProjectCommand {
         Description updatedDescription = editProjectDescriptor.getDescription().orElse(projectToEdit.getDescription());
         Client updatedClient = editProjectDescriptor.getClient().orElse(projectToEdit.getClient());
 
-        return projectToEdit.editProject(updatedName, updatedClient, projectToEdit.getStartDate(),updatedDeadline, updatedDescription);
+        return projectToEdit.editProject(updatedName, updatedClient, projectToEdit.getStartDate(), updatedDeadline,
+             updatedDescription);
     }
 
     @Override

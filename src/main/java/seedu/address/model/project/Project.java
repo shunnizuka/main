@@ -109,7 +109,9 @@ public class Project {
     public Client getClient() {
         return client;
     }
-    public PocketProjectDate getStartDate() {return startDate;}
+    public PocketProjectDate getStartDate() {
+        return startDate;
+    }
     public PocketProjectDate getDeadline() {
         return deadline;
     }
