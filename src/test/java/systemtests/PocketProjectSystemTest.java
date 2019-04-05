@@ -251,6 +251,16 @@ public abstract class PocketProjectSystemTest {
     }
 
     /**
+     * Asserts that the browser's url is changed to display the details of the project in the project list panel at
+     * {@code expectedSelectedCardIndex}, and only the card at {@code expectedSelectedCardIndex} is selected.
+     */
+    protected void assertSelectedProjectCardChanged(Index expectedSelectedCardIndex) {
+        getProjectListPanel().navigateToCard(getProjectListPanel().getSelectedCardIndex());
+        String selectedCardName = getProjectListPanel().getHandleToSelectedCard().getProjectName();
+        assertEquals(expectedSelectedCardIndex.getZeroBased(), getProjectListPanel().getSelectedCardIndex());
+    }
+
+    /**
      * Asserts that the browser's url and the selected card in the employee list panel remain unchanged.
      * @see EmployeeListPanelHandle#isSelectedEmployeeCardChanged()
      */
