@@ -135,4 +135,11 @@ public class UserStory {
                 && UserStoryFunction.isValidUserStoryFunction(story.function.getFunction())
                 && UserStoryStatus.isValidStoryStatus(story.status.getStatus());
     }
+
+    /**
+     * Updates the status of the user story to the new status
+     */
+    public void updateStatus(UserStoryStatus newStatus) {
+        this.status = newStatus;
+    }
 }
