@@ -484,8 +484,11 @@ important and 1 being the least.
 
 `STORY`: A valid user story must be in the following format - as a ... i want to ... so that ...
 
+IMPORTANT: Note that
+
 image:ug-exclamation.png[width="50"]
-Note that `as a`, `i want to` and `so that` are keywords which are required in a valid user story.
+Note that `as a`, `i want to` and `so that` are keywords which help us to segment your user story into the respective categories: user, function and reason.
+Hence these keywords cannot be used more than once.
 
 Examples:
 
