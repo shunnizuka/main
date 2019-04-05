@@ -35,7 +35,8 @@ public class EditProjectInfoCommand extends EditProjectCommand {
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_DEADLINE + "11/12/2019] "
         + "[" + PREFIX_CLIENT + "John] "
-        + "[" + PREFIX_DESCRIPTION + "An application to manage projects] ";
+        + "[" + PREFIX_DESCRIPTION + "An application to manage projects] "
+        + "Please note that project start date cannot be edited.";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Project edited successfully!";
     public static final String MESSAGE_NOT_EDITED = "Project is not edited";

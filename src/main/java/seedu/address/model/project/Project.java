@@ -15,6 +15,7 @@ public class Project {
     private final ProjectName projectName;
     private final UniqueMilestoneList milestones;
     private final Client client;
+    private final PocketProjectDate startDate;
     private final PocketProjectDate deadline;
     private final UniqueEmployeeList employees;
     private final SortedUserStoryList userStories;
@@ -24,55 +25,58 @@ public class Project {
     /**
      * Constructor for each Project Object.
      */
-    public Project (ProjectName pn, Client c, PocketProjectDate d) {
-        this(pn, c, d, new UniqueMilestoneList(), new Description(), new UniqueEmployeeList(),
+    public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end) {
+        this(pn, c, start, end, new UniqueMilestoneList(), new Description(), new UniqueEmployeeList(),
                 new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying milestones too. (not used)
      */
-    public Project (ProjectName pn, Client c, PocketProjectDate d, UniqueMilestoneList m) {
-        this(pn, c, d, m, new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
+    public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m) {
+        this(pn, c, start, end, m, new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying description and milestone too. (not used)
      */
-    public Project (ProjectName pn, Client c, PocketProjectDate d, UniqueMilestoneList m, Description desc) {
-        this(pn, c, d, m, desc, new UniqueEmployeeList(), new SortedUserStoryList());
+    public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
+         Description desc) {
+        this(pn, c, start, end, m, desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying description. (not used)
      */
-    public Project (ProjectName pn, Client c, PocketProjectDate d, Description desc) {
-        this(pn, c, d, new UniqueMilestoneList(), desc, new UniqueEmployeeList(), new SortedUserStoryList());
+    public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, Description desc) {
+        this(pn, c, start, end, new UniqueMilestoneList(), desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying employees in the project. (not used)
      */
-    public Project(ProjectName pn, Client c, PocketProjectDate d, Description desc, UniqueEmployeeList emp) {
-        this(pn, c, d, new UniqueMilestoneList(), desc, emp, new SortedUserStoryList());
+    public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, Description desc,
+         UniqueEmployeeList emp) {
+        this(pn, c, start, end, new UniqueMilestoneList(), desc, emp, new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying all fields except userstories. (not used)
      */
-    public Project(ProjectName pn, Client c, PocketProjectDate d, UniqueMilestoneList m, Description desc,
-                   UniqueEmployeeList emp) {
-        this(pn, c, d, m, desc, emp, new SortedUserStoryList());
+    public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
+         Description desc, UniqueEmployeeList emp) {
+        this(pn, c, start, end, m, desc, emp, new SortedUserStoryList());
     }
 
     /**
      * Constructor specifying all fields except completion date.
      */
-    public Project(ProjectName pn, Client c, PocketProjectDate d, UniqueMilestoneList m, Description desc,
-        UniqueEmployeeList emp, SortedUserStoryList stories) {
+    public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
+         Description desc, UniqueEmployeeList emp, SortedUserStoryList stories) {
         this.projectName = pn;
         this.client = c;
-        this.deadline = d;
+        this.startDate = start;
+        this.deadline = end;
         this.description = desc;
         this.employees = emp;
         this.milestones = m;
@@ -82,11 +86,12 @@ public class Project {
     /**
      * Constructor specifying all fields.
      */
-    public Project(ProjectName pn, Client c, PocketProjectDate d, UniqueMilestoneList m, Description desc,
-        UniqueEmployeeList emp, SortedUserStoryList stories, PocketProjectDate comp) {
+    public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
+         Description desc, UniqueEmployeeList emp, SortedUserStoryList stories, PocketProjectDate comp) {
         this.projectName = pn;
         this.client = c;
-        this.deadline = d;
+        this.startDate = start;
+        this.deadline = end;
         this.description = desc;
         this.employees = emp;
         this.milestones = m;
@@ -104,6 +109,7 @@ public class Project {
     public Client getClient() {
         return client;
     }
+    public PocketProjectDate getStartDate() {return startDate;}
     public PocketProjectDate getDeadline() {
         return deadline;
     }
@@ -123,7 +129,7 @@ public class Project {
      * Returns a clone of this Project object.
      */
     public Project clone() {
-        return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
+        return new Project(this.projectName.clone(), this.client.clone(), this.startDate.clone(), this.deadline.clone(),
                 this.milestones.clone(), this.description.clone(), this.employees.clone(), userStories.clone());
     }
 
@@ -153,6 +159,12 @@ public class Project {
         milestones.add(milestone);
     }
 
+    /**
+     * Sets the the start date.
+     */
+    public void setStartDate(PocketProjectDate startDate) {
+        this.completionDate = startDate;
+    }
     /**
      * Completes the project, specifying the completion date.
      */
@@ -203,11 +215,11 @@ public class Project {
     }
 
     /**
-     * Edits the details of the project specifically projectName, client, deadline and description
+     * Edits the details of the project specifically projectName, client, start date, deadline and description
      */
-    public Project editProject(ProjectName projectName, Client client, PocketProjectDate deadline,
-        Description description) {
-        return new Project(projectName, client, deadline, this.milestones, description, this.employees,
+    public Project editProject(ProjectName projectName, Client client, PocketProjectDate startDate,
+        PocketProjectDate deadline, Description description) {
+        return new Project(projectName, client, startDate, deadline, this.milestones, description, this.employees,
             this.userStories);
     }
 

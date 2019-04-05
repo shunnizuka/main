@@ -20,7 +20,7 @@ public class AddEmployeeCommand extends AddCommand {
     public static final String ADD_EMPLOYEE_KEYWORD = "employee";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " employee"
-            + ": Adds an employee to the pocket project. "
+            + ": Adds an employee to the application. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

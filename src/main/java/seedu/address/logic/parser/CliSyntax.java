@@ -23,6 +23,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MILESTONE = new Prefix("m/");
     public static final Prefix PREFIX_MILESTONE_KEYWORD = new Prefix("milestone");
     public static final Prefix PREFIX_INFO_KEYWORD = new Prefix("info");
+    public static final Prefix PREFIX_START_DATE = new Prefix("s/");
 
     /* User story prefixes */
     public static final Prefix PREFIX_USER = new Prefix(PREAMBLE_USER);
