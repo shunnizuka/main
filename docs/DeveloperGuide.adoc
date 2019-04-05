@@ -559,9 +559,10 @@ which will store the relevant user stories as a `SortedUserStoryList`.
 
 Currently, the user stories feature supports the following commands:
 
-* `addto PROJECT_NAME userstory [story]` -- Adds the `story` to the project indicated by the `PROJECT_NAME`.
+* `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY` -- Adds the `story` to the project indicated by the `PROJECT_NAME`.
 * `removefrom PROJECT_NAME userstory INDEX` -- Removes the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `PROJECT_NAME`.
-* `edit project PROJECT_NAME userstory INDEX [story]` -- Edits the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `PROJECT_NAME`.
+* `edit project PROJECT_NAME userstory INDEX STORY` -- Edits the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJECT_NAME`.
+* `update PROJECT_NAME userstory INDEX STATUS -- Updates the status of the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJECT_NAME`.
 
 In addition, the `SortedUserStoryList` maintains a sorted order of user stories according to descending importance level of the user story, followed by ascending lexicographical order of the `UserStoryUser` name.
 
