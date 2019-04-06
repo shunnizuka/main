@@ -4,8 +4,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE_HEY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_ZULU;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_CARL;
 import static seedu.address.testutil.TypicalUserStories.USER_STORY_TYPICAL_MANAGER;
@@ -21,16 +28,6 @@ import seedu.address.testutil.ProjectBuilder;
 public class ProjectTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    //TODO: Make it throw unsupported operation exception
-
-    /*
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Project project = new ProjectBuilder().build();
-        thrown.expect(UnsupportedOperationException.class);
-    }
-    */
 
     @Test
     public void addMilestone() {
@@ -60,7 +57,15 @@ public class ProjectTest {
         // null -> returns false
         assertFalse(PROJECT_ALICE.isSameProject(null));
 
-        //TODO: Fill up more test cases to compare project equality
+        // different name -> returns false
+        Project editedProject = new ProjectBuilder(PROJECT_ALICE).withProjectName(VALID_NAME_BOB)
+            .withClient(VALID_CLIENT_ZULU).withStartDate(VALID_START_ZULU).withDeadline(VALID_DEADLINE_ZULU).build();
+        assertFalse(PROJECT_ALICE.isSameProject(editedProject));
+
+        //same name -> returns true
+        editedProject = new ProjectBuilder(PROJECT_ALICE).withProjectName(VALID_PROJECT_NAME_ALICE_HEY)
+            .withClient(VALID_CLIENT_ZULU).withStartDate(VALID_START_ZULU).withDeadline(VALID_DEADLINE_ZULU).build();
+        assertTrue(PROJECT_ALICE.isSameProject(editedProject));
     }
 
     @Test
