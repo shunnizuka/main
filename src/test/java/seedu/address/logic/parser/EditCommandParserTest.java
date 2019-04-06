@@ -210,7 +210,7 @@ public class EditCommandParserTest {
             PocketProjectDate.MESSAGE_CONSTRAINTS); //invalid deadline
         assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
                 + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_DESCRIPTION_DESC,
-            Description.MESSAGE_CONSTRAINT); //invalid description
+            Description.MESSAGE_CONSTRAINTS); //invalid description
     }
 
     @Test

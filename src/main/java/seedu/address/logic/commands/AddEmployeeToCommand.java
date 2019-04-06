@@ -27,7 +27,7 @@ public class AddEmployeeToCommand extends AddToCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " Apollo employee 1";
 
-    public static final String MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS = "Added Employee: %1$s from %2$s";
+    public static final String MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS = "Added Employee: %1$s to %2$s";
     public static final String MESSAGE_DUPLICATE_PROJ_EMPLOYEE = "This employee already exists in the PocketProject.";
 
     private final Index targetIndex;

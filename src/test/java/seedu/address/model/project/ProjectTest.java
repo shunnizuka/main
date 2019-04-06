@@ -21,6 +21,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.ProjectBuilder;
 
 public class ProjectTest {
@@ -31,18 +32,18 @@ public class ProjectTest {
     public void addMilestone() {
         //milestone is properly added
         Project p = PROJECT_CARL;
-        Milestone m1 = new Milestone("1", "11/11/2011");
+        Milestone m1 = new Milestone(new Description("1"), new PocketProjectDate("11/11/2011"));
         p.addMilestone(m1);
         assertTrue(p.getMilestones().equals(Arrays.asList(m1)));
 
         //milestone is sorted after being added
-        Milestone m2 = new Milestone("2", "09/11/2011");
+        Milestone m2 = new Milestone(new Description("2"), new PocketProjectDate("09/11/2011"));
         p.addMilestone(m2);
         assertTrue(p.getMilestones().equals(Arrays.asList(m2, m1)));
         assertFalse(p.getMilestones().equals(Arrays.asList(m1, m2)));
 
         //adding more
-        Milestone m3 = new Milestone("3", "10/11/2011");
+        Milestone m3 = new Milestone(new Description("3"), new PocketProjectDate("10/11/2011"));
         p.addMilestone(m3);
         assertTrue(p.getMilestones().equals(Arrays.asList(m2, m3, m1)));
     }

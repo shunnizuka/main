@@ -72,7 +72,7 @@ public class PocketProjectParserTest {
     }
 
     //TODO sdsdf
-    sdf
+
     @Test
     public void parseCommand_addTo() throws Exception {
         Employee employee = new EmployeeBuilder().build();

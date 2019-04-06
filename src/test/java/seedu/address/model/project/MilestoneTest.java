@@ -27,6 +27,8 @@ public class MilestoneTest {
     @Test
     public void isValidMilestone() {
 
+        // null fields
+        Assert.assertThrows(NullPointerException.class, () -> Milestone.isValidMilestone(null));
 
     }
 }

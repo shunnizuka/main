@@ -22,9 +22,9 @@ public class AddMilestoneToCommand extends AddToCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME milestone"
             + ": add the specified milestone to the list of milestones in project.\n"
-            + "Example: " + COMMAND_WORD + " Apollo milestone Finished UserGuide 23/04/2019";
+            + "Example: " + COMMAND_WORD + " Apollo milestone m/Finished UserGuide d/23/04/2019";
 
-    public static final String MESSAGE_ADD_MILESTONE_SUCCESS = "Added milestone: %1$s from %2$s";
+    public static final String MESSAGE_ADD_MILESTONE_SUCCESS = "Added milestone: %1$s to %2$s";
     public static final String MESSAGE_DUPLICATE_MILESTONE = "This milestone already exists in the PocketProject.";
 
     private final ProjectName targetProjectName;
