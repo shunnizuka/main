@@ -75,8 +75,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
             try {
 
                 String s = WHITESPACE_PREAMBLE + arguments; //add whitespace to allow tokenizer to detect regex.
-                 ArgumentMultimap argMultimap =
-                        ArgumentTokenizer.tokenize(s, PREFIX_MILESTONE, PREFIX_DATE);
+                ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(s, PREFIX_MILESTONE, PREFIX_DATE);
 
                 if (!arePrefixesPresent(argMultimap, PREFIX_MILESTONE, PREFIX_DATE)
                         || !argMultimap.getPreamble().isEmpty()) {

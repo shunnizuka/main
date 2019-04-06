@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
@@ -53,7 +52,7 @@ public class AddEmployeeToCommand extends AddToCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
 
-        if(targetProject.containsEmployee(employeeToAdd)) {
+        if (targetProject.containsEmployee(employeeToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
         }
 
