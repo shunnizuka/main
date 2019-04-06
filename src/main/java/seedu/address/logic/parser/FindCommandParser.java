@@ -61,7 +61,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (keyword.equals(FindAllCommand.FIND_ALL_KEYWORD)) {
             return new FindAllCommand(new ProjectContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (keyword.equals(FindDeadlineCommand.FIND_DEADLINE_KEYWORD)) {
-            PocketProjectDate inputDeadline = ParserUtil.parseDate(arguments); //to make sure the input is valid
+            //to make sure the input is valid and flexible date is converted to dd/mm/yyyy format
+            //TODO how to throw extra argument exception, should only accept one date as input, 
+            // currently will show invalid date
+            PocketProjectDate inputDeadline = ParserUtil.parseDate(arguments);
             return new FindDeadlineCommand(new ProjectContainsDeadlinePredicate(inputDeadline.date));
         } else {
             throw new ParseException(
