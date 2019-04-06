@@ -1414,11 +1414,9 @@ Deleting a project while all projects are listed
 
 === Indicating a project as completed
 
-.. Test case: `complete 1` where there this at least one project shown in the list of projects +
+.. Test case: `complete 1 11/11/2011` where there this at least one project shown in the list of projects +
    Expected: The first project in the list is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
-.. Test case: `complete Project Apollo` where there is a project named 'Project Apollo' in the app +
-   Expected: The project named 'Project Apollo' is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
-.. Test case: `complete x` where x is neither the index of a displayed project nor the name of an existing project +
+.. Test case: `complete x 11/11/2011` where x is not the index of a displayed project +
    Expected: Error detail shown. The Timestamp in the status bar is not updated.
 
 === Clearing all data from the app

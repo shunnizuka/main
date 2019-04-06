@@ -545,20 +545,6 @@ Examples:
 `removefrom Apollo userstory 1` +
 Removes the user story at the 1st position of the displayed list of user stories from Project Apollo.
 
-=== To indicate the project has been completed : `complete`
-
-Indicates that a project is completed on a certain date+
-Format: `complete PROJECT_NAME DATE`
-or `complete PROJECT_INDEX DATE`
-
-Examples:
-
-`complete Project Apollo 11/11/2011` +
-Project Apollo is indicated as completed on 11/11/2011.
-
-`complete 1 11/11/2011`
-The first project in the most recently display list of projects is completed on 11/11/2011.
-
 === Sort the projects by name or deadline : `sort` [coming in v2.0]
 
 Returns a sorted list of projects by the sort key value.
@@ -581,17 +567,14 @@ earliest deadline displayed at the top of the list.
 === To indicate the project has been completed : `complete`
 
 Indicates that a project is completed.
-Format: `complete PROJ_NAME` or `complete PROJECT_INDEX`
+Format: complete PROJECT_INDEX COMPLETION_DATE`
 
 Examples:
 
-* `complete Project Apollo` +
-Project Apollo has been indicated as completed and removed from the list of ongoing projects.
-
 * `list projects` +
 The list of ongoing projects are listed.
-`complete 1` +
-The first project in the shown list is indicated as completed.
+`complete 1 11/11/2011` +
+The first project in the shown list is indicated as completed on 11/11/2011.
 
 === Display statistics regarding the projects : `stats`
 
@@ -723,11 +706,11 @@ e.g. `view employee 3` `view project Apollo`
 e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015` `addto Apollo projecttask n/Create feature XYZ m/1`
 * *Removefrom*: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` `removefrom PROJECT_NAME milestone MS_INDEX` +
 e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1`
-* *Complete* : `complete PROJECT_NAME` +
-e.g. `complete Apollo`
+* *Complete* : `complete PROJECT_INDEX COMPLETION_DATE` +
+e.g. `complete 1 11/11/2011`
 * *Sort*: `sort COMMAND_KEYWORD` +
 e.g. `sort name` `sort deadline`
-* *Stats*: `stat`
+* *Stats*: `stats`
 * *Exit*:  `exit`
 * *Help* : `help`
 
