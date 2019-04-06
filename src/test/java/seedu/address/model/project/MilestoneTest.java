@@ -10,8 +10,6 @@ import seedu.address.testutil.Assert;
 
 public class MilestoneTest {
 
-    //TODO: Add JUnit tests for constructor of milestones
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> new Milestone(null, null));
@@ -29,6 +27,8 @@ public class MilestoneTest {
 
         // null fields
         Assert.assertThrows(NullPointerException.class, () -> Milestone.isValidMilestone(null));
+
+
 
     }
 }

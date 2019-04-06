@@ -1,6 +1,7 @@
 package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Description of the project. A summary of what the project is about
@@ -24,6 +25,7 @@ public class Description {
      */
     public Description(String desc) {
         requireNonNull(desc);
+        checkArgument(isValidDescription(desc), MESSAGE_CONSTRAINTS);
         this.description = desc;
     }
 
