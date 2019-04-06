@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
 
 public class Description {
 
-    public static final String MESSAGE_CONSTRAINT = "Description should not be empty";
+    public static final String MESSAGE_CONSTRAINTS = "Description should not be empty or contain only spaces";
 
     public final String description;
 
@@ -20,7 +20,7 @@ public class Description {
     }
 
     /**
-     * Constructor for when adding description to the project
+     * Constructor for when adding description to the project or milestone
      */
     public Description(String desc) {
         requireNonNull(desc);
@@ -28,7 +28,7 @@ public class Description {
     }
 
     public static boolean isValidDescription(String description) {
-        return !description.isEmpty();
+        return !description.trim().isEmpty();
     }
     /**
      * Returns a clone of this Description object.

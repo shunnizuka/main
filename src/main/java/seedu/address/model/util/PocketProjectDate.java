@@ -16,7 +16,7 @@ import java.util.Comparator;
 
 public class PocketProjectDate extends CalendarDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD/MM/YYYY. User can also "
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format DD/MM/YYYY. User can also "
         + "choose to go for a flexible date input which supports the following: today, tomorrow, yesterday, "
         + "this/next/last month DAY_OF_MONTH & "
         + "this/next/last week DAY_OF_WEEK";
@@ -285,6 +285,10 @@ public class PocketProjectDate extends CalendarDate {
         }
         return input.matches(VALIDATION_REGEX);
     }
+
+    /**
+     *
+     */
 
     /**
      * Used to reformat string DD/MM/YYYY to LocalDateTime object.

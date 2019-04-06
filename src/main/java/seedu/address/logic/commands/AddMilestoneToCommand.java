@@ -6,10 +6,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.exceptions.DuplicateMilestoneException;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Adds a milestone to a project in the projects list.
@@ -29,9 +31,12 @@ public class AddMilestoneToCommand extends AddToCommand {
     private final Milestone milestoneToAdd;
 
     public AddMilestoneToCommand(ProjectName targetProject, Milestone milestone) {
+        requireNonNull(targetProject);
         requireNonNull(milestone);
+
         this.milestoneToAdd = milestone;
         this.targetProjectName = targetProject;
+
     }
 
 

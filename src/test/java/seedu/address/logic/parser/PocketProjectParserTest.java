@@ -71,6 +71,7 @@ public class PocketProjectParserTest {
         assertEquals(new AddProjectCommand(project), commandp);
     }
 
+    //TODO
     @Test
     public void parseCommand_addTo() throws Exception {
         Employee employee = new EmployeeBuilder().build();

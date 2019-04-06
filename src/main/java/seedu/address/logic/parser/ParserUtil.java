@@ -55,32 +55,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code event} is invalid.
      */
-    public static Milestone parseMilestone(String event) throws ParseException {
+    public static Description parseMilestoneDescription(String event) throws ParseException {
         requireNonNull(event);
-        String trimmedMilestone = event.trim();
-        int position = trimmedMilestone.lastIndexOf(" ");
-        if ((position > trimmedMilestone.length()) || (position < 0)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddMilestoneToCommand.MESSAGE_USAGE));
+        String trimmedMilestoneDesc = event.trim();
+
+        if (!Description.isValidDescription(trimmedMilestoneDesc)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        String milestoneDesc = trimmedMilestone.substring(0, position);
-        String dateInput = trimmedMilestone.substring(position + 1);
-        PocketProjectDate projectDate = parseDate(dateInput);
-        String tempDate = projectDate.toString();
-        String[] dateParts = tempDate.split("/");
-        String date = "";
-        if (dateParts[0].length() != 2) {
-            dateParts[0] = "0" + dateParts[0];
-        }
-        date += dateParts[0] + "/";
-        if (dateParts[1].length() != 2) {
-            dateParts[1] = "0" + dateParts[1];
-        }
-        date += dateParts[1] + "/" + dateParts[2];
-        if (!Milestone.isValidMilestone(milestoneDesc.trim(), date.trim())) {
-            throw new ParseException(Milestone.MESSAGE_CONSTRAINTS);
-        }
-        return new Milestone(milestoneDesc, date);
+        return new Description(trimmedMilestoneDesc);
     }
 
     /**
@@ -220,7 +202,7 @@ public class ParserUtil {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINT);
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
     }

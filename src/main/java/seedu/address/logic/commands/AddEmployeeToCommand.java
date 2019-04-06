@@ -48,17 +48,13 @@ public class AddEmployeeToCommand extends AddToCommand {
         }
         Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
 
-        Project targetProject = null;
-        List<Project> projectList = model.getProjectList();
-        for (Project p: projectList) {
-            if (p.hasProjectName(targetProjectName)) {
-                targetProject = p;
-            }
-        }
+        Project targetProject = model.getProjectWithName(targetProjectName);
         if (targetProject == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
-        ObservableList<Employee> targetList = targetProject.getEmployees();
+
+        //TODO change method to model
+        ObservableList<Employee> targetList = targetProject.getEmployees(); dsfsdf
         if (targetList.contains(employeeToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
         }
