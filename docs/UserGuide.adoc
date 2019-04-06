@@ -359,7 +359,7 @@ Examples:
 * `find deadline 15/04/2019` +
 Returns a list of projects which has 15/04/2019 as the deadline or has deadlines that are before 15/04/2019
 
-//only for find deadline 
+//only for find deadline
 image:ug-exclamation.png[width="50"]
 Only accept one argument. e.g. will not accept `find deadline 15/04/2019 20/12/2019`
 
