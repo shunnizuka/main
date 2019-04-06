@@ -332,12 +332,12 @@ public class PocketProjectDate extends CalendarDate {
     public static String generateStringDateFormat(int day, int month, int year) {
 
         StringBuilder sb = new StringBuilder();
-        if(day < FIRST_DOUBLE_DIGIT) {
+        if (day < FIRST_DOUBLE_DIGIT) {
             sb.append(PADDING);
         }
         sb.append(day);
         sb.append(DATE_IDENTIFIER);
-        if(month < FIRST_DOUBLE_DIGIT) {
+        if (month < FIRST_DOUBLE_DIGIT) {
             sb.append(PADDING);
         }
         sb.append(month);
@@ -346,6 +346,13 @@ public class PocketProjectDate extends CalendarDate {
 
         return sb.toString().trim();
     }
+
+    /**
+     * Checks if the start date is earlier than the end date
+     * @param start start date
+     * @param end end
+     * @return true if start date before end date and false otherwise
+     */
 
     public static boolean isEarlierThan(PocketProjectDate start, PocketProjectDate end) {
 

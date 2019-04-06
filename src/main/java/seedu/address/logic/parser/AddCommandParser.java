@@ -93,7 +93,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             PocketProjectDate startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             PocketProjectDate deadline = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE).get());
 
-            if(!startDate.isEarlierThan(startDate, deadline)) {
+            if (!startDate.isEarlierThan(startDate, deadline)) {
                 throw new ParseException(String.format(PocketProjectDate.START_END_DATE_CONSTRAINTS));
             }
 
