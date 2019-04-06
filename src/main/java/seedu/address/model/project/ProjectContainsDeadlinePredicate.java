@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
- * Tests that a {@code Project]'s {@code deadline} is same or earlier than the deadline keyword given.
+ * Tests that a {@code Project}'s {@code deadline} is same or earlier than the deadline keyword given.
  */
 public class ProjectContainsDeadlinePredicate implements Predicate<Project> {
 
