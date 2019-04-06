@@ -1,11 +1,13 @@
 package seedu.address.model.project;
 
-import seedu.address.testutil.Assert;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import seedu.address.testutil.Assert;
+
+
 
 public class DescriptionTest {
 

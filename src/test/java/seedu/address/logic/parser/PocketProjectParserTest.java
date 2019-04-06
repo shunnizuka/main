@@ -21,7 +21,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.AddEmployeeCommand;
-import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AddTaskToCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -44,13 +43,10 @@ import seedu.address.logic.commands.ViewProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
-import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
-import seedu.address.testutil.ProjectBuilder;
-import seedu.address.testutil.ProjectUtil;
 
 public class PocketProjectParserTest {
     @Rule
