@@ -208,7 +208,7 @@ public abstract class PocketProjectSystemTest {
 
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
-     * {@code expectedResultMessage}, the storage contains the same employee objects as {@code expectedModel}
+     * {@code expectedResultMessage}, the storage contains the same objects as {@code expectedModel}
      * and the employee list panel displays the employees in the model correctly.
      */
     protected void assertApplicationDisplaysExpected(String expectedCommandInput, String expectedResultMessage,
