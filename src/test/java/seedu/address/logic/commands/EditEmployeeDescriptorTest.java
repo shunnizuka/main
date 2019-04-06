@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 
 import org.junit.Test;
 
-import seedu.address.logic.commands.EditCommand.EditEmployeeDescriptor;
+import seedu.address.logic.commands.EditEmployeeCommand.EditEmployeeDescriptor;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 
 public class EditEmployeeDescriptorTest {

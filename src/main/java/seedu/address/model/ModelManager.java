@@ -25,6 +25,8 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
+import seedu.address.model.util.PocketProjectDate;
+import seedu.address.model.util.StatsUtil;
 
 /**
  * Represents the in-memory model of the pocket project data.
@@ -166,6 +168,10 @@ public class ModelManager implements Model {
         }
         return targetProject;
     }
+    @Override
+    public void completeProject(Project project, PocketProjectDate completionDate) {
+        versionedPocketProject.completeProject(project, completionDate);
+    }
 
     @Override
     public void removeEmployeeFrom(Project targetProject, Employee targetEmployee) {
@@ -198,17 +204,28 @@ public class ModelManager implements Model {
         }
         return list;
     }
+    @Override
+    public ObservableList<Employee> getEmployeeList() {
+        return versionedPocketProject.getEmployeeList();
+    }
 
     @Override
     public void addUserStoryTo(Project targetProject, UserStory targetUserStory) {
         versionedPocketProject.addUserStoryTo(targetProject, targetUserStory);
+    }
+    @Override
+    public String overallStats() {
+        return StatsUtil.overAllStatsString(getEmployeeList(), getProjectList(), getCompletedProjectList());
+    }
+    @Override
+    public String individualStats(Project project) {
+        return StatsUtil.individualStatsString(project);
     }
 
     @Override
     public void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task) {
         versionedPocketProject.addProjectTaskTo(targetProject, milestone, task);
     }
-
 
 
 
@@ -255,6 +272,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Project> getProjectList() {
         return versionedPocketProject.getProjectList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of completed {@code Project} backed by the internal list of
+     * {@code versionedPocketProject}
+     */
+    @Override
+    public ObservableList<Project> getCompletedProjectList() {
+        return versionedPocketProject.getCompletedProjectList();
     }
 
 
@@ -317,8 +343,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedEmployeeReplaced = change.wasReplaced()
-                    && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedEmployee.getValue());
+                && change.getAddedSize() == change.getRemovedSize()
+                && change.getRemoved().contains(selectedEmployee.getValue());
             if (wasSelectedEmployeeReplaced) {
                 // Update selectedEmployee to its new value.
                 int index = change.getRemoved().indexOf(selectedEmployee.getValue());
@@ -327,7 +353,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedEmployeeRemoved = change.getRemoved().stream()
-                    .anyMatch(removedEmployee -> selectedEmployee.getValue().equals(removedEmployee));
+                .anyMatch(removedEmployee -> selectedEmployee.getValue().equals(removedEmployee));
             if (wasSelectedEmployeeRemoved) {
                 // Select the employee that came before it in the list,
                 // or clear the selection if there is no such employee.
@@ -369,8 +395,8 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedProjectReplaced = change.wasReplaced()
-                    && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedProject.getValue());
+                && change.getAddedSize() == change.getRemovedSize()
+                && change.getRemoved().contains(selectedProject.getValue());
             if (wasSelectedProjectReplaced) {
                 // Update selectedProject to its new value.
                 int index = change.getRemoved().indexOf(selectedProject.getValue());
@@ -379,7 +405,7 @@ public class ModelManager implements Model {
             }
 
             boolean wasSelectedProjectRemoved = change.getRemoved().stream()
-                    .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
+                .anyMatch(removedProject -> selectedProject.getValue().isSameProject(removedProject));
             if (wasSelectedProjectRemoved) {
                 // Select the project that came before it in the list,
                 // or clear the selection if there is no such project.
@@ -405,9 +431,11 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return versionedPocketProject.equals(other.versionedPocketProject)
-                && userPrefs.equals(other.userPrefs)
-                && filteredEmployees.equals(other.filteredEmployees)
-                && Objects.equals(selectedEmployee.get(), other.selectedEmployee.get());
+            && userPrefs.equals(other.userPrefs)
+            && filteredEmployees.equals(other.filteredEmployees)
+            && filteredProjects.equals(other.filteredProjects)
+            && Objects.equals(selectedEmployee.get(), other.selectedEmployee.get())
+            && Objects.equals(selectedProject.get(), other.selectedProject.get());
     }
 
 }

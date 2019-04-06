@@ -32,6 +32,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddProjectCommandTest {
@@ -135,14 +136,31 @@ public class AddProjectCommandTest {
         public void setPocketProject(ReadOnlyPocketProject pocketProject) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public String individualStats(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public ObservableList<Project> getProjectList() {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public ObservableList<Project> getCompletedProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ObservableList<Employee> getEmployeeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public ReadOnlyPocketProject getPocketProject() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public String overallStats() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -189,7 +207,9 @@ public class AddProjectCommandTest {
         public void addProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
-
+        @Override
+        public void completeProject(Project project, PocketProjectDate completionDate) {
+            throw new AssertionError("This method should not be called."); }
         @Override
         public boolean hasProject(Project project) {
             throw new AssertionError("This method should not be called.");

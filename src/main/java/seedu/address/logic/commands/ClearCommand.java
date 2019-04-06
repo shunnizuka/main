@@ -20,6 +20,6 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setPocketProject(new PocketProject());
         model.commitPocketProject();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }

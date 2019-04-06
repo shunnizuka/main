@@ -55,9 +55,10 @@ symbols and terms used further on in the user guide.
 .  Ensure you have Java version `9` or later installed in your Computer.
 .  Download the latest `pocketproject.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Pocket Project.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+.  Double-click the file to start the app. The GUI should appear in a few seconds as shown below.
 +
-image::Ui.png[width="790"]
+.Pocket Project UI
+image::Startup_ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -70,6 +71,27 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
+
+=== Navigating the interface
+
+.Pocket Project UI with different components
+image::ui_annotated.png[]
+
+As shown above, there are 5 main components in Pocket Project interface:
+
+. Command Box: where you key in the command
+. Result Box: show the result of the command that is keyed in
+. Side tab Panel: display either project list or employee list
+. Prev/Next Button: to navigate through the project/employee details
+. Detail panel: display details of an employee/project
+
+There are several detail panels to display the details of the employees and the projects as shown below. You can toggle between these panel by using the Prev/Next Button.
+
+.Detail Panels of an employee [1] Summary: display name, skills, phone, email of the employee [2] Projects: the list of projects the employee is working on [3] Github: github page of the employee
+image::employee_detail_panel.png[]
+
+.Detail Panels of a project [1] Summary: display project name, client and deadline of the project [2] User Stories for the project [3] List of employees working on the project
+image::project_detail_panel.png[]
 
 === Symbols
 The following section details and previews a few legends that will
@@ -197,10 +219,10 @@ Format: `delete project PROJECT_NAME` or `delete project PROJECT_INDEX`
 
 Examples:
 
-`delete project Apollo` +
+* `delete project Apollo` +
 Deletes project "Apollo" from project list.
 
-`delete project 2` +
+* `delete project 2` +
 Deletes the second project shown in the most recent displayed list of projects.
 
 image:ug-lightbulb.png[width="50"]
@@ -222,11 +244,13 @@ image:ug-lightbulb.png[width="50"]
 Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
 while keying in a command into the CLI.
 
-=== Edit an employee in the application : `edit`
+=== Edit an employee/project in the application : `edit`
+
+==== Edit an employee in the application: `edit employee`
 
 Edits an existing employee.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
+Format: `edit employee INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
 
 image:ug-notepadpencil.png[width="40"]
 Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
@@ -237,12 +261,13 @@ When editing skills, the existing skills of the person will be removed i.e addin
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
+* `edit employee 1 p/91234567 e/johndoe@example.com` +
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower s/Java` +
+* `edit employee 2 n/Betsy Crower s/Java` +
 Edits the name of the 2nd person to be `Betsy Crower` and sets Java as the only skill.
-* `edit 2 n/Betsy Crower s/C++ s/HTML` +
-Edits the name of the 2nd employee to be `Betsy Crower` and sets C++ and HTML as the skills.
+
+* `edit employee 2 n/Betsy Crower s/C s/HTML` +
+Edits the name of the 2nd employee to be `Betsy Crower` and sets C and HTML as the skills.
 
 image:ug-exclamation.png[width="50"]
 The index must be a *positive integer* and cannot be larger than the size of the list.
@@ -250,6 +275,27 @@ The index must be a *positive integer* and cannot be larger than the size of the
 image:ug-lightbulb.png[width="50"]
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
 
+==== Edits name/client/deadline/description of a project: `edit project info`
+
+Edits the existing project components such as project name, client, deadline, description of the project.
+
+Format: `edit project PROJECT_NAME info[n/name] [c/client] [d/deadline] [desc/description]`
+
+Examples:
+
+* `edit project Apollo info n/Gemini c/John d/12/09/2020 desc/An application for project management` +
+Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
+
+
+==== Edits milestone of a project: `edit project milestone` [coming in v2.0]
+
+Edits the existing milestone in the milestone list of a project.
+
+==== Edits UserStory of a project: `edit project userstory` [coming in v2.0]
+
+Edits the existing userstory in the userstory list of a project.
+
+//tag::find[]
 === Locating employees, projects or skills by name: `find`
 
 ==== Find employees in the application: `find employee`
@@ -324,9 +370,9 @@ For example, to delete Bernice Yu from the employee list, you can follow these s
 
 Step 1: `find employee Bernice` - to narrow down the list to all employees with name containing Bernice
 
-image::findEmployeeBernice.png[width="800"]
-
 Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
+
+//end::find[]
 
 === View the details of employees or projects : `view`
 
@@ -342,7 +388,7 @@ will also be loaded.
 
 Examples:
 
-`list employees` +
+* `list employees` +
 `view employee 3` +
 Displays details of the employee at index 3
 
@@ -353,7 +399,7 @@ Format: `view project PROJECT_NAME`
 
 Examples:
 
-`view project Apollo` +
+* `view project Apollo` +
 Displays details (client, deadline, employees, milestones) of project “Apollo”.
 
 image:ug-lightbulb.png[width="50"]
@@ -396,14 +442,38 @@ Date must be of the format DD/MM/YYYY
 
 Examples:
 
-`addto Apollo milestone Completed UI for program 23/11/2015` +
+* `addto Apollo milestone Completed UI for program 23/11/2015` +
 Milestone added to project "Apollo".
 
 image:ug-lightbulb.png[width="50"]
 Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
 while keying in a command into the CLI.
 
-==== Add a user story to a project `addto userstory`
+==== Add a task to a project milestone: `addto projecttask`
+
+Adds a task to a project milestone.
+
+Format: `addto PROJECT_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]`
+
+image:ug-notepadpencil.png[width="40"]
+Adds the project task to the milestone at the specified `MILESTONE_INDEX`.
+The index refers to the index number (one-based) shown in the displayed list of milestones.
+
+image:ug-exclamation.png[width="50"]
+The index must be a *positive integer* and cannot be larger than the size of the list.
+
+Example:
+
+* `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Adds to the milestone at index 1 in project with name "Apollo", a new project task called "Create feature XYZ".
+
+* `addto Apollo projecttask m/2 n/Modify feature XYZ` +
+   Adds to the milestone at index 2 in project with name "Apollo", a new project task called "Modify feature XYZ".
+
+image:ug-lightbulb.png[width="50"]
+There is no specific order for either the project task name or the milestone index so either way is acceptable.
+
+==== Add a user story to a project: `addto userstory`
 
 Adds a user story to a project.
 
@@ -419,9 +489,9 @@ Note that `as a`, `i want to` and `so that` are keywords which are required in a
 
 Examples:
 
-`addto Apollo userstory i/1 as a user i want to try out new things so that i can have fun`
+* `addto Apollo userstory i/1 as a user i want to try out new things so that i can have fun`
 
-`addto Apollo userstory as a lazy user i want to have shortcuts for my commands i/2`
+* `addto Apollo userstory as a lazy user i want to have shortcuts for my commands i/2`
 
 image:ug-lightbulb.png[width="50"]
 There is no specific order for either the user story or the importance level so either way is acceptable.
@@ -436,7 +506,7 @@ Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
 
 Examples:
 
-`view project Apollo` +
+* `view project Apollo` +
 `removefrom Apollo employee 3` +
 Removes the employee at 3rd position at displayed list of employees from Project Apollo.
 
@@ -448,7 +518,7 @@ Format: `removefrom PROJECT_NAME milestone MS_INDEX`
 
 Examples:
 
-`view project Apollo` +
+* `view project Apollo` +
 `removefrom Apollo milestone 1` +
 Removes the milestone at 1st position of displayed list of milestone from Project Apollo.
 
@@ -471,32 +541,23 @@ Format: `removefrom PROJ_NAME userstory INDEX`
 
 Examples:
 
-`view project Apollo` +
+* `view project Apollo` +
 `removefrom Apollo userstory 1` +
 Removes the user story at the 1st position of the displayed list of user stories from Project Apollo.
 
-=== Edits a project in the application: `editproject`
+=== To indicate the project has been completed : `complete`
 
-==== Edits name/client/deadline/description of a project: `editproject`
-
-Edits the existing project components such as project name, client, deadline, description of the project.
-
-Format: `editproject PROJECT_NAME [n/name] [c/client] [d/deadline] [desc/description]`
+Indicates that a project is completed on a certain date+
+Format: `complete PROJECT_NAME DATE`
+or `complete PROJECT_INDEX DATE`
 
 Examples:
 
-`editproject Apollo n/Gemini c/John d/12/09/2020 desc/An application for project management` +
-Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
+`complete Project Apollo 11/11/2011` +
+Project Apollo is indicated as completed on 11/11/2011.
 
-
-==== Edits milestone of a project: `editproject PROJECT_NAME milestone` [coming in v2.0]
-
-Edits the existing milestone in the milestone list of a project.
-
-==== Edits UserStory of a project: `editproject PROJECT_NAME userstory` [coming in v2.0]
-
-Edits the existing userstory in the userstory list of a project.
-
+`complete 1 11/11/2011`
+The first project in the most recently display list of projects is completed on 11/11/2011.
 
 === Sort the projects by name or deadline : `sort` [coming in v2.0]
 
@@ -510,10 +571,10 @@ Format: `sort KEY_VALUE`
 
 Examples:
 
-`sort name` +
+* `sort name` +
 List of project have been sorted by name.
 
-`sort deadline` +
+* `sort deadline` +
 List of projects have been sorted by deadline with the
 earliest deadline displayed at the top of the list.
 
@@ -524,25 +585,36 @@ Format: `complete PROJ_NAME` or `complete PROJECT_INDEX`
 
 Examples:
 
-`complete Project Apollo` +
+* `complete Project Apollo` +
 Project Apollo has been indicated as completed and removed from the list of ongoing projects.
 
-`list projects` +
+* `list projects` +
 The list of ongoing projects are listed.
 `complete 1` +
 The first project in the shown list is indicated as completed.
 
-=== Display statistics regarding all the projects : `stats`
+=== Display statistics regarding the projects : `stats`
 
-Returns the number of completed projects and number of currently ongoing projects.
+Returns an overview of all ongoing projects/the progress of an individual project.
 
-Format: `stats`
-
+Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX`
++
+add something here.
 Examples:
 
 `stats` +
-Total number of ongoing projects: 4 +
-Total number of completed projects: 9
+Number of ongoing projects: 4 +
+Number of completed projects: 0 +
+The project with the earliest date is Project ABC at 10/11/2011 +
+The project with the least number of employees is Project ABC with 0 employees +
+The project with the most number of employees is Apollo with 4 employees +
+The employee with the least number of projects is Daniel with 0 projects +
+The employee with the most number of projects is Bob with 3 projects +
+
+
+`stats 1` +
+fill in stuff (not implemeted yet).
+
 
 // tag::undoredo[]
 === Undoing previous command : `undo`
@@ -570,6 +642,7 @@ The `undo` command fails as there are no undoable commands executed previously.
 `clear` +
 `undo` (reverses the `clear` command) +
 `undo` (reverses the `delete project 1` command) +
+
 
 === Redoing the previously undone command : `redo`
 
@@ -646,8 +719,8 @@ e.g. `edit 2 n/James Lee e/jameslee@example.com`
 e.g. `find employee Jake` `find project Apollo` `find skill Java` `find all software`
 * *View* : `view employee EMPLOYEE_INDEX` , `view project PROJECT_NAME` +
 e.g. `view employee 3` `view project Apollo`
-* *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE` +
-e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015`
+* *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE`, `addto PROJECT_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]` +
+e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015` `addto Apollo projecttask n/Create feature XYZ m/1`
 * *Removefrom*: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` `removefrom PROJECT_NAME milestone MS_INDEX` +
 e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1`
 * *Complete* : `complete PROJECT_NAME` +

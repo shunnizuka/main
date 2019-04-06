@@ -30,6 +30,9 @@ public class EmployeeSummary extends UiPart<Region> {
     private Label phone;
 
     @FXML
+    private Label github;
+
+    @FXML
     private FlowPane skills;
 
 
@@ -39,6 +42,7 @@ public class EmployeeSummary extends UiPart<Region> {
         name.setText(employee.getName().fullName);
         phone.setText(employee.getPhone().value);
         email.setText(employee.getEmail().value);
+        github.setText(employee.getGithub().value);
         employee.getSkills().forEach(skill -> {
             Label label = new Label(skill.skillName);
             label.getStyleClass().add(SideTabPanel.getSkillLabelColor(skill.skillName));

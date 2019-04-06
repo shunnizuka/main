@@ -30,7 +30,9 @@ public class ProjectListPanel extends UiPart<Region> {
         projectListView.setCellFactory(listView -> new ProjectListPanel.ProjectListViewCell());
         projectListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             logger.info("Selection in project list panel changed to : '" + newValue + "'");
-            onSelectedProjectChange.accept(newValue);
+            if (newValue != null) {
+                onSelectedProjectChange.accept(newValue);
+            }
         });
         selectedProject.addListener((observable, oldValue, newValue) -> {
             logger.info("Selected project changed to: " + newValue);

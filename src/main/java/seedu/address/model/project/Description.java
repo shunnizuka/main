@@ -8,6 +8,8 @@ import static java.util.Objects.requireNonNull;
 
 public class Description {
 
+    public static final String MESSAGE_CONSTRAINT = "Description should not be empty";
+
     public final String description;
 
     /**
@@ -25,6 +27,9 @@ public class Description {
         this.description = desc;
     }
 
+    public static boolean isValidDescription(String description) {
+        return !description.isEmpty();
+    }
     /**
      * Returns a clone of this Description object.
      */

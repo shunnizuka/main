@@ -92,6 +92,6 @@ public class GuiTestAssert {
     public static void assertCardDisplaysProject(Project expectedProject, ProjectCardHandle actualCard) {
         assertEquals(expectedProject.getProjectName().projectName, actualCard.getProjectName());
         assertEquals(expectedProject.getClient().client, actualCard.getClient());
-        assertEquals(expectedProject.getDeadline().deadline, actualCard.getDeadline());
+        assertEquals(expectedProject.getDeadline().date, actualCard.getDeadline());
     }
 }

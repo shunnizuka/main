@@ -86,5 +86,4 @@ public class AddMilestoneToCommandTest {
             .PROJECT_ALICE.getProjectName(), new Milestone("Completed all", "22/05/2019"));
         assertFalse(addMilestoneToCommandOne.equals(addMilestoneToCommandFour));
     }
-
 }

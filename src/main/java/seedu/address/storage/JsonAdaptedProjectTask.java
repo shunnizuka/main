@@ -32,8 +32,8 @@ class JsonAdaptedProjectTask {
      * Converts a given {@code ProjectTask} into this class for Jackson use.
      */
     public JsonAdaptedProjectTask(ProjectTask source) {
-        this.taskName = source.getTaskName().getTaskName();
-        this.taskStatus = source.getTaskStatus().getTaskStatusString();
+        this.taskName = source.getTaskNameString();
+        this.taskStatus = source.getTaskStatusString();
     }
 
     /**

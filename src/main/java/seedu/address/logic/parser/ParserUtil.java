@@ -16,7 +16,7 @@ import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTaskName;
@@ -25,7 +25,8 @@ import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
-import seedu.address.model.util.CalendarDatesInMonth;
+import seedu.address.model.util.CalendarDate;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -63,7 +64,19 @@ public class ParserUtil {
                 AddMilestoneToCommand.MESSAGE_USAGE));
         }
         String milestoneDesc = trimmedMilestone.substring(0, position);
-        String date = trimmedMilestone.substring(position + 1);
+        String dateInput = trimmedMilestone.substring(position + 1);
+        PocketProjectDate projectDate = parseDate(dateInput);
+        String tempDate = projectDate.toString();
+        String[] dateParts = tempDate.split("/");
+        String date = "";
+        if (dateParts[0].length() != 2) {
+            dateParts[0] = "0" + dateParts[0];
+        }
+        date += dateParts[0] + "/";
+        if (dateParts[1].length() != 2) {
+            dateParts[1] = "0" + dateParts[1];
+        }
+        date += dateParts[1] + "/" + dateParts[2];
         if (!Milestone.isValidMilestone(milestoneDesc.trim(), date.trim())) {
             throw new ParseException(Milestone.MESSAGE_CONSTRAINTS);
         }
@@ -173,26 +186,43 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Parses a {@code String date} into a {@code PocketProjectDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deadline} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Deadline parseDeadline(String deadline) throws ParseException {
+    public static PocketProjectDate parseDate(String date) throws ParseException {
 
-        requireNonNull(deadline);
-        String trimmedDate = deadline.trim();
-        String formattedDate = FlexibleDateParser.parseFlexibleDate(trimmedDate).trim();
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        String formattedDate = PocketProjectDateParser.parsePocketProjectDate(trimmedDate).trim();
 
-        if (!Deadline.isValidDate(formattedDate)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!PocketProjectDate.isValidDate(formattedDate)) {
+            throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
         }
 
-        if (!CalendarDatesInMonth.isValidDayInMonth(formattedDate)) {
-            throw new ParseException(CalendarDatesInMonth.DAY_MONTH_CONSTRAINTS);
+        if (!CalendarDate.isValidDayInMonth(formattedDate)) {
+            throw new ParseException(CalendarDate.DAY_MONTH_CONSTRAINTS);
         }
 
-        return new Deadline(formattedDate);
+        return new PocketProjectDate(formattedDate);
+
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINT);
+        }
+        return new Description(trimmedDescription);
     }
 
     /**
@@ -267,7 +297,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static ProjectTaskName parseTaskName(String name) throws ParseException {
+    public static ProjectTaskName parseProjectTaskName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ProjectTaskName.isValidTaskName(trimmedName)) {

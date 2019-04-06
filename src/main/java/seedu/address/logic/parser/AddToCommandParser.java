@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.AddCommandParser.arePrefixesPresent;
+import static seedu.address.logic.parser.ArgumentMultimap.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FUNCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORTANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MILESTONE;
@@ -117,7 +117,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AddTaskToCommand.MESSAGE_USAGE));
                 }
-                ProjectTaskName name = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
+                ProjectTaskName name = ParserUtil.parseProjectTaskName(argMultimap.getValue(PREFIX_NAME).get());
                 ProjectTask newTask = new ProjectTask(name);
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MILESTONE).get());
                 return new AddTaskToCommand(projectName, newTask, index);

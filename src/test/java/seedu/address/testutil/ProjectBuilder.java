@@ -1,18 +1,18 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
+import seedu.address.model.project.UniqueMilestoneList;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * A utility class to help with building Project objects.
@@ -20,26 +20,29 @@ import seedu.address.model.project.UserStory;
 public class ProjectBuilder {
 
     public static final String DEFAULT_PROJECT_NAME = "Apollo";
+    public static final String DEFAULT_START_DATE = "22/01/2019";
     public static final String DEFAULT_DEADLINE = "03/03/2019";
     public static final String DEFAULT_CLIENT = "NUS";
     public static final String DEFAULT_DESCRIPTION = "build an application that manages projects";
 
 
     private ProjectName projectName;
-    private Deadline deadline;
+    private PocketProjectDate startDate;
+    private PocketProjectDate deadline;
     private Client client;
     private Description description;
     private UniqueEmployeeList employees;
-    private List<Milestone> milestones;
+    private UniqueMilestoneList milestones;
     private SortedUserStoryList userStories;
 
     public ProjectBuilder() {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
-        deadline = new Deadline(DEFAULT_DEADLINE);
+        startDate = new PocketProjectDate(DEFAULT_START_DATE);
+        deadline = new PocketProjectDate(DEFAULT_DEADLINE);
         client = new Client(DEFAULT_CLIENT);
         description = new Description((DEFAULT_DESCRIPTION));
         employees = new UniqueEmployeeList();
-        milestones = new ArrayList<>();
+        milestones = new UniqueMilestoneList();
         userStories = new SortedUserStoryList();
     }
 
@@ -48,11 +51,12 @@ public class ProjectBuilder {
      */
     public ProjectBuilder(Project projectToCopy) {
         projectName = projectToCopy.getProjectName();
+        startDate = projectToCopy.getStartDate();
         deadline = projectToCopy.getDeadline();
         client = projectToCopy.getClient();
         description = projectToCopy.getDescription();
         employees = new UniqueEmployeeList();
-        this.milestones = new ArrayList<>();
+        this.milestones = new UniqueMilestoneList();
         this.userStories = new SortedUserStoryList();
         for (Employee e: projectToCopy.getEmployees()) {
             employees.add(e);
@@ -73,12 +77,19 @@ public class ProjectBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code StartDate} of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withStartDate(String startDate) {
+        this.startDate = new PocketProjectDate(startDate);
+        return this;
+    }
 
     /**
      * Sets the {@code Deadline} of the {@code Project} that we are building.
      */
     public ProjectBuilder withDeadline(String deadline) {
-        this.deadline = new Deadline(deadline);
+        this.deadline = new PocketProjectDate(deadline);
         return this;
     }
 
@@ -101,7 +112,7 @@ public class ProjectBuilder {
      * Sets the milestones of the {@code Project} that we are building.
      */
     public ProjectBuilder withMilestones(List<Milestone> milestones) {
-        this.milestones.addAll(milestones);
+        this.milestones.setMilestones(milestones);
         return this;
     }
     /**
@@ -124,7 +135,7 @@ public class ProjectBuilder {
      * Build the components into a {@code Project}
      */
     public Project build() {
-        return new Project(projectName, client, deadline, milestones, description, employees,
+        return new Project(projectName, client, startDate, deadline, milestones, description, employees,
                 userStories);
     }
 }

@@ -10,13 +10,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
+import seedu.address.model.project.UniqueMilestoneList;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -27,7 +28,9 @@ class JsonAdaptedProject {
 
     private final String projectName;
     private final String client;
+    private final String startDate;
     private final String deadline;
+    private final String completionDate;
     private final String description;
     private final List<JsonAdaptedMilestone> milestones = new ArrayList<>();
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
@@ -38,13 +41,16 @@ class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName, @JsonProperty("client") String client,
-                              @JsonProperty("deadline") String deadline,
+                              @JsonProperty("startDate") String startDate,
+                              @JsonProperty("date") String deadline,
                               @JsonProperty("description") String description,
                               @JsonProperty("milestones") List<JsonAdaptedMilestone> milestones,
                               @JsonProperty("employees") List<JsonAdaptedEmployee> employees,
-                              @JsonProperty("userStories") List<JsonAdaptedUserStory> userStories) {
+                              @JsonProperty("userStories") List<JsonAdaptedUserStory> userStories,
+                              @JsonProperty("completionDate") String completionDate) {
         this.projectName = projectName;
         this.client = client;
+        this.startDate = startDate;
         this.deadline = deadline;
         this.description = description;
         if (milestones != null) {
@@ -52,6 +58,7 @@ class JsonAdaptedProject {
         }
         this.employees.addAll(employees);
         this.userStories.addAll(userStories);
+        this.completionDate = completionDate;
     }
 
     /**
@@ -60,7 +67,8 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(Project source) {
         projectName = source.getProjectName().projectName;
         client = source.getClient().client;
-        deadline = source.getDeadline().deadline;
+        startDate = source.getStartDate().date;
+        deadline = source.getDeadline().date;
         description = source.getDescription().description;
         milestones.addAll(source.getMilestones().stream()
             .map(JsonAdaptedMilestone::new)
@@ -71,6 +79,11 @@ class JsonAdaptedProject {
         userStories.addAll(source.getUserStories().stream()
                 .map(JsonAdaptedUserStory::new)
                 .collect(Collectors.toList()));
+        if (source.getCompletionDate() == null) {
+            completionDate = "null";
+        } else {
+            completionDate = source.getCompletionDate().date;
+        }
     }
 
     /**
@@ -79,11 +92,15 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
-        final List<Milestone> modelMilestones = new ArrayList<>();
+        final UniqueMilestoneList modelMilestones = new UniqueMilestoneList();
         final UniqueEmployeeList modelEmployees = new UniqueEmployeeList();
         final SortedUserStoryList modelUserStories = new SortedUserStoryList();
 
         for (JsonAdaptedMilestone milestone : milestones) {
+            if (!Milestone.isValidMilestone(milestone.toModelType())) {
+                throw new IllegalValueException((String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Milestone.class.getSimpleName())));
+            }
             modelMilestones.add(milestone.toModelType());
         }
         for (JsonAdaptedEmployee employee: employees) {
@@ -95,6 +112,18 @@ class JsonAdaptedProject {
                         UserStory.class.getSimpleName()));
             }
             modelUserStories.add(userStory.toModelType());
+        }
+        PocketProjectDate modelCompletionDate = null;
+        if (completionDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PocketProjectDate.class.getSimpleName()));
+        }
+        if (!"null".equals(completionDate)) {
+            if (!PocketProjectDate.isValidDate(completionDate)) {
+                throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
+            } else {
+                modelCompletionDate = new PocketProjectDate(completionDate);
+            }
         }
 
         if (projectName == null) {
@@ -120,17 +149,27 @@ class JsonAdaptedProject {
         }
         final Description modelDescription = new Description(description);
 
+        if (startDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                PocketProjectDate.class.getSimpleName()));
+        }
+        if (!PocketProjectDate.isValidDate(startDate)) {
+            throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
+        }
+        final PocketProjectDate modelStartDate = new PocketProjectDate(startDate);
+
+
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Deadline.class.getSimpleName()));
+                PocketProjectDate.class.getSimpleName()));
         }
-        if (!Deadline.isValidDate(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!PocketProjectDate.isValidDate(deadline)) {
+            throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
         }
-        final Deadline modelDeadline = new Deadline(deadline);
+        final PocketProjectDate modelDeadline = new PocketProjectDate(deadline);
 
-        return new Project(modelProjectName, modelClient, modelDeadline, modelMilestones, modelDescription,
-                modelEmployees, modelUserStories);
+        return new Project(modelProjectName, modelClient, modelStartDate, modelDeadline, modelMilestones,
+             modelDescription, modelEmployees, modelUserStories, modelCompletionDate);
     }
 
 }
