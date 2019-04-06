@@ -41,7 +41,9 @@ public class CalendarDateTest {
         assertFalse(CalendarDate.isValidDayInMonth("this", 31));
         assertFalse(CalendarDate.isValidDayInMonth("this", 0));
         assertFalse(CalendarDate.isValidDayInMonth("next", 0));
+        assertFalse(CalendarDate.isValidDayInMonth("next", 32));
         assertFalse(CalendarDate.isValidDayInMonth("last", 32));
+        assertFalse(CalendarDate.isValidDayInMonth("last", -1));
 
         //testing valid days in month using alternate methods
         assertTrue(CalendarDate.isValidDayInMonth("this", 30));
