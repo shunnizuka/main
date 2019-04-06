@@ -17,6 +17,12 @@ import seedu.address.testutil.Assert;
 public class PocketProjectDateTest {
 
     @Test
+    public void constructor_invalidPocketProjectDate_throwsIllegalArgumentException() {
+        String invalidDate = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new PocketProjectDate(invalidDate));
+    }
+
+    @Test
     public void isEarlierThan() {
 
         //date field earlier

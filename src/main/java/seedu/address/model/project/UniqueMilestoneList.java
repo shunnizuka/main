@@ -52,7 +52,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
         Comparator<? super Milestone> comparator = new Comparator<Milestone>() {
             @Override
             public int compare(Milestone m1, Milestone m2) {
-                return PocketProjectDate.DATE_STRING_COMPARATOR.compare(m1.date, m2.date);
+                return PocketProjectDate.DATE_STRING_COMPARATOR.compare(m1.getDate().date, m2.getDate().date);
             }
         };
         internalList.sort(comparator);

@@ -36,6 +36,15 @@ public class Milestone {
     }
 
     /**
+     * Check if the milestone has the valid format by checking the components.
+     * @return true if valid milestone and false otherwise.
+     */
+    public static boolean isValidMilestone(Milestone milestone) {
+        return Description.isValidDescription(milestone.getMilestoneDescription().description)
+                && PocketProjectDate.isValidDate(milestone.getDate().date);
+    }
+
+    /**
      * Adds the given project task to this milestone.
      */
     public void addTask(ProjectTask task) {
@@ -50,7 +59,7 @@ public class Milestone {
         return new Milestone(this.milestone, this.date, this.projectTasks.clone());
     }
 
-    public Description getMilestone() {
+    public Description getMilestoneDescription() {
         return milestone;
     }
 
@@ -71,7 +80,7 @@ public class Milestone {
             return true;
         }
         return otherMilestone != null
-            && otherMilestone.getMilestone().equals(getMilestone())
+            && otherMilestone.getMilestoneDescription().equals(getMilestoneDescription())
             && otherMilestone.getDate().equals(getDate());
     }
 
