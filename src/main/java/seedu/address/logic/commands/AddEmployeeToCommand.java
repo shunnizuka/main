@@ -53,11 +53,10 @@ public class AddEmployeeToCommand extends AddToCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
 
-        //TODO change method to model
-        ObservableList<Employee> targetList = targetProject.getEmployees(); dsfsdf
-        if (targetList.contains(employeeToAdd)) {
+        if(targetProject.containsEmployee(employeeToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
         }
+
         model.addEmployeeTo(targetProject, employeeToAdd);
         model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS, employeeToAdd,
