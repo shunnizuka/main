@@ -30,6 +30,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_FUNCTION = new Prefix(PREAMBLE_FUNCTION);
     public static final Prefix PREFIX_REASON = new Prefix(PREAMBLE_REASON);
     public static final Prefix PREFIX_IMPORTANCE = new Prefix("i/");
+    public static final Prefix PREFIX_STATUS = new Prefix("s/");
 
     /* Flexible date definitions */
     public static final Prefix PREFIX_CURRENT = new Prefix("this");
