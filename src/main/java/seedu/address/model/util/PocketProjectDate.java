@@ -347,7 +347,7 @@ public class PocketProjectDate extends CalendarDate {
     }
 
     public boolean isSameOrEarlierDate(String date) {
-        return DATE_STRING_COMPARATOR.compare(this.date, date) >= 0;
+        return DATE_STRING_COMPARATOR.compare(this.date, date) <= 0;
     }
 
     /**
