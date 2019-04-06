@@ -16,7 +16,8 @@ public class FindDeadlineCommand extends FindCommand {
 
     public static final String FIND_DEADLINE_KEYWORD = "deadline";
 
-    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + " " + FIND_DEADLINE_KEYWORD + " [ARGUMENTS]";
+    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + " " + FIND_DEADLINE_KEYWORD + " [ARGUMENT]\n"
+        + "Find all projects with deadline before or same as the argument";
 
     private final ProjectContainsDeadlinePredicate predicate;
 
