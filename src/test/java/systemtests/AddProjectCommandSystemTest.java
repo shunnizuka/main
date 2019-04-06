@@ -1,11 +1,30 @@
 package systemtests;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.CLIENT_DESC_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLIENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.START_DESC_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_ZULU;
+import static seedu.address.testutil.TypicalProjects.KEYWORD_MATCHING_YANKEE;
+import static seedu.address.testutil.TypicalProjects.PROJECT_VICTOR;
 import static seedu.address.testutil.TypicalProjects.PROJECT_WHISKEY;
+import static seedu.address.testutil.TypicalProjects.PROJECT_XAVIER;
 import static seedu.address.testutil.TypicalProjects.PROJECT_YANKEE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
 import org.junit.Test;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -14,6 +33,7 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.util.PocketProjectDate;
+import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
 
 public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
@@ -55,19 +75,83 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(toAdd);
 
         /* -------------------------- Perform add operation on the shown filtered list ------------------------------ */
-
-        //TODO find then add -> find may be buggy?
         /* Case: filters the project list before adding -> added */
         assertCommandSuccess(PROJECT_YANKEE);
         assertCommandSuccess(PROJECT_WHISKEY);
 
-        //showProjectsWithName(KEYWORD_MATCHING_YANKEE);
-        //assertCommandSuccess(PROJECT_XAVIER);
+        showProjectsWithName(KEYWORD_MATCHING_YANKEE);
+        assertCommandSuccess(PROJECT_XAVIER);
 
         /* ------------------------ Perform add operation while a project card is selected ------------------------- */
 
         /* Case: selects first card in the project list, add a project -> added, card selection remains unchanged */
-        //TODO view then add
+        viewProject(Index.fromOneBased(1));
+        assertCommandSuccess(PROJECT_VICTOR);
+
+        /* ----------------------------------- Perform invalid add project operations ------------------------------ */
+
+         /* Case: add a duplicate employee -> rejected */
+        command = ProjectUtil.getAddProjectCommand(PROJECT_VICTOR);
+        assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+
+               /* Case: add a duplicate project except with different client -> rejected */
+        toAdd = new ProjectBuilder(PROJECT_VICTOR).withClient(VALID_CLIENT_AMY).build();
+        command = ProjectUtil.getAddProjectCommand(toAdd);
+        assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+
+        /* Case: add a duplicate project except with different start date -> rejected */
+        toAdd = new ProjectBuilder(PROJECT_VICTOR).withStartDate(VALID_START_ZULU).build();
+        command = ProjectUtil.getAddProjectCommand(toAdd);
+        assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+
+        /* Case: add a duplicate project except with different deadline -> rejected */
+        toAdd = new ProjectBuilder(PROJECT_VICTOR).withDeadline(VALID_DEADLINE_ZULU).build();
+        command = ProjectUtil.getAddProjectCommand(toAdd);
+        assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+
+        /* Case: missing name -> rejected */
+        command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + CLIENT_DESC_ZULU
+            + START_DESC_ZULU + DEADLINE_DESC_ZULU;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
+
+        /* Case: missing client -> rejected */
+        command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ZULU
+            + START_DESC_ZULU + DEADLINE_DESC_ZULU;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
+
+        /* Case: missing start date -> rejected */
+        command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ZULU
+            + CLIENT_DESC_ZULU + DEADLINE_DESC_ZULU;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
+
+        /* Case: missing deadline -> rejected */
+         command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ZULU
+            + CLIENT_DESC_ZULU + START_DESC_ZULU;
+        assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
+
+        /* Case: invalid keyword -> rejected */
+        command = "adds " + ProjectUtil.getProjectDetails(toAdd);
+        assertCommandFailure(command, Messages.MESSAGE_UNKNOWN_COMMAND);
+
+        /* Case: invalid name -> rejected */
+        command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + INVALID_NAME_DESC
+            + CLIENT_DESC_ZULU + START_DESC_ZULU + DEADLINE_DESC_ZULU;
+        assertCommandFailure(command, ProjectName.MESSAGE_CONSTRAINTS);
+
+        /* Case: invalid client -> rejected */
+        command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ZULU
+            + INVALID_CLIENT_DESC + START_DESC_ZULU + DEADLINE_DESC_ZULU;
+        assertCommandFailure(command, Client.MESSAGE_CONSTRAINTS);
+
+        /* Case: invalid start date -> rejected */
+        command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ZULU
+            + CLIENT_DESC_ZULU + INVALID_START_DESC + DEADLINE_DESC_ZULU;
+        assertCommandFailure(command, PocketProjectDate.MESSAGE_CONSTRAINTS);
+
+        /* Case: invalid deadline -> rejected */
+        command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ZULU
+            + CLIENT_DESC_ZULU + START_DESC_ZULU + INVALID_DEADLINE_DESC;
+        assertCommandFailure(command, PocketProjectDate.MESSAGE_CONSTRAINTS);
     }
 
     /**
