@@ -39,6 +39,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FLEXIDATE_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LATE_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LATE_DAY_ZULU_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LATE_MONTH_ZULU_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LATE_YEAR_ZULU_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE;
@@ -216,6 +220,32 @@ public class AddCommandParserTest {
             + START_DESC_ZULU + CLIENT_DESC_ZULU + FLEXI_DEADLINE_DESC_ZULU
             + NAME_DESC_ZULU, new AddProjectCommand(expectedProject));
     }
+
+    @Test
+    public void parse_startAndEndDate_failure() {
+        Project expectedProject = PROJECT_ZULU;
+
+        //start date day field later than deadline day field
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
+            + NAME_DESC_ZULU + CLIENT_DESC_ZULU + VALID_LATE_DAY_ZULU_DESC + DEADLINE_DESC_ZULU,
+                 PocketProjectDate.START_END_DATE_CONSTRAINTS);
+
+        //start date month field later than deadline month field
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
+            + NAME_DESC_ZULU + CLIENT_DESC_ZULU + VALID_LATE_MONTH_ZULU_DESC + DEADLINE_DESC_ZULU,
+                 PocketProjectDate.START_END_DATE_CONSTRAINTS);
+
+        //start date year field later than deadline year field
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
+            + NAME_DESC_ZULU + CLIENT_DESC_ZULU + VALID_LATE_YEAR_ZULU_DESC + DEADLINE_DESC_ZULU,
+                 PocketProjectDate.START_END_DATE_CONSTRAINTS);
+
+        //start date later than deadline all fields
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + AddProjectCommand.ADD_PROJECT_KEYWORD
+            + NAME_DESC_ZULU + CLIENT_DESC_ZULU + VALID_LATE_DATE_DESC + DEADLINE_DESC_ZULU,
+                 PocketProjectDate.START_END_DATE_CONSTRAINTS);
+    }
+
 
     @Test
     public void parse_compulsoryFieldMissingProject_failure() {
