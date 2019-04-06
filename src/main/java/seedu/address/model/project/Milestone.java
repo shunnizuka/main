@@ -1,10 +1,6 @@
 package seedu.address.model.project;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.text.DateFormat;
-import java.text.ParseException;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.util.PocketProjectDate;
