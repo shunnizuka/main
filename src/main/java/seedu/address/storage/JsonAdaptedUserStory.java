@@ -9,6 +9,7 @@ import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryUser;
+import seedu.address.model.project.UserStoryStatus;
 
 /**
  * Jackson-friendly version of {@link UserStory}.
@@ -21,17 +22,20 @@ class JsonAdaptedUserStory {
     private final String user;
     private final String function;
     private final String reason;
+    private final String status;
 
     /**
      * Constructs a {@code JsonAdaptedUserStory} with the given user story details.
      */
     @JsonCreator
     public JsonAdaptedUserStory(@JsonProperty("importance") String importance, @JsonProperty("user") String user,
-                                @JsonProperty("function") String function, @JsonProperty("reason") String reason) {
+                                @JsonProperty("function") String function, @JsonProperty("reason") String reason,
+                                @JsonProperty("status") String status) {
         this.importance = importance;
         this.user = user;
         this.function = function;
         this.reason = reason;
+        this.status = status;
     }
 
     /**
@@ -42,6 +46,7 @@ class JsonAdaptedUserStory {
         this.user = source.getUserStoryUser();
         this.function = source.getUserStoryFunction();
         this.reason = source.getUserStoryReason();
+        this.status = source.getUserStoryStatus();
     }
 
     /**
@@ -84,8 +89,14 @@ class JsonAdaptedUserStory {
         }
         final UserStoryReason modelUserStoryReason = new UserStoryReason(reason);
 
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    UserStoryStatus.class.getSimpleName()));
+        }
+        final UserStoryStatus modelUserStoryStatus = new UserStoryStatus(status);
+
         return new UserStory(modelUserStoryImportance, modelUserStoryUser, modelUserStoryFunction,
-                modelUserStoryReason);
+                modelUserStoryReason, modelUserStoryStatus);
     }
 
 }
