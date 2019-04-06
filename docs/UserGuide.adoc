@@ -370,7 +370,7 @@ For example, to delete Bernice Yu from the employee list, you can follow these s
 
 Step 1: `find employee Bernice` - to narrow down the list to all employees with name containing Bernice
 
-Step 2: `delete 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
+Step 2: `delete employee 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
 
 //end::find[]
 
