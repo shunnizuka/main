@@ -11,8 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.START_DESC_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_ZULU;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ZULU;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_ZULU;
 import static seedu.address.testutil.TypicalProjects.KEYWORD_MATCHING_YANKEE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_VICTOR;
@@ -90,11 +88,11 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
         /* ----------------------------------- Perform invalid add project operations ------------------------------ */
 
-         /* Case: add a duplicate employee -> rejected */
+        /* Case: add a duplicate employee -> rejected */
         command = ProjectUtil.getAddProjectCommand(PROJECT_VICTOR);
         assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
 
-               /* Case: add a duplicate project except with different client -> rejected */
+        /* Case: add a duplicate project except with different client -> rejected */
         toAdd = new ProjectBuilder(PROJECT_VICTOR).withClient(VALID_CLIENT_AMY).build();
         command = ProjectUtil.getAddProjectCommand(toAdd);
         assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
@@ -125,7 +123,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
 
         /* Case: missing deadline -> rejected */
-         command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ZULU
+        command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + NAME_DESC_ZULU
             + CLIENT_DESC_ZULU + START_DESC_ZULU;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
 
