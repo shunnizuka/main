@@ -23,11 +23,11 @@ public class UpdateUserStoryCommand extends UpdateCommand {
 
     public static final String UPDATE_STORY_KEYWORD = "userstory";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME userstory INDEX STATUS"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME userstory INDEX complete/ongoing/on hold"
             + ": updates the status of the specified user story in the specified project.\n"
             + "Example: " + COMMAND_WORD + " Apollo userstory 1 ongoing";
 
-    public static final String MESSAGE_UPDATE_STORY_SUCCESS = "Updated user story %2$d status: %1$s";
+    public static final String MESSAGE_UPDATE_STORY_SUCCESS = "Updated user story!";
 
     private final Index targetIndex;
     private final ProjectName targetProjectName;
