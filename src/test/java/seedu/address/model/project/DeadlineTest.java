@@ -21,7 +21,7 @@ public class DeadlineTest {
         // null date
         Assert.assertThrows(NullPointerException.class, () -> PocketProjectDate.isValidDate(null));
 
-        // blank email
+        // blank entry
         assertFalse(PocketProjectDate.isValidDate("")); // empty string
         assertFalse(PocketProjectDate.isValidDate(" ")); // spaces only
 

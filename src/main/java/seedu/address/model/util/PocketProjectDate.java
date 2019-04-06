@@ -59,20 +59,21 @@ public class PocketProjectDate extends CalendarDate {
     public static final DateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
+     * Number of components in a date.
+     */
+    public static final int NUM_COMPONENTS = 4;
+
+    public static final int PADDING = 0;
+
+    /**
      * Target date format.
      */
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
 
     /**
      * Character used to identify dates in DD/MM/YYYY.
      */
     private static final String DATE_IDENTIFIER = "/";
-
-    /**
-     * Number of components in a date.
-     */
-    private static final int NUM_COMPONENTS = 4;
 
     /**
      * Index of dates used in comparator.
@@ -86,7 +87,7 @@ public class PocketProjectDate extends CalendarDate {
 
     private static final int DATE_IS_EARLIER = -1;
     private static final int DATE_IS_LATER = 1;
-    private static final int DATE_IS_SAME = 0;
+    private static final int FIRST_DOUBLE_DIGIT = 10;
 
     private static final int LAST = -1;
     private static final int LENGTH_OF_WEEK = 7;
@@ -291,7 +292,7 @@ public class PocketProjectDate extends CalendarDate {
      * @return the date as a LocalDateTime object.
      */
 
-    private LocalDateTime convertToLocalDateTimeFormat(String input) {
+    public static LocalDateTime convertToLocalDateTimeFormat(String input) {
 
         String[] date = input.split(DATE_IDENTIFIER);
 
@@ -299,11 +300,7 @@ public class PocketProjectDate extends CalendarDate {
         int monthField = Integer.parseInt(date[MONTH_FIELD].trim());
         int yearField = Integer.parseInt(date[YEAR_FIELD].trim());
 
-        LocalDateTime createDate = LocalDateTime.now();
-
-        createDate.withDayOfMonth(dayField);
-        createDate.withMonth(monthField);
-        createDate.withYear(yearField);
+        LocalDateTime createDate = LocalDateTime.of(yearField, monthField, dayField , PADDING, PADDING, PADDING);
 
         return createDate;
     }
@@ -335,8 +332,14 @@ public class PocketProjectDate extends CalendarDate {
     public static String generateStringDateFormat(int day, int month, int year) {
 
         StringBuilder sb = new StringBuilder();
+        if(day < FIRST_DOUBLE_DIGIT) {
+            sb.append(PADDING);
+        }
         sb.append(day);
         sb.append(DATE_IDENTIFIER);
+        if(month < FIRST_DOUBLE_DIGIT) {
+            sb.append(PADDING);
+        }
         sb.append(month);
         sb.append(DATE_IDENTIFIER);
         sb.append(year);
