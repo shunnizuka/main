@@ -564,7 +564,7 @@ earliest deadline displayed at the top of the list.
 
 Indicates that a project is completed.
 
-Format:  `complete PROJ_INDEX`
+Format:  `complete PROJ_INDEX COMPLETION_DATE`
 
 Examples:
 
