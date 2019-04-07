@@ -69,7 +69,7 @@ public class UpdateUserStoryCommand extends UpdateCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddTaskToCommand)) {
+        if (!(other instanceof UpdateUserStoryCommand)) {
             return false;
         }
 
