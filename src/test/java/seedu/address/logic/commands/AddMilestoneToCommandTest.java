@@ -12,9 +12,11 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalProjects;
 
@@ -31,7 +33,7 @@ public class AddMilestoneToCommandTest {
     @Test
     public void execute_validProjectNameValidIndex_success() {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        Milestone milestone = new Milestone("Completed UG", "05/05/2020");
+        Milestone milestone = new Milestone(new Description("Completed UG"), new PocketProjectDate("05/05/2020"));
         AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(targetProject.getProjectName(),
             milestone);
         String expectedMessage = String.format(AddMilestoneToCommand.MESSAGE_ADD_MILESTONE_SUCCESS,
@@ -47,7 +49,7 @@ public class AddMilestoneToCommandTest {
     @Test
     public void execute_invalidProjectName_throwsCommandException() {
         AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(new ProjectName("INVALID"), new
-            Milestone("Updated UG", "23/06/2019"));
+            Milestone(new Description("Updated UG"), new PocketProjectDate("23/06/2019")));
         assertCommandFailure(addMilestoneToCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECT_NAME);
     }
@@ -55,16 +57,19 @@ public class AddMilestoneToCommandTest {
     @Test
     public void equals() {
         AddMilestoneToCommand addMilestoneToCommandOne = new AddMilestoneToCommand(TypicalProjects
-            .PROJECT_ALICE.getProjectName(), new Milestone("Completed", "22/05/2019"));
+            .PROJECT_ALICE.getProjectName(), new Milestone(new Description("Completed"),
+                 new PocketProjectDate("22/05/2019")));
         AddMilestoneToCommand addMilestoneToCommandTwo = new AddMilestoneToCommand(TypicalProjects
-            .PROJECT_BENSON.getProjectName(), new Milestone("Completed", "30/11/2019"));
+            .PROJECT_BENSON.getProjectName(), new Milestone(new Description("Completed"),
+                 new PocketProjectDate("30/11/2019")));
 
         // same object -> returns true
         assertTrue(addMilestoneToCommandOne.equals(addMilestoneToCommandOne));
 
         // same values -> returns true
         AddMilestoneToCommand addMilestoneToCommandOneCopy = new AddMilestoneToCommand((TypicalProjects
-            .PROJECT_ALICE.getProjectName()), new Milestone("Completed", "22/05/2019"));
+            .PROJECT_ALICE.getProjectName()), new Milestone(new Description("Completed"),
+                 new PocketProjectDate("22/05/2019")));
         assertTrue(addMilestoneToCommandOne.equals(addMilestoneToCommandOneCopy));
 
         // different types -> returns false
@@ -78,12 +83,14 @@ public class AddMilestoneToCommandTest {
 
         // different dates -> returns false
         AddMilestoneToCommand addMilestoneToCommandThree = new AddMilestoneToCommand(TypicalProjects
-            .PROJECT_ALICE.getProjectName(), new Milestone("Completed", "23/05/2019"));
+            .PROJECT_ALICE.getProjectName(), new Milestone(new Description("Completed"),
+                 new PocketProjectDate("23/05/2019")));
         assertFalse(addMilestoneToCommandOne.equals(addMilestoneToCommandThree));
 
         //different description -> returns false
         AddMilestoneToCommand addMilestoneToCommandFour = new AddMilestoneToCommand(TypicalProjects
-            .PROJECT_ALICE.getProjectName(), new Milestone("Completed all", "22/05/2019"));
+            .PROJECT_ALICE.getProjectName(), new Milestone(new Description("Completed Everything"),
+                 new PocketProjectDate("22/05/2019")));
         assertFalse(addMilestoneToCommandOne.equals(addMilestoneToCommandFour));
     }
 }

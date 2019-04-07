@@ -31,6 +31,8 @@ public class ProjectCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label client;
+    //@FXML
+    //private Label startDate;
     @FXML
     private Label deadline;
 
@@ -41,6 +43,7 @@ public class ProjectCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(project.getProjectName().projectName);
         client.setText(project.getClient().client);
+        //startDate.setText(project.getStartDate().date);
         deadline.setText(project.getDeadline().date);
     }
 

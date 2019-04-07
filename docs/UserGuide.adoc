@@ -310,7 +310,7 @@ Examples:
 Returns `john` and `John Doe`
 * `find employee Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
-* `find Betsy Tim John` +
+* `find employee Betsy Tim John` +
 Returns any employee having names `Betsy`, `Tim`, or `John`
 
 ==== Find projects in the application: `find project`
@@ -334,8 +334,8 @@ Examples:
 * `find skill java` +
 Returns a list of employees who has java skill.
 
-* `find skill java C++`
-Returns a list of employees who have either java or C++ or both.
+* `find skill java C`
+Returns a list of employees who have either java or C or both.
 
 ==== Find projects with any keywords: `find all`
 
@@ -348,6 +348,25 @@ Examples:
 * `find all software food`
 Returns a list of projects which contains either software or food or both.
 
+==== Find projects with deadline: 'find deadline'
+
+Find projects which has deadline that are before or same as the input provided by the user.
+
+Format: `find deadline KEYWORD
+
+Examples:
+
+* `find deadline 15/04/2019` +
+Returns a list of projects which has 15/04/2019 as the deadline or has deadlines that are before 15/04/2019
+
+//only for find deadline
+image:ug-exclamation.png[width="50"]
+Only accept one argument. e.g. will not accept `find deadline 15/04/2019 20/12/2019`
+
+image:ug-notepadpencil.png[width="40"]
+Accepts both flexible date and calender date
+
+//for all the find commands
 image:ug-notepadpencil.png[width="40"]
 The search is case insensitive. e.g `hans` will match `Hans`
 
@@ -362,7 +381,7 @@ Only full words will be matched e.g. `Han` will not match `Hans`
 
 image:ug-lightbulb.png[width="50"]
 Users can simply use 'e' as an alias for 'employee', 'p' as an alias for 'project', 's' as an alias for 'skills'
-while keying in a command into the CLI.
+while keying in a command into the CLI. [coming soon]
 
 ==== Find Command Usage Scenario
 

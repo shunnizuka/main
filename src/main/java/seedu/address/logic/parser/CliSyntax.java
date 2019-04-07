@@ -18,6 +18,7 @@ public class CliSyntax {
 
     /* Project prefixes*/
     public static final Prefix PREFIX_CLIENT = new Prefix("c/");
+    public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_MILESTONE = new Prefix("m/");

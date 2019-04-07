@@ -38,7 +38,7 @@ public class ProjectMilestones extends UiPart<Region> {
     public void addMilestoneBranches(TreeItem<String> root) {
         int index = 1;
         for (Milestone m: milestones) {
-            String mInfo = index + ". " + m.getMilestone() + " (" + m.getDate() + ")";
+            String mInfo = index + ". " + m.getMilestoneDescription() + " (" + m.getDate() + ")";
             TreeItem<String> item = setTreeItem(mInfo, root);
             addTaskLeaves(item, m);
             index++;
