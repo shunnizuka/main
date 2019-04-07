@@ -269,11 +269,19 @@ public class Project {
 
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectName())
-            .append(" Client: ")
+            .append("\n")
+            .append(getDescription())
+            .append("\n")
+            .append("Client: ")
             .append(getClient())
-            .append(" Deadline: ")
+            .append("\n")
+            .append("Start date: ")
+            .append(getStartDate())
+            .append("\n")
+            .append("Deadline: ")
             .append(getDeadline())
-            .append(" " + getDescription()).append("\nemployees:\n");
+            .append("\n")
+            .append("employees:\n");
         for (Employee e: employees) {
             builder.append(e);
             builder.append("\n");
