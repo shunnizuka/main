@@ -13,7 +13,7 @@ public class ListProjectCommand extends ListCommand {
 
     public static final String LIST_PROJECT_KEYWORD = "project";
 
-    public static final String MESSAGE_SUCCESS = "Listed all projects";
+    public static final String MESSAGE_SUCCESS = "Listed all projects. Click on the project tab to view result.";
 
     public static final String MESSAGE_USAGE = ListCommand.COMMAND_WORD
             + " "
