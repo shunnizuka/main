@@ -149,7 +149,7 @@ class JsonAdaptedProject {
         }
 
         final Description modelDescription;
-        if(Description.isValidDescription(description)) {
+        if (Description.isValidDescription(description)) {
             modelDescription = new Description(description);
         } else {
             modelDescription = new Description();
