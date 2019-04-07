@@ -14,10 +14,10 @@ public class Description {
     public final String description;
 
     /**
-     * Empty Constructor for when description is not added to the project yet
+     * Constructor for when description is not added to the project yet and default description is needed
      */
     public Description() {
-        this.description = "";
+        this.description = Project.PROJECT_DEFAULT_DESCRIPTION;
     }
 
     /**
