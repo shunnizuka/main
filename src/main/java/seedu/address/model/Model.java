@@ -13,6 +13,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
@@ -219,6 +220,10 @@ public interface Model {
      */
     void removeUserStoryFrom(Project targetProject, UserStory targetUserStory);
 
+    /**
+     * Updates the {@code targetStory} from the {@code targetProject} to the new {@code newStatus}.
+     */
+    void updateUserStory(Project targetProject, UserStory targetStory, UserStoryStatus newStatus);
 
     /**
      * Adds the {@code targetEmployee} to the {@code targetProject}.

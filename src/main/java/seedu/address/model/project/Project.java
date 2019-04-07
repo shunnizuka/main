@@ -217,6 +217,18 @@ public class Project {
     }
 
     /**
+     * Updates the given user story in this project.
+     */
+    public void updateUserStory(UserStory story, UserStoryStatus newStatus) {
+        userStories.forEach(thisStory -> {
+            if (story.equals(thisStory)) {
+                thisStory.updateStatus(newStatus);
+            }
+            return;
+        });
+    }
+
+    /**
      * Edits the details of the project specifically projectName, client, deadline and description
      */
     public Project editProject(ProjectName projectName, Client client, PocketProjectDate startDate,

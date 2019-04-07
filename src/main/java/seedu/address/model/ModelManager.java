@@ -24,6 +24,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.model.util.PocketProjectDate;
 import seedu.address.model.util.StatsUtil;
@@ -227,7 +228,10 @@ public class ModelManager implements Model {
         versionedPocketProject.addProjectTaskTo(targetProject, milestone, task);
     }
 
-
+    @Override
+    public void updateUserStory(Project targetProject, UserStory targetStory, UserStoryStatus newStatus) {
+        versionedPocketProject.updateUserStory(targetProject, targetStory, newStatus);
+    }
 
     //=========== Filtered Employee List Accessors =============================================================
 
