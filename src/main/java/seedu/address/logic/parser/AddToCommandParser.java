@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ArgumentMultimap.arePrefixesPresent;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FUNCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORTANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MILESTONE;
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.AddTaskToCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.AddUserStoryToCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
@@ -28,6 +30,7 @@ import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
 import seedu.address.model.project.UserStoryUser;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Parses input arguments and creates a new AddToCommand object
@@ -41,6 +44,8 @@ public class AddToCommandParser implements Parser<AddToCommand> {
             + "(?<keyword>employee\\s|milestone\\s|userstory\\s|projecttask\\s)(?<arguments>.*)");
 
     private static final Pattern USER_STORY_FORMAT = Pattern.compile("\\d");
+
+    private static final String WHITESPACE_PREAMBLE = " ";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddToCommand
@@ -68,7 +73,19 @@ public class AddToCommandParser implements Parser<AddToCommand> {
             }
         } else if (keyword.equals(AddMilestoneToCommand.ADD_MILESTONE_KEYWORD)) {
             try {
-                Milestone milestone = ParserUtil.parseMilestone(arguments.trim());
+
+                String s = WHITESPACE_PREAMBLE + arguments; //add whitespace to allow tokenizer to detect regex.
+                ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(s, PREFIX_MILESTONE, PREFIX_DATE);
+
+                if (!arePrefixesPresent(argMultimap, PREFIX_MILESTONE, PREFIX_DATE)
+                        || !argMultimap.getPreamble().isEmpty()) {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            AddMilestoneToCommand.MESSAGE_USAGE));
+                }
+                Description milestoneDesc = ParserUtil.parseMilestoneDescription(argMultimap.getValue(PREFIX_MILESTONE)
+                    .get());
+                PocketProjectDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+                Milestone milestone = new Milestone(milestoneDesc, date);
                 return new AddMilestoneToCommand(projectName, milestone);
             } catch (ParseException pe) {
                 throw new ParseException(
@@ -78,7 +95,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
         } else if (keyword.equals(AddUserStoryToCommand.ADD_USERSTORY_KEYWORD)) {
             try {
 
-                String s = " " + arguments; //add whitespace to allow tokenizer to detect regex
+                String s = WHITESPACE_PREAMBLE + arguments; //add whitespace to allow tokenizer to detect regex
                 ArgumentMultimap argMultimap =
                         ArgumentTokenizer.tokenize(s, PREFIX_USER, PREFIX_FUNCTION, PREFIX_REASON,
                                 PREFIX_IMPORTANCE);
@@ -108,7 +125,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
 
         } else if (keyword.equals(AddTaskToCommand.ADD_PROJECTTASK_KEYWORD)) {
             try {
-                String s = " " + arguments; //add whitespace to allow tokenizer to detect regex
+                String s = WHITESPACE_PREAMBLE + arguments; //add whitespace to allow tokenizer to detect regex
                 ArgumentMultimap argMultimap =
                         ArgumentTokenizer.tokenize(s, PREFIX_NAME, PREFIX_MILESTONE);
 

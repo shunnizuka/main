@@ -1,12 +1,14 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FUNCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORTANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_USER;
 
 import seedu.address.commons.core.index.Index;
@@ -42,6 +44,7 @@ public class ProjectUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + project.getProjectName().projectName + " ");
         sb.append(PREFIX_CLIENT + project.getClient().client + " ");
+        sb.append(PREFIX_START_DATE + project.getStartDate().date + " ");
         sb.append(PREFIX_DEADLINE + project.getDeadline().date + " ");
         return sb.toString();
     }
@@ -75,7 +78,9 @@ public class ProjectUtil {
      */
     public static String getMilestoneDetails(Milestone milestone) {
         StringBuilder sb = new StringBuilder();
-        sb.append(milestone.getMilestone() + " ");
+        sb.append(PREFIX_MILESTONE);
+        sb.append(milestone.getMilestoneDescription() + " ");
+        sb.append(PREFIX_DATE);
         sb.append(milestone.getDate() + " ");
         return sb.toString();
     }

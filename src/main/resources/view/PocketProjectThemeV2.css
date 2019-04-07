@@ -388,4 +388,8 @@
     -fx-font-family: "Proxima Nova Alt";
 }
 
-
+#descContent {
+    -fx-font-size: 11pt;
+    -fx-text-fill: #44524e;
+    -fx-font-family: "Proxima Nova Alt";
+}

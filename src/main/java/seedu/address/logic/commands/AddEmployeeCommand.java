@@ -20,7 +20,7 @@ public class AddEmployeeCommand extends AddCommand {
     public static final String ADD_EMPLOYEE_KEYWORD = "employee";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " employee"
-            + ": Adds an employee to the pocket project. "
+            + ": Adds an employee to the application. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -31,7 +31,7 @@ public class AddEmployeeCommand extends AddCommand {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_GITHUB + "johnballer"
+            + PREFIX_GITHUB + "johnballer "
             + PREFIX_SKILL + "Java "
             + PREFIX_SKILL + "UI";
 

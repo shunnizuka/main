@@ -28,6 +28,7 @@ class JsonAdaptedProject {
 
     private final String projectName;
     private final String client;
+    private final String startDate;
     private final String deadline;
     private final String completionDate;
     private final String description;
@@ -40,6 +41,7 @@ class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName, @JsonProperty("client") String client,
+                              @JsonProperty("startDate") String startDate,
                               @JsonProperty("date") String deadline,
                               @JsonProperty("description") String description,
                               @JsonProperty("milestones") List<JsonAdaptedMilestone> milestones,
@@ -48,6 +50,7 @@ class JsonAdaptedProject {
                               @JsonProperty("completionDate") String completionDate) {
         this.projectName = projectName;
         this.client = client;
+        this.startDate = startDate;
         this.deadline = deadline;
         this.description = description;
         if (milestones != null) {
@@ -64,6 +67,7 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(Project source) {
         projectName = source.getProjectName().projectName;
         client = source.getClient().client;
+        startDate = source.getStartDate().date;
         deadline = source.getDeadline().date;
         description = source.getDescription().description;
         milestones.addAll(source.getMilestones().stream()
@@ -143,7 +147,23 @@ class JsonAdaptedProject {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Description.class.getSimpleName()));
         }
-        final Description modelDescription = new Description(description);
+
+        final Description modelDescription;
+        if (Description.isValidDescription(description)) {
+            modelDescription = new Description(description);
+        } else {
+            modelDescription = new Description();
+        }
+
+        if (startDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                PocketProjectDate.class.getSimpleName()));
+        }
+        if (!PocketProjectDate.isValidDate(startDate)) {
+            throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
+        }
+        final PocketProjectDate modelStartDate = new PocketProjectDate(startDate);
+
 
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -154,8 +174,8 @@ class JsonAdaptedProject {
         }
         final PocketProjectDate modelDeadline = new PocketProjectDate(deadline);
 
-        return new Project(modelProjectName, modelClient, modelDeadline, modelMilestones, modelDescription,
-                modelEmployees, modelUserStories, modelCompletionDate);
+        return new Project(modelProjectName, modelClient, modelStartDate, modelDeadline, modelMilestones,
+             modelDescription, modelEmployees, modelUserStories, modelCompletionDate);
     }
 
 }

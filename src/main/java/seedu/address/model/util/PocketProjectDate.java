@@ -5,10 +5,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import seedu.address.model.project.Project;
+import java.util.Comparator;
 
 /**
  * The class that it used to present all date objects use throughout the application
@@ -16,7 +16,7 @@ import seedu.address.model.project.Project;
 
 public class PocketProjectDate extends CalendarDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format DD/MM/YYYY. User can also "
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format DD/MM/YYYY. User can also "
         + "choose to go for a flexible date input which supports the following: today, tomorrow, yesterday, "
         + "this/next/last month DAY_OF_MONTH & "
         + "this/next/last week DAY_OF_WEEK";
@@ -28,11 +28,42 @@ public class PocketProjectDate extends CalendarDate {
     public static final String FLEXI_DATE_MESSAGE_CONSTRAINTS = "Flexible date inputs only allow choosing between "
         + "this/next/last week or month. They keyword week/month has to be included";
 
+    public static final String START_END_DATE_CONSTRAINTS = "The provided start date of the project has to be earlier "
+        + "than the proposed deadline. Projects with same start date and deadlines will not be accepted";
+
     /**
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
+
+    public static final Comparator<String> DATE_STRING_COMPARATOR = new Comparator<String>() {
+        @Override
+        public int compare(String s1, String s2) {
+            int dd1 = Integer.parseInt(s1.substring(START_DAY_FIELD, END_DAY_FIELD));
+            int mm1 = Integer.parseInt(s1.substring(START_MONTH_FIELD, END_MONTH_FIELD));
+            int yy1 = Integer.parseInt(s1.substring(START_YEAR_FIELD, END_YEAR_FIELD));
+            int dd2 = Integer.parseInt(s2.substring(START_DAY_FIELD, END_DAY_FIELD));
+            int mm2 = Integer.parseInt(s2.substring(START_MONTH_FIELD, END_MONTH_FIELD));
+            int yy2 = Integer.parseInt(s2.substring(START_YEAR_FIELD, END_YEAR_FIELD));
+            if (yy1 != yy2) {
+                return yy1 - yy2;
+            } else if (mm1 != mm2) {
+                return mm1 - mm2;
+            } else {
+                return dd1 - dd2;
+            }
+        }
+    };
+
+    public static final DateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+
+    /**
+     * Number of components in a date.
+     */
+    public static final int NUM_COMPONENTS = 4;
+
+    public static final int PADDING = 0;
 
     /**
      * Target date format.
@@ -45,9 +76,18 @@ public class PocketProjectDate extends CalendarDate {
     private static final String DATE_IDENTIFIER = "/";
 
     /**
-     * Number of components in a date.
+     * Index of dates used in comparator.
      */
-    private static final int NUM_COMPONENTS = 4;
+    private static final int START_DAY_FIELD = 0;
+    private static final int END_DAY_FIELD = 2;
+    private static final int START_MONTH_FIELD = 3;
+    private static final int END_MONTH_FIELD = 5;
+    private static final int START_YEAR_FIELD = 6;
+    private static final int END_YEAR_FIELD = 10;
+
+    private static final int DATE_IS_EARLIER = -1;
+    private static final int DATE_IS_LATER = 1;
+    private static final int FIRST_DOUBLE_DIGIT = 10;
 
     private static final int LAST = -1;
     private static final int LENGTH_OF_WEEK = 7;
@@ -236,10 +276,10 @@ public class PocketProjectDate extends CalendarDate {
      * @return true is valid format DD/MM/YYYY, otherwise false.
      */
     public static boolean isValidDate(String input) {
-        DateFormat format = Project.DATE_FORMAT;
+        DateFormat format = SIMPLE_DATE_FORMAT;
         format.setLenient(false);
         try {
-            format.parse(input);
+            SIMPLE_DATE_FORMAT.parse(input);
         } catch (ParseException e) {
             return false;
         }
@@ -247,12 +287,16 @@ public class PocketProjectDate extends CalendarDate {
     }
 
     /**
+     *
+     */
+
+    /**
      * Used to reformat string DD/MM/YYYY to LocalDateTime object.
      * @param input the DD/MM/YYYY string
      * @return the date as a LocalDateTime object.
      */
 
-    private LocalDateTime convertToLocalDateTimeFormat(String input) {
+    public static LocalDateTime convertToLocalDateTimeFormat(String input) {
 
         String[] date = input.split(DATE_IDENTIFIER);
 
@@ -260,11 +304,7 @@ public class PocketProjectDate extends CalendarDate {
         int monthField = Integer.parseInt(date[MONTH_FIELD].trim());
         int yearField = Integer.parseInt(date[YEAR_FIELD].trim());
 
-        LocalDateTime createDate = LocalDateTime.now();
-
-        createDate.withDayOfMonth(dayField);
-        createDate.withMonth(monthField);
-        createDate.withYear(yearField);
+        LocalDateTime createDate = LocalDateTime.of(yearField, monthField, dayField , PADDING, PADDING, PADDING);
 
         return createDate;
     }
@@ -296,8 +336,14 @@ public class PocketProjectDate extends CalendarDate {
     public static String generateStringDateFormat(int day, int month, int year) {
 
         StringBuilder sb = new StringBuilder();
+        if (day < FIRST_DOUBLE_DIGIT) {
+            sb.append(PADDING);
+        }
         sb.append(day);
         sb.append(DATE_IDENTIFIER);
+        if (month < FIRST_DOUBLE_DIGIT) {
+            sb.append(PADDING);
+        }
         sb.append(month);
         sb.append(DATE_IDENTIFIER);
         sb.append(year);
@@ -306,11 +352,34 @@ public class PocketProjectDate extends CalendarDate {
     }
 
     /**
+     * Checks if the start date is earlier than the end date
+     * @param start start date
+     * @param end end
+     * @return true if start date before end date and false otherwise
+     */
+
+    public static boolean isEarlierThan(PocketProjectDate start, PocketProjectDate end) {
+
+        int result = DATE_STRING_COMPARATOR.compare(start.date, end.date);
+        if (result >= DATE_IS_LATER) {
+            return false;
+        } else if (result <= DATE_IS_EARLIER) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Getter for the target date.
      * @return the value of the date
      */
     public String getDate() {
         return date;
+    }
+
+    public boolean isSameOrEarlierDate(String date) {
+        return DATE_STRING_COMPARATOR.compare(this.date, date) <= 0;
     }
 
     /**
@@ -328,8 +397,8 @@ public class PocketProjectDate extends CalendarDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PocketProjectDate // instanceof handles nulls
-                && this.date.equals(((PocketProjectDate) other).date)); // state check
+            || (other instanceof PocketProjectDate // instanceof handles nulls
+            && this.date.equals(((PocketProjectDate) other).date)); // state check
     }
 
     @Override

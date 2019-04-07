@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -17,7 +18,6 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
@@ -50,7 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         final Matcher matcher = ADD_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         final String keyword = matcher.group("keyword").toLowerCase();
@@ -77,11 +77,11 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             return new AddEmployeeCommand(employee);
 
-        } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD) || keyword.equals("p")) {
+        } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD)) {
             ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_START_DATE, PREFIX_DEADLINE);
 
-            if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT, PREFIX_DEADLINE)
+            if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT, PREFIX_START_DATE, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddProjectCommand.MESSAGE_USAGE));
@@ -89,9 +89,14 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_NAME).get());
             Client client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get());
+            PocketProjectDate startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             PocketProjectDate deadline = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE).get());
 
-            Project project = new Project(projectName, client, deadline);
+            if (!startDate.isEarlierThan(startDate, deadline)) {
+                throw new ParseException(String.format(PocketProjectDate.START_END_DATE_CONSTRAINTS));
+            }
+
+            Project project = new Project(projectName, client, startDate, deadline);
 
             return new AddProjectCommand(project);
 

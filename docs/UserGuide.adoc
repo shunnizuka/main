@@ -161,8 +161,8 @@ Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL g/GITHUB [s/SKILL]...`
 
 Examples:
 
-* `add employee n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add employee n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 s/HTML`
+* `add employee n/John Doe p/98765432 e/johnd@example.com g/johnballer s/Java`
+* `add employee n/Betsy Crowe e/betsycrowe@example.com g/BetBet p/1234567 s/HTML`
 
 image:ug-notepadpencil.png[width="40"]
 An employee can have any number of skills (including 0).
@@ -177,10 +177,6 @@ Examples:
 
 * `add project n/Apollo d/12/12/2019 c/FairPrice`
 * `add project n/Xtreme c/John Smith d/13/04/2020`
-
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
-while keying in a command into the CLI.
 
 === Delete an employee or a project from the application `delete`
 
@@ -215,7 +211,7 @@ of employees.
 ==== Delete a project from the application: `delete project`
 Deletes the project from the list of projects.
 
-Format: `delete project PROJECT_NAME` or `delete project PROJECT_INDEX`
+Format: `delete project PROJ_NAME` or `delete project PROJ_INDEX`
 
 Examples:
 
@@ -224,10 +220,6 @@ Deletes project "Apollo" from project list.
 
 * `delete project 2` +
 Deletes the second project shown in the most recent displayed list of projects.
-
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
-while keying in a command into the CLI.
 
 === Listing all employees or projects in application : `list`
 ==== List all employees in the application: `list employees`
@@ -240,9 +232,6 @@ Shows a list of all projects in the project list.
 
 Format: `list projects`
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
-while keying in a command into the CLI.
 
 === Edit an employee/project in the application : `edit`
 
@@ -279,7 +268,7 @@ You can remove all the person's skills by typing `s/` without specifying any ski
 
 Edits the existing project components such as project name, client, deadline, description of the project.
 
-Format: `edit project PROJECT_NAME info[n/name] [c/client] [d/deadline] [desc/description]`
+Format: `edit project PROJ_NAME info[n/name] [c/client] [d/deadline] [desc/description]`
 
 Examples:
 
@@ -310,7 +299,7 @@ Examples:
 Returns `john` and `John Doe`
 * `find employee Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
-* `find Betsy Tim John` +
+* `find employee Betsy Tim John` +
 Returns any employee having names `Betsy`, `Tim`, or `John`
 
 ==== Find projects in the application: `find project`
@@ -334,8 +323,8 @@ Examples:
 * `find skill java` +
 Returns a list of employees who has java skill.
 
-* `find skill java C++`
-Returns a list of employees who have either java or C++ or both.
+* `find skill java C`
+Returns a list of employees who have either java or C or both.
 
 ==== Find projects with any keywords: `find all`
 
@@ -348,6 +337,25 @@ Examples:
 * `find all software food`
 Returns a list of projects which contains either software or food or both.
 
+==== Find projects with deadline: 'find deadline'
+
+Find projects which has deadline that are before or same as the input provided by the user.
+
+Format: `find deadline KEYWORD
+
+Examples:
+
+* `find deadline 15/04/2019` +
+Returns a list of projects which has 15/04/2019 as the deadline or has deadlines that are before 15/04/2019
+
+//only for find deadline
+image:ug-exclamation.png[width="50"]
+Only accept one argument. e.g. will not accept `find deadline 15/04/2019 20/12/2019`
+
+image:ug-notepadpencil.png[width="40"]
+Accepts both flexible date and calender date
+
+//for all the find commands
 image:ug-notepadpencil.png[width="40"]
 The search is case insensitive. e.g `hans` will match `Hans`
 
@@ -359,10 +367,6 @@ Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. 
 
 image:ug-exclamation.png[width="50"]
 Only full words will be matched e.g. `Han` will not match `Hans`
-
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee', 'p' as an alias for 'project', 's' as an alias for 'skills'
-while keying in a command into the CLI.
 
 ==== Find Command Usage Scenario
 
@@ -395,16 +399,13 @@ Displays details of the employee at index 3
 ==== View details of a project: `view project`
 Returns the list of milestones and employees in a project.
 
-Format: `view project PROJECT_NAME`
+Format: `view project PROJ_NAME`
 
 Examples:
 
 * `view project Apollo` +
 Displays details (client, deadline, employees, milestones) of project “Apollo”.
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
-while keying in a command into the CLI.
 
 === Add an employee/milestone/user story to a project : `addto`
 
@@ -412,7 +413,7 @@ while keying in a command into the CLI.
 
 Adds an employee to a project.
 
-Format: `addto PROJECT_NAME employee EMPLOYEE_INDEX`
+Format: `addto PROJ_NAME employee EMPLOYEE_INDEX`
 
 image:ug-notepadpencil.png[width="40"]
 Adds the employee at the specified `INDEX`.
@@ -435,7 +436,7 @@ Adds the 5th person in the displayed employee list to project "Apollo".
 
 Adds a milestone to a project.
 
-Format: `addto PROJECT_NAME milestone MS_DETAILS MS_DATE`
+Format: `addto PROJ_NAME milestone MS_DETAILS MS_DATE`
 
 image:ug-exclamation.png[width="50"]
 Date must be of the format DD/MM/YYYY
@@ -445,15 +446,12 @@ Examples:
 * `addto Apollo milestone Completed UI for program 23/11/2015` +
 Milestone added to project "Apollo".
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
-while keying in a command into the CLI.
 
 ==== Add a task to a project milestone: `addto projecttask`
 
 Adds a task to a project milestone.
 
-Format: `addto PROJECT_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]`
+Format: `addto PROJ_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]`
 
 image:ug-notepadpencil.png[width="40"]
 Adds the project task to the milestone at the specified `MILESTONE_INDEX`.
@@ -477,7 +475,7 @@ There is no specific order for either the project task name or the milestone ind
 
 Adds a user story to a project.
 
-Format: `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY`
+Format: `addto PROJ_NAME userstory i/STORY_IMPORTANCE STORY`
 
 `STORY_IMPORTANCE`: The priority/importance level of the user story, ranging from 1 to 3. 3 being the most
 important and 1 being the least.
@@ -485,7 +483,8 @@ important and 1 being the least.
 `STORY`: A valid user story must be in the following format - as a ... i want to ... so that ...
 
 image:ug-exclamation.png[width="50"]
-Note that `as a`, `i want to` and `so that` are keywords which are required in a valid user story.
+Note that `as a`, `i want to` and `so that` are keywords which help us to segment your user story into the respective categories: user, function and reason.
+Hence these keywords cannot be used more than once.
 
 Examples:
 
@@ -498,11 +497,11 @@ There is no specific order for either the user story or the importance level so 
 
 === Remove an employee/milestone/user story from a project : `removefrom`
 
-==== Remove an employee from a project: `removefrom PROJECT_NAME employee`
+==== Remove an employee from a project: `removefrom PROJ_NAME employee`
 
 Removing an employee from a project.
 
-Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
+Format: `removefrom PROJ_NAME employee EMPLOYEE_INDEX`
 
 Examples:
 
@@ -510,11 +509,11 @@ Examples:
 `removefrom Apollo employee 3` +
 Removes the employee at 3rd position at displayed list of employees from Project Apollo.
 
-==== Remove a milestone from a project: `removefrom PROJECT_NAME milestone`
+==== Remove a milestone from a project: `removefrom PROJ_NAME milestone`
 
 Removing a milestone from a project.
 
-Format: `removefrom PROJECT_NAME milestone MS_INDEX`
+Format: `removefrom PROJ_NAME milestone MS_INDEX`
 
 Examples:
 
@@ -529,9 +528,6 @@ The index refers to the index number (one-based) shown in the displayed list of 
 image:ug-exclamation.png[width="50"]
 The index must be a *positive integer* and cannot be larger than the size of the list.
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
-while keying in a command into the CLI.
 
 ==== Remove a user story from a project: `removefrom userstory`
 
@@ -567,7 +563,8 @@ earliest deadline displayed at the top of the list.
 === To indicate the project has been completed : `complete`
 
 Indicates that a project is completed.
-Format: complete PROJECT_INDEX COMPLETION_DATE`
+
+Format:  `complete PROJ_INDEX`
 
 Examples:
 
@@ -580,7 +577,7 @@ The first project in the shown list is indicated as completed on 11/11/2011.
 
 Returns an overview of all ongoing projects/the progress of an individual project.
 
-Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX`
+Format: `stats` or `stats PROJ_NAME`/`stats PROJ_INDEX`
 +
 add something here.
 Examples:
@@ -700,13 +697,13 @@ e.g. `list employee` `list project`
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
 e.g. `find employee Jake` `find project Apollo` `find skill Java` `find all software`
-* *View* : `view employee EMPLOYEE_INDEX` , `view project PROJECT_NAME` +
+* *View* : `view employee EMPLOYEE_INDEX` , `view project PROJ_NAME` +
 e.g. `view employee 3` `view project Apollo`
-* *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE`, `addto PROJECT_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]` +
+* *Addto*: `addto PROJ_NAME employee EMPLOYEE_INDEX` ,`addto PROJ_NAME milestone MS_DETAILS MS_DATE`, `addto PROJ_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]` +
 e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015` `addto Apollo projecttask n/Create feature XYZ m/1`
-* *Removefrom*: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` `removefrom PROJECT_NAME milestone MS_INDEX` +
+* *Removefrom*: `removefrom PROJ_NAME employee EMPLOYEE_INDEX` `removefrom PROJ_NAME milestone MS_INDEX` +
 e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1`
-* *Complete* : `complete PROJECT_INDEX COMPLETION_DATE` +
+* *Complete* : `complete PROJ_INDEX COMPLETION_DATE` +
 e.g. `complete 1 11/11/2011`
 * *Sort*: `sort COMMAND_KEYWORD` +
 e.g. `sort name` `sort deadline`

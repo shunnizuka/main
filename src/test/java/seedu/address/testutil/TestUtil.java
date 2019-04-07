@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.PocketProject;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
 
 /**
  * A utility class for test cases.
@@ -66,6 +67,13 @@ public class TestUtil {
      */
     public static Employee getEmployee(Model model, Index index) {
         return model.getFilteredEmployeeList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns the project in the {@code model}'s project list at {@code index}.
+     */
+    public static Project getProject(Model model, Index index) {
+        return model.getFilteredProjectList().get(index.getZeroBased());
     }
 
     /**

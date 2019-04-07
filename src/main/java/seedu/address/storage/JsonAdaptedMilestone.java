@@ -8,9 +8,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UniqueProjectTaskList;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.project.Milestone}.
@@ -40,8 +42,8 @@ class JsonAdaptedMilestone {
      * Converts a given {@code Skill} into this class for Jackson use.
      */
     public JsonAdaptedMilestone(Milestone source) {
-        milestone = source.milestone;
-        date = source.date;
+        milestone = source.getMilestoneDescription().description;
+        date = source.getDate().date;
         projectTasks.addAll(source.getProjectTaskList().stream()
                 .map(JsonAdaptedProjectTask::new)
                 .collect(Collectors.toList()));
@@ -55,6 +57,7 @@ class JsonAdaptedMilestone {
      */
     public Milestone toModelType() throws IllegalValueException {
         final UniqueProjectTaskList modelProjectTasks = new UniqueProjectTaskList();
+
         for (JsonAdaptedProjectTask task: projectTasks) {
             if (!ProjectTask.isValidTask(task.toModelType())) {
                 throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -63,10 +66,26 @@ class JsonAdaptedMilestone {
             modelProjectTasks.add(task.toModelType());
         }
 
-        if (!Milestone.isValidMilestone(milestone, date)) {
-            throw new IllegalValueException(Milestone.MESSAGE_CONSTRAINTS);
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                PocketProjectDate.class.getSimpleName()));
         }
-        return new Milestone(milestone, date, modelProjectTasks);
+        if (!PocketProjectDate.isValidDate(date)) {
+            throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
+        }
+        final PocketProjectDate modelDate = new PocketProjectDate(date);
+
+        if (milestone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                PocketProjectDate.class.getSimpleName()));
+        }
+        if (!Description.isValidDescription(milestone)) {
+            throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
+        }
+        final Description modelDescription = new Description(milestone);
+
+
+        return new Milestone(modelDescription, modelDate, modelProjectTasks);
     }
 
 }

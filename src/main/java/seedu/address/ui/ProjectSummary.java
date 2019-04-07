@@ -16,7 +16,13 @@ public class ProjectSummary extends UiPart<Region> {
     private Label name;
 
     @FXML
+    private Label desc;
+
+    @FXML
     private Label client;
+
+    @FXML
+    private Label startDate;
 
     @FXML
     private Label deadline;
@@ -24,8 +30,10 @@ public class ProjectSummary extends UiPart<Region> {
 
     public ProjectSummary(Project project) {
         super(FXML);
+        desc.setText(project.getDescription().description);
         name.setText(project.getProjectName().projectName);
         client.setText(project.getClient().client);
+        startDate.setText(project.getStartDate().date);
         deadline.setText(project.getDeadline().date);
     }
 }
