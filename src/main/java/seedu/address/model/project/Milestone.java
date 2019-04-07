@@ -1,10 +1,6 @@
 package seedu.address.model.project;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.text.DateFormat;
-import java.text.ParseException;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.util.PocketProjectDate;
@@ -15,69 +11,33 @@ import seedu.address.model.util.PocketProjectDate;
 
 public class Milestone {
 
-    public static final String DATE_VALIDATION_REGEX =
-            "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
     public static final String MESSAGE_CONSTRAINTS = "The milestone info must not be empty or consisting of only spaces"
             + " and the date given must be in DD/MM/YYYY format";
     public static final String MESSAGE_INVALID_STRING = "The milestone info must not be empty or consisting "
         + "of only spaces";
-    public static final String MESSAGE_INVALID_DATE = "The date given must be in DD/MM/YYYY format";
 
-    public final String milestone;
-    public final String date;
+    public final Description milestone;
+    public final PocketProjectDate date;
     public final UniqueProjectTaskList projectTasks;
 
-
-    public Milestone(String milestone, String date) {
+    public Milestone(Description milestone, PocketProjectDate date) {
         this(milestone, date, new UniqueProjectTaskList());
     }
 
-    public Milestone(String milestone, String date, UniqueProjectTaskList projectTasks) {
+    public Milestone(Description milestone, PocketProjectDate date, UniqueProjectTaskList projectTasks) {
         requireAllNonNull(milestone, date, projectTasks);
-        checkArgument(isValidMilestoneString(milestone), MESSAGE_INVALID_STRING);
-        checkArgument(isValidMilestoneDate(date), MESSAGE_INVALID_DATE);
-
         this.milestone = milestone;
         this.date = date;
         this.projectTasks = projectTasks;
     }
 
     /**
-     * Returns true if given strings are valid fields for a milestone.
+     * Check if the milestone has the valid format by checking the components.
+     * @return true if valid milestone and false otherwise.
      */
-    public static boolean isValidMilestone(Milestone m) {
-        return Milestone.isValidMilestoneDate(m.date)
-                && Milestone.isValidMilestoneString(m.milestone);
-    }
-
-    /**
-     * Returns true if given strings are valid fields for a milestone.
-     */
-    public static boolean isValidMilestone(String info, String date) {
-        return Milestone.isValidMilestoneDate(date)
-            && Milestone.isValidMilestoneString(info);
-    }
-
-    /**
-     * Returns true if given string is valid for a milestone date
-     */
-    public static boolean isValidMilestoneDate(String date) {
-
-        DateFormat format = PocketProjectDate.SIMPLE_DATE_FORMAT;
-        format.setLenient(false);
-        try {
-            format.parse(date);
-        } catch (ParseException e) {
-            return false;
-        }
-        return date.matches(DATE_VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if given string is valid for a milestone string
-     */
-    public static boolean isValidMilestoneString(String info) {
-        return !info.trim().isEmpty();
+    public static boolean isValidMilestone(Milestone milestone) {
+        return Description.isValidDescription(milestone.getMilestoneDescription().description)
+                && PocketProjectDate.isValidDate(milestone.getDate().date);
     }
 
     /**
@@ -95,11 +55,11 @@ public class Milestone {
         return new Milestone(this.milestone, this.date, this.projectTasks.clone());
     }
 
-    public String getMilestone() {
+    public Description getMilestoneDescription() {
         return milestone;
     }
 
-    public String getDate() {
+    public PocketProjectDate getDate() {
         return date;
     }
 
@@ -116,7 +76,7 @@ public class Milestone {
             return true;
         }
         return otherMilestone != null
-            && otherMilestone.getMilestone().equals(getMilestone())
+            && otherMilestone.getMilestoneDescription().equals(getMilestoneDescription())
             && otherMilestone.getDate().equals(getDate());
     }
 

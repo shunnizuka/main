@@ -1,15 +1,13 @@
 package seedu.address.model.project;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.Assert;
 
 public class MilestoneTest {
-
-    //TODO: Add JUnit tests for constructor of milestones
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -18,53 +16,46 @@ public class MilestoneTest {
 
     @Test
     public void constructor_invalidMilestone_throwsIllegalArgumentException() {
-        String invalidDate = "";
-        String invalidMilestone = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Milestone(invalidMilestone, invalidDate));
+        PocketProjectDate invalidDate = null;
+        Description invalidMilestone = null;
+        Assert.assertThrows(NullPointerException.class, () -> new Milestone(invalidMilestone, invalidDate));
     }
-
 
     @Test
     public void isValidMilestone() {
-        // null date
-        Assert.assertThrows(NullPointerException.class, () -> Milestone.isValidMilestoneDate(null));
 
-        // null milestone
-        Assert.assertThrows(NullPointerException.class, () -> Milestone.isValidMilestoneString(null));
+        // null fields
+        Assert.assertThrows(NullPointerException.class, () -> Milestone.isValidMilestone(null));
 
-        // invalid dates
-        assertFalse(Milestone.isValidMilestoneDate(" ")); // missing date year and month value
-        assertFalse(Milestone.isValidMilestoneDate("12")); // missing both year and month value
-        assertFalse(Milestone.isValidMilestoneDate("12/12")); // missing the year value
-        assertFalse(Milestone.isValidMilestoneDate("12/2019")); // missing the month/date value
+        //invalid description string
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Milestone(new Description(""),
+            new PocketProjectDate("23/04/2020")));
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Milestone(new Description(" "),
+            new PocketProjectDate("23/04/2020")));
 
-        // invalid dates
-        assertFalse(Milestone.isValidMilestoneDate("12//12/2019")); // wrong input pattern
-        assertFalse(Milestone.isValidMilestoneDate("12/12/12/2019")); // too many fields
-        assertFalse(Milestone.isValidMilestoneDate("111/11/2019")); // too many digits in the date field
-        assertFalse(Milestone.isValidMilestoneDate("11/111/2019")); // too many digits in the month field
-        assertFalse(Milestone.isValidMilestoneDate("11/11/11111")); // too many digits in the date field
-        assertFalse(Milestone.isValidMilestoneDate(" 11/11/2019")); // leading space
-        assertFalse(Milestone.isValidMilestoneDate("11/11/2019 ")); // trailing space
-        assertFalse(Milestone.isValidMilestoneDate("aa/11/2019")); // alphabetical date
-        assertFalse(Milestone.isValidMilestoneDate("11/aa/2019")); // alphabetical month
-        assertFalse(Milestone.isValidMilestoneDate("11/11/aaaa")); // alphabetical year
-        assertFalse(Milestone.isValidMilestoneDate("44/11/2019")); // invalid date
-        assertFalse(Milestone.isValidMilestoneDate("11/44/aaaa")); // invalid month
-        assertFalse(Milestone.isValidMilestoneDate("11/11/1800")); // invalid year too old
-        assertFalse(Milestone.isValidMilestoneDate("29/02/2019")); // Not leap year
+        //too many numbers -> out of range
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Milestone(new Description("a"),
+            new PocketProjectDate("233/04/2020")));
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Milestone(new Description("a"),
+            new PocketProjectDate("23/133/2020")));
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Milestone(new Description("a"),
+            new PocketProjectDate("23/04/22020")));
 
-        // invalid milestone strings
-        assertFalse(Milestone.isValidMilestoneString(" ")); //empty string
+        //too many parameters
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Milestone(new Description("a"),
+            new PocketProjectDate("23/04/2020/23")));
 
-        // valid deadlines
-        assertTrue(Milestone.isValidMilestoneDate("11/11/2019"));
-        assertTrue(Milestone.isValidMilestoneDate("1/1/2000")); // minimal
+        //valid fields without padding
+        assertTrue(Milestone.isValidMilestone(new Milestone(new Description("america"),
+            new PocketProjectDate("23/11/2019"))));
+        assertTrue(Milestone.isValidMilestone(new Milestone(new Description("america"),
+            new PocketProjectDate("04/03/2019"))));
 
-        //valid milestone strings
-        assertTrue(Milestone.isValidMilestoneString("This is a valid string"));
+        //valid fields with padding
+        assertTrue(Milestone.isValidMilestone(new Milestone(new Description("america"),
+            new PocketProjectDate("4/3/2019"))));
 
-        //valid milestones
-        assertTrue(Milestone.isValidMilestone("valid string", "12/12/2019"));
     }
+
+
 }

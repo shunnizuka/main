@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FUNCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORTANCE;
@@ -77,7 +78,9 @@ public class ProjectUtil {
      */
     public static String getMilestoneDetails(Milestone milestone) {
         StringBuilder sb = new StringBuilder();
-        sb.append(milestone.getMilestone() + " ");
+        sb.append(PREFIX_MILESTONE);
+        sb.append(milestone.getMilestoneDescription() + " ");
+        sb.append(PREFIX_DATE);
         sb.append(milestone.getDate() + " ");
         return sb.toString();
     }
