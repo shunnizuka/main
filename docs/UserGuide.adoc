@@ -161,8 +161,8 @@ Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL g/GITHUB [s/SKILL]...`
 
 Examples:
 
-* `add employee n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add employee n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 s/HTML`
+* `add employee n/John Doe p/98765432 e/johnd@example.com g/johnballer s/Java`
+* `add employee n/Betsy Crowe e/betsycrowe@example.com g/BetBet p/1234567 s/HTML`
 
 image:ug-notepadpencil.png[width="40"]
 An employee can have any number of skills (including 0).
