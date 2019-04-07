@@ -202,6 +202,14 @@ public class Project {
     }
 
     /**
+     * Replace the existing user story with the new editedStory.
+     */
+    public void setUserStory(UserStory target, UserStory editedStory) {
+        userStories.setUserStory(target, editedStory);
+    }
+
+
+    /**
      * Returns true if this project has the given projectName.
      */
     public boolean hasProjectName(ProjectName projectName) {

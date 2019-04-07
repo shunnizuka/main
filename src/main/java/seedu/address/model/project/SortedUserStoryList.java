@@ -91,6 +91,18 @@ public class SortedUserStoryList implements Iterable<UserStory> {
     }
 
     /**
+     * Replaces the {@code targetStory} with the new {@code story}
+     * {@code stories} must not contain duplicate user stories.
+     */
+    public void setUserStory(UserStory targetStory, UserStory story) {
+        if (!this.contains(targetStory)) {
+            throw new UserStoryNotFoundException();
+        }
+        remove(targetStory);
+        add(story);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<UserStory> asUnmodifiableObservableList() {
