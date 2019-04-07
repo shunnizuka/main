@@ -20,8 +20,8 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
     private static final Pattern UPDATE_COMMAND_FORMAT = Pattern.compile("(?<project>(\\S+\\s)+)"
             + "(?<keyword>userstory\\s|projecttask\\s)(?<arguments>.*)");
 
-    private static final Pattern UPDATE_USER_STORY_FORMAT = Pattern.compile("(?<index>\\d)\\s+" +
-            "(?<status>ongoing|on hold|complete)");
+    private static final Pattern UPDATE_USER_STORY_FORMAT = Pattern.compile("(?<index>\\d)\\s+"
+            + "(?<status>ongoing|on hold|complete)");
 
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateCommand

@@ -8,8 +8,8 @@ import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
-import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.project.UserStoryStatus;
+import seedu.address.model.project.UserStoryUser;
 
 /**
  * Jackson-friendly version of {@link UserStory}.

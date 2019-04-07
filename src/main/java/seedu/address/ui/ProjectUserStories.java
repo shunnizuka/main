@@ -7,7 +7,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryStatus;
@@ -88,6 +87,9 @@ public class ProjectUserStories extends UiPart<Region> {
             instantiateColour(s.getUserStoryStatus());
         }
 
+        /**
+         * Instantiates a colour of the circle by using the hashcode value of {@code status}.
+         */
         private void instantiateColour(String status) {
             this.circle = new Circle(0, 0, 10);
 
