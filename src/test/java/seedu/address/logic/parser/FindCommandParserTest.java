@@ -10,10 +10,12 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.FindAllCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindDeadlineCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.FindSkillCommand;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectContainsDeadlinePredicate;
 import seedu.address.model.project.ProjectContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.skill.EmployeeSkillContainsKeywordsPredicate;
@@ -37,6 +39,9 @@ public class FindCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, FindAllCommand.FIND_ALL_KEYWORD + "  ",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " " ,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
@@ -66,6 +71,12 @@ public class FindCommandParserTest {
             new FindAllCommand(new ProjectContainsKeywordsPredicate(Arrays.asList("hey" , "alice")));
         assertParseSuccess(parser, FindAllCommand.FIND_ALL_KEYWORD + " hey alice", expectedFindCommand);
         assertParseSuccess(parser, "all \t hey  \t alice \t", expectedFindCommand);
+
+        expectedFindCommand =
+            new FindDeadlineCommand(new ProjectContainsDeadlinePredicate("12/11/2010"));
+        assertParseSuccess(parser, FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " 12/11/2010",
+            expectedFindCommand);
+        assertParseSuccess(parser, "deadline \t    12/11/2010     ", expectedFindCommand);
     }
 
 }

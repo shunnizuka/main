@@ -60,6 +60,26 @@ public class PocketProjectParserTest {
         AddEmployeeCommand command = (AddEmployeeCommand) parser.parseCommand
             (EmployeeUtil.getAddEmployeeCommand(employee));
         assertEquals(new AddEmployeeCommand(employee), command);
+
+        /*
+        Project project = new ProjectBuilder().withDescrption("").build();
+        AddProjectCommand commandp = (AddProj
+        ectCommand) parser.parseCommand
+            (ProjectUtil.getAddProjectCommand(project));
+        assertEquals(new AddProjectCommand(project), commandp);
+        */
+
+
+    }
+
+    //TODO add in addto parser and add project
+
+    @Test
+    public void parseCommand_addTo() throws Exception {
+        Employee employee = new EmployeeBuilder().build();
+        AddEmployeeCommand command = (AddEmployeeCommand) parser.parseCommand
+            (EmployeeUtil.getAddEmployeeCommand(employee));
+        assertEquals(new AddEmployeeCommand(employee), command);
     }
 
     @Test

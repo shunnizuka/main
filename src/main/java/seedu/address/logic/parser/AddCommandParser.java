@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -77,11 +78,11 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             return new AddEmployeeCommand(employee);
 
-        } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD) || keyword.equals("p")) {
+        } else if (keyword.equals(AddProjectCommand.ADD_PROJECT_KEYWORD)) {
             ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT, PREFIX_START_DATE, PREFIX_DEADLINE);
 
-            if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT, PREFIX_DEADLINE)
+            if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT, PREFIX_START_DATE, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddProjectCommand.MESSAGE_USAGE));
@@ -89,9 +90,14 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_NAME).get());
             Client client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT).get());
+            PocketProjectDate startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             PocketProjectDate deadline = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE).get());
 
-            Project project = new Project(projectName, client, deadline);
+            if (!startDate.isEarlierThan(startDate, deadline)) {
+                throw new ParseException(String.format(PocketProjectDate.START_END_DATE_CONSTRAINTS));
+            }
+
+            Project project = new Project(projectName, client, startDate, deadline);
 
             return new AddProjectCommand(project);
 
