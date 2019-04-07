@@ -22,6 +22,8 @@ public class EmployeeGitHub extends UiPart<Region> {
         super(FXML);
         this.employeeGithub = employeeGithub;
         loadEmployeePage();
+        webView.setOnDragDetected(event -> {
+        });
     }
 
     private void loadEmployeePage() {
@@ -33,4 +35,6 @@ public class EmployeeGitHub extends UiPart<Region> {
         WebEngine webEngine = webView.getEngine();
         webEngine.load(url);
     }
+
+
 }
