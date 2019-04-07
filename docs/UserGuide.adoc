@@ -178,10 +178,6 @@ Examples:
 * `add project n/Apollo d/12/12/2019 c/FairPrice`
 * `add project n/Xtreme c/John Smith d/13/04/2020`
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
-while keying in a command into the CLI.
-
 === Delete an employee or a project from the application `delete`
 
 ==== Delete an employee from the application: `delete employee`
@@ -225,10 +221,6 @@ Deletes project "Apollo" from project list.
 * `delete project 2` +
 Deletes the second project shown in the most recent displayed list of projects.
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
-while keying in a command into the CLI.
-
 === Listing all employees or projects in application : `list`
 ==== List all employees in the application: `list employees`
 Shows a list of all employees in the employee list.
@@ -240,9 +232,6 @@ Shows a list of all projects in the project list.
 
 Format: `list projects`
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
-while keying in a command into the CLI.
 
 === Edit an employee/project in the application : `edit`
 
@@ -379,10 +368,6 @@ Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. 
 image:ug-exclamation.png[width="50"]
 Only full words will be matched e.g. `Han` will not match `Hans`
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee', 'p' as an alias for 'project', 's' as an alias for 'skills'
-while keying in a command into the CLI. [coming soon]
-
 ==== Find Command Usage Scenario
 
 For example, to delete Bernice Yu from the employee list, you can follow these steps:
@@ -421,9 +406,6 @@ Examples:
 * `view project Apollo` +
 Displays details (client, deadline, employees, milestones) of project “Apollo”.
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'p' as an alias for 'project'
-while keying in a command into the CLI.
 
 === Add an employee/milestone/user story to a project : `addto`
 
@@ -464,9 +446,6 @@ Examples:
 * `addto Apollo milestone Completed UI for program 23/11/2015` +
 Milestone added to project "Apollo".
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
-while keying in a command into the CLI.
 
 ==== Add a task to a project milestone: `addto projecttask`
 
@@ -549,9 +528,6 @@ The index refers to the index number (one-based) shown in the displayed list of 
 image:ug-exclamation.png[width="50"]
 The index must be a *positive integer* and cannot be larger than the size of the list.
 
-image:ug-lightbulb.png[width="50"]
-Users can simply use 'e' as an alias for 'employee' and 'm' as an alias for 'milestone'
-while keying in a command into the CLI.
 
 ==== Remove a user story from a project: `removefrom userstory`
 
