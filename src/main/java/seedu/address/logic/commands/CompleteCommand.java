@@ -22,40 +22,27 @@ public class CompleteCommand extends Command {
     public static final String COMMAND_WORD = "complete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Completes the project identified by the name or index(must be positive integer) of the project.\n"
-            + "Parameters: PROJECT_NAME/PROJECT_INDEX\n"
-            + "Example: " + COMMAND_WORD + " Apollo\n"
+            + ": Completes the project identified by the index(must be positive integer) of the project.\n"
+            + "Parameters: PROJECT_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1\n";
 
     public static final String MESSAGE_COMPLETE_PROJECT_SUCCESS = "Completed Project: %1$s";
-
-    private final ProjectName projectName;
     private final Index targetIndex;
     private final PocketProjectDate completionDate;
 
-    public CompleteCommand(ProjectName targetName, PocketProjectDate completionDate) {
-        this.projectName = targetName;
-        this.targetIndex = null;
-        this.completionDate = completionDate;
-    }
-
     public CompleteCommand(Index index, PocketProjectDate completionDate) {
         this.targetIndex = index;
-        this.projectName = null;
         this.completionDate = completionDate;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        ProjectName targetName = this.projectName;
-        if (targetName == null) {
-            List<Project> lastShownList = model.getFilteredProjectList();
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-            }
-            targetName = lastShownList.get(targetIndex.getZeroBased()).getProjectName();
+        List<Project> lastShownList = model.getFilteredProjectList();
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
+        ProjectName targetName = lastShownList.get(targetIndex.getZeroBased()).getProjectName();
         Project projectToComplete = model.getProjectWithName(targetName);
         if (projectToComplete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
@@ -68,17 +55,9 @@ public class CompleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (projectName != null) {
-            return other == this // short circuit if same object
-                    || (other instanceof CompleteCommand // instanceof handles nulls
-                    && projectName.equals(((CompleteCommand) other).projectName)
-                    && completionDate.equals(((CompleteCommand) other).completionDate));
-            // state check
-        } else {
-            return other == this // short circuit if same object
+        return other == this
                     || (other instanceof CompleteCommand // instanceof handles nulls
                     && targetIndex.equals(((CompleteCommand) other).targetIndex)
                     && completionDate.equals(((CompleteCommand) other).completionDate)); // state check
-        }
     }
 }

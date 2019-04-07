@@ -516,7 +516,7 @@ The displaying of statistics in Pocket Project will be facilitated by the model 
 planned to support 2 main commands:
 
 * `stats` -- Displays an overview of all the projects: the number of ongoing projects, closest deadline etc.
-* `stats PROJECT_INDEX` or `stats PROJECT_NAME` -- Display a summary of the progress of the project with the given PROJECT_INDEX or PROJECT_NAME.
+* `stats PROJ_INDEX` or `stats PROJ_NAME` -- Display a summary of the progress of the project with the given PROJ_INDEX or PROJ_NAME.
 
 The operation will be supported by the methods in the `Model` interface: `Model#overallStats()` and `Model#individualStats(Project)`.
 `Model#overallStats()` will retrieve the data on all the projects/employees to pass to `StatsUtil`, an utility class to produce a string which describes
@@ -531,7 +531,7 @@ Individual Project:
 image::IndividualStatsSequenceDiagram.png[width="1000"]
 Usage Scenario example for `stats`:
 
-1.	User executes `stats`/`stats PROJECT_INDEX`/`stats PROJECT_NAME` to view project statistics in Pocket Project.
+1.	User executes `stats`/`stats PROJ_INDEX`/`stats PROJ_NAME` to view project statistics in Pocket Project.
 2.	`PocketProjectParser` will parse and identify the command as a `IndividualStatsCommand` or `OverallStatsCommand`, parse any additional argument accordingly and return the command object.
 3.	`LogicManager` then executes the returned command, calling the `Model#individualStats()` or `Model#overallStats(Project)` accordingly to obtain the string describing the status of concern.
 4.  The returned string is used to construct the result of the command.
@@ -550,6 +550,49 @@ produce the string. This is chosen because I have decided to have several helper
 It would be inappropriate to put these methods under the command class or the model because they are not very related.
 
 // end::stats[]
+
+=== User Story feature
+==== Implementation
+
+The implementation of user stories in Pocket Project is facilitated by the `model` component, and in particular, the `Project` class
+which will store the relevant user stories as a `SortedUserStoryList`.
+
+Currently, the user stories feature supports the following commands:
+
+* `addto PROJ_NAME userstory i/STORY_IMPORTANCE STORY` -- Adds the `story` to the project indicated by the `PROJ_NAME`.
+* `removefrom PROJ_NAME userstory INDEX` -- Removes the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
+* `edit project PROJ_NAME userstory INDEX STORY` -- Edits the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
+* `update PROJ_NAME userstory INDEX STATUS -- Updates the status of the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
+
+In addition, the `SortedUserStoryList` maintains a sorted order of user stories according to descending importance level of the user story, followed by ascending lexicographical order of the `UserStoryUser` name.
+
+For example, suppose we have 3 user stories with the following importance level and user names:
+
+|===
+| Importance | User name
+| 1          | John
+| 2          | David
+| 2          | Alan
+|===
+
+In the `SortedUserStoryList` these user stories would appear in the following order and index:
+
+|===
+| Index  | Importance | User name
+| 1      | 2          | Alan
+| 2      | 2          | David
+| 3      | 1          | John
+|===
+
+Since the user stories with users David and Alan have a higher importance level than John, they will appear above John in the sorted list. Afterwards, since Alan is lexicographically smaller than David, it appears before David in the list.
+
+This is to faciliate users to find important user stories by ensuring a neatly ordered list by relevance of the user story. If a user wishes to do so, they can also sort the list by `UserStoryStatus` using the JavaFX `TableColumn` built-in sort to see which user stories are in progress or on hold. Note that doing so would directly change the
+order of the user stories in the `SortedUserStoryList` hence changing the index of the user story. In general, the GUI is updated to reflect the actual list stored within `SortedUserStoryList` hence any command which acts on an index would affect the user story in that index shown on the GUI.
+
+For example usage scenarios for adding user stories as removing of user stories, refer to the following:
+
+* `addto PROJ_NAME userstory [story]` -- <<Add employee/milestone/user story to projects feature>>
+* `removefrom PROJ_NAME userstory INDEX` -- <<Remove employee/milestone from projects feature>>
 
 === Undo/Redo feature
 ==== Current Implementation
@@ -1414,11 +1457,9 @@ Deleting a project while all projects are listed
 
 === Indicating a project as completed
 
-.. Test case: `complete 1` where there this at least one project shown in the list of projects +
+.. Test case: `complete 1 11/11/2011` where there this at least one project shown in the list of projects +
    Expected: The first project in the list is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
-.. Test case: `complete Project Apollo` where there is a project named 'Project Apollo' in the app +
-   Expected: The project named 'Project Apollo' is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
-.. Test case: `complete x` where x is neither the index of a displayed project nor the name of an existing project +
+.. Test case: `complete x 11/11/2011` where x is not the index of a displayed project +
    Expected: Error detail shown. The Timestamp in the status bar is not updated.
 
 === Clearing all data from the app

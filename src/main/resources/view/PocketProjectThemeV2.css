@@ -399,3 +399,9 @@
 #orangeCircle {
     -fx-fill: #ffcd77;
 }
+
+#descContent {
+    -fx-font-size: 11pt;
+    -fx-text-fill: #44524e;
+    -fx-font-family: "Proxima Nova Alt";
+}
