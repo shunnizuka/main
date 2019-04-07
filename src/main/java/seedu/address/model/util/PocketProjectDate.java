@@ -378,6 +378,10 @@ public class PocketProjectDate extends CalendarDate {
         return date;
     }
 
+    public boolean isSameOrEarlierDate(String date) {
+        return DATE_STRING_COMPARATOR.compare(this.date, date) <= 0;
+    }
+
     /**
      * Returns a clone of this PocketProjectDate object.
      */
@@ -393,8 +397,8 @@ public class PocketProjectDate extends CalendarDate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PocketProjectDate // instanceof handles nulls
-                && this.date.equals(((PocketProjectDate) other).date)); // state check
+            || (other instanceof PocketProjectDate // instanceof handles nulls
+            && this.date.equals(((PocketProjectDate) other).date)); // state check
     }
 
     @Override
