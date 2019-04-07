@@ -32,6 +32,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.ProjectBuilder;
 
@@ -255,6 +256,10 @@ public class AddProjectCommandTest {
         }
         @Override
         public void addUserStoryTo(Project targetProject, UserStory targetStory) {
+            throw new AssertionError("This method should not be called");
+        }
+        @Override
+        public void updateUserStory(Project targetProject, UserStory targetStory, UserStoryStatus newStatus) {
             throw new AssertionError("This method should not be called");
         }
         @Override
