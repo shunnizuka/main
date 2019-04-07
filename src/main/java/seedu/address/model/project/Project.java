@@ -15,8 +15,8 @@ public class Project {
     /**
      * Default description in project when a project is created.
      */
-    public static final String PROJECT_DEFAULT_DESCRIPTION = "Kindly use the edit command to change"
-        + "this project description";
+    public static final String PROJECT_DEFAULT_DESCRIPTION = "This project currently has no description. Kindly use "
+        + "the edit command to change this project's description";
 
     private final ProjectName projectName;
     private final UniqueMilestoneList milestones;

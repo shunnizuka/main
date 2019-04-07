@@ -147,7 +147,13 @@ class JsonAdaptedProject {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Description.class.getSimpleName()));
         }
-        final Description modelDescription = new Description(description);
+
+        final Description modelDescription;
+        if(Description.isValidDescription(description)) {
+            modelDescription = new Description(description);
+        } else {
+            modelDescription = new Description();
+        }
 
         if (startDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
