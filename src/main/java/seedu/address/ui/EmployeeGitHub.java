@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -22,6 +26,8 @@ public class EmployeeGitHub extends UiPart<Region> {
         super(FXML);
         this.employeeGithub = employeeGithub;
         loadEmployeePage();
+        webView.setOnDragDetected(event -> {
+        });
     }
 
     private void loadEmployeePage() {
@@ -33,4 +39,6 @@ public class EmployeeGitHub extends UiPart<Region> {
         WebEngine webEngine = webView.getEngine();
         webEngine.load(url);
     }
+
+
 }
