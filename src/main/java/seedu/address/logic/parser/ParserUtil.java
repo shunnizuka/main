@@ -20,6 +20,7 @@ import seedu.address.model.project.ProjectTaskName;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
+import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.CalendarDate;
@@ -61,6 +62,7 @@ public class ParserUtil {
         }
         return new Description(trimmedMilestoneDesc);
     }
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -268,6 +270,21 @@ public class ParserUtil {
             throw new ParseException(UserStoryImportance.MESSAGE_CONSTRAINTS);
         }
         return new UserStoryImportance(trimmedInput);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code UserStoryStatus status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static UserStoryStatus parseStoryStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!UserStoryStatus.isValidStoryStatus(trimmedStatus)) {
+            throw new ParseException(UserStoryStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new UserStoryStatus(trimmedStatus);
     }
 
     /**

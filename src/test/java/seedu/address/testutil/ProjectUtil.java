@@ -90,10 +90,10 @@ public class ProjectUtil {
      */
     public static String getUserStoryDetails(UserStory userStory) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_IMPORTANCE.toString() + userStory.getUserStoryImportance().getImportance() + " ");
-        sb.append(PREFIX_USER.toString() + userStory.getUserStoryUser().getUser() + " ");
-        sb.append(PREFIX_FUNCTION.toString() + userStory.getUserStoryFunction().getFunction() + " ");
-        sb.append(PREFIX_REASON.toString() + userStory.getUserStoryReason().getReason());
+        sb.append(PREFIX_IMPORTANCE.toString() + userStory.getUserStoryImportance() + " ");
+        sb.append(PREFIX_USER.toString() + userStory.getUserStoryUser() + " ");
+        sb.append(PREFIX_FUNCTION.toString() + userStory.getUserStoryFunction() + " ");
+        sb.append(PREFIX_REASON.toString() + userStory.getUserStoryReason());
         return sb.toString();
     }
 

@@ -202,6 +202,14 @@ public class Project {
     }
 
     /**
+     * Replace the existing user story with the new editedStory.
+     */
+    public void setUserStory(UserStory target, UserStory editedStory) {
+        userStories.setUserStory(target, editedStory);
+    }
+
+
+    /**
      * Returns true if this project has the given projectName.
      */
     public boolean hasProjectName(ProjectName projectName) {
@@ -220,6 +228,18 @@ public class Project {
      */
     public void removeUserStory(UserStory story) {
         userStories.remove(story);
+    }
+
+    /**
+     * Updates the given user story in this project.
+     */
+    public void updateUserStory(UserStory story, UserStoryStatus newStatus) {
+        userStories.forEach(thisStory -> {
+            if (story.equals(thisStory)) {
+                thisStory.updateStatus(newStatus);
+            }
+            return;
+        });
     }
 
     /**
