@@ -49,6 +49,20 @@ public class TestUtil {
     }
 
     /**
+     * Returns the middle index of the project in the {@code model}'s project list.
+     */
+    public static Index getMidProjectIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredProjectList().size() / 2);
+    }
+
+    /**
+     * Returns the last index of the project in the {@code model}'s project list.
+     */
+    public static Index getLastProjectIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredProjectList().size());
+    }
+
+    /**
      * Returns the employee in the {@code model}'s employee list at {@code index}.
      */
     public static Employee getEmployee(Model model, Index index) {

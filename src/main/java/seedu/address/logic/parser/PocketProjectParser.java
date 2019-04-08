@@ -23,6 +23,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemoveFromCommand;
 import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -102,6 +103,9 @@ public class PocketProjectParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case UpdateCommand.COMMAND_WORD:
+            return new UpdateCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

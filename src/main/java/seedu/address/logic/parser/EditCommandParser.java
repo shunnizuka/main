@@ -30,8 +30,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
     private static final Pattern EDIT_COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
 
-    private EditProjectCommandParser projectParser;
-
     /**
      * Parses the given {@code String} of arguments in the context of the EditEmployeeCommand
      * and returns an EditEmployeeCommand object for execution.
@@ -91,7 +89,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         } else if (keyword.equals(EditProjectCommand.EDIT_PROJECT_KEYWORD)) {
 
-            projectParser = new EditProjectCommandParser();
+            EditProjectCommandParser projectParser = new EditProjectCommandParser();
             return projectParser.parseProjectCommand(arguments);
 
         } else {

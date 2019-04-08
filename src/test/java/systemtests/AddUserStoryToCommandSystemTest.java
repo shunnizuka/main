@@ -112,9 +112,8 @@ public class AddUserStoryToCommandSystemTest extends PocketProjectSystemTest {
      * 1. Result display box displays {@code expectedResultMessage}.<br>
      * 2. {@code Storage} equal to the corresponding components in
      * {@code expectedModel}.<br>
-     * @see AddUserStoryeToCommandSystemTest#assertCommandSuccess(String, Project, UserStory)
+     * @see AddUserStoryToCommandSystemTest#assertCommandSuccess(String, Project, UserStory)
      */
-
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {
         executeCommand(command);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
