@@ -22,9 +22,7 @@ import static seedu.address.testutil.TypicalProjectNames.NON_EXISTENT_PROJECT_NA
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_1;
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_2;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
-import static seedu.address.testutil.TypicalProjects.PROJECT_BENSON;
 import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 
 import java.util.Arrays;
 
@@ -44,7 +42,6 @@ import seedu.address.testutil.PocketProjectBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TypicalEmployees;
 import seedu.address.testutil.TypicalMilestones;
-import seedu.address.testutil.TypicalProjects;
 import seedu.address.testutil.TypicalUserStories;
 
 public class EditProjectInfoCommandTest {

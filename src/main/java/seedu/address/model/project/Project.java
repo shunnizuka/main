@@ -33,7 +33,7 @@ public class Project {
      */
     public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end) {
         this(pn, c, start, end, new UniqueMilestoneList(), new Description(), new UniqueEmployeeList(),
-                new SortedUserStoryList());
+            new SortedUserStoryList());
     }
 
     /**
@@ -47,7 +47,7 @@ public class Project {
      * Constructor specifying description and milestone too. (not used)
      */
     public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
-         Description desc) {
+                    Description desc) {
         this(pn, c, start, end, m, desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
@@ -62,7 +62,7 @@ public class Project {
      * Constructor specifying employees in the project. (not used)
      */
     public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, Description desc,
-         UniqueEmployeeList emp) {
+                   UniqueEmployeeList emp) {
         this(pn, c, start, end, new UniqueMilestoneList(), desc, emp, new SortedUserStoryList());
     }
 
@@ -70,7 +70,7 @@ public class Project {
      * Constructor specifying all fields except userstories. (not used)
      */
     public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
-         Description desc, UniqueEmployeeList emp) {
+                   Description desc, UniqueEmployeeList emp) {
         this(pn, c, start, end, m, desc, emp, new SortedUserStoryList());
     }
 
@@ -78,7 +78,7 @@ public class Project {
      * Constructor specifying all fields except completion date.
      */
     public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
-         Description desc, UniqueEmployeeList emp, SortedUserStoryList stories) {
+                   Description desc, UniqueEmployeeList emp, SortedUserStoryList stories) {
         this.projectName = pn;
         this.client = c;
         this.startDate = start;
@@ -93,7 +93,7 @@ public class Project {
      * Constructor specifying all fields.
      */
     public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
-         Description desc, UniqueEmployeeList emp, SortedUserStoryList stories, PocketProjectDate comp) {
+                   Description desc, UniqueEmployeeList emp, SortedUserStoryList stories, PocketProjectDate comp) {
         this.projectName = pn;
         this.client = c;
         this.startDate = start;
@@ -138,7 +138,7 @@ public class Project {
      */
     public Project clone() {
         return new Project(this.projectName.clone(), this.client.clone(), this.startDate.clone(), this.deadline.clone(),
-                this.milestones.clone(), this.description.clone(), this.employees.clone(), userStories.clone());
+            this.milestones.clone(), this.description.clone(), this.employees.clone(), userStories.clone());
     }
 
     /**
@@ -226,9 +226,13 @@ public class Project {
      * Edits the details of the project specifically projectName, client, deadline and description
      */
     public Project editProject(ProjectName projectName, Client client, PocketProjectDate startDate,
-        PocketProjectDate deadline, Description description) {
+                               PocketProjectDate deadline, Description description) {
         return new Project(projectName, client, startDate, deadline, this.milestones, description, this.employees,
             this.userStories);
+    }
+
+    public void setMilestone(Milestone targetMilestone, Milestone milestone) {
+        milestones.setMilestone(targetMilestone, milestone);
     }
 
     /**

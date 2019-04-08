@@ -4,13 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ArgumentMultimap.isAnyPrefixPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditProjectCommand;
 import seedu.address.logic.commands.EditProjectInfoCommand.EditProjectDescriptor;
 import seedu.address.logic.commands.EditProjectInfoCommand;
@@ -95,7 +98,29 @@ public class EditProjectCommandParser {
 
             return new EditProjectInfoCommand(name, editProjectDescriptor);
 
-            //TODO add implementation for milestone and userstory
+            //TODO add implementation for milestone and userstorY
+        } else if (keyword.equals(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD)) {
+
+            requireNonNull(arguments);
+            String s = " " + arguments;
+            ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(s, PREFIX_MILESTONE, PREFIX_DATE);
+
+            Index milestoneIndex;
+            
+            try {
+                milestoneIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditProjectMilestoneCommand.MESSAGE_USAGE), pe);
+            }
+            
+            
+
+
+
+            return null;
+
         } else {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditProjectCommand.MESSAGE_USAGE));

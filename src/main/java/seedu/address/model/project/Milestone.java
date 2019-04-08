@@ -68,6 +68,16 @@ public class Milestone {
     }
 
     /**
+     * Returns a new milestone which has its {@code milestone} and {@code date} edited.
+     * {@code projectTasks} remains unchanged
+     */
+    public Milestone editMilestone (Description milestone, PocketProjectDate date) {
+        return new Milestone(milestone, date, this.projectTasks);
+    }
+    
+    
+    
+    /**
      * Returns true if both milestones have the same name and date.
      * This defines a weaker notion of equality between two milestones.
      */

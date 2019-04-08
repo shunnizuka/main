@@ -61,13 +61,8 @@ public class EditProjectInfoCommand extends EditProjectCommand {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        List<Project> projectList = model.getProjectList();
-        Project projectToEdit = null;
-        for (Project p: projectList) {
-            if (p.hasProjectName(projectName)) {
-                projectToEdit = p;
-            }
-        }
+       Project projectToEdit = model.getProjectWithName(projectName);
+        
         if (projectToEdit == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }

@@ -29,7 +29,7 @@ public class EditEmployeeCommand extends EditCommand {
 
     public static final String EDIT_EMPLOYEE_KEYWORD = "employee";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + EDIT_EMPLOYEE_KEYWORD + " INDEX [n/NAME] [p/PHONE] "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + EDIT_EMPLOYEE_KEYWORD + " INDEX [n/NAME] [p/PHONE] "
         + "[e/EMAIL] [g/GITHUB] [s/SKILLS]"
         + ": edits the employee/milestone/user story in the selected project.\n";
 
