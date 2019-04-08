@@ -30,6 +30,7 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
         + "edits the milstone at INDEX in the project";
 
     public static final String MESSAGE_EDIT_MILESTONE_SUCCESS = "Edited Milestone: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit the milestone must be provided";
 
     private final ProjectName projectName;
     private final Index milestoneIndex;

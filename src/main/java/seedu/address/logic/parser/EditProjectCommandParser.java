@@ -18,6 +18,7 @@ import seedu.address.logic.commands.EditProjectCommand;
 import seedu.address.logic.commands.EditProjectInfoCommand.EditProjectDescriptor;
 import seedu.address.logic.commands.EditProjectInfoCommand;
 import seedu.address.logic.commands.EditProjectMilestoneCommand;
+import seedu.address.logic.commands.EditProjectMilestoneCommand.EditMilestoneDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectName;
 
@@ -107,19 +108,30 @@ public class EditProjectCommandParser {
                 ArgumentTokenizer.tokenize(s, PREFIX_MILESTONE, PREFIX_DATE);
 
             Index milestoneIndex;
-            
+
             try {
                 milestoneIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
             } catch (ParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditProjectMilestoneCommand.MESSAGE_USAGE), pe);
             }
-            
-            
 
+            EditMilestoneDescriptor editMilestoneDescriptor = new EditMilestoneDescriptor();
 
+            if (argMultimap.getValue(PREFIX_MILESTONE).isPresent()) {
+                editMilestoneDescriptor.setMilestoneDesc(ParserUtil.parseMilestoneDescription(
+                    argMultimap.getValue(PREFIX_MILESTONE).get()));
+            }
 
-            return null;
+            if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+                editMilestoneDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
+            }
+
+            if (!editMilestoneDescriptor.isAnyFieldEdited()) {
+                throw new ParseException(EditProjectMilestoneCommand.MESSAGE_NOT_EDITED);
+            }
+
+            return new EditProjectMilestoneCommand(name, milestoneIndex, editMilestoneDescriptor);
 
         } else {
             throw new ParseException(
