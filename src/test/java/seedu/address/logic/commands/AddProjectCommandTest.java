@@ -20,6 +20,7 @@ import org.junit.rules.ExpectedException;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -71,7 +72,7 @@ public class AddProjectCommandTest {
         ModelStub modelStub = new ModelStubWithProject(validProject);
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+        thrown.expectMessage(Messages.MESSAGE_DUPLICATE_PROJECT);
         addProjectCommand.execute(modelStub, commandHistory);
     }
 

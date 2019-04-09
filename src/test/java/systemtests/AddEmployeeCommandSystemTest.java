@@ -137,26 +137,26 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: add a duplicate employee -> rejected */
         command = EmployeeUtil.getAddEmployeeCommand(HOON);
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different phone -> rejected */
         toAdd = new EmployeeBuilder(HOON).withPhone(VALID_PHONE_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different email -> rejected */
         toAdd = new EmployeeBuilder(HOON).withEmail(VALID_EMAIL_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different github -> rejected */
         toAdd = new EmployeeBuilder(HOON).withGitHubAccount(VALID_GITHUB_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different skills -> rejected */
         command = EmployeeUtil.getAddEmployeeCommand(HOON) + " " + PREFIX_SKILL.getPrefix() + "friends";
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: missing name -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + PHONE_DESC_AMY

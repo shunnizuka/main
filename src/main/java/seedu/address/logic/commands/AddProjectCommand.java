@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -33,7 +34,6 @@ public class AddProjectCommand extends AddCommand {
             + PREFIX_DEADLINE + "23/11/2020 ";
 
     public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Added Project: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the pocket project";
 
     private final Project toAdd;
 
@@ -50,7 +50,7 @@ public class AddProjectCommand extends AddCommand {
         requireNonNull(model);
 
         if (model.hasProject(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT);
         }
 
         model.addProject(toAdd);
