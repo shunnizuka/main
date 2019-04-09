@@ -296,7 +296,7 @@ public class ParserUtil {
     public static ProjectTaskDescription parseProjectTaskName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!ProjectTaskDescription.isValidTaskName(trimmedName)) {
+        if (!ProjectTaskDescription.isValidDescription(trimmedName)) {
             throw new ParseException(ProjectTaskDescription.MESSAGE_CONSTRAINTS);
         }
         return new ProjectTaskDescription(trimmedName);
