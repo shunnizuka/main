@@ -45,7 +45,8 @@ public class EditProjectCommandParser {
     private static final int START_INDEX = 0;
     private static final int OFFSET = 1;
     private static final int LIMIT = 2;
-
+    private static final int KEYWORD_INDEX = 0;
+    private static final int ARGUMENT_INDEX = 1;
 
     /**
      * Parse the input for the EditProjectCommand
@@ -67,8 +68,8 @@ public class EditProjectCommandParser {
         String argsString = userInput.substring(indexOfArgs);
         //to extract out the keyword
         String[] args = argsString.split(" ", LIMIT);
-        String keyword = args[0];
-        String arguments = args[1];
+        String keyword = args[KEYWORD_INDEX];
+        String arguments = args[ARGUMENT_INDEX];
 
         ProjectName name;
         try {
