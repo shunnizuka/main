@@ -174,6 +174,16 @@ public class UniqueProjectList implements Iterable<Project> {
         milestones.get(milestones.indexOf(milestone)).addTask(task);
     }
 
+    /**
+     * Updates the specified project task in the specified project milestone. They must exist.
+     */
+    public void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                                  Status newStatus) {
+        requireAllNonNull(targetProject, targetMilestone, targetTask, newStatus);
+        List<Milestone> milestones = internalList.get(internalList.indexOf(targetProject)).getMilestones();
+        milestones.get(milestones.indexOf(targetMilestone)).updateProjectTask(targetTask, newStatus);
+    }
+
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

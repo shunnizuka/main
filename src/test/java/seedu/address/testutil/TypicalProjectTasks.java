@@ -1,16 +1,33 @@
 package seedu.address.testutil;
 
 import seedu.address.model.project.ProjectTask;
-import seedu.address.model.project.ProjectTaskName;
-import seedu.address.model.project.Status;
 
 /**
  * A utility class containing a list of {@code ProjectTask} objects to be used in tests.
  */
 public class TypicalProjectTasks {
-    public static final ProjectTask PROJECT_TASK_DO_SOMETHING = new ProjectTask(new ProjectTaskName("Do something"));
-    public static final ProjectTask PROJECT_TASK_COMPLETED =
-            new ProjectTask(new ProjectTaskName("Completed task"), new Status("complete"));
+
+    public static final ProjectTask PROJECT_TASK_DO_SOMETHING = new ProjectTaskBuilder()
+        .withTaskName("Do something")
+        .withStatus("ongoing")
+        .build();
+
+    public static final ProjectTask PROJECT_TASK_ONGOING = new ProjectTaskBuilder()
+    .withTaskName("Ongoing task")
+    .withStatus("ongoing")
+    .build();
+
+    public static final ProjectTask PROJECT_TASK_COMPLETED = new ProjectTaskBuilder()
+        .withTaskName("Completed task")
+        .withStatus("complete")
+        .withCompletionDate("15/12/2019")
+        .build();
+
+    public static final ProjectTask PROJECT_TASK_ON_HOLD = new ProjectTaskBuilder()
+        .withTaskName("On hold task")
+        .withStatus("on hold")
+        .withCompletionDate("03/02/2019")
+        .build();
 
     private TypicalProjectTasks() {} // prevents instantiation
 }

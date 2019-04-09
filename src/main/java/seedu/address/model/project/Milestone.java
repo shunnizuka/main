@@ -47,6 +47,19 @@ public class Milestone {
         this.projectTasks.add(task);
     }
 
+
+    /**
+     * Updates the given user story in this project.
+     */
+    public void updateProjectTask(ProjectTask task, Status newStatus) {
+        projectTasks.forEach(pt -> {
+            if (task.equals(pt)) {
+                pt.updateStatus(newStatus);
+            }
+            return;
+        });
+    }
+
     /**
      * Returns a clone of this Milestone object.
      */

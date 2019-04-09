@@ -47,7 +47,7 @@ public class ProjectContainsKeywordsPredicateTest {
         ProjectContainsKeywordsPredicate predicate = new ProjectContainsKeywordsPredicate(
             Collections.singletonList("software"));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Alice Project")
-            .withDescrption("A software engineering application").build()));
+            .withDescription("A software engineering application").build()));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Alice Project")
             .withClient("software company").build()));
 
@@ -55,7 +55,7 @@ public class ProjectContainsKeywordsPredicateTest {
         predicate = new ProjectContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Alice Bob Project").build()));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Hello World")
-            .withDescrption("A collaboration between Alice and Bob").build()));
+            .withDescription("A collaboration between Alice and Bob").build()));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Hello World")
             .withClient("Alice Bob Tan").build()));
 
@@ -64,7 +64,7 @@ public class ProjectContainsKeywordsPredicateTest {
         predicate = new ProjectContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Alice Carol Project").build()));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Hello World")
-            .withDescrption("A collaboration between Alice and Bob").build()));
+            .withDescription("A collaboration between Alice and Bob").build()));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Hello World")
             .withClient("Alice Bob Tan").build()));
 
@@ -72,7 +72,7 @@ public class ProjectContainsKeywordsPredicateTest {
         predicate = new ProjectContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Alice Bob Project").build()));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Hello World")
-            .withDescrption("A collaboration between Alice and Bob").build()));
+            .withDescription("A collaboration between Alice and Bob").build()));
         assertTrue(predicate.test(new ProjectBuilder().withProjectName("Hello World")
             .withClient("Alice Bob Tan").build()));
     }
@@ -90,6 +90,6 @@ public class ProjectContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ProjectBuilder().withProjectName("Alice Project")
             .withClient("someonw").build()));
         assertFalse(predicate.test(new ProjectBuilder().withProjectName("Alice Project")
-            .withDescrption("Alice and Bob collaboration").build()));
+            .withDescription("Alice and Bob collaboration").build()));
     }
 }

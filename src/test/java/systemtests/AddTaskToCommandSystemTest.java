@@ -36,7 +36,7 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
         Milestone milestone = TypicalMilestones.TYPICAL_MILESTONE_START;
         Index index = TypicalIndexes.INDEX_FIRST_PROJECT_MILESTONE;
-        ProjectTask task = TypicalProjectTasks.PROJECT_TASK_DO_SOMETHING;
+        ProjectTask task = TypicalProjectTasks.PROJECT_TASK_ONGOING;
         assertCommandSuccess(targetProject, milestone, index, task);
 
         /* Case: undo adding task to milestone 1 in Project Alice */

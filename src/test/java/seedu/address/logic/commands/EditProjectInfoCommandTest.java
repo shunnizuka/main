@@ -50,7 +50,7 @@ public class EditProjectInfoCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE)
-            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
+            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescription(VALID_DESCRIPTION)
             .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                 TypicalMilestones.TYPICAL_MILESTONE_END))
@@ -76,7 +76,7 @@ public class EditProjectInfoCommandTest {
 
         ProjectBuilder projectInList = new ProjectBuilder(lastProject);
         Project editedProject = projectInList.withProjectName(VALID_NAME_BOB).withClient(VALID_CLIENT_BOB)
-            .withDescrption(VALID_DESCRIPTION).build();
+            .withDescription(VALID_DESCRIPTION).build();
 
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
             .withName(VALID_NAME_BOB).withClient(VALID_CLIENT_BOB).withDescription(VALID_DESCRIPTION).build();
@@ -160,7 +160,7 @@ public class EditProjectInfoCommandTest {
     @Test
     public void executeUndoRedo_validProjectName_success() throws Exception {
         Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE)
-            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
+            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescription(VALID_DESCRIPTION)
             .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                 TypicalMilestones.TYPICAL_MILESTONE_END))

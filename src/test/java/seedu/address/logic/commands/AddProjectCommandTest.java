@@ -267,6 +267,11 @@ public class AddProjectCommandTest {
             throw new AssertionError("This method should not be called");
         }
         @Override
+        public void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                                      Status newStatus) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public List<Project> getProjectsContaining(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }

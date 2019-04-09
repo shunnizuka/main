@@ -81,7 +81,8 @@ public class ProjectTask {
 
         ProjectTask otherTask = (ProjectTask) other;
         return otherTask.name.equals(this.name)
-            && otherTask.status.equals(this.status);
+            && otherTask.status.equals(this.status)
+            && otherTask.completionDate.equals(this.completionDate);
     }
 
     @Override

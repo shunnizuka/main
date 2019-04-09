@@ -21,6 +21,7 @@ import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.Status;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.Assert;
 
@@ -31,6 +32,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "#friend";
     private static final String INVALID_TASKNAME = " ";
+    private static final String INVALID_STATUS = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -39,6 +41,7 @@ public class ParserUtilTest {
     private static final String VALID_SKILL_1 = "friend";
     private static final String VALID_SKILL_2 = "neighbour";
     private static final String VALID_TASKNAME = "valid task";
+    private static final String VALID_STATUS = "ongoing";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -227,5 +230,24 @@ public class ParserUtilTest {
     public void parseProjectTaskName_invalidTaskName_throwsParseException() throws Exception {
         thrown.expect(ParseException.class);
         ParserUtil.parseProjectTaskName(INVALID_TASKNAME);
+    }
+
+    @Test
+    public void parseStatus_validStatus_returnsTrimmedStatus() throws Exception {
+        String statusWithWhitespace = WHITESPACE + VALID_STATUS + WHITESPACE;
+        Status expectedStatus = new Status(VALID_STATUS);
+        assertEquals(expectedStatus, ParserUtil.parseStatus(statusWithWhitespace));
+    }
+
+    @Test
+    public void parseStatus_nullStatus_throwsNullPointerException() throws Exception {
+        thrown.expect(NullPointerException.class);
+        ParserUtil.parseStatus(null);
+    }
+
+    @Test
+    public void parseStatus_invalidStatus_throwsParseException() throws Exception {
+        thrown.expect(ParseException.class);
+        ParserUtil.parseProjectTaskName(INVALID_STATUS);
     }
 }

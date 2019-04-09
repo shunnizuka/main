@@ -252,11 +252,18 @@ public interface Model {
      * Returns a string describing the overview of all projects.
      */
     String overallStats();
+
     /**
      * Adds the {@code task} to the {@code milestone}.
      * {@code milestone} must exist in the pocket project.
      */
     void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task);
+
+    /**
+     * Updates the {@code targetTask} from the {@code targetProject} to the new {@code newStatus}.
+     */
+    void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                           Status newStatus);
 
     /**
      * Returns a string describing the progress of an individual project.

@@ -233,6 +233,13 @@ public class ModelManager implements Model {
         versionedPocketProject.updateUserStory(targetProject, targetStory, newStatus);
     }
 
+    @Override
+    public void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                                  Status newStatus) {
+        versionedPocketProject.updateProjectTask(targetProject, targetMilestone, targetTask, newStatus);
+    }
+
+
     //=========== Filtered Employee List Accessors =============================================================
 
     /**

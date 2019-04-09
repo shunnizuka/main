@@ -262,6 +262,15 @@ public class PocketProject implements ReadOnlyPocketProject {
     }
 
     /**
+     * Updates status of {@code targetTask} in {@code targetMilestone} in {@code targetProject} to {@code newStatus}.
+     */
+    public void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                                  Status newStatus) {
+        projects.updateProjectTask(targetProject, targetMilestone, targetTask, newStatus);
+        indicateModified();
+    }
+
+    /**
      * Removes {@code targetEmployee} from the {@code targetProject} from this {@code PocketProject}.
      *  {@code targetProject} and {@code targetEmployee} must exist.
      */
