@@ -88,14 +88,17 @@ public class ProjectTaskTest {
 
     @Test
     public void isSameStatus() {
-        // equals
+        // same string -> equals
         Status status = new Status("ongoing");
         ProjectTask validProjectTask = new ProjectTask(new ProjectTaskName("Valid"), new Status("ongoing"));
         assertEquals(validProjectTask.getTaskStatus(), status.getStatus());
 
-        // not equals
-        ProjectTask invalidProjectTask = new ProjectTask(new ProjectTaskName("Valid"),
-                new Status("Ongoing"));
+        // status case insensitive -> equals
+        ProjectTask caseProjectTask = new ProjectTask(new ProjectTaskName("Valid"), new Status("Ongoing"));
+        assertEquals(caseProjectTask.getTaskStatus(), status.getStatus());
+
+        // different statuses -> not equals
+        ProjectTask invalidProjectTask = new ProjectTask(new ProjectTaskName("Valid"), new Status("Complete"));
         assertNotEquals(invalidProjectTask.getTaskStatus(), status.getStatus());
     }
 

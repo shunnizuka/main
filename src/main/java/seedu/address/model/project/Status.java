@@ -30,7 +30,7 @@ public class Status {
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
-        this.status = status;
+        this.status = status.toLowerCase();
     }
 
     public String getStatus() {
@@ -47,7 +47,7 @@ public class Status {
     }
 
     public boolean isComplete() {
-        return this.status == STATUS_COMPLETE;
+        return this.status.equals(STATUS_COMPLETE);
     }
 
     /**

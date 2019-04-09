@@ -14,8 +14,8 @@ import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTask;
-import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.project.Status;
+import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.util.PocketProjectDate;
 

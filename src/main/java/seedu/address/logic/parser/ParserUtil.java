@@ -278,7 +278,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code status} is invalid.
      */
-    public static Status parseStoryStatus(String status) throws ParseException {
+    public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
         if (!Status.isValidStatus(trimmedStatus)) {
