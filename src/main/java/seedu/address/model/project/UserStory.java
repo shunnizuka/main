@@ -132,7 +132,7 @@ public class UserStory {
     public static boolean isValidUserStory(UserStory story) {
         return UserStoryUser.isValidName(story.user.getUser())
                 && UserStoryImportance.isValidImportanceLevel(story.importance.getImportance())
-                && UserStoryFunction.isValidUserStoryFunction(story.function.getFunction())
+                && UserStoryFunction.isValidDescription(story.function.getFunction())
                 && UserStoryStatus.isValidStoryStatus(story.status.getStatus());
     }
 

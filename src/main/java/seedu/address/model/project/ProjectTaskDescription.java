@@ -4,13 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Name of the project task in the Pocket Project.
+ * Description of the project task in the Pocket Project.
  */
 
-public class ProjectTaskDescription {
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Project task names should not be empty or consisting of only spaces.";
+public class ProjectTaskDescription extends Description{
 
     public final String taskName;
 
@@ -19,18 +16,12 @@ public class ProjectTaskDescription {
      */
     public ProjectTaskDescription(String taskName) {
         requireNonNull(taskName);
-        checkArgument(isValidTaskName(taskName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDescription(taskName), MESSAGE_CONSTRAINTS);
         this.taskName = taskName;
     }
 
     public String getTaskName() {
         return this.taskName;
-    }
-    /**
-     * Returns true if given string is valid for a task name string
-     */
-    public static boolean isValidTaskName(String info) {
-        return !info.trim().isEmpty();
     }
 
     /**

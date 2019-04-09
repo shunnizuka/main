@@ -101,7 +101,7 @@ public class ProjectTask {
      * Checks if the task has the valid format by checking the relevant fields
      */
     public static boolean isValidTask(ProjectTask task) {
-        return ProjectTaskDescription.isValidTaskName(task.getTaskName().taskName)
+        return ProjectTaskDescription.isValidDescription(task.getTaskName().taskName)
             && ProjectTaskStatus.isValidTaskStatus(task.getTaskStatus().taskStatus);
     }
 }

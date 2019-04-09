@@ -78,7 +78,7 @@ class JsonAdaptedUserStory {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     UserStoryFunction.class.getSimpleName()));
         }
-        if (!UserStoryFunction.isValidUserStoryFunction(function)) {
+        if (!UserStoryFunction.isValidDescription(function)) {
             throw new IllegalValueException(UserStoryFunction.MESSAGE_CONSTRAINTS);
         }
         final UserStoryFunction modelUserStoryFunction = new UserStoryFunction(function);

@@ -23,13 +23,6 @@ public class ProjectName extends Name {
     }
 
     /**
-     * Returns true if a given string is a valid name.
-     */
-    public static boolean isValidName(String input) {
-        return input.matches(VALIDATION_REGEX);
-    }
-
-    /**
      * Returns a clone of this ProjectName object.
      */
     public ProjectName clone() {

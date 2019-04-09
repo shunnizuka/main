@@ -47,7 +47,7 @@ class JsonAdaptedProjectTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ProjectTaskDescription.class.getSimpleName()));
         }
-        if (!ProjectTaskDescription.isValidTaskName(taskName)) {
+        if (!ProjectTaskDescription.isValidDescription(taskName)) {
             throw new IllegalValueException(ProjectTaskDescription.MESSAGE_CONSTRAINTS);
         }
         final ProjectTaskDescription modelProjectTaskDescription = new ProjectTaskDescription(taskName);
