@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -86,8 +85,8 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
                 final String task = taskMatcher.group("task");
                 final String newStatus = taskMatcher.group("status");
 
-                final Index  milestoneIndex = ParserUtil.parseIndex(milestone);
-                final Index  taskIndex = ParserUtil.parseIndex(task);
+                final Index milestoneIndex = ParserUtil.parseIndex(milestone);
+                final Index taskIndex = ParserUtil.parseIndex(task);
                 final Status status = ParserUtil.parseStatus(newStatus);
 
                 return new UpdateProjectTaskCommand(projectName, milestoneIndex, taskIndex, status);

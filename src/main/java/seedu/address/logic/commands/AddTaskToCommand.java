@@ -14,6 +14,7 @@ import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
+import seedu.address.model.project.exceptions.DuplicateProjectTaskException;
 
 /**
  * Adds a task to a project milestone.
@@ -60,7 +61,12 @@ public class AddTaskToCommand extends AddToCommand {
         if (targetMilestone.getProjectTaskList().contains(taskToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT_TASK);
         }
-        targetMilestone.addTask(taskToAdd);
+
+        try {
+            targetMilestone.addTask(taskToAdd);
+        } catch (DuplicateProjectTaskException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_PROJECT_TASK, e);
+        }
 
         model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, taskToAdd,

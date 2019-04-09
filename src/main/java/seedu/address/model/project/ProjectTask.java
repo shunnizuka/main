@@ -1,6 +1,8 @@
 package seedu.address.model.project;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Represents a project task stored in a project milestone.
@@ -9,24 +11,23 @@ public class ProjectTask {
 
     private Status status;
     private ProjectTaskName name;
+    private PocketProjectDate completionDate;
 
     /**
      * Default constructor for a project task
      */
     public ProjectTask(ProjectTaskName name) {
-        requireNonNull(name);
-        this.name = name;
-        this.status = new Status();
+        this(name, new Status(), new PocketProjectDate());
     }
 
     /**
      * Constructor for a project task specifying project task status.
      */
-    public ProjectTask(ProjectTaskName name, Status status) {
-        requireNonNull(name);
+    public ProjectTask(ProjectTaskName name, Status status, PocketProjectDate date) {
+        requireAllNonNull(name);
         this.name = name;
-        requireNonNull(status);
         this.status = status;
+        this.completionDate = date;
     }
 
     public String getTaskName() {
@@ -35,6 +36,10 @@ public class ProjectTask {
 
     public String getTaskStatus() {
         return this.status.getStatus();
+    }
+
+    public String getCompletionDate() {
+        return this.completionDate.getDate();
     }
 
     public boolean isComplete() {
@@ -57,7 +62,7 @@ public class ProjectTask {
      * Returns a clone of this task.
      */
     public ProjectTask clone() {
-        return new ProjectTask(this.name.clone(), this.status.clone());
+        return new ProjectTask(this.name.clone(), this.status.clone(), this.completionDate.clone());
     }
 
     /**
@@ -103,5 +108,8 @@ public class ProjectTask {
      */
     public void updateStatus(Status newStatus) {
         this.status = newStatus;
+        if (isComplete()) {
+            this.completionDate = new PocketProjectDate();
+        }
     }
 }
