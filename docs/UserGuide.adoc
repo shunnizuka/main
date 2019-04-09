@@ -276,7 +276,7 @@ Examples:
 Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
 
 
-==== Edits milestone of a project: `edit project milestone` 
+==== Edits milestone of a project: `edit project milestone`
 
 Edits the existing milestone in the milestone list of a project.
 
