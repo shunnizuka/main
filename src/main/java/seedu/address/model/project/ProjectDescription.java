@@ -1,9 +1,9 @@
 package seedu.address.model.project;
 
-import seedu.address.model.util.Description;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.util.Description;
 
 /**
  * Description of the project. A summary of what the project is about

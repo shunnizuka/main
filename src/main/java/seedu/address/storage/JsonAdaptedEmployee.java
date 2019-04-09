@@ -83,7 +83,8 @@ class JsonAdaptedEmployee {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EmployeeName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                EmployeeName.class.getSimpleName()));
         }
         if (!EmployeeName.isValidName(name)) {
             throw new IllegalValueException(EmployeeName.MESSAGE_CONSTRAINTS);
@@ -116,7 +117,8 @@ class JsonAdaptedEmployee {
         final GitHubAccount modelGitHubAccount = new GitHubAccount(github);
 
         final Set<Skill> modelSkills = new HashSet<>(employeeSkills);
-        return new Employee(modelEmployeeName, modelPhone, modelEmail, modelGitHubAccount, modelSkills, modelProjectNames);
+        return new Employee(modelEmployeeName, modelPhone, modelEmail, modelGitHubAccount, modelSkills,
+            modelProjectNames);
     }
 
 }

@@ -82,8 +82,8 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AddMilestoneToCommand.MESSAGE_USAGE));
                 }
-                MilestoneDescription milestoneDesc = ParserUtil.parseMilestoneDescription(argMultimap.getValue(PREFIX_MILESTONE)
-                    .get());
+                MilestoneDescription milestoneDesc = ParserUtil
+                    .parseMilestoneDescription(argMultimap.getValue(PREFIX_MILESTONE).get());
                 PocketProjectDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
                 Milestone milestone = new Milestone(milestoneDesc, date);
                 return new AddMilestoneToCommand(projectName, milestone);

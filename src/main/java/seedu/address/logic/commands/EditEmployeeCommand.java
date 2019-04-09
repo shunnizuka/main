@@ -19,8 +19,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.EmployeeName;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
 

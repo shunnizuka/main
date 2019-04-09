@@ -1,9 +1,9 @@
 package seedu.address.model.project;
 
-import seedu.address.model.util.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.util.Name;
 
 /**
  * represents the user of a user story

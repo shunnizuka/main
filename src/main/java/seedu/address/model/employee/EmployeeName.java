@@ -1,9 +1,9 @@
 package seedu.address.model.employee;
 
-import seedu.address.model.util.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.util.Name;
 
 /**
  * Represents a Employee's name in the Pocket Project.
