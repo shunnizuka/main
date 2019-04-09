@@ -79,7 +79,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
             throw new MilestoneNotFoundException();
         }
     }
-    
+
     public void setMilestone(Milestone targetMilestone, Milestone milestone) {
         if (!this.contains(targetMilestone)) {
             throw new MilestoneNotFoundException();

@@ -18,11 +18,14 @@ import static seedu.address.testutil.TypicalEmployees.BENSON;
 import static seedu.address.testutil.TypicalEmployees.CARL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
+import static seedu.address.testutil.TypicalMilestones.TYPICAL_MILESTONE_END;
+import static seedu.address.testutil.TypicalMilestones.TYPICAL_MILESTONE_START;
 import static seedu.address.testutil.TypicalProjectNames.NON_EXISTENT_PROJECT_NAME;
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_1;
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_2;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
 import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
+import static seedu.address.testutil.TypicalUserStories.USER_STORY_FIRST_MANAGER;
 
 import java.util.Arrays;
 
@@ -40,9 +43,6 @@ import seedu.address.model.project.Project;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.PocketProjectBuilder;
 import seedu.address.testutil.ProjectBuilder;
-import seedu.address.testutil.TypicalEmployees;
-import seedu.address.testutil.TypicalMilestones;
-import seedu.address.testutil.TypicalUserStories;
 
 public class EditProjectInfoCommandTest {
 
@@ -53,10 +53,10 @@ public class EditProjectInfoCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE)
             .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
-            .withEmployees(Arrays.asList(BENSON, TypicalEmployees.CARL))
-            .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
-                TypicalMilestones.TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
+            .withEmployees(Arrays.asList(BENSON, CARL))
+            .withMilestones(Arrays.asList(TYPICAL_MILESTONE_START,
+                TYPICAL_MILESTONE_END))
+            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER)).build();
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
             .build();
         EditProjectInfoCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1,
@@ -163,10 +163,9 @@ public class EditProjectInfoCommandTest {
     public void executeUndoRedo_validProjectName_success() throws Exception {
         Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE)
             .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
-            .withEmployees(Arrays.asList(BENSON, TypicalEmployees.CARL))
-            .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
-                TypicalMilestones.TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
+            .withEmployees(Arrays.asList(BENSON, CARL))
+            .withMilestones(Arrays.asList(TYPICAL_MILESTONE_START, TYPICAL_MILESTONE_END))
+            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER)).build();
 
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
@@ -212,10 +211,10 @@ public class EditProjectInfoCommandTest {
 
         Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_BOB)
             .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
-            .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
-            .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
-                TypicalMilestones.TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
+            .withEmployees(Arrays.asList(BENSON, CARL))
+            .withMilestones(Arrays.asList(TYPICAL_MILESTONE_START,
+                TYPICAL_MILESTONE_END))
+            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER)).build();
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
             .build();
 

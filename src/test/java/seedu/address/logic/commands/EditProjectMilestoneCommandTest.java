@@ -14,6 +14,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT_MILESTONE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_INVALID_PROJECT_MILESTONE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT_MILESTONE;
+import static seedu.address.testutil.TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG;
+import static seedu.address.testutil.TypicalMilestones.TYPICAL_MILESTONE_END;
+import static seedu.address.testutil.TypicalMilestones.TYPICAL_MILESTONE_START;
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_1;
 import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
 
@@ -35,7 +38,6 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.testutil.EditMilestoneDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TypicalEmployees;
-import seedu.address.testutil.TypicalMilestones;
 import seedu.address.testutil.TypicalUserStories;
 
 public class EditProjectMilestoneCommandTest {
@@ -53,10 +55,10 @@ public class EditProjectMilestoneCommandTest {
     public void execute_allFieldsSpecified_success() {
 
         Project editedProject = defaultProjBuilder.withMilestones(Arrays.asList(
-            TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG, TypicalMilestones.TYPICAL_MILESTONE_END)).build();
+            TYPICAL_MILESTONE_COMPLETED_UG, TYPICAL_MILESTONE_END)).build();
 
         EditProjectMilestoneCommand.EditMilestoneDescriptor descriptor = new EditMilestoneDescriptorBuilder(
-            TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG).build();
+            TYPICAL_MILESTONE_COMPLETED_UG).build();
         EditProjectMilestoneCommand editMilestoneCommand = new EditProjectMilestoneCommand(
             new ProjectName(VALID_PROJECT_NAME_ALICE_HEY) , INDEX_FIRST_PROJECT_MILESTONE, descriptor);
 
@@ -65,7 +67,7 @@ public class EditProjectMilestoneCommandTest {
         expectedModel.commitPocketProject();
 
         String expectedMessage = String.format(EditProjectMilestoneCommand.MESSAGE_EDIT_MILESTONE_SUCCESS ,
-            TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG);
+            TYPICAL_MILESTONE_COMPLETED_UG);
 
         assertCommandSuccess(editMilestoneCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -74,10 +76,10 @@ public class EditProjectMilestoneCommandTest {
     public void execute_someFieldSpecified_success() {
 
         Milestone editedMilestone = new Milestone(new Description("hello"),
-            TypicalMilestones.TYPICAL_MILESTONE_START.getDate());
+            TYPICAL_MILESTONE_START.getDate());
 
         Project editedProject = defaultProjBuilder.withMilestones(Arrays.asList(editedMilestone,
-            TypicalMilestones.TYPICAL_MILESTONE_END)).build();
+            TYPICAL_MILESTONE_END)).build();
         EditProjectMilestoneCommand.EditMilestoneDescriptor descriptor = new EditMilestoneDescriptorBuilder(
             editedMilestone).build();
         EditProjectMilestoneCommand editMilestoneCommand = new EditProjectMilestoneCommand(
@@ -99,7 +101,7 @@ public class EditProjectMilestoneCommandTest {
             INDEX_FIRST_PROJECT_MILESTONE, new EditProjectMilestoneCommand.EditMilestoneDescriptor());
 
         String expectedMessage = String.format(EditProjectMilestoneCommand.MESSAGE_EDIT_MILESTONE_SUCCESS,
-            TypicalMilestones.TYPICAL_MILESTONE_START);
+            TYPICAL_MILESTONE_START);
 
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.commitPocketProject();
@@ -148,10 +150,10 @@ public class EditProjectMilestoneCommandTest {
     public void executeUndoRedo_validFields_success() throws CommandException {
 
         Project editedProject = defaultProjBuilder.withMilestones(Arrays.asList(
-            TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG, TypicalMilestones.TYPICAL_MILESTONE_END)).build();
+            TYPICAL_MILESTONE_COMPLETED_UG, TYPICAL_MILESTONE_END)).build();
 
         EditProjectMilestoneCommand.EditMilestoneDescriptor descriptor = new EditMilestoneDescriptorBuilder(
-            TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG).build();
+            TYPICAL_MILESTONE_COMPLETED_UG).build();
         EditProjectMilestoneCommand editMilestoneCommand = new EditProjectMilestoneCommand(
             new ProjectName(VALID_PROJECT_NAME_ALICE_HEY) , INDEX_FIRST_PROJECT_MILESTONE, descriptor);
 
