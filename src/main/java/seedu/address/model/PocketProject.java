@@ -178,7 +178,7 @@ public class PocketProject implements ReadOnlyPocketProject {
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
 
-        //check if projectName is changed
+        //if the project name is changed, update the project names in the employee
         if (!target.getProjectName().equals(editedProject.getProjectName())) {
             ObservableList<Employee> employeeListInProject = target.getEmployees();
             employees.forEach((em) -> {

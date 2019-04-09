@@ -39,6 +39,14 @@ public class EditProjectCommandParser {
     private static final Pattern EDIT_PROJECT_COMMAND_FORMAT = Pattern.compile("(?<project>(\\S+\\s)+)"
         + "(?<keyword>milestone\\s|info\\s|userstory\\s)(?<arguments>.*)");
 
+    private static final String WHITE_SPACE_PREAMBLE = " ";
+    
+    //use for splitting of the argument
+    private static final int START_INDEX = 0;
+    private static final int OFFSET = 1;
+    private static final int LIMIT = 2;
+    
+
     /**
      * Parse the input for the EditProjectCommand
      * @param userInput
@@ -54,11 +62,11 @@ public class EditProjectCommandParser {
         }
 
         int indexOfArgs = findKeywordPosition(userInput);
-        String projectName = userInput.substring(0, indexOfArgs - 1);
+        String projectName = userInput.substring(START_INDEX, indexOfArgs - OFFSET);
         //args containing keyword
         String argsString = userInput.substring(indexOfArgs);
         //to extract out the keyword
-        String[] args = argsString.split(" ", 2);
+        String[] args = argsString.split(" ", LIMIT);
         String keyword = args[0];
         String arguments = args[1];
 

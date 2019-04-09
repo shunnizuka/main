@@ -181,6 +181,12 @@ public class Project {
     }
 
     /**
+     * Replace the {@code targetMilestone} in the list with the edited new {@code milestone}
+     */
+    public void setMilestone(Milestone targetMilestone, Milestone milestone) {
+        milestones.setMilestone(targetMilestone, milestone);
+    }
+    /**
      *  Removes the given employee from this project.
      */
     public void removeEmployee(Employee employee) {
@@ -249,10 +255,6 @@ public class Project {
                                PocketProjectDate deadline, Description description) {
         return new Project(projectName, client, startDate, deadline, this.milestones, description, this.employees,
             this.userStories);
-    }
-
-    public void setMilestone(Milestone targetMilestone, Milestone milestone) {
-        milestones.setMilestone(targetMilestone, milestone);
     }
 
     /**
