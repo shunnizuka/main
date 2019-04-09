@@ -1,22 +1,15 @@
 package seedu.address.model.project;
 
+import seedu.address.model.util.Name;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Name of the project in the Pocket Project.
+ * Name of the projects in the Pocket Project.
  */
 
-public class ProjectName {
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
-
-    /*
-     * The first character of the project name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+public class ProjectName extends Name {
 
     public final String projectName;
 
