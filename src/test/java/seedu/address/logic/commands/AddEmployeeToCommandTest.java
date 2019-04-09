@@ -85,7 +85,7 @@ public class AddEmployeeToCommandTest {
         AddEmployeeToCommand addEmployeeToCommand2 = new AddEmployeeToCommand(targetIndex,
                 project.getProjectName());
         assertCommandFailure(addEmployeeToCommand2, model, commandHistory,
-                AddEmployeeToCommand.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
+                Messages.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
     }
 
     @Test
