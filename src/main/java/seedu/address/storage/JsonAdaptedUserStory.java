@@ -69,7 +69,7 @@ class JsonAdaptedUserStory {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     UserStoryUser.class.getSimpleName()));
         }
-        if (!UserStoryUser.isValidUserStoryUser(user)) {
+        if (!UserStoryUser.isValidName(user)) {
             throw new IllegalValueException(UserStoryUser.MESSAGE_CONSTRAINTS);
         }
         final UserStoryUser modelUserStoryUser = new UserStoryUser(user);

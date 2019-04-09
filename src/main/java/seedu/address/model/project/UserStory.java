@@ -130,7 +130,7 @@ public class UserStory {
      * Checks if the user story has the valid format by checking the relevant fields
      */
     public static boolean isValidUserStory(UserStory story) {
-        return UserStoryUser.isValidUserStoryUser(story.user.getUser())
+        return UserStoryUser.isValidName(story.user.getUser())
                 && UserStoryImportance.isValidImportanceLevel(story.importance.getImportance())
                 && UserStoryFunction.isValidUserStoryFunction(story.function.getFunction())
                 && UserStoryStatus.isValidStoryStatus(story.status.getStatus());

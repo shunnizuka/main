@@ -230,7 +230,7 @@ public class ParserUtil {
     public static UserStoryUser parseStoryUser(String user) throws ParseException {
         requireNonNull(user);
         String trimmedUser = user.trim();
-        if (!UserStoryUser.isValidUserStoryUser(trimmedUser)) {
+        if (!UserStoryUser.isValidName(trimmedUser)) {
             throw new ParseException(UserStoryUser.MESSAGE_CONSTRAINTS);
         }
         return new UserStoryUser(trimmedUser);
