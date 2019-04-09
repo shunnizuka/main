@@ -32,7 +32,6 @@ import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.EditMilestoneDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TypicalEmployees;
@@ -207,11 +206,13 @@ public class EditProjectMilestoneCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditProjectMilestoneCommand(new ProjectName(VALID_PROJECT_NAME_ALICE_HEY),
+        assertFalse(standardCommand.equals(new EditProjectMilestoneCommand(
+            new ProjectName(VALID_PROJECT_NAME_ALICE_HEY),
             INDEX_SECOND_PROJECT_MILESTONE, DESC_MILESTONE_1)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditProjectMilestoneCommand(new ProjectName(VALID_PROJECT_NAME_ALICE_HEY),
+        assertFalse(standardCommand.equals(new EditProjectMilestoneCommand(
+            new ProjectName(VALID_PROJECT_NAME_ALICE_HEY),
             INDEX_SECOND_PROJECT_MILESTONE, DESC_MILESTONE_2)));
     }
 }
