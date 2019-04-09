@@ -27,7 +27,6 @@ import seedu.address.model.util.PocketProjectDate;
  */
 public class EditProjectInfoCommand extends EditProjectCommand {
 
-    //TODO need to edit the project name in the employee
     public static final String EDIT_INFO_KEYWORD = "info";
 
     public static final String MESSAGE_USAGE = "Parameters: " + COMMAND_WORD + " PROJECT_NAME" + EDIT_INFO_KEYWORD
