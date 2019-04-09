@@ -233,7 +233,7 @@ public class Project {
     /**
      * Updates the given user story in this project.
      */
-    public void updateUserStory(UserStory story, UserStoryStatus newStatus) {
+    public void updateUserStory(UserStory story, Status newStatus) {
         userStories.forEach(thisStory -> {
             if (story.equals(thisStory)) {
                 thisStory.updateStatus(newStatus);

@@ -10,7 +10,7 @@ import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.logic.commands.UpdateUserStoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.UserStoryStatus;
+import seedu.address.model.project.Status;
 
 /**
  * Parses input arguments and creates a new UpdateCommand object
@@ -57,7 +57,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
 
                 final String storyIndex = storyMatcher.group("index");
                 final String newStatus = storyMatcher.group("status");
-                final UserStoryStatus status = ParserUtil.parseStoryStatus(newStatus);
+                final Status status = ParserUtil.parseStoryStatus(newStatus);
                 final Index index = ParserUtil.parseIndex(storyIndex);
 
                 return new UpdateUserStoryCommand(projectName, index, status);

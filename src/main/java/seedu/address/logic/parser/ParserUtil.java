@@ -17,10 +17,10 @@ import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
-import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.CalendarDate;
@@ -273,18 +273,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into a {@code UserStoryStatus status}.
+     * Parses a {@code String status} into a {@code Status status}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code status} is invalid.
      */
-    public static UserStoryStatus parseStoryStatus(String status) throws ParseException {
+    public static Status parseStoryStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (!UserStoryStatus.isValidStoryStatus(trimmedStatus)) {
-            throw new ParseException(UserStoryStatus.MESSAGE_CONSTRAINTS);
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        return new UserStoryStatus(trimmedStatus);
+        return new Status(trimmedStatus);
     }
 
     /**

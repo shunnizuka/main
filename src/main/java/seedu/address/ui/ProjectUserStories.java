@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 import seedu.address.model.project.UserStory;
-import seedu.address.model.project.UserStoryStatus;
+import seedu.address.model.project.Status;
 
 /**
  * UI component for a user story.
@@ -94,13 +94,13 @@ public class ProjectUserStories extends UiPart<Region> {
             this.circle = new Circle(0, 0, 10);
 
             switch (status) {
-            case UserStoryStatus.STATUS_COMPLETE:
+            case Status.STATUS_COMPLETE:
                 circle.setId(STATUS_COLOUR_GREEN);
                 break;
-            case UserStoryStatus.STATUS_ON_HOLD:
+            case Status.STATUS_ON_HOLD:
                 circle.setId(STATUS_COLOUR_RED);
                 break;
-            case UserStoryStatus.STATUS_ONGOING:
+            case Status.STATUS_ONGOING:
                 circle.setId(STATUS_COLOUR_ORANGE);
                 break;
             default:

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.ProjectTaskName;
-import seedu.address.model.project.ProjectTaskStatus;
+import seedu.address.model.project.Status;
 
 /**
  * Jackson-friendly version of {@link ProjectTask}.
@@ -32,8 +32,8 @@ class JsonAdaptedProjectTask {
      * Converts a given {@code ProjectTask} into this class for Jackson use.
      */
     public JsonAdaptedProjectTask(ProjectTask source) {
-        this.taskName = source.getTaskNameString();
-        this.taskStatus = source.getTaskStatusString();
+        this.taskName = source.getTaskName();
+        this.taskStatus = source.getTaskStatus();
     }
 
     /**
@@ -54,12 +54,12 @@ class JsonAdaptedProjectTask {
 
         if (taskStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectTaskStatus.class.getSimpleName()));
+            Status.class.getSimpleName()));
         }
-        if (!ProjectTaskStatus.isValidTaskStatus(taskStatus)) {
-            throw new IllegalValueException(ProjectTaskStatus.MESSAGE_CONSTRAINTS);
+        if (!Status.isValidStatus(taskStatus)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
-        final ProjectTaskStatus modelProjectTaskStatus = new ProjectTaskStatus(taskStatus);
+        final Status modelProjectTaskStatus = new Status(taskStatus);
 
         return new ProjectTask(modelProjectTaskName, modelProjectTaskStatus);
     }

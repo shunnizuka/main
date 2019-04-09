@@ -29,74 +29,74 @@ public class ProjectTaskTest {
 
         // invalid tasks with task status constructor
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskName(""), new ProjectTaskStatus(""))); // empty string
+                new ProjectTask(new ProjectTaskName(""), new Status(""))); // empty string
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskName(""), new ProjectTaskStatus(" "))); // spaces only
+                new ProjectTask(new ProjectTaskName(""), new Status(" "))); // spaces only
     }
 
     @Test
     public void isValidProjectTask() {
         // invalid task null status
         Assert.assertThrows(NullPointerException.class, () ->
-                new ProjectTask(new ProjectTaskName("a"), new ProjectTaskStatus(null)));
+                new ProjectTask(new ProjectTaskName("a"), new Status(null)));
 
         //invalid task status strings
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskName("a"), new ProjectTaskStatus(""))); // empty string
+                new ProjectTask(new ProjectTaskName("a"), new Status(""))); // empty string
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskName("a"), new ProjectTaskStatus(" "))); // spaces only
+                new ProjectTask(new ProjectTaskName("a"), new Status(" "))); // spaces only
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskName("a"), new ProjectTaskStatus("complet"))); // wrong status string
+                new ProjectTask(new ProjectTaskName("a"), new Status("complet"))); // wrong status string
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskName("a"), new ProjectTaskStatus("ongoin"))); // wrong status string
+                new ProjectTask(new ProjectTaskName("a"), new Status("ongoin"))); // wrong status string
 
         // valid task
         assertTrue(ProjectTask.isValidTask(new ProjectTask(new ProjectTaskName("a")))); // only task name constructor
 
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
                 new ProjectTaskName("a"),
-                new ProjectTaskStatus("ongoing")))); // include task status constructor
+                new Status("ongoing")))); // include task status constructor
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
                 new ProjectTaskName(" Create a task"),
-                new ProjectTaskStatus("ongoing")))); // task name with whitespace at start of string
+                new Status("ongoing")))); // task name with whitespace at start of string
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
                 new ProjectTaskName("Create a task "),
-                new ProjectTaskStatus("complete")))); // task name with trailing whitespace
+                new Status("complete")))); // task name with trailing whitespace
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
                 new ProjectTaskName("New task at pp/v1.1"),
-                new ProjectTaskStatus("complete")))); // task name with non-alphanumeric characters
+                new Status("complete")))); // task name with non-alphanumeric characters
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
                 new ProjectTaskName("New task at pp/v1.1"),
-                new ProjectTaskStatus("CoMpLeTe")))); // case insensitive task status
+                new Status("CoMpLeTe")))); // case insensitive task status
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
                 new ProjectTaskName("New task at pp/v1.1"),
-                new ProjectTaskStatus("OnGoInG")))); // case insensitive task status
+                new Status("OnGoInG")))); // case insensitive task status
     }
 
     @Test
     public void isSameProjectTaskName() {
         // equals
         ProjectTaskName validProjectTaskName = new ProjectTaskName("Valid");
-        ProjectTask validProjectTask = new ProjectTask(new ProjectTaskName("Valid"), new ProjectTaskStatus("ongoing"));
-        assertEquals(validProjectTask.getTaskNameString(), validProjectTaskName.getTaskName());
+        ProjectTask validProjectTask = new ProjectTask(new ProjectTaskName("Valid"), new Status("ongoing"));
+        assertEquals(validProjectTask.getTaskName(), validProjectTaskName.getTaskName());
 
         // not equals, case-sensitive
         ProjectTask invalidProjectTask = new ProjectTask(new ProjectTaskName("valid"),
-                new ProjectTaskStatus("ongoing"));
-        assertNotEquals(invalidProjectTask.getTaskNameString(), validProjectTaskName.getTaskName());
+                new Status("ongoing"));
+        assertNotEquals(invalidProjectTask.getTaskName(), validProjectTaskName.getTaskName());
     }
 
     @Test
-    public void isSameProjectTaskStatus() {
+    public void isSameStatus() {
         // equals
-        ProjectTaskStatus status = new ProjectTaskStatus("ongoing");
-        ProjectTask validProjectTask = new ProjectTask(new ProjectTaskName("Valid"), new ProjectTaskStatus("ongoing"));
-        assertEquals(validProjectTask.getTaskStatusString(), status.getTaskStatusString());
+        Status status = new Status("ongoing");
+        ProjectTask validProjectTask = new ProjectTask(new ProjectTaskName("Valid"), new Status("ongoing"));
+        assertEquals(validProjectTask.getTaskStatus(), status.getStatus());
 
         // not equals
         ProjectTask invalidProjectTask = new ProjectTask(new ProjectTaskName("Valid"),
-                new ProjectTaskStatus("Ongoing"));
-        assertNotEquals(invalidProjectTask.getTaskStatusString(), status.getTaskStatusString());
+                new Status("Ongoing"));
+        assertNotEquals(invalidProjectTask.getTaskStatus(), status.getStatus());
     }
 
     @Test

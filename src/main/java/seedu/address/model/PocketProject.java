@@ -16,7 +16,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.project.UserStory;
-import seedu.address.model.project.UserStoryStatus;
+import seedu.address.model.project.Status;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
@@ -256,7 +256,7 @@ public class PocketProject implements ReadOnlyPocketProject {
     /**
      *
      */
-    public void updateUserStory(Project targetProject, UserStory targetStory, UserStoryStatus newStatus) {
+    public void updateUserStory(Project targetProject, UserStory targetStory, Status newStatus) {
         projects.updateUserStory(targetProject, targetStory, newStatus);
         indicateModified();
     }

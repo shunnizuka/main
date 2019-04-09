@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.logic.commands.UpdateUserStoryCommand;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.UserStoryStatus;
+import seedu.address.model.project.Status;
 
 public class UpdateCommandParserTest {
 
@@ -20,10 +20,10 @@ public class UpdateCommandParserTest {
     public void parse_validArgs_returnsUpdateCommand() {
         assertParseSuccess(parser, "Project Apollo userstory 1 ongoing",
                 new UpdateUserStoryCommand(new ProjectName("Project Apollo"), Index.fromOneBased(1),
-                        new UserStoryStatus("ongoing")));
+                        new Status("ongoing")));
         assertParseSuccess(parser, "Project X userstory 1 on hold",
                 new UpdateUserStoryCommand(new ProjectName("Project X"), Index.fromOneBased(1),
-                        new UserStoryStatus("on hold")));
+                        new Status("on hold")));
     }
 
     @Test

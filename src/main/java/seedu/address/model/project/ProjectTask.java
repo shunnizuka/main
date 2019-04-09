@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class ProjectTask {
 
-    private ProjectTaskStatus status;
+    private Status status;
     private ProjectTaskName name;
 
     /**
@@ -16,38 +16,31 @@ public class ProjectTask {
     public ProjectTask(ProjectTaskName name) {
         requireNonNull(name);
         this.name = name;
-        this.status = new ProjectTaskStatus();
+        this.status = new Status();
     }
 
     /**
      * Constructor for a project task specifying project task status.
      */
-    public ProjectTask(ProjectTaskName name, ProjectTaskStatus status) {
+    public ProjectTask(ProjectTaskName name, Status status) {
         requireNonNull(name);
         this.name = name;
         requireNonNull(status);
         this.status = status;
     }
 
-    public ProjectTaskName getTaskName() {
-        return name;
+    public String getTaskName() {
+        return this.name.getTaskName();
     }
 
-    public ProjectTaskStatus getTaskStatus() {
-        return status;
-    }
-
-    public String getTaskStatusString() {
-        return getTaskStatus().getTaskStatusString();
-    }
-
-    public String getTaskNameString() {
-        return getTaskName().getTaskName();
+    public String getTaskStatus() {
+        return this.status.getStatus();
     }
 
     public boolean isComplete() {
-        return getTaskStatus().isComplete();
+        return this.status.isComplete();
     }
+
     /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.
@@ -64,7 +57,7 @@ public class ProjectTask {
      * Returns a clone of this task.
      */
     public ProjectTask clone() {
-        return new ProjectTask(getTaskName().clone(), getTaskStatus().clone());
+        return new ProjectTask(this.name.clone(), this.status.clone());
     }
 
     /**
@@ -82,8 +75,8 @@ public class ProjectTask {
         }
 
         ProjectTask otherTask = (ProjectTask) other;
-        return otherTask.getTaskName().equals(getTaskName())
-            && otherTask.getTaskStatus().equals(getTaskStatus());
+        return otherTask.name.equals(this.name)
+            && otherTask.status.equals(this.status);
     }
 
     @Override
@@ -101,7 +94,7 @@ public class ProjectTask {
      * Checks if the task has the valid format by checking the relevant fields
      */
     public static boolean isValidTask(ProjectTask task) {
-        return ProjectTaskName.isValidTaskName(task.getTaskName().taskName)
-            && ProjectTaskStatus.isValidTaskStatus(task.getTaskStatus().taskStatus);
+        return ProjectTaskName.isValidTaskName(task.getTaskName())
+            && Status.isValidStatus(task.getTaskStatus());
     }
 }

@@ -160,7 +160,7 @@ public class UniqueProjectList implements Iterable<Project> {
     /**
      * Updates the specified user story in the specified project. They must exist.
      */
-    public void updateUserStory(Project project, UserStory userStory, UserStoryStatus newStatus) {
+    public void updateUserStory(Project project, UserStory userStory, Status newStatus) {
         requireAllNonNull(project, userStory, newStatus);
         internalList.get(internalList.indexOf(project)).updateUserStory(userStory, newStatus);
     }
