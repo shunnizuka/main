@@ -18,7 +18,9 @@ public class ProjectContainsDeadlinePredicate implements Predicate<Project> {
 
     @Override
     public boolean test(Project project) {
-        return project.getDeadline().isSameOrEarlierDate(keyword);
+        PocketProjectDate testDate = new PocketProjectDate(keyword);
+        return PocketProjectDate.isEarlierThan(project.getDeadline(), testDate)
+            || PocketProjectDate.isSameDate(project.getDeadline(), testDate);
     }
 
     @Override

@@ -9,6 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.exceptions.DateNotInRangeException;
 import seedu.address.model.project.exceptions.DuplicateMilestoneException;
 
 
@@ -25,6 +26,8 @@ public class AddMilestoneToCommand extends AddToCommand {
 
     public static final String MESSAGE_ADD_MILESTONE_SUCCESS = "Added milestone: %1$s to %2$s";
     public static final String MESSAGE_DUPLICATE_MILESTONE = "This milestone already exists in the PocketProject.";
+    public static final String INVALID_MILESTONE_DATE = "Invalid milestone date. The date of a  milestone should be "
+        + "after the start date of a project and before the deadline of a project.";
 
     private final ProjectName targetProjectName;
     private final Milestone milestoneToAdd;
@@ -49,7 +52,12 @@ public class AddMilestoneToCommand extends AddToCommand {
         }
 
         try {
+            if(!targetProject.isValidMilestoneDate(milestoneToAdd.date)) {
+                throw new DateNotInRangeException();
+            }
             targetProject.addMilestone(milestoneToAdd);
+        } catch (DateNotInRangeException e) {
+            throw new CommandException(INVALID_MILESTONE_DATE);
         } catch (DuplicateMilestoneException e) {
             throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
         }

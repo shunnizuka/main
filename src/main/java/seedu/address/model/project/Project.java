@@ -252,6 +252,19 @@ public class Project {
     }
 
     /**
+     * Checks if a given milestone is valid by checking if it is after the start date and before the deadline of
+     * a project.
+     * @param milestoneDate date to be checked
+     * @return true if date falls within the valid range and false otherwise.
+     */
+     public boolean isValidMilestoneDate(PocketProjectDate milestoneDate) {
+        return (PocketProjectDate.isEarlierThan(this.startDate, milestoneDate)
+            || PocketProjectDate.isSameDate(this.startDate, milestoneDate))
+            && (PocketProjectDate.isLaterThan(this.deadline, milestoneDate)
+            || PocketProjectDate.isSameDate(this.deadline, milestoneDate));
+     }
+
+    /**
      * Returns true if this project contains the given Employee.
      */
     public boolean containsEmployee(Employee employee) {
@@ -301,17 +314,17 @@ public class Project {
             .append("Deadline: ")
             .append(getDeadline())
             .append("\n")
-            .append("employees:\n");
+            .append("Employees:\n");
         for (Employee e: employees) {
             builder.append(e);
             builder.append("\n");
         }
-        builder.append("milestones:\n");
+        builder.append("Milestones:\n");
         for (Milestone m: milestones) {
             builder.append(m);
             builder.append("\n");
         }
-        builder.append("user stories:\n");
+        builder.append("User Stories:\n");
         for (UserStory s: userStories) {
             builder.append(s);
             builder.append("\n");
