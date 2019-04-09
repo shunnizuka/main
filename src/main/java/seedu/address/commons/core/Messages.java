@@ -14,4 +14,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PROJECT_NAME = "The project name provided is invalid";
     public static final String MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX = "The milestone index provided is invalid";
     public static final String MESSAGE_INVALID_USERSTORY_DISPLAYED_INDEX = "The user story index provided is invalid";
+    public static final String MESSAGE_INVALID_PROJECTTASK_DISPLAYED_INDEX =
+                                                            "The project task index provided is invalid";
 }

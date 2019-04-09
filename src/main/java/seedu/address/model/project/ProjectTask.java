@@ -97,4 +97,11 @@ public class ProjectTask {
         return ProjectTaskName.isValidTaskName(task.getTaskName())
             && Status.isValidStatus(task.getTaskStatus());
     }
+
+    /**
+     * Updates project task status to the new status.
+     */
+    public void updateStatus(Status newStatus) {
+        this.status = newStatus;
+    }
 }

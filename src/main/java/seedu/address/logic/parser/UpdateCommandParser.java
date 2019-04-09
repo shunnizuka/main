@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateCommand;
+import seedu.address.logic.commands.UpdateProjectTaskCommand;
 import seedu.address.logic.commands.UpdateUserStoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectName;
@@ -66,6 +67,8 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateUserStoryCommand.MESSAGE_USAGE), pe);
             }
+        } else if (keyword.equals(UpdateProjectTaskCommand.UPDATE_PROJECTTASK_KEYWORD)) {
+            throw new ParseException(String.format("update project task called"));
         } else {
             throw new ParseException (
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE)

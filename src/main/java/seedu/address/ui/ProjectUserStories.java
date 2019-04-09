@@ -8,8 +8,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
-import seedu.address.model.project.UserStory;
 import seedu.address.model.project.Status;
+import seedu.address.model.project.UserStory;
 
 /**
  * UI component for a user story.
