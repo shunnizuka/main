@@ -40,12 +40,12 @@ public class EditProjectCommandParser {
         + "(?<keyword>milestone\\s|info\\s|userstory\\s)(?<arguments>.*)");
 
     private static final String WHITE_SPACE_PREAMBLE = " ";
-    
+
     //use for splitting of the argument
     private static final int START_INDEX = 0;
     private static final int OFFSET = 1;
     private static final int LIMIT = 2;
-    
+
 
     /**
      * Parse the input for the EditProjectCommand
@@ -116,7 +116,7 @@ public class EditProjectCommandParser {
         } else if (keyword.equals(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD)) {
 
             requireNonNull(arguments);
-            String s = " " + arguments;
+            String s = WHITE_SPACE_PREAMBLE + arguments;
             ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(s, PREFIX_MILESTONE, PREFIX_DATE);
 
