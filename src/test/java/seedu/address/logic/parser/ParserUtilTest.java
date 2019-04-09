@@ -18,7 +18,7 @@ import org.junit.rules.ExpectedException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.ProjectTaskName;
 import seedu.address.model.skill.Skill;
@@ -79,15 +79,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        EmployeeName expectedEmployeeName = new EmployeeName(VALID_NAME);
+        assertEquals(expectedEmployeeName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        EmployeeName expectedEmployeeName = new EmployeeName(VALID_NAME);
+        assertEquals(expectedEmployeeName, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test

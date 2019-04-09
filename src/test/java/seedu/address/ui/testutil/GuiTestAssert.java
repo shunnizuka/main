@@ -43,8 +43,8 @@ public class GuiTestAssert {
      * Asserts that {@code actualCard} displays the details of {@code expectedEmployee}.
      */
     public static void assertCardDisplaysEmployee(Employee expectedEmployee, EmployeeCardHandle actualCard) {
-        System.out.println("expected: " + expectedEmployee.getName().fullName + "actual " + actualCard.getName());
-        assertEquals(expectedEmployee.getName().fullName, actualCard.getName());
+        System.out.println("expected: " + expectedEmployee.getEmployeeName().fullName + "actual " + actualCard.getName());
+        assertEquals(expectedEmployee.getEmployeeName().fullName, actualCard.getName());
         assertEquals(expectedEmployee.getPhone().value, actualCard.getPhone());
         assertEquals(expectedEmployee.getEmail().value, actualCard.getEmail());
         assertEquals(expectedEmployee.getGithub().value, actualCard.getGithub());

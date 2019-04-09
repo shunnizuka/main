@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Employee's name in the Pocket Project.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class EmployeeName {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -21,11 +21,11 @@ public class Name {
     public final String fullName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code EmployeeName}.
      *
      * @param name A valid name.
      */
-    public Name(String name) {
+    public EmployeeName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
@@ -39,10 +39,10 @@ public class Name {
     }
 
     /**
-     *  Returns a clone of this Name object.
+     *  Returns a clone of this EmployeeName object.
      */
-    public Name clone() {
-        return new Name(this.fullName);
+    public EmployeeName clone() {
+        return new EmployeeName(this.fullName);
     }
 
 
@@ -54,8 +54,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                || (other instanceof EmployeeName // instanceof handles nulls
+                && fullName.equals(((EmployeeName) other).fullName)); // state check
     }
 
     @Override

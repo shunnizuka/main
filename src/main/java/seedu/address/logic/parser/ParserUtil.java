@@ -10,8 +10,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
@@ -65,18 +65,18 @@ public class ParserUtil {
 
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code EmployeeName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static EmployeeName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!EmployeeName.isValidName(trimmedName)) {
+            throw new ParseException(EmployeeName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new EmployeeName(trimmedName);
     }
 
     /**
@@ -207,7 +207,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Project Name}.
+     * Parses a {@code String name} into a {@code Project ProjectName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code project name} is invalid.
@@ -288,7 +288,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code ProjectTask Name}.
+     * Parses a {@code String name} into a {@code ProjectTask name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.

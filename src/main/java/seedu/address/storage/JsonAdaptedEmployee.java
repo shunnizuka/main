@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
@@ -56,7 +56,7 @@ class JsonAdaptedEmployee {
      * Converts a given {@code Employee} into this class for Jackson use.
      */
     public JsonAdaptedEmployee(Employee source) {
-        name = source.getName().fullName;
+        name = source.getEmployeeName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         github = source.getGithub().value;
@@ -83,12 +83,12 @@ class JsonAdaptedEmployee {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EmployeeName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!EmployeeName.isValidName(name)) {
+            throw new IllegalValueException(EmployeeName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final EmployeeName modelEmployeeName = new EmployeeName(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -116,7 +116,7 @@ class JsonAdaptedEmployee {
         final GitHubAccount modelGitHubAccount = new GitHubAccount(github);
 
         final Set<Skill> modelSkills = new HashSet<>(employeeSkills);
-        return new Employee(modelName, modelPhone, modelEmail, modelGitHubAccount, modelSkills, modelProjectNames);
+        return new Employee(modelEmployeeName, modelPhone, modelEmail, modelGitHubAccount, modelSkills, modelProjectNames);
     }
 
 }

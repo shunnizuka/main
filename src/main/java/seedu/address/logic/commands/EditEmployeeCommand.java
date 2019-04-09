@@ -20,7 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
 
@@ -86,14 +86,14 @@ public class EditEmployeeCommand extends EditCommand {
                                                  EditEmployeeDescriptor editEmployeeDescriptor) {
         assert employeeToEdit != null;
 
-        Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
+        EmployeeName updatedEmployeeName = editEmployeeDescriptor.getEmployeeName().orElse(employeeToEdit.getEmployeeName());
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
         GitHubAccount updatedGitHubAccount =
             editEmployeeDescriptor.getGitHubAccount().orElse(employeeToEdit.getGithub());
         Set<Skill> updatedSkills = editEmployeeDescriptor.getSkills().orElse(employeeToEdit.getSkills());
 
-        return new Employee(updatedName, updatedPhone, updatedEmail, updatedGitHubAccount, updatedSkills);
+        return new Employee(updatedEmployeeName, updatedPhone, updatedEmail, updatedGitHubAccount, updatedSkills);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class EditEmployeeCommand extends EditCommand {
      * corresponding field value of the employee.
      */
     public static class EditEmployeeDescriptor {
-        private Name name;
+        private EmployeeName employeeName;
         private Phone phone;
         private Email email;
         private GitHubAccount gitHubAccount;
@@ -132,7 +132,7 @@ public class EditEmployeeCommand extends EditCommand {
          * A defensive copy of {@code skills} is used internally.
          */
         public EditEmployeeDescriptor(EditEmployeeDescriptor toCopy) {
-            setName(toCopy.name);
+            setEmployeeName(toCopy.employeeName);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setGitHubAccount(toCopy.gitHubAccount);
@@ -143,15 +143,15 @@ public class EditEmployeeCommand extends EditCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, gitHubAccount, skills);
+            return CollectionUtil.isAnyNonNull(employeeName, phone, email, gitHubAccount, skills);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setEmployeeName(EmployeeName employeeName) {
+            this.employeeName = employeeName;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<EmployeeName> getEmployeeName() {
+            return Optional.ofNullable(employeeName);
         }
 
         public void setPhone(Phone phone) {
@@ -210,7 +210,7 @@ public class EditEmployeeCommand extends EditCommand {
             // state check
             EditEmployeeDescriptor e = (EditEmployeeDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getEmployeeName().equals(e.getEmployeeName())
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getGitHubAccount().equals(e.getGitHubAccount())

@@ -35,7 +35,7 @@ public class EditProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code EmployeeName} of the {@code EditProjectDescriptor} that we are building.
      */
     public seedu.address.testutil.EditProjectDescriptorBuilder withName(String name) {
         descriptor.setProjectName(new ProjectName(name));

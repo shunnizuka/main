@@ -125,7 +125,7 @@ public class FindAllCommandSystemTest extends PocketProjectSystemTest {
         /*
         showAllProjects();
         viewProject(Index.fromOneBased(1));
-        assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
+        assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getEmployeeName().equals(DANIEL.getEmployeeName().fullName));
         command = FindAllCommand.COMMAND_WORD + " " + FindAllCommand.FIND_ALL_KEYWORD + " Daniel";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);

@@ -201,7 +201,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEmployeeList().size());
 
         Employee employee = model.getFilteredEmployeeList().get(targetIndex.getZeroBased());
-        final String[] splitName = employee.getName().fullName.split("\\s+");
+        final String[] splitName = employee.getEmployeeName().fullName.split("\\s+");
         model.updateFilteredEmployeeList(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredEmployeeList().size());

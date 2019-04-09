@@ -63,8 +63,8 @@ import seedu.address.logic.commands.EditProjectCommand;
 import seedu.address.logic.commands.EditProjectInfoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
@@ -156,7 +156,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1"
-            + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+            + INVALID_NAME_DESC, EmployeeName.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1"
             + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1"
@@ -189,7 +189,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1" + INVALID_NAME_DESC
-            + INVALID_EMAIL_DESC + VALID_GITHUB_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
+            + INVALID_EMAIL_DESC + VALID_GITHUB_AMY + VALID_PHONE_AMY, EmployeeName.MESSAGE_CONSTRAINTS);
 
         System.out.println(EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
             + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_PROJECT_NAME_DESC);

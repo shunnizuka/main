@@ -12,8 +12,8 @@ import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.Email;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.testutil.Assert;
 
@@ -24,7 +24,7 @@ public class JsonAdaptedEmployeeTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
+    private static final String VALID_NAME = BENSON.getEmployeeName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_GITHUB = BENSON.getGithub().toString();
@@ -44,7 +44,7 @@ public class JsonAdaptedEmployeeTest {
         JsonAdaptedEmployee employee =
                 new JsonAdaptedEmployee(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_GITHUB, VALID_SKILLS,
                         VALID_PROJECT_NAMES);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = EmployeeName.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
 
@@ -53,7 +53,7 @@ public class JsonAdaptedEmployeeTest {
         JsonAdaptedEmployee employee =
                 new JsonAdaptedEmployee(null, VALID_PHONE, VALID_EMAIL, VALID_GITHUB, VALID_SKILLS,
                         VALID_PROJECT_NAMES);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, EmployeeName.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, employee::toModelType);
     }
 

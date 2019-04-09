@@ -22,7 +22,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Project;
@@ -67,13 +67,13 @@ public class AddCommandParser implements Parser<AddCommand> {
                     AddEmployeeCommand.MESSAGE_USAGE));
             }
 
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            EmployeeName employeeName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
             GitHubAccount gitHubAccount = ParserUtil.parseAccount(argMultimap.getValue(PREFIX_GITHUB).get());
             Set<Skill> skillList = ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL));
 
-            Employee employee = new Employee(name, phone, email, gitHubAccount, skillList);
+            Employee employee = new Employee(employeeName, phone, email, gitHubAccount, skillList);
 
             return new AddEmployeeCommand(employee);
 
