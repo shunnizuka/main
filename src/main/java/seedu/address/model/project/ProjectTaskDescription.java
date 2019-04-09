@@ -1,5 +1,7 @@
 package seedu.address.model.project;
 
+import seedu.address.model.util.Description;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -7,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Description of the project task in the Pocket Project.
  */
 
-public class ProjectTaskDescription extends Description{
+public class ProjectTaskDescription extends Description {
 
     public final String taskName;
 

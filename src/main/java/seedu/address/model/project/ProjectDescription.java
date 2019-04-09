@@ -1,12 +1,14 @@
 package seedu.address.model.project;
 
+import seedu.address.model.util.Description;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Description of the project. A summary of what the project is about
  */
-public class ProjectDescription extends Description{
+public class ProjectDescription extends Description {
 
     public final String description;
 
@@ -26,8 +28,8 @@ public class ProjectDescription extends Description{
         this.description = desc;
     }
 
-    public Description clone() {
-        return new Description(this.description);
+    public ProjectDescription clone() {
+        return new ProjectDescription(this.description);
     }
 
     @Override

@@ -14,7 +14,8 @@ import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Description;
+import seedu.address.model.project.MilestoneDescription;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.UserStoryFunction;
@@ -24,6 +25,7 @@ import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.CalendarDate;
+import seedu.address.model.util.Description;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
@@ -53,14 +55,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code event} is invalid.
      */
-    public static Description parseMilestoneDescription(String event) throws ParseException {
+    public static MilestoneDescription parseMilestoneDescription(String event) throws ParseException {
         requireNonNull(event);
         String trimmedMilestoneDesc = event.trim();
 
         if (!Description.isValidDescription(trimmedMilestoneDesc)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Description(trimmedMilestoneDesc);
+        return new MilestoneDescription(trimmedMilestoneDesc);
     }
 
 
@@ -196,14 +198,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Description parseDescription(String description) throws ParseException {
+    public static ProjectDescription parseDescription(String description) throws ParseException {
 
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Description(trimmedDescription);
+        return new ProjectDescription(trimmedDescription);
     }
 
     /**

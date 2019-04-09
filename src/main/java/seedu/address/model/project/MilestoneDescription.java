@@ -1,12 +1,14 @@
 package seedu.address.model.project;
 
+import seedu.address.model.util.Description;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Description of a milestone. A summary of what the milestone is about.
  */
-public class MilestoneDescription extends Description{
+public class MilestoneDescription extends Description {
 
     public final String description;
 
@@ -19,8 +21,8 @@ public class MilestoneDescription extends Description{
         this.description = desc;
     }
 
-    public Description clone() {
-        return new Description(this.description);
+    public MilestoneDescription clone() {
+        return new MilestoneDescription(this.description);
     }
 
     @Override

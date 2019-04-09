@@ -12,8 +12,8 @@ import seedu.address.logic.commands.AddMilestoneToCommand;
 import seedu.address.logic.commands.AddTaskToCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.AddUserStoryToCommand;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.ProjectTaskDescription;
@@ -38,11 +38,11 @@ public class AddToCommandParserTest {
 
         assertParseSuccess(parser, "Project Apollo milestone m/Completed UG d/23/04/2019",
                 new AddMilestoneToCommand(new ProjectName("Project Apollo"), new Milestone(new
-                    Description("Completed UG"), new PocketProjectDate("23/04/2019"))));
+                        MilestoneDescription("Completed UG"), new PocketProjectDate("23/04/2019"))));
 
         assertParseSuccess(parser, "Transformium milestone m/Completed DG Today d/25/09/2019",
                 new AddMilestoneToCommand(new ProjectName("Transformium"), new Milestone(new
-                    Description("Completed DG Today"), new PocketProjectDate("25/09/2019"))));
+                    MilestoneDescription("Completed DG Today"), new PocketProjectDate("25/09/2019"))));
 
         assertParseSuccess(parser, "Project X userstory i/2 as a user i want to do this so that im done",
                 new AddUserStoryToCommand(new ProjectName("Project X"), new UserStory(

@@ -20,8 +20,8 @@ import seedu.address.logic.commands.AddTaskToCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.AddUserStoryToCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.ProjectTaskDescription;
@@ -82,7 +82,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AddMilestoneToCommand.MESSAGE_USAGE));
                 }
-                Description milestoneDesc = ParserUtil.parseMilestoneDescription(argMultimap.getValue(PREFIX_MILESTONE)
+                MilestoneDescription milestoneDesc = ParserUtil.parseMilestoneDescription(argMultimap.getValue(PREFIX_MILESTONE)
                     .get());
                 PocketProjectDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
                 Milestone milestone = new Milestone(milestoneDesc, date);
