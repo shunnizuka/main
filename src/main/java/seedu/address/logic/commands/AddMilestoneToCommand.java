@@ -25,9 +25,6 @@ public class AddMilestoneToCommand extends AddToCommand {
             + "Example: " + COMMAND_WORD + " Apollo milestone m/Finished UserGuide d/23/04/2019";
 
     public static final String MESSAGE_ADD_MILESTONE_SUCCESS = "Added milestone: %1$s to %2$s";
-    public static final String MESSAGE_DUPLICATE_MILESTONE = "This milestone already exists in the PocketProject.";
-    public static final String INVALID_MILESTONE_DATE = "Invalid milestone date. The date of a  milestone should be "
-        + "after the start date of a project and before the deadline of a project.";
 
     private final ProjectName targetProjectName;
     private final Milestone milestoneToAdd;
@@ -57,9 +54,9 @@ public class AddMilestoneToCommand extends AddToCommand {
             }
             targetProject.addMilestone(milestoneToAdd);
         } catch (DateNotInRangeException e) {
-            throw new CommandException(INVALID_MILESTONE_DATE);
+            throw new CommandException(Messages.INVALID_MILESTONE_DATE);
         } catch (DuplicateMilestoneException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_MILESTONE);
         }
         model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADD_MILESTONE_SUCCESS, milestoneToAdd,

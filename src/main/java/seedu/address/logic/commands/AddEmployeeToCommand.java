@@ -27,7 +27,6 @@ public class AddEmployeeToCommand extends AddToCommand {
             + "Example: " + COMMAND_WORD + " Apollo employee 1";
 
     public static final String MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS = "Added Employee: %1$s to %2$s";
-    public static final String MESSAGE_DUPLICATE_PROJ_EMPLOYEE = "This employee already exists in the PocketProject.";
 
     private final Index targetIndex;
     private final ProjectName targetProjectName;
@@ -53,7 +52,7 @@ public class AddEmployeeToCommand extends AddToCommand {
         }
 
         if (targetProject.containsEmployee(employeeToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
         }
 
         model.addEmployeeTo(targetProject, employeeToAdd);

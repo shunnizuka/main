@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -36,7 +37,6 @@ public class AddEmployeeCommand extends AddCommand {
             + PREFIX_SKILL + "UI";
 
     public static final String MESSAGE_ADD_EMPLOYEE_SUCCESS = "New employee added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the pocket project";
 
     private final Employee toAdd;
 
@@ -53,7 +53,7 @@ public class AddEmployeeCommand extends AddCommand {
         requireNonNull(model);
 
         if (model.hasEmployee(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_EMPLOYEE);
         }
 
         model.addEmployee(toAdd);
