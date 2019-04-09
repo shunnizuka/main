@@ -257,12 +257,12 @@ public class Project {
      * @param milestoneDate date to be checked
      * @return true if date falls within the valid range and false otherwise.
      */
-     public boolean isValidMilestoneDate(PocketProjectDate milestoneDate) {
+    public boolean isValidMilestoneDate(PocketProjectDate milestoneDate) {
         return (PocketProjectDate.isEarlierThan(this.startDate, milestoneDate)
             || PocketProjectDate.isSameDate(this.startDate, milestoneDate))
             && (PocketProjectDate.isLaterThan(this.deadline, milestoneDate)
             || PocketProjectDate.isSameDate(this.deadline, milestoneDate));
-     }
+    }
 
     /**
      * Returns true if this project contains the given Employee.

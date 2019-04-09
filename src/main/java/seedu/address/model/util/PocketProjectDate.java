@@ -365,7 +365,7 @@ public class PocketProjectDate extends CalendarDate {
      * @param second second date
      * @return true if first date after second date and false otherwise
      */
-     public static boolean isLaterThan(PocketProjectDate first, PocketProjectDate second) {
+    public static boolean isLaterThan(PocketProjectDate first, PocketProjectDate second) {
         return DATE_STRING_COMPARATOR.compare(first.date, second.date) >= DATE_IS_LATER;
     }
 
@@ -375,7 +375,7 @@ public class PocketProjectDate extends CalendarDate {
      * @param second second date
      * @return true if first date same as second date and false otherwise
      */
-     public static boolean isSameDate(PocketProjectDate first, PocketProjectDate second) {
+    public static boolean isSameDate(PocketProjectDate first, PocketProjectDate second) {
         return DATE_STRING_COMPARATOR.compare(first.date, second.date) == DATE_IS_SAME;
     }
 

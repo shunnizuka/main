@@ -49,7 +49,7 @@ public class AddMilestoneToCommand extends AddToCommand {
         }
 
         try {
-            if(!targetProject.isValidMilestoneDate(milestoneToAdd.date)) {
+            if (!targetProject.isValidMilestoneDate(milestoneToAdd.date)) {
                 throw new DateNotInRangeException();
             }
             targetProject.addMilestone(milestoneToAdd);
