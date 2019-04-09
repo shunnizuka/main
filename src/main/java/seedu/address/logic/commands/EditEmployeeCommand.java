@@ -86,7 +86,8 @@ public class EditEmployeeCommand extends EditCommand {
                                                  EditEmployeeDescriptor editEmployeeDescriptor) {
         assert employeeToEdit != null;
 
-        EmployeeName updatedEmployeeName = editEmployeeDescriptor.getEmployeeName().orElse(employeeToEdit.getEmployeeName());
+        EmployeeName updatedEmployeeName = editEmployeeDescriptor.getEmployeeName()
+            .orElse(employeeToEdit.getEmployeeName());
         Phone updatedPhone = editEmployeeDescriptor.getPhone().orElse(employeeToEdit.getPhone());
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
         GitHubAccount updatedGitHubAccount =
