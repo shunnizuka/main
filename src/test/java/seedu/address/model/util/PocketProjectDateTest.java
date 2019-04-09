@@ -67,6 +67,44 @@ public class PocketProjectDateTest {
     }
 
     @Test
+    public void isLaterThan() {
+
+        //all fields same
+        assertFalse(PocketProjectDate.isLaterThan(new PocketProjectDate("23/01/2010"),
+            new PocketProjectDate("23/01/2010")));
+
+        //all field different
+        assertTrue(PocketProjectDate.isLaterThan(new PocketProjectDate("23/01/2014"),
+            new PocketProjectDate("13/02/2012")));
+
+        //date field later
+        assertTrue(PocketProjectDate.isLaterThan(new PocketProjectDate("22/01/2010"),
+            new PocketProjectDate("21/01/2010")));
+
+        //month field later
+        assertTrue(PocketProjectDate.isLaterThan(new PocketProjectDate("23/03/2010"),
+            new PocketProjectDate("23/02/2010")));
+
+        //year field later
+        assertTrue(PocketProjectDate.isLaterThan(new PocketProjectDate("23/01/2011"),
+            new PocketProjectDate("23/01/2010")));
+
+    }
+
+    @Test
+    public void isSameDate() {
+
+        //all fields same
+        assertTrue(PocketProjectDate.isSameDate(new PocketProjectDate("23/01/2010"),
+            new PocketProjectDate("23/01/2010")));
+
+        //all field different
+        assertFalse(PocketProjectDate.isSameDate(new PocketProjectDate("23/01/2010"),
+            new PocketProjectDate("13/02/2012")));
+    }
+
+
+    @Test
     public void generateStringFormat() {
 
         //padding required
