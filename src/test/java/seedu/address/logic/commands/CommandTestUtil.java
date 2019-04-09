@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MILESTONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -107,6 +108,7 @@ public class CommandTestUtil {
     public static final String INVALID_GITHUB2_DESC = " " + PREFIX_GITHUB + ""; //no empty string
     public static final String INVALID_GITHUB3_DESC = " " + PREFIX_GITHUB + " kingcoder 96"; //combine 1 & 2
     public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + "Java*"; // '*' not allowed in skills
+    public static final String INVALID_MILESTONE_DESC = " " + PREFIX_MILESTONE + ""; //empty string not allowed
 
     public static final String INVALID_PROJECT_NAME_DESC = " " + PREFIX_NAME + "Alice##"; // '#' not allowed in names
     public static final String INVALID_CLIENT_DESC = " " + PREFIX_CLIENT + "Apollo#&"; // '#' not allowed in client
