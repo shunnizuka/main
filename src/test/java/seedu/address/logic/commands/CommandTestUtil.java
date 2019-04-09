@@ -26,7 +26,9 @@ import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
+import seedu.address.testutil.EditMilestoneDescriptorBuilder;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
+import seedu.address.testutil.TypicalMilestones;
 
 /**
  * Contains helper methods for testing commands.
@@ -121,6 +123,9 @@ public class CommandTestUtil {
     public static final EditProjectInfoCommand.EditProjectDescriptor DESC_PROJECT_1;
     public static final EditProjectInfoCommand.EditProjectDescriptor DESC_PROJECT_2;
 
+    public static final EditProjectMilestoneCommand.EditMilestoneDescriptor DESC_MILESTONE_1;
+    public static final EditProjectMilestoneCommand.EditMilestoneDescriptor DESC_MILESTONE_2;
+
     static {
         DESC_AMY = new EditEmployeeDescriptorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withGithubAccount(VALID_GITHUB_AMY)
@@ -132,6 +137,8 @@ public class CommandTestUtil {
             .withDescription(VALID_DESCRIPTION).build();
         DESC_PROJECT_2 = new EditProjectDescriptorBuilder().withName(VALID_NAME_AMY).withClient(VALID_CLIENT_ALICE)
             .withDescription(VALID_DESCRIPTION).build();
+        DESC_MILESTONE_1 = new EditMilestoneDescriptorBuilder(TypicalMilestones.TYPICAL_MILESTONE_START).build();
+        DESC_MILESTONE_2 = new EditMilestoneDescriptorBuilder(TypicalMilestones.TYPICAL_MILESTONE_END).build();
     }
 
 

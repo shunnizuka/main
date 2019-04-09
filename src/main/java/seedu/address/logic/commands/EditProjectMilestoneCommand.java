@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.AddMilestoneToCommand.MESSAGE_DUPLICATE_MILESTONE;
 
 import java.util.Optional;
 
@@ -31,6 +30,7 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
 
     public static final String MESSAGE_EDIT_MILESTONE_SUCCESS = "Edited Milestone: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit the milestone must be provided";
+    public static final String MESSAGE_DUPLICATE_MILESTONE = "The milestone already exist";
 
     private final ProjectName projectName;
     private final Index milestoneIndex;
@@ -46,7 +46,6 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
         this.editMilestoneDescriptor = editMilestoneDescriptor;
     }
 
-    //TODO implement
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
 
@@ -67,7 +66,7 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
         Milestone milestoneToEdit = milestonesList.get(milestoneIndex.getZeroBased());
         Milestone editedMilestone = createEditedMilestone(milestoneToEdit, editMilestoneDescriptor);
 
-        if (milestoneToEdit.isSameMilestone(editedMilestone) && milestonesList.contains(editedMilestone)) {
+        if (!milestoneToEdit.isSameMilestone(editedMilestone) && milestonesList.contains(editedMilestone)) {
             throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
         }
 
@@ -93,6 +92,25 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
 
         return milestoneToedit.editMilestone(milestoneDesc, date);
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditProjectMilestoneCommand)) {
+            return false;
+        }
+
+        // state check
+        EditProjectMilestoneCommand e = (EditProjectMilestoneCommand) other;
+        return projectName.equals(e.projectName)
+            && milestoneIndex.equals(e.milestoneIndex)
+            && editMilestoneDescriptor.equals(e.editMilestoneDescriptor);
     }
 
     /**

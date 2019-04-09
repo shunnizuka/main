@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
@@ -61,8 +60,8 @@ public class EditProjectInfoCommand extends EditProjectCommand {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-       Project projectToEdit = model.getProjectWithName(projectName);
-        
+        Project projectToEdit = model.getProjectWithName(projectName);
+
         if (projectToEdit == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
@@ -92,7 +91,7 @@ public class EditProjectInfoCommand extends EditProjectCommand {
         Client updatedClient = editProjectDescriptor.getClient().orElse(projectToEdit.getClient());
 
         return projectToEdit.editProject(updatedName, updatedClient, projectToEdit.getStartDate(), updatedDeadline,
-             updatedDescription);
+            updatedDescription);
     }
 
     @Override
