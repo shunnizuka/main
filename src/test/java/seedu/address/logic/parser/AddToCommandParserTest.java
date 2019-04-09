@@ -16,7 +16,7 @@ import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
@@ -51,7 +51,7 @@ public class AddToCommandParserTest {
 
         assertParseSuccess(parser, "Project Apollo projecttask n/Fix this bug m/1",
                 new AddTaskToCommand(new ProjectName("Project Apollo"),
-                        new ProjectTask(new ProjectTaskName("Fix this bug")), Index.fromOneBased(1)));
+                        new ProjectTask(new ProjectTaskDescription("Fix this bug")), Index.fromOneBased(1)));
     }
 
     @Test

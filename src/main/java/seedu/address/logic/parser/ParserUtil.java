@@ -16,7 +16,7 @@ import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Description;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
@@ -293,12 +293,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static ProjectTaskName parseProjectTaskName(String name) throws ParseException {
+    public static ProjectTaskDescription parseProjectTaskName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!ProjectTaskName.isValidTaskName(trimmedName)) {
-            throw new ParseException(ProjectTaskName.MESSAGE_CONSTRAINTS);
+        if (!ProjectTaskDescription.isValidTaskName(trimmedName)) {
+            throw new ParseException(ProjectTaskDescription.MESSAGE_CONSTRAINTS);
         }
-        return new ProjectTaskName(trimmedName);
+        return new ProjectTaskDescription(trimmedName);
     }
 }

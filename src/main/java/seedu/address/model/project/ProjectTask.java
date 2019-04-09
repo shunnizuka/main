@@ -8,12 +8,12 @@ import static java.util.Objects.requireNonNull;
 public class ProjectTask {
 
     private ProjectTaskStatus status;
-    private ProjectTaskName name;
+    private ProjectTaskDescription name;
 
     /**
      * Default constructor for a project task
      */
-    public ProjectTask(ProjectTaskName name) {
+    public ProjectTask(ProjectTaskDescription name) {
         requireNonNull(name);
         this.name = name;
         this.status = new ProjectTaskStatus();
@@ -22,14 +22,14 @@ public class ProjectTask {
     /**
      * Constructor for a project task specifying project task status.
      */
-    public ProjectTask(ProjectTaskName name, ProjectTaskStatus status) {
+    public ProjectTask(ProjectTaskDescription name, ProjectTaskStatus status) {
         requireNonNull(name);
         this.name = name;
         requireNonNull(status);
         this.status = status;
     }
 
-    public ProjectTaskName getTaskName() {
+    public ProjectTaskDescription getTaskName() {
         return name;
     }
 
@@ -101,7 +101,7 @@ public class ProjectTask {
      * Checks if the task has the valid format by checking the relevant fields
      */
     public static boolean isValidTask(ProjectTask task) {
-        return ProjectTaskName.isValidTaskName(task.getTaskName().taskName)
+        return ProjectTaskDescription.isValidTaskName(task.getTaskName().taskName)
             && ProjectTaskStatus.isValidTaskStatus(task.getTaskStatus().taskStatus);
     }
 }

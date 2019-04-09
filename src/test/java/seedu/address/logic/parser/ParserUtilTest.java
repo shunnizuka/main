@@ -20,7 +20,7 @@ import seedu.address.model.employee.Email;
 import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.Assert;
 
@@ -213,8 +213,8 @@ public class ParserUtilTest {
     @Test
     public void parseTaskName_validName_returnsTrimmedProjectTaskName() throws Exception {
         String projectTaskNameWithWhitespace = WHITESPACE + VALID_TASKNAME + WHITESPACE;
-        ProjectTaskName expectedProjectTaskName = new ProjectTaskName(VALID_TASKNAME);
-        assertEquals(expectedProjectTaskName, ParserUtil.parseProjectTaskName(projectTaskNameWithWhitespace));
+        ProjectTaskDescription expectedProjectTaskDescription = new ProjectTaskDescription(VALID_TASKNAME);
+        assertEquals(expectedProjectTaskDescription, ParserUtil.parseProjectTaskName(projectTaskNameWithWhitespace));
     }
 
     @Test

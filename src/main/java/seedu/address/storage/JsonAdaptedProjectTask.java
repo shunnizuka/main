@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.ProjectTask;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.ProjectTaskStatus;
 
 /**
@@ -45,12 +45,12 @@ class JsonAdaptedProjectTask {
 
         if (taskName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectTaskName.class.getSimpleName()));
+                    ProjectTaskDescription.class.getSimpleName()));
         }
-        if (!ProjectTaskName.isValidTaskName(taskName)) {
-            throw new IllegalValueException(ProjectTaskName.MESSAGE_CONSTRAINTS);
+        if (!ProjectTaskDescription.isValidTaskName(taskName)) {
+            throw new IllegalValueException(ProjectTaskDescription.MESSAGE_CONSTRAINTS);
         }
-        final ProjectTaskName modelProjectTaskName = new ProjectTaskName(taskName);
+        final ProjectTaskDescription modelProjectTaskDescription = new ProjectTaskDescription(taskName);
 
         if (taskStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -61,7 +61,7 @@ class JsonAdaptedProjectTask {
         }
         final ProjectTaskStatus modelProjectTaskStatus = new ProjectTaskStatus(taskStatus);
 
-        return new ProjectTask(modelProjectTaskName, modelProjectTaskStatus);
+        return new ProjectTask(modelProjectTaskDescription, modelProjectTaskStatus);
     }
 
 }

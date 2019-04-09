@@ -24,7 +24,7 @@ import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
@@ -134,7 +134,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AddTaskToCommand.MESSAGE_USAGE));
                 }
-                ProjectTaskName name = ParserUtil.parseProjectTaskName(argMultimap.getValue(PREFIX_NAME).get());
+                ProjectTaskDescription name = ParserUtil.parseProjectTaskName(argMultimap.getValue(PREFIX_NAME).get());
                 ProjectTask newTask = new ProjectTask(name);
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MILESTONE).get());
                 return new AddTaskToCommand(projectName, newTask, index);

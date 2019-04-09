@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Name of the project task in the Pocket Project.
  */
 
-public class ProjectTaskName {
+public class ProjectTaskDescription {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Project task names should not be empty or consisting of only spaces.";
@@ -15,9 +15,9 @@ public class ProjectTaskName {
     public final String taskName;
 
     /**
-     * Constructor for ProjectTaskName.
+     * Constructor for ProjectTaskDescription.
      */
-    public ProjectTaskName(String taskName) {
+    public ProjectTaskDescription(String taskName) {
         requireNonNull(taskName);
         checkArgument(isValidTaskName(taskName), MESSAGE_CONSTRAINTS);
         this.taskName = taskName;
@@ -36,8 +36,8 @@ public class ProjectTaskName {
     /**
      * Returns a clone of this TaskName object.
      */
-    public ProjectTaskName clone() {
-        return new ProjectTaskName(this.taskName);
+    public ProjectTaskDescription clone() {
+        return new ProjectTaskDescription(this.taskName);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class ProjectTaskName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof ProjectTaskName // instanceof handles nulls
-            && taskName.equals(((ProjectTaskName) other).taskName)); // state check
+            || (other instanceof ProjectTaskDescription // instanceof handles nulls
+            && taskName.equals(((ProjectTaskDescription) other).taskName)); // state check
     }
 
     @Override

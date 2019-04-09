@@ -1,30 +1,37 @@
 package seedu.address.model.project;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * represents the function of a user story
  */
-public class UserStoryFunction {
+public class UserStoryFunction extends Description {
 
     public static final String DEFAULT_FUNCTION = "Typical function";
     public static final String PREAMBLE_FUNCTION = "i want to ";
-    public static final String MESSAGE_CONSTRAINTS = "User story should have a valid function.";
 
     private String function;
 
     /**
      * Constructor for creating a function in a user story.
-     * @param function
+     * @param function the input function
      */
     public UserStoryFunction(String function) {
         requireNonNull(function);
+        checkArgument(isValidDescription(function), MESSAGE_CONSTRAINTS);
         this.function = function;
     }
 
     public String getFunction() {
         return this.function;
+    }
+
+    /**
+     * Returns a clone of this user story function.
+     */
+    public UserStoryFunction clone() {
+        return new UserStoryFunction(this.function);
     }
 
     @Override
@@ -39,18 +46,4 @@ public class UserStoryFunction {
         return function.hashCode();
     }
 
-    /**
-     * Returns a clone of this user story function.
-     */
-    public UserStoryFunction clone() {
-        return new UserStoryFunction(this.function);
-    }
-
-    /**
-     * Checks if the input is empty
-     */
-    public static boolean isValidUserStoryFunction(String func) {
-        func = func.trim();
-        return !isNull(func) && (!func.equals(""));
-    }
 }
