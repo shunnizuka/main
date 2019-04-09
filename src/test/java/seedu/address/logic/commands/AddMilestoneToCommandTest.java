@@ -31,9 +31,9 @@ public class AddMilestoneToCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_validProjectNameValidIndex_success() {
+    public void execute_validProjectNameValidIndexValidDate_success() {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        Milestone milestone = new Milestone(new Description("Completed UG"), new PocketProjectDate("05/05/2020"));
+        Milestone milestone = new Milestone(new Description("Completed UG"), new PocketProjectDate("05/05/2012"));
         AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(targetProject.getProjectName(),
             milestone);
         String expectedMessage = String.format(AddMilestoneToCommand.MESSAGE_ADD_MILESTONE_SUCCESS,
@@ -52,6 +52,41 @@ public class AddMilestoneToCommandTest {
             Milestone(new Description("Updated UG"), new PocketProjectDate("23/06/2019")));
         assertCommandFailure(addMilestoneToCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECT_NAME);
+    }
+
+    @Test
+    public void execute_duplicateMilestone_throwsCommandException() {
+
+        Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
+        Milestone milestone = new Milestone(new Description("Completed UG"), new PocketProjectDate("05/05/2012"));
+        AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(targetProject.getProjectName(),
+            milestone);
+        String expectedMessage = String.format(AddMilestoneToCommand.MESSAGE_ADD_MILESTONE_SUCCESS,
+                milestone, targetProject.getProjectName());
+
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
+        expectedModel.addMilestoneTo(targetProject, milestone);
+        expectedModel.commitPocketProject();
+
+        assertCommandSuccess(addMilestoneToCommand, model, commandHistory, expectedMessage, expectedModel);
+
+        Milestone duplicateMilestone = new Milestone(new Description("Completed UG"),
+            new PocketProjectDate("05/05/2012"));
+        AddMilestoneToCommand addMilestoneToCommand2 = new AddMilestoneToCommand(targetProject.getProjectName(),
+            duplicateMilestone);
+        assertCommandFailure(addMilestoneToCommand2, model, commandHistory,
+            AddMilestoneToCommand.MESSAGE_DUPLICATE_MILESTONE);
+    }
+
+    @Test
+    public void execute_invalidDate_throwsCommandException() {
+        Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
+        Milestone milestone = new Milestone(new Description("Completed UG"), new PocketProjectDate("05/05/2008"));
+        AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(targetProject.getProjectName(),
+            milestone);
+
+        assertCommandFailure(addMilestoneToCommand, model, commandHistory,
+            AddMilestoneToCommand.INVALID_MILESTONE_DATE);
     }
 
     @Test
