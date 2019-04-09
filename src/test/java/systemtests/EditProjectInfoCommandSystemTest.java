@@ -15,18 +15,12 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE_HEY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ZULU;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_1;
-import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
-import static seedu.address.testutil.TypicalProjects.PROJECT_BENSON;
-import static seedu.address.testutil.TypicalProjects.PROJECT_HOON;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 
 import java.util.Arrays;
@@ -47,7 +41,6 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.ProjectBuilder;
-import seedu.address.testutil.ProjectUtil;
 import seedu.address.testutil.TypicalEmployees;
 import seedu.address.testutil.TypicalMilestones;
 import seedu.address.testutil.TypicalUserStories;
@@ -90,8 +83,8 @@ public class EditProjectInfoCommandSystemTest extends PocketProjectSystemTest {
         /* Case: edit a Project with new values same as existing values -> edited */
         name = PROJECT_ZULU.getProjectName();
         command = EditProjectInfoCommand.COMMAND_WORD + " " + EditProjectInfoCommand.EDIT_PROJECT_KEYWORD + " "
-            + VALID_PROJECT_NAME_ZULU + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + NAME_DESC_ALICE + CLIENT_DESC_ZULU
-            + DEADLINE_DESC_ZULU + DESCRIPTION_DESC;
+            + VALID_PROJECT_NAME_ZULU + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + NAME_DESC_ALICE
+            + CLIENT_DESC_ZULU + DEADLINE_DESC_ZULU + DESCRIPTION_DESC;
         editedProject = new ProjectBuilder(editedProject).withProjectName(VALID_PROJECT_NAME_ALICE).build();
         assertCommandSuccess(command, name, editedProject);
 
@@ -122,7 +115,7 @@ public class EditProjectInfoCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: invalid description -> rejected */
         assertCommandFailure(EditProjectInfoCommand.COMMAND_WORD + " "
-            + EditProjectInfoCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE + " " 
+            + EditProjectInfoCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE + " "
             + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid client -> rejected */
@@ -138,7 +131,6 @@ public class EditProjectInfoCommandSystemTest extends PocketProjectSystemTest {
             PocketProjectDate.MESSAGE_CONSTRAINTS);
 
         /* Case: edit a Project with new values same as another Project's values -> rejected */
-
         command = EditProjectInfoCommand.COMMAND_WORD + " " + EditProjectInfoCommand.EDIT_PROJECT_KEYWORD + " "
             + "" + "Project Benson " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + NAME_DESC_ALICE + CLIENT_DESC_ZULU
             + DEADLINE_DESC_ZULU + DESCRIPTION_DESC;
@@ -149,7 +141,7 @@ public class EditProjectInfoCommandSystemTest extends PocketProjectSystemTest {
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Index, Project, Index)} except that
      * the browser url and selected card remain unchanged.
-     * @param toEdit the index of the current model's filtered list
+     * @param toEdit the projectName of a project inside the current model's list
      * @see EditProjectInfoCommandSystemTest#assertCommandSuccess(String, ProjectName, Project, Index)
      */
     private void assertCommandSuccess(String command, ProjectName toEdit, Project editedProject) {
@@ -159,8 +151,8 @@ public class EditProjectInfoCommandSystemTest extends PocketProjectSystemTest {
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
      * 1. Asserts that result display box displays the success message of executing {@code EditProjectInfoCommand}.<br>
-     * 2. Asserts that the model related components are updated to reflect the Project at index {@code toEdit} being
-     * updated to values specified {@code editedProject}.<br>
+     * 2. Asserts that the model related components are updated to reflect the Project with ProjectName {@code toEdit}
+     * being updated to values specified {@code editedProject}.<br>
      * @param toEdit the index of the current model's filtered list.
      * @see EditProjectInfoCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
      */
