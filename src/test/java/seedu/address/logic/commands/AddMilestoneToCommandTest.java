@@ -75,7 +75,7 @@ public class AddMilestoneToCommandTest {
         AddMilestoneToCommand addMilestoneToCommand2 = new AddMilestoneToCommand(targetProject.getProjectName(),
             duplicateMilestone);
         assertCommandFailure(addMilestoneToCommand2, model, commandHistory,
-            AddMilestoneToCommand.MESSAGE_DUPLICATE_MILESTONE);
+            Messages.MESSAGE_DUPLICATE_MILESTONE);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class AddMilestoneToCommandTest {
             milestone);
 
         assertCommandFailure(addMilestoneToCommand, model, commandHistory,
-            AddMilestoneToCommand.INVALID_MILESTONE_DATE);
+            Messages.INVALID_MILESTONE_DATE);
     }
 
     @Test
