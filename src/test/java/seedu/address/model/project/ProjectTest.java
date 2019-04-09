@@ -51,19 +51,19 @@ public class ProjectTest {
     @Test
     public void isValidMilestoneDate() {
 
-    Project testProject = new Project(new ProjectName("Apollo"), new Client("Pegasus Pte Ltd"),
-        new PocketProjectDate("20/10/2009"), new PocketProjectDate("22/01/2010"));
+        Project testProject = new Project(new ProjectName("Apollo"), new Client("Pegasus Pte Ltd"),
+            new PocketProjectDate("20/10/2009"), new PocketProjectDate("22/01/2010"));
 
-    //falls within range
-    assertTrue(testProject.isValidMilestoneDate(new PocketProjectDate("22/11/2009")));
+        //falls within range
+        assertTrue(testProject.isValidMilestoneDate(new PocketProjectDate("22/11/2009")));
 
-    //hits boundary of range
-    assertTrue(testProject.isValidMilestoneDate(new PocketProjectDate("20/10/2009")));
-    assertTrue(testProject.isValidMilestoneDate(new PocketProjectDate("22/01/2010")));
+        //hits boundary of range
+        assertTrue(testProject.isValidMilestoneDate(new PocketProjectDate("20/10/2009")));
+        assertTrue(testProject.isValidMilestoneDate(new PocketProjectDate("22/01/2010")));
 
-    //falls outside range
-    assertFalse(testProject.isValidMilestoneDate(new PocketProjectDate("22/02/2009")));
-    assertFalse(testProject.isValidMilestoneDate(new PocketProjectDate("22/11/2010")));
+        //falls outside range
+        assertFalse(testProject.isValidMilestoneDate(new PocketProjectDate("22/02/2009")));
+        assertFalse(testProject.isValidMilestoneDate(new PocketProjectDate("22/11/2010")));
 
     }
 
