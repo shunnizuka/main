@@ -119,7 +119,8 @@ public class FindSkillCommandSystemTest extends PocketProjectSystemTest {
         /* Case: find while a employee is selected -> selected card deselected */
         showAllEmployees();
         viewEmployee(Index.fromOneBased(1));
-        assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getEmployeeName().fullName));
+        assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName()
+            .equals(DANIEL.getEmployeeName().fullName));
         command = FindSkillCommand.COMMAND_WORD + " " + FindSkillCommand.FIND_SKILL_KEYWORD + " Assembly";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);

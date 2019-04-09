@@ -17,8 +17,8 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
-import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.EmployeeName;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.skill.Skill;

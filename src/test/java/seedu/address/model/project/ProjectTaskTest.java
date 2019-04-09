@@ -46,12 +46,12 @@ public class ProjectTaskTest {
         Assert.assertThrows(IllegalArgumentException.class, () ->
                 new ProjectTask(new ProjectTaskDescription("a"), new ProjectTaskStatus(" "))); // spaces only
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskDescription("a"), new ProjectTaskStatus("complet"))); // wrong status string
+                new ProjectTask(new ProjectTaskDescription("a"), new ProjectTaskStatus("complet")));
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskDescription("a"), new ProjectTaskStatus("ongoin"))); // wrong status string
+                new ProjectTask(new ProjectTaskDescription("a"), new ProjectTaskStatus("ongoin")));
 
         // valid task
-        assertTrue(ProjectTask.isValidTask(new ProjectTask(new ProjectTaskDescription("a")))); // only task name constructor
+        assertTrue(ProjectTask.isValidTask(new ProjectTask(new ProjectTaskDescription("a"))));
 
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
                 new ProjectTaskDescription("a"),
@@ -77,7 +77,8 @@ public class ProjectTaskTest {
     public void isSameProjectTaskName() {
         // equals
         ProjectTaskDescription validProjectTaskDescription = new ProjectTaskDescription("Valid");
-        ProjectTask validProjectTask = new ProjectTask(new ProjectTaskDescription("Valid"), new ProjectTaskStatus("ongoing"));
+        ProjectTask validProjectTask = new ProjectTask(new ProjectTaskDescription("Valid"),
+            new ProjectTaskStatus("ongoing"));
         assertEquals(validProjectTask.getTaskNameString(), validProjectTaskDescription.getTaskName());
 
         // not equals, case-sensitive
@@ -90,7 +91,8 @@ public class ProjectTaskTest {
     public void isSameProjectTaskStatus() {
         // equals
         ProjectTaskStatus status = new ProjectTaskStatus("ongoing");
-        ProjectTask validProjectTask = new ProjectTask(new ProjectTaskDescription("Valid"), new ProjectTaskStatus("ongoing"));
+        ProjectTask validProjectTask = new ProjectTask(new ProjectTaskDescription("Valid"),
+            new ProjectTaskStatus("ongoing"));
         assertEquals(validProjectTask.getTaskStatusString(), status.getTaskStatusString());
 
         // not equals

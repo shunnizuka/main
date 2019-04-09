@@ -21,8 +21,8 @@ import javafx.collections.ObservableList;
 
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.EmployeeName;
+import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Phone;
 
 
