@@ -13,9 +13,9 @@ public class TypicalProjectTasks {
         .build();
 
     public static final ProjectTask PROJECT_TASK_ONGOING = new ProjectTaskBuilder()
-    .withTaskName("Ongoing task")
-    .withStatus("ongoing")
-    .build();
+        .withTaskName("Ongoing task")
+        .withStatus("ongoing")
+        .build();
 
     public static final ProjectTask PROJECT_TASK_COMPLETED = new ProjectTaskBuilder()
         .withTaskName("Completed task")

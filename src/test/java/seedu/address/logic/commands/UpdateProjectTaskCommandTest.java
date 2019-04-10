@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalProjects.PROJECT_BENSON;
 import static seedu.address.testutil.TypicalStatuses.STATUS_ONGOING;
 
 import org.junit.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
@@ -111,7 +112,7 @@ public class UpdateProjectTaskCommandTest {
         UpdateProjectTaskCommand updateProjectTaskCommand2 = new UpdateProjectTaskCommand(
                 PROJECT_ALICE.getProjectName(), INDEX_SECOND_PROJECT_MILESTONE, INDEX_FIRST_PROJECT_TASK,
                 STATUS_ONGOING);
-                assertFalse(updateProjectTaskCommand.equals(updateProjectTaskCommand2));
+        assertFalse(updateProjectTaskCommand.equals(updateProjectTaskCommand2));
         UpdateProjectTaskCommand updateProjectTaskCommand3 = new UpdateProjectTaskCommand(
                 PROJECT_ALICE.getProjectName(), INDEX_FIRST_PROJECT_MILESTONE, INDEX_SECOND_PROJECT_TASK,
                 STATUS_ONGOING);

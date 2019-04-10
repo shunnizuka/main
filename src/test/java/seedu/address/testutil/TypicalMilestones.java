@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.Arrays;
+
 import seedu.address.model.project.Milestone;
 
 /**

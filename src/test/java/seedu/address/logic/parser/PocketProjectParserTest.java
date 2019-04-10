@@ -44,7 +44,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
-import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.EditEmployeeDescriptorBuilder;
 import seedu.address.testutil.EmployeeBuilder;
 import seedu.address.testutil.EmployeeUtil;
