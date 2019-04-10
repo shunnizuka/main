@@ -29,8 +29,6 @@ public class AddTaskToCommand extends AddToCommand {
             + "Example: " + COMMAND_WORD + " Apollo projecttask n/Create feature XYZ m/1";
 
     public static final String MESSAGE_ADD_PROJECT_TASK_SUCCESS = "Added %1$s to milestone %2$d in %3$s";
-    public static final String MESSAGE_DUPLICATE_PROJECT_TASK =
-            "This project task already exists in this milestone.";
 
     private final Index targetIndex;
     private final ProjectName targetProjectName;
@@ -59,13 +57,13 @@ public class AddTaskToCommand extends AddToCommand {
 
         Milestone targetMilestone = milestoneList.get(targetIndex.getZeroBased());
         if (targetMilestone.getProjectTaskList().contains(taskToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROJECT_TASK);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT_TASK);
         }
 
         try {
             targetMilestone.addTask(taskToAdd);
         } catch (DuplicateProjectTaskException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROJECT_TASK, e);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT_TASK, e);
         }
 
         model.commitPocketProject();

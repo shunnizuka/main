@@ -53,7 +53,7 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
         /* ----------------------------------- Perform invalid addto operations ------------------------------------- */
         /* Case: add a duplicate task to a milestone -> rejected */
         command = ProjectUtil.getAddProjectTaskToCommand(targetProject, index, task);
-        assertCommandFailure(command, AddTaskToCommand.MESSAGE_DUPLICATE_PROJECT_TASK);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJECT_TASK);
 
         /* Case: missing command word -> rejected */
         command = targetProject.getProjectName() + " " + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " "

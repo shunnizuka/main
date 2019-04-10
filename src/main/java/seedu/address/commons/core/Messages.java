@@ -24,4 +24,5 @@ public class Messages {
     public static final String INVALID_MILESTONE_DATE = "Invalid milestone date. The date of a  milestone should be "
         + "after the start date of a project and before the deadline of a project.";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the pocket project";
+    public static final String MESSAGE_DUPLICATE_PROJECT_TASK = "This project task already exists in this milestone.";
 }
