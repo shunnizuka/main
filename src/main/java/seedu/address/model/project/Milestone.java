@@ -68,6 +68,17 @@ public class Milestone {
     }
 
     /**
+     * Returns true if all the tasks for this milestone is completed.
+     */
+    public boolean reached() {
+        for (ProjectTask pt: this.projectTasks) {
+            if (!pt.isComplete()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    /**
      * Returns true if both milestones have the same name and date.
      * This defines a weaker notion of equality between two milestones.
      */

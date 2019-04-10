@@ -104,7 +104,6 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
     public ObservableList<Milestone> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
-
     @Override
     public Iterator<Milestone> iterator() {
         return internalList.iterator();
