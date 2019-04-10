@@ -147,6 +147,17 @@ public class EditProjectMilestoneCommandTest {
     }
 
     @Test
+    public void execute_invalidMilestoneDate_failure() {
+        EditProjectMilestoneCommand.EditMilestoneDescriptor descriptor = new EditMilestoneDescriptorBuilder()
+            .withDate("01/01/2001").build();
+        EditProjectMilestoneCommand editProjectMilestoneCommand = new EditProjectMilestoneCommand(
+            new ProjectName(VALID_PROJECT_NAME_ALICE_HEY), INDEX_FIRST_PROJECT_MILESTONE, descriptor);
+
+        assertCommandFailure(editProjectMilestoneCommand, model, commandHistory,
+            Messages.INVALID_MILESTONE_DATE);
+    }
+
+    @Test
     public void executeUndoRedo_validFields_success() throws CommandException {
 
         Project editedProject = defaultProjBuilder.withMilestones(Arrays.asList(
