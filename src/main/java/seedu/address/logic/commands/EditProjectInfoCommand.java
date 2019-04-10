@@ -67,6 +67,10 @@ public class EditProjectInfoCommand extends EditProjectCommand {
 
         Project editedProject = createEditedProject(projectToEdit, editProjectDescriptor);
 
+        if (PocketProjectDate.isEarlierThan(editedProject.getDeadline(), editedProject.getStartDate())) {
+            throw new CommandException(PocketProjectDate.START_END_DATE_CONSTRAINTS);
+        }
+        
         if (!editedProject.isSameProject(projectToEdit) && model.hasProject(editedProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }

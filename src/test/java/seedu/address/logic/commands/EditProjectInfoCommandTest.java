@@ -35,11 +35,13 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PocketProject;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.PocketProjectBuilder;
 import seedu.address.testutil.ProjectBuilder;
@@ -157,6 +159,16 @@ public class EditProjectInfoCommandTest {
 
         assertCommandFailure(editProjectCommand, model, commandHistory,
             Messages.MESSAGE_INVALID_PROJECT_NAME);
+    }
+
+    @Test
+    public void execute_invalidProjectDeadline_failure() throws ParseException {
+        EditProjectInfoCommand.EditProjectDescriptor descriptor =
+            new EditProjectDescriptorBuilder().withDeadline("01/01/2001").build();
+        EditProjectCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1, descriptor);
+
+        assertCommandFailure(editProjectCommand, model, commandHistory,
+            PocketProjectDate.START_END_DATE_CONSTRAINTS);
     }
 
     @Test
