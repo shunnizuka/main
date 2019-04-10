@@ -15,6 +15,7 @@ import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.exceptions.DateNotInRangeException;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
@@ -65,6 +66,14 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
 
         Milestone milestoneToEdit = milestonesList.get(milestoneIndex.getZeroBased());
         Milestone editedMilestone = createEditedMilestone(milestoneToEdit, editMilestoneDescriptor);
+
+        try {
+            if (!projectToEdit.isValidMilestoneDate(editedMilestone.getDate())) {
+                throw new DateNotInRangeException();
+            }
+        } catch (DateNotInRangeException e) {
+            throw new CommandException(Messages.INVALID_MILESTONE_DATE);
+        }
 
         if (!milestoneToEdit.isSameMilestone(editedMilestone) && milestonesList.contains(editedMilestone)) {
             throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
