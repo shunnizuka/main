@@ -1,10 +1,13 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectTask;
 
 /**
  * Provides static methods for looking through the list of projects/employees/single project for
@@ -36,18 +39,25 @@ public class StatsUtil {
     public static String currentProjects(List<Project> projects) {
         StringBuilder builder = new StringBuilder();
         builder.append("Projects with deadline in this month:\n------------------------\n");
+        ArrayList<Project> clone = new ArrayList<>(projects);
+        Comparator<Project> comparator = new Comparator<Project>() {
+            @Override
+            public int compare(Project o1, Project o2) {
+                return -PocketProjectDate.DATE_STRING_COMPARATOR.compare(o1.getDeadline().date, o2.getDeadline().date);
+            }
+        };
+        clone.sort(comparator);
         int count = 1;
-
-        for (Project p : projects) {
+        for (Project p : clone) {
             if (PocketProjectDate.isThisMonth(p.getDeadline())) {
-                builder.append(count + ". " + p.getProjectName().projectName + ": " + roughProgress(p) + "\n");
+                builder.append(count + ". " + p.getProjectName().projectName + " | " + roughProgress(p) + "\n");
                 count++;
             }
         }
         builder.append("------------------------\n");
-        for (Project project : projects) {
+        for (Project project : clone) {
             if (!PocketProjectDate.isThisMonth(project.getDeadline())) {
-                builder.append(count + ". " + project.getProjectName().projectName + ": " + roughProgress(project)
+                builder.append(count + ". " + project.getProjectName().projectName + " | " + roughProgress(project)
                         + "\n");
                 count++;
             }
@@ -67,7 +77,8 @@ public class StatsUtil {
             }
         }
         int numTotalMilestones = project.getMilestones().size();
-        builder.append(String.format("reached %d out of %d milestones", numMilestonesReached, numTotalMilestones));
+        builder.append(String.format("deadline: %s|reached %d out of %d milestones",
+                project.getDeadline().date, numMilestonesReached, numTotalMilestones));
         return builder.toString();
     }
 
@@ -75,7 +86,29 @@ public class StatsUtil {
      * Returns a string describing the progress of an individual project.
      */
     public static String individualStatsString(Project project) {
-        return "";
+        StringBuilder builder = new StringBuilder();
+        builder.append(roughProgress(project) + "\n");
+        builder.append("Milestones not reached yet:\n");
+        for (Milestone m: project.getMilestones()) {
+            if (!m.reached()) {
+                builder.append(milestoneProgress(m) + "\n");
+            }
+        }
+        return builder.toString();
+    }
+    /**
+     * Returns a string describing the rough progress of a milestone.
+     */
+    public static String milestoneProgress(Milestone milestone) {
+        int numTask = milestone.getProjectTaskList().size();
+        int numCompletedTasks = 0;
+        for (ProjectTask pt: milestone.getProjectTaskList()) {
+            if (pt.isComplete()) {
+                numCompletedTasks++;
+            }
+        }
+        return String.format(milestone.getMilestoneDescription().description + ": %d out of %d tasks completed",
+                numCompletedTasks, numTask);
     }
 
 }
