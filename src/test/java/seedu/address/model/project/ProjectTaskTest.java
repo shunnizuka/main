@@ -112,6 +112,10 @@ public class ProjectTaskTest {
         ProjectTask invalidProjectTask = new ProjectTask(new ProjectTaskName("Valid"), new Status("Complete"),
                 new PocketProjectDate());
         assertNotEquals(invalidProjectTask.getTaskStatus(), status.getStatus());
+
+        // update status to match -> equals
+        invalidProjectTask.updateStatus(new Status("ongoing"));
+        assertEquals(invalidProjectTask.getTaskStatus(), status.getStatus());
     }
 
     @Test

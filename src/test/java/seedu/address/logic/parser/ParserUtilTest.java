@@ -248,6 +248,6 @@ public class ParserUtilTest {
     @Test
     public void parseStatus_invalidStatus_throwsParseException() throws Exception {
         thrown.expect(ParseException.class);
-        ParserUtil.parseProjectTaskName(INVALID_STATUS);
+        ParserUtil.parseStatus(INVALID_STATUS);
     }
 }

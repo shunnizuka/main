@@ -37,6 +37,7 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
         Milestone milestone = TypicalMilestones.TYPICAL_MILESTONE_START;
         Index index = TypicalIndexes.INDEX_FIRST_PROJECT_MILESTONE;
         ProjectTask task = TypicalProjectTasks.PROJECT_TASK_ONGOING;
+        ProjectTask taskDifferentStatus = TypicalProjectTasks.PROJECT_TASK_ONGOING_STATUS_CHANGE;
         assertCommandSuccess(targetProject, milestone, index, task);
 
         /* Case: undo adding task to milestone 1 in Project Alice */
@@ -53,6 +54,10 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
         /* ----------------------------------- Perform invalid addto operations ------------------------------------- */
         /* Case: add a duplicate task to a milestone -> rejected */
         command = ProjectUtil.getAddProjectTaskToCommand(targetProject, index, task);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJECT_TASK);
+
+        /* Case: add a duplicate task with different status to a milestone -> rejected */
+        command = ProjectUtil.getAddProjectTaskToCommand(targetProject, index, taskDifferentStatus);
         assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJECT_TASK);
 
         /* Case: missing command word -> rejected */
