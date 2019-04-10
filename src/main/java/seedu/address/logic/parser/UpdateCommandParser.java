@@ -22,10 +22,10 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             + "(?<keyword>userstory\\s|projecttask\\s)(?<arguments>.*)");
 
     private static final Pattern UPDATE_USER_STORY_FORMAT = Pattern.compile("(?<index>\\d)\\s+"
-            + "(?<status>ongoing|on hold|complete)");
+            + "(?<status>ongoing|on hold|complete)", Pattern.CASE_INSENSITIVE);
 
     private static final Pattern UPDATE_PROJECT_TASK_FORMAT = Pattern.compile("(?<milestone>\\d)\\s+"
-            + "(?<task>\\d)\\s+(?<status>ongoing|on hold|complete)");
+            + "(?<task>\\d)\\s+(?<status>ongoing|on hold|complete)", Pattern.CASE_INSENSITIVE);
 
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateCommand
