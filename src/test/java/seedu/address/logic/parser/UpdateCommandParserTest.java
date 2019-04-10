@@ -12,7 +12,6 @@ import seedu.address.logic.commands.UpdateProjectTaskCommand;
 import seedu.address.logic.commands.UpdateUserStoryCommand;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.Status;
-import seedu.address.testutil.TypicalIndexes;
 
 public class UpdateCommandParserTest {
 
