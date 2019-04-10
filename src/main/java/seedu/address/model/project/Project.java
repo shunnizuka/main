@@ -34,6 +34,7 @@ public class Project {
     public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end) {
         this(pn, c, start, end, new UniqueMilestoneList(), new ProjectDescription(), new UniqueEmployeeList(),
                 new SortedUserStoryList());
+
     }
 
     /**
@@ -138,7 +139,7 @@ public class Project {
      */
     public Project clone() {
         return new Project(this.projectName.clone(), this.client.clone(), this.startDate.clone(), this.deadline.clone(),
-                this.milestones.clone(), this.description.clone(), this.employees.clone(), userStories.clone());
+            this.milestones.clone(), this.description.clone(), this.employees.clone(), userStories.clone());
     }
 
     /**
@@ -180,6 +181,12 @@ public class Project {
         this.completionDate = completionDate;
     }
 
+    /**
+     * Replace the {@code targetMilestone} in the list with the edited new {@code milestone}
+     */
+    public void setMilestone(Milestone targetMilestone, Milestone milestone) {
+        milestones.setMilestone(targetMilestone, milestone);
+    }
     /**
      *  Removes the given employee from this project.
      */
