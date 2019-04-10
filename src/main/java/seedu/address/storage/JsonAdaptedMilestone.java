@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UniqueProjectTaskList;
 import seedu.address.model.util.PocketProjectDate;
@@ -79,10 +79,10 @@ class JsonAdaptedMilestone {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 PocketProjectDate.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(milestone)) {
+        if (!MilestoneDescription.isValidDescription(milestone)) {
             throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(milestone);
+        final MilestoneDescription modelDescription = new MilestoneDescription(milestone);
 
 
         return new Milestone(modelDescription, modelDate, modelProjectTasks);

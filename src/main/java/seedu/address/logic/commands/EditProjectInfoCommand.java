@@ -16,8 +16,8 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.util.PocketProjectDate;
 
@@ -90,7 +90,8 @@ public class EditProjectInfoCommand extends EditProjectCommand {
 
         ProjectName updatedName = editProjectDescriptor.getProjectName().orElse(projectToEdit.getProjectName());
         PocketProjectDate updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
-        Description updatedDescription = editProjectDescriptor.getDescription().orElse(projectToEdit.getDescription());
+        ProjectDescription updatedDescription = editProjectDescriptor.getDescription()
+            .orElse(projectToEdit.getDescription());
         Client updatedClient = editProjectDescriptor.getClient().orElse(projectToEdit.getClient());
 
         return projectToEdit.editProject(updatedName, updatedClient, projectToEdit.getStartDate(), updatedDeadline,
@@ -123,7 +124,7 @@ public class EditProjectInfoCommand extends EditProjectCommand {
 
         private ProjectName projectName;
         private PocketProjectDate deadline;
-        private Description description;
+        private ProjectDescription description;
         private Client client;
 
         public EditProjectDescriptor() {
@@ -162,11 +163,11 @@ public class EditProjectInfoCommand extends EditProjectCommand {
             return Optional.ofNullable(deadline);
         }
 
-        public void setDescription(Description description) {
+        public void setDescription(ProjectDescription description) {
             this.description = description;
         }
 
-        public Optional<Description> getDescription() {
+        public Optional<ProjectDescription> getDescription() {
             return Optional.ofNullable(description);
         }
 

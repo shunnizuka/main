@@ -31,8 +31,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PocketProject;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.testutil.EditMilestoneDescriptorBuilder;
@@ -75,7 +75,7 @@ public class EditProjectMilestoneCommandTest {
     @Test
     public void execute_someFieldSpecified_success() {
 
-        Milestone editedMilestone = new Milestone(new Description("hello"),
+        Milestone editedMilestone = new Milestone(new MilestoneDescription("hello"),
             TYPICAL_MILESTONE_START.getDate());
 
         Project editedProject = defaultProjBuilder.withMilestones(Arrays.asList(editedMilestone,

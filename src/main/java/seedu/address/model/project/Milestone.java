@@ -16,15 +16,15 @@ public class Milestone {
     public static final String MESSAGE_INVALID_STRING = "The milestone info must not be empty or consisting "
         + "of only spaces";
 
-    public final Description milestone;
+    public final MilestoneDescription milestone;
     public final PocketProjectDate date;
     public final UniqueProjectTaskList projectTasks;
 
-    public Milestone(Description milestone, PocketProjectDate date) {
+    public Milestone(MilestoneDescription milestone, PocketProjectDate date) {
         this(milestone, date, new UniqueProjectTaskList());
     }
 
-    public Milestone(Description milestone, PocketProjectDate date, UniqueProjectTaskList projectTasks) {
+    public Milestone(MilestoneDescription milestone, PocketProjectDate date, UniqueProjectTaskList projectTasks) {
         requireAllNonNull(milestone, date, projectTasks);
         this.milestone = milestone;
         this.date = date;
@@ -36,8 +36,8 @@ public class Milestone {
      * @return true if valid milestone and false otherwise.
      */
     public static boolean isValidMilestone(Milestone milestone) {
-        return Description.isValidDescription(milestone.getMilestoneDescription().description)
-            && PocketProjectDate.isValidDate(milestone.getDate().date);
+        return MilestoneDescription.isValidDescription(milestone.getMilestoneDescription().description)
+                && PocketProjectDate.isValidDate(milestone.getDate().date);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Milestone {
         return new Milestone(this.milestone, this.date, this.projectTasks.clone());
     }
 
-    public Description getMilestoneDescription() {
+    public MilestoneDescription getMilestoneDescription() {
         return milestone;
     }
 
@@ -71,7 +71,7 @@ public class Milestone {
      * Returns a new milestone which has its {@code milestone} and {@code date} edited.
      * {@code projectTasks} remains unchanged
      */
-    public Milestone editMilestone (Description milestone, PocketProjectDate date) {
+    public Milestone editMilestone (MilestoneDescription milestone, PocketProjectDate date) {
         return new Milestone(milestone, date, this.projectTasks);
     }
 

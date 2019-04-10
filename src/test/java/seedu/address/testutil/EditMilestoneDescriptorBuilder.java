@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditProjectMilestoneCommand;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
@@ -33,7 +33,7 @@ public class EditMilestoneDescriptorBuilder {
      * Sets the {@code milestoneDesc} of the {@code EditMilestoneDescriptor} that we are building.
      */
     public EditMilestoneDescriptorBuilder withMilestoneDesc(String desc) {
-        descriptor.setMilestoneDesc(new Description(desc));
+        descriptor.setMilestoneDesc(new MilestoneDescription(desc));
         return this;
     }
 

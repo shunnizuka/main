@@ -137,7 +137,7 @@ public class StatsUtil {
         String employeeWithLeastProjectString = null;
         if (employeeWithLeastProject.isPresent()) {
             employeeWithLeastProjectString = "The employee with the least number of projects is "
-                    + employeeWithLeastProject.get().getName().fullName
+                    + employeeWithLeastProject.get().getEmployeeName().fullName
                     + " with " + employeeWithLeastProject.get().getCurrentProjects().size()
                     + " projects";
         } else {
@@ -161,7 +161,7 @@ public class StatsUtil {
         String employeeWithMostProjectString = null;
         if (employeeWithMostProject.isPresent()) {
             employeeWithMostProjectString = "The employee with the most number of projects is "
-                    + employeeWithMostProject.get().getName().fullName
+                    + employeeWithMostProject.get().getEmployeeName().fullName
                     + " with " + employeeWithMostProject.get().getCurrentProjects().size()
                     + " projects";
         } else {

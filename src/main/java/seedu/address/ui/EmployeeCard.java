@@ -50,7 +50,7 @@ public class EmployeeCard extends UiPart<Region> {
         super(FXML);
         this.employee = employee;
         id.setText(displayedIndex + ". ");
-        name.setText(employee.getName().fullName);
+        name.setText(employee.getEmployeeName().fullName);
         github.setText(employee.getGithub().value);
         phone.setText(employee.getPhone().value);
         email.setText(employee.getEmail().value);

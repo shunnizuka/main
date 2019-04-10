@@ -110,7 +110,8 @@ public class FindDeadlineCommandSystemTest extends PocketProjectSystemTest {
         /*
         showAllProjects();
         viewProject(Index.fromOneBased(1));
-        assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
+        assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getEmployeeName()
+            .equals(DANIEL.getEmployeeName().fullName));
         command = FindDeadlineCommand.COMMAND_WORD + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " Daniel";
         ModelHelper.setFilteredList(expectedModel, DANIEL);
         assertCommandSuccess(command, expectedModel);

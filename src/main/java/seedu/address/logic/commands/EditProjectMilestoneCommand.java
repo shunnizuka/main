@@ -11,8 +11,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.exceptions.DateNotInRangeException;
@@ -95,7 +95,7 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
 
         assert milestoneToedit != null;
 
-        Description milestoneDesc = editMilestoneDescriptor.getMilestoneDesc()
+        MilestoneDescription milestoneDesc = editMilestoneDescriptor.getMilestoneDesc()
             .orElse(milestoneToedit.getMilestoneDescription());
         PocketProjectDate date = editMilestoneDescriptor.getDate().orElse(milestoneToedit.getDate());
 
@@ -127,7 +127,7 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
      * of the milestone.
      */
     public static class EditMilestoneDescriptor {
-        private Description milestoneDesc;
+        private MilestoneDescription milestoneDesc;
         private PocketProjectDate date;
 
         public EditMilestoneDescriptor() {}
@@ -148,11 +148,11 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
             return CollectionUtil.isAnyNonNull(milestoneDesc, date);
         }
 
-        public void setMilestoneDesc(Description milestone) {
+        public void setMilestoneDesc(MilestoneDescription milestone) {
             this.milestoneDesc = milestone;
         }
 
-        public Optional<Description> getMilestoneDesc() {
+        public Optional<MilestoneDescription> getMilestoneDesc() {
             return Optional.ofNullable(milestoneDesc);
         }
 
