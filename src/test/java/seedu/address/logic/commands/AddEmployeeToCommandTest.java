@@ -67,6 +67,28 @@ public class AddEmployeeToCommandTest {
     }
 
     @Test
+    public void execute_duplicateEmployee_throwsCommandException() {
+
+        Project project = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
+        Index targetIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() - 1);
+        AddEmployeeToCommand addEmployeeToCommand = new AddEmployeeToCommand(targetIndex,
+                project.getProjectName());
+        Employee employeeToAdd = model.getFilteredEmployeeList().get(targetIndex.getZeroBased());
+        String expectedMessage = String.format(AddEmployeeToCommand.MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS,
+                employeeToAdd, project.getProjectName());
+
+        ModelManager expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
+        expectedModel.addEmployeeTo(project, employeeToAdd);
+        expectedModel.commitPocketProject();
+        assertCommandSuccess(addEmployeeToCommand, model, commandHistory, expectedMessage, expectedModel);
+
+        AddEmployeeToCommand addEmployeeToCommand2 = new AddEmployeeToCommand(targetIndex,
+                project.getProjectName());
+        assertCommandFailure(addEmployeeToCommand2, model, commandHistory,
+                Messages.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
+    }
+
+    @Test
     public void equals() {
         AddEmployeeToCommand addEmployeeToCommandOne = new AddEmployeeToCommand(Index.fromOneBased(1),
                 TypicalProjects.PROJECT_ALICE.getProjectName());

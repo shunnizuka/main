@@ -51,7 +51,7 @@ public class AddEmployeeToCommandSystemTest extends PocketProjectSystemTest {
         /* Case: add a duplicate employee to a project -> rejected */
         command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
                 + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
-        assertCommandFailure(command, AddEmployeeToCommand.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
 
         /* Case: missing command word -> rejected */
         command = targetProject.getProjectName() + " " + AddEmployeeToCommand.ADD_EMPLOYEE_KEYWORD + " " + validIndex;
