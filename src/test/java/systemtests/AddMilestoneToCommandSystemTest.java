@@ -47,7 +47,7 @@ public class AddMilestoneToCommandSystemTest extends PocketProjectSystemTest {
         /* ----------------------------------- Perform invalid addto operations ------------------------------------- */
         /* Case: add a duplicate milestone to a project -> rejected */
         command = ProjectUtil.getAddMilestoneToCommand(targetProject, milestone);
-        assertCommandFailure(command, AddMilestoneToCommand.MESSAGE_DUPLICATE_MILESTONE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_MILESTONE);
 
         /* Case: missing command word -> rejected */
         command = targetProject.getProjectName() + " " + AddMilestoneToCommand.ADD_MILESTONE_KEYWORD + " "

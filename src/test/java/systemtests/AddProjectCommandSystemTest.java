@@ -90,22 +90,22 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: add a duplicate employee -> rejected */
         command = ProjectUtil.getAddProjectCommand(PROJECT_VICTOR);
-        assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJECT);
 
         /* Case: add a duplicate project except with different client -> rejected */
         toAdd = new ProjectBuilder(PROJECT_VICTOR).withClient(VALID_CLIENT_AMY).build();
         command = ProjectUtil.getAddProjectCommand(toAdd);
-        assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJECT);
 
         /* Case: add a duplicate project except with different start date -> rejected */
         toAdd = new ProjectBuilder(PROJECT_VICTOR).withStartDate(VALID_START_ZULU).build();
         command = ProjectUtil.getAddProjectCommand(toAdd);
-        assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJECT);
 
         /* Case: add a duplicate project except with different deadline -> rejected */
         toAdd = new ProjectBuilder(PROJECT_VICTOR).withDeadline(VALID_DEADLINE_ZULU).build();
         command = ProjectUtil.getAddProjectCommand(toAdd);
-        assertCommandFailure(command, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJECT);
 
         /* Case: missing name -> rejected */
         command = AddProjectCommand.COMMAND_WORD + " " + AddProjectCommand.ADD_PROJECT_KEYWORD + CLIENT_DESC_ZULU
