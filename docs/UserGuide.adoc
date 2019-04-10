@@ -583,17 +583,22 @@ add something here.
 Examples:
 
 `stats` +
-Number of ongoing projects: 4 +
-Number of completed projects: 0 +
-The project with the earliest date is Project ABC at 10/11/2011 +
-The project with the least number of employees is Project ABC with 0 employees +
-The project with the most number of employees is Apollo with 4 employees +
-The employee with the least number of projects is Daniel with 0 projects +
-The employee with the most number of projects is Bob with 3 projects +
+Number of ongoing projects: 5 +
+Projects with deadline in this month: +
+------------------------ +
+1. Project6 | deadline: 17/04/2019|reached 0 out of 1 milestones +
+------------------------ +
+2. Project2 | deadline: 17/06/2019|reached 1 out of 1 milestones +
+3. Project3 | deadline: 17/06/2019|reached 1 out of 1 milestones +
+4. Project1 | deadline: 17/05/2019|reached 0 out of 1 milestones +
+5. Project4 | deadline: 17/05/2019|reached 0 out of 0 milestones +
+
 
 
 `stats 1` +
-fill in stuff (not implemeted yet).
+Progress of Project6: deadline: 17/04/2019|reached 0 out of 1 milestones +
+Milestones not reached yet: +
+Finished UserGuide: 0 out of 1 tasks completed +
 
 
 // tag::undoredo[]
