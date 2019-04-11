@@ -47,7 +47,7 @@ public class EditProjectMilestoneCommandTest {
 
     //default builder with all the fields except milestones, to be used in the tests to build edited project
     private ProjectBuilder defaultProjBuilder = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE_HEY)
-        .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ALICE).withDescrption(
+        .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ALICE).withDescription(
             "An application for Alice software hello").withEmployees(Arrays.asList(BENSON, TypicalEmployees.CARL))
         .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER));
 

@@ -46,7 +46,7 @@ public class EditProjectMilestoneCommandSystemTest extends PocketProjectSystemTe
             + "   m/" + TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG.getMilestoneDescription() + "    d/"
             + TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG.getDate();
         Project editedProject = new ProjectBuilder(PROJECT_ALICE).withMilestones(Arrays.asList(
-            TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG , TypicalMilestones.TYPICAL_MILESTONE_END)).build();
+            TypicalMilestones.TYPICAL_MILESTONE_START_COMPLETED_UG , TypicalMilestones.TYPICAL_MILESTONE_END)).build();
 
         assertCommandSuccess(command, name, editedProject);
 
@@ -68,8 +68,9 @@ public class EditProjectMilestoneCommandSystemTest extends PocketProjectSystemTe
             + " m/" + TypicalMilestones.TYPICAL_MILESTONE_START.getMilestoneDescription();
         editedProject = new ProjectBuilder(PROJECT_ALICE).withMilestones(Arrays.asList(
             new Milestone(TypicalMilestones.TYPICAL_MILESTONE_START.getMilestoneDescription(),
-                TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG.getDate()),
-            TypicalMilestones.TYPICAL_MILESTONE_END)).build();
+                TypicalMilestones.TYPICAL_MILESTONE_COMPLETED_UG.getDate(),
+                TypicalMilestones.TYPICAL_MILESTONE_START.projectTasks.clone()),
+                TypicalMilestones.TYPICAL_MILESTONE_END)).build();
         assertCommandSuccess(command, name, editedProject);
 
         /* --------------------------------- Performing invalid edit operation -------------------------------------- */

@@ -47,6 +47,19 @@ public class Milestone {
         this.projectTasks.add(task);
     }
 
+
+    /**
+     * Updates the given user story in this project.
+     */
+    public void updateProjectTask(ProjectTask task, Status newStatus) {
+        projectTasks.forEach(pt -> {
+            if (task.equals(pt)) {
+                pt.updateStatus(newStatus);
+            }
+            return;
+        });
+    }
+
     /**
      * Returns a clone of this Milestone object.
      */
@@ -71,23 +84,9 @@ public class Milestone {
      * Returns a new milestone which has its {@code milestone} and {@code date} edited.
      * {@code projectTasks} remains unchanged
      */
-    public Milestone editMilestone (MilestoneDescription milestone, PocketProjectDate date) {
-        return new Milestone(milestone, date, this.projectTasks);
-    }
-
-
-
-    /**
-     * Returns true if both milestones have the same name and date.
-     * This defines a weaker notion of equality between two milestones.
-     */
-    public boolean isSameMilestone(Milestone otherMilestone) {
-        if (otherMilestone == this) {
-            return true;
-        }
-        return otherMilestone != null
-            && otherMilestone.getMilestoneDescription().equals(getMilestoneDescription())
-            && otherMilestone.getDate().equals(getDate());
+    public Milestone editMilestone (MilestoneDescription milestone, PocketProjectDate date,
+                                    UniqueProjectTaskList projectTasks) {
+        return new Milestone(milestone, date, projectTasks);
     }
 
     @Override

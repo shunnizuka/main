@@ -134,8 +134,9 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AddTaskToCommand.MESSAGE_USAGE));
                 }
-                ProjectTaskDescription name = ParserUtil.parseProjectTaskName(argMultimap.getValue(PREFIX_NAME).get());
-                ProjectTask newTask = new ProjectTask(name);
+                ProjectTaskDescription description = ParserUtil.parseProjectTaskDescription(
+                        argMultimap.getValue(PREFIX_NAME).get());
+                ProjectTask newTask = new ProjectTask(description);
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MILESTONE).get());
                 return new AddTaskToCommand(projectName, newTask, index);
             } catch (ParseException pe) {

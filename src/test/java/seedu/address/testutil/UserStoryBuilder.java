@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
-import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.project.UserStoryUser;
 
 /**
@@ -21,14 +21,14 @@ public class UserStoryBuilder {
     private UserStoryUser user;
     private UserStoryFunction function;
     private UserStoryReason reason;
-    private UserStoryStatus status;
+    private Status status;
 
     public UserStoryBuilder() {
         importance = new UserStoryImportance(DEFAULT_IMPORTANCE);
         user = new UserStoryUser(DEFAULT_USER);
         function = new UserStoryFunction(DEFAULT_FUNCTION);
         reason = new UserStoryReason(DEFAULT_REASON);
-        status = new UserStoryStatus();
+        status = new Status();
     }
 
     /**
@@ -39,7 +39,7 @@ public class UserStoryBuilder {
         this.user = new UserStoryUser(userStoryToCopy.getUserStoryUser());
         this.function = new UserStoryFunction(userStoryToCopy.getUserStoryFunction());
         this.reason = new UserStoryReason(userStoryToCopy.getUserStoryReason());
-        this.status = new UserStoryStatus(userStoryToCopy.getUserStoryStatus());
+        this.status = new Status(userStoryToCopy.getUserStoryStatus());
     }
 
     /**
@@ -75,10 +75,10 @@ public class UserStoryBuilder {
     }
 
     /**
-     * Sets the {@code UserStoryStatus} of the {@code UserStory} that we are building.
+     * Sets the {@code Status} of the {@code UserStory} that we are building.
      */
     public UserStoryBuilder withStatus(String status) {
-        this.status = new UserStoryStatus(status);
+        this.status = new Status(status);
         return this;
     }
 

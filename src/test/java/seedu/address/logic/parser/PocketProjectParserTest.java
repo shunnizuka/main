@@ -62,7 +62,7 @@ public class PocketProjectParserTest {
         assertEquals(new AddEmployeeCommand(employee), command);
 
         /*
-        Project project = new ProjectBuilder().withDescrption("").build();
+        Project project = new ProjectBuilder().withDescription("").build();
         AddProjectCommand commandp = (AddProj
         ectCommand) parser.parseCommand
             (ProjectUtil.getAddProjectCommand(project));
