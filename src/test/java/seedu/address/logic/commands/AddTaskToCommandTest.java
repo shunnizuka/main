@@ -20,7 +20,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalProjects;
 
@@ -33,7 +33,7 @@ public class AddTaskToCommandTest {
     public void execute_validProjectTaskNameValidIndex_success() {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
         ProjectName projectName = targetProject.getProjectName();
-        ProjectTask task = new ProjectTask(new ProjectTaskName("Something for the future"));
+        ProjectTask task = new ProjectTask(new ProjectTaskDescription("Something for the future"));
         AddTaskToCommand addTaskToCommand = new AddTaskToCommand(projectName, task,
                 INDEX_FIRST_PROJECT_MILESTONE);
         String expectedMessage = String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, task,
@@ -49,7 +49,7 @@ public class AddTaskToCommandTest {
     @Test
     public void execute_invalidProjectName_throwsCommandException() {
         AddTaskToCommand addTaskToCommand = new AddTaskToCommand(new ProjectName("INVALID"),
-                new ProjectTask(new ProjectTaskName("Something happened!")), INDEX_FIRST_PROJECT_MILESTONE);
+                new ProjectTask(new ProjectTaskDescription("Something happened!")), INDEX_FIRST_PROJECT_MILESTONE);
         assertCommandFailure(addTaskToCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECT_NAME);
     }
@@ -59,7 +59,7 @@ public class AddTaskToCommandTest {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
         Index outOfBoundIndex = Index.fromOneBased(targetProject.getMilestones().size() + 1);
         AddTaskToCommand addTaskToCommand = new AddTaskToCommand(targetProject.getProjectName(),
-                new ProjectTask(new ProjectTaskName("Something happened!")), outOfBoundIndex);
+                new ProjectTask(new ProjectTaskDescription("Something happened!")), outOfBoundIndex);
 
         assertCommandFailure(addTaskToCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX);
@@ -67,7 +67,7 @@ public class AddTaskToCommandTest {
 
     @Test
     public void equals() {
-        ProjectTask newTask = new ProjectTask(new ProjectTaskName("Testing"));
+        ProjectTask newTask = new ProjectTask(new ProjectTaskDescription("Testing"));
         final AddTaskToCommand standardCommand = new AddTaskToCommand(TypicalProjects.PROJECT_ALICE.getProjectName(),
                 newTask, Index.fromOneBased(1));
 

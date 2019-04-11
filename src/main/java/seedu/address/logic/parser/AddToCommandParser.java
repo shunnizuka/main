@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ArgumentMultimap.arePrefixesPresent;
+import static seedu.address.logic.parser.ArgumentMultimap.areAllPrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FUNCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORTANCE;
@@ -20,11 +20,11 @@ import seedu.address.logic.commands.AddTaskToCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.AddUserStoryToCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
@@ -77,13 +77,13 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                 String s = WHITESPACE_PREAMBLE + arguments; //add whitespace to allow tokenizer to detect regex.
                 ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(s, PREFIX_MILESTONE, PREFIX_DATE);
 
-                if (!arePrefixesPresent(argMultimap, PREFIX_MILESTONE, PREFIX_DATE)
+                if (!areAllPrefixesPresent(argMultimap, PREFIX_MILESTONE, PREFIX_DATE)
                         || !argMultimap.getPreamble().isEmpty()) {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AddMilestoneToCommand.MESSAGE_USAGE));
                 }
-                Description milestoneDesc = ParserUtil.parseMilestoneDescription(argMultimap.getValue(PREFIX_MILESTONE)
-                    .get());
+                MilestoneDescription milestoneDesc = ParserUtil
+                    .parseMilestoneDescription(argMultimap.getValue(PREFIX_MILESTONE).get());
                 PocketProjectDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
                 Milestone milestone = new Milestone(milestoneDesc, date);
                 return new AddMilestoneToCommand(projectName, milestone);
@@ -100,7 +100,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                         ArgumentTokenizer.tokenize(s, PREFIX_USER, PREFIX_FUNCTION, PREFIX_REASON,
                                 PREFIX_IMPORTANCE);
 
-                if (!arePrefixesPresent(argMultimap, PREFIX_USER, PREFIX_FUNCTION, PREFIX_IMPORTANCE)
+                if (!areAllPrefixesPresent(argMultimap, PREFIX_USER, PREFIX_FUNCTION, PREFIX_IMPORTANCE)
                         || !argMultimap.getPreamble().isEmpty()) {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AddUserStoryToCommand.MESSAGE_USAGE));
@@ -129,13 +129,14 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                 ArgumentMultimap argMultimap =
                         ArgumentTokenizer.tokenize(s, PREFIX_NAME, PREFIX_MILESTONE);
 
-                if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MILESTONE)
+                if (!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MILESTONE)
                         || !argMultimap.getPreamble().isEmpty()) {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AddTaskToCommand.MESSAGE_USAGE));
                 }
-                ProjectTaskName name = ParserUtil.parseProjectTaskName(argMultimap.getValue(PREFIX_NAME).get());
-                ProjectTask newTask = new ProjectTask(name);
+                ProjectTaskDescription description = ParserUtil.parseProjectTaskDescription(
+                        argMultimap.getValue(PREFIX_NAME).get());
+                ProjectTask newTask = new ProjectTask(description);
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MILESTONE).get());
                 return new AddTaskToCommand(projectName, newTask, index);
             } catch (ParseException pe) {

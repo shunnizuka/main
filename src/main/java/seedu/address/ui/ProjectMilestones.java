@@ -61,7 +61,7 @@ public class ProjectMilestones extends UiPart<Region> {
         int index = 1;
         for (ProjectTask pt: projectTaskList) {
             Node taskIcon = instantiateColour(pt.getTaskStatus());
-            String ptInfo = index + ". " + pt.getTaskStatus() + ": " + pt.getTaskName();
+            String ptInfo = index + ". " + pt.getTaskStatus() + ": " + pt.getTaskDescription();
             if (pt.isComplete()) {
                 ptInfo += " (" + pt.getCompletionDate() + ")";
             }

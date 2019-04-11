@@ -61,8 +61,8 @@ import seedu.address.logic.commands.AddEmployeeCommand;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
 import seedu.address.model.project.Project;
@@ -150,7 +150,7 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + INVALID_NAME_DESC + PHONE_DESC_BOB
-            + EMAIL_DESC_BOB + GITHUB_DESC_BOB + SKILL_DESC_JAVA + SKILL_DESC_C, Name.MESSAGE_CONSTRAINTS);
+            + EMAIL_DESC_BOB + GITHUB_DESC_BOB + SKILL_DESC_JAVA + SKILL_DESC_C, EmployeeName.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + INVALID_PHONE_DESC
@@ -182,7 +182,7 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + INVALID_NAME_DESC + PHONE_DESC_BOB
-            + EMAIL_DESC_BOB + INVALID_GITHUB_DESC, Name.MESSAGE_CONSTRAINTS);
+            + EMAIL_DESC_BOB + INVALID_GITHUB_DESC, EmployeeName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD

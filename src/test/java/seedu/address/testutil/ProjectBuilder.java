@@ -5,9 +5,9 @@ import java.util.List;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
 import seedu.address.model.project.UniqueMilestoneList;
@@ -30,7 +30,7 @@ public class ProjectBuilder {
     private PocketProjectDate startDate;
     private PocketProjectDate deadline;
     private Client client;
-    private Description description;
+    private ProjectDescription description;
     private UniqueEmployeeList employees;
     private UniqueMilestoneList milestones;
     private SortedUserStoryList userStories;
@@ -40,7 +40,7 @@ public class ProjectBuilder {
         startDate = new PocketProjectDate(DEFAULT_START_DATE);
         deadline = new PocketProjectDate(DEFAULT_DEADLINE);
         client = new Client(DEFAULT_CLIENT);
-        description = new Description((DEFAULT_DESCRIPTION));
+        description = new ProjectDescription((DEFAULT_DESCRIPTION));
         employees = new UniqueEmployeeList();
         milestones = new UniqueMilestoneList();
         userStories = new SortedUserStoryList();
@@ -102,10 +102,10 @@ public class ProjectBuilder {
     }
 
     /**
-     * Sets the {@code Description} of the {@code Project} that we are building.
+     * Sets the {@code ProjectDescription} of the {@code Project} that we are building.
      */
     public ProjectBuilder withDescription(String desc) {
-        this.description = new Description(desc);
+        this.description = new ProjectDescription(desc);
         return this;
     }
     /**

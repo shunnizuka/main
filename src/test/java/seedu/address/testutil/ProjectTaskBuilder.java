@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.project.ProjectTask;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.Status;
 import seedu.address.model.util.PocketProjectDate;
 
@@ -13,12 +13,12 @@ public class ProjectTaskBuilder {
     public static final String DEFAULT_TASK_NAME = "Create new feature";
     public static final String DEFAULT_STATUS = "ongoing";
 
-    private ProjectTaskName taskName;
+    private ProjectTaskDescription taskName;
     private Status status;
     private PocketProjectDate completionDate;
 
     public ProjectTaskBuilder() {
-        this.taskName = new ProjectTaskName(DEFAULT_TASK_NAME);
+        this.taskName = new ProjectTaskDescription(DEFAULT_TASK_NAME);
         this.status = new Status(DEFAULT_STATUS);
         this.completionDate = new PocketProjectDate();
     }
@@ -27,21 +27,21 @@ public class ProjectTaskBuilder {
      * Initializes the ProjectTaskBuilder with the data of {@code taskToCopy}.
      */
     public ProjectTaskBuilder(ProjectTask taskToCopy) {
-        this.taskName = new ProjectTaskName(taskToCopy.getTaskName());
+        this.taskName = new ProjectTaskDescription(taskToCopy.getTaskDescription());
         this.status = new Status(taskToCopy.getTaskStatus());
         this.completionDate = new PocketProjectDate(taskToCopy.getCompletionDate());
     }
 
     /**
-     * Sets the {@code ProjectTaskName} of the {@code ProjectTask} that we are building.
+     * Sets the {@code ProjectTaskDescription} of the {@code ProjectTask} that we are building.
      */
-    public ProjectTaskBuilder withTaskName(String taskName) {
-        this.taskName = new ProjectTaskName(taskName);
+    public ProjectTaskBuilder withTaskDescription(String taskDescription) {
+        this.taskName = new ProjectTaskDescription(taskDescription);
         return this;
     }
 
     /**
-     * Sets the {@code ProjectStatus} of the {@code ProjectTask} that we are building.
+     * Sets the {@code Status} of the {@code ProjectTask} that we are building.
      */
     public ProjectTaskBuilder withStatus(String status) {
         this.status = new Status(status);
@@ -49,7 +49,7 @@ public class ProjectTaskBuilder {
     }
 
     /**
-     * Sets the {@code ProjectStatus} of the {@code ProjectTask} that we are building.
+     * Sets the {@code Status} of the {@code ProjectTask} that we are building.
      */
     public ProjectTaskBuilder withCompletionDate(String date) {
         this.completionDate = new PocketProjectDate(date);

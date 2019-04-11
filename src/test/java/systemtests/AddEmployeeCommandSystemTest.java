@@ -39,8 +39,8 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.EmployeeBuilder;
@@ -185,7 +185,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* Case: invalid name -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + INVALID_NAME_DESC
             + PHONE_DESC_AMY + EMAIL_DESC_AMY + GITHUB_DESC_AMY;
-        assertCommandFailure(command, Name.MESSAGE_CONSTRAINTS);
+        assertCommandFailure(command, EmployeeName.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY

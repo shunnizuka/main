@@ -17,10 +17,10 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.Status;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.Assert;
@@ -31,7 +31,7 @@ public class ParserUtilTest {
     private static final String INVALID_GITHUB = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "#friend";
-    private static final String INVALID_TASKNAME = " ";
+    private static final String INVALID_TASKDESCRIPTION = " ";
     private static final String INVALID_STATUS = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -40,7 +40,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "friend";
     private static final String VALID_SKILL_2 = "neighbour";
-    private static final String VALID_TASKNAME = "valid task";
+    private static final String VALID_TASKDESCRIPTION = "valid task";
     private static final String VALID_STATUS = "ongoing";
 
     private static final String WHITESPACE = " \t\r\n";
@@ -82,15 +82,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        EmployeeName expectedEmployeeName = new EmployeeName(VALID_NAME);
+        assertEquals(expectedEmployeeName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        EmployeeName expectedEmployeeName = new EmployeeName(VALID_NAME);
+        assertEquals(expectedEmployeeName, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test
@@ -214,22 +214,23 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTaskName_validName_returnsTrimmedProjectTaskName() throws Exception {
-        String projectTaskNameWithWhitespace = WHITESPACE + VALID_TASKNAME + WHITESPACE;
-        ProjectTaskName expectedProjectTaskName = new ProjectTaskName(VALID_TASKNAME);
-        assertEquals(expectedProjectTaskName, ParserUtil.parseProjectTaskName(projectTaskNameWithWhitespace));
+    public void parseProjectTaskDescription_validDescription_returnsTrimmedProjectTaskDescription() throws Exception {
+        String projectTaskNameWithWhitespace = WHITESPACE + VALID_TASKDESCRIPTION + WHITESPACE;
+        ProjectTaskDescription expectedProjectTaskDescription = new ProjectTaskDescription(VALID_TASKDESCRIPTION);
+        assertEquals(expectedProjectTaskDescription,
+                ParserUtil.parseProjectTaskDescription(projectTaskNameWithWhitespace));
     }
 
     @Test
-    public void parseProjectTaskName_nullName_throwsNullPointerException() throws Exception {
+    public void parseProjectTaskDescription_nullDescription_throwsNullPointerException() throws Exception {
         thrown.expect(NullPointerException.class);
-        ParserUtil.parseProjectTaskName(null);
+        ParserUtil.parseProjectTaskDescription(null);
     }
 
     @Test
-    public void parseProjectTaskName_invalidTaskName_throwsParseException() throws Exception {
+    public void parseProjectTaskDescription_invalidTaskDescription_throwsParseException() throws Exception {
         thrown.expect(ParseException.class);
-        ParserUtil.parseProjectTaskName(INVALID_TASKNAME);
+        ParserUtil.parseProjectTaskDescription(INVALID_TASKDESCRIPTION);
     }
 
     @Test

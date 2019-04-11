@@ -10,28 +10,28 @@ import seedu.address.model.util.PocketProjectDate;
 public class ProjectTask {
 
     private Status status;
-    private ProjectTaskName name;
+    private ProjectTaskDescription description;
     private PocketProjectDate completionDate;
 
     /**
      * Default constructor for a project task
      */
-    public ProjectTask(ProjectTaskName name) {
-        this(name, new Status(), new PocketProjectDate());
+    public ProjectTask(ProjectTaskDescription description) {
+        this(description, new Status(), new PocketProjectDate());
     }
 
     /**
      * Constructor for a project task specifying project task status.
      */
-    public ProjectTask(ProjectTaskName name, Status status, PocketProjectDate date) {
-        requireAllNonNull(name);
-        this.name = name;
+    public ProjectTask(ProjectTaskDescription description, Status status, PocketProjectDate date) {
+        requireAllNonNull(description, status, date);
+        this.description = description;
         this.status = status;
         this.completionDate = date;
     }
 
-    public String getTaskName() {
-        return this.name.getTaskName();
+    public String getTaskDescription() {
+        return this.description.getTaskDescription();
     }
 
     public String getTaskStatus() {
@@ -47,7 +47,7 @@ public class ProjectTask {
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if both tasks have the same description.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(ProjectTask otherTask) {
@@ -55,18 +55,18 @@ public class ProjectTask {
             return true;
         }
         return otherTask != null
-            && otherTask.getTaskName().equals(getTaskName());
+            && otherTask.getTaskDescription().equals(getTaskDescription());
     }
 
     /**
      * Returns a clone of this task.
      */
     public ProjectTask clone() {
-        return new ProjectTask(this.name.clone(), this.status.clone(), this.completionDate.clone());
+        return new ProjectTask(this.description.clone(), this.status.clone(), this.completionDate.clone());
     }
 
     /**
-     * Returns true if both project tasks have the same name and status.
+     * Returns true if both project tasks have the same description and status.
      * This defines a stronger notion of equality between two project tasks.
      */
     @Override
@@ -80,7 +80,7 @@ public class ProjectTask {
         }
 
         ProjectTask otherTask = (ProjectTask) other;
-        return otherTask.name.equals(this.name)
+        return otherTask.description.equals(this.description)
             && otherTask.status.equals(this.status)
             && otherTask.completionDate.equals(this.completionDate);
     }
@@ -89,7 +89,7 @@ public class ProjectTask {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Project Task: ")
-                .append(getTaskName())
+                .append(getTaskDescription())
                 .append(" (Status: ")
                 .append(getTaskStatus())
                 .append(") ");
@@ -100,8 +100,9 @@ public class ProjectTask {
      * Checks if the task has the valid format by checking the relevant fields
      */
     public static boolean isValidTask(ProjectTask task) {
-        return ProjectTaskName.isValidTaskName(task.getTaskName())
-            && Status.isValidStatus(task.getTaskStatus());
+        return ProjectTaskDescription.isValidDescription(task.getTaskDescription())
+            && Status.isValidStatus(task.getTaskStatus())
+            && PocketProjectDate.isValidDate(task.getCompletionDate());
     }
 
     /**

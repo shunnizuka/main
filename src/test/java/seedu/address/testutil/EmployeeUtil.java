@@ -32,7 +32,7 @@ public class EmployeeUtil {
      */
     public static String getEmployeeDetails(Employee employee) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + employee.getName().fullName + " ");
+        sb.append(PREFIX_NAME + employee.getEmployeeName().fullName + " ");
         sb.append(PREFIX_PHONE + employee.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + employee.getEmail().value + " ");
         sb.append(PREFIX_GITHUB + employee.getGithub().value + " ");
@@ -47,7 +47,7 @@ public class EmployeeUtil {
      */
     public static String getEditEmployeeDescriptorDetails(EditEmployeeCommand.EditEmployeeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getEmployeeName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getGitHubAccount().ifPresent(account -> sb.append(PREFIX_GITHUB).append(account.value).append(" "));

@@ -102,7 +102,7 @@ public class ProjectUtil {
      */
     public static String getProjectTaskDetails(ProjectTask task, Index index) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME.toString() + task.getTaskName() + " ");
+        sb.append(PREFIX_NAME.toString() + task.getTaskDescription() + " ");
         sb.append(PREFIX_MILESTONE.toString() + index.getOneBased() + " ");
         return sb.toString();
     }

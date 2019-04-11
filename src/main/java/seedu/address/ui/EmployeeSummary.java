@@ -39,7 +39,7 @@ public class EmployeeSummary extends UiPart<Region> {
 
     public EmployeeSummary(Employee employee) {
         super(FXML);
-        name.setText(employee.getName().fullName);
+        name.setText(employee.getEmployeeName().fullName);
         phone.setText(employee.getPhone().value);
         email.setText(employee.getEmail().value);
         github.setText(employee.getGithub().value);

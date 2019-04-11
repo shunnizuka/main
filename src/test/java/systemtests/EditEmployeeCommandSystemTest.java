@@ -41,8 +41,8 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.skill.Skill;
@@ -105,7 +105,7 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
         editedEmployee = new EmployeeBuilder(BOB).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
         assertCommandSuccess(command, index, editedEmployee);
 
-        /* Case: clear tags -> cleared */
+        /* Case: clear skills -> cleared */
         index = INDEX_FIRST_EMPLOYEE;
         command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
             + " " + index.getOneBased() + " " + PREFIX_SKILL.getPrefix();
@@ -179,7 +179,7 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: invalid name -> rejected */
         assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
-            + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+            + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_NAME_DESC, EmployeeName.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
         assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
@@ -210,7 +210,8 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
             + SKILL_DESC_JAVA;
         assertCommandFailure(command, EditEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
 
-        /* Case: edit a employee with new values same as another employee's values but with different tags -> rejected*/
+        /* Case: edit a employee with new values same as another employee's values but with different skills ->
+        rejected*/
         command = EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
             + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + GITHUB_DESC_BOB + SKILL_DESC_JAVA;
