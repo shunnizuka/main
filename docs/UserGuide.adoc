@@ -119,28 +119,54 @@ that users can use while using the Pocket Project application.
  users be interested to know.
 |===
 
-=== Command Format
+=== Format of Commands
 
-====
-*Command Format*
+This section introduces to you the format of commands that are used in Pocket Project.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [s/Skill]` can be used as `n/John Doe s/Java` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[s/Skill]...` can be used as `{nbsp}` (i.e. 0 times), `s/Java`, `s/Java s/HTML` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, then  `p/PHONE_NUMBER n/NAME` is also acceptable.
-====
+[width="100%",cols="22%,<23%,<25%,<30%",options="header",]
+|=======================================================================
+|Command Format |Meaning |Example |Remark
+
+|Upper Case |Parameters supplied by User |`add n/NAME` |`NAME` is a parameter which can be used as `add n/John Doe`
+
+|Square Brackets |Optional inputs |`n/NAME [s/SKILL]` |`[s/SKILL]` is an optional field
+
+|`…`​ |Can be used multiple times |`[s/SKILL]...` |Can have multiple skills: `[s/SKILL1] [t/SKILL2] [t/SKILL3]`
+
+|=======================================================================
+
+|===
+|image:ug-notepadpencil.png[width="40"]|Parameters can be in any order e.g. if the command specifies
+`n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+|===
 
 === Glossary
+This section details a few key terms that are used
+through the course of the User Guide.
 
-. `alphanumeric` only contains either digits (0-9) or letters of the English
-alphabet (A-Z).
-. `command line interface (cli)` a means of interacting with a computer program where the user issues commands to the
-program in the form of successive lines of text.
-. `lexicographic` ordering of words based on how it would appear in a dictionary.
-. `milestone` a key event that is completed during the entire timeline
-of the project.
-. `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
-. `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
+|===
+|Term|Meaning
+
+|Alphanumeric
+|Only contains either digits (0-9) or letters of the English
+                alphabet (A-Z).
+
+|Command Line Interface (CLI)
+|A means of interacting with a computer program where the user issues commands to the
+ program in the form of successive lines of text.
+
+|Lexicographic
+|Ordering of words based on how it would appear in a dictionary.
+
+|Milestone
+|A key event that is completed during the entire timeline of the project.
+
+|One-Based Indexing
+|Way of numbering in which the initial element of a sequence is assigned the index 1.
+
+|Zero-Based Indexing
+|Way of numbering in which the initial element of a sequence is assigned the index 0.
+|===
 
 [[Features]]
 == Features
