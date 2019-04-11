@@ -187,6 +187,9 @@ or click `Help` which can be found on the menu bar at the top left hand corner o
 .Accessing help from menu bar
 image::ug-helpcommand.png[width="800"]
 
+=== Use of dates in Pocket Project
+
+
 
 === Add an employee or project to the application: `add`
 
@@ -200,8 +203,8 @@ Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL g/GITHUB_ACCOUNT_USERNAME [s
 
 Examples:
 
-* `add employee n/John Doe p/98765432 e/johnd@example.com g/johnballer s/Java`
-* `add employee n/Betsy Crowe e/betsycrowe@example.com g/BetBet p/98228312`
+. `add employee n/John Doe p/98765432 e/johnd@example.com g/johnballer s/Java`
+. `add employee n/Betsy Crowe e/betsycrowe@example.com g/BetBet p/98228312`
 
 |===
 |image:ug-notepadpencil.png[width="40"]|An employee can have any number of skills (including 0).
@@ -250,8 +253,8 @@ can be used to select that target start date and deadline.
 //TODO edit proj description below.
 Examples:
 
-* `add project n/Apollo s/10/03/2019 d/12/12/2019 c/FairPrice`
-* `add project n/Xtreme c/John Smith s/09/02/2020 d/13/04/2020`
+. `add project n/Apollo s/10/03/2019 d/12/12/2019 c/FairPrice`
+. `add project n/Xtreme c/John Smith s/09/02/2020 d/13/04/2020`
 
 |===
 |image:ug-exclamation.png[width="40"]|The deadline of the project should minimally be 1 day after the
@@ -509,26 +512,49 @@ Displays details (client, deadline, employees, milestones) of project â€œApolloâ
 
 ==== Add an employee to a project: `addto employee`
 
-Adds an employee to a project.
+You can add an employee to any projects already created in the Pocket Project application. You can
+do this by first listing all employees using the basic `list employees` command or by first filtering all the
+employees with the `find employee` or `find skills` command, and then choosing the index of the employee
+in the displayed list.
 
-Format: `addto PROJ_NAME employee EMPLOYEE_INDEX`
+Format: `addto PROJECT_NAME employee EMPLOYEE_INDEX`
 
-image:ug-notepadpencil.png[width="40"]
-Adds the employee at the specified `INDEX`.
-The index refers to the index number (one-based) shown in the displayed list of employees.
+|===
+|image:ug-notepadpencil.png[width="40"]|The employee at the specified `EMPLOYEE_INDEX` is added to the
+project specified by the `PROJECT_NAME`. The index refers to the serial number (one-based indexing) shown in
+the displayed list of employees.
+|===
 
-image:ug-exclamation.png[width="50"]
-The index must be a *positive integer* and cannot be larger than the size of the list.
+|===
+|image:ug-exclamation.png[width="50"]| The `EMPLOYEE_INDEX` must be a positive integer and cannot be
+larger than the size of the displayed list.
+|===
 
 Examples:
 
-* `list employees` +
-`addto Apollo employee 2` +
+. `list employees` technique
+.. `list employees` +
+lists all the employees in the application.
+.. `addto Apollo employee 2` +
 Adds the 2nd person in the displayed employee list to project "Apollo".
 
-* `find employee John Han` +
-`addto Apollo employee 5` +
-Adds the 5th person in the displayed employee list to project "Apollo".
+. `find employee` technique
+.. `find employee John Han` +
+The displayed list will be filtered to show all employees whose names contain John, Han (not case sensitive).
+.. `addto Apollo employee 5` +
+Adds the 5th person in the displayed filtered employee list to project "Apollo".
+
+You can refer to the screenshot below to have a clearer picture of how it works
+and looks like.
+
+.Adding a project to the application and what we can do with it
+image::ug-addtoemployee.png[]
+
+|===
+|image:ug-lightbulb.png[width="50"]| As shown in the figure above, instead of calling
+the `list employees` command, we can simple click on the `employees` tab located at the top of the side tab panel.
+|===
+
 
 ==== Add a milestone to a project: `addto milestone`
 
