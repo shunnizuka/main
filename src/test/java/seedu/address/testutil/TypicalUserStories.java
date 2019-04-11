@@ -9,7 +9,7 @@ public class TypicalUserStories {
 
     public static final UserStory USER_STORY_TYPICAL_MANAGER = new UserStoryBuilder()
             .withImportance("3")
-            .withUser("typical manager")
+            .withUser("A Typical manager")
             .withFunction("be able to add projects")
             .withReason("keep a record of my projects")
             .withStatus("ongoing")
@@ -33,7 +33,7 @@ public class TypicalUserStories {
 
     public static final UserStory USER_STORY_FIRST_MANAGER = new UserStoryBuilder()
             .withImportance("2")
-            .withUser("Software engineering project manager")
+            .withUser("A Software engineering project manager")
             .withFunction("See a recommended list of employees based on the skill requirement of a project")
             .withReason("Easily assign employees with the required skills to the project")
             .withStatus("complete")
