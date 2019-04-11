@@ -21,7 +21,8 @@ public class TypicalProjects {
             .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                     TypicalMilestones.TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
+            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER,
+                    TypicalUserStories.USER_STORY_SECOND_MANAGER)).build();
 
 
     public static final Project PROJECT_BENSON = new ProjectBuilder().withProjectName("Project Benson")
