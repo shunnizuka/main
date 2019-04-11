@@ -226,9 +226,9 @@ public class EditProjectUserStoryCommandTest {
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditProjectUserStoryCommand(
                 new ProjectName(VALID_PROJECT_NAME_ALICE_HEY),
-                INDEX_SECOND_PROJECT_USER_STORY,new EditUserStoryDescriptorBuilder()
+                INDEX_SECOND_PROJECT_USER_STORY, new EditUserStoryDescriptorBuilder()
                 .withUser("user").withFunction("function")
-                .withReason("reason").withImportance("3").build() )));
+                .withReason("reason").withImportance("3").build())));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditProjectUserStoryCommand(

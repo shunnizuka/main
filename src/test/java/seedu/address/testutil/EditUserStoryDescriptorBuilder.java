@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditProjectUserStoryCommand;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
-import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStoryUser;
 
 /**
