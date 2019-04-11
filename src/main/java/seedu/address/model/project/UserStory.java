@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a user story stored in pocket project.
  */
-public class UserStory {
+public class UserStory implements Comparable<UserStory> {
 
     private UserStoryImportance importance;
     private UserStoryUser user;
@@ -109,6 +109,21 @@ public class UserStory {
             return true;
         } else {
             return false;
+        }
+    }
+
+    @Override
+    public int compareTo(UserStory other) {
+        if (this.isHigherImportance(other)) {
+            return -1;
+        } else if (other.isHigherImportance(this)){
+            return 1;
+        } else {
+            if (this.isUserLexicographicallySmaller(other)) {
+                return -1;
+            } else {
+                return 1;
+            }
         }
     }
 

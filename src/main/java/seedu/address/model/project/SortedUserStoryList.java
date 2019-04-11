@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -49,16 +50,9 @@ public class SortedUserStoryList implements Iterable<UserStory> {
         if (contains(toAdd)) {
             throw new DuplicateUserStoryException();
         }
-        //find the position to insert the new user story
-        for (int i = 0; i < internalList.size(); i++) {
-            UserStory currentStory = internalList.get(i);
-            if (toAdd.isHigherImportance(currentStory) || toAdd.isUserLexicographicallySmaller(currentStory)) {
-                internalList.add(i, toAdd);
-                return;
-            }
-        }
-        //if at the end it is still not added then add it to the back
+
         internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
