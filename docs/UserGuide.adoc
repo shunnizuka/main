@@ -247,7 +247,7 @@ Format: `add project n/NAME c/CLIENT_NAME s/START_DATE d/DEADLINE`
 
 |===
 |image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
-can be used to select that target start date and deadline.
+can be used to select the target `START_DATE` and `DEADLINE`.
 |===
 
 //TODO refer to the different sections and connect to it. Refer to flexible date section above and
@@ -267,8 +267,6 @@ and looks like.
 
 .*Adding a project to the application and what we can do with it*
 image::ug-addproject.png[]
-
-
 
 |===
 |image:ug-lightbulb.png[width="50"]|You can also view the list of all employees currently working on the project,
@@ -563,17 +561,41 @@ the `list employees` command, we can simple click on the `employees` tab located
 
 ==== Add a milestone to a project: `addto milestone`
 
-Adds a milestone to a project.
+You can add a milestone to any projects already created in the Pocket Project application. Milestones are typically
+key events that are completed during the entire timeline of the project. Once a milestone is
+created, project tasks can be assigned to it.
 
-Format: `addto PROJ_NAME milestone MS_DETAILS MS_DATE`
+Format: `addto PROJECT_NAME milestone m/MILESTONE_DESC d/MILESTONE_DATE`
 
-image:ug-exclamation.png[width="50"]
-Date must be of the format DD/MM/YYYY
+|===
+|image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
+can be used to select the target `MILESTONE_DATE`
+|===
+
+|===
+|image:ug-exclamation.png[width="50"]| As the milestone is part of a project's timeline, the
+`MILESTONE_DATE` the input date cannot be before the `START_DATE` and after `DEADLINE` of the project.
+|===
 
 Examples:
 
-* `addto Apollo milestone Completed UI for program 23/11/2015` +
-Milestone added to project "Apollo".
+. `addto Apollo milestone m/Completed UI for program d/23/11/2015` +
+The milestone with the given description and the date 23/11/2015 will be added to the list
+of milestones in project "Apollo".
+. `addto Orbital milestone m/Version 1.3 Complete d/today`
+The milestone with the given description and today's date will be added to the list
+of milestones in project "Orbital".
+
+|===
+|image:ug-notepadpencil.png[width="50"]| The list of milestones inside the target project
+will automatically be sorted by its date every time a new entry is added.
+|===
+
+You can refer to the screenshot below to have a clearer picture of how it works
+and looks like.
+
+.*Adding a milestone to a project*
+image::ug-addtomilestone.png[]
 
 
 ==== Add a task to a project milestone: `addto projecttask`
