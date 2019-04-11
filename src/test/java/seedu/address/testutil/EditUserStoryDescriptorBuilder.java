@@ -5,7 +5,7 @@ import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
-import seedu.address.model.project.UserStoryStatus;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStoryUser;
 
 /**
@@ -28,7 +28,7 @@ public class EditUserStoryDescriptorBuilder {
      */
     public EditUserStoryDescriptorBuilder(UserStory userStory) {
         descriptor = new EditProjectUserStoryCommand.EditUserStoryDescriptor();
-        descriptor.setStatus(new UserStoryStatus(userStory.getUserStoryStatus()));
+        descriptor.setStatus(new Status(userStory.getUserStoryStatus()));
         descriptor.setImportance(new UserStoryImportance(userStory.getUserStoryImportance()));
         descriptor.setUser(new UserStoryUser(userStory.getUserStoryUser()));
         descriptor.setFunction(new UserStoryFunction(userStory.getUserStoryFunction()));

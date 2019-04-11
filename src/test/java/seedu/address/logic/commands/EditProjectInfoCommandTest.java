@@ -26,6 +26,7 @@ import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_IN
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
 import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
 import static seedu.address.testutil.TypicalUserStories.USER_STORY_FIRST_MANAGER;
+import static seedu.address.testutil.TypicalUserStories.USER_STORY_SECOND_MANAGER;
 
 import java.util.Arrays;
 
@@ -58,7 +59,7 @@ public class EditProjectInfoCommandTest {
             .withEmployees(Arrays.asList(BENSON, CARL))
             .withMilestones(Arrays.asList(TYPICAL_MILESTONE_START,
                 TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER)).build();
+            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER, USER_STORY_SECOND_MANAGER)).build();
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
             .build();
         EditProjectInfoCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1,
@@ -177,7 +178,7 @@ public class EditProjectInfoCommandTest {
             .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescription(VALID_DESCRIPTION)
             .withEmployees(Arrays.asList(BENSON, CARL))
             .withMilestones(Arrays.asList(TYPICAL_MILESTONE_START, TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER)).build();
+            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER, USER_STORY_SECOND_MANAGER)).build();
 
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
