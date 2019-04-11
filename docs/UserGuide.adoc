@@ -181,17 +181,25 @@ Format: `help`
 
 ==== Add an employee to the application: `add employee`
 
-Adds an employee to the list of employees.
+You can add an employee to the application so that projects can be
+assigned to him/her.
 
 Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL g/GITHUB [s/SKILL]...`
+
+You can refer to the screenshot below to have a clearer picture of how it works
+and looks like.
+
+.What happens when we add an employee to the application
+image::UserGuide-addemployee.png[]
 
 Examples:
 
 * `add employee n/John Doe p/98765432 e/johnd@example.com g/johnballer s/Java`
 * `add employee n/Betsy Crowe e/betsycrowe@example.com g/BetBet p/1234567 s/HTML`
 
-image:ug-notepadpencil.png[width="40"]
-An employee can have any number of skills (including 0).
+|===
+|image:ug-notepadpencil.png[width="40"]|An employee can have any number of skills (including 0).
+|===
 
 ==== Add a project to the application: `add project`
 
