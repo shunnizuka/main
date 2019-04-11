@@ -184,7 +184,7 @@ Format: `help`
 or click `Help` which can be found on the menu bar at the top left hand corner of the application.
 |===
 
-.Accessing help from menu bar
+.*Accessing help from menu bar*
 image::ug-helpcommand.png[width="800"]
 
 === Use of dates in Pocket Project
@@ -213,15 +213,16 @@ Examples:
 You can refer to the screenshot below to have a clearer picture of how it works
 and looks like.
 
-.Adding an employee to the application and what we can do with it
+.*Adding an employee to the application and what we can do with it*
 image::ug-addemployee.png[]
+
 
 In addition, as a software engineering project manager, you may want to easily access an employee's GitHub repository
 to possibly monitor his progress on a particular project. Thus for ease of use, you can simply toggle the arrow as shown
 above in Step 5 of Figure 5 and the GitHub repository of the employee will be viewable and accessible in the details panel.
 
 |===
-|image:ug-exclamation.png[width="50"]|A working Internet connection is required to see and navigate through the GitHub
+|image:ug-exclamation.png[width="60"]|A working Internet connection is required to see and navigate through the GitHub
 repository. Otherwise, the page will not load.
 |===
 
@@ -257,15 +258,17 @@ Examples:
 . `add project n/Xtreme c/John Smith s/09/02/2020 d/13/04/2020`
 
 |===
-|image:ug-exclamation.png[width="40"]|The deadline of the project should minimally be 1 day after the
+|image:ug-exclamation.png[width="60"]|The deadline of the project should minimally be 1 day after the
 start of a project.
 |===
 
 You can refer to the screenshot below to have a clearer picture of how it works
 and looks like.
 
-.Adding a project to the application and what we can do with it
+.*Adding a project to the application and what we can do with it*
 image::ug-addproject.png[]
+
+
 
 |===
 |image:ug-lightbulb.png[width="50"]|You can also view the list of all employees currently working on the project,
@@ -284,7 +287,7 @@ image:ug-notepadpencil.png[width="40"]
 Deletes the employee at the specified `INDEX`.
 The index refers to the index number (one-based) shown in the displayed list of employees.
 
-image:ug-exclamation.png[width="50"]
+image:ug-exclamation.png[width="60"]
 The index must be a *positive integer* and cannot be larger than the size of the list.
 
 Examples:
@@ -519,14 +522,14 @@ in the displayed list.
 
 Format: `addto PROJECT_NAME employee EMPLOYEE_INDEX`
 
+
 |===
-|image:ug-notepadpencil.png[width="40"]|The employee at the specified `EMPLOYEE_INDEX` is added to the
+|image:ug-notepadpencil.png[width="40"]| The employee at the specified `EMPLOYEE_INDEX` is added to the
 project specified by the `PROJECT_NAME`. The index refers to the serial number (one-based indexing) shown in
 the displayed list of employees.
 |===
-
 |===
-|image:ug-exclamation.png[width="50"]| The `EMPLOYEE_INDEX` must be a positive integer and cannot be
+|image:ug-exclamation.png[width="60"]| The `EMPLOYEE_INDEX` must be a positive integer and cannot be
 larger than the size of the displayed list.
 |===
 
@@ -547,8 +550,10 @@ Adds the 5th person in the displayed filtered employee list to project "Apollo".
 You can refer to the screenshot below to have a clearer picture of how it works
 and looks like.
 
-.Adding a project to the application and what we can do with it
+.*Adding an employee to a project*
 image::ug-addtoemployee.png[]
+
+
 
 |===
 |image:ug-lightbulb.png[width="50"]| As shown in the figure above, instead of calling
