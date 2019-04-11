@@ -116,7 +116,7 @@ public class UserStory implements Comparable<UserStory> {
     public int compareTo(UserStory other) {
         if (this.isHigherImportance(other)) {
             return -1;
-        } else if (other.isHigherImportance(this)){
+        } else if (other.isHigherImportance(this)) {
             return 1;
         } else {
             if (this.isUserLexicographicallySmaller(other)) {
