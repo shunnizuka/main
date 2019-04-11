@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
@@ -16,7 +15,6 @@ import seedu.address.model.project.Milestone;
 import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.UniqueProjectTaskList;
 import seedu.address.model.project.exceptions.DateNotInRangeException;
 import seedu.address.model.util.PocketProjectDate;
@@ -78,7 +76,7 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
             throw new CommandException(Messages.INVALID_MILESTONE_DATE);
         }
 
-        if (!milestoneToEdit.isSameMilestone(editedMilestone) && milestonesList.contains(editedMilestone)) {
+        if (!milestoneToEdit.equals(editedMilestone) && milestonesList.contains(editedMilestone)) {
             throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
         }
 

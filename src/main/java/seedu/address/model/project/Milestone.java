@@ -89,21 +89,6 @@ public class Milestone {
         return new Milestone(milestone, date, projectTasks);
     }
 
-
-
-    /**
-     * Returns true if both milestones have the same name and date.
-     * This defines a weaker notion of equality between two milestones.
-     */
-    public boolean isSameMilestone(Milestone otherMilestone) {
-        if (otherMilestone == this) {
-            return true;
-        }
-        return otherMilestone != null
-            && otherMilestone.getMilestoneDescription().equals(getMilestoneDescription())
-            && otherMilestone.getDate().equals(getDate());
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
