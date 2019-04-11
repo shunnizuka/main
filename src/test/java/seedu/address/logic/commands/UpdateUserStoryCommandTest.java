@@ -15,8 +15,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
-import seedu.address.model.project.UserStoryStatus;
 import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalProjects;
 
@@ -24,7 +24,7 @@ public class UpdateUserStoryCommandTest {
 
     private Model model = new ModelManager(TestUtil.typicalPocketProject(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
-    private UserStoryStatus newStatus = new UserStoryStatus("on hold");
+    private Status newStatus = new Status("on hold");
 
     @Test
     public void execute_validProjectNameValidIndex_success() {
@@ -89,7 +89,7 @@ public class UpdateUserStoryCommandTest {
         assertFalse(updateUserStoryCommand1.equals(updateUserStoryCommand3));
 
         //different status -> returns false
-        UserStoryStatus newStatus1 = new UserStoryStatus("complete");
+        Status newStatus1 = new Status("complete");
         UpdateUserStoryCommand updateUserStoryCommand4 = new UpdateUserStoryCommand(
                 TypicalProjects.PROJECT_ALICE.getProjectName(), Index.fromOneBased(2), newStatus1);
         assertFalse(updateUserStoryCommand1.equals(updateUserStoryCommand4));

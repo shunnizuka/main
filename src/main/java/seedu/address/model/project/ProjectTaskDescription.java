@@ -11,42 +11,42 @@ import seedu.address.model.util.Description;
 
 public class ProjectTaskDescription extends Description {
 
-    public final String taskName;
+    public final String taskDescription;
 
     /**
      * Constructor for ProjectTaskDescription.
      */
-    public ProjectTaskDescription(String taskName) {
-        requireNonNull(taskName);
-        checkArgument(isValidDescription(taskName), MESSAGE_CONSTRAINTS);
-        this.taskName = taskName;
+    public ProjectTaskDescription(String taskDescription) {
+        requireNonNull(taskDescription);
+        checkArgument(isValidDescription(taskDescription), MESSAGE_CONSTRAINTS);
+        this.taskDescription = taskDescription;
     }
 
-    public String getTaskName() {
-        return this.taskName;
+    public String getTaskDescription() {
+        return this.taskDescription;
     }
 
     /**
      * Returns a clone of this TaskName object.
      */
     public ProjectTaskDescription clone() {
-        return new ProjectTaskDescription(this.taskName);
+        return new ProjectTaskDescription(this.taskDescription);
     }
 
     @Override
     public String toString() {
-        return taskName;
+        return taskDescription;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof ProjectTaskDescription // instanceof handles nulls
-            && taskName.equals(((ProjectTaskDescription) other).taskName)); // state check
+            && taskDescription.equals(((ProjectTaskDescription) other).taskDescription)); // state check
     }
 
     @Override
     public int hashCode() {
-        return taskName.hashCode();
+        return taskDescription.hashCode();
     }
 }

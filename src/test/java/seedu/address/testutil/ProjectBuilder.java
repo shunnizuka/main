@@ -102,9 +102,9 @@ public class ProjectBuilder {
     }
 
     /**
-     * Sets the {@code Description} of the {@code Project} that we are building.
+     * Sets the {@code ProjectDescription} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withDescrption(String desc) {
+    public ProjectBuilder withDescription(String desc) {
         this.description = new ProjectDescription(desc);
         return this;
     }

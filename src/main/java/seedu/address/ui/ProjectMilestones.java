@@ -2,11 +2,14 @@ package seedu.address.ui;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.ProjectTask;
+import seedu.address.model.project.Status;
 
 /**
  * UI component to represent employees in a project
@@ -14,6 +17,11 @@ import seedu.address.model.project.ProjectTask;
 public class ProjectMilestones extends UiPart<Region> {
 
     public static final String FXML = "ProjectMilestones.fxml";
+
+    public static final String STATUS_COLOUR_RED = "redCircle";
+    public static final String STATUS_COLOUR_GREEN = "greenCircle";
+    public static final String STATUS_COLOUR_ORANGE = "orangeCircle";
+    public static final String STATUS_COLOUR_BLACK = "blackCircle";
 
     private ObservableList<Milestone> milestones;
 
@@ -50,15 +58,16 @@ public class ProjectMilestones extends UiPart<Region> {
      */
     public void addTaskLeaves(TreeItem<String> branch, Milestone m) {
         ObservableList<ProjectTask> projectTaskList = m.getProjectTaskList();
+        int index = 1;
         for (ProjectTask pt: projectTaskList) {
-            String ptInfo = "";
+            Node taskIcon = instantiateColour(pt.getTaskStatus());
+            String ptInfo = index + ". " + pt.getTaskStatus() + ": " + pt.getTaskDescription();
             if (pt.isComplete()) {
-                ptInfo += "Complete: ";
-            } else {
-                ptInfo += "Ongoing:  ";
+                ptInfo += " (" + pt.getCompletionDate() + ")";
             }
-            ptInfo += pt.getTaskName();
-            setTreeItem(ptInfo, branch);
+            TreeItem<String> leaf = setTreeItem(ptInfo, branch);
+            leaf.setGraphic(taskIcon);
+            index++;
         }
     }
 
@@ -67,5 +76,27 @@ public class ProjectMilestones extends UiPart<Region> {
         item.setExpanded(true);
         parent.getChildren().add(item);
         return item;
+    }
+
+    /**
+     * Instantiates a colour of the circle by using the hashcode value of {@code status}.
+     */
+    public Circle instantiateColour(String status) {
+        Circle circle = new Circle(0, 0, 5);
+
+        switch (status) {
+        case Status.STATUS_COMPLETE:
+            circle.setId(STATUS_COLOUR_GREEN);
+            break;
+        case Status.STATUS_ON_HOLD:
+            circle.setId(STATUS_COLOUR_RED);
+            break;
+        case Status.STATUS_ONGOING:
+            circle.setId(STATUS_COLOUR_ORANGE);
+            break;
+        default:
+            circle.setId(STATUS_COLOUR_BLACK);
+        }
+        return circle;
     }
 }

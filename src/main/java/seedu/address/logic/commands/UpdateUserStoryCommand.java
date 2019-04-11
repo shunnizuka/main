@@ -12,8 +12,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
-import seedu.address.model.project.UserStoryStatus;
 
 /**
  * Adds a task to a project milestone.
@@ -30,9 +30,9 @@ public class UpdateUserStoryCommand extends UpdateCommand {
 
     private final Index targetIndex;
     private final ProjectName targetProjectName;
-    private final UserStoryStatus newStatus;
+    private final Status newStatus;
 
-    public UpdateUserStoryCommand(ProjectName targetProject, Index index, UserStoryStatus newStatus) {
+    public UpdateUserStoryCommand(ProjectName targetProject, Index index, Status newStatus) {
         requireAllNonNull(targetProject, index);
         this.targetIndex = index;
         this.targetProjectName = targetProject;

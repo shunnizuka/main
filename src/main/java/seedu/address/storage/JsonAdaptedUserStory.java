@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
-import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.project.UserStoryUser;
 
 /**
@@ -91,12 +91,12 @@ class JsonAdaptedUserStory {
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    UserStoryStatus.class.getSimpleName()));
+                    Status.class.getSimpleName()));
         }
-        final UserStoryStatus modelUserStoryStatus = new UserStoryStatus(status);
+        final Status modelStatus = new Status(status);
 
         return new UserStory(modelUserStoryImportance, modelUserStoryUser, modelUserStoryFunction,
-                modelUserStoryReason, modelUserStoryStatus);
+                modelUserStoryReason, modelStatus);
     }
 
 }

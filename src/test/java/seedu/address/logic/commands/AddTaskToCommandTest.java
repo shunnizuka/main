@@ -33,7 +33,7 @@ public class AddTaskToCommandTest {
     public void execute_validProjectTaskNameValidIndex_success() {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
         ProjectName projectName = targetProject.getProjectName();
-        ProjectTask task = new ProjectTask(new ProjectTaskDescription("Do something"));
+        ProjectTask task = new ProjectTask(new ProjectTaskDescription("Something for the future"));
         AddTaskToCommand addTaskToCommand = new AddTaskToCommand(projectName, task,
                 INDEX_FIRST_PROJECT_MILESTONE);
         String expectedMessage = String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, task,

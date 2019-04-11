@@ -160,7 +160,7 @@ public class UniqueProjectList implements Iterable<Project> {
     /**
      * Updates the specified user story in the specified project. They must exist.
      */
-    public void updateUserStory(Project project, UserStory userStory, UserStoryStatus newStatus) {
+    public void updateUserStory(Project project, UserStory userStory, Status newStatus) {
         requireAllNonNull(project, userStory, newStatus);
         internalList.get(internalList.indexOf(project)).updateUserStory(userStory, newStatus);
     }
@@ -172,6 +172,16 @@ public class UniqueProjectList implements Iterable<Project> {
         requireAllNonNull(project, milestone, task);
         List<Milestone> milestones = internalList.get(internalList.indexOf(project)).getMilestones();
         milestones.get(milestones.indexOf(milestone)).addTask(task);
+    }
+
+    /**
+     * Updates the specified project task in the specified project milestone. They must exist.
+     */
+    public void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                                  Status newStatus) {
+        requireAllNonNull(targetProject, targetMilestone, targetTask, newStatus);
+        List<Milestone> milestones = internalList.get(internalList.indexOf(targetProject)).getMilestones();
+        milestones.get(milestones.indexOf(targetMilestone)).updateProjectTask(targetTask, newStatus);
     }
 
 
