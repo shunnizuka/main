@@ -69,6 +69,7 @@ public class SortedUserStoryList implements Iterable<UserStory> {
     public void setUserStories(SortedUserStoryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        Collections.sort(internalList);
     }
 
     /**
@@ -82,6 +83,7 @@ public class SortedUserStoryList implements Iterable<UserStory> {
         }
 
         internalList.setAll(stories);
+        Collections.sort(internalList);
     }
 
     /**
@@ -94,6 +96,7 @@ public class SortedUserStoryList implements Iterable<UserStory> {
         }
         remove(targetStory);
         add(story);
+        Collections.sort(internalList);
     }
 
     /**

@@ -21,6 +21,7 @@ import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PocketProject;
@@ -44,14 +45,16 @@ public class EditProjectUserStoryCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     //default builder
-    private ProjectBuilder defaultProjBuilder = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE_HEY)
-            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ALICE).withDescription(
-                    "An application for Alice software hello")
+    private ProjectBuilder defaultProjBuilder = new ProjectBuilder()
+            .withProjectName(VALID_PROJECT_NAME_ALICE_HEY)
+            .withClient(VALID_CLIENT_ALICE)
+            .withDeadline(VALID_DEADLINE_ALICE).withDescription("An application for Alice software hello")
             .withEmployees(Arrays.asList(TypicalEmployees.BENSON, TypicalEmployees.CARL))
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                     TypicalMilestones.TYPICAL_MILESTONE_END))
             .withStartDate(VALID_START_ALICE)
-            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER, TypicalUserStories.USER_STORY_SECOND_MANAGER));
+            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER,
+                    TypicalUserStories.USER_STORY_SECOND_MANAGER));
 
     @Test
     public void execute_allFieldsSpecified_success() {
@@ -157,23 +160,22 @@ public class EditProjectUserStoryCommandTest {
                 Messages.MESSAGE_INVALID_USERSTORY_DISPLAYED_INDEX);
     }
 
-/*
+
     @Test
     public void executeUndoRedo_validFields_success() throws CommandException {
 
-        Project editedProject = defaultProjBuilder.withMilestones(Arrays.asList(
-                TYPICAL_MILESTONE_COMPLETED_UG, TYPICAL_MILESTONE_END)).build();
+        EditProjectUserStoryCommand.EditUserStoryDescriptor descriptor = new EditUserStoryDescriptorBuilder().build();
 
-        EditProjectMilestoneCommand.EditMilestoneDescriptor descriptor = new EditMilestoneDescriptorBuilder(
-                TYPICAL_MILESTONE_COMPLETED_UG).build();
-        EditProjectMilestoneCommand editMilestoneCommand = new EditProjectMilestoneCommand(
-                new ProjectName(VALID_PROJECT_NAME_ALICE_HEY) , INDEX_FIRST_PROJECT_MILESTONE, descriptor);
+        Project editedProject = defaultProjBuilder.build();
+
+        EditProjectUserStoryCommand editUserStoryCommand = new EditProjectUserStoryCommand(
+                new ProjectName(VALID_PROJECT_NAME_ALICE_HEY) , INDEX_FIRST_PROJECT_USER_STORY, descriptor);
 
         Model expectedModel = new ModelManager(new PocketProject(model.getPocketProject()), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
-        expectedModel.commitPocketProject();
 
-        editMilestoneCommand.execute(model, commandHistory);
+        editUserStoryCommand.execute(model, commandHistory);
+        expectedModel.commitPocketProject();
 
         expectedModel.undoPocketProject();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
@@ -186,18 +188,18 @@ public class EditProjectUserStoryCommandTest {
     @Test
     public void executeUndoRedo_invalidFields_failure() {
 
-        EditProjectMilestoneCommand.EditMilestoneDescriptor descriptor = new EditMilestoneDescriptorBuilder()
-                .withMilestoneDesc("Project starts").build();
-        EditProjectMilestoneCommand editProjectMilestoneCommand = new EditProjectMilestoneCommand(
-                new ProjectName("wheee"), INDEX_FIRST_PROJECT_MILESTONE, descriptor);
+        EditProjectUserStoryCommand.EditUserStoryDescriptor descriptor = new EditUserStoryDescriptorBuilder()
+                .withUser("Some user").build();
+        EditProjectUserStoryCommand editProjectUserStoryCommand = new EditProjectUserStoryCommand(
+                new ProjectName("invalidname"), INDEX_FIRST_PROJECT_USER_STORY, descriptor);
 
-        assertCommandFailure(editProjectMilestoneCommand, model, commandHistory,
+        assertCommandFailure(editProjectUserStoryCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECT_NAME);
 
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
         assertCommandFailure(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_FAILURE);
     }
-*/
+
     @Test
     public void equals() {
         final EditProjectUserStoryCommand standardCommand = new EditProjectUserStoryCommand(
@@ -224,13 +226,15 @@ public class EditProjectUserStoryCommandTest {
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditProjectUserStoryCommand(
                 new ProjectName(VALID_PROJECT_NAME_ALICE_HEY),
-                INDEX_SECOND_PROJECT_USER_STORY,new EditUserStoryDescriptorBuilder().withUser("user").withFunction("function")
+                INDEX_SECOND_PROJECT_USER_STORY,new EditUserStoryDescriptorBuilder()
+                .withUser("user").withFunction("function")
                 .withReason("reason").withImportance("3").build() )));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditProjectUserStoryCommand(
                 new ProjectName(VALID_PROJECT_NAME_ALICE_HEY),
-                INDEX_SECOND_PROJECT_USER_STORY, new EditUserStoryDescriptorBuilder().withUser("user").withFunction("function")
+                INDEX_SECOND_PROJECT_USER_STORY, new EditUserStoryDescriptorBuilder()
+                .withUser("user").withFunction("function")
                 .withReason("reason").withImportance("3").build())));
     }
 }
