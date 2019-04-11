@@ -214,7 +214,8 @@ public class EditProjectUserStoryCommand extends EditProjectCommand {
             return getUser().equals(story.getUser())
                     && getFunction().equals(story.getFunction())
                     && getReason().equals(story.getReason())
-                    && getImportance().equals(story.getImportance());
+                    && getImportance().equals(story.getImportance())
+                    && getStatus().equals(story.getStatus());
         }
     }
 
