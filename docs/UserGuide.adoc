@@ -175,7 +175,18 @@ outline how the various commands can be used through examples and illustrations.
 
 === Viewing help : `help`
 
+You can open up the User Guide from the Pocket Project application by calling the `help` command.
+
 Format: `help`
+
+|===
+|image:ug-lightbulb.png[width="40"]|Alternatively, you can press kbd:[F1]
+or click `Help` which can be found on the menu bar at the top left hand corner of the application.
+|===
+
+.Accessing help from menu bar
+image::ug-helpcommand.png[width="800"]
+
 
 === Add an employee or project to the application: `add`
 
