@@ -61,8 +61,7 @@ public class EditProjectUserStoryCommandTest {
 
         UserStory editedStory = new UserStory(new UserStoryImportance("2"),
                 new UserStoryUser("A Software engineeeeering project manager"),
-                new UserStoryFunction("See another list of employees based on the skill requirement of a" +
-                        "project"),
+                new UserStoryFunction("See another list of employees based on the skill requirement of a project"),
                 new UserStoryReason("Easily assign employees with the required different skills to the project"));
 
         Project editedProject = defaultProjBuilder.withUserStories(Arrays.asList(editedStory,
@@ -86,8 +85,8 @@ public class EditProjectUserStoryCommandTest {
     public void execute_someFieldSpecified_success() {
         UserStory editedStory = new UserStory(new UserStoryImportance("2"),
                 new UserStoryUser("A Software engineeeeering project manager"),
-                new UserStoryFunction("See a recommended list of employees based on the skill requirement of a" +
-                        "project"),
+                new UserStoryFunction("See a recommended list of employees based on the skill requirement of a "
+                        + "project"),
                 new UserStoryReason("Easily assign employees with the required skills to the project"));
 
         Project editedProject = defaultProjBuilder.withUserStories(Arrays.asList(editedStory,
