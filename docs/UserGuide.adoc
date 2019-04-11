@@ -99,7 +99,7 @@ be used throughout the user guide. These legends are used to represent
 special information such as tips and warnings.
 
 |===
-|Legend |Meaning
+|Symbol |Meaning
 
 |image:ug-notepadpencil.png[width="40"]
 |The note pad icon indicates any useful tips or things that users
@@ -181,36 +181,82 @@ Format: `help`
 
 ==== Add an employee to the application: `add employee`
 
-You can add an employee to the application so that projects can be
-assigned to him/her.
+You can add an employee to the Pocket Project when a new employee joins the company/team
+so that the key details of the employee are stored in the application and projects can be assigned to
+them in the future.
 
-Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL g/GITHUB [s/SKILL]...`
-
-You can refer to the screenshot below to have a clearer picture of how it works
-and looks like.
-
-.What happens when we add an employee to the application
-image::UserGuide-addemployee.png[]
+Format: `add employee n/NAME p/PHONE_NUMBER e/EMAIL g/GITHUB_ACCOUNT_USERNAME [s/SKILL]...`
 
 Examples:
 
 * `add employee n/John Doe p/98765432 e/johnd@example.com g/johnballer s/Java`
-* `add employee n/Betsy Crowe e/betsycrowe@example.com g/BetBet p/1234567 s/HTML`
+* `add employee n/Betsy Crowe e/betsycrowe@example.com g/BetBet p/98228312`
 
 |===
 |image:ug-notepadpencil.png[width="40"]|An employee can have any number of skills (including 0).
 |===
 
+You can refer to the screenshot below to have a clearer picture of how it works
+and looks like.
+
+.Adding an employee to the application and what we can do with it
+image::ug-addemployee.png[]
+
+In addition, as a software engineering project manager, you may want to easily access an employee's GitHub repository
+to possibly monitor his progress on a particular project. Thus for ease of use, you can simply toggle the arrow as shown
+above in Step 5 of Figure 5 and the GitHub repository of the employee will be viewable and accessible in the details panel.
+
+|===
+|image:ug-exclamation.png[width="50"]|A working Internet connection is required to see and navigate through the GitHub
+repository. Otherwise, the page will not load.
+|===
+
+|===
+|image:ug-lightbulb.png[width="50"]|You can also view the list of all projects assigned to the employee
+by toggling the arrows on the details panel.
+|===
+
+
 ==== Add a project to the application: `add project`
 
-Adds a project to the list of projects.
+You can add a project to the Pocket Project when the company/team takes on a new project
+so that the key details of the project are stored in the application and employees, milestones, tasks and user stories
+can be assigned to them in the future.
 
-Format: `add project n/NAME d/DEADLINE c/CLIENT_NAME`
+|===
+|image:ug-notepadpencil.png[width="40"]|The project, when created, has a default description which can be
+edited using the `edit project info` command.
+|===
 
+Format: `add project n/NAME c/CLIENT_NAME s/START_DATE d/DEADLINE`
+
+|===
+|image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
+can be used to select that target start date and deadline.
+|===
+
+//TODO refer to the different sections and connect to it. Refer to flexible date section above and
+//TODO edit proj description below.
 Examples:
 
-* `add project n/Apollo d/12/12/2019 c/FairPrice`
-* `add project n/Xtreme c/John Smith d/13/04/2020`
+* `add project n/Apollo s/10/03/2019 d/12/12/2019 c/FairPrice`
+* `add project n/Xtreme c/John Smith s/09/02/2020 d/13/04/2020`
+
+|===
+|image:ug-exclamation.png[width="40"]|The deadline of the project should minimally be 1 day after the
+start of a project.
+|===
+
+You can refer to the screenshot below to have a clearer picture of how it works
+and looks like.
+
+.Adding a project to the application and what we can do with it
+image::ug-addproject.png[]
+
+|===
+|image:ug-lightbulb.png[width="50"]|You can also view the list of all employees currently working on the project,
+a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
+|===
 
 === Delete an employee or a project from the application `delete`
 
