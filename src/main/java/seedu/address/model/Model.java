@@ -221,6 +221,13 @@ public interface Model {
     void removeUserStoryFrom(Project targetProject, UserStory targetUserStory);
 
     /**
+     * Removes the {@code targetProjectTask} from the {@code targetMilestone} in the {@code targetProject}.
+     * {@code targetProject} must exist in the pocket project and {@code targetMilestone} and {@code targetProjectTask}
+     * in the milestone and task list of {@code targetProject}.
+     */
+    void removeProjectTaskFrom(Project targetProject, Milestone targetMilestone, ProjectTask targetProjectTask);
+
+    /**
      * Updates the {@code targetStory} from the {@code targetProject} to the new {@code newStatus}.
      */
     void updateUserStory(Project targetProject, UserStory targetStory, Status newStatus);

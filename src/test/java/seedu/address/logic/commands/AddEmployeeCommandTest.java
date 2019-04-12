@@ -243,6 +243,11 @@ public class AddEmployeeCommandTest {
         public void removeUserStoryFrom(Project targetProject, UserStory targetStory) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void removeProjectTaskFrom(Project targetProject, Milestone targetMilestone,
+                                          ProjectTask targetProjectTask) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
