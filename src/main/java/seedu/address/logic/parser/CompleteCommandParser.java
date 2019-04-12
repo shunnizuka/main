@@ -19,7 +19,7 @@ public class CompleteCommandParser implements Parser<CompleteCommand> {
      * Used for separation of delete type word and args.
      */
     private static final Pattern COMPLETE_COMMAND_FORMAT =
-            Pattern.compile("(?<project>\\S+)\\s(?<date>\\S+)");
+            Pattern.compile("(?<project>\\S+)\\s(?<date>.*)");
 
     /**
      * Parses the given {@code String} of arguments in the context of the CompleteCommand

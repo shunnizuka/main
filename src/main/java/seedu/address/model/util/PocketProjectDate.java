@@ -324,6 +324,20 @@ public class PocketProjectDate extends CalendarDate {
     }
 
     /**
+     *  checks if the PocketProjectDate is in the same month of the current date.
+     *  @param date the date that is used for comparison
+     *  @returns true if and only if the given PocketProjectDate is in the same month of the current date.
+     */
+    public static boolean isThisMonth(PocketProjectDate date) {
+        String targetDateString = date.date;
+        Integer[] targetComponents = PocketProjectDate.splitComponents(targetDateString);
+        String currentDateSting = new PocketProjectDate().currentDate();
+        Integer[] currentDateComponents = PocketProjectDate.splitComponents(currentDateSting);
+        return targetComponents[MONTH_FIELD].equals(currentDateComponents[MONTH_FIELD])
+                && targetComponents[YEAR_FIELD].equals(currentDateComponents[YEAR_FIELD]);
+    }
+
+    /**
      * Used to reformat the flexible date input to DD/MM/YYYY
      * @param day day of month
      * @param month month of year

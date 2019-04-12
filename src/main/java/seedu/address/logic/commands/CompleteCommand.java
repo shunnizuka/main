@@ -22,9 +22,10 @@ public class CompleteCommand extends Command {
     public static final String COMMAND_WORD = "complete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Completes the project identified by the index(must be positive integer) of the project.\n"
-            + "Parameters: PROJECT_INDEX\n"
-            + "Example: " + COMMAND_WORD + " 1\n";
+            + ": Completes the project identified by the index(must be positive integer) of the project on \n"
+            + "a specified date."
+            + "Parameters: PROJECT_INDEX, COMPLETION_DATE\n"
+            + "Example: " + COMMAND_WORD + " 1 11/11/2011\n";
 
     public static final String MESSAGE_COMPLETE_PROJECT_SUCCESS = "Completed Project: %1$s";
     private final Index targetIndex;

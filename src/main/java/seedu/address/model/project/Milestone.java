@@ -79,6 +79,17 @@ public class Milestone {
     public ObservableList<ProjectTask> getProjectTaskList() {
         return this.projectTasks.asUnmodifiableObservableList();
     }
+    /**
+     * Returns true if all tasks for this milestone is completed.
+     */
+    public boolean reached() {
+        for (ProjectTask pt: this.projectTasks) {
+            if (!pt.isComplete()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Returns a new milestone which has its {@code milestone} and {@code date} edited.
