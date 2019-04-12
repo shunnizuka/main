@@ -326,6 +326,9 @@ Refer to the screenshot below to see how the fields of the user story has been e
 .Before and after comparisons of the user story's importance level
 image::edit-user-story-ui.png[]
 
+image:ug-smart.png[width="60"]
+You can also remove an existing reason from a user story by typing `nil` as the new user story reason
+
 
 //tag::find[]
 === Locating employees, projects or skills by name: `find`
