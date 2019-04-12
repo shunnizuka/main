@@ -143,15 +143,15 @@ of the project.
 . `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
 
 === Color coding
-
-.Common colours used in Pocket Project
-image::colour-coding.png[width=480]
-
 There are several common colours used throughout Pocket Pocket to denote the statuses of events. As shown above, there are 3 main colours used:
 
 . Red: The event is put on hold.
 . Amber: The event is currently ongoing.
 . Green: The event is completed.
+
+.Common colours used in Pocket Project
+image::colour-coding.png[width=480]
+
 
 [[Features]]
 == Features
