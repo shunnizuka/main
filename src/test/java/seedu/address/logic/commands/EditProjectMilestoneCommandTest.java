@@ -96,7 +96,7 @@ public class EditProjectMilestoneCommandTest {
         assertCommandSuccess(editMilestoneCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
-    /*@Test
+    @Test
     public void execute_noFieldSpecified_success() {
         EditProjectMilestoneCommand editMilestoneCommand = new EditProjectMilestoneCommand(TYPICAL_PROJECT_NAME_INDEX_1,
             INDEX_FIRST_PROJECT_MILESTONE, new EditProjectMilestoneCommand.EditMilestoneDescriptor());
@@ -108,7 +108,7 @@ public class EditProjectMilestoneCommandTest {
         expectedModel.commitPocketProject();
 
         assertCommandSuccess(editMilestoneCommand, model, commandHistory, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void execute_duplicateMilestone_failure() {
@@ -122,7 +122,7 @@ public class EditProjectMilestoneCommandTest {
             .getProjectName(), INDEX_SECOND_PROJECT_MILESTONE, descriptor);
 
         assertCommandFailure(editProjectMilestoneCommand, model, commandHistory,
-            EditProjectMilestoneCommand.MESSAGE_DUPLICATE_MILESTONE);
+            Messages.MESSAGE_DUPLICATE_MILESTONE);
     }
 
     @Test

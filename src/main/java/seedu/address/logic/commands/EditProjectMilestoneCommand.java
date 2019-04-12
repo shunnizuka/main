@@ -33,7 +33,6 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
 
     public static final String MESSAGE_EDIT_MILESTONE_SUCCESS = "Edited Milestone: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit the milestone must be provided";
-    public static final String MESSAGE_DUPLICATE_MILESTONE = "The milestone already exist";
 
     private final ProjectName projectName;
     private final Index milestoneIndex;
@@ -78,13 +77,13 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
         }
 
         if (!milestoneToEdit.isSameMilestone(editedMilestone) && milestonesList.contains(editedMilestone)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_MILESTONE);
         }
 
         try {
             projectToEdit.setMilestone(milestoneToEdit, editedMilestone);
         } catch (DuplicateMilestoneException e) {
-            throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_MILESTONE);
         }
 
         model.commitPocketProject();

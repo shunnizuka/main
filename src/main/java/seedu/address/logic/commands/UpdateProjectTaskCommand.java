@@ -17,7 +17,7 @@ import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.Status;
 
 /**
- * Adds a task to a project milestone.
+ * Updates the status of a project task.
  */
 public class UpdateProjectTaskCommand extends UpdateCommand {
 

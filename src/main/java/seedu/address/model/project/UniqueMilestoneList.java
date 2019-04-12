@@ -87,9 +87,11 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
         if (!this.contains(targetMilestone)) {
             throw new MilestoneNotFoundException();
         }
-        if (contains(milestone)) {
+        if (!targetMilestone.equals(milestone) && contains(milestone)) {
+            System.out.println("throwing");
             throw new DuplicateMilestoneException();
         }
+        System.out.println("adding");
         remove(targetMilestone);
         add(milestone);
     }
@@ -143,7 +145,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
     private boolean milestonesAreUnique(List<Milestone> milestones) {
         for (int i = 0; i < milestones.size() - 1; i++) {
             for (int j = i + 1; j < milestones.size(); j++) {
-                if (milestones.get(i).equals(milestones.get(j))) {
+                if (milestones.get(i).isSameMilestone(milestones.get(j))) {
                     return false;
                 }
             }
