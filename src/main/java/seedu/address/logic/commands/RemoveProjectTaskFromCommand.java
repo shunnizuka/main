@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
@@ -33,7 +34,7 @@ public class RemoveProjectTaskFromCommand extends RemoveFromCommand {
     private final Index targetTaskIndex;
     private final ProjectName targetProjectName;
 
-    public RemoveProjectTaskFromCommand(ProjectName targetProject, Index milestoneIndex, Index taskIndex) {
+    public RemoveProjectTaskFromCommand(Index milestoneIndex, Index taskIndex, ProjectName targetProject) {
         requireAllNonNull(targetProject, milestoneIndex, taskIndex);
         this.targetMilestoneIndex = milestoneIndex;
         this.targetTaskIndex = taskIndex;

@@ -10,12 +10,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveEmployeeFromCommand;
 import seedu.address.logic.commands.RemoveFromCommand;
 import seedu.address.logic.commands.RemoveMilestoneFromCommand;
+import seedu.address.logic.commands.RemoveProjectTaskFromCommand;
 import seedu.address.logic.commands.RemoveUserStoryFromCommand;
 import seedu.address.model.project.ProjectName;
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
  * outside of the RemoveFromCommand code. For example, inputs "1" and "1 abc" take the
- * same path through the DeleteCommand, and therefore we test only one of them.
+ * same path through the RemoveFromCommand, and therefore we test only one of them.
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
@@ -31,6 +32,9 @@ public class RemoveFromCommandParserTest {
                 new RemoveMilestoneFromCommand(Index.fromOneBased(2), new ProjectName("Project X")));
         assertParseSuccess(parser, "Project Apollo userstory 1",
                 new RemoveUserStoryFromCommand(Index.fromOneBased(1), new ProjectName("Project Apollo")));
+        assertParseSuccess(parser, "Apollo projecttask 1 1",
+                new RemoveProjectTaskFromCommand(Index.fromOneBased(1), Index.fromOneBased(1),
+                new ProjectName("Apollo")));
     }
 
     @Test
@@ -43,5 +47,9 @@ public class RemoveFromCommandParserTest {
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveMilestoneFromCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "Project Apollo userstory 0",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveUserStoryFromCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "Project Apollo projecttask 0 1",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveProjectTaskFromCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "Project Apollo projecttask 1 0",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveProjectTaskFromCommand.MESSAGE_USAGE));
     }
 }

@@ -83,13 +83,13 @@ public class RemoveFromCommandParser implements Parser<RemoveFromCommand> {
 
                 final Index milestoneIndex = ParserUtil.parseIndex(milestone);
                 final Index taskIndex = ParserUtil.parseIndex(task);
-                return new RemoveProjectTaskFromCommand(projectName, milestoneIndex, taskIndex);
+                return new RemoveProjectTaskFromCommand(milestoneIndex, taskIndex, projectName);
             } catch (ParseException pe) {
                 throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveProjectTaskFromCommand.MESSAGE_USAGE), pe);
             }
 
-        }else {
+        } else {
             throw new ParseException (
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveFromCommand.MESSAGE_USAGE)
             );
