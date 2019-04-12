@@ -30,7 +30,7 @@ public class AddProjectCommand extends AddCommand {
             + "Example: " + COMMAND_WORD + " project "
             + PREFIX_NAME + "Apollo "
             + PREFIX_CLIENT + "SymbCorp "
-            + PREFIX_START_DATE + "23/06/2019"
+            + PREFIX_START_DATE + "23/06/2019 "
             + PREFIX_DEADLINE + "23/11/2020 ";
 
     public static final String MESSAGE_ADD_PROJECT_SUCCESS = "Added Project: %1$s";

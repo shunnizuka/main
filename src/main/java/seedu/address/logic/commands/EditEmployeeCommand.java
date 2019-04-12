@@ -20,6 +20,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -89,8 +90,10 @@ public class EditEmployeeCommand extends EditCommand {
         GitHubAccount updatedGitHubAccount =
             editEmployeeDescriptor.getGitHubAccount().orElse(employeeToEdit.getGithub());
         Set<Skill> updatedSkills = editEmployeeDescriptor.getSkills().orElse(employeeToEdit.getSkills());
+        List<ProjectName> updatedProjects = employeeToEdit.getCurrentProjects();
 
-        return new Employee(updatedEmployeeName, updatedPhone, updatedEmail, updatedGitHubAccount, updatedSkills);
+        return new Employee(updatedEmployeeName, updatedPhone, updatedEmail, updatedGitHubAccount, updatedSkills,
+            updatedProjects);
     }
 
     @Override
@@ -121,6 +124,7 @@ public class EditEmployeeCommand extends EditCommand {
         private Email email;
         private GitHubAccount gitHubAccount;
         private Set<Skill> skills;
+        private List<ProjectName> currentProjects;
 
         public EditEmployeeDescriptor() {}
 
