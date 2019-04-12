@@ -515,7 +515,7 @@ Using Alternative 1 is better as it provides better abstraction as the `listComm
 The displaying of statistics in Pocket Project will be facilitated by the model component. This feature is
 planned to support 2 main commands:
 
-* `stats` -- Displays an overview of all the projects: the number of ongoing projects, closest deadline etc.
+* `stats` -- Displays an overview of all the projects: the number of ongoing projects, deadlines etc.
 * `stats PROJ_INDEX` or `stats PROJ_NAME` -- Display a summary of the progress of the project with the given PROJ_INDEX or PROJ_NAME.
 
 The operation will be supported by the methods in the `Model` interface: `Model#overallStats()` and `Model#individualStats(Project)`.

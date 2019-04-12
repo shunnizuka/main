@@ -5,13 +5,13 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a user story stored in pocket project.
  */
-public class UserStory {
+public class UserStory implements Comparable<UserStory> {
 
     private UserStoryImportance importance;
     private UserStoryUser user;
     private UserStoryFunction function;
     private UserStoryReason reason;
-    private UserStoryStatus status;
+    private Status status;
 
     /**
      * Constructor for a user story
@@ -27,14 +27,14 @@ public class UserStory {
         this.user = user;
         this.function = function;
         this.reason = reason;
-        this.status = new UserStoryStatus();
+        this.status = new Status();
     }
 
     /**
      * Constructor for a user story including its status
      */
     public UserStory(UserStoryImportance importance, UserStoryUser user, UserStoryFunction function,
-                     UserStoryReason reason, UserStoryStatus status) {
+                     UserStoryReason reason, Status status) {
         this(importance, user, function, reason);
         this.status = status;
     }
@@ -74,7 +74,7 @@ public class UserStory {
     }
 
     /**
-     * Comparison between user stories. If two user stories are idential in all the string fields, then
+     * Comparison between user stories. If two user stories are identical in all the string fields, then
      * it should be considered as the same story even if the importance level or status is different.
      * @param story
      * @return
@@ -102,13 +102,21 @@ public class UserStory {
     }
 
     /**
-     * Utility method to sort user story by the user's name. If the two strings are equal then this method returns false
+     * Utility method to sort user story by the user's name. If the two strings are equal then this method returns 0.
+     * Else if the other string is lexicographically smaller, then return 1, else return -1.
      */
-    public boolean isUserLexicographicallySmaller(UserStory other) {
-        if (getUserStoryUser().compareTo(other.getUserStoryUser()) < 0) {
-            return true;
+    public int isUserLexicographicallySmaller(UserStory other) {
+        return getUserStoryUser().compareTo(other.getUserStoryUser());
+    }
+
+    @Override
+    public int compareTo(UserStory other) {
+        if (this.isHigherImportance(other)) {
+            return -1;
+        } else if (other.isHigherImportance(this)) {
+            return 1;
         } else {
-            return false;
+            return this.isUserLexicographicallySmaller(other);
         }
     }
 
@@ -133,13 +141,13 @@ public class UserStory {
         return UserStoryUser.isValidName(story.user.getUser())
                 && UserStoryImportance.isValidImportanceLevel(story.importance.getImportance())
                 && UserStoryFunction.isValidDescription(story.function.getFunction())
-                && UserStoryStatus.isValidStoryStatus(story.status.getStatus());
+                && Status.isValidStatus(story.status.getStatus());
     }
 
     /**
      * Updates the status of the user story to the new status
      */
-    public void updateStatus(UserStoryStatus newStatus) {
+    public void updateStatus(Status newStatus) {
         this.status = newStatus;
     }
 }

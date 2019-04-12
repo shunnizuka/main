@@ -64,7 +64,7 @@ public class DeleteProjectCommand extends DeleteCommand {
                 }
                 model.deleteProject(projectToDelete);
                 model.commitPocketProject();
-
+                break;
             }
         }
         if (!found) {

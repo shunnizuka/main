@@ -15,7 +15,9 @@ import seedu.address.model.project.Milestone;
 import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.UniqueProjectTaskList;
 import seedu.address.model.project.exceptions.DateNotInRangeException;
+import seedu.address.model.project.exceptions.DuplicateMilestoneException;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
@@ -27,11 +29,10 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + EDIT_PROJECT_KEYWORD + " PROJ_NAME "
         + EDIT_MILESTONE_KEYWORD + " INDEX [m/MILESTONE] [d/DATE]\n"
-        + "edits the milstone at INDEX in the project";
+        + "edits the milestone at INDEX in the project";
 
     public static final String MESSAGE_EDIT_MILESTONE_SUCCESS = "Edited Milestone: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit the milestone must be provided";
-    public static final String MESSAGE_DUPLICATE_MILESTONE = "The milestone already exist";
 
     private final ProjectName projectName;
     private final Index milestoneIndex;
@@ -76,10 +77,14 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
         }
 
         if (!milestoneToEdit.isSameMilestone(editedMilestone) && milestonesList.contains(editedMilestone)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_MILESTONE);
         }
 
-        projectToEdit.setMilestone(milestoneToEdit, editedMilestone);
+        try {
+            projectToEdit.setMilestone(milestoneToEdit, editedMilestone);
+        } catch (DuplicateMilestoneException e) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_MILESTONE);
+        }
 
         model.commitPocketProject();
 
@@ -98,8 +103,9 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
         MilestoneDescription milestoneDesc = editMilestoneDescriptor.getMilestoneDesc()
             .orElse(milestoneToedit.getMilestoneDescription());
         PocketProjectDate date = editMilestoneDescriptor.getDate().orElse(milestoneToedit.getDate());
-
-        return milestoneToedit.editMilestone(milestoneDesc, date);
+        UniqueProjectTaskList projectTasks = editMilestoneDescriptor.getProjectTasks()
+            .orElse(milestoneToedit.projectTasks.clone());
+        return milestoneToedit.editMilestone(milestoneDesc, date, projectTasks);
 
     }
 
@@ -129,6 +135,7 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
     public static class EditMilestoneDescriptor {
         private MilestoneDescription milestoneDesc;
         private PocketProjectDate date;
+        private UniqueProjectTaskList projectTasks;
 
         public EditMilestoneDescriptor() {}
 
@@ -139,6 +146,7 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
         public EditMilestoneDescriptor(EditProjectMilestoneCommand.EditMilestoneDescriptor toCopy) {
             setDate(toCopy.date);
             setMilestoneDesc(toCopy.milestoneDesc);
+            setProjectTasks(toCopy.projectTasks.clone());
         }
 
         /**
@@ -162,6 +170,14 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
 
         public Optional<PocketProjectDate> getDate() {
             return Optional.ofNullable(date);
+        }
+
+        public void setProjectTasks(UniqueProjectTaskList projectTasks) {
+            this.projectTasks = projectTasks;
+        }
+
+        public Optional<UniqueProjectTaskList> getProjectTasks() {
+            return Optional.ofNullable(projectTasks);
         }
 
         @Override

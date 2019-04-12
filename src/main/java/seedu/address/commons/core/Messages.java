@@ -14,6 +14,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_PROJECT_NAME = "The project name provided is invalid";
     public static final String MESSAGE_INVALID_MILESTONE_DISPLAYED_INDEX = "The milestone index provided is invalid";
     public static final String MESSAGE_INVALID_USERSTORY_DISPLAYED_INDEX = "The user story index provided is invalid";
+    public static final String MESSAGE_INVALID_PROJECTTASK_DISPLAYED_INDEX =
+                                                            "The project task index provided is invalid";
+
     public static final String MESSAGE_DUPLICATE_PROJ_EMPLOYEE = "This employee already exists in the selected"
         + " target project.";
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the pocket project";
@@ -21,5 +24,5 @@ public class Messages {
     public static final String INVALID_MILESTONE_DATE = "Invalid milestone date. The date of a  milestone should be "
         + "after the start date of a project and before the deadline of a project.";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the pocket project";
-
+    public static final String MESSAGE_DUPLICATE_PROJECT_TASK = "This project task already exists in this milestone.";
 }

@@ -62,10 +62,11 @@ public class EditProjectInfoCommandSystemTest extends PocketProjectSystemTest {
             + NAME_DESC_ZULU + "     " + CLIENT_DESC_ZULU + "  " + DEADLINE_DESC_ZULU + " " + DESCRIPTION_DESC + " ";
         Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ZULU)
             .withClient(VALID_CLIENT_ZULU).withStartDate("10/10/2010").withDeadline(VALID_DEADLINE_ZULU)
-            .withDescrption(VALID_DESCRIPTION).withEmployees(Arrays.asList(BENSON, TypicalEmployees.CARL))
+            .withDescription(VALID_DESCRIPTION).withEmployees(Arrays.asList(BENSON, TypicalEmployees.CARL))
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                 TypicalMilestones.TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
+            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER,
+                    TypicalUserStories.USER_STORY_SECOND_MANAGER)).build();
 
         assertCommandSuccess(command, name, editedProject);
 

@@ -26,6 +26,7 @@ import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_IN
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
 import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
 import static seedu.address.testutil.TypicalUserStories.USER_STORY_FIRST_MANAGER;
+import static seedu.address.testutil.TypicalUserStories.USER_STORY_SECOND_MANAGER;
 
 import java.util.Arrays;
 
@@ -54,11 +55,11 @@ public class EditProjectInfoCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE)
-            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
+            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescription(VALID_DESCRIPTION)
             .withEmployees(Arrays.asList(BENSON, CARL))
             .withMilestones(Arrays.asList(TYPICAL_MILESTONE_START,
                 TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER)).build();
+            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER, USER_STORY_SECOND_MANAGER)).build();
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
             .build();
         EditProjectInfoCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1,
@@ -80,7 +81,7 @@ public class EditProjectInfoCommandTest {
 
         ProjectBuilder projectInList = new ProjectBuilder(lastProject);
         Project editedProject = projectInList.withProjectName(VALID_NAME_BOB).withClient(VALID_CLIENT_BOB)
-            .withDescrption(VALID_DESCRIPTION).build();
+            .withDescription(VALID_DESCRIPTION).build();
 
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
             .withName(VALID_NAME_BOB).withClient(VALID_CLIENT_BOB).withDescription(VALID_DESCRIPTION).build();
@@ -174,10 +175,10 @@ public class EditProjectInfoCommandTest {
     @Test
     public void executeUndoRedo_validProjectName_success() throws Exception {
         Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_ALICE)
-            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
+            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescription(VALID_DESCRIPTION)
             .withEmployees(Arrays.asList(BENSON, CARL))
             .withMilestones(Arrays.asList(TYPICAL_MILESTONE_START, TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER)).build();
+            .withUserStories(Arrays.asList(USER_STORY_FIRST_MANAGER, USER_STORY_SECOND_MANAGER)).build();
 
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         EditProjectInfoCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
@@ -222,7 +223,7 @@ public class EditProjectInfoCommandTest {
         model = new ModelManager(builder.build(), new UserPrefs());
 
         Project editedProject = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_BOB)
-            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescrption(VALID_DESCRIPTION)
+            .withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).withDescription(VALID_DESCRIPTION)
             .withEmployees(Arrays.asList(BENSON, CARL))
             .withMilestones(Arrays.asList(TYPICAL_MILESTONE_START,
                 TYPICAL_MILESTONE_END))

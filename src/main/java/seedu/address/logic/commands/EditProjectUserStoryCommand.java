@@ -14,11 +14,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
-import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.project.UserStoryUser;
 
 /**
@@ -100,8 +100,8 @@ public class EditProjectUserStoryCommand extends EditProjectCommand {
                 new UserStoryReason((userStoryToEdit.getUserStoryReason())));
         UserStoryImportance newImportance = editUserStoryDescriptor.getImportance().orElse(
                 new UserStoryImportance((userStoryToEdit.getUserStoryImportance())));
-        UserStoryStatus newStatus = editUserStoryDescriptor.getStatus().orElse(
-                new UserStoryStatus((userStoryToEdit.getUserStoryStatus())));
+        Status newStatus = editUserStoryDescriptor.getStatus().orElse(
+                new Status((userStoryToEdit.getUserStoryStatus())));
 
         return new UserStory(newImportance, newUser, newFunction, newReason, newStatus);
     }
@@ -133,7 +133,7 @@ public class EditProjectUserStoryCommand extends EditProjectCommand {
         private UserStoryFunction function;
         private UserStoryReason reason;
         private UserStoryImportance importance;
-        private UserStoryStatus status;
+        private Status status;
 
         public EditUserStoryDescriptor() {
         }
@@ -188,11 +188,11 @@ public class EditProjectUserStoryCommand extends EditProjectCommand {
             return Optional.ofNullable(importance);
         }
 
-        public void setStatus(UserStoryStatus status) {
+        public void setStatus(Status status) {
             this.status = status;
         }
 
-        public Optional<UserStoryStatus> getStatus() {
+        public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
         }
 
@@ -214,7 +214,8 @@ public class EditProjectUserStoryCommand extends EditProjectCommand {
             return getUser().equals(story.getUser())
                     && getFunction().equals(story.getFunction())
                     && getReason().equals(story.getReason())
-                    && getImportance().equals(story.getImportance());
+                    && getImportance().equals(story.getImportance())
+                    && getStatus().equals(story.getStatus());
         }
     }
 

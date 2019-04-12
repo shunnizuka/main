@@ -15,7 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMilestoneToCommand;
 import seedu.address.logic.commands.AddProjectCommand;
-import seedu.address.logic.commands.AddTaskToCommand;
+import seedu.address.logic.commands.AddProjectTaskToCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.AddUserStoryToCommand;
 import seedu.address.model.project.Milestone;
@@ -70,7 +70,7 @@ public class ProjectUtil {
      */
     public static String getAddProjectTaskToCommand(Project project, Index index, ProjectTask task) {
         return AddToCommand.COMMAND_WORD + " " + project.getProjectName().projectName + " "
-            + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + getProjectTaskDetails(task, index);
+            + AddProjectTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + getProjectTaskDetails(task, index);
     }
 
     /**
@@ -102,7 +102,7 @@ public class ProjectUtil {
      */
     public static String getProjectTaskDetails(ProjectTask task, Index index) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME.toString() + task.getTaskNameString() + " ");
+        sb.append(PREFIX_NAME.toString() + task.getTaskDescription() + " ");
         sb.append(PREFIX_MILESTONE.toString() + index.getOneBased() + " ");
         return sb.toString();
     }

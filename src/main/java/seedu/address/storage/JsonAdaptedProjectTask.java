@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.ProjectTaskDescription;
-import seedu.address.model.project.ProjectTaskStatus;
+import seedu.address.model.project.Status;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Jackson-friendly version of {@link ProjectTask}.
@@ -17,23 +18,27 @@ class JsonAdaptedProjectTask {
 
     private final String taskName;
     private final String taskStatus;
+    private final String completionDate;
 
     /**
      * Constructs a {@code JsonAdaptedProjectTask} with the given user story details.
      */
     @JsonCreator
-    public JsonAdaptedProjectTask(@JsonProperty("taskName") String taskName,
-                                  @JsonProperty("taskStatus") String taskStatus) {
+    public JsonAdaptedProjectTask(@JsonProperty("taskDescription") String taskName,
+                                  @JsonProperty("taskStatus") String taskStatus,
+                                  @JsonProperty("completionDate") String completionDate) {
         this.taskName = taskName;
         this.taskStatus = taskStatus;
+        this.completionDate = completionDate;
     }
 
     /**
      * Converts a given {@code ProjectTask} into this class for Jackson use.
      */
     public JsonAdaptedProjectTask(ProjectTask source) {
-        this.taskName = source.getTaskNameString();
-        this.taskStatus = source.getTaskStatusString();
+        this.taskName = source.getTaskDescription();
+        this.taskStatus = source.getTaskStatus();
+        this.completionDate = source.getCompletionDate();
     }
 
     /**
@@ -54,14 +59,23 @@ class JsonAdaptedProjectTask {
 
         if (taskStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectTaskStatus.class.getSimpleName()));
+            Status.class.getSimpleName()));
         }
-        if (!ProjectTaskStatus.isValidTaskStatus(taskStatus)) {
-            throw new IllegalValueException(ProjectTaskStatus.MESSAGE_CONSTRAINTS);
+        if (!Status.isValidStatus(taskStatus)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
-        final ProjectTaskStatus modelProjectTaskStatus = new ProjectTaskStatus(taskStatus);
+        final Status modelProjectTaskStatus = new Status(taskStatus);
 
-        return new ProjectTask(modelProjectTaskDescription, modelProjectTaskStatus);
+        if (completionDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            PocketProjectDate.class.getSimpleName()));
+        }
+        if (!PocketProjectDate.isValidDate(completionDate)) {
+            throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
+        }
+        final PocketProjectDate modelProjectTaskCompletionDate = new PocketProjectDate(completionDate);
+
+        return new ProjectTask(modelProjectTaskDescription, modelProjectTaskStatus, modelProjectTaskCompletionDate);
     }
 
 }

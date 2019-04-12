@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEmployeeToCommand;
 import seedu.address.logic.commands.AddMilestoneToCommand;
-import seedu.address.logic.commands.AddTaskToCommand;
+import seedu.address.logic.commands.AddProjectTaskToCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.AddUserStoryToCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -123,7 +123,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddUserStoryToCommand.MESSAGE_USAGE), pe);
             }
 
-        } else if (keyword.equals(AddTaskToCommand.ADD_PROJECTTASK_KEYWORD)) {
+        } else if (keyword.equals(AddProjectTaskToCommand.ADD_PROJECTTASK_KEYWORD)) {
             try {
                 String s = WHITESPACE_PREAMBLE + arguments; //add whitespace to allow tokenizer to detect regex
                 ArgumentMultimap argMultimap =
@@ -132,15 +132,16 @@ public class AddToCommandParser implements Parser<AddToCommand> {
                 if (!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MILESTONE)
                         || !argMultimap.getPreamble().isEmpty()) {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AddTaskToCommand.MESSAGE_USAGE));
+                            AddProjectTaskToCommand.MESSAGE_USAGE));
                 }
-                ProjectTaskDescription name = ParserUtil.parseProjectTaskName(argMultimap.getValue(PREFIX_NAME).get());
-                ProjectTask newTask = new ProjectTask(name);
+                ProjectTaskDescription description = ParserUtil.parseProjectTaskDescription(
+                        argMultimap.getValue(PREFIX_NAME).get());
+                ProjectTask newTask = new ProjectTask(description);
                 Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MILESTONE).get());
-                return new AddTaskToCommand(projectName, newTask, index);
+                return new AddProjectTaskToCommand(projectName, newTask, index);
             } catch (ParseException pe) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskToCommand.MESSAGE_USAGE), pe);
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectTaskToCommand.MESSAGE_USAGE), pe);
             }
         } else {
             throw new ParseException (

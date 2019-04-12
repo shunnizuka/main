@@ -212,8 +212,8 @@
 .table-view .cell{
    -fx-cell-size: 50;
   -fx-alignment: center-left;
-  -fx-background-color: #0aa999;
-  -fx-border-color: #0aa999;
+  -fx-background-color: derive(#2ea095, -10%);
+  -fx-border-color: derive(#2ea095,-10%);
   -fx-text-fill: white;
   -fx-alignment: CENTER_LEFT;
 

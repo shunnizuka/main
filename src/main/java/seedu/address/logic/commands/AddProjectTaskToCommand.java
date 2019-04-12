@@ -14,11 +14,12 @@ import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
+import seedu.address.model.project.exceptions.DuplicateProjectTaskException;
 
 /**
  * Adds a task to a project milestone.
  */
-public class AddTaskToCommand extends AddToCommand {
+public class AddProjectTaskToCommand extends AddToCommand {
 
     public static final String ADD_PROJECTTASK_KEYWORD = "projecttask";
 
@@ -28,14 +29,12 @@ public class AddTaskToCommand extends AddToCommand {
             + "Example: " + COMMAND_WORD + " Apollo projecttask n/Create feature XYZ m/1";
 
     public static final String MESSAGE_ADD_PROJECT_TASK_SUCCESS = "Added %1$s to milestone %2$d in %3$s";
-    public static final String MESSAGE_DUPLICATE_PROJECT_TASK =
-            "This project task already exists in this milestone.";
 
     private final Index targetIndex;
     private final ProjectName targetProjectName;
     private final ProjectTask taskToAdd;
 
-    public AddTaskToCommand(ProjectName targetProject, ProjectTask task, Index index) {
+    public AddProjectTaskToCommand(ProjectName targetProject, ProjectTask task, Index index) {
         requireAllNonNull(targetProject, task, index);
         this.targetIndex = index;
         this.taskToAdd = task;
@@ -58,9 +57,14 @@ public class AddTaskToCommand extends AddToCommand {
 
         Milestone targetMilestone = milestoneList.get(targetIndex.getZeroBased());
         if (targetMilestone.getProjectTaskList().contains(taskToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROJECT_TASK);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT_TASK);
         }
-        targetMilestone.addTask(taskToAdd);
+
+        try {
+            targetMilestone.addTask(taskToAdd);
+        } catch (DuplicateProjectTaskException e) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT_TASK, e);
+        }
 
         model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADD_PROJECT_TASK_SUCCESS, taskToAdd,
@@ -75,12 +79,12 @@ public class AddTaskToCommand extends AddToCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddTaskToCommand)) {
+        if (!(other instanceof AddProjectTaskToCommand)) {
             return false;
         }
 
         // state check
-        AddTaskToCommand otherCommand = (AddTaskToCommand) other;
+        AddProjectTaskToCommand otherCommand = (AddProjectTaskToCommand) other;
         return targetIndex.equals(otherCommand.targetIndex)
             && targetProjectName.equals(otherCommand.targetProjectName)
             && taskToAdd.equals(otherCommand.taskToAdd); // state check

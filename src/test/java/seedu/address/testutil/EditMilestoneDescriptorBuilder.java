@@ -27,6 +27,7 @@ public class EditMilestoneDescriptorBuilder {
         descriptor = new EditProjectMilestoneCommand.EditMilestoneDescriptor();
         descriptor.setMilestoneDesc(milestone.getMilestoneDescription());
         descriptor.setDate(milestone.getDate());
+        descriptor.setProjectTasks(milestone.projectTasks.clone());
     }
 
     /**

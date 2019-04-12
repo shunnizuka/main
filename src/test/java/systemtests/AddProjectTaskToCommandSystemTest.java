@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddTaskToCommand;
+import seedu.address.logic.commands.AddProjectTaskToCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -20,7 +20,7 @@ import seedu.address.testutil.TypicalMilestones;
 import seedu.address.testutil.TypicalProjectTasks;
 import seedu.address.testutil.TypicalProjects;
 
-public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
+public class AddProjectTaskToCommandSystemTest extends PocketProjectSystemTest {
 
     @Test
     public void addProjectTaskTo() {
@@ -36,7 +36,8 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
         Milestone milestone = TypicalMilestones.TYPICAL_MILESTONE_START;
         Index index = TypicalIndexes.INDEX_FIRST_PROJECT_MILESTONE;
-        ProjectTask task = TypicalProjectTasks.PROJECT_TASK_DO_SOMETHING;
+        ProjectTask task = TypicalProjectTasks.PROJECT_TASK_ONGOING;
+        ProjectTask taskDifferentStatus = TypicalProjectTasks.PROJECT_TASK_ONGOING_STATUS_CHANGE;
         assertCommandSuccess(targetProject, milestone, index, task);
 
         /* Case: undo adding task to milestone 1 in Project Alice */
@@ -53,15 +54,19 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
         /* ----------------------------------- Perform invalid addto operations ------------------------------------- */
         /* Case: add a duplicate task to a milestone -> rejected */
         command = ProjectUtil.getAddProjectTaskToCommand(targetProject, index, task);
-        assertCommandFailure(command, AddTaskToCommand.MESSAGE_DUPLICATE_PROJECT_TASK);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJECT_TASK);
+
+        /* Case: add a duplicate task with different status to a milestone -> rejected */
+        command = ProjectUtil.getAddProjectTaskToCommand(targetProject, index, taskDifferentStatus);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_PROJECT_TASK);
 
         /* Case: missing command word -> rejected */
-        command = targetProject.getProjectName() + " " + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " "
+        command = targetProject.getProjectName() + " " + AddProjectTaskToCommand.ADD_PROJECTTASK_KEYWORD + " "
                 + ProjectUtil.getProjectTaskDetails(TypicalProjectTasks.PROJECT_TASK_COMPLETED, index);
         assertCommandFailure(command, String.format(Messages.MESSAGE_UNKNOWN_COMMAND));
 
         /* Case: missing project name -> rejected */
-        command = AddToCommand.COMMAND_WORD + " " + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " "
+        command = AddToCommand.COMMAND_WORD + " " + AddProjectTaskToCommand.ADD_PROJECTTASK_KEYWORD + " "
                 + ProjectUtil.getProjectTaskDetails(TypicalProjectTasks.PROJECT_TASK_COMPLETED, index);
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddToCommand.MESSAGE_USAGE));
@@ -74,17 +79,17 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: missing project task details -> rejected */
         command = AddToCommand.COMMAND_WORD + " " + targetProject.getProjectName() + " "
-                + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD;
+                + AddProjectTaskToCommand.ADD_PROJECTTASK_KEYWORD;
         assertCommandFailure(command, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddToCommand.MESSAGE_USAGE));
     }
 
     /**
-     * Executes the {@code AddTaskToCommand} that adds {@code task} to the model and asserts that the,<br>
+     * Executes the {@code AddProjectTaskToCommand} that adds {@code task} to the model and asserts that the,<br>
      * 1. Command box displays an empty string.<br>
      * 2. Command box has the default style class.<br>
-     * 3. Result display box displays the success message of executing {@code AddTaskToCommand} with the details of
-     * {@code task}.<br>
+     * 3. Result display box displays the success message of executing {@code AddProjectTaskToCommand} with the details
+     * of {@code task}.<br>
      * 4. {@code Storage} equal to the corresponding components in
      * the current model added with {@code task}.<br>
      * 5. Browser url and selected card remain unchanged.<br>
@@ -101,15 +106,15 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
 
     /**
      * Performs the same verification as {@code assertCommandSuccess(Project, Milestone, ProjectTask)}.
-     * Executes {@code command} instead. @see AddTaskToCommandSystemTest#assertCommandSuccess(Project, Milestone, Index,
-     * ProjectTask)
+     * Executes {@code command} instead. @see AddProjectTaskToCommandSystemTest#assertCommandSuccess(Project, Milestone,
+     * Index, ProjectTask)
      */
 
     private void assertCommandSuccess(String command, Project targetProject, Milestone milestone, Index index,
                                       ProjectTask task) {
         Model expectedModel = getProjectModel();
         expectedModel.addProjectTaskTo(targetProject, milestone, task);
-        String expectedResultMessage = String.format(AddTaskToCommand.MESSAGE_ADD_PROJECT_TASK_SUCCESS,
+        String expectedResultMessage = String.format(AddProjectTaskToCommand.MESSAGE_ADD_PROJECT_TASK_SUCCESS,
             task, index.getOneBased(), targetProject.getProjectName());
 
         assertCommandSuccess(command, expectedModel, expectedResultMessage);
@@ -121,7 +126,7 @@ public class AddTaskToCommandSystemTest extends PocketProjectSystemTest {
      * 1. Result display box displays {@code expectedResultMessage}.<br>
      * 2. {@code Storage} equal to the corresponding components in
      * {@code expectedModel}.<br>
-     * @see AddTaskToCommandSystemTest#assertCommandSuccess(String, Project, Milestone, Index, ProjectTask)
+     * @see AddProjectTaskToCommandSystemTest#assertCommandSuccess(String, Project, Milestone, Index, ProjectTask)
      */
 
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage) {

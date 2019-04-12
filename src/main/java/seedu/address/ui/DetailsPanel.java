@@ -58,6 +58,8 @@ public class DetailsPanel extends UiPart<Region> {
                 employeeDetails = new EmployeeDetails(selectedEmployee.getValue());
                 resetPanelIndex();
                 refreshEmployeeContent();
+            } else {
+                initDefaultView();
             }
         });
 
@@ -68,6 +70,8 @@ public class DetailsPanel extends UiPart<Region> {
                 projectDetails = new ProjectDetails(selectedProject.getValue());
                 resetPanelIndex();
                 refreshProjectContent();
+            } else {
+                initDefaultView();
             }
         }));
     }

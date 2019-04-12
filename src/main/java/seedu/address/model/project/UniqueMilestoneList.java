@@ -87,6 +87,11 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
         if (!this.contains(targetMilestone)) {
             throw new MilestoneNotFoundException();
         }
+        if (!targetMilestone.equals(milestone) && contains(milestone)) {
+            System.out.println("throwing");
+            throw new DuplicateMilestoneException();
+        }
+        System.out.println("adding");
         remove(targetMilestone);
         add(milestone);
     }
@@ -115,7 +120,6 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
     public ObservableList<Milestone> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
-
     @Override
     public Iterator<Milestone> iterator() {
         return internalList.iterator();
