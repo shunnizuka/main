@@ -221,7 +221,7 @@ of employees.
 ==== Delete a project from the application: `delete project`
 Deletes the project from the list of projects.
 
-Format: `delete project PROJ_NAME` or `delete project PROJ_INDEX`
+Format: `delete project PROJECT_NAME` or `delete project PROJECT_INDEX`
 
 Examples:
 
@@ -237,8 +237,9 @@ You can list all the employees in the employee list.
 
 Format: `list employee`
 
-Refer to the screenshot below for an example.
+You can refer to the screenshot below for an example.
 
+.Employees list showing a list of all employees
 image::list-employee-ui.png[width="280"]
 
 ==== List all projects in the application: `list projects`
@@ -246,8 +247,9 @@ You can list all the projects in the projects list.
 
 Format: `list project`
 
-Refer to the screenshot below for an example.
+You can refer to the screenshot below for an example.
 
+.Projects list showing a list of all projects
 image::list-project-ui.png[width="280"]
 
 === Edit an employee/project in the application : `edit`
@@ -285,7 +287,7 @@ You can remove all the person's skills by typing `s/` without specifying any ski
 
 Edits the existing project components such as project name, client, deadline, description of the project.
 
-Format: `edit project PROJ_NAME info [n/name] [c/client] [d/deadline] [desc/description]`
+Format: `edit project PROJECT_NAME info [n/name] [c/client] [d/deadline] [desc/description]`
 
 Examples:
 
@@ -297,16 +299,27 @@ Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and
 
 Edits the existing milestone in the milestone list of a project.
 
-Format: `edit project PROJ_NAME milestone INDEX [m/milestone] [d/date]`
+Format: `edit project PROJECT_NAME milestone INDEX [m/milestone] [d/date]`
 
 Examples:
 
 * `edit project Apollo milestone 2 m/Implement edit command d/09/04/2019`
 Change the milestone at index 2 in Apollo to 'Implement edit command 09/04/2019'
 
-==== Edits UserStory of a project: `edit project userstory` [coming in v2.0]
+==== Edits User Story in a project: `edit project userstory`
 
-Edits the existing userstory in the userstory list of a project.
+You can edit the fields of a user story in a project.
+
+Format: `edit project PROJECT_NAME userstory INDEX STORY`
+
+Examples:
+
+* `edit project Apollo userstory 2 as a manager i want to see my employee's skills so that i can assign them relevant work`
+
+* `edit project Project Davis userstory 1 as a user i want to be able to login`
+
+
+
 
 //tag::find[]
 === Locating employees, projects or skills by name: `find`
@@ -423,7 +436,7 @@ Displays details of the employee at index 3
 ==== View details of a project: `view project`
 Returns the list of milestones and employees in a project.
 
-Format: `view project PROJ_NAME`
+Format: `view project PROJECT_NAME`
 
 Examples:
 
@@ -437,7 +450,7 @@ Displays details (client, deadline, employees, milestones) of project â€œApolloâ
 
 Adds an employee to a project.
 
-Format: `addto PROJ_NAME employee EMPLOYEE_INDEX`
+Format: `addto PROJECT_NAME employee EMPLOYEE_INDEX`
 
 image:ug-notepadpencil.png[width="40"]
 Adds the employee at the specified `INDEX`.
@@ -460,7 +473,7 @@ Adds the 5th person in the displayed employee list to project "Apollo".
 
 Adds a milestone to a project.
 
-Format: `addto PROJ_NAME milestone MS_DETAILS MS_DATE`
+Format: `addto PROJECT_NAME milestone MS_DETAILS MS_DATE`
 
 image:ug-exclamation.png[width="50"]
 Date must be of the format DD/MM/YYYY
@@ -475,7 +488,7 @@ Milestone added to project "Apollo".
 
 Adds a task to a project milestone.
 
-Format: `addto PROJ_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]`
+Format: `addto PROJECT_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]`
 
 image:ug-notepadpencil.png[width="40"]
 Adds the project task to the milestone at the specified `MILESTONE_INDEX`.
@@ -495,11 +508,14 @@ Example:
 image:ug-lightbulb.png[width="50"]
 There is no specific order for either the project task name or the milestone index so either way is acceptable.
 
-==== Add a user story to a project: `addto userstory`
+==== Add a User Story to a project: `addto userstory`
 
-Adds a user story to a project.
+You can add a user story to a project.
 
-Format: `addto PROJ_NAME userstory i/STORY_IMPORTANCE STORY`
+image:ug-lightbulb.png[width="50"]
+In case you didn't know what user stories are, they are tools to capture the description of a feature from an end-user's perspective.
+
+Format: `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY`
 
 `STORY_IMPORTANCE`: The priority/importance level of the user story, ranging from 1 to 3. 3 being the most
 important and 1 being the least.
@@ -508,24 +524,31 @@ important and 1 being the least.
 
 image:ug-exclamation.png[width="50"]
 Note that `as a`, `i want to` and `so that` are keywords which help us to segment your user story into the respective categories: user, function and reason.
-Hence these keywords cannot be used more than once.
+Hence these keywords cannot be used more than once and needs to be included in a valid user story.
 
 Examples:
 
+* `addto Apollo userstory as a new user i want to have a clean UI so that i can navigate easily i/2`
+
 * `addto Apollo userstory i/1 as a user i want to try out new things so that i can have fun`
 
-* `addto Apollo userstory as a lazy user i want to have shortcuts for my commands i/2`
-
 image:ug-lightbulb.png[width="50"]
-There is no specific order for either the user story or the importance level so either way is acceptable.
+You can input the importance level or the actual user story in any order.
+
+Upon a successful addition of a user story, you should be able to see the new user story in the list of user stories. You may need to toggle the buttons to get to the correct panel.
+
+Refer to the diagram below to see how the new user story is shown.
+
+.User stories list showing the newly added user story
+image::addto-user-story-ui.png[]
 
 === Remove an employee/milestone/user story from a project : `removefrom`
 
-==== Remove an employee from a project: `removefrom PROJ_NAME employee`
+==== Remove an employee from a project: `removefrom PROJECT_NAME employee`
 
 Removing an employee from a project.
 
-Format: `removefrom PROJ_NAME employee EMPLOYEE_INDEX`
+Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
 
 Examples:
 
@@ -533,11 +556,11 @@ Examples:
 `removefrom Apollo employee 3` +
 Removes the employee at 3rd position at displayed list of employees from Project Apollo.
 
-==== Remove a milestone from a project: `removefrom PROJ_NAME milestone`
+==== Remove a milestone from a project: `removefrom PROJECT_NAME milestone`
 
 Removing a milestone from a project.
 
-Format: `removefrom PROJ_NAME milestone MS_INDEX`
+Format: `removefrom PROJECT_NAME milestone MS_INDEX`
 
 Examples:
 
@@ -555,15 +578,20 @@ The index must be a *positive integer* and cannot be larger than the size of the
 
 ==== Remove a user story from a project: `removefrom userstory`
 
-Removing a user story from a project.
+You can remove a user story from a project.
 
-Format: `removefrom PROJ_NAME userstory INDEX`
+Format: `removefrom PROJECT_NAME userstory INDEX`
 
 Examples:
 
 * `view project Apollo` +
 `removefrom Apollo userstory 1` +
 Removes the user story at the 1st position of the displayed list of user stories from Project Apollo.
+
+Refer to the diagram below to see the changes in the user stories list.
+
+.Before and after comparison of removing a user story
+image::removefrom-user-story-ui.png[]
 
 === Sort the projects by name or deadline : `sort` [coming in v2.0]
 
@@ -588,7 +616,7 @@ earliest deadline displayed at the top of the list.
 
 Indicates that a project is completed.
 
-Format:  `complete PROJ_INDEX COMPLETION_DATE`
+Format:  `complete PROJECT_INDEX COMPLETION_DATE`
 
 Examples:
 
@@ -601,7 +629,7 @@ The first project in the shown list is indicated as completed on 11/11/2011.
 
 Returns an overview of all ongoing projects/the progress of an individual project.
 
-Format: `stats` or `stats PROJ_NAME`/`stats PROJ_INDEX`
+Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX`
 +
 add something here.
 Examples:
@@ -728,13 +756,13 @@ e.g. `list employee` `list project`
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
 e.g. `find employee Jake` `find project Apollo` `find skill Java` `find all software`
-* *View* : `view employee EMPLOYEE_INDEX` , `view project PROJ_NAME` +
+* *View* : `view employee EMPLOYEE_INDEX` , `view project PROJECT_NAME` +
 e.g. `view employee 3` `view project Apollo`
-* *Addto*: `addto PROJ_NAME employee EMPLOYEE_INDEX` ,`addto PROJ_NAME milestone MS_DETAILS MS_DATE`, `addto PROJ_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]` +
-e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015` `addto Apollo projecttask n/Create feature XYZ m/1`
-* *Removefrom*: `removefrom PROJ_NAME employee EMPLOYEE_INDEX` `removefrom PROJ_NAME milestone MS_INDEX` +
-e.g. `removefrom Apollo employee 1` `removefrom Apollo milestone 1`
-* *Complete* : `complete PROJ_INDEX COMPLETION_DATE` +
+* *Addto*: `addto PROJECT_NAME employee EMPLOYEE_INDEX` ,`addto PROJECT_NAME milestone MS_DETAILS MS_DATE`,`addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY` `addto PROJECT_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]` +
+e.g. `addto Apollo employee 2` `addto Apollo milestone Completed UI for program 23/11/2015` `addto Apollo userstory i/2 as a user i want to see my projects so that i can manage them` `addto Apollo projecttask n/Create feature XYZ m/1`
+* *Removefrom*: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX` `removefrom PROJECT_NAME userstory STORY_INDEX` `removefrom PROJECT_NAME milestone MS_INDEX` +
+e.g. `removefrom Apollo employee 1` `removefrom Apollo userstory 2` `removefrom Apollo milestone 1`
+* *Complete* : `complete PROJECT_INDEX COMPLETION_DATE` +
 e.g. `complete 1 11/11/2011`
 * *Sort*: `sort COMMAND_KEYWORD` +
 e.g. `sort name` `sort deadline`
