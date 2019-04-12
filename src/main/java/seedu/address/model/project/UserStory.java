@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a user story stored in pocket project.
  */
-public class UserStory {
+public class UserStory implements Comparable<UserStory> {
 
     private UserStoryImportance importance;
     private UserStoryUser user;
@@ -102,13 +102,21 @@ public class UserStory {
     }
 
     /**
-     * Utility method to sort user story by the user's name. If the two strings are equal then this method returns false
+     * Utility method to sort user story by the user's name. If the two strings are equal then this method returns 0.
+     * Else if the other string is lexicographically smaller, then return 1, else return -1.
      */
-    public boolean isUserLexicographicallySmaller(UserStory other) {
-        if (getUserStoryUser().compareTo(other.getUserStoryUser()) < 0) {
-            return true;
+    public int isUserLexicographicallySmaller(UserStory other) {
+        return getUserStoryUser().compareTo(other.getUserStoryUser());
+    }
+
+    @Override
+    public int compareTo(UserStory other) {
+        if (this.isHigherImportance(other)) {
+            return -1;
+        } else if (other.isHigherImportance(this)) {
+            return 1;
         } else {
-            return false;
+            return this.isUserLexicographicallySmaller(other);
         }
     }
 

@@ -65,7 +65,8 @@ public class EditProjectInfoCommandSystemTest extends PocketProjectSystemTest {
             .withDescription(VALID_DESCRIPTION).withEmployees(Arrays.asList(BENSON, TypicalEmployees.CARL))
             .withMilestones(Arrays.asList(TypicalMilestones.TYPICAL_MILESTONE_START,
                 TypicalMilestones.TYPICAL_MILESTONE_END))
-            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER)).build();
+            .withUserStories(Arrays.asList(TypicalUserStories.USER_STORY_FIRST_MANAGER,
+                    TypicalUserStories.USER_STORY_SECOND_MANAGER)).build();
 
         assertCommandSuccess(command, name, editedProject);
 

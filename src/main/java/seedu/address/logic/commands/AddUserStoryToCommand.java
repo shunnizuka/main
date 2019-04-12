@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.project.exceptions.DuplicateUserStoryException;
 
 /**
  * Adds a user story to a project in the projects list.
@@ -71,7 +72,12 @@ public class AddUserStoryToCommand extends AddToCommand {
         if (userStoryList.contains(userStoryToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_USER_STORY);
         }
-        targetProject.addUserStory(userStoryToAdd);
+        try {
+            targetProject.addUserStory(userStoryToAdd);
+        } catch (DuplicateUserStoryException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_USER_STORY);
+        }
+
         model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADD_USER_STORY_SUCCESS, userStoryToAdd,
                 targetProject.getProjectName()));
