@@ -144,6 +144,7 @@ of the project.
 
 === Color coding
 
+.Common colours used in Pocket Project
 image::colour-coding.png[width=480]
 
 There are several common colours used throughout Pocket Pocket to denote the statuses of events. As shown above, there are 3 main colours used:
