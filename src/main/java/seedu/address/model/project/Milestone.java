@@ -98,8 +98,8 @@ public class Milestone {
             return true;
         }
         return otherMilestone != null
-        && otherMilestone.getMilestoneDescription().equals(getMilestoneDescription())
-        && otherMilestone.getDate().equals(getDate());
+            && otherMilestone.getMilestoneDescription().equals(getMilestoneDescription())
+            && otherMilestone.getDate().equals(getDate());
     }
 
     @Override
