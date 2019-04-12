@@ -603,6 +603,30 @@ Refer to the diagram below to see the changes in the user stories list after the
 .Before and after comparison of removing a user story
 image::removefrom-user-story-ui.png[]
 
+=== Update a user story/project task status: `update`
+You can update the statuses of events to track their progress.
+
+Currently, there are 3 valid status which `update` supports:
+
+. `ongoing` : indicate that the event is ongoing
+. `on hold` : indicate that the event is placed on hold
+. `complete` : indicate that the event has been completed
+
+Each of the different statuses are also visually different in their colour coding. For more information about the different colours used, refer to <<Color coding>>.
+
+==== Update the status of a user story: `update userstory`
+You can update the status of a user story to indicate its progress.
+
+Format: `update PROJECT_NAME userstory INDEX STATUS`
+
+Example: `update Apollo userstory 1 on hold` +
+Updates the first user story in Apollo to be on hold.
+
+You may refer to the screenshot below to see how the user story is updated after the command `update Apollo userstory 1 on hold` is executed.
+
+.Before and after comparisons of the status of a user story
+image::update-user-story-ui.png[]
+
 === Sort the projects by name or deadline : `sort` [coming in v2.0]
 
 Returns a sorted list of projects by the sort key value.
