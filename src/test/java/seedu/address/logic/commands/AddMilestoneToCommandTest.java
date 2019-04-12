@@ -12,8 +12,8 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
+import seedu.address.model.project.MilestoneDescription;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.util.PocketProjectDate;
@@ -33,7 +33,8 @@ public class AddMilestoneToCommandTest {
     @Test
     public void execute_validProjectNameValidIndexValidDate_success() {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        Milestone milestone = new Milestone(new Description("Completed UG"), new PocketProjectDate("05/05/2012"));
+        Milestone milestone = new Milestone(new MilestoneDescription("Completed UG"),
+            new PocketProjectDate("05/05/2012"));
         AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(targetProject.getProjectName(),
             milestone);
         String expectedMessage = String.format(AddMilestoneToCommand.MESSAGE_ADD_MILESTONE_SUCCESS,
@@ -49,7 +50,7 @@ public class AddMilestoneToCommandTest {
     @Test
     public void execute_invalidProjectName_throwsCommandException() {
         AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(new ProjectName("INVALID"), new
-            Milestone(new Description("Updated UG"), new PocketProjectDate("23/06/2019")));
+            Milestone(new MilestoneDescription("Updated UG"), new PocketProjectDate("23/06/2019")));
         assertCommandFailure(addMilestoneToCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECT_NAME);
     }
@@ -58,7 +59,8 @@ public class AddMilestoneToCommandTest {
     public void execute_duplicateMilestone_throwsCommandException() {
 
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        Milestone milestone = new Milestone(new Description("Completed UG"), new PocketProjectDate("05/05/2012"));
+        Milestone milestone = new Milestone(new MilestoneDescription("Completed UG"),
+            new PocketProjectDate("05/05/2012"));
         AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(targetProject.getProjectName(),
             milestone);
         String expectedMessage = String.format(AddMilestoneToCommand.MESSAGE_ADD_MILESTONE_SUCCESS,
@@ -70,7 +72,7 @@ public class AddMilestoneToCommandTest {
 
         assertCommandSuccess(addMilestoneToCommand, model, commandHistory, expectedMessage, expectedModel);
 
-        Milestone duplicateMilestone = new Milestone(new Description("Completed UG"),
+        Milestone duplicateMilestone = new Milestone(new MilestoneDescription("Completed UG"),
             new PocketProjectDate("05/05/2012"));
         AddMilestoneToCommand addMilestoneToCommand2 = new AddMilestoneToCommand(targetProject.getProjectName(),
             duplicateMilestone);
@@ -81,7 +83,8 @@ public class AddMilestoneToCommandTest {
     @Test
     public void execute_invalidDate_throwsCommandException() {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());
-        Milestone milestone = new Milestone(new Description("Completed UG"), new PocketProjectDate("05/05/2008"));
+        Milestone milestone = new Milestone(new MilestoneDescription("Completed UG"),
+            new PocketProjectDate("05/05/2008"));
         AddMilestoneToCommand addMilestoneToCommand = new AddMilestoneToCommand(targetProject.getProjectName(),
             milestone);
 
@@ -92,10 +95,10 @@ public class AddMilestoneToCommandTest {
     @Test
     public void equals() {
         AddMilestoneToCommand addMilestoneToCommandOne = new AddMilestoneToCommand(TypicalProjects
-            .PROJECT_ALICE.getProjectName(), new Milestone(new Description("Completed"),
+            .PROJECT_ALICE.getProjectName(), new Milestone(new MilestoneDescription("Completed"),
                  new PocketProjectDate("22/05/2019")));
         AddMilestoneToCommand addMilestoneToCommandTwo = new AddMilestoneToCommand(TypicalProjects
-            .PROJECT_BENSON.getProjectName(), new Milestone(new Description("Completed"),
+            .PROJECT_BENSON.getProjectName(), new Milestone(new MilestoneDescription("Completed"),
                  new PocketProjectDate("30/11/2019")));
 
         // same object -> returns true
@@ -103,7 +106,7 @@ public class AddMilestoneToCommandTest {
 
         // same values -> returns true
         AddMilestoneToCommand addMilestoneToCommandOneCopy = new AddMilestoneToCommand((TypicalProjects
-            .PROJECT_ALICE.getProjectName()), new Milestone(new Description("Completed"),
+            .PROJECT_ALICE.getProjectName()), new Milestone(new MilestoneDescription("Completed"),
                  new PocketProjectDate("22/05/2019")));
         assertTrue(addMilestoneToCommandOne.equals(addMilestoneToCommandOneCopy));
 
@@ -118,13 +121,13 @@ public class AddMilestoneToCommandTest {
 
         // different dates -> returns false
         AddMilestoneToCommand addMilestoneToCommandThree = new AddMilestoneToCommand(TypicalProjects
-            .PROJECT_ALICE.getProjectName(), new Milestone(new Description("Completed"),
+            .PROJECT_ALICE.getProjectName(), new Milestone(new MilestoneDescription("Completed"),
                  new PocketProjectDate("23/05/2019")));
         assertFalse(addMilestoneToCommandOne.equals(addMilestoneToCommandThree));
 
         //different description -> returns false
         AddMilestoneToCommand addMilestoneToCommandFour = new AddMilestoneToCommand(TypicalProjects
-            .PROJECT_ALICE.getProjectName(), new Milestone(new Description("Completed Everything"),
+            .PROJECT_ALICE.getProjectName(), new Milestone(new MilestoneDescription("Completed Everything"),
                  new PocketProjectDate("22/05/2019")));
         assertFalse(addMilestoneToCommandOne.equals(addMilestoneToCommandFour));
     }

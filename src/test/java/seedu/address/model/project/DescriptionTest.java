@@ -13,33 +13,33 @@ public class DescriptionTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Description(null));
+        Assert.assertThrows(NullPointerException.class, () -> new MilestoneDescription(null));
     }
 
     @Test
     public void constructor_invalidClient_throwsIllegalArgumentException() {
         String invalidDescription = ""; //empty string
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
+        Assert.assertThrows(IllegalArgumentException.class, () -> new MilestoneDescription(invalidDescription));
 
         String invaliddDescription = " "; //whitespace
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Description(invaliddDescription));
+        Assert.assertThrows(IllegalArgumentException.class, () -> new MilestoneDescription(invaliddDescription));
 
     }
 
     @Test
     public void isValidDescription() {
         // null client
-        Assert.assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
+        Assert.assertThrows(NullPointerException.class, () -> MilestoneDescription.isValidDescription(null));
 
         // invalid names
-        assertFalse(Description.isValidDescription("")); // empty string
-        assertFalse(Description.isValidDescription(" ")); // spaces only
+        assertFalse(MilestoneDescription.isValidDescription("")); // empty string
+        assertFalse(MilestoneDescription.isValidDescription(" ")); // spaces only
 
         //valid names
-        assertTrue(Description.isValidDescription("a")); //single letter
-        assertTrue(Description.isValidDescription("apple")); //word
-        assertTrue(Description.isValidDescription("apple pie")); //words
-        assertTrue(Description.isValidDescription("apple 9 completed")); //alphanumeric
-        assertTrue(Description.isValidDescription("apple & oranges")); //symbols
+        assertTrue(MilestoneDescription.isValidDescription("a")); //single letter
+        assertTrue(MilestoneDescription.isValidDescription("apple")); //word
+        assertTrue(MilestoneDescription.isValidDescription("apple pie")); //words
+        assertTrue(MilestoneDescription.isValidDescription("apple 9 completed")); //alphanumeric
+        assertTrue(MilestoneDescription.isValidDescription("apple & oranges")); //symbols
     }
 }

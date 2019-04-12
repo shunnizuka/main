@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditEmployeeCommand;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
 
@@ -32,7 +32,7 @@ public class EditEmployeeDescriptorBuilder {
      */
     public EditEmployeeDescriptorBuilder(Employee employee) {
         descriptor = new EditEmployeeCommand.EditEmployeeDescriptor();
-        descriptor.setName(employee.getName());
+        descriptor.setEmployeeName(employee.getEmployeeName());
         descriptor.setPhone(employee.getPhone());
         descriptor.setEmail(employee.getEmail());
         descriptor.setGitHubAccount(employee.getGithub());
@@ -40,10 +40,10 @@ public class EditEmployeeDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditEmployeeDescriptor} that we are building.
+     * Sets the {@code EmployeeName} of the {@code EditEmployeeDescriptor} that we are building.
      */
     public EditEmployeeDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setEmployeeName(new EmployeeName(name));
         return this;
     }
 

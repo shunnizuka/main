@@ -3,19 +3,15 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.util.Name;
+
 /**
  * represents the user of a user story
  */
-public class UserStoryUser {
+public class UserStoryUser extends Name {
 
     public static final String DEFAULT_USER = "Typical user";
     public static final String PREAMBLE_USER = "as a ";
-    public static final String MESSAGE_CONSTRAINTS = "User story should have a valid user.";
-
-    /**
-     * Only accept alphanumberic values as possible name values to be consistent with Client class.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private String user;
 
@@ -25,19 +21,12 @@ public class UserStoryUser {
      */
     public UserStoryUser(String user) {
         requireNonNull(user);
-        checkArgument(isValidUserStoryUser(user), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(user), MESSAGE_CONSTRAINTS);
         this.user = user;
     }
 
     public String getUser() {
         return this.user;
-    }
-
-    /**
-     * Returns true if a given string is a valid importance level.
-     */
-    public static boolean isValidUserStoryUser(String input) {
-        return input.matches(VALIDATION_REGEX);
     }
 
     @Override

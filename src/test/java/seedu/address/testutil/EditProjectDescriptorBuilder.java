@@ -4,8 +4,8 @@ import seedu.address.logic.commands.EditProjectInfoCommand;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 
 /**
@@ -35,7 +35,7 @@ public class EditProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code EmployeeName} of the {@code EditProjectDescriptor} that we are building.
      */
     public seedu.address.testutil.EditProjectDescriptorBuilder withName(String name) {
         descriptor.setProjectName(new ProjectName(name));
@@ -54,7 +54,7 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditProjectDescriptor} that we are building.
      */
     public seedu.address.testutil.EditProjectDescriptorBuilder withDescription(String description) {
-        descriptor.setDescription(new Description(description));
+        descriptor.setDescription(new ProjectDescription(description));
         return this;
     }
 

@@ -77,7 +77,7 @@ public class StatsUtil {
             }
         }
         int numTotalMilestones = project.getMilestones().size();
-        builder.append(String.format("deadline: %s|reached %d out of %d milestones",
+        builder.append(String.format("deadline: %s | reached %d out of %d milestones",
                 project.getDeadline().date, numMilestonesReached, numTotalMilestones));
         return builder.toString();
     }
@@ -87,11 +87,14 @@ public class StatsUtil {
      */
     public static String individualStatsString(Project project) {
         StringBuilder builder = new StringBuilder();
+        builder.append(String.format("Progress of %s:\n", project.getProjectName().projectName));
         builder.append(roughProgress(project) + "\n");
         builder.append("Milestones not reached yet:\n");
+        int count = 1;
         for (Milestone m: project.getMilestones()) {
             if (!m.reached()) {
-                builder.append(milestoneProgress(m) + "\n");
+                builder.append(1 + ". " + milestoneProgress(m) + "\n");
+                count++;
             }
         }
         return builder.toString();
@@ -107,7 +110,9 @@ public class StatsUtil {
                 numCompletedTasks++;
             }
         }
-        return String.format(milestone.getMilestoneDescription().description + ": %d out of %d tasks completed",
+        return String.format(milestone.getMilestoneDescription().description + " | " + "deadline: "
+                        + milestone.getDate().date
+                        + " | %d out of %d tasks completed.",
                 numCompletedTasks, numTask);
     }
 

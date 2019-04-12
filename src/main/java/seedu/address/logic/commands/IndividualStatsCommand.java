@@ -19,7 +19,6 @@ public class IndividualStatsCommand extends StatsCommand {
 
     public static final String MESSAGE_USAGE = StatsCommand.COMMAND_WORD
             + ": Displays A summary of the progress of a project.\n";
-    public static final String MESSAGE_STATS = "Progress of %s: " + "%s\n";
     private final ProjectName projectName;
     private final Index targetIndex;
 
@@ -50,7 +49,7 @@ public class IndividualStatsCommand extends StatsCommand {
         }
         String result = model.individualStats(targetProject);
 
-        return new CommandResult(String.format(MESSAGE_STATS, targetName.projectName, result));
+        return new CommandResult(String.format(result));
     }
 
     @Override

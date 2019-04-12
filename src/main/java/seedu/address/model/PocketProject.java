@@ -14,9 +14,9 @@ import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTask;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.project.UserStory;
-import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
@@ -178,6 +178,16 @@ public class PocketProject implements ReadOnlyPocketProject {
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
 
+        //if the project name is changed, update the project names in the employee
+        if (!target.getProjectName().equals(editedProject.getProjectName())) {
+            ObservableList<Employee> employeeListInProject = target.getEmployees();
+            employees.forEach((em) -> {
+                if (employeeListInProject.contains(em)) {
+                    em.updateProjectName(target, editedProject);
+                }
+            });
+        }
+
         projects.setProject(target, editedProject);
         indicateModified();
     }
@@ -256,8 +266,17 @@ public class PocketProject implements ReadOnlyPocketProject {
     /**
      *
      */
-    public void updateUserStory(Project targetProject, UserStory targetStory, UserStoryStatus newStatus) {
+    public void updateUserStory(Project targetProject, UserStory targetStory, Status newStatus) {
         projects.updateUserStory(targetProject, targetStory, newStatus);
+        indicateModified();
+    }
+
+    /**
+     * Updates status of {@code targetTask} in {@code targetMilestone} in {@code targetProject} to {@code newStatus}.
+     */
+    public void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                                  Status newStatus) {
+        projects.updateProjectTask(targetProject, targetMilestone, targetTask, newStatus);
         indicateModified();
     }
 

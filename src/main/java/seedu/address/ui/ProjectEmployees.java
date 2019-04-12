@@ -77,7 +77,7 @@ public class ProjectEmployees extends UiPart<Region> {
         }
 
         public String getName() {
-            return employee.getName().fullName;
+            return employee.getEmployeeName().fullName;
         }
 
         public String getGithub() {

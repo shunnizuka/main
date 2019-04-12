@@ -7,8 +7,8 @@ import java.util.Set;
 
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.skill.Skill;
@@ -24,7 +24,7 @@ public class EmployeeBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_GITHUB = "aliceballer";
 
-    private Name name;
+    private EmployeeName employeeName;
     private Phone phone;
     private Email email;
     private GitHubAccount github;
@@ -32,7 +32,7 @@ public class EmployeeBuilder {
     private List<ProjectName> projectNames;
 
     public EmployeeBuilder() {
-        name = new Name(DEFAULT_NAME);
+        employeeName = new EmployeeName(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         github = new GitHubAccount(DEFAULT_GITHUB);
@@ -44,7 +44,7 @@ public class EmployeeBuilder {
      * Initializes the EmployeeBuilder with the data of {@code employeeToCopy}.
      */
     public EmployeeBuilder(Employee employeeToCopy) {
-        name = employeeToCopy.getName();
+        employeeName = employeeToCopy.getEmployeeName();
         phone = employeeToCopy.getPhone();
         email = employeeToCopy.getEmail();
         github = employeeToCopy.getGithub();
@@ -53,10 +53,10 @@ public class EmployeeBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Employee} that we are building.
+     * Sets the {@code EmployeeName} of the {@code Employee} that we are building.
      */
     public EmployeeBuilder withName(String name) {
-        this.name = new Name(name);
+        this.employeeName = new EmployeeName(name);
         return this;
     }
 
@@ -100,7 +100,7 @@ public class EmployeeBuilder {
         return this;
     }
     public Employee build() {
-        return new Employee(name, phone, email, github, skills, projectNames);
+        return new Employee(employeeName, phone, email, github, skills, projectNames);
     }
 
 }

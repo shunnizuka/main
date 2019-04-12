@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Description;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.SortedUserStoryList;
 import seedu.address.model.project.UniqueMilestoneList;
@@ -145,14 +145,14 @@ class JsonAdaptedProject {
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Description.class.getSimpleName()));
+                ProjectDescription.class.getSimpleName()));
         }
 
-        final Description modelDescription;
-        if (Description.isValidDescription(description)) {
-            modelDescription = new Description(description);
+        final ProjectDescription modelDescription;
+        if (ProjectDescription.isValidDescription(description)) {
+            modelDescription = new ProjectDescription(description);
         } else {
-            modelDescription = new Description();
+            modelDescription = new ProjectDescription();
         }
 
         if (startDate == null) {

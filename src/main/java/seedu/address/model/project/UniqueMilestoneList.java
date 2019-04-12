@@ -36,7 +36,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
      */
     public boolean contains(Milestone toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameMilestone);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -78,6 +78,17 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
         if (!internalList.remove(toRemove)) {
             throw new MilestoneNotFoundException();
         }
+    }
+
+    /**
+     * Replace the {@code targetMilestone} in the list with the new {@code milestone}
+     */
+    public void setMilestone(Milestone targetMilestone, Milestone milestone) {
+        if (!this.contains(targetMilestone)) {
+            throw new MilestoneNotFoundException();
+        }
+        remove(targetMilestone);
+        add(milestone);
     }
 
     public void setMilestones(UniqueMilestoneList replacement) {
@@ -128,7 +139,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
     private boolean milestonesAreUnique(List<Milestone> milestones) {
         for (int i = 0; i < milestones.size() - 1; i++) {
             for (int j = i + 1; j < milestones.size(); j++) {
-                if (milestones.get(i).isSameMilestone(milestones.get(j))) {
+                if (milestones.get(i).equals(milestones.get(j))) {
                     return false;
                 }
             }

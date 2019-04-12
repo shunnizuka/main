@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 /**
- * The class that it used to present all date objects use throughout the application
+ * The class that it used to present all date objects used throughout the application
  */
 
 public class PocketProjectDate extends CalendarDate {

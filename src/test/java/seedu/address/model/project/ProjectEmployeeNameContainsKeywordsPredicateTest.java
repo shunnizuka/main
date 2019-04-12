@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.ProjectBuilder;
 
-public class ProjectNameContainsKeywordsPredicateTest {
+public class ProjectEmployeeNameContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {

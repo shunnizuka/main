@@ -7,10 +7,11 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateCommand;
+import seedu.address.logic.commands.UpdateProjectTaskCommand;
 import seedu.address.logic.commands.UpdateUserStoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.UserStoryStatus;
+import seedu.address.model.project.Status;
 
 /**
  * Parses input arguments and creates a new UpdateCommand object
@@ -21,7 +22,10 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             + "(?<keyword>userstory\\s|projecttask\\s)(?<arguments>.*)");
 
     private static final Pattern UPDATE_USER_STORY_FORMAT = Pattern.compile("(?<index>\\d)\\s+"
-            + "(?<status>ongoing|on hold|complete)");
+            + "(?<status>ongoing|on hold|complete)", Pattern.CASE_INSENSITIVE);
+
+    private static final Pattern UPDATE_PROJECT_TASK_FORMAT = Pattern.compile("(?<milestone>\\d)\\s+"
+            + "(?<task>\\d)\\s+(?<status>ongoing|on hold|complete)", Pattern.CASE_INSENSITIVE);
 
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateCommand
@@ -57,7 +61,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
 
                 final String storyIndex = storyMatcher.group("index");
                 final String newStatus = storyMatcher.group("status");
-                final UserStoryStatus status = ParserUtil.parseStoryStatus(newStatus);
+                final Status status = ParserUtil.parseStatus(newStatus);
                 final Index index = ParserUtil.parseIndex(storyIndex);
 
                 return new UpdateUserStoryCommand(projectName, index, status);
@@ -65,6 +69,31 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             } catch (ParseException pe) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateUserStoryCommand.MESSAGE_USAGE), pe);
+            }
+        } else if (keyword.equals(UpdateProjectTaskCommand.UPDATE_PROJECTTASK_KEYWORD)) {
+            try {
+                String trimmedArg = arguments.trim();
+                Matcher taskMatcher = UPDATE_PROJECT_TASK_FORMAT.matcher(trimmedArg);
+
+                if (!taskMatcher.matches()) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateProjectTaskCommand.MESSAGE_USAGE)
+                    );
+                }
+
+                final String milestone = taskMatcher.group("milestone");
+                final String task = taskMatcher.group("task");
+                final String newStatus = taskMatcher.group("status");
+
+                final Index milestoneIndex = ParserUtil.parseIndex(milestone);
+                final Index taskIndex = ParserUtil.parseIndex(task);
+                final Status status = ParserUtil.parseStatus(newStatus);
+
+                return new UpdateProjectTaskCommand(projectName, milestoneIndex, taskIndex, status);
+
+            } catch (ParseException pe) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateProjectTaskCommand.MESSAGE_USAGE), pe);
             }
         } else {
             throw new ParseException (

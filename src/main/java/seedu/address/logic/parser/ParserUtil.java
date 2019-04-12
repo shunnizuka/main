@@ -10,20 +10,22 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.project.Client;
-import seedu.address.model.project.Description;
+import seedu.address.model.project.MilestoneDescription;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.ProjectTaskName;
+import seedu.address.model.project.ProjectTaskDescription;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
 import seedu.address.model.project.UserStoryReason;
-import seedu.address.model.project.UserStoryStatus;
 import seedu.address.model.project.UserStoryUser;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.CalendarDate;
+import seedu.address.model.util.Description;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
@@ -53,30 +55,30 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code event} is invalid.
      */
-    public static Description parseMilestoneDescription(String event) throws ParseException {
+    public static MilestoneDescription parseMilestoneDescription(String event) throws ParseException {
         requireNonNull(event);
         String trimmedMilestoneDesc = event.trim();
 
         if (!Description.isValidDescription(trimmedMilestoneDesc)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Description(trimmedMilestoneDesc);
+        return new MilestoneDescription(trimmedMilestoneDesc);
     }
 
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code EmployeeName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static EmployeeName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!EmployeeName.isValidName(trimmedName)) {
+            throw new ParseException(EmployeeName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new EmployeeName(trimmedName);
     }
 
     /**
@@ -196,18 +198,18 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Description parseDescription(String description) throws ParseException {
+    public static ProjectDescription parseDescription(String description) throws ParseException {
 
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Description(trimmedDescription);
+        return new ProjectDescription(trimmedDescription);
     }
 
     /**
-     * Parses a {@code String name} into a {@code Project Name}.
+     * Parses a {@code String name} into a {@code Project ProjectName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code project name} is invalid.
@@ -230,7 +232,7 @@ public class ParserUtil {
     public static UserStoryUser parseStoryUser(String user) throws ParseException {
         requireNonNull(user);
         String trimmedUser = user.trim();
-        if (!UserStoryUser.isValidUserStoryUser(trimmedUser)) {
+        if (!UserStoryUser.isValidName(trimmedUser)) {
             throw new ParseException(UserStoryUser.MESSAGE_CONSTRAINTS);
         }
         return new UserStoryUser(trimmedUser);
@@ -273,32 +275,32 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into a {@code UserStoryStatus status}.
+     * Parses a {@code String status} into a {@code Status status}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code status} is invalid.
      */
-    public static UserStoryStatus parseStoryStatus(String status) throws ParseException {
+    public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (!UserStoryStatus.isValidStoryStatus(trimmedStatus)) {
-            throw new ParseException(UserStoryStatus.MESSAGE_CONSTRAINTS);
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
-        return new UserStoryStatus(trimmedStatus);
+        return new Status(trimmedStatus);
     }
 
     /**
-     * Parses a {@code String name} into a {@code ProjectTask Name}.
+     * Parses a {@code String name} into a {@code ProjectTaskDescription}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static ProjectTaskName parseProjectTaskName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!ProjectTaskName.isValidTaskName(trimmedName)) {
-            throw new ParseException(ProjectTaskName.MESSAGE_CONSTRAINTS);
+    public static ProjectTaskDescription parseProjectTaskDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedName = description.trim();
+        if (!ProjectTaskDescription.isValidDescription(trimmedName)) {
+            throw new ParseException(ProjectTaskDescription.MESSAGE_CONSTRAINTS);
         }
-        return new ProjectTaskName(trimmedName);
+        return new ProjectTaskDescription(trimmedName);
     }
 }
