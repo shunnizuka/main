@@ -233,15 +233,22 @@ Deletes the second project shown in the most recent displayed list of projects.
 
 === Listing all employees or projects in application : `list`
 ==== List all employees in the application: `list employees`
-Shows a list of all employees in the employee list.
+You can list all the employees in the employee list.
 
-Format: `list employees`
+Format: `list employee`
+
+Refer to the screenshot below for an example.
+
+image::list-employee-ui.png[width="280"]
 
 ==== List all projects in the application: `list projects`
-Shows a list of all projects in the project list.
+You can list all the projects in the projects list.
 
-Format: `list projects`
+Format: `list project`
 
+Refer to the screenshot below for an example.
+
+image::list-project-ui.png[width="280"]
 
 === Edit an employee/project in the application : `edit`
 
