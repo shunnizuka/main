@@ -93,7 +93,7 @@ public class StatsUtil {
         int count = 1;
         for (Milestone m: project.getMilestones()) {
             if (!m.reached()) {
-                builder.append(1 + ". " + milestoneProgress(m) + "\n");
+                builder.append(count + ". " + milestoneProgress(m) + "\n");
                 count++;
             }
         }
