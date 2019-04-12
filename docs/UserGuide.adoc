@@ -233,7 +233,7 @@ Deletes project "Apollo" from project list.
 Deletes the second project shown in the most recent displayed list of projects.
 
 === Listing all employees or projects in application : `list`
-==== List all employees in the application: `list employees`
+==== List all employees in the application: `list employee`
 You can list all the employees in the employee list.
 
 Format: `list employee`
@@ -243,7 +243,7 @@ You can refer to the screenshot below for an example.
 .Employees list showing a list of all employees
 image::list-employee-ui.png[width="280"]
 
-==== List all projects in the application: `list projects`
+==== List all projects in the application: `list project`
 You can list all the projects in the projects list.
 
 Format: `list project`
@@ -535,6 +535,10 @@ Examples:
 
 image:ug-lightbulb.png[width="50"]
 You can input the importance level or the actual user story in any order.
+
+image:ug-lightbulb.png[width="50"]
+A valid user story can also be simply: `as a ... i want to...`.
+E.g `as a user i want to log in` is a valid user story.
 
 Upon a successful addition of a user story, you should be able to see the new user story in the list of user stories. You may need to toggle the buttons to get to the correct panel.
 
