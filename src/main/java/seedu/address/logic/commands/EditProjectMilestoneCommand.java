@@ -17,6 +17,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UniqueProjectTaskList;
 import seedu.address.model.project.exceptions.DateNotInRangeException;
+import seedu.address.model.project.exceptions.DuplicateMilestoneException;
 import seedu.address.model.util.PocketProjectDate;
 
 /**
@@ -76,11 +77,15 @@ public class EditProjectMilestoneCommand extends EditProjectCommand {
             throw new CommandException(Messages.INVALID_MILESTONE_DATE);
         }
 
-        if (!milestoneToEdit.equals(editedMilestone) && milestonesList.contains(editedMilestone)) {
+        if (!milestoneToEdit.isSameMilestone(editedMilestone) && milestonesList.contains(editedMilestone)) {
             throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
         }
 
-        projectToEdit.setMilestone(milestoneToEdit, editedMilestone);
+        try {
+            projectToEdit.setMilestone(milestoneToEdit, editedMilestone);
+        } catch (DuplicateMilestoneException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_MILESTONE);
+        }
 
         model.commitPocketProject();
 

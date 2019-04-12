@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.commands.AddEmployeeCommand;
-import seedu.address.logic.commands.AddTaskToCommand;
+import seedu.address.logic.commands.AddProjectTaskToCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEmployeeCommand;
@@ -185,10 +185,10 @@ public class PocketProjectParserTest {
     @Test
     public void parseCommand_addTaskTo() throws Exception {
         final String taskName = "Do something";
-        AddTaskToCommand command = (AddTaskToCommand) parser.parseCommand(AddTaskToCommand.COMMAND_WORD + " "
-            + TYPICAL_PROJECT_NAME_1 + " " + AddTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + PREFIX_NAME + taskName
+        AddProjectTaskToCommand command = (AddProjectTaskToCommand) parser.parseCommand(AddProjectTaskToCommand.COMMAND_WORD + " "
+            + TYPICAL_PROJECT_NAME_1 + " " + AddProjectTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + PREFIX_NAME + taskName
             + " " + PREFIX_MILESTONE + INDEX_FIRST_PROJECT_MILESTONE.getOneBased());
-        assertEquals(new AddTaskToCommand(TYPICAL_PROJECT_NAME_1, PROJECT_TASK_DO_SOMETHING,
+        assertEquals(new AddProjectTaskToCommand(TYPICAL_PROJECT_NAME_1, PROJECT_TASK_DO_SOMETHING,
             INDEX_FIRST_PROJECT_MILESTONE), command);
     }
 

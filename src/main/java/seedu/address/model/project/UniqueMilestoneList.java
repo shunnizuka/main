@@ -36,7 +36,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
      */
     public boolean contains(Milestone toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameMilestone);
     }
 
     /**
@@ -86,6 +86,9 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
     public void setMilestone(Milestone targetMilestone, Milestone milestone) {
         if (!this.contains(targetMilestone)) {
             throw new MilestoneNotFoundException();
+        }
+        if (contains(milestone)) {
+            throw new DuplicateMilestoneException();
         }
         remove(targetMilestone);
         add(milestone);
