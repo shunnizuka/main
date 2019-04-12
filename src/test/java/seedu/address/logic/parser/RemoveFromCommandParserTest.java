@@ -51,5 +51,7 @@ public class RemoveFromCommandParserTest {
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveProjectTaskFromCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "Project Apollo projecttask 1 0",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveProjectTaskFromCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "Project Apollo projecttask 1 a",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemoveProjectTaskFromCommand.MESSAGE_USAGE));
     }
 }
