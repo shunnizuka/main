@@ -317,9 +317,14 @@ Examples:
 
 * `edit project Apollo userstory 2 as a manager i want to see my employee's skills so that i can assign them relevant work`
 
-* `edit project Project Davis userstory 1 as a user i want to be able to login`
+* `edit project Apollo userstory 1 as a user i want to be able to login`
 
+* `edit project Apollo userstory 1 i/2`
 
+Refer to the screenshot below to see how the fields of the user story has been edited when the command `edit project Apollo userstory 1 i/2` is executed.
+
+.Before and after comparisons of the user story's importance level
+image::edit-user-story-ui.png[]
 
 
 //tag::find[]
