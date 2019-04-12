@@ -590,10 +590,10 @@ Format: `removefrom PROJECT_NAME userstory INDEX`
 Examples:
 
 * `view project Apollo` +
-`removefrom Apollo userstory 1` +
-Removes the user story at the 1st position of the displayed list of user stories from Project Apollo.
+`removefrom Apollo userstory 2` +
+Removes the user story at the 2nd position of the displayed list of user stories from Project Apollo.
 
-Refer to the diagram below to see the changes in the user stories list.
+Refer to the diagram below to see the changes in the user stories list after the command above has been executed.
 
 .Before and after comparison of removing a user story
 image::removefrom-user-story-ui.png[]
