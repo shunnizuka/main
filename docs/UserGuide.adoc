@@ -170,7 +170,7 @@ through the course of the User Guide.
 
 [[Features]]
 == Features
-The following section will outline the various features and commands available to the user and will
+The following section will outline the various features and commands available to you and will
 outline how the various commands can be used through examples and illustrations.
 
 === Viewing help : `help`
@@ -187,13 +187,119 @@ or click `Help` which can be found on the menu bar at the top left hand corner o
 .*Accessing help from menu bar*
 image::ug-helpcommand.png[width="800"]
 
-=== Use of dates in Pocket Project
+=== Date Feature in Pocket Project
 
+In this application, a few commands involve the use of calendar dates. Examples of such
+commands include the setting of start dates, deadlines and completion dates to projects and the setting of
+completion dates to projects, milestones and tasks.
 
+Whenever a particular command requires a date field, you can choose to use either of the
+below mentioned formats.
 
-=== Add an employee or project to the application: `add`
+==== Fixed Date Format
 
-==== Add an employee to the application: `add employee`
+You can input a date using the fixed date format.
+
+Format: `DD/MM/YYYY`
+
+Examples:
+
+. `23/12/2019`
+. `09/03/2020`
+
+|===
+|image:ug-exclamation.png[width="40"]| The fixed date format follows the required `DD/MM/YYYY` format
+strictly and so it requires `DD` for the day field and `MM` for the month field even if the value is only
+single number. For example, `09/04/2023` is a valid input for the fixed date format but `9/4/2023` is not.
+|===
+
+==== Flexible Date Format
+
+Alternatively, you can also input a date using the flexible date format. The flexible date format
+allows you to give an input with relation to the current date. It supports the below mentioned 3 formats.
+
+The 3 flexible date formats will also be demonstrated with screenshots using the of the `add project` command which requires
+a `s/START_DATE` and a `d/DEADLINE`. More details will be expounded on later in
+//TODO link the shit
+
+===== Choosing a date relative to the current day
+
+You can key in `today`,`tomorrow` and `yesterday` to get today's, tomorrow's and
+yesterday's date respectively.
+
+Format: `today/tomorrow/yesterday`
+
+You can refer to the screenshots of the program below for a clearer picture. Assume that the
+current date is 12 April 2019 (12/04/2019).
+
+.*Using "today/tomorrow/yesterday" as a flexible date input*
+image::ug-tdytmryst.png[]
+
+===== Choosing a date relative to the current week
+You can also aim to choose a date with relation to the current week.
+
+Format: `this/next/last week DAY_OF_WEEK`
+
+|===
+|image:ug-notepadpencil.png[width="40"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
+corresponds to Monday to Sunday respectively.
+|===
+
+Examples:
+
+. `this week 4` +
+This would select the current week's Thursday as the target date.
+. `next week 7` +
+This would select next week's Sunday as the target date.
+. `last week 2` +
+This would select last week's Tuesday as the target date.
+
+You can refer to the screenshots of the program below for a clearer picture. Assume that the
+current date is 12 April 2019 (12/04/2019), Friday.
+
+.*Using "this/next/last week DAY_OF_WEEK" as a flexible date input*
+image::ug-dateweek.png[]
+
+===== Choosing a date relative to the current month
+You can also aim to choose a date with relation to the current week.
+
+Format: `this/next/last month DAY_OF_MONTH`
+
+|===
+|image:ug-exclamation.png[width="40"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
+the maximum number of days of a particular month in the chosen year.
+|===
+
+Examples:
+
+. `this month 24` +
+This would select the current month's 24th day as the target date.
+. `next month 17` +
+This would select next month's 17th day as the target date.
+. `last month 6` +
+This would select last month's 6th day as the target date.
+
+You can refer to the screenshots of the program below for a clearer picture. Assume that the
+current date is 12 April 2019 (12/04/2019), Friday.
+
+.*Using "this/next/last month DAY_OF_MONTH" as a flexible date input*
+image::ug-monthweek.png[]
+
+|===
+|image:ug-notepadpencil.png[width="40"]|You do not need to specify which format you are planning to use and the application
+is able to differentiate it based on the input received.
+|===
+
+|===
+|image:ug-lightbulb.png[width="40"]|The application will also automatically help to check the validity of the target
+date. Should you accidentally target an invalid dates such as `31/04/2019`, it will be rejected as the month of April
+only has 30 days. Additionally, leap years are also considered. So, as 2020 is a leap year, `29/02/2020` is considered a valid input but `29/02/2019` will be rejected
+as 2019 is not a leap year.
+|===
+
+=== Adding an employee or project to the application: `add`
+
+==== Adding an employee to the application: `add employee`
 
 You can add an employee to the Pocket Project when a new employee joins the company/team
 so that the key details of the employee are stored in the application and projects can be assigned to
