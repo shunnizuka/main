@@ -49,7 +49,7 @@ public class IndividualStatsCommand extends StatsCommand {
         }
         String result = model.individualStats(targetProject);
 
-        return new CommandResult(String.format(result));
+        return new CommandResult(result);
     }
 
     @Override
