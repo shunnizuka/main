@@ -124,7 +124,6 @@ public class EditEmployeeCommand extends EditCommand {
         private Email email;
         private GitHubAccount gitHubAccount;
         private Set<Skill> skills;
-        private List<ProjectName> currentProjects;
 
         public EditEmployeeDescriptor() {}
 
