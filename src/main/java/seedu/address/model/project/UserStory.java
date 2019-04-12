@@ -102,14 +102,11 @@ public class UserStory implements Comparable<UserStory> {
     }
 
     /**
-     * Utility method to sort user story by the user's name. If the two strings are equal then this method returns false
+     * Utility method to sort user story by the user's name. If the two strings are equal then this method returns 0.
+     * Else if the other string is lexicographically smaller, then return 1, else return -1.
      */
-    public boolean isUserLexicographicallySmaller(UserStory other) {
-        if (getUserStoryUser().compareTo(other.getUserStoryUser()) < 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public int isUserLexicographicallySmaller(UserStory other) {
+        return getUserStoryUser().compareTo(other.getUserStoryUser());
     }
 
     @Override
@@ -119,11 +116,7 @@ public class UserStory implements Comparable<UserStory> {
         } else if (other.isHigherImportance(this)) {
             return 1;
         } else {
-            if (this.isUserLexicographicallySmaller(other)) {
-                return -1;
-            } else {
-                return 1;
-            }
+            return this.isUserLexicographicallySmaller(other);
         }
     }
 
