@@ -172,8 +172,12 @@ public class EditProjectUserStoryCommand extends EditProjectCommand {
             return Optional.ofNullable(function);
         }
 
-        public void setReason(UserStoryReason reason) {
-            this.reason = reason;
+        public void setReason(UserStoryReason newReason) {
+            if (newReason != null && newReason.getReason().equals("nil")) {
+                this.reason = new UserStoryReason(UserStoryReason.DEFAULT_REASON);
+            } else {
+                this.reason = newReason;
+            }
         }
 
         public Optional<UserStoryReason> getReason() {
