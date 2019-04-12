@@ -425,7 +425,7 @@ Step 2: `delete employee 1` - deletes Bernice Yu who is the 1st employee in the 
 
 ==== View details of an employee: `view employee`
 
-Returns a view of details of the chosen employee.
+You can view the details of an employee.
 
 Format: `view employee EMPLOYEE_INDEX`
 
@@ -435,20 +435,31 @@ will also be loaded.
 
 Examples:
 
-* `list employees` +
-`view employee 3` +
-Displays details of the employee at index 3
+* `list employee` +
+`view employee 1` +
+Displays details of the employee at index 1 of the employees list
+
+Refer to the screenshot below to see the changes in the screen after a `view employee 1` command is executed.
+
+.Details of the employee at index 1 of the employees list is shown
+image::view-employee-ui.png[]
 
 ==== View details of a project: `view project`
-Returns the list of milestones and employees in a project.
 
-Format: `view project PROJECT_NAME`
+You can view the details of a project.
+
+Format: `view project PROJECT_INDEX`
 
 Examples:
 
-* `view project Apollo` +
-Displays details (client, deadline, employees, milestones) of project “Apollo”.
+* `list project` +
+`view project 1` +
+Displays details of the project at index 1 of the projects list.
 
+Refer to the screenshot below to see the changes in the screen after a `view project 1` command is executed.
+
+.Details of the project at index 1 of the projects list is shown
+image::view-project-ui.png[]
 
 === Add an employee/milestone/user story to a project : `addto`
 
