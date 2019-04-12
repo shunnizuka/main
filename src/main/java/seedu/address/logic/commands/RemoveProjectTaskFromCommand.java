@@ -27,7 +27,7 @@ public class RemoveProjectTaskFromCommand extends RemoveFromCommand {
             + "Parameters: MILESTONE_INDEX PROJECT_TASK_INDEX(must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " Apollo projecttask 1 1";
 
-    public static final String MESSAGE_REMOVE_PROJECTTASK_SUCCESS = "Removed project task: %1$s from %2$s";
+    public static final String MESSAGE_REMOVE_PROJECTTASK_SUCCESS = "Removed %1$s from milestone %2$d in %3$s";
 
     private final Index targetMilestoneIndex;
     private final Index targetTaskIndex;
@@ -63,7 +63,8 @@ public class RemoveProjectTaskFromCommand extends RemoveFromCommand {
 
         model.removeProjectTaskFrom(targetProject, targetMilestone, targetTask);
         model.commitPocketProject();
-        return new CommandResult(MESSAGE_REMOVE_PROJECTTASK_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_REMOVE_PROJECTTASK_SUCCESS, targetTask,
+            targetMilestoneIndex.getOneBased(), targetProject.getProjectName()));
     }
 
     @Override
