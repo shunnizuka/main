@@ -185,9 +185,10 @@ public class PocketProjectParserTest {
     @Test
     public void parseCommand_addTaskTo() throws Exception {
         final String taskName = "Do something";
-        AddProjectTaskToCommand command = (AddProjectTaskToCommand) parser.parseCommand(AddProjectTaskToCommand.COMMAND_WORD + " "
-            + TYPICAL_PROJECT_NAME_1 + " " + AddProjectTaskToCommand.ADD_PROJECTTASK_KEYWORD + " " + PREFIX_NAME + taskName
-            + " " + PREFIX_MILESTONE + INDEX_FIRST_PROJECT_MILESTONE.getOneBased());
+        AddProjectTaskToCommand command = (AddProjectTaskToCommand) parser.parseCommand(
+            AddProjectTaskToCommand.COMMAND_WORD + " "
+            + TYPICAL_PROJECT_NAME_1 + " " + AddProjectTaskToCommand.ADD_PROJECTTASK_KEYWORD + " "
+            + PREFIX_NAME + taskName + " " + PREFIX_MILESTONE + INDEX_FIRST_PROJECT_MILESTONE.getOneBased());
         assertEquals(new AddProjectTaskToCommand(TYPICAL_PROJECT_NAME_1, PROJECT_TASK_DO_SOMETHING,
             INDEX_FIRST_PROJECT_MILESTONE), command);
     }

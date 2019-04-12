@@ -68,12 +68,12 @@ public class AddProjectTaskToCommandTest {
     @Test
     public void equals() {
         ProjectTask newTask = new ProjectTask(new ProjectTaskDescription("Testing"));
-        final AddProjectTaskToCommand standardCommand = new AddProjectTaskToCommand(TypicalProjects.PROJECT_ALICE.getProjectName(),
-                newTask, Index.fromOneBased(1));
+        final AddProjectTaskToCommand standardCommand = new AddProjectTaskToCommand(
+                TypicalProjects.PROJECT_ALICE.getProjectName(), newTask, Index.fromOneBased(1));
 
         // same values -> returns true
-        AddProjectTaskToCommand commandWithSameValues = new AddProjectTaskToCommand(TypicalProjects.PROJECT_ALICE.getProjectName(),
-                newTask, Index.fromOneBased(1));
+        AddProjectTaskToCommand commandWithSameValues = new AddProjectTaskToCommand(
+                TypicalProjects.PROJECT_ALICE.getProjectName(), newTask, Index.fromOneBased(1));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true

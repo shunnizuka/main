@@ -88,8 +88,8 @@ public class AddProjectTaskToCommandSystemTest extends PocketProjectSystemTest {
      * Executes the {@code AddProjectTaskToCommand} that adds {@code task} to the model and asserts that the,<br>
      * 1. Command box displays an empty string.<br>
      * 2. Command box has the default style class.<br>
-     * 3. Result display box displays the success message of executing {@code AddProjectTaskToCommand} with the details of
-     * {@code task}.<br>
+     * 3. Result display box displays the success message of executing {@code AddProjectTaskToCommand} with the details
+     * of {@code task}.<br>
      * 4. {@code Storage} equal to the corresponding components in
      * the current model added with {@code task}.<br>
      * 5. Browser url and selected card remain unchanged.<br>
@@ -106,8 +106,8 @@ public class AddProjectTaskToCommandSystemTest extends PocketProjectSystemTest {
 
     /**
      * Performs the same verification as {@code assertCommandSuccess(Project, Milestone, ProjectTask)}.
-     * Executes {@code command} instead. @see AddProjectTaskToCommandSystemTest#assertCommandSuccess(Project, Milestone, Index,
-     * ProjectTask)
+     * Executes {@code command} instead. @see AddProjectTaskToCommandSystemTest#assertCommandSuccess(Project, Milestone,
+     * Index, ProjectTask)
      */
 
     private void assertCommandSuccess(String command, Project targetProject, Milestone milestone, Index index,
