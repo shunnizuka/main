@@ -16,7 +16,7 @@ import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
 
 /**
- * Adds a task to a project milestone.
+ * Updates the status of an user story.
  */
 public class UpdateUserStoryCommand extends UpdateCommand {
 

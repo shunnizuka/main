@@ -14,7 +14,7 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UserStory;
 
 /**
- * Removes a milestone identified using it's displayed index from a project in the address book.
+ * Removes an user story identified using it's displayed index from a project in the Pocket Project.
  */
 
 public class RemoveUserStoryFromCommand extends RemoveFromCommand {

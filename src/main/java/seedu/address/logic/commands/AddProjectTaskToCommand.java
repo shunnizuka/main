@@ -19,7 +19,7 @@ import seedu.address.model.project.exceptions.DuplicateProjectTaskException;
 /**
  * Adds a task to a project milestone.
  */
-public class AddTaskToCommand extends AddToCommand {
+public class AddProjectTaskToCommand extends AddToCommand {
 
     public static final String ADD_PROJECTTASK_KEYWORD = "projecttask";
 
@@ -34,7 +34,7 @@ public class AddTaskToCommand extends AddToCommand {
     private final ProjectName targetProjectName;
     private final ProjectTask taskToAdd;
 
-    public AddTaskToCommand(ProjectName targetProject, ProjectTask task, Index index) {
+    public AddProjectTaskToCommand(ProjectName targetProject, ProjectTask task, Index index) {
         requireAllNonNull(targetProject, task, index);
         this.targetIndex = index;
         this.taskToAdd = task;
@@ -79,12 +79,12 @@ public class AddTaskToCommand extends AddToCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddTaskToCommand)) {
+        if (!(other instanceof AddProjectTaskToCommand)) {
             return false;
         }
 
         // state check
-        AddTaskToCommand otherCommand = (AddTaskToCommand) other;
+        AddProjectTaskToCommand otherCommand = (AddProjectTaskToCommand) other;
         return targetIndex.equals(otherCommand.targetIndex)
             && targetProjectName.equals(otherCommand.targetProjectName)
             && taskToAdd.equals(otherCommand.taskToAdd); // state check

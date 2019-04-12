@@ -122,7 +122,7 @@ public class EditProjectMilestoneCommandTest {
             .getProjectName(), INDEX_SECOND_PROJECT_MILESTONE, descriptor);
 
         assertCommandFailure(editProjectMilestoneCommand, model, commandHistory,
-            EditProjectMilestoneCommand.MESSAGE_DUPLICATE_MILESTONE);
+            Messages.MESSAGE_DUPLICATE_MILESTONE);
     }
 
     @Test

@@ -113,7 +113,7 @@ public class EditProjectMilestoneCommandSystemTest extends PocketProjectSystemTe
             + EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD + " " + INDEX_FIRST_PROJECT_MILESTONE.getOneBased()
             + " m/" + TypicalMilestones.TYPICAL_MILESTONE_END.getMilestoneDescription() + " d/"
             + TypicalMilestones.TYPICAL_MILESTONE_END.getDate();
-        assertCommandFailure(command, EditProjectMilestoneCommand.MESSAGE_DUPLICATE_MILESTONE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_MILESTONE);
 
     }
 

@@ -26,8 +26,7 @@ public class TypicalMilestones {
     public static final Milestone TYPICAL_MILESTONE_END = new MilestoneBuilder()
         .withDescription("The project completes")
         .withDeadline("12/12/2012")
-        .withProjectTasks(Arrays.asList(TypicalProjectTasks.PROJECT_TASK_DO_SOMETHING,
-                TypicalProjectTasks.PROJECT_TASK_COMPLETED))
+        .withProjectTasks(Arrays.asList(TypicalProjectTasks.PROJECT_TASK_COMPLETED))
         .build();
 
     public static final Milestone TYPICAL_MILESTONE_COMPLETED_UG = new MilestoneBuilder()
