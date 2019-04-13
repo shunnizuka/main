@@ -73,9 +73,11 @@ public class UpdateProjectTaskCommandTest {
     @Test
     public void execute_invalidTaskIndexValidProjectNameValidMilestoneIndex_throwsCommandException() {
         Project targetProject = model.getProjectWithName(PROJECT_ALICE.getProjectName());
-        Index outOfBoundIndex = Index.fromOneBased(targetProject.getMilestones().size() + 1);
-        UpdateProjectTaskCommand updateProjectTaskCommand = new UpdateProjectTaskCommand(targetProject.getProjectName(),
-                INDEX_FIRST_PROJECT_MILESTONE, outOfBoundIndex, STATUS_ONGOING);
+        Index milestoneIndex = INDEX_FIRST_PROJECT_MILESTONE;
+        Milestone targetMilestone = targetProject.getMilestones().get(milestoneIndex.getZeroBased());
+        Index outOfBoundIndex = Index.fromOneBased(targetMilestone.getProjectTaskList().size() + 1);
+        UpdateProjectTaskCommand updateProjectTaskCommand = new UpdateProjectTaskCommand(
+                targetProject.getProjectName(), milestoneIndex, outOfBoundIndex, STATUS_ONGOING);
 
         assertCommandFailure(updateProjectTaskCommand, model, commandHistory,
                 Messages.MESSAGE_INVALID_PROJECTTASK_DISPLAYED_INDEX);

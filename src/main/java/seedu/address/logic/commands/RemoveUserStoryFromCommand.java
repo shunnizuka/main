@@ -25,7 +25,7 @@ public class RemoveUserStoryFromCommand extends RemoveFromCommand {
             + ": removes the user story identified by the index number"
             + " used in the displayed user stories list from the project.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " Apollo milestone 1";
+            + "Example: " + COMMAND_WORD + " Apollo userstory 1";
 
     public static final String MESSAGE_REMOVE_USERSTORY_SUCCESS = "Removed user story: %1$s from %2$s";
 

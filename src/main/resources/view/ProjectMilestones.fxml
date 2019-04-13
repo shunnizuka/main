@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fill="#127a6f" layoutX="240.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MILESTONES" wrappingWidth="217.51953125">
+      <Text fill="#127a6f" layoutX="237.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MILESTONES &amp; TASKS" textAlignment="CENTER" wrappingWidth="242.31951904296875">
          <font>
             <Font size="24.0" />
          </font></Text>
