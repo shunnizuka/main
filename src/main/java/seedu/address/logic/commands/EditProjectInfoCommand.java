@@ -67,8 +67,12 @@ public class EditProjectInfoCommand extends EditProjectCommand {
 
         Project editedProject = createEditedProject(projectToEdit, editProjectDescriptor);
 
-        if (PocketProjectDate.isEarlierThan(editedProject.getDeadline(), editedProject.getStartDate())
-            || PocketProjectDate.isEarlierThan(editedProject.getDeadline(), projectToEdit.getLastestMilestoneDate())) {
+        if (PocketProjectDate.isEarlierThan(editedProject.getDeadline(), editedProject.getStartDate())) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EDITED_PROJECT_DEADLINE);
+        }
+
+        if (!projectToEdit.getMilestones().isEmpty() && PocketProjectDate.isEarlierThan(editedProject.getDeadline(),
+            projectToEdit.getLastestMilestoneDate())) {
             throw new CommandException(Messages.MESSAGE_INVALID_EDITED_PROJECT_DEADLINE);
         }
 

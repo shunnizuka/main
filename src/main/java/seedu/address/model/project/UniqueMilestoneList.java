@@ -9,7 +9,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.PocketProject;
 import seedu.address.model.project.exceptions.DuplicateMilestoneException;
 import seedu.address.model.project.exceptions.MilestoneNotFoundException;
 import seedu.address.model.util.PocketProjectDate;
@@ -27,6 +26,8 @@ import seedu.address.model.util.PocketProjectDate;
  * //@see Milestone#isSameMilestone(Milestone)
  */
 public class UniqueMilestoneList implements Iterable<Milestone> {
+
+    private static final int OFFSET = 1;
 
     private final ObservableList<Milestone> internalList = FXCollections.observableArrayList();
     private final ObservableList<Milestone> internalUnmodifiableList =
@@ -120,7 +121,7 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
      */
     public PocketProjectDate getLatestMilestoneDate() {
         //milestone sorted based on date, hence get the last milestone in the list
-        return internalList.get(internalList.size() - 1).getDate();
+        return internalList.get(internalList.size() - OFFSET).getDate();
     }
 
     /**
