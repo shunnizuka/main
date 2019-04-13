@@ -959,7 +959,7 @@ earliest deadline displayed at the top of the list.
 
 We think it will good to have data visualization tools such as graphs and charts to show to the users the trends and status of the projects(such as
 a graph showing how project progress changes as time progresses). This can help users to spot patterns that is otherwise hard to grasp if all the data
-and just numbers and words.
+are just numbers and words.
 
 
 
