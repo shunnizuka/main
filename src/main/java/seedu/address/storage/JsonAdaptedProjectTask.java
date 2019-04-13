@@ -7,7 +7,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.Status;
-import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Jackson-friendly version of {@link ProjectTask}.
