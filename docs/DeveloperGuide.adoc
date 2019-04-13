@@ -559,10 +559,10 @@ which will store the relevant user stories as a `SortedUserStoryList`.
 
 Currently, the user stories feature supports the following commands:
 
-* `addto [project name] userstory i/STORY_IMPORTANCE [story]` -- Adds the `story` to the project indicated by the `PROJ_NAME`.
-* `removefrom [project name] userstory [userstory index]` -- Removes the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `[project name]`.
-* `edit project [project_name] userstory [userstory index] [story]` -- Edits the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `[project name]`.
-* `update [project_name] userstory [userstory index] [status]` -- Updates the status of the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `[project name]`.
+* `addto [project name] userstory i/STORY_IMPORTANCE [story]` -- Adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
+* `removefrom [project name] userstory [userstory index]` -- Removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
+* `edit project [project_name] userstory [userstory index] [story]` --  Edits the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
+* `update [project_name] userstory [userstory index] [status]` -- Updates the status of the user story at the `[userstory index]` in the list of user stories in the project named `[project name]`.
 
 In addition, the `SortedUserStoryList` maintains a sorted order of user stories according to descending importance level of the user story, followed by ascending lexicographical order of the `UserStoryUser` name.
 
@@ -643,7 +643,7 @@ The `RemoveFromCommandParser` then detects that the keyword `userstory` is input
 ===== Edit user story command
 * `edit project [project name] userstory [userstory index] ` -- edits the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
 
-This operation is supported by the `Project#SetUserStory(UserStory, UserStory)` method in the `Project` class. It takes
+This operation is supported by the `Project#SetUserStory(UserStory, UserStory)` method in the `Project` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class. It takes
 in as arguments firstly, the old user story to edit, and secondly the new user story to replace it with. The `EditProjectUserStoryCommand` checks for the validity of the old and new user stories
 before the `Project#SetUserStory(UserStory, UserStory)` method is called.
 
@@ -664,6 +664,13 @@ The `EditCommandParser` then detects that the keyword `project` is inputted and 
 |===
 |image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story and the new `[user story]` must be valid. If not, exceptions would be thrown during the execution of the command.
 |===
+
+===== Update user story command
+* `update [project_name] userstory [userstory index] [status]` -- Updates the status of the user story at the `[userstory index]` in the list of user stories in the project named `[project name]`.
+
+This operation is supported by the `Project#UpdateStatus(Status)` method in the `Project` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class.
+
+
 
 ==== Design Considerations
 ===== Aspect: How to structure the user story details to be inputted into the project
