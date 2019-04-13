@@ -328,7 +328,7 @@ by the model component of the PocketProject application. This feature supports t
 * `addto [project name] milestone [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
 * `addto [project name] userstory i/IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
 
-These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)`, `Model#addMilestoneTo(Project, Milestone)` and `Model#addUserStoryTo(Projectm UserStory)`.
+These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)`, `Model#addMilestoneTo(Project, Milestone)` and `Model#addUserStoryTo(Project, UserStory)`.
 These three methods only take in the project and employee/milestone as arguments as the correct Employee/Milestone/UserStory object would be located by
 `AddEmployeeToCommand#excute()`, `AddMilestoneToCommand#execute()` or `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
 
@@ -588,6 +588,55 @@ Since the user stories with users David and Alan have a higher importance level 
 
 This is to faciliate users to find important user stories by ensuring a neatly ordered list by relevance of the user story. If a user wishes to do so, they can also sort the list by `UserStoryStatus` using the JavaFX `TableColumn` built-in sort to see which user stories are in progress or on hold. Note that doing so would directly change the
 order of the user stories in the `SortedUserStoryList` hence changing the index of the user story. In general, the GUI is updated to reflect the actual list stored within `SortedUserStoryList` hence any command which acts on an index would affect the user story in that index shown on the GUI.
+
+===== Implementation of individual commands
+
+====== Add user story to project command
+* `addto [project name] userstory i/IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
+
+This operations is supported by the `Model#addUserStoryTo(Project, UserStory)` method in the `Model` interface.
+It takes in the project and user story as arguments. The specified user story is created and the project specified is located
+by the `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
+
+Given below is an example usage scenario and how the addition of user story to a project feature behaves at each step.
+
+Step 1. The user enters the command `list project'. The app displays the list of projects in the Pocket Project by executing the `list project` command.
+
+Step 2. The user enters `addto Apollo userstory i/1 as a user i want to view user stories so that i can track them`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `AddToCommand`
+by the `addto` keyword and passes the rest of the string to the `AddToCommandParser` to identify which type of `AddToCommand` is being executed and what are the arguments.
+The `AddToCommandParser` then creates the `AddUserStoryTo` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the user story to the project.
+
+image:ug-lightbulb.png[width="50"]
+Tip: The `[project name]` entered must be valid and exists in the app. The `[project index]` given must refer to some existing project. Also,
+the user story added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[project index]` given must refer to some existing project. Also,
+                                       the user story added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
+
+|===
+
+
+===== Remove user story from project command
+
+
+==== Design Considerations
+===== Aspect: How to structure the user story details to be inputted into the project
+
+Alternative 1: Use a `regex` to indicate the importance/priority of a user story, then have the user key in the user story in the specified format `as a...i want to...so that...`(Current implementation)
+
+Alternative 2: Use only `regex` to denote the different parts of a user story. For example, `i/` to denote the importance level, `u/` to denote user etc...
+
+Alternative 3: Store the entire string as given by the user as it is and not parse the input.
+
+Using alternative 3 is the simplest and most straight forward way to handle the user input, but it does not provide much functionality. As user stories should be organised and easy to read as a list,
+we will need to use some sort of `TableView` or `ListView` to view the stories. Thus, using alternative 3 will only allow the entire string to be generated and is not user friendly.
+Between alternative 2 and alternative 1, alternative 2 provides an easier way for the program to generate and partition the input using `regex` expressions. However, as there are many parts to a user
+story, having to remember 4 different `regex` expressions may be hard for a user to remember and may be inconvenient. Using alternative 1 is a mix of both 2 and 3, which allows abit more flexibility
+and smoothness for a user by allowing them to type in full sentences how they would normally do for a user story, while allowing proper classification of the components of the story to be able to
+be displayed in the UI component as a `TableView`.
+
 
 For example usage scenarios for adding user stories as removing of user stories, refer to the following:
 
