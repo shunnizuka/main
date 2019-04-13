@@ -65,7 +65,8 @@ public class TypicalProjects {
 
     public static final Project PROJECT_IDA = new ProjectBuilder()
         .withProjectName("Project Ida Mueller").withClient("FOS")
-        .withStartDate("18/10/2010").withDeadline("03/03/2013").withDescription("An application for Ida Mueller").build();
+        .withStartDate("18/10/2010").withDeadline("03/03/2013")
+        .withDescription("An application for Ida Mueller").build();
 
     public static final Project PROJECT_VICTOR = new Project(new ProjectName("Victor"), new Client("Jipple Os"),
         new PocketProjectDate("02/11/2009"), new PocketProjectDate("04/10/2011"));
