@@ -163,9 +163,7 @@ public class EditCommandParserTest {
             + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1"
             + INVALID_GITHUB_DESC, GitHubAccount.MESSAGE_CONSTRAINTS); //invalid gh
-        assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1"
-            + INVALID_SKILL_DESC, Skill.MESSAGE_CONSTRAINTS); // invalid skill
-
+        
         // invalid phone followed by valid email
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1" + INVALID_PHONE_DESC
             + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);

@@ -178,7 +178,7 @@ public class AddCommandParserTest {
 
         // invalid skill
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_BOB + PHONE_DESC_BOB
-            + EMAIL_DESC_BOB + GITHUB_DESC_BOB + INVALID_SKILL_DESC + VALID_SKILL_C, Skill.MESSAGE_CONSTRAINTS);
+            + EMAIL_DESC_BOB + GITHUB_DESC_BOB + INVALID_SKILL_DESC + SKILL_DESC_C, Skill.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + INVALID_NAME_DESC + PHONE_DESC_BOB

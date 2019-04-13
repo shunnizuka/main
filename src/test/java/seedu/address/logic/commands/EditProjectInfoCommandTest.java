@@ -76,6 +76,7 @@ public class EditProjectInfoCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastProject = Index.fromOneBased(model.getFilteredProjectList().size());
+        System.out.println(indexLastProject.getZeroBased());
         Project lastProject = model.getFilteredProjectList().get(indexLastProject.getZeroBased());
 
         ProjectBuilder projectInList = new ProjectBuilder(lastProject);
@@ -252,7 +253,7 @@ public class EditProjectInfoCommandTest {
             .contains(PROJECT_ALICE.getProjectName()));
         assertTrue(model.getPocketProject().getEmployeeList().get(1).getCurrentProjects()
             .contains(PROJECT_ALICE.getProjectName()));
-         */
+        */
 
     }
 

@@ -107,7 +107,7 @@ public class CommandTestUtil {
     public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB + "bob baller"; // no whitespace
     public static final String INVALID_GITHUB2_DESC = " " + PREFIX_GITHUB + ""; //no empty string
     public static final String INVALID_GITHUB3_DESC = " " + PREFIX_GITHUB + " kingcoder 96"; //combine 1 & 2
-    public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + "Java*"; // '*' not allowed in skills
+    public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + " "; // not allowed in skills
     public static final String INVALID_MILESTONE_DESC = " " + PREFIX_MILESTONE + ""; //empty string not allowed
 
     public static final String INVALID_PROJECT_NAME_DESC = " " + PREFIX_NAME + "Alice##"; // '#' not allowed in names
