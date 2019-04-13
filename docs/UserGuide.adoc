@@ -488,10 +488,6 @@ Examples:
 * `edit project Apollo milestone 2 m/Implement edit command d/09/04/2019`
 Change the milestone at index 2 in Apollo to 'Implement edit command 09/04/2019'
 
-==== Edits UserStory of a project: `edit project userstory` [coming in v2.0]
-
-Edits the existing userstory in the userstory list of a project.
-
 //tag::find[]
 === Locating employees, projects or skills by name: `find`
 
@@ -798,25 +794,6 @@ Examples:
 `removefrom Apollo userstory 1` +
 Removes the user story at the 1st position of the displayed list of user stories from Project Apollo.
 
-=== Sort the projects by name or deadline : `sort` [coming in v2.0]
-
-Returns a sorted list of projects by the sort key value.
-Available keys: name, deadline.
-
-Name: returns list in lexicographic order +
-Deadline: returns list by earliest deadline first.
-
-Format: `sort KEY_VALUE`
-
-Examples:
-
-* `sort name` +
-List of project have been sorted by name.
-
-* `sort deadline` +
-List of projects have been sorted by deadline with the
-earliest deadline displayed at the top of the list.
-
 === To indicate the project has been completed : `complete`
 
 Indicates that a project is completed.
@@ -932,15 +909,7 @@ Format: `exit`
 Pocket Project data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// skill::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
 
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
-
-=== Project commands `[coming in v2.0]`
-
-_{Commands related to managing of project will be added soon.}_
 
 == FAQ
 
@@ -948,6 +917,51 @@ _{Commands related to managing of project will be added soon.}_
 
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
 data of your previous Pocket Project folder.
+
+== Future Enhancements For V2.0
+
+=== Edits UserStory of a project: `edit project userstory`
+
+Allows the editing of the existing userstory in the userstory list of a project.
+
+=== Login and encryption
+
+We plan to implement a login feature so that only authenticated users would be able to access the app to modify and view the data stored.
+However, unauthenticated users can still easily access the data through the JSON files that are used for storage in the current version, hence we
+will also implement data encryption - which is elaborated upon in the next paragraph.
+
+In the current app, the app data is stored in JSON format which is easily read and modified by anyone with access to the
+JSON files. In V2.0, we intend to have commands that allow users to encrypt and decrypt the JSON files into an unreadable format.
+It is also possible that we make encryption compulsory and by default, but that would be up for further discussion.
+
+=== Sort the projects by name or deadline : `sort`
+
+The following is the intended effect of this command:
+
+Returns a sorted list of projects by the sort key value.
+Available keys: name, deadline.
+
+Name: returns list in lexicographic order +
+Deadline: returns list by earliest deadline first.
+
+Format: `sort KEY_VALUE`
+
+Examples:
+
+* `sort name` +
+List of project have been sorted by name.
+
+* `sort deadline` +
+List of projects have been sorted by deadline with the
+earliest deadline displayed at the top of the list.
+
+=== Data Visualization
+
+We think it will good to have data visualization tools such as graphs and charts to show to the users the trends and status of the projects(such as
+a graph showing how project progress changes as time progresses). This can help users to spot patterns that is otherwise hard to grasp if all the data
+and just numbers and words.
+
+
 
 == Command Summary
 
