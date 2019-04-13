@@ -142,8 +142,8 @@ of the project.
 . `one-based indexing` way of numbering in which the initial element of a sequence is assigned the index 1.
 . `zero-based indexing` way of numbering in which the initial element of a sequence is assigned the index 0.
 
-=== Color coding
-There are several common colours used throughout Pocket Pocket to denote the statuses of events. As shown above, there are 3 main colours used:
+=== Colour coding
+There are several common colours used throughout Pocket Pocket to denote the statuses of events. As shown below, there are 3 main colours used:
 
 . Red: The event is put on hold.
 . Amber: The event is currently ongoing.
@@ -636,7 +636,7 @@ Currently, there are 3 valid status which `update` supports:
 . `on hold` : indicate that the event is placed on hold
 . `complete` : indicate that the event has been completed
 
-Each of the different statuses are also visually different in their colour coding. For more information about the different colours used, refer to <<Color coding>>.
+Each of the different statuses are also visually different in their colour coding. For more information about the different colours used, refer to <<Colour coding>>.
 
 ==== Update the status of a user story: `update userstory`
 You can update the status of a user story to indicate its progress.
