@@ -71,9 +71,9 @@ public class EditProjectCommandParser {
         String keyword = args[KEYWORD_INDEX];
         String arguments = args[ARGUMENT_INDEX];
 
-        ProjectName name;
+        ProjectName projectToEdit;
         try {
-            name = ParserUtil.parseProjectName(projectName);
+            projectToEdit = ParserUtil.parseProjectName(projectName);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 EditProjectCommand.MESSAGE_USAGE), pe);
@@ -112,7 +112,7 @@ public class EditProjectCommandParser {
                 throw new ParseException(EditProjectInfoCommand.MESSAGE_NOT_EDITED);
             }
 
-            return new EditProjectInfoCommand(name, editProjectDescriptor);
+            return new EditProjectInfoCommand(projectToEdit, editProjectDescriptor);
 
         } else if (keyword.equals(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD)) {
 
@@ -145,7 +145,7 @@ public class EditProjectCommandParser {
                 throw new ParseException(EditProjectMilestoneCommand.MESSAGE_NOT_EDITED);
             }
 
-            return new EditProjectMilestoneCommand(name, milestoneIndex, editMilestoneDescriptor);
+            return new EditProjectMilestoneCommand(projectToEdit, milestoneIndex, editMilestoneDescriptor);
 
         } else if (keyword.equals(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD)) {
             requireNonNull(arguments);
@@ -179,7 +179,7 @@ public class EditProjectCommandParser {
                     argMultimap.getValue(PREFIX_IMPORTANCE).get()));
             }
 
-            return new EditProjectUserStoryCommand(name, index, editUserStoryDescriptor);
+            return new EditProjectUserStoryCommand(projectToEdit, index, editUserStoryDescriptor);
 
         } else {
             throw new ParseException(
