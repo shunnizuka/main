@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.PocketProject;
 import seedu.address.model.project.exceptions.DuplicateMilestoneException;
 import seedu.address.model.project.exceptions.MilestoneNotFoundException;
 import seedu.address.model.util.PocketProjectDate;
@@ -112,6 +113,14 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
         }
 
         internalList.setAll(milestones);
+    }
+
+    /**
+     * Retrieve the date of the latest milestone to check against the deadline of the project when editing
+     */
+    public PocketProjectDate getLatestMilestoneDate() {
+        //milestone sorted based on date, hence get the last milestone in the list
+        return internalList.get(internalList.size() - 1).getDate();
     }
 
     /**
