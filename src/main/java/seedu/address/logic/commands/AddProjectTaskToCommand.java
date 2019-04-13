@@ -25,7 +25,8 @@ public class AddProjectTaskToCommand extends AddToCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME projecttask n/TASK_NAME m/MILESTONE_INDEX"
             + ": adds the specified project task to the list of tasks in a project's milestone specified by index.\n"
-            + "Milestone index must be an integer more than 0.\n"
+            + "Milestone index must be an integer more than 0 and cannot be larger than maximum integer value which is "
+            + " 2,147,483,647.\n"
             + "Example: " + COMMAND_WORD + " Apollo projecttask n/Create feature XYZ m/1";
 
     public static final String MESSAGE_ADD_PROJECT_TASK_SUCCESS = "Added %1$s to milestone %2$d in %3$s";

@@ -35,7 +35,7 @@ public class PocketProjectDate extends CalendarDate {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
+    public static final String VALIDATION_REGEX = "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)";
 
     public static final Comparator<String> DATE_STRING_COMPARATOR = new Comparator<String>() {
         @Override

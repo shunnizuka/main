@@ -81,10 +81,12 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
             + PHONE_DESC_AMY + EMAIL_DESC_AMY + GITHUB_DESC_AMY + SKILL_DESC_C;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add a employee with all fields same as another employee in the pocket project except phone and email
+        /* Case: add a employee with all fields same as another employee in the pocket project except phone, email
+         * and github account.
          * -> added
          */
-        toAdd = new EmployeeBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        toAdd = new EmployeeBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+            .withGitHubAccount(VALID_GITHUB_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 

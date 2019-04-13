@@ -43,6 +43,7 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_GITHUB_ALICE = "aliceballer";
     public static final String VALID_GITHUB_AMY = "amyballer";
     public static final String VALID_GITHUB_BOB = "bobballer";
     public static final String VALID_SKILL_JAVA = "Java";
@@ -98,6 +99,7 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
     public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
+    public static final String GITHUB_DESC_ALICE = " " + PREFIX_GITHUB + VALID_GITHUB_ALICE;
     public static final String SKILL_DESC_C = " " + PREFIX_SKILL + VALID_SKILL_C;
     public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + VALID_SKILL_JAVA;
 

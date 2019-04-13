@@ -43,6 +43,7 @@ public class TypicalProjects {
         .withDescription("An application for Daniel software")
         .withEmployees(Arrays.asList(TypicalEmployees.ELLE, TypicalEmployees.FIONA)).build();
 
+
     public static final Project PROJECT_ELLE = new ProjectBuilder().withProjectName("Project Elle").withClient("Jothi")
         .withStartDate("14/10/2010").withDeadline("22/03/2019").withDescription("An application for Elle")
         .withEmployees(Arrays.asList(TypicalEmployees.FIONA, TypicalEmployees.GEORGE)).build();
@@ -64,7 +65,7 @@ public class TypicalProjects {
 
     public static final Project PROJECT_IDA = new ProjectBuilder()
         .withProjectName("Project Ida Mueller").withClient("FOS")
-        .withStartDate("18/10/2010").withDeadline("3/3/2013").withDescription("An application for Ida Mueller").build();
+        .withStartDate("18/10/2010").withDeadline("03/03/2013").withDescription("An application for Ida Mueller").build();
 
     public static final Project PROJECT_VICTOR = new Project(new ProjectName("Victor"), new Client("Jipple Os"),
         new PocketProjectDate("02/11/2009"), new PocketProjectDate("04/10/2011"));

@@ -97,7 +97,9 @@ public class Employee {
 
         return otherEmployee != null
             && otherEmployee.getEmployeeName().equals(getEmployeeName())
-            && (otherEmployee.getPhone().equals(getPhone()) || otherEmployee.getEmail().equals(getEmail()));
+            && (otherEmployee.getPhone().equals(getPhone())
+            || otherEmployee.getEmail().equals(getEmail())
+            || otherEmployee.getGithub().equals((getGithub())));
     }
 
     /**
@@ -108,6 +110,7 @@ public class Employee {
     }
 
     /**
+    *
      * Indicates that this employee has left a certain project.
      */
     public void leave(Project project) {
