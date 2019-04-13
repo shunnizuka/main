@@ -291,17 +291,18 @@ current date is 12 April 2019 (12/04/2019), Friday.
 .*Using "this/next/last month DAY_OF_MONTH" as a flexible date input*
 image::ug-monthweek.png[]
 
+===== Some additional information
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-notepadpencil.png[width="60"]|You do not need to specify which format you are planning to use and the application
+|image:ug-notepadpencil.png[width="40"]|You do not need to specify which format you are planning to use and the application
 is able to differentiate it based on the input received.
 |===
 
-===== Some additional information
 The application will also automatically help to check the validity of the target
 date. Should you accidentally target an invalid dates such as `31/04/2019`, it will be rejected as the month of April
 only has 30 days. Additionally, leap years are also considered. So, as 2020 is a leap year, `29/02/2020` is considered a valid input but `29/02/2019` will be rejected
 as 2019 is not a leap year.
+
 === Adding an employee or project to the application: `add`
 
 ==== Adding an employee to the application: `add employee`
