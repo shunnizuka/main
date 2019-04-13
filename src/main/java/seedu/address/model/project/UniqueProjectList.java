@@ -134,6 +134,15 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
+     *  Removes the specified project task from the specified project milestone. They must exist.
+     */
+    public void removeProjectTaskFrom(Project project, Milestone milestone, ProjectTask task) {
+        requireAllNonNull(project, milestone, task);
+        List<Milestone> milestones = internalList.get(internalList.indexOf(project)).getMilestones();
+        milestones.get(milestones.indexOf(milestone)).removeProjectTask(task);
+    }
+
+    /**
      *  Adds the specified employee to the specified project. They must exist.
      */
     public void addEmployeeTo(Project project, Employee employee) {
@@ -171,7 +180,7 @@ public class UniqueProjectList implements Iterable<Project> {
     public void addProjectTaskTo(Project project, Milestone milestone, ProjectTask task) {
         requireAllNonNull(project, milestone, task);
         List<Milestone> milestones = internalList.get(internalList.indexOf(project)).getMilestones();
-        milestones.get(milestones.indexOf(milestone)).addTask(task);
+        milestones.get(milestones.indexOf(milestone)).addProjectTask(task);
     }
 
     /**

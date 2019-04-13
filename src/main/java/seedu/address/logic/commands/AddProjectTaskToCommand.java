@@ -61,7 +61,7 @@ public class AddProjectTaskToCommand extends AddToCommand {
         }
 
         try {
-            targetMilestone.addTask(taskToAdd);
+            targetMilestone.addProjectTask(taskToAdd);
         } catch (DuplicateProjectTaskException e) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT_TASK, e);
         }

@@ -264,6 +264,16 @@ public class PocketProject implements ReadOnlyPocketProject {
     }
 
     /**
+     * Removes {@code task} from the {@code targetMilestone} in {@code targetProject} from this
+     * {@code PocketProject}.
+     *  {@code targetProject}, {@code targetMilestone} and {@code task} must exist.
+     */
+    public void removeProjectTaskFrom(Project targetProject, Milestone targetMilestone, ProjectTask targetProjectTask) {
+        projects.removeProjectTaskFrom(targetProject, targetMilestone, targetProjectTask);
+        indicateModified();
+    }
+
+    /**
      *
      */
     public void updateUserStory(Project targetProject, UserStory targetStory, Status newStatus) {
