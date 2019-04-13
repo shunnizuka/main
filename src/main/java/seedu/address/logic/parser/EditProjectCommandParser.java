@@ -39,7 +39,7 @@ public class EditProjectCommandParser {
     private static final Pattern EDIT_PROJECT_COMMAND_FORMAT = Pattern.compile("(?<project>(\\S+\\s)+)"
         + "(?<keyword>milestone\\s|info\\s|userstory\\s)(?<arguments>.*)");
 
-    private static final String WHITE_SPACE_PREAMBLE = " ";
+    private static final String WHITE_SPACE = " ";
 
     //use for splitting of the argument
     private static final int START_INDEX = 0;
@@ -64,10 +64,10 @@ public class EditProjectCommandParser {
 
         int indexOfArgs = findKeywordPosition(userInput);
         String projectName = userInput.substring(START_INDEX, indexOfArgs - OFFSET);
-        //args containing keyword
+        //extract argument string containing keyword
         String argsString = userInput.substring(indexOfArgs);
         //to extract out the keyword
-        String[] args = argsString.split(" ", LIMIT);
+        String[] args = argsString.split(WHITE_SPACE, LIMIT);
         String keyword = args[KEYWORD_INDEX];
         String arguments = args[ARGUMENT_INDEX];
 
@@ -117,7 +117,7 @@ public class EditProjectCommandParser {
         } else if (keyword.equals(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD)) {
 
             requireNonNull(arguments);
-            String s = WHITE_SPACE_PREAMBLE + arguments;
+            String s = WHITE_SPACE + arguments;
             ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(s, PREFIX_MILESTONE, PREFIX_DATE);
 
@@ -191,26 +191,26 @@ public class EditProjectCommandParser {
     /**
      * To look for the index of the keyword in the editProject command
      * The index will be used for extracting keyword and prefixes from the command
-     * @param userinput the editProjectMilestone or editProjectMilestone
+     * @param userInput the editProjectMilestone/editProjectMilestone/editProjectUserStory command
      * @return the index of the argument in the command
      */
-    private Integer findKeywordPosition(String userinput) {
+    private Integer findKeywordPosition(String userInput) {
 
         Integer index = Integer.MAX_VALUE;
 
-        if (userinput.contains(EditProjectInfoCommand.EDIT_INFO_KEYWORD)
-            && (userinput.indexOf(EditProjectInfoCommand.EDIT_INFO_KEYWORD) < index)) {
-            index = userinput.indexOf(EditProjectInfoCommand.EDIT_INFO_KEYWORD);
+        if (userInput.contains(EditProjectInfoCommand.EDIT_INFO_KEYWORD)
+            && (userInput.indexOf(EditProjectInfoCommand.EDIT_INFO_KEYWORD) < index)) {
+            index = userInput.indexOf(EditProjectInfoCommand.EDIT_INFO_KEYWORD);
         }
 
-        if (userinput.contains(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD)
-            && (userinput.indexOf(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD) < index)) {
-            index = userinput.indexOf(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD);
+        if (userInput.contains(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD)
+            && (userInput.indexOf(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD) < index)) {
+            index = userInput.indexOf(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD);
         }
 
-        if (userinput.contains(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD)
-            && (userinput.indexOf(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD) < index)) {
-            index = userinput.indexOf(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD);
+        if (userInput.contains(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD)
+            && (userInput.indexOf(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD) < index)) {
+            index = userInput.indexOf(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD);
         }
 
         return index;
