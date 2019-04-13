@@ -593,11 +593,11 @@ order of the user stories in the `SortedUserStoryList` hence changing the index 
 ===== Add user story to project command
 * `addto [project name] userstory i/STORY_IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
 
-This operation is supported by the `Model#addUserStoryTo(Project, UserStory)` method in the `Model` interface.
+This operation is supported by the `Model#addUserStoryTo(Project, UserStory)` method as well as the `Model#getProjectWithName(Name)` method in the `Model` interface.
 It takes in the project and user story as arguments. The specified user story is created and the project specified is located
 by the `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
 
-Given below is an example usage scenario and how the addition of user story to a project feature behaves at each step.
+Given below is an example usage scenario and how the addition of user story to a project behaves at each step.
 
 Step 1. The user enters the command `list project'. The app displays the list of projects in the Pocket Project by executing the `list project` command.
 
@@ -618,7 +618,7 @@ The `AddToCommandParser` then creates the `AddUserStoryTo` command object and pa
 ===== Remove user story from project command
 * `removefrom [project name] userstory [userstory index]` -- removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
 
-This operation is supported by the `Model#removeUserStoryFrom(Project, UserStory)` method in the `Model` interface.
+This operation is supported by the `Model#removeUserStoryFrom(Project, UserStory)` method as well as the `Model#getProjectWithName(Name)` method in the `Model` interface.
 This method does not require the `[user story]` as arguments since the corresponding `[user story]` object associated with the Project object can be found by`RemoveUserStoryFromCommand#execute()`
 before the methods of `Model` are called using the index specified by the user.
 
@@ -626,7 +626,7 @@ The sequence diagram for the execution of the removing of a user story from a pr
 
 image::remove_user_story_from_sequence_diagram.png[width="1000"]
 
-Given below is an example usage scenario and how the removal of a user story feature behaves at each step.
+Given below is an example usage scenario and how the removal of a user story behaves at each step.
 
 Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
 
@@ -651,7 +651,7 @@ The sequence diagram for the execution of the editing of a user story in a proje
 
 image::edit_user_story_sequence_diagram.png[width="1000"]
 
-Given below is an example usage scenario and how the editing of a user story feature behaves at each step.
+Given below is an example usage scenario and how the editing of a user story behaves at each step.
 
 Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
 
@@ -668,9 +668,26 @@ The `EditCommandParser` then detects that the keyword `project` is inputted and 
 ===== Update user story command
 * `update [project_name] userstory [userstory index] [status]` -- Updates the status of the user story at the `[userstory index]` in the list of user stories in the project named `[project name]`.
 
-This operation is supported by the `Project#UpdateStatus(Status)` method in the `Project` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class.
+This operation is supported by the `UserStory#UpdateStatus(Status)` method in the `UserStory` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class.
+It takes in as arguments the new status of the user story. The `UpdateUserStoryCommand` checks for the validity of the arguments and locates the specified user story from the project. It then calls the `UserStory#UpdateStatus(status)` method.
 
+The sequence diagram for the execution of updating a user story status is as follows:
 
+image::update_user_story_sequence_diagram.png[width="1000"]
+
+Given below is an example usage scenario of how the updating of a user story behaves at each step.
+
+Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
+
+Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
+
+Step 3. The user enters `update Apollo userstory 1 ongoing`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as a `UpdateCommand` from the `update` keyword inputted and passes the rest of the string to the `UpdateCommandParser`.
+The `UpdateCommandParser` then detects the keyword `userstory` and creates a `UpdateUserStory` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate the project and update the status of the corresponding user story in the project.
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story and the new `[status]` must be valid. If not, exceptions would be thrown during the execution of the command.
+|===
 
 ==== Design Considerations
 ===== Aspect: How to structure the user story details to be inputted into the project
@@ -688,11 +705,39 @@ story, having to remember 4 different `regex` expressions may be hard for a user
 and smoothness for a user by allowing them to type in full sentences how they would normally do for a user story, while allowing proper classification of the components of the story to be able to
 be displayed in the UI component as a `TableView`.
 
+===== Aspect: How the command string (e.g. `removefrom Apollo userstory 1`) is parsed
 
-For example usage scenarios for adding user stories as removing of user stories, refer to the following:
+Alternative 1: Let `PocketProjectParser` handle the whole string and construct the command.
 
-* `addto PROJ_NAME userstory [story]` -- <<Add employee/milestone/user story to projects feature>>
-* `removefrom PROJ_NAME userstory INDEX` -- <<Remove employee/milestone from projects feature>>
+Alternative 2: Having 2 parsing stages where the `PocketProjectParser` identify that the command string is trying to execute a `RemoveFromCommand` from the `removefrom` key word, then passes
+the rest of the string to another specialized `RemoveFromCommandParser`. (current implementation)
+
+Using alternative 2 is better  as it provides better abstraction as the details of the 2 different types of `RemoveFromCommand` will be hidden away, hence it is more in line with OOP principles.
+There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
+
+===== Aspect: How to show/store the list of user stories
+
+Alternative 1: Sort the user stories only by decreasing priority.
+
+Alternative 2: Sort the user stories by the sequence it is added.
+
+Alternative 3: Sort the user stories only by the names of the target user.
+
+Alternative 4: Sort the user stories by decreasing priority, followed by the name of the target user.
+
+Using alternative 2 is the simplest and most straightforward approach, but does not provide any value adding to the user. Both alternative 1 and 3 are useful,
+hence we decided to combine them to produce alternative 4, which allows not only the important user stories to be listed first, but also provides better readability as similar user stories are grouped together.
+
+==== Future Planned Enhancements
+
+The following additional features are scheduled to be implemented in future version.
+
+. Allow more varied types of sorting for the users. Since there is no one-size-fit-all solution when deciding which user stories are more relevant, the user should be able to decide how he/she wants them arranged.
+Hence this proposed feature will allow users to be able to click the user stories table and customise the order in which user stories are shown.
+
+. Provide even greater flexibility when parsing user stories. Currently, user stories require specific keywords `as a`, `i want to`, `so that`. In future, users should be able to type sentences naturally and it can still be parsed.
+This will be made available by widening the range of keywords the parser is able to detect as well as the different sentence structures possible.
+
 
 === Undo/Redo feature
 ==== Current Implementation
