@@ -22,11 +22,18 @@ and there is   also a GUI to support the system. It is an application using Java
 * It is intended for managers who are in charge of many software engineering projects and who have a large number of
 employees assigned to each project at any given time.
 
-* Managers can view project details such as
-** Employees assigned
-** Deadline
-** Client
-** Milestones
+* Managers can view details of their projects and employees such as:
+** Employee
+*** Employee's name, phone number and email
+*** Employee's github profile
+*** Projects an employee is working on
+
+** Project
+*** Deadline
+*** Client
+*** Milestones
+*** User stories
+*** Project tasks
 
 == Site Map
 
