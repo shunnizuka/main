@@ -552,17 +552,17 @@ It would be inappropriate to put these methods under the command class or the mo
 // end::stats[]
 
 === User Story feature
-==== Implementation
+==== General Implementation
 
 The implementation of user stories in Pocket Project is facilitated by the `model` component, and in particular, the `Project` class
 which will store the relevant user stories as a `SortedUserStoryList`.
 
 Currently, the user stories feature supports the following commands:
 
-* `addto PROJ_NAME userstory i/STORY_IMPORTANCE STORY` -- Adds the `story` to the project indicated by the `PROJ_NAME`.
-* `removefrom PROJ_NAME userstory INDEX` -- Removes the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
-* `edit project PROJ_NAME userstory INDEX STORY` -- Edits the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
-* `update PROJ_NAME userstory INDEX STATUS -- Updates the status of the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
+* `addto [project name] userstory i/STORY_IMPORTANCE [story]` -- Adds the `story` to the project indicated by the `PROJ_NAME`.
+* `removefrom [project name] userstory [userstory index]` -- Removes the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `[project name]`.
+* `edit project [project_name] userstory [userstory index] [story]` -- Edits the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `[project name]`.
+* `update [project_name] userstory [userstory index] [status]` -- Updates the status of the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `[project name]`.
 
 In addition, the `SortedUserStoryList` maintains a sorted order of user stories according to descending importance level of the user story, followed by ascending lexicographical order of the `UserStoryUser` name.
 
@@ -589,10 +589,9 @@ Since the user stories with users David and Alan have a higher importance level 
 This is to faciliate users to find important user stories by ensuring a neatly ordered list by relevance of the user story. If a user wishes to do so, they can also sort the list by `UserStoryStatus` using the JavaFX `TableColumn` built-in sort to see which user stories are in progress or on hold. Note that doing so would directly change the
 order of the user stories in the `SortedUserStoryList` hence changing the index of the user story. In general, the GUI is updated to reflect the actual list stored within `SortedUserStoryList` hence any command which acts on an index would affect the user story in that index shown on the GUI.
 
-===== Implementation of individual commands
-
-====== Add user story to project command
-* `addto [project name] userstory i/IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
+==== Implementation of individual commands
+===== Add user story to project command
+* `addto [project name] userstory i/STORY_IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
 
 This operation is supported by the `Model#addUserStoryTo(Project, UserStory)` method in the `Model` interface.
 It takes in the project and user story as arguments. The specified user story is created and the project specified is located
@@ -625,22 +624,46 @@ before the methods of `Model` are called using the index specified by the user.
 
 The sequence diagram for the execution of the removing of a user story from a project is as follows:
 
-image::remove_employee_from_sequence_diagram.png[width="1000"]
+image::remove_user_story_from_sequence_diagram.png[width="1000"]
 
-Given below is an example usage scenario and how the removal of employee/milestone/user story feature behaves at each step.
+Given below is an example usage scenario and how the removal of a user story feature behaves at each step.
 
-Step 1. The user enters the command `view project Apollo'. The app displays the list of employees and milestones in the project named "Apollo" by executing the `view` command.
+Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
 
-Step 2. The user enters `removefrom Apollo employee 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `RemoveFromCommand` (which constitutes of `RemoveEmployeeFromCommand`
-and `RemoveMilestoneFromCommand` by the `removefrom` keyword and passes the rest of the string to the `RemoveFromCommandParser` to identify which type of `RemoveFromCommand` is being executed and what are the arguments.
-The `RemoveFromCommandParser` then creates command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to remove the corresponding objects.
+Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
 
-Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
+Step 3. The user enters `removefrom Apollo userstory 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as a `RemoveFromCommand` from the `removefrom` keyword inputted and passes the rest of the string to the `RemoveFromCommandParser` to identify which type of `RemoveFromCommand` is being executed.
+The `RemoveFromCommandParser` then detects that the keyword `userstory` is inputted and created a `RemoveUserStoryFrom` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to remove the corresponding user story from the project.
 
-image:ug-lightbulb.png[width="50"]
-Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story. If not, exceptions would be thrown during the execution of the command.
+|===
 
+===== Edit user story command
+* `edit project [project name] userstory [userstory index] ` -- edits the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
 
+This operation is supported by the `Project#SetUserStory(UserStory, UserStory)` method in the `Project` class. It takes
+in as arguments firstly, the old user story to edit, and secondly the new user story to replace it with. The `EditProjectUserStoryCommand` checks for the validity of the old and new user stories
+before the `Project#SetUserStory(UserStory, UserStory)` method is called.
+
+The sequence diagram for the execution of the editing of a user story in a project is as follows:
+
+image::edit_user_story_sequence_diagram.png[width="1000"]
+
+Given below is an example usage scenario and how the editing of a user story feature behaves at each step.
+
+Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
+
+Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
+
+Step 3. The user enters `edit project Apollo userstory 1 as a user i want to login`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as a `EditCommand` from the `edit` keyword inputted and passes the rest of the string to the `EditCommandParser`.
+The `EditCommandParser` then detects that the keyword `project` is inputted and passes the rest of the string to the `EditProjectCommandParser`. The `EditProjectCommandParser` then detects the keyword `userstory` and creates a `EditUserStory` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate the project and remove the corresponding user story from the project.
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story and the new `[user story]` must be valid. If not, exceptions would be thrown during the execution of the command.
+|===
 
 ==== Design Considerations
 ===== Aspect: How to structure the user story details to be inputted into the project
