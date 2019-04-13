@@ -25,7 +25,8 @@ public class RemoveProjectTaskFromCommand extends RemoveFromCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME projecttask"
             + ": removes the project task identified by the milestone index and project task index numbers"
             + " displayed in the milestones and tasks list of the project.\n"
-            + "Parameters: MILESTONE_INDEX PROJECT_TASK_INDEX(must be a positive integer)\n"
+            + "Parameters: MILESTONE_INDEX PROJECT_TASK_INDEX(must be a positive integer and cannot be larger than "
+            + "maximum integer value which is 2,147,483,647\n"
             + "Example: " + COMMAND_WORD + " Apollo projecttask 1 1";
 
     public static final String MESSAGE_REMOVE_PROJECTTASK_SUCCESS = "Removed %1$s from milestone %2$d in %3$s";
