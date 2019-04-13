@@ -243,12 +243,12 @@ public class EditProjectInfoCommandTest {
 
         model.undoPocketProject();
 
-        /* TODO travis keep failing me for this even though it passed on my computer
+
         assertTrue(model.getPocketProject().getEmployeeList().get(0).getCurrentProjects()
             .contains(PROJECT_ALICE.getProjectName()));
         assertTrue(model.getPocketProject().getEmployeeList().get(1).getCurrentProjects()
             .contains(PROJECT_ALICE.getProjectName()));
-        */
+
     }
 
     @Test
