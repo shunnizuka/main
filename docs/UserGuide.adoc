@@ -65,9 +65,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list employee`* : lists all employees
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named
+* **`add`**`n/John Doe p/98765432 e/johnd@example.com g/mainmanjohn` : adds an employee named
 `John Doe` to the Pocket Project.
-* **`delete`**`3` : deletes the 3rd employee shown in the current list
+* **`delete employee`**`3` : deletes the 3rd employee shown in the current list
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -102,21 +102,21 @@ special information such as tips and warnings.
 |Symbol |Meaning
 
 |image:ug-notepadpencil.png[width="40"]
-|The note pad icon indicates any useful tips or things that users
+|The note pad icon indicates any useful tips or things that you
 need to take note of while using the Pocket Project application.
 
 |image:ug-lightbulb.png[width="50"]
 |The light bulb icon indicates any shortcuts
-that users can use while using the Pocket Project application.
+that you can use while using the Pocket Project application.
 
 |image:ug-exclamation.png[width="50"]
-|The exclamation mark icon indicates any warnings that users
+|The exclamation mark icon indicates any warnings that you
  can take note of while using the Pocket Project application.
 
 |image:ug-smart.png[width="60"]
 |The graduation cap icon indicates any advanced usages or
- extra technical information about how a particular command works should the
- users be interested to know.
+ extra technical information about how a particular command works
+ should you be interested to know.
 |===
 
 === Format of Commands
@@ -179,8 +179,9 @@ You can open up the User Guide from the Pocket Project application by calling th
 
 Format: `help`
 
+[width="100%",cols="20%,<80%",options="header",]
 |===
-|image:ug-lightbulb.png[width="40"]|Alternatively, you can press kbd:[F1]
+|image:ug-lightbulb.png[width="50"]|Alternatively, you can press kbd:[F1]
 or click `Help` which can be found on the menu bar at the top left hand corner of the application.
 |===
 
@@ -207,8 +208,9 @@ Examples:
 . `23/12/2019`
 . `09/03/2020`
 
+[width="100%",cols="20%,<80%",options="header",]
 |===
-|image:ug-exclamation.png[width="40"]| The fixed date format follows the required `DD/MM/YYYY` format
+|image:ug-exclamation.png[width="50"]| The fixed date format follows the required `DD/MM/YYYY` format
 strictly and so it requires `DD` for the day field and `MM` for the month field even if the value is only
 single number. For example, `09/04/2023` is a valid input for the fixed date format but `9/4/2023` is not.
 |===
@@ -219,8 +221,9 @@ Alternatively, you can also input a date using the flexible date format. The fle
 allows you to give an input with relation to the current date. It supports the below mentioned 3 formats.
 
 The 3 flexible date formats will also be demonstrated with screenshots using the of the `add project` command which requires
-a `s/START_DATE` and a `d/DEADLINE`. More details will be expounded on later in
-//TODO link the shit
+a `s/START_DATE` and a `d/DEADLINE`. This is all the relevant information that you need to know for this section
+but more details about the `add project` command will be covered later in
+<<Add a project to the application: `add project`>>
 
 ===== Choosing a date relative to the current day
 
@@ -240,6 +243,7 @@ You can also aim to choose a date with relation to the current week.
 
 Format: `this/next/last week DAY_OF_WEEK`
 
+[width="100%",cols="20%,<80%",options="header",]
 |===
 |image:ug-notepadpencil.png[width="40"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
 corresponds to Monday to Sunday respectively.
@@ -265,8 +269,9 @@ You can also aim to choose a date with relation to the current week.
 
 Format: `this/next/last month DAY_OF_MONTH`
 
+[width="100%",cols="20%,<80%",options="header",]
 |===
-|image:ug-exclamation.png[width="40"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
+|image:ug-exclamation.png[width="50"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
 the maximum number of days of a particular month in the chosen year.
 |===
 
@@ -285,13 +290,15 @@ current date is 12 April 2019 (12/04/2019), Friday.
 .*Using "this/next/last month DAY_OF_MONTH" as a flexible date input*
 image::ug-monthweek.png[]
 
+[width="100%",cols="20%,<80%",options="header",]
 |===
 |image:ug-notepadpencil.png[width="40"]|You do not need to specify which format you are planning to use and the application
 is able to differentiate it based on the input received.
 |===
 
+[width="100%",cols="20%,<80%",options="header",]
 |===
-|image:ug-lightbulb.png[width="40"]|The application will also automatically help to check the validity of the target
+|image:ug-lightbulb.png[width="50"]|The application will also automatically help to check the validity of the target
 date. Should you accidentally target an invalid dates such as `31/04/2019`, it will be rejected as the month of April
 only has 30 days. Additionally, leap years are also considered. So, as 2020 is a leap year, `29/02/2020` is considered a valid input but `29/02/2019` will be rejected
 as 2019 is not a leap year.
@@ -346,17 +353,16 @@ can be assigned to them in the future.
 
 |===
 |image:ug-notepadpencil.png[width="40"]|The project, when created, has a default description which can be
-edited using the `edit project info` command.
+edited using the `edit project info` command. Refer to <<Edits name/client/deadline/description of a project: `edit project info`>>
 |===
 
 Format: `add project n/NAME c/CLIENT_NAME s/START_DATE d/DEADLINE`
 
 |===
 |image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
-can be used to select the target `START_DATE` and `DEADLINE`.
+can be used to select the target `START_DATE` and `DEADLINE`. Refer to <<Date Feature in Pocket Project>>
 |===
 
-//TODO refer to the different sections and connect to it. Refer to flexible date section above and
 //TODO edit proj description below.
 Examples:
 
@@ -675,7 +681,7 @@ Format: `addto PROJECT_NAME milestone m/MILESTONE_DESC d/MILESTONE_DATE`
 
 |===
 |image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
-can be used to select the target `MILESTONE_DATE`
+can be used to select the target `MILESTONE_DATE`. Refer to <<Date Feature in Pocket Project>>
 |===
 
 |===
