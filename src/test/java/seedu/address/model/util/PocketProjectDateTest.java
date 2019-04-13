@@ -171,8 +171,13 @@ public class PocketProjectDateTest {
         assertFalse(PocketProjectDate.isValidDate("11/11/fffs")); // alphabetical year
         assertFalse(PocketProjectDate.isValidDate("44/12/2006")); // invalid date
         assertFalse(PocketProjectDate.isValidDate("11/98/aaaa")); // invalid month
-        assertFalse(PocketProjectDate.isValidDate("11/11/1750")); // invalid year too old
 
+        //invalid years -> only dates between 2000-2099 inclusive accepted
+        assertFalse(PocketProjectDate.isValidDate("11/11/1750"));
+        assertFalse(PocketProjectDate.isValidDate("11/11/1850"));
+        assertFalse(PocketProjectDate.isValidDate("11/11/1950"));
+        assertFalse(PocketProjectDate.isValidDate("11/11/2100"));
+        assertFalse(PocketProjectDate.isValidDate("11/11/1999"));
         //no padding
         assertFalse(PocketProjectDate.isValidDate("01/1/2000"));
         assertFalse(PocketProjectDate.isValidDate("1/01/2000"));
