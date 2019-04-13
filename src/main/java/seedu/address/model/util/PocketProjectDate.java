@@ -17,8 +17,7 @@ import java.util.Comparator;
 public class PocketProjectDate extends CalendarDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format DD/MM/YYYY and the year field only "
-        + "accepts values between 2000 and 2099 inclusive."
-        + "User can also "
+        + "accepts values between 2000 and 2099 inclusive. User can also "
         + "choose to go for a flexible date input which supports the following: today, tomorrow, yesterday, "
         + "this/next/last month DAY_OF_MONTH & "
         + "this/next/last week DAY_OF_WEEK";

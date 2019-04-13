@@ -13,11 +13,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_USER;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddEmployeeToCommand;
 import seedu.address.logic.commands.AddMilestoneToCommand;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.AddProjectTaskToCommand;
 import seedu.address.logic.commands.AddToCommand;
 import seedu.address.logic.commands.AddUserStoryToCommand;
+import seedu.address.model.employee.Employee;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTask;
@@ -79,9 +81,9 @@ public class ProjectUtil {
     public static String getMilestoneDetails(Milestone milestone) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_MILESTONE);
-        sb.append(milestone.getMilestoneDescription() + " ");
+        sb.append(milestone.getMilestoneDescription().description + " ");
         sb.append(PREFIX_DATE);
-        sb.append(milestone.getDate() + " ");
+        sb.append(milestone.getDate().date + " ");
         return sb.toString();
     }
 
