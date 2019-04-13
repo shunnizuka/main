@@ -594,7 +594,7 @@ order of the user stories in the `SortedUserStoryList` hence changing the index 
 ====== Add user story to project command
 * `addto [project name] userstory i/IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
 
-This operations is supported by the `Model#addUserStoryTo(Project, UserStory)` method in the `Model` interface.
+This operation is supported by the `Model#addUserStoryTo(Project, UserStory)` method in the `Model` interface.
 It takes in the project and user story as arguments. The specified user story is created and the project specified is located
 by the `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
 
@@ -606,19 +606,40 @@ Step 2. The user enters `addto Apollo userstory i/1 as a user i want to view use
 by the `addto` keyword and passes the rest of the string to the `AddToCommandParser` to identify which type of `AddToCommand` is being executed and what are the arguments.
 The `AddToCommandParser` then creates the `AddUserStoryTo` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the user story to the project.
 
-image:ug-lightbulb.png[width="50"]
-Tip: The `[project name]` entered must be valid and exists in the app. The `[project index]` given must refer to some existing project. Also,
-the user story added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[project index]` given must refer to some existing project.
+|===
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[project index]` given must refer to some existing project. Also,
-                                       the user story added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
-
+|image:ug-exclamation.png[width="60"]| The `[userstory]` added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
 |===
 
-
 ===== Remove user story from project command
+* `removefrom [project name] userstory [userstory index]` -- removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
+
+This operation is supported by the `Model#removeUserStoryFrom(Project, UserStory)` method in the `Model` interface.
+This method does not require the `[user story]` as arguments since the corresponding `[user story]` object associated with the Project object can be found by`RemoveUserStoryFromCommand#execute()`
+before the methods of `Model` are called using the index specified by the user.
+
+The sequence diagram for the execution of the removing of a user story from a project is as follows:
+
+image::remove_employee_from_sequence_diagram.png[width="1000"]
+
+Given below is an example usage scenario and how the removal of employee/milestone/user story feature behaves at each step.
+
+Step 1. The user enters the command `view project Apollo'. The app displays the list of employees and milestones in the project named "Apollo" by executing the `view` command.
+
+Step 2. The user enters `removefrom Apollo employee 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `RemoveFromCommand` (which constitutes of `RemoveEmployeeFromCommand`
+and `RemoveMilestoneFromCommand` by the `removefrom` keyword and passes the rest of the string to the `RemoveFromCommandParser` to identify which type of `RemoveFromCommand` is being executed and what are the arguments.
+The `RemoveFromCommandParser` then creates command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to remove the corresponding objects.
+
+Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
+
+image:ug-lightbulb.png[width="50"]
+Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+
 
 
 ==== Design Considerations
