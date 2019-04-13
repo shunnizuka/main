@@ -20,7 +20,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -163,7 +162,7 @@ public class EditCommandParserTest {
             + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1"
             + INVALID_GITHUB_DESC, GitHubAccount.MESSAGE_CONSTRAINTS); //invalid gh
-        
+
         // invalid phone followed by valid email
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1" + INVALID_PHONE_DESC
             + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
