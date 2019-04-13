@@ -16,6 +16,8 @@ endif::[]
 
 Authors: `Daryl Tan, Jeff Gan, Jothinandan Pillay, Lin Dehui, Shune Lei`
 
+Team: CS2103-AY1819S2-W10-2
+
 Since: `January 2019` License: `MIT`
 
 == Introduction
@@ -145,6 +147,7 @@ This section introduces to you the format of commands that are used in Pocket Pr
 This section details a few key terms that are used
 through the course of the User Guide.
 
+[width="100%",cols="50%,<50%"]
 |===
 |Term|Meaning
 
@@ -192,7 +195,7 @@ image::ug-helpcommand.png[width="800"]
 === Date Feature in Pocket Project
 
 In this application, a few commands involve the use of calendar dates. Examples of such
-commands include the setting of start dates, deadlines and completion dates to projects and the setting of
+commands include the setting of start dates and deadlines to projects and the setting of
 completion dates to projects, milestones and tasks.
 
 Whenever a particular command requires a date field, you can choose to use either of the
@@ -214,6 +217,12 @@ Examples:
 |===
 |image:ug-exclamation.png[width="60"]| The fixed date format follows the required `DD/MM/YYYY` format
 strictly and so `09/04/2023` is a valid input but `9/4/2023` is not.
+|===
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-lightbulb.png[width="50"]| The year field will not accept values beyond the
+year `2099` and acts as a loose safety feature for accidental errors while inputting the year.
 |===
 
 ==== Flexible Date Format
