@@ -18,18 +18,15 @@ class JsonAdaptedProjectTask {
 
     private final String taskName;
     private final String taskStatus;
-    private final String completionDate;
 
     /**
      * Constructs a {@code JsonAdaptedProjectTask} with the given user story details.
      */
     @JsonCreator
     public JsonAdaptedProjectTask(@JsonProperty("taskDescription") String taskName,
-                                  @JsonProperty("taskStatus") String taskStatus,
-                                  @JsonProperty("completionDate") String completionDate) {
+                                  @JsonProperty("taskStatus") String taskStatus) {
         this.taskName = taskName;
         this.taskStatus = taskStatus;
-        this.completionDate = completionDate;
     }
 
     /**
@@ -38,7 +35,6 @@ class JsonAdaptedProjectTask {
     public JsonAdaptedProjectTask(ProjectTask source) {
         this.taskName = source.getTaskDescription();
         this.taskStatus = source.getTaskStatus();
-        this.completionDate = source.getCompletionDate();
     }
 
     /**
@@ -66,16 +62,7 @@ class JsonAdaptedProjectTask {
         }
         final Status modelProjectTaskStatus = new Status(taskStatus);
 
-        if (completionDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-            PocketProjectDate.class.getSimpleName()));
-        }
-        if (!PocketProjectDate.isValidDate(completionDate)) {
-            throw new IllegalValueException(PocketProjectDate.MESSAGE_CONSTRAINTS);
-        }
-        final PocketProjectDate modelProjectTaskCompletionDate = new PocketProjectDate(completionDate);
-
-        return new ProjectTask(modelProjectTaskDescription, modelProjectTaskStatus, modelProjectTaskCompletionDate);
+        return new ProjectTask(modelProjectTaskDescription, modelProjectTaskStatus);
     }
 
 }

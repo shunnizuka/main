@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import seedu.address.model.project.ProjectTask;
 import seedu.address.model.project.ProjectTaskDescription;
 import seedu.address.model.project.Status;
-import seedu.address.model.util.PocketProjectDate;
 
 /**
  * A utility class to help with building Milestone objects.
@@ -15,12 +14,10 @@ public class ProjectTaskBuilder {
 
     private ProjectTaskDescription taskName;
     private Status status;
-    private PocketProjectDate completionDate;
 
     public ProjectTaskBuilder() {
         this.taskName = new ProjectTaskDescription(DEFAULT_TASK_NAME);
         this.status = new Status(DEFAULT_STATUS);
-        this.completionDate = new PocketProjectDate();
     }
 
     /**
@@ -29,7 +26,6 @@ public class ProjectTaskBuilder {
     public ProjectTaskBuilder(ProjectTask taskToCopy) {
         this.taskName = new ProjectTaskDescription(taskToCopy.getTaskDescription());
         this.status = new Status(taskToCopy.getTaskStatus());
-        this.completionDate = new PocketProjectDate(taskToCopy.getCompletionDate());
     }
 
     /**
@@ -48,16 +44,8 @@ public class ProjectTaskBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Status} of the {@code ProjectTask} that we are building.
-     */
-    public ProjectTaskBuilder withCompletionDate(String date) {
-        this.completionDate = new PocketProjectDate(date);
-        return this;
-    }
-
     public ProjectTask build() {
-        return new ProjectTask(taskName, status, completionDate);
+        return new ProjectTask(taskName, status);
     }
 
 }
