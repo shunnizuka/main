@@ -208,7 +208,8 @@ Examples:
 . `23/12/2019`
 . `09/03/2020`
 
-[width="100%",cols="20%,<80%",options="header",]
+
+[width="100%",cols="20%,80%"]
 |===
 |image:ug-exclamation.png[width="50"]| The fixed date format follows the required `DD/MM/YYYY` format
 strictly and so it requires `DD` for the day field and `MM` for the month field even if the value is only
@@ -243,7 +244,7 @@ You can also aim to choose a date with relation to the current week.
 
 Format: `this/next/last week DAY_OF_WEEK`
 
-[width="100%",cols="20%,<80%",options="header",]
+[width="100%",cols="20%,80%"]
 |===
 |image:ug-notepadpencil.png[width="40"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
 corresponds to Monday to Sunday respectively.
@@ -269,7 +270,7 @@ You can also aim to choose a date with relation to the current week.
 
 Format: `this/next/last month DAY_OF_MONTH`
 
-[width="100%",cols="20%,<80%",options="header",]
+[width="100%",cols="20%,80%"]
 |===
 |image:ug-exclamation.png[width="50"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
 the maximum number of days of a particular month in the chosen year.
@@ -290,13 +291,13 @@ current date is 12 April 2019 (12/04/2019), Friday.
 .*Using "this/next/last month DAY_OF_MONTH" as a flexible date input*
 image::ug-monthweek.png[]
 
-[width="100%",cols="20%,<80%",options="header",]
+[width="100%",cols="20%,80%"]
 |===
 |image:ug-notepadpencil.png[width="40"]|You do not need to specify which format you are planning to use and the application
 is able to differentiate it based on the input received.
 |===
 
-[width="100%",cols="20%,<80%",options="header",]
+[width="100%",cols="20%,80%"]
 |===
 |image:ug-lightbulb.png[width="50"]|The application will also automatically help to check the validity of the target
 date. Should you accidentally target an invalid dates such as `31/04/2019`, it will be rejected as the month of April
