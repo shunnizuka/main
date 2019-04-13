@@ -135,6 +135,7 @@ This section introduces to you the format of commands that are used in Pocket Pr
 
 |=======================================================================
 
+[width="100%",cols="35%,<65%"]
 |===
 |image:ug-notepadpencil.png[width="40"]|Parameters can be in any order e.g. if the command specifies
 `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -211,9 +212,8 @@ Examples:
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="50"]| The fixed date format follows the required `DD/MM/YYYY` format
-strictly and so it requires `DD` for the day field and `MM` for the month field even if the value is only
-single number. For example, `09/04/2023` is a valid input for the fixed date format but `9/4/2023` is not.
+|image:ug-exclamation.png[width="60"]| The fixed date format follows the required `DD/MM/YYYY` format
+strictly and so `09/04/2023` is a valid input but `9/4/2023` is not.
 |===
 
 ==== Flexible Date Format
@@ -272,7 +272,7 @@ Format: `this/next/last month DAY_OF_MONTH`
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="50"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
+|image:ug-exclamation.png[width="60"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
 the maximum number of days of a particular month in the chosen year.
 |===
 
@@ -297,14 +297,11 @@ image::ug-monthweek.png[]
 is able to differentiate it based on the input received.
 |===
 
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-lightbulb.png[width="50"]|The application will also automatically help to check the validity of the target
+===== Some additional information
+The application will also automatically help to check the validity of the target
 date. Should you accidentally target an invalid dates such as `31/04/2019`, it will be rejected as the month of April
 only has 30 days. Additionally, leap years are also considered. So, as 2020 is a leap year, `29/02/2020` is considered a valid input but `29/02/2019` will be rejected
 as 2019 is not a leap year.
-|===
-
 === Adding an employee or project to the application: `add`
 
 ==== Adding an employee to the application: `add employee`
@@ -320,6 +317,7 @@ Examples:
 . `add employee n/John Doe p/98765432 e/johnd@example.com g/johnballer s/Java`
 . `add employee n/Betsy Crowe e/betsycrowe@example.com g/BetBet p/98228312`
 
+[width="100%",cols="35%,<65%"]
 |===
 |image:ug-notepadpencil.png[width="40"]|An employee can have any number of skills (including 0).
 |===
@@ -335,11 +333,13 @@ In addition, as a software engineering project manager, you may want to easily a
 to possibly monitor his progress on a particular project. Thus for ease of use, you can simply toggle the arrow as shown
 above in Step 5 of Figure 5 and the GitHub repository of the employee will be viewable and accessible in the details panel.
 
+[width="100%",cols="35%,<65%"]
 |===
 |image:ug-exclamation.png[width="60"]|A working Internet connection is required to see and navigate through the GitHub
 repository. Otherwise, the page will not load.
 |===
 
+[width="100%",cols="35%,<65%"]
 |===
 |image:ug-lightbulb.png[width="50"]|You can also view the list of all projects assigned to the employee
 by toggling the arrows on the details panel.
@@ -352,16 +352,18 @@ You can add a project to the Pocket Project when the company/team takes on a new
 so that the key details of the project are stored in the application and employees, milestones, tasks and user stories
 can be assigned to them in the future.
 
+[width="100%",cols="35%,<65%"]
 |===
-|image:ug-notepadpencil.png[width="40"]|The project, when created, has a default description which can be
-edited using the `edit project info` command. Refer to <<Edits name/client/deadline/description of a project: `edit project info`>>
+|image:ug-notepadpencil.png[width="40"]|The project has a default description when created and this can be
+edited using <<Edits name/client/deadline/description of a project: `edit project info`>>
 |===
 
 Format: `add project n/NAME c/CLIENT_NAME s/START_DATE d/DEADLINE`
 
+[width="100%",cols="35%,<65%"]
 |===
-|image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
-can be used to select the target `START_DATE` and `DEADLINE`. Refer to <<Date Feature in Pocket Project>>
+|image:ug-lightbulb.png[width="50"]|Both the fixed and flexible date format can be used to
+select the target `START_DATE` and `DEADLINE`as shown in <<Date Feature in Pocket Project>>
 |===
 
 //TODO edit proj description below.
@@ -370,6 +372,7 @@ Examples:
 . `add project n/Apollo s/10/03/2019 d/12/12/2019 c/FairPrice`
 . `add project n/Xtreme c/John Smith s/09/02/2020 d/13/04/2020`
 
+[width="100%",cols="35%,<65%"]
 |===
 |image:ug-exclamation.png[width="60"]|The deadline of the project should minimally be 1 day after the
 start of a project.
@@ -381,8 +384,9 @@ and looks like.
 .*Adding a project to the application and what we can do with it*
 image::ug-addproject.png[]
 
+[width="100%",cols="35%,<65%"]
 |===
-|image:ug-lightbulb.png[width="50"]|You can also view the list of all employees currently working on the project,
+|image:ug-lightbulb.png[width="70"]|You can also view the list of all employees currently working on the project,
 a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
 |===
 
@@ -633,12 +637,16 @@ in the displayed list.
 
 Format: `addto PROJECT_NAME employee EMPLOYEE_INDEX`
 
+The employee at the specified `EMPLOYEE_INDEX` is added to the
+project specified by the `PROJECT_NAME`.
 
+[width="100%",cols="35%,<65%"]
 |===
-|image:ug-notepadpencil.png[width="40"]| The employee at the specified `EMPLOYEE_INDEX` is added to the
-project specified by the `PROJECT_NAME`. The index refers to the serial number (one-based indexing) shown in
+|image:ug-notepadpencil.png[width="40"]| The index refers to the serial number (one-based indexing) shown in
 the displayed list of employees.
 |===
+
+[width="100%",cols="35%,<65%"]
 |===
 |image:ug-exclamation.png[width="60"]| The `EMPLOYEE_INDEX` must be a positive integer and cannot be
 larger than the size of the displayed list.
@@ -665,9 +673,9 @@ and looks like.
 image::ug-addtoemployee.png[]
 
 
-
+[width="100%",cols="35%,<65%"]
 |===
-|image:ug-lightbulb.png[width="50"]| As shown in the figure above, instead of calling
+|image:ug-lightbulb.png[width="70"]| As shown in the figure above, instead of calling
 the `list employees` command, we can simple click on the `employees` tab located at the top of the side tab panel.
 |===
 
@@ -680,13 +688,15 @@ created, project tasks can be assigned to it.
 
 Format: `addto PROJECT_NAME milestone m/MILESTONE_DESC d/MILESTONE_DATE`
 
+[width="100%",cols="35%,<65%"]
 |===
 |image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
 can be used to select the target `MILESTONE_DATE`. Refer to <<Date Feature in Pocket Project>>
 |===
 
+[width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="50"]| As the milestone is part of a project's timeline, the
+|image:ug-exclamation.png[width="60"]| As the milestone is part of a project's timeline, the
 `MILESTONE_DATE` the input date cannot be before the `START_DATE` and after `DEADLINE` of the project.
 |===
 
@@ -699,8 +709,9 @@ of milestones in project "Apollo".
 The milestone with the given description and today's date will be added to the list
 of milestones in project "Orbital".
 
+[width="100%",cols="35%,<65%"]
 |===
-|image:ug-notepadpencil.png[width="50"]| The list of milestones inside the target project
+|image:ug-notepadpencil.png[width="40"]| The list of milestones inside the target project
 will automatically be sorted by its date every time a new entry is added.
 |===
 
