@@ -13,7 +13,7 @@ public class ListEmployeeCommand extends ListCommand {
 
     public static final String LIST_EMPLOYEE_KEYWORD = "employee";
 
-    public static final String MESSAGE_SUCCESS = "Listed all employees";
+    public static final String MESSAGE_SUCCESS = "Listed all employees. Click on the employee tab to view result.";
 
     public static final String MESSAGE_USAGE = ListCommand.COMMAND_WORD
             + " "

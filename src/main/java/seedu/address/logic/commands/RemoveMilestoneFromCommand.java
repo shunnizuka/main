@@ -14,7 +14,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
 /**
- * Removes a milestone identified using it's displayed index from a project in the address book.
+ * Removes a milestone identified using it's displayed index from a project in the Pocket Project.
  */
 
 public class RemoveMilestoneFromCommand extends RemoveFromCommand {
@@ -24,7 +24,8 @@ public class RemoveMilestoneFromCommand extends RemoveFromCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME milestone"
             + ": removes the milestone identified by the index number"
             + " used in the displayed milestone list from the project.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer) and cannot be larger than maximum integer value which is "
+            + "2,147,483,647 \n"
             + "Example: " + COMMAND_WORD + " Apollo milestone 1";
 
     public static final String MESSAGE_REMOVE_MILESTONE_SUCCESS = "Removed milestone: %1$s from %2$s";

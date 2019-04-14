@@ -21,8 +21,8 @@ import javafx.collections.ObservableList;
 
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 
 
@@ -84,11 +84,11 @@ public class EmployeeListPanelTest extends GuiUnitTest {
     private ObservableList<Employee> createBackingList(int employeeCount) {
         ObservableList<Employee> backingList = FXCollections.observableArrayList();
         for (int i = 0; i < employeeCount; i++) {
-            Name name = new Name(i + "a");
+            EmployeeName employeeName = new EmployeeName(i + "a");
             Phone phone = new Phone("000");
             Email email = new Email("a@aa");
             GitHubAccount gitHubAccount = new GitHubAccount("a");
-            Employee employee = new Employee(name, phone, email, gitHubAccount, Collections.emptySet());
+            Employee employee = new Employee(employeeName, phone, email, gitHubAccount, Collections.emptySet());
             backingList.add(employee);
         }
         return backingList;

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
@@ -21,27 +22,31 @@ class JsonAdaptedUserStory {
     private final String user;
     private final String function;
     private final String reason;
+    private final String status;
 
     /**
      * Constructs a {@code JsonAdaptedUserStory} with the given user story details.
      */
     @JsonCreator
     public JsonAdaptedUserStory(@JsonProperty("importance") String importance, @JsonProperty("user") String user,
-                                @JsonProperty("function") String function, @JsonProperty("reason") String reason) {
+                                @JsonProperty("function") String function, @JsonProperty("reason") String reason,
+                                @JsonProperty("status") String status) {
         this.importance = importance;
         this.user = user;
         this.function = function;
         this.reason = reason;
+        this.status = status;
     }
 
     /**
      * Converts a given {@code User Story} into this class for Jackson use.
      */
     public JsonAdaptedUserStory(UserStory source) {
-        this.importance = source.getUserStoryImportance().getImportance();
-        this.user = source.getUserStoryUser().getUser();
-        this.function = source.getUserStoryFunction().getFunction();
-        this.reason = source.getUserStoryReason().getReason();
+        this.importance = source.getUserStoryImportance();
+        this.user = source.getUserStoryUser();
+        this.function = source.getUserStoryFunction();
+        this.reason = source.getUserStoryReason();
+        this.status = source.getUserStoryStatus();
     }
 
     /**
@@ -64,7 +69,7 @@ class JsonAdaptedUserStory {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     UserStoryUser.class.getSimpleName()));
         }
-        if (!UserStoryUser.isValidUserStoryUser(user)) {
+        if (!UserStoryUser.isValidName(user)) {
             throw new IllegalValueException(UserStoryUser.MESSAGE_CONSTRAINTS);
         }
         final UserStoryUser modelUserStoryUser = new UserStoryUser(user);
@@ -73,7 +78,7 @@ class JsonAdaptedUserStory {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     UserStoryFunction.class.getSimpleName()));
         }
-        if (!UserStoryFunction.isValidUserStoryFunction(function)) {
+        if (!UserStoryFunction.isValidDescription(function)) {
             throw new IllegalValueException(UserStoryFunction.MESSAGE_CONSTRAINTS);
         }
         final UserStoryFunction modelUserStoryFunction = new UserStoryFunction(function);
@@ -84,8 +89,14 @@ class JsonAdaptedUserStory {
         }
         final UserStoryReason modelUserStoryReason = new UserStoryReason(reason);
 
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Status.class.getSimpleName()));
+        }
+        final Status modelStatus = new Status(status);
+
         return new UserStory(modelUserStoryImportance, modelUserStoryUser, modelUserStoryFunction,
-                modelUserStoryReason);
+                modelUserStoryReason, modelStatus);
     }
 
 }

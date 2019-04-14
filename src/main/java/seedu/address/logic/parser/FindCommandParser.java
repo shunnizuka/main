@@ -8,14 +8,17 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.FindAllCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindDeadlineCommand;
 import seedu.address.logic.commands.FindEmployeeCommand;
 import seedu.address.logic.commands.FindProjectCommand;
 import seedu.address.logic.commands.FindSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.EmployeeNameContainsKeywordsPredicate;
+import seedu.address.model.project.ProjectContainsDeadlinePredicate;
 import seedu.address.model.project.ProjectContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.skill.EmployeeSkillContainsKeywordsPredicate;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Parses input arguments and creates a new FindEmployeeCommand object
@@ -37,7 +40,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (!matcher.matches()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         final String keyword = matcher.group("keyword").toLowerCase();
@@ -46,7 +49,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (arguments.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         if (keyword.equals(FindEmployeeCommand.FIND_EMPLOYEE_KEYWORD)) {
@@ -57,9 +60,15 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindSkillCommand(new EmployeeSkillContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (keyword.equals(FindAllCommand.FIND_ALL_KEYWORD)) {
             return new FindAllCommand(new ProjectContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else if (keyword.equals(FindDeadlineCommand.FIND_DEADLINE_KEYWORD)) {
+            //to make sure the input is valid and flexible date is converted to dd/mm/yyyy format
+            //TODO how to throw extra argument exception, should only accept one date as input,
+            // currently will show invalid date
+            PocketProjectDate inputDeadline = ParserUtil.parseDate(arguments);
+            return new FindDeadlineCommand(new ProjectContainsDeadlinePredicate(inputDeadline.date));
         } else {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEmployeeCommand.MESSAGE_USAGE));
         }
     }
 }

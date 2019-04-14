@@ -17,9 +17,11 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Email;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.project.ProjectTaskDescription;
+import seedu.address.model.project.Status;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.Assert;
 
@@ -29,6 +31,8 @@ public class ParserUtilTest {
     private static final String INVALID_GITHUB = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "#friend";
+    private static final String INVALID_TASKDESCRIPTION = " ";
+    private static final String INVALID_STATUS = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -36,6 +40,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "friend";
     private static final String VALID_SKILL_2 = "neighbour";
+    private static final String VALID_TASKDESCRIPTION = "valid task";
+    private static final String VALID_STATUS = "ongoing";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -76,15 +82,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        EmployeeName expectedEmployeeName = new EmployeeName(VALID_NAME);
+        assertEquals(expectedEmployeeName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        EmployeeName expectedEmployeeName = new EmployeeName(VALID_NAME);
+        assertEquals(expectedEmployeeName, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test
@@ -205,5 +211,44 @@ public class ParserUtilTest {
                 new HashSet<Skill>(Arrays.asList(new Skill(VALID_SKILL_1), new Skill(VALID_SKILL_2)));
 
         assertEquals(expectedSkillSet, actualSkillSet);
+    }
+
+    @Test
+    public void parseProjectTaskDescription_validDescription_returnsTrimmedProjectTaskDescription() throws Exception {
+        String projectTaskNameWithWhitespace = WHITESPACE + VALID_TASKDESCRIPTION + WHITESPACE;
+        ProjectTaskDescription expectedProjectTaskDescription = new ProjectTaskDescription(VALID_TASKDESCRIPTION);
+        assertEquals(expectedProjectTaskDescription,
+                ParserUtil.parseProjectTaskDescription(projectTaskNameWithWhitespace));
+    }
+
+    @Test
+    public void parseProjectTaskDescription_nullDescription_throwsNullPointerException() throws Exception {
+        thrown.expect(NullPointerException.class);
+        ParserUtil.parseProjectTaskDescription(null);
+    }
+
+    @Test
+    public void parseProjectTaskDescription_invalidTaskDescription_throwsParseException() throws Exception {
+        thrown.expect(ParseException.class);
+        ParserUtil.parseProjectTaskDescription(INVALID_TASKDESCRIPTION);
+    }
+
+    @Test
+    public void parseStatus_validStatus_returnsTrimmedStatus() throws Exception {
+        String statusWithWhitespace = WHITESPACE + VALID_STATUS + WHITESPACE;
+        Status expectedStatus = new Status(VALID_STATUS);
+        assertEquals(expectedStatus, ParserUtil.parseStatus(statusWithWhitespace));
+    }
+
+    @Test
+    public void parseStatus_nullStatus_throwsNullPointerException() throws Exception {
+        thrown.expect(NullPointerException.class);
+        ParserUtil.parseStatus(null);
+    }
+
+    @Test
+    public void parseStatus_invalidStatus_throwsParseException() throws Exception {
+        thrown.expect(ParseException.class);
+        ParserUtil.parseStatus(INVALID_STATUS);
     }
 }

@@ -4,11 +4,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditEmployeeCommand;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
 
@@ -17,22 +17,22 @@ import seedu.address.model.skill.Skill;
  */
 public class EditEmployeeDescriptorBuilder {
 
-    private EditCommand.EditEmployeeDescriptor descriptor;
+    private EditEmployeeCommand.EditEmployeeDescriptor descriptor;
 
     public EditEmployeeDescriptorBuilder() {
-        descriptor = new EditCommand.EditEmployeeDescriptor();
+        descriptor = new EditEmployeeCommand.EditEmployeeDescriptor();
     }
 
-    public EditEmployeeDescriptorBuilder(EditCommand.EditEmployeeDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditEmployeeDescriptor(descriptor);
+    public EditEmployeeDescriptorBuilder(EditEmployeeCommand.EditEmployeeDescriptor descriptor) {
+        this.descriptor = new EditEmployeeCommand.EditEmployeeDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditEmployeeDescriptor} with fields containing {@code employee}'s details
      */
     public EditEmployeeDescriptorBuilder(Employee employee) {
-        descriptor = new EditCommand.EditEmployeeDescriptor();
-        descriptor.setName(employee.getName());
+        descriptor = new EditEmployeeCommand.EditEmployeeDescriptor();
+        descriptor.setEmployeeName(employee.getEmployeeName());
         descriptor.setPhone(employee.getPhone());
         descriptor.setEmail(employee.getEmail());
         descriptor.setGitHubAccount(employee.getGithub());
@@ -40,10 +40,10 @@ public class EditEmployeeDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditEmployeeDescriptor} that we are building.
+     * Sets the {@code EmployeeName} of the {@code EditEmployeeDescriptor} that we are building.
      */
     public EditEmployeeDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setEmployeeName(new EmployeeName(name));
         return this;
     }
 
@@ -81,7 +81,7 @@ public class EditEmployeeDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditEmployeeDescriptor build() {
+    public EditEmployeeCommand.EditEmployeeDescriptor build() {
         return descriptor;
     }
 }

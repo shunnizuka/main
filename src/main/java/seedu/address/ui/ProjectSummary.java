@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
 
@@ -13,14 +12,28 @@ public class ProjectSummary extends UiPart<Region> {
 
     private static final String FXML = "ProjectSummary.fxml";
 
-    @javafx.fxml.FXML
-    private Pane projectDetails;
+    @FXML
+    private Label name;
 
     @FXML
-    private Label projectName;
+    private Label desc;
+
+    @FXML
+    private Label client;
+
+    @FXML
+    private Label startDate;
+
+    @FXML
+    private Label deadline;
+
 
     public ProjectSummary(Project project) {
         super(FXML);
-        projectName.setText(project.getProjectName().projectName);
+        desc.setText(project.getDescription().description);
+        name.setText(project.getProjectName().projectName);
+        client.setText(project.getClient().client);
+        startDate.setText(project.getStartDate().date);
+        deadline.setText(project.getDeadline().date);
     }
 }

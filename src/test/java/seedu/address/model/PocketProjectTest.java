@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWithEmployees;
@@ -61,7 +61,7 @@ public class PocketProjectTest {
     @Test
     public void resetData_withDuplicateEmployees_throwsDuplicateEmployeeException() {
         // Two employees with the same identity fields
-        Employee editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_ALICE)
             .withSkills(VALID_SKILL_JAVA).build();
         List<Employee> newEmployees = Arrays.asList(ALICE, editedAlice);
         PocketProjectStub newData = new PocketProjectStub(newEmployees);
@@ -109,7 +109,7 @@ public class PocketProjectTest {
     @Test
     public void hasEmployee_employeeWithSameIdentityFieldsInPocketProject_returnsTrue() {
         pocketProject.addEmployee(ALICE);
-        Employee editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_ALICE)
             .withSkills(VALID_SKILL_JAVA).build();
         assertTrue(pocketProject.hasEmployee(editedAlice));
     }
@@ -164,10 +164,12 @@ public class PocketProjectTest {
     private static class PocketProjectStub implements ReadOnlyPocketProject {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
+        private final ObservableList<Project> completedProjects = FXCollections.observableArrayList();
 
         PocketProjectStub(Collection<Employee> employees) {
             this.projects.setAll(projects);
             this.employees.setAll(employees);
+            this.completedProjects.setAll(completedProjects);
         }
 
 
@@ -176,6 +178,10 @@ public class PocketProjectTest {
             return employees;
         }
 
+        @Override
+        public ObservableList<Project> getCompletedProjectList() {
+            return completedProjects;
+        }
         @Override
         public ObservableList<Project> getProjectList() {
             return projects;

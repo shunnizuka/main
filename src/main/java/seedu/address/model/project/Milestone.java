@@ -1,12 +1,9 @@
 package seedu.address.model.project;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-
 import javafx.collections.ObservableList;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Milestone achieved in the project timeline.
@@ -14,69 +11,56 @@ import javafx.collections.ObservableList;
 
 public class Milestone {
 
-    public static final String DATE_VALIDATION_REGEX =
-            "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
     public static final String MESSAGE_CONSTRAINTS = "The milestone info must not be empty or consisting of only spaces"
-            + " and the date given must be in DD/MM/YYYY format";
+        + " and the date given must be in DD/MM/YYYY format";
     public static final String MESSAGE_INVALID_STRING = "The milestone info must not be empty or consisting "
         + "of only spaces";
-    public static final String MESSAGE_INVALID_DATE = "The date given must be in DD/MM/YYYY format";
 
-    public final String milestone;
-    public final String date;
+    public final MilestoneDescription milestone;
+    public final PocketProjectDate date;
     public final UniqueProjectTaskList projectTasks;
 
-
-    public Milestone(String milestone, String date) {
+    public Milestone(MilestoneDescription milestone, PocketProjectDate date) {
         this(milestone, date, new UniqueProjectTaskList());
     }
 
-    public Milestone(String milestone, String date, UniqueProjectTaskList projectTasks) {
+    public Milestone(MilestoneDescription milestone, PocketProjectDate date, UniqueProjectTaskList projectTasks) {
         requireAllNonNull(milestone, date, projectTasks);
-        checkArgument(isValidMilestoneString(milestone), MESSAGE_INVALID_STRING);
-        checkArgument(isValidMilestoneDate(date), MESSAGE_INVALID_DATE);
-
         this.milestone = milestone;
         this.date = date;
         this.projectTasks = projectTasks;
     }
 
     /**
-     * Returns true if given strings are valid fields for a milestone.
+     * Check if the milestone has the valid format by checking the components.
+     * @return true if valid milestone and false otherwise.
      */
-    public static boolean isValidMilestone(String info, String date) {
-        return Milestone.isValidMilestoneDate(date)
-                && Milestone.isValidMilestoneString(info);
-    }
-
-    /**
-     * Returns true if given string is valid for a milestone date
-     */
-    public static boolean isValidMilestoneDate(String date) {
-
-
-        DateFormat format = Project.DATE_FORMAT;
-        format.setLenient(false);
-        try {
-            format.parse(date);
-        } catch (ParseException e) {
-            return false;
-        }
-        return date.matches(DATE_VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if given string is valid for a milestone string
-     */
-    public static boolean isValidMilestoneString(String info) {
-        return !info.trim().isEmpty();
+    public static boolean isValidMilestone(Milestone milestone) {
+        return MilestoneDescription.isValidDescription(milestone.getMilestoneDescription().description)
+                && PocketProjectDate.isValidDate(milestone.getDate().date);
     }
 
     /**
      * Adds the given project task to this milestone.
      */
-    public void addTask(ProjectTask task) {
+    public void addProjectTask(ProjectTask task) {
         this.projectTasks.add(task);
+    }
+
+    public void removeProjectTask(ProjectTask task) {
+        this.projectTasks.remove(task);
+    }
+
+    /**
+     * Updates the given project task in this project's milestone.
+     */
+    public void updateProjectTask(ProjectTask task, Status newStatus) {
+        projectTasks.forEach(pt -> {
+            if (task.equals(pt)) {
+                pt.updateStatus(newStatus);
+            }
+            return;
+        });
     }
 
     /**
@@ -87,25 +71,58 @@ public class Milestone {
         return new Milestone(this.milestone, this.date, this.projectTasks.clone());
     }
 
-    public String getMilestone() {
+    public MilestoneDescription getMilestoneDescription() {
         return milestone;
     }
 
-    public String getDate() {
+    public PocketProjectDate getDate() {
         return date;
     }
 
     public ObservableList<ProjectTask> getProjectTaskList() {
         return this.projectTasks.asUnmodifiableObservableList();
     }
+    /**
+     * Returns true if all tasks for this milestone is completed.
+     */
+    public boolean reached() {
+        for (ProjectTask pt: this.projectTasks) {
+            if (!pt.isComplete()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns a new milestone which has its {@code milestone} and {@code date} edited.
+     * {@code projectTasks} remains unchanged
+     */
+    public Milestone editMilestone (MilestoneDescription milestone, PocketProjectDate date,
+                                    UniqueProjectTaskList projectTasks) {
+        return new Milestone(milestone, date, projectTasks);
+    }
+
+    /**
+     * Returns true if both milestones have the same name and date.
+     * This defines a weaker notion of equality between two milestones.
+     */
+    public boolean isSameMilestone(Milestone otherMilestone) {
+        if (otherMilestone == this) {
+            return true;
+        }
+        return otherMilestone != null
+            && otherMilestone.getMilestoneDescription().equals(getMilestoneDescription())
+            && otherMilestone.getDate().equals(getDate());
+    }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Milestone // instanceof handles nulls
-                && milestone.equals(((Milestone) other).milestone)
-                && date.equals(((Milestone) other).date)
-                && projectTasks.equals(((Milestone) other).projectTasks)); // state check
+            || (other instanceof Milestone // instanceof handles nulls
+            && milestone.equals(((Milestone) other).milestone)
+            && date.equals(((Milestone) other).date)
+            && projectTasks.equals(((Milestone) other).projectTasks)); // state check
     }
     @Override
     public String toString() {

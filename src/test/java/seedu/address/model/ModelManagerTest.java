@@ -193,7 +193,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentPocketProject, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = ALICE.getEmployeeName().fullName.split("\\s+");
         modelManager.updateFilteredEmployeeList(new EmployeeNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(pocketProject, userPrefs)));
 

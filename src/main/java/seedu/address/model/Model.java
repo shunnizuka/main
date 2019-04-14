@@ -12,7 +12,9 @@ import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * The API of the Model component.
@@ -151,6 +153,23 @@ public interface Model {
     ObservableList<Project> getProjectList();
 
     /**
+     * Returns an unmodifiable view of the list of completed {@code Project} backed by the internal list of
+     * {@code versionedPocketProject}
+     */
+    ObservableList<Project> getCompletedProjectList();
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Employee} backed by the internal list of
+     * {@code versionedPocketProject}
+     */
+    ObservableList<Employee> getEmployeeList();
+
+    /**
+     * Completes a project and move it to the list of completed projects.
+     */
+    void completeProject(Project project, PocketProjectDate completionDate);
+
+    /**
      * Selected project in the filtered projects list.
      * null if no project is selected.
      */
@@ -201,6 +220,17 @@ public interface Model {
      */
     void removeUserStoryFrom(Project targetProject, UserStory targetUserStory);
 
+    /**
+     * Removes the {@code targetProjectTask} from the {@code targetMilestone} in the {@code targetProject}.
+     * {@code targetProject} must exist in the pocket project and {@code targetMilestone} and {@code targetProjectTask}
+     * in the milestone and task list of {@code targetProject}.
+     */
+    void removeProjectTaskFrom(Project targetProject, Milestone targetMilestone, ProjectTask targetProjectTask);
+
+    /**
+     * Updates the {@code targetStory} from the {@code targetProject} to the new {@code newStatus}.
+     */
+    void updateUserStory(Project targetProject, UserStory targetStory, Status newStatus);
 
     /**
      * Adds the {@code targetEmployee} to the {@code targetProject}.
@@ -226,12 +256,26 @@ public interface Model {
     List<Project> getProjectsContaining(Employee employee);
 
     /**
+     * Returns a string describing the overview of all projects.
+     */
+    String overallStats();
+
+    /**
      * Adds the {@code task} to the {@code milestone}.
      * {@code milestone} must exist in the pocket project.
      */
     void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task);
 
+    /**
+     * Updates the {@code targetTask} from the {@code targetProject} to the new {@code newStatus}.
+     */
+    void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                           Status newStatus);
 
+    /**
+     * Returns a string describing the progress of an individual project.
+     */
+    String individualStats(Project project);
 
 
     //-------------------------------------------------------------------------------------------

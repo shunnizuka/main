@@ -208,7 +208,7 @@ public abstract class PocketProjectSystemTest {
 
     /**
      * Asserts that the {@code CommandBox} displays {@code expectedCommandInput}, the {@code ResultDisplay} displays
-     * {@code expectedResultMessage}, the storage contains the same employee objects as {@code expectedModel}
+     * {@code expectedResultMessage}, the storage contains the same objects as {@code expectedModel}
      * and the employee list panel displays the employees in the model correctly.
      */
     protected void assertApplicationDisplaysExpected(String expectedCommandInput, String expectedResultMessage,
@@ -248,6 +248,16 @@ public abstract class PocketProjectSystemTest {
         getEmployeeListPanel().navigateToCard(getEmployeeListPanel().getSelectedCardIndex());
         String selectedCardName = getEmployeeListPanel().getHandleToSelectedCard().getName();
         assertEquals(expectedSelectedCardIndex.getZeroBased(), getEmployeeListPanel().getSelectedCardIndex());
+    }
+
+    /**
+     * Asserts that the browser's url is changed to display the details of the project in the project list panel at
+     * {@code expectedSelectedCardIndex}, and only the card at {@code expectedSelectedCardIndex} is selected.
+     */
+    protected void assertSelectedProjectCardChanged(Index expectedSelectedCardIndex) {
+        getProjectListPanel().navigateToCard(getProjectListPanel().getSelectedCardIndex());
+        String selectedCardName = getProjectListPanel().getHandleToSelectedCard().getProjectName();
+        assertEquals(expectedSelectedCardIndex.getZeroBased(), getProjectListPanel().getSelectedCardIndex());
     }
 
     /**

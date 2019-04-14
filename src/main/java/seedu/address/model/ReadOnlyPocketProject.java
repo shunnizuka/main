@@ -22,4 +22,10 @@ public interface ReadOnlyPocketProject extends Observable {
      */
     ObservableList<Project> getProjectList();
 
+    /**
+     * Returns an unmodifiable view of the completed projects list.
+     * This list will not contain any duplicate projects.
+     */
+    ObservableList<Project> getCompletedProjectList();
+
 }

@@ -1,44 +1,45 @@
 package seedu.address.model.project;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a project task stored in a project milestone.
  */
 public class ProjectTask {
 
-    private ProjectTaskStatus status;
-    private ProjectTaskName name;
+    private Status status;
+    private ProjectTaskDescription description;
 
     /**
      * Default constructor for a project task
      */
-    public ProjectTask(ProjectTaskName name) {
-        requireNonNull(name);
-        this.name = name;
-        this.status = new ProjectTaskStatus();
+    public ProjectTask(ProjectTaskDescription description) {
+        this(description, new Status());
     }
 
     /**
      * Constructor for a project task specifying project task status.
      */
-    public ProjectTask(ProjectTaskName name, ProjectTaskStatus status) {
-        requireNonNull(name);
-        this.name = name;
-        requireNonNull(status);
+    public ProjectTask(ProjectTaskDescription description, Status status) {
+        requireAllNonNull(description, status);
+        this.description = description;
         this.status = status;
     }
 
-    public ProjectTaskName getTaskName() {
-        return name;
+    public String getTaskDescription() {
+        return this.description.getTaskDescription();
     }
 
-    public ProjectTaskStatus getTaskStatus() {
-        return status;
+    public String getTaskStatus() {
+        return this.status.getStatus();
+    }
+
+    public boolean isComplete() {
+        return this.status.isComplete();
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if both tasks have the same description.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(ProjectTask otherTask) {
@@ -46,18 +47,18 @@ public class ProjectTask {
             return true;
         }
         return otherTask != null
-            && otherTask.getTaskName().equals(getTaskName());
+            && otherTask.getTaskDescription().equals(getTaskDescription());
     }
 
     /**
      * Returns a clone of this task.
      */
     public ProjectTask clone() {
-        return new ProjectTask(getTaskName().clone(), getTaskStatus().clone());
+        return new ProjectTask(this.description.clone(), this.status.clone());
     }
 
     /**
-     * Returns true if both project tasks have the same name and status.
+     * Returns true if both project tasks have the same description and status.
      * This defines a stronger notion of equality between two project tasks.
      */
     @Override
@@ -71,15 +72,15 @@ public class ProjectTask {
         }
 
         ProjectTask otherTask = (ProjectTask) other;
-        return otherTask.getTaskName().equals(getTaskName())
-            && otherTask.getTaskStatus().equals(getTaskStatus());
+        return otherTask.description.equals(this.description)
+            && otherTask.status.equals(this.status);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Project Task: ")
-                .append(getTaskName())
+                .append(getTaskDescription())
                 .append(" (Status: ")
                 .append(getTaskStatus())
                 .append(") ");
@@ -90,7 +91,14 @@ public class ProjectTask {
      * Checks if the task has the valid format by checking the relevant fields
      */
     public static boolean isValidTask(ProjectTask task) {
-        return ProjectTaskName.isValidTaskName(task.getTaskName().taskName)
-            && ProjectTaskStatus.isValidTaskStatus(task.getTaskStatus().taskStatus);
+        return ProjectTaskDescription.isValidDescription(task.getTaskDescription())
+            && Status.isValidStatus(task.getTaskStatus());
+    }
+
+    /**
+     * Updates project task status to the new status.
+     */
+    public void updateStatus(Status newStatus) {
+        this.status = newStatus;
     }
 }

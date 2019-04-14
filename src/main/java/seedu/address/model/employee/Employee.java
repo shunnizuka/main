@@ -20,7 +20,7 @@ import seedu.address.model.skill.Skill;
 public class Employee {
 
     // Identity fields
-    private final Name name;
+    private final EmployeeName employeeName;
     private final Phone phone;
     private final Email email;
 
@@ -32,9 +32,9 @@ public class Employee {
     /**
      * Every field must be present and not null.
      */
-    public Employee(Name name, Phone phone, Email email, GitHubAccount github, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, github, skills);
-        this.name = name;
+    public Employee(EmployeeName employeeName, Phone phone, Email email, GitHubAccount github, Set<Skill> skills) {
+        requireAllNonNull(employeeName, phone, email, github, skills);
+        this.employeeName = employeeName;
         this.phone = phone;
         this.email = email;
         this.github = github;
@@ -44,10 +44,10 @@ public class Employee {
     /**
      * Constructor including the list of projects the employee is in.
      */
-    public Employee(Name name, Phone phone, Email email, GitHubAccount github, Set<Skill> skills,
+    public Employee(EmployeeName employeeName, Phone phone, Email email, GitHubAccount github, Set<Skill> skills,
                     List<ProjectName> projectNames) {
-        requireAllNonNull(name, phone, email, github, skills, projectNames);
-        this.name = name;
+        requireAllNonNull(employeeName, phone, email, github, skills, projectNames);
+        this.employeeName = employeeName;
         this.phone = phone;
         this.email = email;
         this.github = github;
@@ -55,8 +55,8 @@ public class Employee {
         this.currentProjects.addAll(projectNames);
     }
 
-    public Name getName() {
-        return name;
+    public EmployeeName getEmployeeName() {
+        return employeeName;
     }
 
     public Phone getPhone() {
@@ -87,7 +87,7 @@ public class Employee {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * Returns true if both persons of the same employeeName have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameEmployee(Employee otherEmployee) {
@@ -96,8 +96,10 @@ public class Employee {
         }
 
         return otherEmployee != null
-            && otherEmployee.getName().equals(getName())
-            && (otherEmployee.getPhone().equals(getPhone()) || otherEmployee.getEmail().equals(getEmail()));
+            && otherEmployee.getEmployeeName().equals(getEmployeeName())
+            && (otherEmployee.getPhone().equals(getPhone())
+            || otherEmployee.getEmail().equals(getEmail())
+            || otherEmployee.getGithub().equals((getGithub())));
     }
 
     /**
@@ -108,10 +110,19 @@ public class Employee {
     }
 
     /**
+    *
      * Indicates that this employee has left a certain project.
      */
     public void leave(Project project) {
         this.currentProjects.remove(project.getProjectName());
+    }
+
+    /**
+     * To update the projectName when changes are made to the project the employee is in.
+     */
+    public void updateProjectName(Project projectToEdit, Project editedProject) {
+        leave(projectToEdit);
+        join(editedProject);
     }
 
 
@@ -127,7 +138,7 @@ public class Employee {
         for (ProjectName pn: currentProjects) {
             newProjectNames.add(pn.clone());
         }
-        return new Employee(this.name.clone(), this.phone.clone(), this.email.clone(), this.github.clone(),
+        return new Employee(this.employeeName.clone(), this.phone.clone(), this.email.clone(), this.github.clone(),
                 newSkills, newProjectNames);
     }
 
@@ -146,7 +157,7 @@ public class Employee {
         }
 
         Employee otherEmployee = (Employee) other;
-        return otherEmployee.getName().equals(getName())
+        return otherEmployee.getEmployeeName().equals(getEmployeeName())
             && otherEmployee.getPhone().equals(getPhone())
             && otherEmployee.getEmail().equals(getEmail())
             && otherEmployee.getGithub().equals(getGithub())
@@ -156,13 +167,13 @@ public class Employee {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, github, skills);
+        return Objects.hash(employeeName, phone, email, github, skills);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getEmployeeName())
             .append(" Phone: ")
             .append(getPhone())
             .append(" Email: ")

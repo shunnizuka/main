@@ -14,15 +14,16 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 
 /**
- * Deletes a employee identified using it's displayed index from the address book.
+ * Deletes a project identified using it's displayed index/name from the pocket project.
  */
 public class DeleteProjectCommand extends DeleteCommand {
 
     public static final String DELETE_PROJECT_KEYWORD = "project";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " project"
-            + ": Deletes the project identified by the name or index(must be positive integer) of the project.\n"
-            + "Parameters: PROJECT_NAME/PROJECT_INDEX\n"
+            + ": Deletes the project identified by the name or index of the project.\n"
+            + "Parameters: PROJECT_NAME/PROJECT_INDEX. If using the PROJECT_INDEX, it must be a positive integer and "
+            + "cannot be larger than maximum integer value which is 2,147,483,647\n"
             + "Example: " + COMMAND_WORD + " project" + " Apollo\n"
             + "Example: " + COMMAND_WORD + " project" + " 1\n";
 
@@ -64,7 +65,7 @@ public class DeleteProjectCommand extends DeleteCommand {
                 }
                 model.deleteProject(projectToDelete);
                 model.commitPocketProject();
-
+                break;
             }
         }
         if (!found) {

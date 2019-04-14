@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.ProjectTask;
-import seedu.address.model.project.ProjectTaskName;
-import seedu.address.model.project.ProjectTaskStatus;
+import seedu.address.model.project.ProjectTaskDescription;
+import seedu.address.model.project.Status;
 
 /**
  * Jackson-friendly version of {@link ProjectTask}.
@@ -22,7 +22,7 @@ class JsonAdaptedProjectTask {
      * Constructs a {@code JsonAdaptedProjectTask} with the given user story details.
      */
     @JsonCreator
-    public JsonAdaptedProjectTask(@JsonProperty("taskName") String taskName,
+    public JsonAdaptedProjectTask(@JsonProperty("taskDescription") String taskName,
                                   @JsonProperty("taskStatus") String taskStatus) {
         this.taskName = taskName;
         this.taskStatus = taskStatus;
@@ -32,8 +32,8 @@ class JsonAdaptedProjectTask {
      * Converts a given {@code ProjectTask} into this class for Jackson use.
      */
     public JsonAdaptedProjectTask(ProjectTask source) {
-        this.taskName = source.getTaskName().getTaskName();
-        this.taskStatus = source.getTaskStatus().getTaskStatusString();
+        this.taskName = source.getTaskDescription();
+        this.taskStatus = source.getTaskStatus();
     }
 
     /**
@@ -45,23 +45,23 @@ class JsonAdaptedProjectTask {
 
         if (taskName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectTaskName.class.getSimpleName()));
+                    ProjectTaskDescription.class.getSimpleName()));
         }
-        if (!ProjectTaskName.isValidTaskName(taskName)) {
-            throw new IllegalValueException(ProjectTaskName.MESSAGE_CONSTRAINTS);
+        if (!ProjectTaskDescription.isValidDescription(taskName)) {
+            throw new IllegalValueException(ProjectTaskDescription.MESSAGE_CONSTRAINTS);
         }
-        final ProjectTaskName modelProjectTaskName = new ProjectTaskName(taskName);
+        final ProjectTaskDescription modelProjectTaskDescription = new ProjectTaskDescription(taskName);
 
         if (taskStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ProjectTaskStatus.class.getSimpleName()));
+            Status.class.getSimpleName()));
         }
-        if (!ProjectTaskStatus.isValidTaskStatus(taskStatus)) {
-            throw new IllegalValueException(ProjectTaskStatus.MESSAGE_CONSTRAINTS);
+        if (!Status.isValidStatus(taskStatus)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
-        final ProjectTaskStatus modelProjectTaskStatus = new ProjectTaskStatus(taskStatus);
+        final Status modelProjectTaskStatus = new Status(taskStatus);
 
-        return new ProjectTask(modelProjectTaskName, modelProjectTaskStatus);
+        return new ProjectTask(modelProjectTaskDescription, modelProjectTaskStatus);
     }
 
 }

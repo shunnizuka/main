@@ -14,7 +14,7 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.UserStory;
 
 /**
- * Removes a milestone identified using it's displayed index from a project in the address book.
+ * Removes an user story identified using it's displayed index from a project in the Pocket Project.
  */
 
 public class RemoveUserStoryFromCommand extends RemoveFromCommand {
@@ -24,8 +24,9 @@ public class RemoveUserStoryFromCommand extends RemoveFromCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME userstory"
             + ": removes the user story identified by the index number"
             + " used in the displayed user stories list from the project.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " Apollo milestone 1";
+            + "Parameters: INDEX (must be a positive integer) and cannot be larger than maximum integer value which is "
+            + "2,147,483,647 \n"
+            + "Example: " + COMMAND_WORD + " Apollo userstory 1";
 
     public static final String MESSAGE_REMOVE_USERSTORY_SUCCESS = "Removed user story: %1$s from %2$s";
 

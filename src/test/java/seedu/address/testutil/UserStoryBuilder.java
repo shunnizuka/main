@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
 import seedu.address.model.project.UserStoryFunction;
 import seedu.address.model.project.UserStoryImportance;
@@ -20,22 +21,25 @@ public class UserStoryBuilder {
     private UserStoryUser user;
     private UserStoryFunction function;
     private UserStoryReason reason;
+    private Status status;
 
     public UserStoryBuilder() {
         importance = new UserStoryImportance(DEFAULT_IMPORTANCE);
         user = new UserStoryUser(DEFAULT_USER);
         function = new UserStoryFunction(DEFAULT_FUNCTION);
         reason = new UserStoryReason(DEFAULT_REASON);
+        status = new Status();
     }
 
     /**
      * Initializes the UserStoryBuilder with the data of {@code userStoryToCopy}.
      */
     public UserStoryBuilder(UserStory userStoryToCopy) {
-        importance = userStoryToCopy.getUserStoryImportance();
-        user = userStoryToCopy.getUserStoryUser();
-        function = userStoryToCopy.getUserStoryFunction();
-        reason = userStoryToCopy.getUserStoryReason();
+        this.importance = new UserStoryImportance(userStoryToCopy.getUserStoryImportance());
+        this.user = new UserStoryUser(userStoryToCopy.getUserStoryUser());
+        this.function = new UserStoryFunction(userStoryToCopy.getUserStoryFunction());
+        this.reason = new UserStoryReason(userStoryToCopy.getUserStoryReason());
+        this.status = new Status(userStoryToCopy.getUserStoryStatus());
     }
 
     /**
@@ -67,6 +71,14 @@ public class UserStoryBuilder {
      */
     public UserStoryBuilder withReason(String reason) {
         this.reason = new UserStoryReason(reason);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code UserStory} that we are building.
+     */
+    public UserStoryBuilder withStatus(String status) {
+        this.status = new Status(status);
         return this;
     }
 

@@ -39,8 +39,8 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeName;
 import seedu.address.model.employee.GitHubAccount;
-import seedu.address.model.employee.Name;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.skill.Skill;
 import seedu.address.testutil.EmployeeBuilder;
@@ -81,10 +81,12 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
             + PHONE_DESC_AMY + EMAIL_DESC_AMY + GITHUB_DESC_AMY + SKILL_DESC_C;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add a employee with all fields same as another employee in the pocket project except phone and email
+        /* Case: add a employee with all fields same as another employee in the pocket project except phone, email
+         * and github account.
          * -> added
          */
-        toAdd = new EmployeeBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        toAdd = new EmployeeBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+            .withGitHubAccount(VALID_GITHUB_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 
@@ -137,26 +139,26 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: add a duplicate employee -> rejected */
         command = EmployeeUtil.getAddEmployeeCommand(HOON);
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different phone -> rejected */
         toAdd = new EmployeeBuilder(HOON).withPhone(VALID_PHONE_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different email -> rejected */
         toAdd = new EmployeeBuilder(HOON).withEmail(VALID_EMAIL_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different github -> rejected */
         toAdd = new EmployeeBuilder(HOON).withGitHubAccount(VALID_GITHUB_BOB).build();
         command = EmployeeUtil.getAddEmployeeCommand(toAdd);
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: add a duplicate employee except with different skills -> rejected */
         command = EmployeeUtil.getAddEmployeeCommand(HOON) + " " + PREFIX_SKILL.getPrefix() + "friends";
-        assertCommandFailure(command, AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        assertCommandFailure(command, Messages.MESSAGE_DUPLICATE_EMPLOYEE);
 
         /* Case: missing name -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + PHONE_DESC_AMY
@@ -185,7 +187,7 @@ public class AddEmployeeCommandSystemTest extends PocketProjectSystemTest {
         /* Case: invalid name -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + INVALID_NAME_DESC
             + PHONE_DESC_AMY + EMAIL_DESC_AMY + GITHUB_DESC_AMY;
-        assertCommandFailure(command, Name.MESSAGE_CONSTRAINTS);
+        assertCommandFailure(command, EmployeeName.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid phone -> rejected */
         command = AddEmployeeCommand.COMMAND_WORD + " " + AddEmployeeCommand.ADD_EMPLOYEE_KEYWORD + NAME_DESC_AMY

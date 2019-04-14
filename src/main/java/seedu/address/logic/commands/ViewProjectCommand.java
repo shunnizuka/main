@@ -22,6 +22,8 @@ public class ViewProjectCommand extends ViewCommand {
             + " "
             + VIEW_PROJECT_KEYWORD
             + ": Selects the project identified by the index number used in the displayed project list.\n"
+            + "Parameters: INDEX (must be a positive integer) and cannot be larger than maximum integer value which is "
+            + "2,147,483,647 \n"
             + "Example: "
             + ViewCommand.COMMAND_WORD
             + " "

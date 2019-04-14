@@ -1,101 +1,128 @@
 package seedu.address.model.project;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueEmployeeList;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Represents a project in the pocket project.
  */
 public class Project {
 
-    public static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    /**
+     * Default description in project when a project is created.
+     */
+    public static final String PROJECT_DEFAULT_DESCRIPTION = "This project currently has no description. Kindly use "
+        + "the edit command to change this project's description";
+
     private final ProjectName projectName;
-    private final List<Milestone> milestones;
+    private final UniqueMilestoneList milestones;
     private final Client client;
-    private final Deadline deadline;
+    private final PocketProjectDate startDate;
+    private final PocketProjectDate deadline;
     private final UniqueEmployeeList employees;
     private final SortedUserStoryList userStories;
-    private final Description description;
-
+    private final ProjectDescription description;
+    private PocketProjectDate completionDate = null;
 
     /**
      * Constructor for each Project Object.
      */
-    public Project (ProjectName pn, Client c, Deadline d) {
-        this(pn, c, d, new ArrayList<>(), new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
+    public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end) {
+        this(pn, c, start, end, new UniqueMilestoneList(), new ProjectDescription(), new UniqueEmployeeList(),
+                new SortedUserStoryList());
+
     }
 
     /**
-     * Constructor specifying milestones too.
+     * Constructor specifying milestones too. (not used)
      */
-    public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m) {
-        this(pn, c, d, m, new Description(), new UniqueEmployeeList(), new SortedUserStoryList());
+    public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m) {
+        this(pn, c, start, end, m, new ProjectDescription(), new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
-     * Constructor specifying description and milestone too.
+     * Constructor specifying description and milestone too. (not used)
      */
-    public Project (ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc) {
-        this(pn, c, d, m, desc, new UniqueEmployeeList(), new SortedUserStoryList());
+    public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
+         ProjectDescription desc) {
+        this(pn, c, start, end, m, desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
-     * Constructor specifying description.
+     * Constructor specifying description. (not used)
      */
-    public Project (ProjectName pn, Client c, Deadline d, Description desc) {
-        this(pn, c, d, new ArrayList<>(), desc, new UniqueEmployeeList(), new SortedUserStoryList());
+    public Project (ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, ProjectDescription desc) {
+        this(pn, c, start, end, new UniqueMilestoneList(), desc, new UniqueEmployeeList(), new SortedUserStoryList());
     }
 
     /**
-     * Constructor specifying employees in the project.
+     * Constructor specifying employees in the project. (not used)
      */
-    public Project(ProjectName pn, Client c, Deadline d, Description desc, UniqueEmployeeList emp) {
-        this(pn, c, d, new ArrayList<>(), desc, emp, new SortedUserStoryList());
+    public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, ProjectDescription desc,
+         UniqueEmployeeList emp) {
+        this(pn, c, start, end, new UniqueMilestoneList(), desc, emp, new SortedUserStoryList());
     }
 
     /**
-     * Constructor specifying all fields except userstories.
+     * Constructor specifying all fields except userstories. (not used)
      */
-    public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp) {
-        this(pn, c, d, m, desc, emp, new SortedUserStoryList());
+    public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
+         ProjectDescription desc, UniqueEmployeeList emp) {
+        this(pn, c, start, end, m, desc, emp, new SortedUserStoryList());
+    }
+
+    /**
+     * Constructor specifying all fields except completion date.
+     */
+    public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
+         ProjectDescription desc, UniqueEmployeeList emp, SortedUserStoryList stories) {
+        this.projectName = pn;
+        this.client = c;
+        this.startDate = start;
+        this.deadline = end;
+        this.description = desc;
+        this.employees = emp;
+        this.milestones = m;
+        this.userStories = stories;
     }
 
     /**
      * Constructor specifying all fields.
      */
-    public Project(ProjectName pn, Client c, Deadline d, List<Milestone> m, Description desc, UniqueEmployeeList emp,
-                   SortedUserStoryList stories) {
+    public Project(ProjectName pn, Client c, PocketProjectDate start, PocketProjectDate end, UniqueMilestoneList m,
+         ProjectDescription desc, UniqueEmployeeList emp, SortedUserStoryList stories, PocketProjectDate comp) {
         this.projectName = pn;
         this.client = c;
-        this.deadline = d;
+        this.startDate = start;
+        this.deadline = end;
         this.description = desc;
         this.employees = emp;
         this.milestones = m;
         this.userStories = stories;
+        this.completionDate = comp;
 
     }
 
     public ProjectName getProjectName() {
         return projectName;
     }
-    public List<Milestone> getMilestones() {
-        return milestones;
+    public ObservableList<Milestone> getMilestones() {
+        return milestones.asUnmodifiableObservableList();
     }
     public Client getClient() {
         return client;
     }
-    public Deadline getDeadline() {
+    public PocketProjectDate getStartDate() {
+        return startDate;
+    }
+    public PocketProjectDate getDeadline() {
         return deadline;
     }
-    public Description getDescription() {
+    public ProjectDescription getDescription() {
         return description;
     }
     public ObservableList<Employee> getEmployees() {
@@ -104,19 +131,15 @@ public class Project {
     public ObservableList<UserStory> getUserStories() {
         return userStories.asUnmodifiableObservableList();
     }
-
+    public PocketProjectDate getCompletionDate() {
+        return completionDate;
+    }
     /**
      * Returns a clone of this Project object.
      */
     public Project clone() {
-        List<Milestone> cloneOfMilestones = new ArrayList<>();
-        for (Milestone m: this.milestones) {
-            cloneOfMilestones.add(m.clone());
-        }
-
-        return new Project(this.projectName.clone(), this.client.clone(), this.deadline.clone(),
-                cloneOfMilestones,
-                this.description.clone(), this.employees.clone(), userStories.clone());
+        return new Project(this.projectName.clone(), this.client.clone(), this.startDate.clone(), this.deadline.clone(),
+            this.milestones.clone(), this.description.clone(), this.employees.clone(), userStories.clone());
     }
 
     /**
@@ -143,27 +166,27 @@ public class Project {
      */
     public void addMilestone(Milestone milestone) {
         milestones.add(milestone);
-        Comparator<? super Milestone> comparator = new Comparator<Milestone>() {
-            @Override
-            public int compare(Milestone m1, Milestone m2) {
-                int dd1 = Integer.parseInt(m1.date.substring(0, 2));
-                int mm1 = Integer.parseInt(m1.date.substring(3, 5));
-                int yy1 = Integer.parseInt(m1.date.substring(6, 10));
-                int dd2 = Integer.parseInt(m2.date.substring(0, 2));
-                int mm2 = Integer.parseInt(m2.date.substring(3, 5));
-                int yy2 = Integer.parseInt(m2.date.substring(6, 10));
-                if (yy1 != yy2) {
-                    return yy1 - yy2;
-                } else if (mm1 != mm2) {
-                    return mm1 - mm2;
-                } else {
-                    return dd1 - dd2;
-                }
-            }
-        };
-        milestones.sort(comparator);
     }
 
+    /**
+     * Sets the the start date.
+     */
+    public void setStartDate(PocketProjectDate startDate) {
+        this.completionDate = startDate;
+    }
+    /**
+     * Completes the project, specifying the completion date.
+     */
+    public void setCompletionDate(PocketProjectDate completionDate) {
+        this.completionDate = completionDate;
+    }
+
+    /**
+     * Replace the {@code targetMilestone} in the list with the edited new {@code milestone}
+     */
+    public void setMilestone(Milestone targetMilestone, Milestone milestone) {
+        milestones.setMilestone(targetMilestone, milestone);
+    }
     /**
      *  Removes the given employee from this project.
      */
@@ -186,6 +209,14 @@ public class Project {
     }
 
     /**
+     * Replace the existing user story with the new editedStory.
+     */
+    public void setUserStory(UserStory target, UserStory editedStory) {
+        userStories.setUserStory(target, editedStory);
+    }
+
+
+    /**
      * Returns true if this project has the given projectName.
      */
     public boolean hasProjectName(ProjectName projectName) {
@@ -193,7 +224,6 @@ public class Project {
     }
 
     /**
-<<<<<<< HEAD
      * Adds the given user story to this project.
      */
     public void addUserStory(UserStory story) {
@@ -205,6 +235,40 @@ public class Project {
      */
     public void removeUserStory(UserStory story) {
         userStories.remove(story);
+    }
+
+    /**
+     * Updates the given user story in this project.
+     */
+    public void updateUserStory(UserStory story, Status newStatus) {
+        userStories.forEach(thisStory -> {
+            if (story.equals(thisStory)) {
+                thisStory.updateStatus(newStatus);
+            }
+            return;
+        });
+    }
+
+    /**
+     * Edits the details of the project specifically projectName, client, deadline and description
+     */
+    public Project editProject(ProjectName projectName, Client client, PocketProjectDate startDate,
+        PocketProjectDate deadline, ProjectDescription description) {
+        return new Project(projectName, client, startDate, deadline, this.milestones, description, this.employees,
+            this.userStories);
+    }
+
+    /**
+     * Checks if a given milestone is valid by checking if it is after the start date and before the deadline of
+     * a project.
+     * @param milestoneDate date to be checked
+     * @return true if date falls within the valid range and false otherwise.
+     */
+    public boolean isValidMilestoneDate(PocketProjectDate milestoneDate) {
+        return (PocketProjectDate.isEarlierThan(this.startDate, milestoneDate)
+            || PocketProjectDate.isSameDate(this.startDate, milestoneDate))
+            && (PocketProjectDate.isLaterThan(this.deadline, milestoneDate)
+            || PocketProjectDate.isSameDate(this.deadline, milestoneDate));
     }
 
     /**
@@ -229,7 +293,7 @@ public class Project {
             && otherProject.getClient().equals(getClient())
             && otherProject.getDeadline().equals(getDeadline())
             && otherProject.getDescription().equals(getDescription())
-            && otherProject.getMilestones().equals(getMilestones())
+            && otherProject.milestones.equals(this.milestones)
             && otherProject.employees.equals(this.employees)
             && otherProject.userStories.equals(this.userStories);
     }
@@ -245,21 +309,29 @@ public class Project {
 
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectName())
-            .append(" Client: ")
+            .append("\n")
+            .append(getDescription())
+            .append("\n")
+            .append("Client: ")
             .append(getClient())
-            .append(" Deadline: ")
+            .append("\n")
+            .append("Start date: ")
+            .append(getStartDate())
+            .append("\n")
+            .append("Deadline: ")
             .append(getDeadline())
-            .append(" " + getDescription()).append("\nemployees:\n");
+            .append("\n")
+            .append("Employees:\n");
         for (Employee e: employees) {
             builder.append(e);
             builder.append("\n");
         }
-        builder.append("milestones:\n");
+        builder.append("Milestones:\n");
         for (Milestone m: milestones) {
             builder.append(m);
             builder.append("\n");
         }
-        builder.append("user stories:\n");
+        builder.append("User Stories:\n");
         for (UserStory s: userStories) {
             builder.append(s);
             builder.append("\n");
@@ -267,7 +339,5 @@ public class Project {
 
         return builder.toString();
     }
-
-
 
 }

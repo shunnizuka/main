@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -49,16 +50,9 @@ public class SortedUserStoryList implements Iterable<UserStory> {
         if (contains(toAdd)) {
             throw new DuplicateUserStoryException();
         }
-        //find the position to insert the new user story
-        for (int i = 0; i < internalList.size(); i++) {
-            UserStory currentStory = internalList.get(i);
-            if (toAdd.isHigherImportance(currentStory)) {
-                internalList.add(i, toAdd);
-                return;
-            }
-        }
-        //if at the end it is still not added then add it to the back
+
         internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
@@ -75,6 +69,7 @@ public class SortedUserStoryList implements Iterable<UserStory> {
     public void setUserStories(SortedUserStoryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        Collections.sort(internalList);
     }
 
     /**
@@ -88,6 +83,20 @@ public class SortedUserStoryList implements Iterable<UserStory> {
         }
 
         internalList.setAll(stories);
+        Collections.sort(internalList);
+    }
+
+    /**
+     * Replaces the {@code targetStory} with the new {@code story}
+     * {@code stories} must not contain duplicate user stories.
+     */
+    public void setUserStory(UserStory targetStory, UserStory story) {
+        if (!this.contains(targetStory)) {
+            throw new UserStoryNotFoundException();
+        }
+        remove(targetStory);
+        add(story);
+        Collections.sort(internalList);
     }
 
     /**

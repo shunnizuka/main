@@ -76,7 +76,7 @@ public class EmployeeCardHandle extends NodeHandle<Node> {
      * Returns true if this handle contains {@code employee}.
      */
     public boolean equals(Employee employee) {
-        return getName().equals(employee.getName().fullName)
+        return getName().equals(employee.getEmployeeName().fullName)
                 && getGithub().equals(employee.getGithub().value)
                 && getPhone().equals(employee.getPhone().value)
                 && getEmail().equals(employee.getEmail().value)

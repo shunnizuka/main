@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.PocketProject;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.project.Project;
 
 /**
  * A utility class for test cases.
@@ -48,10 +49,31 @@ public class TestUtil {
     }
 
     /**
+     * Returns the middle index of the project in the {@code model}'s project list.
+     */
+    public static Index getMidProjectIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredProjectList().size() / 2);
+    }
+
+    /**
+     * Returns the last index of the project in the {@code model}'s project list.
+     */
+    public static Index getLastProjectIndex(Model model) {
+        return Index.fromOneBased(model.getFilteredProjectList().size());
+    }
+
+    /**
      * Returns the employee in the {@code model}'s employee list at {@code index}.
      */
     public static Employee getEmployee(Model model, Index index) {
         return model.getFilteredEmployeeList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns the project in the {@code model}'s project list at {@code index}.
+     */
+    public static Project getProject(Model model, Index index) {
+        return model.getFilteredProjectList().get(index.getZeroBased());
     }
 
     /**

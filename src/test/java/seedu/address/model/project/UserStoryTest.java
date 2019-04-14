@@ -1,6 +1,5 @@
 package seedu.address.model.project;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -24,6 +23,7 @@ public class UserStoryTest {
         Assert.assertThrows(IllegalArgumentException.class, () -> new UserStory(
                 new UserStoryImportance(invalidImportance), new UserStoryUser(invalidUser),
                 new UserStoryFunction(invalidFunction), new UserStoryReason(validReason)));
+
     }
 
 
@@ -43,10 +43,6 @@ public class UserStoryTest {
         //invalid user empty field
         Assert.assertThrows(IllegalArgumentException.class, () -> new UserStory(new UserStoryImportance("2"),
                 new UserStoryUser(" "), new UserStoryFunction("function"), new UserStoryReason("reason")));
-
-        //invalid function empty field
-        assertFalse(UserStory.isValidUserStory(new UserStory(new UserStoryImportance("2"),
-                new UserStoryUser("user"), new UserStoryFunction(" "), new UserStoryReason("reason"))));
 
         // valid fields
         assertTrue(UserStory.isValidUserStory(new UserStory(new UserStoryImportance("2"),

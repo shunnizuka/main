@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
@@ -24,11 +23,11 @@ public class AddEmployeeToCommand extends AddToCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME employee"
             + ": adds the employee by the index number used in"
             + "  the displayed employee list into the respective list stored under the stated project.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer) and cannot be larger than maximum integer value which is "
+            + "2,147,483,647 \n"
             + "Example: " + COMMAND_WORD + " Apollo employee 1";
 
-    public static final String MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS = "Added Employee: %1$s from %2$s";
-    public static final String MESSAGE_DUPLICATE_PROJ_EMPLOYEE = "This employee already exists in the PocketProject.";
+    public static final String MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS = "Added Employee: %1$s to %2$s";
 
     private final Index targetIndex;
     private final ProjectName targetProjectName;
@@ -48,20 +47,15 @@ public class AddEmployeeToCommand extends AddToCommand {
         }
         Employee employeeToAdd = lastShownList.get(targetIndex.getZeroBased());
 
-        Project targetProject = null;
-        List<Project> projectList = model.getProjectList();
-        for (Project p: projectList) {
-            if (p.hasProjectName(targetProjectName)) {
-                targetProject = p;
-            }
-        }
+        Project targetProject = model.getProjectWithName(targetProjectName);
         if (targetProject == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
-        ObservableList<Employee> targetList = targetProject.getEmployees();
-        if (targetList.contains(employeeToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
+
+        if (targetProject.containsEmployee(employeeToAdd)) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJ_EMPLOYEE);
         }
+
         model.addEmployeeTo(targetProject, employeeToAdd);
         model.commitPocketProject();
         return new CommandResult(String.format(MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS, employeeToAdd,

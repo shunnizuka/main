@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalEmployees.getTypicalPocketProjectWit
 import org.junit.Before;
 import org.junit.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -29,7 +30,8 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newEmployee_success() {
-        Employee validEmployee = new EmployeeBuilder().build();
+        Employee validEmployee = new EmployeeBuilder().withName("Jason Picard").withPhone("90990099")
+            .withEmail("jasonroxxx@gmail.com").withGitHubAccount("jasonballer").build();
 
         Model expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.addEmployee(validEmployee);
@@ -43,7 +45,7 @@ public class AddCommandIntegrationTest {
     public void execute_duplicateEmployee_throwsCommandException() {
         Employee employeeInList = model.getPocketProject().getEmployeeList().get(0);
         assertCommandFailure(new AddEmployeeCommand(employeeInList), model, commandHistory,
-                AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+                Messages.MESSAGE_DUPLICATE_EMPLOYEE);
     }
 
 }

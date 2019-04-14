@@ -87,8 +87,7 @@ through the course of the Developer Guide.
 |Ordering of words based on how it would appear in a dictionary.
 
 |Milestone
-|A key event that is completed during the entire timeline
- of the project.
+|A key event that is completed during the entire timeline of the project.
 
 |One-Based Indexing
 |Way of numbering in which the initial element of a sequence is assigned the index 1.
@@ -435,6 +434,7 @@ There will also be less clutter in `PocketProjectParser` as there are already a 
 
 // end::removefrom[]
 
+// tag::find[]
 === Find Employee/Project/Skill/All feature
 ==== Current Implementation
 For the current `find` feature, there are 4 main commands that the user can execute:
@@ -474,6 +474,7 @@ Alternative 1: Have a nested `FindCommandParser` (current implementation)
 Alternative 2: Let `PocketProjectParser` handle parsing of all the `find` commands
 
 Using Alternative 1 is better as it provides better abstraction as the details of the 3 different commands will be hidden away. Hence it is more in line with OOP principles. There will also be less clutter in `FindCommandParser` as there are already a lot of other commands being parsed.
+// end::find[]
 
 // skill::undoredo[]
 
@@ -508,41 +509,90 @@ Alternative 2: Let `PocketProjectParser` handle parsing of all the `list` comman
 Using Alternative 1 is better as it provides better abstraction as the `listCommandParser` will handle all `list` commands. It also reduces the cluttering in the main `PocketProjectParser`.
 
 // skill::stats[]
-=== [Proposed] Stats feature
-==== Planned Implementation
+=== Stats feature
+==== Implementation
 
 The displaying of statistics in Pocket Project will be facilitated by the model component. This feature is
-planned to support 1 main command:
+planned to support 2 main commands:
 
-* `stats` -- Displays the total number of projects and the respective number of ongoing and completed projects
+* `stats` -- Displays an overview of all the projects: the number of ongoing projects, deadlines etc.
+* `stats PROJ_INDEX` or `stats PROJ_NAME` -- Display a summary of the progress of the project with the given PROJ_INDEX or PROJ_NAME.
 
-The operation will be supported by the methods in the `Model` interface: `Model#getProjectList()` and `Model#getCompletedProjectList`.
-These two methods each will retrieve an unmodifiable list of ongoing projects and completed projects respectively.
+The operation will be supported by the methods in the `Model` interface: `Model#overallStats()` and `Model#individualStats(Project)`.
+`Model#overallStats()` will retrieve the data on all the projects/employees to pass to `StatsUtil`, an utility class to produce a string which describes
+the status of all projects. `Model#individualStats(Project)` passes the given project to `StatsUtil` to produce a string in a similar fashion.
 
 
-The following sequence diagram shows how the stats command will work:
+The following sequence diagrams show how the stats command will work:
 
-image::stats_sequence_diagram.png[width="1000"]
-
+Overview of all projects:
+image::OverallStatsSequenceDiagram.png[width="1000"]
+Individual Project:
+image::IndividualStatsSequenceDiagram.png[width="1000"]
 Usage Scenario example for `stats`:
 
-1.	User executes `stats` to view project statistics in Pocket Project.
-2.	`PocketProjectParser` will parse and identify the command as a `StatsCommand` and returns a `StatsCommand`.
-3.	`LogicManager` then executes `StatsCommand`, calling the `Model#getProjectList()` and `Model#getCompletedProjectList()` methods
- which return the list of ongoing and completed projects respectively.
-4.  `StatsCommand` then returns the total number of projects and the respective number of ongoing and completed projects.
+1.	User executes `stats`/`stats PROJ_INDEX`/`stats PROJ_NAME` to view project statistics in Pocket Project.
+2.	`PocketProjectParser` will parse and identify the command as a `IndividualStatsCommand` or `OverallStatsCommand`, parse any additional argument accordingly and return the command object.
+3.	`LogicManager` then executes the returned command, calling the `Model#individualStats()` or `Model#overallStats(Project)` accordingly to obtain the string describing the status of concern.
+4.  The returned string is used to construct the result of the command.
 
 ==== Design Considerations
-===== Aspect: How the number of projects is obtained.
-Alternative 1: Obtain the required project lists through `Model` and and get the size of the lists.
+===== Aspect: How the string is constructed.
+Alternative 1: Retrieve all the relevant project(s), find out the relevant information and construct the string in the `execute()` method
+of the command object.
 
-Alternative 2: Let `UniqueProjectList` keep track of the number of projects and implement a `UniqueProjectList#getSize()` method which is called by `StatsCommand`.
+Alternative 2: Do the construction in the model.
 
-Using Alternative 1 is better as the Pocket Project statistics only need to be displayed when the user executes `stats`.
-Alternative 2 would require additional checks to ensure that there is live update of project statistics in `UniqueProjectList` every time a project is added, deleted or completed.
+Alternative 3: Do it somewhere else.
 
+I have decided to use alternative 3 and create a specialized helper class to scrap the relevant information from the list of projects/employees to
+produce the string. This is chosen because I have decided to have several helper methods to construct the different parts of the string(e.g. about the number of ongoing projects, project with closest deadline etc..).
+It would be inappropriate to put these methods under the command class or the model because they are not very related.
 
 // end::stats[]
+
+=== User Story feature
+==== Implementation
+
+The implementation of user stories in Pocket Project is facilitated by the `model` component, and in particular, the `Project` class
+which will store the relevant user stories as a `SortedUserStoryList`.
+
+Currently, the user stories feature supports the following commands:
+
+* `addto PROJ_NAME userstory i/STORY_IMPORTANCE STORY` -- Adds the `story` to the project indicated by the `PROJ_NAME`.
+* `removefrom PROJ_NAME userstory INDEX` -- Removes the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
+* `edit project PROJ_NAME userstory INDEX STORY` -- Edits the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
+* `update PROJ_NAME userstory INDEX STATUS -- Updates the status of the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
+
+In addition, the `SortedUserStoryList` maintains a sorted order of user stories according to descending importance level of the user story, followed by ascending lexicographical order of the `UserStoryUser` name.
+
+For example, suppose we have 3 user stories with the following importance level and user names:
+
+|===
+| Importance | User name
+| 1          | John
+| 2          | David
+| 2          | Alan
+|===
+
+In the `SortedUserStoryList` these user stories would appear in the following order and index:
+
+|===
+| Index  | Importance | User name
+| 1      | 2          | Alan
+| 2      | 2          | David
+| 3      | 1          | John
+|===
+
+Since the user stories with users David and Alan have a higher importance level than John, they will appear above John in the sorted list. Afterwards, since Alan is lexicographically smaller than David, it appears before David in the list.
+
+This is to faciliate users to find important user stories by ensuring a neatly ordered list by relevance of the user story. If a user wishes to do so, they can also sort the list by `UserStoryStatus` using the JavaFX `TableColumn` built-in sort to see which user stories are in progress or on hold. Note that doing so would directly change the
+order of the user stories in the `SortedUserStoryList` hence changing the index of the user story. In general, the GUI is updated to reflect the actual list stored within `SortedUserStoryList` hence any command which acts on an index would affect the user story in that index shown on the GUI.
+
+For example usage scenarios for adding user stories as removing of user stories, refer to the following:
+
+* `addto PROJ_NAME userstory [story]` -- <<Add employee/milestone/user story to projects feature>>
+* `removefrom PROJ_NAME userstory INDEX` -- <<Remove employee/milestone from projects feature>>
 
 === Undo/Redo feature
 ==== Current Implementation
@@ -1407,11 +1457,9 @@ Deleting a project while all projects are listed
 
 === Indicating a project as completed
 
-.. Test case: `complete 1` where there this at least one project shown in the list of projects +
+.. Test case: `complete 1 11/11/2011` where there this at least one project shown in the list of projects +
    Expected: The first project in the list is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
-.. Test case: `complete Project Apollo` where there is a project named 'Project Apollo' in the app +
-   Expected: The project named 'Project Apollo' is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
-.. Test case: `complete x` where x is neither the index of a displayed project nor the name of an existing project +
+.. Test case: `complete x 11/11/2011` where x is not the index of a displayed project +
    Expected: Error detail shown. The Timestamp in the status bar is not updated.
 
 === Clearing all data from the app

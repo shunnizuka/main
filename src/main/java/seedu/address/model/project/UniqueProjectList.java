@@ -134,6 +134,15 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
+     *  Removes the specified project task from the specified project milestone. They must exist.
+     */
+    public void removeProjectTaskFrom(Project project, Milestone milestone, ProjectTask task) {
+        requireAllNonNull(project, milestone, task);
+        List<Milestone> milestones = internalList.get(internalList.indexOf(project)).getMilestones();
+        milestones.get(milestones.indexOf(milestone)).removeProjectTask(task);
+    }
+
+    /**
      *  Adds the specified employee to the specified project. They must exist.
      */
     public void addEmployeeTo(Project project, Employee employee) {
@@ -158,12 +167,30 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
+     * Updates the specified user story in the specified project. They must exist.
+     */
+    public void updateUserStory(Project project, UserStory userStory, Status newStatus) {
+        requireAllNonNull(project, userStory, newStatus);
+        internalList.get(internalList.indexOf(project)).updateUserStory(userStory, newStatus);
+    }
+
+    /**
      *  Adds the specified project task to the specified project milestone. They must exist.
      */
     public void addProjectTaskTo(Project project, Milestone milestone, ProjectTask task) {
         requireAllNonNull(project, milestone, task);
         List<Milestone> milestones = internalList.get(internalList.indexOf(project)).getMilestones();
-        milestones.get(milestones.indexOf(milestone)).addTask(task);
+        milestones.get(milestones.indexOf(milestone)).addProjectTask(task);
+    }
+
+    /**
+     * Updates the specified project task in the specified project milestone. They must exist.
+     */
+    public void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                                  Status newStatus) {
+        requireAllNonNull(targetProject, targetMilestone, targetTask, newStatus);
+        List<Milestone> milestones = internalList.get(internalList.indexOf(targetProject)).getMilestones();
+        milestones.get(milestones.indexOf(targetMilestone)).updateProjectTask(targetTask, newStatus);
     }
 
 

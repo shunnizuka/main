@@ -14,8 +14,10 @@ import seedu.address.model.employee.UniqueEmployeeList;
 import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTask;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.util.PocketProjectDate;
 
 /**
  * Wraps all data at the pocket-project level
@@ -25,6 +27,7 @@ public class PocketProject implements ReadOnlyPocketProject {
 
     private final UniqueEmployeeList employees;
     private final UniqueProjectList projects;
+    private final UniqueProjectList completedProjects;
     private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
 
     /*
@@ -37,6 +40,7 @@ public class PocketProject implements ReadOnlyPocketProject {
     {
         employees = new UniqueEmployeeList();
         projects = new UniqueProjectList();
+        completedProjects = new UniqueProjectList();
     }
 
     public PocketProject() {}
@@ -70,6 +74,14 @@ public class PocketProject implements ReadOnlyPocketProject {
     }
 
     /**
+     * Replaces the contents of the completed project list with {@code projects}.
+     * {@code projects} must not contain duplicate projects.
+     */
+    public void setCompletedProjects(List<Project> projects) {
+        this.completedProjects.setProjects(projects);
+    }
+
+    /**
      * Resets the existing data of this {@code PocketProject} with {@code newData}.
      */
     public void resetData(ReadOnlyPocketProject newData) {
@@ -83,9 +95,13 @@ public class PocketProject implements ReadOnlyPocketProject {
         for (Project p: newData.getProjectList()) {
             projectList.add(p.clone());
         }
+        for (Project p: newData.getCompletedProjectList()) {
+            completedProjectList.add(p.clone());
+        }
 
         setEmployees(employeeList);
         setProjects(projectList);
+        setCompletedProjects(completedProjectList);
     }
 
 
@@ -106,6 +122,14 @@ public class PocketProject implements ReadOnlyPocketProject {
     public boolean hasProject(Project project) {
         requireNonNull(project);
         return projects.contains(project);
+    }
+
+    /**
+     * Returns true if a completed project with the same name as {@code project} exists in the pocket project.
+     */
+    public boolean hasCompletedProject(Project project) {
+        requireNonNull(project);
+        return completedProjects.contains(project);
     }
 
     /**
@@ -154,8 +178,35 @@ public class PocketProject implements ReadOnlyPocketProject {
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
 
+        //if the project name is changed, update the project names in the employee
+        if (!target.getProjectName().equals(editedProject.getProjectName())) {
+            ObservableList<Employee> employeeListInProject = target.getEmployees();
+            employees.forEach((em) -> {
+                if (employeeListInProject.contains(em)) {
+                    em.updateProjectName(target, editedProject);
+                }
+            });
+        }
+
         projects.setProject(target, editedProject);
         indicateModified();
+    }
+
+    /**
+     * Removes {@code project} from the list of ongoing projects and add it to the list of completed projects.
+     * {@code project} must exist in the pocket project.
+     */
+    public void completeProject(Project project, PocketProjectDate completionDate) {
+        removeProject(project);
+        project.setCompletionDate(completionDate);
+        completedProjects.add(project);
+    }
+
+    /**
+     * Add a {@code project} into the list of completed projects.
+     */
+    public void addCompletedProject(Project project) {
+        completedProjects.add(project);
     }
 
     /**
@@ -178,6 +229,9 @@ public class PocketProject implements ReadOnlyPocketProject {
      * {@code project} must exist in the pocket project.
      */
     public void removeProject(Project project) {
+        for (Employee e: employees) {
+            e.getCurrentProjects().remove(project.getProjectName());
+        }
         projects.remove(project);
         indicateModified();
     }
@@ -206,6 +260,33 @@ public class PocketProject implements ReadOnlyPocketProject {
      */
     public void removeUserStoryFrom(Project targetProject, UserStory targetUserStory) {
         projects.removeUserStoryFrom(targetProject, targetUserStory);
+        indicateModified();
+    }
+
+    /**
+     * Removes {@code task} from the {@code targetMilestone} in {@code targetProject} from this
+     * {@code PocketProject}.
+     *  {@code targetProject}, {@code targetMilestone} and {@code task} must exist.
+     */
+    public void removeProjectTaskFrom(Project targetProject, Milestone targetMilestone, ProjectTask targetProjectTask) {
+        projects.removeProjectTaskFrom(targetProject, targetMilestone, targetProjectTask);
+        indicateModified();
+    }
+
+    /**
+     *
+     */
+    public void updateUserStory(Project targetProject, UserStory targetStory, Status newStatus) {
+        projects.updateUserStory(targetProject, targetStory, newStatus);
+        indicateModified();
+    }
+
+    /**
+     * Updates status of {@code targetTask} in {@code targetMilestone} in {@code targetProject} to {@code newStatus}.
+     */
+    public void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                                  Status newStatus) {
+        projects.updateProjectTask(targetProject, targetMilestone, targetTask, newStatus);
         indicateModified();
     }
 
@@ -292,6 +373,11 @@ public class PocketProject implements ReadOnlyPocketProject {
             builder.append(p);
             builder.append("\n");
         }
+        builder.append("completed projects:\n");
+        for (Project p: completedProjects) {
+            builder.append(p);
+            builder.append("\n");
+        }
         return builder.toString();
     }
 
@@ -304,18 +390,22 @@ public class PocketProject implements ReadOnlyPocketProject {
     public ObservableList<Project> getProjectList() {
         return projects.asUnmodifiableObservableList();
     }
-
+    @Override
+    public ObservableList<Project> getCompletedProjectList() {
+        return completedProjects.asUnmodifiableObservableList();
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof PocketProject // instanceof handles nulls
             && employees.equals(((PocketProject) other).employees)
-            && projects.equals(((PocketProject) other).projects));
+            && projects.equals(((PocketProject) other).projects)
+            && completedProjects.equals(((PocketProject) other).completedProjects));
     }
 
     @Override
     public int hashCode() {
-        Object[] array = {this.projects, this.employees};
+        Object[] array = {this.projects, this.employees, this.completedProjects};
         return Arrays.hashCode(array);
     }
 

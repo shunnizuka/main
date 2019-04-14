@@ -4,8 +4,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_ZULU;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_ZULU;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_ALICE_HEY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_ZULU;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
 import static seedu.address.testutil.TypicalProjects.PROJECT_CARL;
 import static seedu.address.testutil.TypicalUserStories.USER_STORY_TYPICAL_MANAGER;
@@ -16,38 +21,50 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.ProjectBuilder;
 
 public class ProjectTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    //TODO: Make it throw unsupported operation exception
-    /*
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Project project = new ProjectBuilder().build();
-        thrown.expect(UnsupportedOperationException.class);
-    }
-    */
     @Test
     public void addMilestone() {
         //milestone is properly added
         Project p = PROJECT_CARL;
-        Milestone m1 = new Milestone("1", "11/11/2011");
+        Milestone m1 = new Milestone(new MilestoneDescription("1"), new PocketProjectDate("11/11/2011"));
         p.addMilestone(m1);
         assertTrue(p.getMilestones().equals(Arrays.asList(m1)));
 
         //milestone is sorted after being added
-        Milestone m2 = new Milestone("2", "09/11/2011");
+        Milestone m2 = new Milestone(new MilestoneDescription("2"), new PocketProjectDate("09/11/2011"));
         p.addMilestone(m2);
         assertTrue(p.getMilestones().equals(Arrays.asList(m2, m1)));
         assertFalse(p.getMilestones().equals(Arrays.asList(m1, m2)));
 
         //adding more
-        Milestone m3 = new Milestone("3", "10/11/2011");
+        Milestone m3 = new Milestone(new MilestoneDescription("3"), new PocketProjectDate("10/11/2011"));
         p.addMilestone(m3);
         assertTrue(p.getMilestones().equals(Arrays.asList(m2, m3, m1)));
+    }
+
+    @Test
+    public void isValidMilestoneDate() {
+
+        Project testProject = new Project(new ProjectName("Apollo"), new Client("Pegasus Pte Ltd"),
+            new PocketProjectDate("20/10/2009"), new PocketProjectDate("22/01/2010"));
+
+        //falls within range
+        assertTrue(testProject.isValidMilestoneDate(new PocketProjectDate("22/11/2009")));
+
+        //hits boundary of range
+        assertTrue(testProject.isValidMilestoneDate(new PocketProjectDate("20/10/2009")));
+        assertTrue(testProject.isValidMilestoneDate(new PocketProjectDate("22/01/2010")));
+
+        //falls outside range
+        assertFalse(testProject.isValidMilestoneDate(new PocketProjectDate("22/02/2009")));
+        assertFalse(testProject.isValidMilestoneDate(new PocketProjectDate("22/11/2010")));
+
     }
 
     @Test
@@ -58,7 +75,15 @@ public class ProjectTest {
         // null -> returns false
         assertFalse(PROJECT_ALICE.isSameProject(null));
 
-        //TODO: Fill up more test cases to compare project equality
+        // different name -> returns false
+        Project editedProject = new ProjectBuilder(PROJECT_ALICE).withProjectName(VALID_NAME_BOB)
+            .withClient(VALID_CLIENT_ZULU).withStartDate(VALID_START_ZULU).withDeadline(VALID_DEADLINE_ZULU).build();
+        assertFalse(PROJECT_ALICE.isSameProject(editedProject));
+
+        //same name -> returns true
+        editedProject = new ProjectBuilder(PROJECT_ALICE).withProjectName(VALID_PROJECT_NAME_ALICE_HEY)
+            .withClient(VALID_CLIENT_ZULU).withStartDate(VALID_START_ZULU).withDeadline(VALID_DEADLINE_ZULU).build();
+        assertTrue(PROJECT_ALICE.isSameProject(editedProject));
     }
 
     @Test
@@ -87,7 +112,7 @@ public class ProjectTest {
         editedAlice = new ProjectBuilder(PROJECT_ALICE).withClient(VALID_CLIENT_BOB).build();
         assertFalse(PROJECT_ALICE.equals(editedAlice));
 
-        // different deadline -> returns false
+        // different date -> returns false
         editedAlice = new ProjectBuilder(PROJECT_ALICE).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(PROJECT_ALICE.equals(editedAlice));
 

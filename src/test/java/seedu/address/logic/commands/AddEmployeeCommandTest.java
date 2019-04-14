@@ -18,6 +18,7 @@ import org.junit.rules.ExpectedException;
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -29,8 +30,11 @@ import seedu.address.model.project.Milestone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectTask;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UserStory;
+import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.EmployeeBuilder;
+
 
 public class AddEmployeeCommandTest {
 
@@ -67,7 +71,7 @@ public class AddEmployeeCommandTest {
         ModelStub modelStub = new ModelStubWithEmployee(validEmployee);
 
         thrown.expect(CommandException.class);
-        thrown.expectMessage(AddEmployeeCommand.MESSAGE_DUPLICATE_EMPLOYEE);
+        thrown.expectMessage(Messages.MESSAGE_DUPLICATE_EMPLOYEE);
         addEmployeeCommand.execute(modelStub, commandHistory);
     }
 
@@ -138,6 +142,19 @@ public class AddEmployeeCommandTest {
         public ObservableList<Project> getProjectList() {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public String individualStats(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String overallStats() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ObservableList<Project> getCompletedProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public ReadOnlyPocketProject getPocketProject() {
@@ -191,6 +208,10 @@ public class AddEmployeeCommandTest {
         public boolean hasProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void completeProject(Project project, PocketProjectDate completionDate) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deleteProject(Project target) {
@@ -222,6 +243,11 @@ public class AddEmployeeCommandTest {
         public void removeUserStoryFrom(Project targetProject, UserStory targetStory) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void removeProjectTaskFrom(Project targetProject, Milestone targetMilestone,
+                                          ProjectTask targetProjectTask) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void addEmployeeTo(Project targetProject, Employee targetEmployee) {
@@ -236,11 +262,24 @@ public class AddEmployeeCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public void updateUserStory(Project targetProject, UserStory targetStory, Status newStatus) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void addProjectTaskTo(Project targetProject, Milestone milestone, ProjectTask task) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public void updateProjectTask(Project targetProject, Milestone targetMilestone, ProjectTask targetTask,
+                                      Status newStatus) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public List<Project> getProjectsContaining(Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ObservableList<Employee> getEmployeeList() {
             throw new AssertionError("This method should not be called.");
         }
         //--------------------------------------------------------------------------------------------------
