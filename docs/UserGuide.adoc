@@ -59,8 +59,8 @@ symbols and terms used further on in the user guide.
 .  Copy the file to the folder you want to use as the home folder for your Pocket Project.
 .  Double-click the file to start the app. The GUI should appear in a few seconds as shown below.
 +
-.Pocket Project UI
-image::Startup_ui.png[width="790"]
+.*Pocket Project UI*
+image:Startup_ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -76,8 +76,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 === Navigating the interface
 
-.Pocket Project UI with different components
-image::ui_annotated.png[]
+.*Pocket Project UI with different components*
+image:ui_annotated.png[]
 
 As shown above, there are 5 main components in Pocket Project interface:
 
@@ -102,8 +102,8 @@ There are several common colours used throughout Pocket Pocket to denote the sta
 . Amber: The event is currently ongoing.
 . Green: The event is completed.
 
-.Common colours used in Pocket Project
-image::colour-coding.png[width=480]
+.*Common colours used in Pocket Project*
+image:colour-coding.png[width=480]
 
 === Symbols
 The following section details and previews a few legends that will
@@ -208,7 +208,7 @@ or click `Help` which can be found on the menu bar at the top left hand corner o
 |===
 
 .*Accessing help from menu bar*
-image::ug-helpcommand.png[width="400"]
+image:ug-helpcommand.png[width="400"]
 
 === Date Feature in Pocket Project
 
@@ -233,12 +233,8 @@ Examples:
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="60"]| The fixed date format follows the required `DD/MM/YYYY` format
+|image:ug-exclamation.png[width="50"]| The fixed date format follows the required `DD/MM/YYYY` format
 strictly and so `09/04/2023` is a valid input but `9/4/2023` is not.
-|===
-
-[width="100%",cols="35%,<65%"]
-|===
 |image:ug-lightbulb.png[width="50"]| The year field will not accept values beyond the
 year `2099` and acts as a loose safety feature for accidental errors while inputting the year.
 |===
@@ -264,7 +260,7 @@ You can refer to the screenshots of the program below for a clearer picture. Ass
 current date is 12 April 2019 (12/04/2019).
 
 .*Using "today/tomorrow/yesterday" as a flexible date input*
-image::ug-tdytmryst.png[]
+image:ug-tdytmryst.png[]
 
 ===== Choosing a date relative to the current week
 You can also aim to choose a date with relation to the current week.
@@ -290,7 +286,7 @@ You can refer to the screenshots of the program below for a clearer picture. Ass
 current date is 12 April 2019 (12/04/2019), Friday.
 
 .*Using "this/next/last week DAY_OF_WEEK" as a flexible date input*
-image::ug-dateweek.png[]
+image:ug-dateweek.png[]
 
 ===== Choosing a date relative to the current month
 You can also aim to choose a date with relation to the current week.
@@ -299,7 +295,7 @@ Format: `this/next/last month DAY_OF_MONTH`
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="60"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
+|image:ug-exclamation.png[width="50"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
 the maximum number of days of a particular month in the chosen year.
 |===
 
@@ -316,7 +312,7 @@ You can refer to the screenshots of the program below for a clearer picture. Ass
 current date is 12 April 2019 (12/04/2019), Friday.
 
 .*Using "this/next/last month DAY_OF_MONTH" as a flexible date input*
-image::ug-monthweek.png[]
+image:ug-monthweek.png[]
 
 ===== Some additional information
 [width="100%",cols="35%,<65%"]
@@ -354,7 +350,7 @@ You can refer to the screenshot below to have a clearer picture of how it works
 and looks like.
 
 .*Adding an employee to the application and what we can do with it*
-image::ug-addemployee.png[]
+image:ug-addemployee.png[]
 
 
 In addition, as a software engineering project manager, you may want to easily access an employee's GitHub repository
@@ -363,12 +359,8 @@ above in Step 5 of Figure 5 and the GitHub repository of the employee will be vi
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="60"]|A working Internet connection is required to see and navigate through the GitHub
+|image:ug-exclamation.png[width="50"]|A working Internet connection is required to see and navigate through the GitHub
 repository. Otherwise, the page will not load.
-|===
-
-[width="100%",cols="35%,<65%"]
-|===
 |image:ug-lightbulb.png[width="50"]|You can also view the list of all projects assigned to the employee
 by toggling the arrows on the details panel.
 |===
@@ -380,11 +372,9 @@ You can add a project to the Pocket Project when the company/team takes on a new
 so that the key details of the project are stored in the application and employees, milestones, tasks and user stories
 can be assigned to them in the future.
 
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-notepadpencil.png[width="40"]|The project has a default description when created and this can be
+The project has a default description when created and this can be
 edited using <<Edits name/client/deadline/description of a project: `edit project info`>>
-|===
+
 
 Format: `add project n/NAME c/CLIENT_NAME s/START_DATE d/DEADLINE`
 
@@ -402,7 +392,7 @@ Examples:
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="60"]|The deadline of the project should minimally be 1 day after the
+|image:ug-exclamation.png[width="50"]|The deadline of the project should minimally be 1 day after the
 start of a project.
 |===
 
@@ -410,11 +400,11 @@ You can refer to the screenshot below to have a clearer picture of how it works
 and looks like.
 
 .*Adding a project to the application and what we can do with it*
-image::ug-addproject.png[]
+image:ug-addproject.png[]
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-lightbulb.png[width="70"]|You can also view the list of all employees currently working on the project,
+|image:ug-lightbulb.png[width="50"]|You can also view the list of all employees currently working on the project,
 a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
 |===
 
@@ -1257,7 +1247,7 @@ data of your previous Pocket Project folder.
 
 |Add Milestone To Project
 |`addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`
-|`addto Apollo milestone m/Completed UI for program d/23/11/2015
+|`addto Apollo milestone m/Completed UI for program d/23/11/2015`
 
 |Add Project Task To Project
 |`addto PROJECT_NAME projecttask n/TASK_DESCRIPTION m/MILESTONE_INDEX`
