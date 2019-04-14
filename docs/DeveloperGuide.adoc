@@ -15,7 +15,11 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/cs2103-ay1819s2-w10-2/main
 
-By: `Team CS2103-AY1819S2-W10-2`      Since: `Jan 2019`      Licence: `MIT`
+Authors: `Daryl Tan, Jeff Gan, Jothinandan Pillay, Lin Dehui, Shune Lei`
+
+Team: CS2103-AY1819S2-W10-2
+
+Since: `January 2019` License: `MIT`
 
 == Introduction
 
@@ -74,9 +78,12 @@ that users can use while using the Pocket Project application.
 The following section details a few key technical terms that are used
 through the course of the Developer Guide.
 
-
+[width="100%",cols="50%,<50%"]
 |===
-|Alphanumeric|Only contains either digits (0-9) or letters of the English
+|Term|Meaning
+
+|Alphanumeric
+|Only contains either digits (0-9) or letters of the English
                 alphabet (A-Z).
 
 |Command Line Interface (CLI)
@@ -88,6 +95,16 @@ through the course of the Developer Guide.
 
 |Milestone
 |A key event that is completed during the entire timeline of the project.
+
+
+|Project Task
+|Events which are completed during a milestone to achieve the next milestone.
+
+|Regex
+|Short-form for regular expression. A regular expression is a pattern used to match character
+combinations in strings. Basically it is used to check if a given input matches the prescribed pattern or
+format.
+
 
 |One-Based Indexing
 |Way of numbering in which the initial element of a sequence is assigned the index 1.
@@ -317,8 +334,98 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+=== Pocket Project Dates
+
+As expected, when it comes to a project manager application, the use of dates are used
+extensively in other features and commands throughout the application. These include,
+
+. The setting of `START_DATE` and  `DEADLINE` when adding a project to the Pocket Project application.
+. The setting of `MILESTONE_DATE` when adding a milestone to a particular project.
+. The setting of `COMPLETION_DATE` when completing a particular project.
+. The editing of the above mentioned dates after it has been set.
+. The finding of projects that are due by a certain `DEADLINE`.
+
+==== What is Supports
+
+As it is widely used, it is important that the user is able to easily input any target date but at the same time
+retain some flexibility so that the feature is more user-friendly.
+
+So, keeping that in mind, the dates used in the Pocket Project supports 2 main formats, the Fixed Date Format, which supports 1 main sub-type, and the Flexible Date Format,
+which supports 3 main sub types, all of which are explained below in the following section. A total of 4 sub-types are supported
+across 2 formats and choosing any 1 of 4 will be accepted as a suitable input.
+
+==== How it is Implemented
+===== Fixed Date Format
+
+Format: `DD/MM/YYYY`
+
+Examples:
+
+. `23/12/2019`
+. `09/03/2020`
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The fixed date format follows the required `DD/MM/YYYY` format
+strictly and so `09/04/2023` is a valid input but `9/4/2023` is not.
+|===
+
+===== Fixed Date Format: How it Works (Part 1)
+The input is parsed and the validity of the format is determined through the use of a regex as follows:
+
+Validation Regex = `"(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((20)\d\d)"`
+
+
+
+
+===== Flexible Date Format
+
+[width="100%",cols="30%,25%,<45%"]
+|===
+|Format |Chooses the date relative to the ... |Examples
+
+|`today/tomorrow/yesterday`
+|current day
+|`tomorrow` +
+This would select tomorrow's date as the target date.
+
+|`this/next/last week DAY_OF_WEEK`
+|current week
+|`next week 7` +
+This would select next week's Sunday as the target date.
+
+|`this/next/last month DAY_OF_MONTH`
+|current month
+|`last month 6` +
+This would select last month's 6th day as the target date.
+|===
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-notepadpencil.png[width="40"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
+corresponds to Monday to Sunday respectively.
+|===
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
+the maximum number of days of a particular month in the chosen year.
+|===
+
+===== Flexible Date Format: How it Works (Part 1)
+
+
+
+
+===== Date Formats: How it Works (Part 1)
+==== How it is Implemented
+
+This feature was mainly facilitated by the Java LocalDateTime class and the model and logic component of the Pocket
+Project application.
+
+
 // skill::addTo[]
-=== Add employee/milestone/user story to projects feature
+=== Add employee/milestone/project task/user story to projects feature
 ==== Current Implementation
 
 This feature focuses on the adding of employees or milestones to a selected project and is mainly facilitated
@@ -326,13 +433,14 @@ by the model component of the PocketProject application. This feature supports t
 
 * `addto [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of all employees in the Pocket Project application.
 * `addto [project name] milestone [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
+* `addto [project name] projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX` -- adds the project task with given description `PROJECT_TASK_DESCRIPTION` to the milestone specified by `MILESTONE_INDEX` in the project with name `[project name]`.
 * `addto [project name] userstory i/IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
 
-These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)`, `Model#addMilestoneTo(Project, Milestone)` and `Model#addUserStoryTo(Projectm UserStory)`.
-These three methods only take in the project and employee/milestone as arguments as the correct Employee/Milestone/UserStory object would be located by
-`AddEmployeeToCommand#excute()`, `AddMilestoneToCommand#execute()` or `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
+These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)`, `Model#addMilestoneTo(Project, Milestone)`, `Model#addProjectTaskTo(Project, Milestone, ProjectTask)` and `Model#addUserStoryTo(Projectm UserStory)`.
+These four methods only take in the project and employee/milestone/project task/user story as arguments as the correct Employee/Milestone/ProjectTask/UserStory object would be located by
+`AddEmployeeToCommand#excute()`, `AddMilestoneToCommand#execute()`, `AddProjectTaskToCommand#execute()` or `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
 
-Given below is an example usage scenario and how the addition of employee/milestone/user story to a project feature behaves at each step.
+Given below is an example usage scenario and how the addition of employee/milestone/project task/user story to a project feature behaves at each step.
 
 `AddEmployeeTo Command`
 
@@ -348,7 +456,13 @@ Step 1. The user enters the command `addto Apollo milestone [milestone details]'
 similar to Step 2 of the `AddEmployeeTo Command` mentioned above. Only the object added is decided between an employee, user story or a
 milestone depending on the user input.
 
+`AddProjectTaskTo Command`
+
+Step 1. The user enters the command `addto Apollo projecttask n/Create feature XYZ m/1`. The rest of the execution process is similar to Step 2 of the `AddEmployeeToCommand` mentioned above.
+The only differences being that the object being added is a project task and that it is being added to a milestone within a project, instead of directly to the project.
+
 `AddUserStoryTo Command`
+
 Step 1. The user enters the command `addto Apollo userstory i/1 as a user i want to view user stories so that i can track them`. The rest of the
 execution process is similar to Step 2 of the `AddEmployeeTo Command`.Only the object added is decided between an employee, user story or a
 milestone depending on the user input.
@@ -390,7 +504,7 @@ The commands will be processed in the same way without any other changes.
 // end::addto[]
 
 // skill::removefrom[]
-=== Remove employee/milestone from projects feature
+=== Remove employee/milestone/project task/user story from projects feature
 ==== Current Implementation
 
 The removing of employee,milestone or user story from projects is facilitated by the model component of the PocketProject.
@@ -398,16 +512,17 @@ This feature currently supports these three commands:
 
 * `removefrom [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of employees in the project named `[project name]`.
 * `removefrom [project name] milestone [milestone index]` -- removes the milestone at index `[milestone index]` in the list of milestones in the project named `[project name]`.
+* `removefrom [project name] projecttask [milestone index] [project task index]` -- removes the project task at index `[project task index]` in the list of tasks under the milestone specified by `[milestone index]` in the project named `[project name]`.
 * `removefrom [project name] userstory [userstory index]` -- removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
 
-These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(Project, Employee)`, `Model#removeMilestoneFrom(Project, Milestone)` and `Model#removeUserStoryFrom(Project, UserStory)`.
-The methods does not take in indices as arguments since the corresponding Employee,Milestone or UserStory object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`, `RemoveMilestoneFromCommand#execute()` or `RemoveUserStoryFromCommand#execute()`
+These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(Project, Employee)`, `Model#removeMilestoneFrom(Project, Milestone)`, `Model#removeProjectTaskFrom(Project, Milestone, ProjectTask)` and `Model#removeUserStoryFrom(Project, UserStory)`.
+The methods does not take in indices as arguments since the corresponding Employee, Milestone, ProjectTask or UserStory object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`, `RemoveMilestoneFromCommand#execute()`, `RemoveProjectTaskFromCommand#execute()` or `RemoveUserStoryFromCommand#execute()`
 before the methods of `Model` are called.
-The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone and user stories are similar:
+The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone, project tasks and user stories are similar:
 
 image::remove_employee_from_sequence_diagram.png[width="1000"]
 
-Given below is an example usage scenario and how the removal of employee/milestone/user story feature behaves at each step.
+Given below is an example usage scenario and how the removal of employee/milestone/project task/user story feature behaves at each step.
 
 Step 1. The user enters the command `view project Apollo'. The app displays the list of employees and milestones in the project named "Apollo" by executing the `view` command.
 
@@ -417,8 +532,9 @@ The `RemoveFromCommandParser` then creates command object and passes it to the `
 
 Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
 
-image:ug-lightbulb.png[width="50"]
-Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+|===
+|image:ug-lightbulb.png[width="40"]|The `[project name]` entered must be valid and exists in the app. The `[employee index]`, `[milestone index]`, `[project task index]` or `[user story index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+|===
 
 ==== Design Considerations
 
@@ -434,15 +550,42 @@ There will also be less clutter in `PocketProjectParser` as there are already a 
 
 // end::removefrom[]
 
+=== Edit Project feature
+==== Current Implementation
+
+This feature allows editing of several components which are under project and is mainly facilitated by the model component. This feature supports 3 main commands:
+
+. `edit project PROJECT_NAME info [ARGUMENTS]` - allow editing of project's name, deadline, description
+. `edit project PROJECT_NAME milestone [ARGUMENTS]` - allow editing of details of project milestone such as milestone description and date
+. `edit project PROJECT_NAME userstory [ARGUMENTS]` - allow editing of details of project's userstory (refer to Jeff's portion)
+
+The `EditProjectCommand Parser` differentiate these 3 commands based on the `COMMAND_KEYWORD` which are info, milestone and userstory.
+
+The following sequence diagram shows how `edit project info` command works;
+
+Given below is the example usage scenario of how `edit project info` command works:
+
+. User executes `edit project PocketProject info desc/A project management tool d/20/05/2019` to edit description and deadline of the project named PocketProject
+. `PocketProjectParser` will parse and identify the command as an `EditCommand` and pass on the argument `project PocketProject info desc/A project management tool d/20/05/2019`.
+. `EditCommandParser` identify the command as a `EditProjectCommand` based on the word `project` and pass it onto `EditProjectCommandParser`
+. `EditProjectCommandParser` then identify the command as a `EditProjectInfoCommand` based on the `COMMAND_KEYWORD` `info` and create the respective command and return it back to the `LogicManager`
+. `LogicManager` then execute the command and check the validity of the parameters to be edited (in this case, the deadline and the description parameters are checked). The method `Model#setProject(projectToEdit, editedProject)` to replace the old project with the edited project with the new parameters.
+. Finally, the project PicketProject is edited and the details showing on the ui is updated as well.
+
+The working mechanism behind `EditProjectMilestoneCommand` is similar as well, instead of replacing the whole project, only the milestone list in the project is edited and replaced through `Model#setMilestone(milestoneToEdit, editedMilestone)` method.
+
+==== Design Consideration
+
+
 // tag::find[]
 === Find Employee/Project/Skill/All feature
 ==== Current Implementation
 For the current `find` feature, there are 4 main commands that the user can execute:
 
-    1. `find employee [keywords]` - display employees with name containing keywords
-    2. `find project [keywords]` - display projects with name containing keywords
-    3. `find skill [keywords]` - display employees who has skills matching the keywords
-    4. `find all [keywords]` - display projects which contains words matching the keywords
+    . `find employee [keywords]` - display employees with name containing keywords
+    . `find project [keywords]` - display projects with name containing keywords
+    . `find skill [keywords]` - display employees who has skills matching the keywords
+    . `find all [keywords]` - display projects which contains words matching the keywords
 
 The `FindCommandParser` differentiate these 3 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill).
 
@@ -452,19 +595,17 @@ image::findcommand_sequence_diagram.png[width="1000"]
 
 Usage Scenario example for `find employee`:
 
-1. User executes `find employee John` to look for employees whose names contains the word 'John'.
-2. `PocketProjectParser` will parse and identify the command as a `FindCommand` and pass on the argument `employee John` to `FindCommandParser`.
-3.  `FindCommandParser` identify the command based on the `COMMAND_KEYWORD` employee.
-4. `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist. The filtering is done using a predicate that checks through the names of the employee int the application.
-5. Finally, the `filteredEmployees` list which is the list displayed on the ui is updated.
+. User executes `find employee John` to look for employees whose names contains the word 'John'.
+. `PocketProjectParser` will parse and identify the command as a `FindCommand` and pass on the argument `employee John` to `FindCommandParser`.
+.  `FindCommandParser` identify the command based on the `COMMAND_KEYWORD` employee.
+. `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist. The filtering is done using a predicate that checks through the names of the employee int the application.
+. Finally, the `filteredEmployees` list which is the list displayed on the ui is updated.
 
 The working mechanism for `find project` is similar to `find employee`. Instead of updating the `filteredEmployees`, `filteredProjects` is updated instead to display the list of projects with name consisting the keywords.
 
 For `find all` command, the predicate is used to check for the matching keywords in the project name , description, client and deadline, thereby filtering out any projects that contains the keyword in any component of the project.
 
 For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
-
-
 
 ==== Design Considerations
 
@@ -516,7 +657,7 @@ The displaying of statistics in Pocket Project will be facilitated by the model 
 planned to support 2 main commands:
 
 * `stats` -- Displays an overview of all the projects: the number of ongoing projects, deadlines etc.
-* `stats PROJ_INDEX` or `stats PROJ_NAME` -- Display a summary of the progress of the project with the given PROJ_INDEX or PROJ_NAME.
+* `stats PROJECT_INDEX` or `stats PROJECT_NAME` -- Display a summary of the progress of the project with the given PROJECT_INDEX or PROJECT_NAME.
 
 The operation will be supported by the methods in the `Model` interface: `Model#overallStats()` and `Model#individualStats(Project)`.
 `Model#overallStats()` will retrieve the data on all the projects/employees to pass to `StatsUtil`, an utility class to produce a string which describes
@@ -526,12 +667,16 @@ the status of all projects. `Model#individualStats(Project)` passes the given pr
 The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
-image::OverallStatsSequenceDiagram.png[width="1000"]
+
+image::overallStatsSequenceDiagram.png[width="1000"]
+
 Individual Project:
-image::IndividualStatsSequenceDiagram.png[width="1000"]
+
+image::individualStatsSequenceDiagram.png[width="1000"]
+
 Usage Scenario example for `stats`:
 
-1.	User executes `stats`/`stats PROJ_INDEX`/`stats PROJ_NAME` to view project statistics in Pocket Project.
+1.	User executes `stats`/`stats PROJECT_INDEX`/`stats PROJECT_NAME` to view project statistics in Pocket Project.
 2.	`PocketProjectParser` will parse and identify the command as a `IndividualStatsCommand` or `OverallStatsCommand`, parse any additional argument accordingly and return the command object.
 3.	`LogicManager` then executes the returned command, calling the `Model#individualStats()` or `Model#overallStats(Project)` accordingly to obtain the string describing the status of concern.
 4.  The returned string is used to construct the result of the command.
@@ -552,17 +697,17 @@ It would be inappropriate to put these methods under the command class or the mo
 // end::stats[]
 
 === User Story feature
-==== Implementation
+==== General Implementation
 
 The implementation of user stories in Pocket Project is facilitated by the `model` component, and in particular, the `Project` class
 which will store the relevant user stories as a `SortedUserStoryList`.
 
 Currently, the user stories feature supports the following commands:
 
-* `addto PROJ_NAME userstory i/STORY_IMPORTANCE STORY` -- Adds the `story` to the project indicated by the `PROJ_NAME`.
-* `removefrom PROJ_NAME userstory INDEX` -- Removes the user story at the specific index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
-* `edit project PROJ_NAME userstory INDEX STORY` -- Edits the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
-* `update PROJ_NAME userstory INDEX STATUS -- Updates the status of the user story at the specified index of the `SortedUserStoryList` in the project indicated by the `PROJ_NAME`.
+* `addto [project name] userstory i/STORY_IMPORTANCE [story]` -- Adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
+* `removefrom [project name] userstory [userstory index]` -- Removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
+* `edit project [project_name] userstory [userstory index] [story]` --  Edits the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
+* `update [project_name] userstory [userstory index] [status]` -- Updates the status of the user story at the `[userstory index]` in the list of user stories in the project named `[project name]`.
 
 In addition, the `SortedUserStoryList` maintains a sorted order of user stories according to descending importance level of the user story, followed by ascending lexicographical order of the `UserStoryUser` name.
 
@@ -589,10 +734,238 @@ Since the user stories with users David and Alan have a higher importance level 
 This is to faciliate users to find important user stories by ensuring a neatly ordered list by relevance of the user story. If a user wishes to do so, they can also sort the list by `UserStoryStatus` using the JavaFX `TableColumn` built-in sort to see which user stories are in progress or on hold. Note that doing so would directly change the
 order of the user stories in the `SortedUserStoryList` hence changing the index of the user story. In general, the GUI is updated to reflect the actual list stored within `SortedUserStoryList` hence any command which acts on an index would affect the user story in that index shown on the GUI.
 
-For example usage scenarios for adding user stories as removing of user stories, refer to the following:
+==== Implementation of individual commands
+===== Add user story to project command
+* `addto [project name] userstory i/STORY_IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
 
-* `addto PROJ_NAME userstory [story]` -- <<Add employee/milestone/user story to projects feature>>
-* `removefrom PROJ_NAME userstory INDEX` -- <<Remove employee/milestone from projects feature>>
+This operation is supported by the `Model#addUserStoryTo(Project, UserStory)` method as well as the `Model#getProjectWithName(Name)` method in the `Model` interface.
+It takes in the project and user story as arguments. The specified user story is created and the project specified is located
+by the `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
+
+Given below is an example usage scenario and how the addition of user story to a project behaves at each step.
+
+Step 1. The user enters the command `list project'. The app displays the list of projects in the Pocket Project by executing the `list project` command.
+
+Step 2. The user enters `addto Apollo userstory i/1 as a user i want to view user stories so that i can track them`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `AddToCommand`
+by the `addto` keyword and passes the rest of the string to the `AddToCommandParser` to identify which type of `AddToCommand` is being executed and what are the arguments.
+The `AddToCommandParser` then creates the `AddUserStoryTo` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the user story to the project.
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[project index]` given must refer to some existing project.
+|===
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[userstory]` added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
+|===
+
+===== Remove user story from project command
+* `removefrom [project name] userstory [userstory index]` -- removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
+
+This operation is supported by the `Model#removeUserStoryFrom(Project, UserStory)` method as well as the `Model#getProjectWithName(Name)` method in the `Model` interface.
+This method does not require the `[user story]` as arguments since the corresponding `[user story]` object associated with the Project object can be found by`RemoveUserStoryFromCommand#execute()`
+before the methods of `Model` are called using the index specified by the user.
+
+The sequence diagram for the execution of the removing of a user story from a project is as follows:
+
+image::remove_user_story_from_sequence_diagram.png[width="1000"]
+
+Given below is an example usage scenario and how the removal of a user story behaves at each step.
+
+Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
+
+Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
+
+Step 3. The user enters `removefrom Apollo userstory 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as a `RemoveFromCommand` from the `removefrom` keyword inputted and passes the rest of the string to the `RemoveFromCommandParser` to identify which type of `RemoveFromCommand` is being executed.
+The `RemoveFromCommandParser` then detects that the keyword `userstory` is inputted and created a `RemoveUserStoryFrom` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to remove the corresponding user story from the project.
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story. If not, exceptions would be thrown during the execution of the command.
+|===
+
+===== Edit user story command
+* `edit project [project name] userstory [userstory index] ` -- edits the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
+
+This operation is supported by the `Project#SetUserStory(UserStory, UserStory)` method in the `Project` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class. It takes
+in as arguments firstly, the old user story to edit, and secondly the new user story to replace it with. The `EditProjectUserStoryCommand` checks for the validity of the old and new user stories
+before the `Project#SetUserStory(UserStory, UserStory)` method is called.
+
+The sequence diagram for the execution of the editing of a user story in a project is as follows:
+
+image::edit_user_story_sequence_diagram.png[width="1000"]
+
+Given below is an example usage scenario and how the editing of a user story behaves at each step.
+
+Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
+
+Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
+
+Step 3. The user enters `edit project Apollo userstory 1 as a user i want to login`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as a `EditCommand` from the `edit` keyword inputted and passes the rest of the string to the `EditCommandParser`.
+The `EditCommandParser` then detects that the keyword `project` is inputted and passes the rest of the string to the `EditProjectCommandParser`. The `EditProjectCommandParser` then detects the keyword `userstory` and creates a `EditUserStory` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate the project and remove the corresponding user story from the project.
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story and the new `[user story]` must be valid. If not, exceptions would be thrown during the execution of the command.
+|===
+
+===== Update user story command
+* `update [project_name] userstory [userstory index] [status]` -- Updates the status of the user story at the `[userstory index]` in the list of user stories in the project named `[project name]`.
+
+This operation is supported by the `UserStory#UpdateStatus(Status)` method in the `UserStory` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class.
+It takes in as arguments the new status of the user story. The `UpdateUserStoryCommand` checks for the validity of the arguments and locates the specified user story from the project. It then calls the `UserStory#UpdateStatus(status)` method.
+
+The sequence diagram for the execution of updating a user story status is as follows:
+
+image::update_user_story_sequence_diagram.png[width="1000"]
+
+Given below is an example usage scenario of how the updating of a user story behaves at each step.
+
+Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
+
+Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
+
+Step 3. The user enters `update Apollo userstory 1 ongoing`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as a `UpdateCommand` from the `update` keyword inputted and passes the rest of the string to the `UpdateCommandParser`.
+The `UpdateCommandParser` then detects the keyword `userstory` and creates a `UpdateUserStory` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate the project and update the status of the corresponding user story in the project.
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story and the new `[status]` must be valid. If not, exceptions would be thrown during the execution of the command.
+|===
+
+==== Design Considerations
+===== Aspect: How to structure the user story details to be inputted into the project
+
+Alternative 1: Use a `regex` to indicate the importance/priority of a user story, then have the user key in the user story in the specified format `as a...i want to...so that...`(Current implementation)
+
+Alternative 2: Use only `regex` to denote the different parts of a user story. For example, `i/` to denote the importance level, `u/` to denote user etc...
+
+Alternative 3: Store the entire string as given by the user as it is and not parse the input.
+
+Using alternative 3 is the simplest and most straight forward way to handle the user input, but it does not provide much functionality. As user stories should be organised and easy to read as a list,
+we will need to use some sort of `TableView` or `ListView` to view the stories. Thus, using alternative 3 will only allow the entire string to be generated and is not user friendly.
+Between alternative 2 and alternative 1, alternative 2 provides an easier way for the program to generate and partition the input using `regex` expressions. However, as there are many parts to a user
+story, having to remember 4 different `regex` expressions may be hard for a user to remember and may be inconvenient. Using alternative 1 is a mix of both 2 and 3, which allows abit more flexibility
+and smoothness for a user by allowing them to type in full sentences how they would normally do for a user story, while allowing proper classification of the components of the story to be able to
+be displayed in the UI component as a `TableView`.
+
+===== Aspect: How the command string (e.g. `removefrom Apollo userstory 1`) is parsed
+
+Alternative 1: Let `PocketProjectParser` handle the whole string and construct the command.
+
+Alternative 2: Having 2 parsing stages where the `PocketProjectParser` identify that the command string is trying to execute a `RemoveFromCommand` from the `removefrom` key word, then passes
+the rest of the string to another specialized `RemoveFromCommandParser`. (current implementation)
+
+Using alternative 2 is better  as it provides better abstraction as the details of the 2 different types of `RemoveFromCommand` will be hidden away, hence it is more in line with OOP principles.
+There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
+
+===== Aspect: How to show/store the list of user stories
+
+Alternative 1: Sort the user stories only by decreasing priority.
+
+Alternative 2: Sort the user stories by the sequence it is added.
+
+Alternative 3: Sort the user stories only by the names of the target user.
+
+Alternative 4: Sort the user stories by decreasing priority, followed by the name of the target user.
+
+Using alternative 2 is the simplest and most straightforward approach, but does not provide any value adding to the user. Both alternative 1 and 3 are useful,
+hence we decided to combine them to produce alternative 4, which allows not only the important user stories to be listed first, but also provides better readability as similar user stories are grouped together.
+
+==== Future Planned Enhancements
+
+The following additional features are scheduled to be implemented in future version.
+
+. Allow more varied types of sorting for the users. Since there is no one-size-fit-all solution when deciding which user stories are more relevant, the user should be able to decide how he/she wants them arranged.
+Hence this proposed feature will allow users to be able to click the user stories table and customise the order in which user stories are shown.
+
+. Provide even greater flexibility when parsing user stories. Currently, user stories require specific keywords `as a`, `i want to`, `so that`. In future, users should be able to type sentences naturally and it can still be parsed.
+This will be made available by widening the range of keywords the parser is able to detect as well as the different sentence structures possible.
+
+
+
+// skill::projecttask[]
+=== Project Task feature
+==== Current Implementation
+
+This project task feature enhances the usage of the milestone feature in Pocket Project for keeping track of a project's schedule by providing you with a list of tasks which needs to be done between milestones.
+The project task feature is mainly facilitated
+by the model component, and in particular, the `Milestone` class which stores the relevant project tasks in a `UniqueProjectTaskList`.
+ This feature supports three main commands:
+
+* `addto [project name] projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX` -- Adds the project task with the given `[PROJECT_TASK_DESCRIPTION]` to the milestone specified by `[milestone index]` in the project named `[project name]`.
+* `removefrom [project name] projecttask [milestone index] [project task index]` -- Removes the project task at the specified `[project task index]` from the milestone specified by `[milestone index]` in the project with name `[proejct name]`.
+* `update [project name] projecttask [milestone index] [project task index] [status]` -- Updates the status of the project task at the specified `[project task index]` in the milestone specified by `[milestone index]` in the project with name `[project name]`.
+
+Project tasks contain statuses to help you oversee its progress, whether its "Ongoing", "On hold" or "Complete".
+
+==== Implementation of individual commands
+The project task commands are supported by the methods in the `Model` interface: `Model#addProjectTaskTo(Project, Milestone, ProjectTask);`, `Model#removeProjectTaskFrom(Project, Milestone, ProjectTask)` and `Model#updateProjectTask(Project, Milestone, ProjectTask, Status)`.
+These three methods take in `Project`, `Milestone` and `ProjectTask` as common arguments. Hence, the correct project/milestone/project task which the commands act on are first located through
+`AddProjectTaskToCommand#excute()`, `RemoveProjectTaskFromCommand#execute()` or `UpdateProjectTaskCommand#execute()` before the methods of `Model` are called.
+
+===== Update status of project task
+Given below is an example usage scenario and a showcase of how a project task status is updated in a project's milestone at each step.
+
+* `update [project name] projecttask [milestone index] [project task index] [status]` -- Updates the status of the project task at the specified `[project task index]` in the milestone specified by `[milestone index]` in the project with name `[project name]`.
+
+The sequence diagram for the execution of updating a project task status is as follows:
+
+image::UpdateProjectTaskSequenceDiagram.png[width="1000"]
+
+Step 1. The user enters the command `update Apollo projecttask 2 1 Complete`.
+The `LogicManager` then passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `UpdateCommand`
+and passes the rest of the string to the `UpdateCommandParser` to identify which type of `UpdateCommand` is being executed and what are the arguments.
+
+Step 2. The `UpdateCommandParser` then identifies the "projecttask" keyword and  creates an `UpdateProjectTaskCommand` and passes it to the `LogicManager` to be executed.
+
+Step 3. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate and obtain the specified `Project`, `Milestone` and `ProjectTask` objects.
+
+Step 4. The status of the retrieved task is then updated to "Complete" and execution of the `UpdateProjectTaskCommand` ends.
+
+|===
+|image:ug-exclamation.png[width="40"]| The `[project name]` entered must be valid and exists in the app. The `[milestone index]` and `[project task index]` given must refer to some existing milestone and project task. Also,
+                                       the status to be updated to needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
+|===
+===== Add project task to a milestone in project
+Refer to previous section on the implementation of adding to project.
+
+* `addto [project name] projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX` -- <<Add employee/milestone/project task/user story to projects feature>>
+
+===== Remove project task from a milestone in project
+Refer to previous section on the implementation of removing from project.
+
+* `removefrom [project name] projecttask [milestone index] [project task index]` -- <<Remove employee/milestone/project task/user story from projects feature>>
+
+==== Design Considerations
+In this section, I will talk about certain alternatives that could have been taken when designing this feature and why I did or did not use them.
+
+===== Aspect: How should project task objects be stored within a project
+
+Alternative 1: Store project tasks in a `UniqueProjectTaskList` which is in turn stored under a specified milestone. (Current implementation)
+
+* Pros: Only milestone objects are in direct contact with the project tasks through the `UniqueProjectTaskList` container class and checks to ensure project tasks work as they should only need to be done within the milestone instead of in the entire project itself.
+* Cons: Somewhat harder to implement as it requires finding the correct milestone in a project first before anything can be done for the project task specified in the user's command.
+
+Alternative 2: Store project tasks directly in a project and keep a reference to the milestone which it should be under.
+
+* Pros: Easy to implement and will have similar behaviour to existing implementations of other objects stored directly in a project.
+* Cons: It can be confusing in the backend as the user can have tasks under different milestones with the same project task descriptions. This also goes against the Object-Oriented Programming(OOP) Guideline, Law of Demeter
+ as project tasks only need to be in direct contact with milestones but not necessarily with projects themselves.
+
+Based on the above pros and cons for each alternative, I decided on Alternative 1 for 2 reasons:
+
+. As it was in line with the OOP guidelines and principle.
+. As it allowed me to implement a more robust and efficient checking system for project tasks which was constrained within a milestone itself.
+
+==== Future planned enhancements
+The following features are scheduled to be implemented in a future version of Pocket Project:
+
+. Allow the assigning of project tasks to employees in a project which gives you a better overview of who is in charge of doing what task during the project's duration.
+. Include the completion date of a project task when it is completed, allowing you to backtrack from the completion date of the project task to see what was done for the project task's completion.
+// end::projecttask[]
+
 
 === Undo/Redo feature
 ==== Current Implementation
@@ -1293,7 +1666,10 @@ Use case ends.
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
 .  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
+.  Should be user-friendly for software engineering project managers and should help them manage their projects more efficiently and effectively.
+.  Should have automated tests to do regression testing whenever an existing feature is enhanced or a new feature is added.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  The system should respond to user input within 2 seconds, whether it is valid or invalid input.
 
 _{More to be added}_
 
@@ -1414,7 +1790,7 @@ Deleting a project while all projects are listed
 
 === Removing an employee from a project
 
-. prerequisites: project with the name 'Apollo' exists and has 3 employees in it.
+.  Prerequisites: Project with the name 'Apollo' exists and has 3 employees in it.
 .. Test case: `removefrom Apollo employee 1` +
    Expected: First employee in Apollo is removed from it. Details of the removed employee is shown in the status message and timestamp in the status bar is updated.
 .. Test case: `removefrom Apollo employee 4` +
@@ -1424,8 +1800,9 @@ Deleting a project while all projects are listed
 .. Test case: `removefrom X employee 1` where no project in the app has the name 'X' +
    Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
 
-=== Removing a milestone from a porject
+=== Removing a milestone from a project
 
+.. Prerequisites: Project with name 'Apollo' exists and has 1 milestone in it.
 .. Test case: `removefrom Apollo milestone 1` where the project named 'Apollo' exists in app and is ongoing and there is at least one +
    milestone for the project.
    Expected: The first milestone in the list of milestones for the project is removed.
@@ -1433,6 +1810,19 @@ Deleting a project while all projects are listed
    Expected: Command fails and an error message is returned.
 .. Test case: `remove from invalid milestone 1` where no project named 'invalid' exists +
    Expected: Command fails and an error message is returned.
+
+=== Removing a project task from a project
+
+.. Prerequisites: Project with name 'Apollo' exists and has only 1 milestone with only 1 project task in it.
+.. Test case: `removefrom Apollo projecttask 1 1` +
+   Expected: The first project task of the first milestone in the milestones and tasks list is removed.
+   Details of the removed project task is shown in the status message and the timestamp in the status bar is updated.
+.. Test case: `removefrom Apollo projecttask 1 2` +
+   Expected: No project task is removed. Invalid project task index error details shown in the status message. Status bar remains the same.
+.. Test case: `removefrom Apollo projecttask 2 1` +
+   Expected: No project task is removed. Invalid milestone index error details shown in the status message. Status bar remains the same.
+.. Test case: `removefrom Apollo projecttask 1` +
+   Expected: No project task is removed. Invalid command format error details shown in the status message. Status bar remains the same.
 
 === Finding an employee/project by keywords in their names
 
@@ -1461,6 +1851,27 @@ Deleting a project while all projects are listed
    Expected: The first project in the list is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
 .. Test case: `complete x 11/11/2011` where x is not the index of a displayed project +
    Expected: Error detail shown. The Timestamp in the status bar is not updated.
+
+=== Updating status of a project task
+
+.. Prerequisite: Project with name 'Apollo' exists and has only 1 milestone with at least 1 project task in it.
+.. Test case: `update Apollo projecttask 1 1 complete` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to complete.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 on hold` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to on hold.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 ongoing` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to ongoing.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 invalid` +
+   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 1 complete` +
+   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 2 1 complete` +
+   Expected: Status of project task is not updated. Invalid milestone index format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 1 2 complete` +
+   Expected: Status of project task is not updated. Invalid project task index format error displayed in status message. Status bar remains the same.
 
 === Clearing all data from the app
 
@@ -1562,6 +1973,24 @@ Assumption: all the objects being manipulated in these test cases exist in the a
    Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `addto Apollo milestone Finished UserGuide 11/04/2019` +
    Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+
+=== Adding a project task
+
+.Adding a project task to a project's milestone
+
+.. Prerequisite: Project list has a project named 'Apollo' and has only 2 existing milestone in it.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Expected: A new project task with description "Create feature XYZ" is added to the first milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/2` +
+   Expected: A new project task with description "Create feature XYZ" is added to the second milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Expected: No new project task is added. Duplicate project task error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/3` +
+   Expected: No new project task is added. Invalid milestone index error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ` +
+   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
+.. Test case: `addto Apollo projecttask m/1` +
+   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
 
 === Adding a UserStory
 
