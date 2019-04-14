@@ -5,9 +5,11 @@
 
 == PROJECT: Pocket Project
 
-== Overview
+== About PocketProject
 
-My team was given the task to enhance or morph a basic command line interface Addressbook for our software engineering Project. Our team decided to morph the AddressBook into a project management tool named Pocket Project. Pocket Project is designed to suit the needs of software engineering managers by enabling them to store all the information that are essential to project planning such as employees, projects, milestones and tasks so as to make planning projects easier and more convenient for them.
+My team and I were given the task to enhance or morph a basic command line interface Addressbook for our software engineering Project. Our team decided to morph the AddressBook into a project management tool named Pocket Project. Pocket Project is designed to suit the needs of software engineering managers by enabling them to store all the information that are essential for project planning such as employees, projects, milestones and tasks so as to make planning projects easier and more convenient for them.
+
+We were 
 
 My primary role was to implement the `find` command which is essential in allowing users to navigate through the application. The following sections implementation done in details and also the other contributions and relevant sections I have recorded in the user guide and developer guide.
 

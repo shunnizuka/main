@@ -923,7 +923,7 @@ image::find_project.png[]
 
 ==== Find projects with any keywords: `find all`
 
-This `find all` command allows you to find projects even if you have forgotten the project name. You can simply try to find the project using words that appear in the description of the project.
+This `find all` command allows you to find projects even if you have forgotten the project name. You can simply try to find the project using words that appear in the description of the project. If you remember the name of the client, you can use the client name to find the project too.
 
 Format: `find all KEYWORDS [MORE KEYWORDS]`
 
