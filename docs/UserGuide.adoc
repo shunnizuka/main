@@ -539,7 +539,7 @@ to hide the list of tasks under the milestone.
 // tag::adduserstory[]
 ==== Add a User Story to a project: `addto userstory`
 
-You can also add a user story to a project which is useful in the planning stage of a project where the implementation
+You can add a user story to a project which is useful in the planning stage of a project where the implementation
 of certain features can be prioritized over others.
 
 Format: `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY`
@@ -548,11 +548,8 @@ Format: `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY`
 |===
 |image:ug-notepadpencil.png[width="40"]| `STORY_IMPORTANCE`: The priority/importance level of the user story, ranging from 1 to 3. 3 being the most
 important and 1 being the least.
-|image:ug-notepadpencil.png[width="40"]| `STORY`: A valid user story must be in the following format - as a ... i want to ... so that ...
+|image:ug-exclamation.png[width="40"]| `STORY`:  `as a`, `i want to` and `so that` are keywords which help us to segment your user story into the respective categories: user, function and reason. Hence these keywords cannot be used more than once and needs to be included in a valid user story.
 |===
-
-Note that `as a`, `i want to` and `so that` are keywords which help us to segment your user story into the respective categories: user, function and reason.
-Hence these keywords cannot be used more than once and needs to be included in a valid user story.
 
 Examples:
 
@@ -560,11 +557,10 @@ Examples:
 
 . `addto Apollo userstory i/1 as a user i want to try out new things so that i can have fun`
 
-
 [width="1000",cols="100,<900"]
 |===
-|image:ug-lightbulb.png[width="40"]| You can input the importance level or the actual user story in any order.
-|image:ug-lightbulb.png[width="40"]| A valid user story can also be simply: `as a ... i want to...`.
+|image:ug-smart.png[width="40"]| You can input the importance level or the actual user story in any order.
+|image:ug-smart.png[width="40"]| A valid user story can also be simply: `as a ... i want to...`.
 E.g `as a user i want to log in` is a valid user story.
 |===
 
@@ -575,7 +571,6 @@ Refer to the diagram below to see how the new user story is shown.
 
 .User stories list showing the newly added user story
 image::addto-user-story-ui.png[width="500"]
-
 // end::adduserstory[]
 
 === Delete a project or an employee from the application `delete`
@@ -761,7 +756,7 @@ image::edit_employee_before.png[]
 .After entering the edit command
 image::edit_employee_after1.png[]
 
-==== Edits name/client/deadline/description of a project: `edit project info`
+==== Edit name/client/deadline/description of a project: `edit project info`
 
 You can use this command to edit the general details of an existing project such as project name, deadline, client and description which are shown on the summary panel of the projects.
 
@@ -798,7 +793,7 @@ image::edit_project_before.png[]
 .After the edit project command is entered
 image::edit_project_after.png[]
 
-==== Edits milestone of a project: `edit project milestone`
+==== Edit milestone of a project: `edit project milestone`
 
 You can edit the milestone of the existing project whenever there are changes made to it.
 
@@ -831,7 +826,7 @@ image::edit_project_milestone_before.png[]
 image::edit_project_milestone_after.png[]
 
 // tag::edituserstory[]
-==== Edits User Story in a project: `edit project userstory`
+==== Edit user story in a project: `edit project userstory`
 
 You can edit the fields of a user story in a project.
 
