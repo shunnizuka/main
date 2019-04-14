@@ -294,11 +294,11 @@ The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
 
-image::OverallStatsSequenceDiagram.png[width="1000"]
+image::iverallStatsSequenceDiagram.png[width="1000"]
 
 Individual Project:
 
-image::IndividualStatsSequenceDiagram.png[width="1000"]
+image::individualStatsSequenceDiagram.png[width="1000"]
 
 Usage Scenario example for `stats`:
 
