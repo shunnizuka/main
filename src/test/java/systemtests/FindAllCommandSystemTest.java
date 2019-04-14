@@ -120,19 +120,6 @@ public class FindAllCommandSystemTest extends PocketProjectSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedProjectCardUnchanged();
 
-        //TODO View Project stuff
-        /* Case: find while a project is selected -> selected card deselected */
-        /*
-        showAllProjects();
-        viewProject(Index.fromOneBased(1));
-        assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getEmployeeName()
-            .equals(DANIEL.getEmployeeName().fullName));
-        command = FindAllCommand.COMMAND_WORD + " " + FindAllCommand.FIND_ALL_KEYWORD + " Daniel";
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardDeselected();
-        */
-
         /* Case: find project in empty Pocket Project -> 0 projects found */
         deleteAllProjects();
         command = FindAllCommand.COMMAND_WORD + " " + FindAllCommand.FIND_ALL_KEYWORD + " "
