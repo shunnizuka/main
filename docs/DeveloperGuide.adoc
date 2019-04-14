@@ -89,6 +89,9 @@ through the course of the Developer Guide.
 |Milestone
 |A key event that is completed during the entire timeline of the project.
 
+|Project Task
+|Events which are completed during a milestone to achieve the next milestone.
+
 |One-Based Indexing
 |Way of numbering in which the initial element of a sequence is assigned the index 1.
 
