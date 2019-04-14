@@ -92,8 +92,8 @@ There are several detail panels to display the details of the employees and the 
 .Detail Panels of an employee [1] Summary: display name, skills, phone, email of the employee [2] Projects: the list of projects the employee is working on [3] Github: github page of the employee
 image::employee_detail_panel.png[]
 
-.Detail Panels of a project [1] Summary: display project name, client and deadline of the project [2] User Stories for the project [3] List of employees working on the project
-image::project_detail_panel.png[]
+.Detail Panels of a project [1] Summary: display project name, client and deadline of the project [2] User Stories for the project [3] List of employees working on the project [4] Milestones and project tasks list in a project
+image::project_detail_panel2.png[]
 
 === Colour coding
 There are several common colours used throughout Pocket Pocket to denote the statuses of events. As shown below, there are 3 main colours used:
@@ -494,6 +494,7 @@ and looks like.
 .*Adding a milestone to a project*
 image::ug-addtomilestone.png[]
 
+//tag::daryl[]
 
 ==== Add a project task to a project's milestone: `addto projecttask`
 
@@ -529,8 +530,8 @@ image::ug-addprojecttask.png[]
 |===
 |image:ug-notepadpencil.png[width="40"]| Clicking on the arrow beside a milestone containing existing tasks allows you
 to hide the list of tasks under the milestone.
-
 |===
+//end::daryl[]
 
 ==== Add a User Story to a project: `addto userstory`
 
@@ -661,6 +662,8 @@ the displayed list of employees.
 |image:ug-exclamation.png[width="50"]|The index must be a *positive integer* and cannot be larger than the size of the list.
 |===
 
+//tag::daryl[]
+
 ==== Remove a project task from a project's milestone: `removefrom PROJECT_NAME projecttask`
 
 You can remove existing project tasks from a milestone if there is a change in the planned project's schedule.
@@ -680,7 +683,7 @@ The 1st project task in the task list under the 1st milestone of the displayed m
 . `removefrom Orbital projecttask 2 1` +
 The 1st project task in the task list under the 2nd milestone of the displayed milestone list in project "Orbital" will be removed.
 
-You can refer to the screenshot below to have a clearer picture of how it looks like.
+You can refer to the figure below to have a clearer picture of how it looks like when the command `removefrom Orbital projecttask 2 1` is called.
 
 .*Before and after comparison when removing a task from a project's milestone*
 image::ug-removeprojecttask.png[]
@@ -688,6 +691,8 @@ image::ug-removeprojecttask.png[]
 |===
 |image:ug-notepadpencil.png[width="40"]| The arrow beside the milestone description for collapsing the task list will disappear if all tasks for that milestone are removed.
 |===
+
+//end::daryl[]
 
 ==== Remove a user story from a project: `removefrom userstory`
 
@@ -991,6 +996,33 @@ You may refer to the screenshot below to see how the user story is updated after
 .Before and after comparisons of the status of a user story
 image::update-user-story-ui.png[]
 
+//tag::daryl[]
+
+==== Update the status of a project task: `update projecttask`
+You can update the status of a project task to indicate its progress.
+
+Format: `update PROJECT_NAME projecttask MILESTONE_INDEX PROJECT_TASK_INDEX STATUS`
+
+
+[width="1000",cols="100,<900"]
+|===
+|image:ug-exclamation.png[width="70"]| The `MILESTONE_INDEX` and `PROJECT_TASK_INDEX` must be a positive integer and cannot be
+larger than the size of the displayed milestones and tasks list.
+|===
+
+Examples:
+
+. `update Apollo projecttask 1 1 ongoing` +
+Updates the status of the first project task in the first milestone of project 'Apollo' to "ongoing".
+
+. `update Orbital projecttask 2 1 complete` +
+Updates the status of the first project task in the second milestone of project 'Orbital' to "complete".
+
+You may refer to the diagram below to get a clearer picture of how updating a project task's status looks like when the command `update Orbital projecttask 2 1 complete` is called.
+
+.Before and after comparison when updating a project task's status
+image::ug-updateprojecttask.png[]
+//end::daryl[]
 
 === Listing all employees or projects in application : `list`
 ==== List all employees in the application: `list employee`
@@ -1270,90 +1302,89 @@ data of your previous Pocket Project folder.
 
 |Remove Milestone From Project
 |`removefrom PROJECT_NAME milestone MILESTONE_INDEX`
-|`removefrom Apollo milestone 1
+|`removefrom Apollo milestone 1`
 
 |Remove Project Task From Project
 |`removefrom PROJECT_NAME projecttask PROJECTTASK_INDEX`
-|`removefrom Apollo projecttask 1
+|`removefrom Apollo projecttask 1`
 
 |Remove User Story From Project
 |`removefrom PROJECT_NAME userstory STORY_INDEX`
 |`removefrom Apollo userstory 2`
 
-
-|Edit Employee's details
+|Edit Employee's Details
 |`edit employee INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
 |`edit employee 2 n/Betsy Crower s/C s/HTML`
 
-|Edit Project details
+|Edit Project Details
 |`edit project PROJECT_NAME info [n/name] [c/client] [d/deadline] [desc/description]`
 |`edit project Apollo info n/Gemini c/John d/12/09/2020 desc/An application for project management`
 
-|Edit milestone details in the project
+|Edit Milestone Details In The Project
 |`edit project PROJECT_NAME milestone MILESTONE_INDEX [m/milestone] [d/date]`
 |`edit project Apollo milestone 2 m/Implement edit command d/09/04/2019`
 
-|Edit Userstory details in the project
-|Column 2, row 6
-|Column 3, row 6
+|Edit Userstory Details In The Project
+|`edit project PROJECT_NAME userstory STORY_INDEX STORY`
+|`edit project Apollo userstory 1 as a user i want to be able to login`
 
-|Find employees using name
+|Find Employees Using Name
 |`find employee KEYWORD [MORE_KEYWORDS]`
 |`find employee John`
 
-|Find employees using skills
+|Find Employees Using Skills
 |`find skill KEYWORD [MORE_KEYWORDS]`
 |`find skill java`
 
-|Find projects using name
+|Find Projects Using Name
 |`find project KEYWORD [MORE_KEYWORDS]`
 |`find project Apollo`
 
-|Find projects using words found in name and description
+|Find Projects Using Words Found In Name And Description
 |`find all KEYWORDS [MORE KEYWORDS]`
 |`find all management`
 
-|Find projects using deadline
+|Find Projects Using Deadline
 |`find deadline KEYWORD`
 |`find deadline 15/04/2019`
 
-|Update
-|Column 2, row 7
-|Column 3, row 7
-|Column 4, row 7
+|Update User Story Status
+|`update PROJECT_NAME userstory STORY_INDEX STATUS`
+|`update Apollo userstory 1 complete`
 
-|List
-|Column 2, row 8
-|Column 3, row 8
-|Column 4, row 8
+|Update Project Task Status
+|`update PROJECT_NAME projecttask MILESTONE_INDEX PROJECTTASK_INDEX`
+|`update Apollo projecttask 2 1 on hold`
 
-|View
-|Column 2, row 9
-|Column 3, row 9
-|Column 4, row 9
+|List All Employees
+|`list KEYWORD`
+|`list employee`
 
-|Complete
-|Column 2, row 10
-|Column 3, row 10
-|Column 4, row 10
+|List All Projects
+|`list KEYWORD`
+|`list project`
 
-|Stats
-|Column 2, row 11
-|Column 3, row 11
-|Column 4, row 11
+|View Employee Details
+|`view employee EMPLOYEE_INDEX`
+|`view employee 1`
+
+|View Project Details
+|`view project PROJECT_INDEX`
+|`view project 1`
+
+|Complete A Project
+|`complete PROJECT_INDEX COMPLETION_DATE`
+|`complete 1 11/11/2011`
+
+|Display Statistics Of All Project
+|`stats`
+|`stats`
+
+|Display Statistics Of A Single Project
+|`stats PROJECT_NAME/PROJECT_INDEX`
+|`stats 1`
+
 |===
 
-
-* *List* : `list COMMAND_KEYWORD` +
-e.g. `list employee` `list project`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB] [s/Skill]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find COMMAND_KEYWORD [MORE_KEYWORDS]` +
-e.g. `find employee Jake` `find project Apollo` `find skill Java` `find all software`
-* *View* : `view employee EMPLOYEE_INDEX` , `view project PROJECT_NAME` +
-e.g. `view employee 3` `view project Apollo`
-* *Complete* : `complete PROJECT_INDEX COMPLETION_DATE` +
-e.g. `complete 1 11/11/2011`
-* *Stats*: `stats`
 * *Exit*:  `exit`
 * *Help* : `help`
