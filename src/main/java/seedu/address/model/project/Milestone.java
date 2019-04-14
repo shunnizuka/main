@@ -52,7 +52,7 @@ public class Milestone {
     }
 
     /**
-     * Updates the given user story in this project.
+     * Updates the given project task in this project's milestone.
      */
     public void updateProjectTask(ProjectTask task, Status newStatus) {
         projectTasks.forEach(pt -> {

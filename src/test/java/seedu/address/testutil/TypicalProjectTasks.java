@@ -25,13 +25,11 @@ public class TypicalProjectTasks {
     public static final ProjectTask PROJECT_TASK_COMPLETED = new ProjectTaskBuilder()
         .withTaskDescription("Completed task")
         .withStatus("complete")
-        .withCompletionDate("15/12/2019")
         .build();
 
     public static final ProjectTask PROJECT_TASK_ON_HOLD = new ProjectTaskBuilder()
         .withTaskDescription("On hold task")
         .withStatus("on hold")
-        .withCompletionDate("03/02/2019")
         .build();
 
     private TypicalProjectTasks() {} // prevents instantiation

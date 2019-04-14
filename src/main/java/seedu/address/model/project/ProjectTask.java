@@ -2,8 +2,6 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.util.PocketProjectDate;
-
 /**
  * Represents a project task stored in a project milestone.
  */
@@ -11,23 +9,21 @@ public class ProjectTask {
 
     private Status status;
     private ProjectTaskDescription description;
-    private PocketProjectDate completionDate;
 
     /**
      * Default constructor for a project task
      */
     public ProjectTask(ProjectTaskDescription description) {
-        this(description, new Status(), new PocketProjectDate());
+        this(description, new Status());
     }
 
     /**
      * Constructor for a project task specifying project task status.
      */
-    public ProjectTask(ProjectTaskDescription description, Status status, PocketProjectDate date) {
-        requireAllNonNull(description, status, date);
+    public ProjectTask(ProjectTaskDescription description, Status status) {
+        requireAllNonNull(description, status);
         this.description = description;
         this.status = status;
-        this.completionDate = date;
     }
 
     public String getTaskDescription() {
@@ -36,10 +32,6 @@ public class ProjectTask {
 
     public String getTaskStatus() {
         return this.status.getStatus();
-    }
-
-    public String getCompletionDate() {
-        return this.completionDate.getDate();
     }
 
     public boolean isComplete() {
@@ -62,7 +54,7 @@ public class ProjectTask {
      * Returns a clone of this task.
      */
     public ProjectTask clone() {
-        return new ProjectTask(this.description.clone(), this.status.clone(), this.completionDate.clone());
+        return new ProjectTask(this.description.clone(), this.status.clone());
     }
 
     /**
@@ -81,8 +73,7 @@ public class ProjectTask {
 
         ProjectTask otherTask = (ProjectTask) other;
         return otherTask.description.equals(this.description)
-            && otherTask.status.equals(this.status)
-            && otherTask.completionDate.equals(this.completionDate);
+            && otherTask.status.equals(this.status);
     }
 
     @Override
@@ -101,8 +92,7 @@ public class ProjectTask {
      */
     public static boolean isValidTask(ProjectTask task) {
         return ProjectTaskDescription.isValidDescription(task.getTaskDescription())
-            && Status.isValidStatus(task.getTaskStatus())
-            && PocketProjectDate.isValidDate(task.getCompletionDate());
+            && Status.isValidStatus(task.getTaskStatus());
     }
 
     /**
@@ -110,8 +100,5 @@ public class ProjectTask {
      */
     public void updateStatus(Status newStatus) {
         this.status = newStatus;
-        if (isComplete()) {
-            this.completionDate = new PocketProjectDate();
-        }
     }
 }

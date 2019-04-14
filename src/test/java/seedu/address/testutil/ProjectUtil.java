@@ -79,9 +79,9 @@ public class ProjectUtil {
     public static String getMilestoneDetails(Milestone milestone) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_MILESTONE);
-        sb.append(milestone.getMilestoneDescription() + " ");
+        sb.append(milestone.getMilestoneDescription().description + " ");
         sb.append(PREFIX_DATE);
-        sb.append(milestone.getDate() + " ");
+        sb.append(milestone.getDate().date + " ");
         return sb.toString();
     }
 
