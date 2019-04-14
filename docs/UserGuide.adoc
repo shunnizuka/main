@@ -1383,6 +1383,5 @@ data of your previous Pocket Project folder.
 
 |===
 
-* *Stats*: `stats`
 * *Exit*:  `exit`
 * *Help* : `help`
