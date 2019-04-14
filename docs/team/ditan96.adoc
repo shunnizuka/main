@@ -38,7 +38,7 @@ that you can use while using application.
 == Summary of contributions
 This section shows you a summary of my coding, documentation, and other helpful contributions to the team project.
 
-*Feature added*: I added the ability to add, update and remove project tasks to and from a project in the application.
+*Major feature added*: Project tasks which helps users to track a project's progress.
 
 [width="1000",cols="100,<900"]
 |===
@@ -51,8 +51,8 @@ image::PPPmilestonesandtasks.png[]
 ** What it does: The `[aqua]#addto projecttask#` command adds a task to a milestone in a project. The `[aqua]#update projecttask#` command allows the manager to set the status of the task to ongoing, on hold or complete.
    The `[aqua]#removefrom projecttask#` command removes the specified task completely from the milestone.
 ** Justification: This feature improves the product significantly because it greatly enhances the level of organization and control which the manager has while planning out a schedule for projects.
-** Highlights: The implementation of this feature was rather unique and required a slightly creative approach  different from how other features were implemented as it is a component of milestones which in turn is a component of project.
-   Most other features in Pocket Project directly interact with either employees or projects, unlike that of project tasks which interacts only with milestones in a project. It required me to make some changes to the behaviour of the
+** Highlights: The implementation of this feature was slightly unique and required an approach different from how other features were implemented as a project task is a component of milestones which is in a project.
+   Most other features in Pocket Project directly interact with either employees or projects, unlike that of project tasks which interact only with milestones. It required me to make changes to the behaviour of the
    existing Milestone class and how it was stored in a project in order to get it to work as desired.
 ** Credits: The code for `addto` command parser which I extended for the project task feature and the original milestone code which I enhanced was done by my teammate Jothinandan Pillay.
    The code for `update` command parser was done by my teammate Jeff Gan. The code for `removefrom` command parser was done by my teammate Lin Dehui.
@@ -83,7 +83,7 @@ include::../UserGuide.adoc[tag=daryl]
 
 == Contributions to the Developer Guide
 
-You can view this section to see my contributions to the Developer Guide documentation which consists of the implementation of the project task feature as well as a several sections on manual testing of Pocket Project.
+You can view this section to see my contributions to the Developer Guide documentation which consists of the implementation of the project task feature and also several sections on manual testing Pocket Project (which unfortunately I am out of space to include in here, so check out this link if you're interested! [https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/DeveloperGuide.adoc#instructions-for-manual-testing[Manual testing, sections G3-G6, G12-G13]).
+
 
 include::../DeveloperGuide.adoc[tag=projecttask]
-include::../DeveloperGuide.adoc[tag=daryl]

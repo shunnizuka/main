@@ -520,6 +520,7 @@ The methods does not take in indices as arguments since the corresponding Employ
 before the methods of `Model` are called.
 The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone, project tasks and user stories are similar:
 
+.Sequence diagram showing execution of `removefrom Apollo employee 1`.
 image::remove_employee_from_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario and how the removal of employee/milestone/project task/user story feature behaves at each step.
@@ -769,6 +770,7 @@ before the methods of `Model` are called using the index specified by the user.
 
 The sequence diagram for the execution of the removing of a user story from a project is as follows:
 
+.Sequence diagram showing execution of `removefrom Apollo userstory 1`.
 image::remove_user_story_from_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario and how the removal of a user story behaves at each step.
@@ -794,6 +796,7 @@ before the `Project#SetUserStory(UserStory, UserStory)` method is called.
 
 The sequence diagram for the execution of the editing of a user story in a project is as follows:
 
+.Sequence diagram showing execution of `edit project Apollo userstory 1 as a user I want to login`.
 image::edit_user_story_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario and how the editing of a user story behaves at each step.
@@ -818,6 +821,7 @@ It takes in as arguments the new status of the user story. The `UpdateUserStoryC
 
 The sequence diagram for the execution of updating a user story status is as follows:
 
+.Sequence diagram showing execution of `update Apollo userstory 1 ongoing`.
 image::update_user_story_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario of how the updating of a user story behaves at each step.
@@ -903,7 +907,7 @@ Project tasks contain statuses to help you oversee its progress, whether its "On
 ==== Implementation of project task commands
 The project task commands are supported by the methods in the `Model` interface: `Model#addProjectTaskTo(Project, Milestone, ProjectTask)`, `Model#removeProjectTaskFrom(Project, Milestone, ProjectTask)` and `Model#updateProjectTask(Project, Milestone, ProjectTask, Status)`.
 These three methods take in `Project`, `Milestone` and `ProjectTask` as common arguments. Hence, the correct project/milestone/project task which the commands act on are first located through
-`AddProjectTaskToCommand#excute()`, `RemoveProjectTaskFromCommand#execute()` or `UpdateProjectTaskCommand#execute()` before the methods of `Model` are called.
+`AddProjectTaskToCommand#excute()`, `RemoveProjectTaskFromCommand#execute()` or `UpdateProjectTaskCommand#execute()` before the methods of `Model` acting on the milestone/project task are called.
 
 ===== Update status of project task
 Given below is an example usage scenario and a showcase of how a project task status is updated in a project's milestone at each step.
@@ -1764,8 +1768,6 @@ Assuming that the employees added here do not exist in the app beforehand.
 .. Test case: `add project n/Apollo c/SymbCorp d/10/11/2020` +
    Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
 
-//tag::daryl[]
-
 === Adding a milestone
 
 . Adding a milestone to a project
@@ -1819,8 +1821,6 @@ Assuming that the employees added here do not exist in the app beforehand.
    Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
 .. Test case: `addto Project Apollo userstory as a project manager i want to add employees into a project so that track which employees are in a project` +
    Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
-
-//end::daryl[]
 
 === Delete Command
 ==== Deleting an employee
