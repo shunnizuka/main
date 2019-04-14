@@ -259,7 +259,7 @@ The sections below give more details of each component.
 === UI component
 
 .Structure of the UI Component
-image::UiClassDiagram.png[width="700"]
+image::UiClassDiagram.png[width="650"]
 // end::ui[]
 
 *API* : link:{repoURL}/blob/master/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
@@ -699,7 +699,7 @@ It would be inappropriate to put these methods under the command class or the mo
 
 // end::stats[]
 
-// tag::userstory[]
+// tag::userstorygeneral[]
 === User Story feature
 ==== General Implementation
 
@@ -736,9 +736,14 @@ In the `SortedUserStoryList` these user stories would appear in the following or
 Since the user stories with users David and Alan have a higher importance level than John, they will appear above John in the sorted list. Afterwards, since Alan is lexicographically smaller than David, it appears before David in the list.
 
 This is to faciliate users to find important user stories by ensuring a neatly ordered list by relevance of the user story.
+// end::userstorygeneral[]
 
 ==== Implementation of individual commands
+
+// tag::adduserstory[]
+
 ===== Add user story to project command
+
 * `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY` -- adds the user story specified in `STORY` to the list of user stories in the project with name `PROJECT_NAME`
 
 This operation uses the `Model#addUserStoryTo(Project, UserStory)` and the `Model#getProjectWithName(Name)` methods in the `Model` interface.
@@ -755,8 +760,11 @@ which creates an `AddUserStoryTo` command. The `LogicManager` then checks for th
 |===
 |image:ug-exclamation.png[width="60"]| The `PROJECT_NAME` entered must be valid and the `STORY` added needs to be of the correct format. Else, exceptions would be thrown.
 |===
+// end::adduserstory[]
+// tag::removeuserstory[]
 
 ===== Remove user story from project command
+
 * `removefrom PROJECT_NAME userstory STORY_INDEX` -- removes the user story at index `STORY_INDEX` in the list of user stories in the project named `PROJECT_NAME`.
 
 This operation uses the `Model#removeUserStoryFrom(Project, UserStory)` and the `Model#getProjectWithName(Name)` methods in the `Model` interface.
@@ -781,8 +789,11 @@ story and project and executes the `Model#removeUserStoryFrom(Project, UserStory
 |===
 |image:ug-exclamation.png[width="60"]| The `PROJECT_NAME` entered must be valid and exists in the app. The `STORY_INDEX` given must refer to some existing user story. If not, exceptions would be thrown during the execution of the command.
 |===
+// end::removeuserstory[]
+// tag::edituserstory[]
 
 ===== Edit user story command
+
 * `edit project PROJECT_NAME userstory STORY_INDEX` -- edits the user story at index `STORY_INDEX` in the list of user stories in the project named `PROJECT_NAME`.
 
 This operation uses the `Project#setUserStory(UserStory, UserStory)` method in the `Project` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class. It takes
@@ -808,8 +819,11 @@ story and project and edits the user story using the `Project#setUserStory(UserS
 |===
 |image:ug-exclamation.png[width="60"]| The `PROJECT_NAME` entered must be valid and exists in the app. The `STORY_INDEX` given must refer to some existing user story and the new `STORY` must be valid. If not, exceptions would be thrown during the execution of the command.
 |===
+// end::edituserstory[]
+// tag::updateuserstory[]
 
 ===== Update user story command
+
 * `update PROJECT_NAME userstory STORY_INDEX STATUS` -- Updates the status of the user story at the `STORY_INDEX` in the list of user stories in the project named `PROJECT_NAME`.
 
 This operation uses the `UserStory#UpdateStatus(Status)` method in the `UserStory` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class.
@@ -833,6 +847,8 @@ The `UpdateCommandParser` then detects the keyword `userstory` and creates a `Up
 |===
 |image:ug-exclamation.png[width="60"]| The `PROJECT_NAME` entered must be valid and exists in the app. The `STORY_INDEX` given must refer to some existing user story and the new `STATUS` must be valid. If not, exceptions would be thrown during the execution of the command.
 |===
+// end::updateuserstory[]
+// tag::designandfuture[]
 
 ==== Design Considerations
 ===== Aspect: How to structure the user story details to be inputted into the project
@@ -872,7 +888,7 @@ Hence this proposed feature will allow users to be able to click the user storie
 
 . Provide even greater flexibility when parsing user stories. Currently, user stories require specific keywords `as a`, `i want to`, `so that`. In future, users should be able to type sentences naturally and it can still be parsed.
 This will be made available by widening the range of keywords the parser is able to detect as well as the different sentence structures possible.
-// end::userstory[]
+// end::designandfuture[]
 
 
 // tag::projecttask[]

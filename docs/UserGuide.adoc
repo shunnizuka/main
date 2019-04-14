@@ -537,7 +537,8 @@ to hide the list of tasks under the milestone.
 //end::daryl[]
 
 // tag::adduserstory[]
-==== Add a User Story to a project: `addto userstory`
+
+==== Add a user story to a project: `addto userstory`
 
 You can add a user story to a project which is useful in the planning stage of a project where the implementation
 of certain features can be prioritized over others.
@@ -694,8 +695,8 @@ image::ug-removeprojecttask.png[]
 |===
 
 //end::daryl[]
-
 // tag::removeuserstory[]
+
 ==== Remove a user story from a project: `removefrom userstory`
 
 You can remove a user story from a project.
@@ -712,7 +713,6 @@ Refer to the diagram below to see the changes in the user stories list after the
 
 .Before and after comparison of removing a user story
 image::removefrom-user-story-ui.png[width="600"]
-
 // end::removeuserstory[]
 
 === Edit an employee/project in the application : `edit`
@@ -826,6 +826,7 @@ image::edit_project_milestone_before.png[]
 image::edit_project_milestone_after.png[]
 
 // tag::edituserstory[]
+
 ==== Edit user story in a project: `edit project userstory`
 
 You can edit the fields of a user story in a project.
@@ -851,7 +852,6 @@ Refer to the screenshot below to see how the fields of the user story has been e
 
 .Before and after comparisons of the user story's importance level
 image::edit-user-story-ui.png[width="500"]
-
 // end::edituserstory[]
 
 //tag::find[]
@@ -984,7 +984,9 @@ Currently, there are 3 valid status which `update` supports:
 Each of the different statuses are also visually different in their colour coding. For more information about the different colours used, refer to <<Colour coding>>.
 
 // tag::updateuserstory[]
+
 ==== Update the status of a user story: `update userstory`
+
 You can update the status of a user story to indicate its progress.
 
 Format: `update PROJECT_NAME userstory INDEX STATUS`

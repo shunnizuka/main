@@ -7,7 +7,31 @@
 
 PocketProject is a project developed by my team and I as part of our Software Engineering Project. Our team decided to morph the original codebase given to us into a project management plus employee management software to help software engineering project managers keep track of their projects and employees. In particular, some notable features PocketProject provides includes recording of milestones, user stories amongst other parts of a project as well as recording details of an employee such as their skillsets and GitHub profile.
 
+== Before we begin
+
+Lets start by taking a look at some of the common notations, technical terms as well as symbols used throughout this document.
+
+|===
+|What you see |What it means
+
+|image:ug-notepadpencil.png[width="40"]
+|The note pad icon indicates any useful tips or things that users
+need to take note.
+
+|image:ug-exclamation.png[width="50"]
+|The exclamation mark icon indicates any warnings that users should be mindful of.
+
+|image:ug-smart.png[width="60"]
+|The graduation cap icon indicates any advanced usages or
+ extra technical information about how a particular command works should the
+ users be interested to know.
+
+|```code```
+| The grey-highlighting, also known as a `markup`, is used to represent code snippets or commands a user can enter in Pocket Project
+|===
+
 == Summary of contributions
+
 This section contains a summary of my various contributions to the project, ranging from coding to documentation and other helpful contributions I made.
 
 * *A feature I developed*: The ability to manage *user stories in a project*.
@@ -30,6 +54,7 @@ This section contains a summary of my various contributions to the project, rang
 
 ** Documentation:
 *** Added the general documentation for colour coding used in the project: https://github.com/cs2103-ay1819s2-w10-2/main/pull/230[#230]
+*** Enhanced the documentations of existing features such as *list* and *view* features: (same pull request as above: #230)
 
 ** Team component:
 *** reviewed many of the PRs by team members. Included some for reference: https://github.com/cs2103-ay1819s2-w10-2/main/pull/49[#49], https://github.com/cs2103-ay1819s2-w10-2/main/pull/138[#138], https://github.com/cs2103-ay1819s2-w10-2/main/pull/144[#144]
@@ -42,9 +67,7 @@ This section contains a summary of my various contributions to the project, rang
 
 == Contributions to the User Guide
 
-|===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
-|===
+In this section, I will showcase some of my contributions to the User Guide to demonstrate my ability to write documentation targetting users of Pocket Project. Note that the snippets shown here are not an exhaustive list of all my contributions.
 
 include::../UserGuide.adoc[tag=adduserstory]
 include::../UserGuide.adoc[tag=removeuserstory]
@@ -52,9 +75,11 @@ include::../UserGuide.adoc[tag=updateuserstory]
 
 == Contributions to the Developer Guide
 
-|===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
-|===
+In this section, I will showcase some of my contributions to the Developer's Guide to demonstrate my ability to write technical documentation. For a complete list of the documentation I wrote, you may refer
+to our Developer's Guide: [https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/DeveloperGuide.adoc]
 
 include::../DeveloperGuide.adoc[tag=ui]
-include::../DeveloperGuide.adoc[tag=userstory]
+include::../DeveloperGuide.adoc[tag=edituserstory]
+include::../DeveloperGuide.adoc[tag=updateuserstory]
+include::../DeveloperGuide.adoc[tag=designandfuture]
+
