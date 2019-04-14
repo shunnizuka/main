@@ -7,12 +7,11 @@
 
 == About PocketProject
 
-My team and I were given the task to enhance or morph a basic command line interface Addressbook for our software engineering Project. Our team decided to morph the AddressBook into a project management tool named Pocket Project. Pocket Project is designed to suit the needs of software engineering managers by enabling them to store all the information that are essential for software engineering project planning such as employees, projects, milestones, user stories and tasks so as to make planning projects easier and more convenient for them.
+My team and I were given the task to enhance or morph a basic command line interface Addressbook for our software engineering Project. Our team decided to morph the AddressBook into a project management tool named Pocket Project. Pocket Project is designed to suit the needs of software engineering managers by providing them a one-stop platform to store all the information that are essential for software engineering project planning in order to make planning projects easier and more convenient for them.
 
 My team was inspired by our own struggle of having to manage multiple projects across different modules and decided to make PocketProject in hopes of having better project management when we start venturing into the working world as a software engineer.
 
-
-== My Role
+=== My Role
 My primary role in this project was to implement `find` command which is essential in allowing users to navigate through the application and `edit` command which is necessary as users need to change various information to ensure that things are always up-to-date. 
 
 The following sections includes implementation done in details and also other contributions and relevant sections I have recorded in the user guide and developer guide.
@@ -31,8 +30,6 @@ This section shows a summary of contributions I have made for the project.
 ** Justification: As the project progresses, there are bound to be changes made to the project information hence it is essential to have an `edit` command to make sure that all the information are up to date.
 ** Highlights: 
 
-* *Code contributed*: _
-
 * *Other contributions*:
 
 ** Project management:
@@ -50,9 +47,6 @@ This section shows a summary of contributions I have made for the project.
 
 == Contributions to the User Guide
 
-|===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
-|===
 
 include::../UserGuide.adoc[tag=find]
 include::../UserGuide.adoc[tag=edit]
@@ -65,3 +59,4 @@ include::../UserGuide.adoc[tag=edit]
 
 include::../DeveloperGuide.adoc[tag=find]
 include::../DeveloperGuide.adoc[tag=editproject]
+

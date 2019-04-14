@@ -565,11 +565,11 @@ The `EditProjectCommand Parser` differentiate these 3 commands based on the `COM
 .Class diagram showing inheritance for `EditCommand`
 image:edit_command_class_diagram.png[width:"300"]
 
-All the 3 commands are inherited from the `EditProjectCommand`. This allows flexibility as more edit project command can be easily added when there are new components added to the project. 
+All the 3 commands are inherited from the `EditProjectCommand`. This allows flexibility as more edit project command can be easily added when there are new components added to the project.
 
 The following sequence diagram shows how `edit project info` command works:
 
-.Sequence diagram for `edit project Apollo info n/Gemini d/12/05/2019` 
+.Sequence diagram for `edit project Apollo info n/Gemini d/12/05/2019`
 image:edit_project_sequence_diagram.png[]
 
 Given below is the explanation of what happens when the user enter the `edit project info` command based on the diagram above:
@@ -578,8 +578,9 @@ Given below is the explanation of what happens when the user enter the `edit pro
 . `PocketProjectParser` will identify the command as an `EditCommand` based on the word `edit` and pass on the argument to the EditCommandParser.
 . `EditCommandParser` will identify the command as a `EditProjectCommand` based on the word `project` and pass it onto `EditProjectCommandParser`
 . `EditProjectCommandParser` then identify the command as a `EditProjectInfoCommand` based on the word `info` and create the respective command and return it back to the `LogicManager`
-. `LogicManager` then execute the command. Validity of the arguments are checked here as well. The method `Model#setProject(projectToEdit, editedProject)` is called to replace the old project with the edited project with the new parameters. 
+. `LogicManager` then execute the command. Validity of the arguments are checked here as well. The method `Model#setProject(projectToEdit, editedProject)` is called to replace the old project with the edited project with the new parameters.
 This method also update the list of project names in the employees who are assigned to project Apollo.
+
 |===
 |image:ug-notepadpencil.png[width="40"]|
 If the arguments provided are invalid, a `CommandException` will be thrown and error message will be shown.
@@ -589,7 +590,6 @@ If the arguments provided are invalid, a `CommandException` will be thrown and e
 The working mechanism behind `EditProjectMilestoneCommand` is similar as well. Instead of replacing the whole project, only the milestone list in the project is edited by replacing the milestone at the given index through `Model#setMilestone(milestoneToEdit, editedMilestone)` method.
 
 ==== Design Consideration
- 
 
 //end::editproject[]
 
