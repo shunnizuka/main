@@ -5,8 +5,6 @@
 
 == PROJECT: Pocket Project
 
----
-
 == Overview
 
 My team was given the task to enhance or morph a basic command line interface Addressbook for our software engineering Project. Our team decided to morph the AddressBook into a project management tool named Pocket Project. Pocket Project is designed to suit the needs of software engineering managers by enabling them to store all the information that are essential to project planning such as employees, projects, milestones and tasks so as to make planning projects easier and more convenient for them.
@@ -62,10 +60,4 @@ include::../UserGuide.adoc[tag=edit]
 |===
 
 include::../DeveloperGuide.adoc[tag=find]
-
-
-== PROJECT: PowerPointLabs
-
----
-
-_{Optionally, you may include other projects in your portfolio.}_
+include::../DeveloperGuide.adoc[tag=editproject]
