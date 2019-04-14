@@ -451,6 +451,14 @@ Edits the name of the 2nd person to be `Betsy Crower` and sets Java as the only 
 * `edit employee 2 n/Betsy Crower s/C s/HTML` +
 Edits the name of the 2nd employee to be `Betsy Crower` and sets C and HTML as the skills.
 
+Below is the before and after screenshot to illustrate better.
+
+.Before entering the command `edit employee 2 n/The magician p/98637251 s/`
+image:edit_employee_before.png[]
+
+.After entering the command `edit employee 2 n/The magician p/98637251 s/`
+image:edit_employee_after.png[]
+
 |===
 |image:ug-notepadpencil.png[width="40"]|
 Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
@@ -490,7 +498,6 @@ image:edit_project_before.png[]
 
 .After the edit command is entered
 image:edit_project_after.png[]
-
 
 |===
 |image:ug-lightbulb.png[width="50"]|
