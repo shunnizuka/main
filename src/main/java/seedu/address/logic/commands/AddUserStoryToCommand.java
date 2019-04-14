@@ -56,15 +56,8 @@ public class AddUserStoryToCommand extends AddToCommand {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        Project targetProject = null;
-        List<Project> projectList = model.getProjectList();
-        for (Project p: projectList) {
-            if (p.hasProjectName(targetProjectName)) {
-                targetProject = p;
-                break;
-            }
-        }
-        if (isNull(targetProject)) {
+        Project targetProject = model.getProjectWithName(targetProjectName);
+        if (targetProject == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_NAME);
         }
 
