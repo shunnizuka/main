@@ -95,6 +95,7 @@ image::employee_detail_panel.png[]
 .Detail Panels of a project [1] Summary: display project name, client and deadline of the project [2] User Stories for the project [3] List of employees working on the project [4] Milestones and project tasks list in a project
 image::project_detail_panel2.png[]
 
+// tag::jeff[]
 === Colour coding
 There are several common colours used throughout Pocket Pocket to denote the statuses of events. As shown below, there are 3 main colours used:
 
@@ -104,6 +105,8 @@ There are several common colours used throughout Pocket Pocket to denote the sta
 
 .*Common colours used in Pocket Project*
 image::colour-coding.png[width=480]
+
+// end::jeff[]
 
 === Symbols
 The following section details and previews a few legends that will
@@ -533,6 +536,7 @@ to hide the list of tasks under the milestone.
 |===
 //end::daryl[]
 
+// tag::jeff[]
 ==== Add a User Story to a project: `addto userstory`
 
 You can also add a user story to a project which is useful in the planning stage of a project where the implementation
@@ -571,6 +575,8 @@ Refer to the diagram below to see how the new user story is shown.
 
 .User stories list showing the newly added user story
 image::addto-user-story-ui.png[]
+
+// end::jeff[]
 
 === Delete a project or an employee from the application `delete`
 
@@ -694,6 +700,7 @@ image::ug-removeprojecttask.png[]
 
 //end::daryl[]
 
+// tag::jeff[]
 ==== Remove a user story from a project: `removefrom userstory`
 
 You can remove a user story from a project.
@@ -710,6 +717,8 @@ Refer to the diagram below to see the changes in the user stories list after the
 
 .Before and after comparison of removing a user story
 image::removefrom-user-story-ui.png[]
+
+// end::jeff[]
 
 === Edit an employee/project in the application : `edit`
 
@@ -821,6 +830,7 @@ image::edit_project_milestone_before.png[]
 .After entering the edit command
 image::edit_project_milestone_after.png[]
 
+// tag::jeff[]
 ==== Edits User Story in a project: `edit project userstory`
 
 You can edit the fields of a user story in a project.
@@ -847,6 +857,7 @@ Refer to the screenshot below to see how the fields of the user story has been e
 .Before and after comparisons of the user story's importance level
 image::edit-user-story-ui.png[]
 
+// end::jeff[]
 
 //tag::find[]
 === Locating employees, projects or skills by name: `find`
@@ -966,7 +977,7 @@ image::find_deadline.png[]
 
 //end::find[]
 
-
+// tag::jeff[]
 === Update a user story/project task status: `update`
 You can update the statuses of events to track their progress.
 
@@ -992,6 +1003,7 @@ You may refer to the screenshot below to see how the user story is updated after
 
 .Before and after comparisons of the status of a user story
 image::update-user-story-ui.png[]
+// end::jeff[]
 
 //tag::daryl[]
 
@@ -1021,6 +1033,7 @@ You may refer to the diagram below to get a clearer picture of how updating a pr
 image::ug-updateprojecttask.png[]
 //end::daryl[]
 
+// tag::jeff[]
 === Listing all employees or projects in application : `list`
 ==== List all employees in the application: `list employee`
 You can list all the employees in the employee list.
@@ -1095,6 +1108,7 @@ Refer to the screenshot below to see the changes in the screen after a `view pro
 .Details of the project at index 1 of the projects list is shown
 image::view-project-ui.png[]
 
+// end::jeff[]
 
 === To indicate the project has been completed : `complete`
 

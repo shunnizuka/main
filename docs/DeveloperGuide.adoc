@@ -697,6 +697,7 @@ It would be inappropriate to put these methods under the command class or the mo
 
 // end::stats[]
 
+// tag::userstory[]
 === User Story feature
 ==== General Implementation
 
@@ -886,7 +887,7 @@ Hence this proposed feature will allow users to be able to click the user storie
 
 . Provide even greater flexibility when parsing user stories. Currently, user stories require specific keywords `as a`, `i want to`, `so that`. In future, users should be able to type sentences naturally and it can still be parsed.
 This will be made available by widening the range of keywords the parser is able to detect as well as the different sentence structures possible.
-
+// end::userstory[]
 
 
 // tag::projecttask[]

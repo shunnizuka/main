@@ -49,6 +49,7 @@ This section contains a summary of my various contributions to the project, rang
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
+include::../UserGuide.adoc[tag=jeff]
 
 == Contributions to the Developer Guide
 
@@ -56,3 +57,5 @@ This section contains a summary of my various contributions to the project, rang
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
+
+include::../DeveloperGuide.adoc[tag=userstory]
