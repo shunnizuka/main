@@ -278,13 +278,6 @@ public class PocketProjectDate extends CalendarDate {
      * @return true is valid format DD/MM/YYYY, otherwise false.
      */
     public static boolean isValidDate(String input) {
-        DateFormat format = SIMPLE_DATE_FORMAT;
-        format.setLenient(false);
-        try {
-            SIMPLE_DATE_FORMAT.parse(input);
-        } catch (ParseException e) {
-            return false;
-        }
         return input.matches(VALIDATION_REGEX);
     }
 
