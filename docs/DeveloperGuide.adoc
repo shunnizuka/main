@@ -885,7 +885,7 @@ This will be made available by widening the range of keywords the parser is able
 
 
 
-// skill::projecttask[]
+// tag::projecttask[]
 === Project Task feature
 ==== Current Implementation
 
@@ -900,8 +900,8 @@ by the model component, and in particular, the `Milestone` class which stores th
 
 Project tasks contain statuses to help you oversee its progress, whether its "Ongoing", "On hold" or "Complete".
 
-==== Implementation of individual commands
-The project task commands are supported by the methods in the `Model` interface: `Model#addProjectTaskTo(Project, Milestone, ProjectTask);`, `Model#removeProjectTaskFrom(Project, Milestone, ProjectTask)` and `Model#updateProjectTask(Project, Milestone, ProjectTask, Status)`.
+==== Implementation of project task commands
+The project task commands are supported by the methods in the `Model` interface: `Model#addProjectTaskTo(Project, Milestone, ProjectTask)`, `Model#removeProjectTaskFrom(Project, Milestone, ProjectTask)` and `Model#updateProjectTask(Project, Milestone, ProjectTask, Status)`.
 These three methods take in `Project`, `Milestone` and `ProjectTask` as common arguments. Hence, the correct project/milestone/project task which the commands act on are first located through
 `AddProjectTaskToCommand#excute()`, `RemoveProjectTaskFromCommand#execute()` or `UpdateProjectTaskCommand#execute()` before the methods of `Model` are called.
 
@@ -920,23 +920,17 @@ and passes the rest of the string to the `UpdateCommandParser` to identify which
 
 Step 2. The `UpdateCommandParser` then identifies the "projecttask" keyword and  creates an `UpdateProjectTaskCommand` and passes it to the `LogicManager` to be executed.
 
-Step 3. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate and obtain the specified `Project`, `Milestone` and `ProjectTask` objects.
+Step 3. On execution of the command, the validity of the arguments are checked and then call the methods of the `Model` component to locate and obtain the necessary objects.
 
-Step 4. The status of the retrieved task is then updated to "Complete" and execution of the `UpdateProjectTaskCommand` ends.
+Step 4. The `Model` component then searches for the project with name `Apollo`. After which, it searches for the milestone at index 2 of the project's milestone list. Then, it retrieves the specified project task at index 1 in the milestone's project task list.
+In each of these 3 searches for the specified object, after the object is found, it is returned to the `UpdateProjectTaskCommand` object and used for the next search.
+
+Step 5. The update status method of the retrieved task is then called with "Complete" as an argument. This updates the project task status to "Complete" and execution of the `UpdateProjectTaskCommand` ends.
 
 |===
 |image:ug-exclamation.png[width="40"]| The `[project name]` entered must be valid and exists in the app. The `[milestone index]` and `[project task index]` given must refer to some existing milestone and project task. Also,
                                        the status to be updated to needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
 |===
-===== Add project task to a milestone in project
-Refer to previous section on the implementation of adding to project.
-
-* `addto [project name] projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX` -- <<Add employee/milestone/project task/user story to projects feature>>
-
-===== Remove project task from a milestone in project
-Refer to previous section on the implementation of removing from project.
-
-* `removefrom [project name] projecttask [milestone index] [project task index]` -- <<Remove employee/milestone/project task/user story from projects feature>>
 
 ==== Design Considerations
 In this section, I will talk about certain alternatives that could have been taken when designing this feature and why I did or did not use them.
@@ -1662,16 +1656,14 @@ Use case ends.
 
 
 [appendix]
-== Non Functional Requirements
 
+== Non Functional Requirements
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
 .  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
 .  Should be user-friendly for software engineering project managers and should help them manage their projects more efficiently and effectively.
 .  Should have automated tests to do regression testing whenever an existing feature is enhanced or a new feature is added.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 .  The system should respond to user input within 2 seconds, whether it is valid or invalid input.
-
-_{More to be added}_
 
 [appendix]
 == Glossary
@@ -1698,9 +1690,13 @@ Cons:
 * ...
 
 [appendix]
+
+//tag::daryl[]
+
 == Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
+//end::daryl[]
 
 [NOTE]
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
@@ -1734,6 +1730,96 @@ Assuming that the employees added here do not exist in the app beforehand.
   Expected: The second addition fails because the employee already exists.
 . Test case: `add employee n/Jack p/12345678 e/a.gmail.com g/abc.com` +
   Expected: Addition failed because of lack of '@' in the given email.
+
+=== Adding a project
+
+. Adding a new project
+
+.. Prerequisite: Project list doesn't already contain a project named 'Apollo'.
+.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
+   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `add project n/Ap.ollo c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Invalid project name error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/Symb.Corp d/23/11/2020` +
+   Expected: No new project is added. Invalid client name error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp d/30/02/2020` +
+   Expected: No new project is added. Invalid date error details shown in the status message. Status bar remains the same.
+.. Test case: `add project c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo d/23/11/2020` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+
+. Adding a new project that has at most 1 field different from an existing project.
+
+.. Prerequisite: This test case assumes that the command `add project n/Apollo c/SymbCorp d/23/11/2020` has been entered successfully at least once before.
+.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+.. Test case: `add project n/Apollo1 c/SymbCorp d/23/11/2020` +
+   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `add project n/Apollo c/SymbCorp1 d/23/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp d/10/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+
+//tag::daryl[]
+
+=== Adding a milestone
+
+. Adding a milestone to a project
+
+.. Prerequisite: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'. 'Apollo' doesn't already contain milestones with names 'Finished UserGuide' and 'Finished DevGuide'.
+.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Not Found milestone Finished UserGuide 23/04/2019` +
+   Expected: No new milestone is added. Invalid project name error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone 23/04/2019` +
+   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone Finished UserGuide 234/04/2019` +
+   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
+
+. Adding a new milestone that has at most 1 field different from an existing milestone in a project.
+
+.. Prerequisite: This test case assumes that the command `addto Apollo milestone Finished UserGuide 23/04/2019` has been entered successfully at least once before.
+.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
+   Expected: No new milestone is added. Duplicate milestone error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone Finished DevGuide 23/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo milestone Finished UserGuide 11/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+
+=== Adding a project task
+
+. Adding a project task to a project's milestone
+
+.. Prerequisite: Project list has a project named 'Apollo' and has only 2 existing milestone in it.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Expected: A new project task with description "Create feature XYZ" is added to the first milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/2` +
+   Expected: A new project task with description "Create feature XYZ" is added to the second milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Expected: No new project task is added. Duplicate project task error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/3` +
+   Expected: No new project task is added. Invalid milestone index error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ` +
+   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
+.. Test case: `addto Apollo projecttask m/1` +
+   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
+
+=== Adding a UserStory
+
+. Adding a new user story to a project
+
+.. Prerequisites: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'.
+.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/2` +
+   Expected: A new user story is added to 'Apollo'. Details of the added user story shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/4` +
+   Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
+.. Test case: `addto Project Apollo userstory as a project manager i want to add employees into a project so that track which employees are in a project` +
+   Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
+
+//end::daryl[]
 
 === Delete Command
 ==== Deleting an employee
@@ -1811,6 +1897,8 @@ Deleting a project while all projects are listed
 .. Test case: `remove from invalid milestone 1` where no project named 'invalid' exists +
    Expected: Command fails and an error message is returned.
 
+//tag::daryl[]
+
 === Removing a project task from a project
 
 .. Prerequisites: Project with name 'Apollo' exists and has only 1 milestone with only 1 project task in it.
@@ -1823,6 +1911,29 @@ Deleting a project while all projects are listed
    Expected: No project task is removed. Invalid milestone index error details shown in the status message. Status bar remains the same.
 .. Test case: `removefrom Apollo projecttask 1` +
    Expected: No project task is removed. Invalid command format error details shown in the status message. Status bar remains the same.
+
+=== Updating status of a project task
+
+.. Prerequisite: Project with name 'Apollo' exists and has only 1 milestone with at least 1 project task in it.
+.. Test case: `update Apollo projecttask 1 1 complete` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to complete.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 on hold` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to on hold.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 ongoing` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to ongoing.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 invalid` +
+   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 1 complete` +
+   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 2 1 complete` +
+   Expected: Status of project task is not updated. Invalid milestone index format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 1 2 complete` +
+   Expected: Status of project task is not updated. Invalid project task index format error displayed in status message. Status bar remains the same.
+
+//end::daryl[]
 
 === Finding an employee/project by keywords in their names
 
@@ -1851,27 +1962,6 @@ Deleting a project while all projects are listed
    Expected: The first project in the list is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
 .. Test case: `complete x 11/11/2011` where x is not the index of a displayed project +
    Expected: Error detail shown. The Timestamp in the status bar is not updated.
-
-=== Updating status of a project task
-
-.. Prerequisite: Project with name 'Apollo' exists and has only 1 milestone with at least 1 project task in it.
-.. Test case: `update Apollo projecttask 1 1 complete` +
-   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to complete.
-   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
-.. Test case: `update Apollo projecttask 1 1 on hold` +
-   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to on hold.
-   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
-.. Test case: `update Apollo projecttask 1 1 ongoing` +
-   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to ongoing.
-   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
-.. Test case: `update Apollo projecttask 1 1 invalid` +
-   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
-.. Test case: `update Apollo projecttask 1 complete` +
-   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
-.. Test case: `update Apollo projecttask 2 1 complete` +
-   Expected: Status of project task is not updated. Invalid milestone index format error displayed in status message. Status bar remains the same.
-.. Test case: `update Apollo projecttask 1 2 complete` +
-   Expected: Status of project task is not updated. Invalid project task index format error displayed in status message. Status bar remains the same.
 
 === Clearing all data from the app
 
@@ -1917,92 +2007,6 @@ Assumption: all the objects being manipulated in these test cases exist in the a
    Expected: The first command will delete the first employee in the list from the app while the undo command will restore it. The redo command deletes it again.
 .. Test case: `redo` is entered as the first command on start-up +
    Expected: Output error message. There is no undone command to redo.
-
-=== Adding a project
-
-. Adding a new project
-
-.. Prerequisite: Project list doesn't already contain a project named 'Apollo'.
-.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
-   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `add project n/Ap.ollo c/SymbCorp d/23/11/2020` +
-   Expected: No new project is added. Invalid project name error details shown in the status message. Status bar remains the same.
-.. Test case: `add project n/Apollo c/Symb.Corp d/23/11/2020` +
-   Expected: No new project is added. Invalid client name error details shown in the status message. Status bar remains the same.
-.. Test case: `add project n/Apollo c/SymbCorp d/30/02/2020` +
-   Expected: No new project is added. Invalid date error details shown in the status message. Status bar remains the same.
-.. Test case: `add project c/SymbCorp d/23/11/2020` +
-   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
-.. Test case: `add project n/Apollo d/23/11/2020` +
-   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
-.. Test case: `add project n/Apollo c/SymbCorp` +
-   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
-
-. Adding a new project that has at most 1 field different from an existing project.
-
-.. Prerequisite: This test case assumes that the command `add project n/Apollo c/SymbCorp d/23/11/2020` has been entered successfully at least once before.
-.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
-   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
-.. Test case: `add project n/Apollo1 c/SymbCorp d/23/11/2020` +
-   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `add project n/Apollo c/SymbCorp1 d/23/11/2020` +
-   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
-.. Test case: `add project n/Apollo c/SymbCorp d/10/11/2020` +
-   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
-
-=== Adding a milestone
-
-. Adding a milestone to a project
-
-.. Prerequisite: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'. 'Apollo' doesn't already contain milestones with names 'Finished UserGuide' and 'Finished DevGuide'.
-.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
-   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `addto Not Found milestone Finished UserGuide 23/04/2019` +
-   Expected: No new milestone is added. Invalid project name error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo milestone 23/04/2019` +
-   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo milestone Finished UserGuide 234/04/2019` +
-   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
-
-. Adding a new milestone that has at most 1 field different from an existing milestone in a project.
-
-.. Prerequisite: This test case assumes that the command `addto Apollo milestone Finished UserGuide 23/04/2019` has been entered successfully at least once before.
-.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
-   Expected: No new milestone is added. Duplicate milestone error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo milestone Finished DevGuide 23/04/2019` +
-   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `addto Apollo milestone Finished UserGuide 11/04/2019` +
-   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
-
-=== Adding a project task
-
-.Adding a project task to a project's milestone
-
-.. Prerequisite: Project list has a project named 'Apollo' and has only 2 existing milestone in it.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
-   Expected: A new project task with description "Create feature XYZ" is added to the first milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ m/2` +
-   Expected: A new project task with description "Create feature XYZ" is added to the second milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
-   Expected: No new project task is added. Duplicate project task error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ m/3` +
-   Expected: No new project task is added. Invalid milestone index error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ` +
-   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
-.. Test case: `addto Apollo projecttask m/1` +
-   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
-
-=== Adding a UserStory
-
-. Adding a new user story to a project
-
-.. Prerequisites: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'.
-.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/2` +
-   Expected: A new user story is added to 'Apollo'. Details of the added user story shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/4` +
-   Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
-.. Other invalid add userstory commands to try: `addto Apollo userstory x AAA y AAA z AAA` (where expected `x` = as a, `y` = i want to, `z` = so that, `AAA` can be anything. Modify `x` or `y` or `z` to be different from expected.) +
-   Expected: Similar to previous.
 
 === Saving data
 

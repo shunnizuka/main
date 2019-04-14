@@ -6,13 +6,13 @@
 == About the project
 
 Welcome to my Project Portfolio Page! My team and I were tasked to enhance an open source, basic command line interface (CLI) addressbook for our Software engineering project.
-Given the constraints that the final product had to use CLI as the primary mode of input and that it had to be functional without an internet connection for testing purposes,
+Given the constraints that the final product had to use CLI as the primary mode of input and be functional offline,
 we decided to morph it into a project management application called Pocket Project.
 
 This upgraded application enables project managers to keep track of everything about ongoing and completed projects, as well as the data of employees under the manager, all in one place.
 
-My role was to design and write the code for the `addto projecttask`, `update projecttask` and `removefrom projecttask` features. The following sections will explain in further detail about the above-mentioned features,
-as well as what I have documented in the user and developer guides in relation to these enhancements.
+My role was to design and write the code for the `addto projecttask`, `update projecttask` and `removefrom projecttask` features. The following sections will explain in more detail these features,
+as well as my documentation contributions in the user and developer guides during this project.
 
 Before we continue, do take note of the following symbols and formatting used in this document:
 
@@ -20,18 +20,16 @@ Before we continue, do take note of the following symbols and formatting used in
 |Symbol |Meaning
 
 |image:ug-notepadpencil.png[width="40"]
-|The note pad icon indicates any useful tips or things that users
-need to take note of while using the Pocket Project application.
+|The note pad icon indicates any information which you might find handy.
 
 |image:ug-lightbulb.png[width="50"]
 |The light bulb icon indicates any shortcuts
-that users can use while using the Pocket Project application.
+that you can use while using application.
 
 |image:ug-exclamation.png[width="50"]
-|The exclamation mark icon indicates any warnings that users
- can take note of while using the Pocket Project application.
+|The exclamation mark icon indicates any warnings that you might want to take note of when using Pocket Project.
 
-|```addto```| A grey highlight (called a mark-up) indicates that this is a command that can be input into the command line and executed by the application.
+|```addto```| A grey highlight (called a mark-up) indicates that this is a command you can use in Pocket Project. In the documentation sections, this might refer to code-related implementations in the application.
 
 |```[aqua]#addto#```| A grey highlight with light blue text indicates this is an abbreviated command shortened for the sake of brevity.
 
@@ -42,8 +40,9 @@ This section shows you a summary of my coding, documentation, and other helpful 
 
 *Feature added*: I added the ability to add, update and remove project tasks to and from a project in the application.
 
+[width="1000",cols="100,<900"]
 |===
-|image:ug-notepadpencil.png[width="40"]| Milestones in a project give a broad overview of what needs to be done to complete a project. Project tasks in a milestone are like a to-do list for keeping track of what needs to be done to reach the next milestone.
+|image:ug-notepadpencil.png[width="40"]| Milestones give a broad overview of what is needed to complete a project. Project tasks in milestones help keep track of what needs to be done to reach the next milestone.
 |===
 
 .*How the milestones and tasks feature looks like*
@@ -80,8 +79,11 @@ image::PPPmilestonesandtasks.png[]
 
 You can view this section to see my contributions to the User Guide documentation for `[aqua]#addto projecttask#`, `[aqua]#removefrom projecttask#` and `[aqua]#update projecttask#` command.
 
-
+include::../UserGuide.adoc[tag=daryl]
 
 == Contributions to the Developer Guide
 
-You can view this section to see my contributions to the Developer Guide documentation which consists of the implementation of the project task feature as well as several sections on manual testing Pocket Project.
+You can view this section to see my contributions to the Developer Guide documentation which consists of the implementation of the project task feature as well as a several sections on manual testing of Pocket Project.
+
+include::../DeveloperGuide.adoc[tag=projecttask]
+include::../DeveloperGuide.adoc[tag=daryl]

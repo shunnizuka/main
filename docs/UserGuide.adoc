@@ -92,8 +92,8 @@ There are several detail panels to display the details of the employees and the 
 .Detail Panels of an employee [1] Summary: display name, skills, phone, email of the employee [2] Projects: the list of projects the employee is working on [3] Github: github page of the employee
 image::employee_detail_panel.png[]
 
-.Detail Panels of a project [1] Summary: display project name, client and deadline of the project [2] User Stories for the project [3] List of employees working on the project
-image::project_detail_panel.png[]
+.Detail Panels of a project [1] Summary: display project name, client and deadline of the project [2] User Stories for the project [3] List of employees working on the project [4] Milestones and project tasks list in a project
+image::project_detail_panel2.png[]
 
 === Colour coding
 There are several common colours used throughout Pocket Pocket to denote the statuses of events. As shown below, there are 3 main colours used:
@@ -494,6 +494,7 @@ and looks like.
 .*Adding a milestone to a project*
 image::ug-addtomilestone.png[]
 
+//tag::daryl[]
 
 ==== Add a project task to a project's milestone: `addto projecttask`
 
@@ -529,8 +530,8 @@ image::ug-addprojecttask.png[]
 |===
 |image:ug-notepadpencil.png[width="40"]| Clicking on the arrow beside a milestone containing existing tasks allows you
 to hide the list of tasks under the milestone.
-
 |===
+//end::daryl[]
 
 ==== Add a User Story to a project: `addto userstory`
 
@@ -661,6 +662,8 @@ the displayed list of employees.
 |image:ug-exclamation.png[width="50"]|The index must be a *positive integer* and cannot be larger than the size of the list.
 |===
 
+//tag::daryl[]
+
 ==== Remove a project task from a project's milestone: `removefrom PROJECT_NAME projecttask`
 
 You can remove existing project tasks from a milestone if there is a change in the planned project's schedule.
@@ -680,7 +683,7 @@ The 1st project task in the task list under the 1st milestone of the displayed m
 . `removefrom Orbital projecttask 2 1` +
 The 1st project task in the task list under the 2nd milestone of the displayed milestone list in project "Orbital" will be removed.
 
-You can refer to the screenshot below to have a clearer picture of how it looks like.
+You can refer to the figure below to have a clearer picture of how it looks like when the command `removefrom Orbital projecttask 2 1` is called.
 
 .*Before and after comparison when removing a task from a project's milestone*
 image::ug-removeprojecttask.png[]
@@ -688,6 +691,8 @@ image::ug-removeprojecttask.png[]
 |===
 |image:ug-notepadpencil.png[width="40"]| The arrow beside the milestone description for collapsing the task list will disappear if all tasks for that milestone are removed.
 |===
+
+//end::daryl[]
 
 ==== Remove a user story from a project: `removefrom userstory`
 
@@ -987,6 +992,33 @@ You may refer to the screenshot below to see how the user story is updated after
 .Before and after comparisons of the status of a user story
 image::update-user-story-ui.png[]
 
+//tag::daryl[]
+
+==== Update the status of a project task: `update projecttask`
+You can update the status of a project task to indicate its progress.
+
+Format: `update PROJECT_NAME projecttask MILESTONE_INDEX PROJECT_TASK_INDEX STATUS`
+
+
+[width="1000",cols="100,<900"]
+|===
+|image:ug-exclamation.png[width="70"]| The `MILESTONE_INDEX` and `PROJECT_TASK_INDEX` must be a positive integer and cannot be
+larger than the size of the displayed milestones and tasks list.
+|===
+
+Examples:
+
+. `update Apollo projecttask 1 1 ongoing` +
+Updates the status of the first project task in the first milestone of project 'Apollo' to "ongoing".
+
+. `update Orbital projecttask 2 1 complete` +
+Updates the status of the first project task in the second milestone of project 'Orbital' to "complete".
+
+You may refer to the diagram below to get a clearer picture of how updating a project task's status looks like when the command `update Orbital projecttask 2 1 complete` is called.
+
+.Before and after comparison when updating a project task's status
+image::ug-updateprojecttask.png[]
+//end::daryl[]
 
 === Listing all employees or projects in application : `list`
 ==== List all employees in the application: `list employee`
@@ -1276,7 +1308,6 @@ data of your previous Pocket Project folder.
 |`removefrom PROJECT_NAME userstory STORY_INDEX`
 |`removefrom Apollo userstory 2`
 
-
 |Edit
 |Column 2, row 5
 |Column 3, row 5
@@ -1287,10 +1318,13 @@ data of your previous Pocket Project folder.
 |Column 3, row 6
 |Column 4, row 6
 
-|Update
-|Column 2, row 7
-|Column 3, row 7
-|Column 4, row 7
+|Update User Story Status
+|`update PROJECT_NAME userstory STORY_INDEX STATUS`
+|`update Apollo userstory 1`
+
+|Update Project Task Status
+|`update PROJECT_NAME projecttask MILESTONE_INDEX PROJECTTASK_INDEX`
+|`update Apollo projecttask 2 1`
 
 |List
 |Column 2, row 8
