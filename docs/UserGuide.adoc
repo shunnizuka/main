@@ -269,7 +269,7 @@ Format: `this/next/last week DAY_OF_WEEK`
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-notepadpencil.png[width="50"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
+|image:ug-notepadpencil.png[width="40"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
 corresponds to Monday to Sunday respectively.
 |===
 
@@ -345,7 +345,7 @@ Examples:
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-notepadpencil.png[width="50"]|An employee can have any number of skills (including 0).
+|image:ug-notepadpencil.png[width="40"]|An employee can have any number of skills (including 0).
 |===
 
 You can refer to the screenshot below to have a clearer picture of how it works
@@ -384,6 +384,8 @@ Format: `add project n/NAME c/CLIENT_NAME s/START_DATE d/DEADLINE`
 |===
 |image:ug-lightbulb.png[width="50"]|Both the fixed and flexible date format can be used to
 select the target `START_DATE` and `DEADLINE`as shown in <<Date Feature in Pocket Project>>
+|image:ug-exclamation.png[width="50"]|The deadline of the project should minimally be 1 day after the
+start of a project.
 |===
 
 //TODO edit proj description below.
@@ -391,12 +393,6 @@ Examples:
 
 . `add project n/Apollo s/10/03/2019 d/12/12/2019 c/FairPrice`
 . `add project n/Xtreme c/John Smith s/09/02/2020 d/13/04/2020`
-
-[width="1000",cols="100,<900"]]
-|===
-|image:ug-exclamation.png[width="50"]|The deadline of the project should minimally be 1 day after the
-start of a project.
-|===
 
 You can refer to the screenshot below to have a clearer picture of how it works
 and looks like.
@@ -406,7 +402,7 @@ image::ug-addproject.png[]
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-lightbulb.png[width="50"]|You can also view the list of all employees currently working on the project,
+|image:ug-lightbulb.png[width="70"]|You can also view the list of all employees currently working on the project,
 a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
 |===
 
