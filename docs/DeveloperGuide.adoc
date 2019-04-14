@@ -1512,7 +1512,7 @@ Deleting a project while all projects are listed
 
 === Removing an employee from a project
 
-. prerequisites: project with the name 'Apollo' exists and has 3 employees in it.
+.  Prerequisites: Project with the name 'Apollo' exists and has 3 employees in it.
 .. Test case: `removefrom Apollo employee 1` +
    Expected: First employee in Apollo is removed from it. Details of the removed employee is shown in the status message and timestamp in the status bar is updated.
 .. Test case: `removefrom Apollo employee 4` +
@@ -1522,8 +1522,9 @@ Deleting a project while all projects are listed
 .. Test case: `removefrom X employee 1` where no project in the app has the name 'X' +
    Expected: No employee is removed. Error details shown in the status message. Status bar remains the same.
 
-=== Removing a milestone from a porject
+=== Removing a milestone from a project
 
+.. Prerequisites: Project with name 'Apollo' exists and has 1 milestone in it.
 .. Test case: `removefrom Apollo milestone 1` where the project named 'Apollo' exists in app and is ongoing and there is at least one +
    milestone for the project.
    Expected: The first milestone in the list of milestones for the project is removed.
@@ -1531,6 +1532,19 @@ Deleting a project while all projects are listed
    Expected: Command fails and an error message is returned.
 .. Test case: `remove from invalid milestone 1` where no project named 'invalid' exists +
    Expected: Command fails and an error message is returned.
+
+=== Removing a project task from a project
+
+.. Prerequisites: Project with name 'Apollo' exists and has only 1 milestone with only 1 project task in it.
+.. Test case: `removefrom Apollo projecttask 1 1` +
+   Expected: The first project task of the first milestone in the milestones and tasks list is removed.
+   Details of the removed project task is shown in the status message and the timestamp in the status bar is updated.
+.. Test case: `removefrom Apollo projecttask 1 2` +
+   Expected: No project task is removed. Invalid project task index error details shown in the status message. Status bar remains the same.
+.. Test case: `removefrom Apollo projecttask 2 1` +
+   Expected: No project task is removed. Invalid milestone index error details shown in the status message. Status bar remains the same.
+.. Test case: `removefrom Apollo projecttask 1` +
+   Expected: No project task is removed. Invalid command format error details shown in the status message. Status bar remains the same.
 
 === Finding an employee/project by keywords in their names
 
@@ -1559,6 +1573,27 @@ Deleting a project while all projects are listed
    Expected: The first project in the list is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
 .. Test case: `complete x 11/11/2011` where x is not the index of a displayed project +
    Expected: Error detail shown. The Timestamp in the status bar is not updated.
+
+=== Updating status of a project task
+
+.. Prerequisite: Project with name 'Apollo' exists and has only 1 milestone with at least 1 project task in it.
+.. Test case: `update Apollo projecttask 1 1 complete` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to complete.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 on hold` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to on hold.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 ongoing` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to ongoing.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 invalid` +
+   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 1 complete` +
+   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 2 1 complete` +
+   Expected: Status of project task is not updated. Invalid milestone index format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 1 2 complete` +
+   Expected: Status of project task is not updated. Invalid project task index format error displayed in status message. Status bar remains the same.
 
 === Clearing all data from the app
 
@@ -1660,6 +1695,24 @@ Assumption: all the objects being manipulated in these test cases exist in the a
    Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `addto Apollo milestone Finished UserGuide 11/04/2019` +
    Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+
+=== Adding a project task
+
+.Adding a project task to a project's milestone
+
+.. Prerequisite: Project list has a project named 'Apollo' and has only 2 existing milestone in it.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Expected: A new project task with description "Create feature XYZ" is added to the first milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/2` +
+   Expected: A new project task with description "Create feature XYZ" is added to the second milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Expected: No new project task is added. Duplicate project task error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/3` +
+   Expected: No new project task is added. Invalid milestone index error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ` +
+   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
+.. Test case: `addto Apollo projecttask m/1` +
+   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
 
 === Adding a UserStory
 
