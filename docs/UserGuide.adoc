@@ -706,6 +706,7 @@ Refer to the diagram below to see the changes in the user stories list after the
 .Before and after comparison of removing a user story
 image::removefrom-user-story-ui.png[]
 
+//tag::edit[]
 === Edit an employee/project in the application : `edit`
 
 ==== Edit an employee in the application: `edit employee`
@@ -815,6 +816,8 @@ image::edit_project_milestone_before.png[]
 
 .After entering the edit command
 image::edit_project_milestone_after.png[]
+
+//end::edit[]
 
 ==== Edits User Story in a project: `edit project userstory`
 
