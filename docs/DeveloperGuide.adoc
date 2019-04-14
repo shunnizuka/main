@@ -912,6 +912,7 @@ Given below is an example usage scenario and a showcase of how a project task st
 
 The sequence diagram for the execution of updating a project task status is as follows:
 
+.Sequence diagram showing execution of `update Apollo projecttask 2 1 Complete`
 image::UpdateProjectTaskSequenceDiagram.png[width="1000"]
 
 Step 1. The user enters the command `update Apollo projecttask 2 1 Complete`.
@@ -1897,8 +1898,6 @@ Deleting a project while all projects are listed
 .. Test case: `remove from invalid milestone 1` where no project named 'invalid' exists +
    Expected: Command fails and an error message is returned.
 
-//tag::daryl[]
-
 === Removing a project task from a project
 
 .. Prerequisites: Project with name 'Apollo' exists and has only 1 milestone with only 1 project task in it.
@@ -1932,8 +1931,6 @@ Deleting a project while all projects are listed
    Expected: Status of project task is not updated. Invalid milestone index format error displayed in status message. Status bar remains the same.
 .. Test case: `update Apollo projecttask 1 2 complete` +
    Expected: Status of project task is not updated. Invalid project task index format error displayed in status message. Status bar remains the same.
-
-//end::daryl[]
 
 === Finding an employee/project by keywords in their names
 
