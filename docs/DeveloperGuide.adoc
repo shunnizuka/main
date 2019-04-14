@@ -365,38 +365,54 @@ Examples:
 strictly and so `09/04/2023` is a valid input but `9/4/2023` is not.
 |===
 
-===== How it Works
+===== Fixed Date Format: How it Works (Part 1)
 The input is parsed and the validity of the format is determined through the use of a regex as follows:
 
-Validation Regex = `"(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\d\d)"`
+Validation Regex = `"(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((20)\d\d)"`
 
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-smart.png[width="60"]|
-|===
 
 
 
 ===== Flexible Date Format
 
-[width="100%",cols="35%,30%,<35%"]
+[width="100%",cols="30%,25%,<45%"]
 |===
-|Format |Chooses the date relative to the ... |How it Works
+|Format |Chooses the date relative to the ... |Examples
 
 |`today/tomorrow/yesterday`
 |current day
-|today's, tomorrow's or
-yesterday's date are translated into the DD/MM/YYYY format based on the input
+|`tomorrow` +
+This would select tomorrow's date as the target date.
 
 |`this/next/last week DAY_OF_WEEK`
 |current week
-|Column 3, row 2
+|`next week 7` +
+This would select next week's Sunday as the target date.
 
 |`this/next/last month DAY_OF_MONTH`
 |current month
-|Column 3, row 3
+|`last month 6` +
+This would select last month's 6th day as the target date.
 |===
 
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-notepadpencil.png[width="40"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
+corresponds to Monday to Sunday respectively.
+|===
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
+the maximum number of days of a particular month in the chosen year.
+|===
+
+===== Flexible Date Format: How it Works (Part 1)
+
+
+
+
+===== Date Formats: How it Works (Part 1)
 ==== How it is Implemented
 
 This feature was mainly facilitated by the Java LocalDateTime class and the model and logic component of the Pocket

@@ -100,6 +100,7 @@ The following section details and previews a few legends that will
 be used throughout the user guide. These legends are used to represent
 special information such as tips and warnings.
 
+[width="100%",cols="35%,<65%"]
 |===
 |Symbol |Meaning
 
@@ -133,7 +134,7 @@ This section introduces to you the format of commands that are used in Pocket Pr
 
 |Square Brackets |Optional inputs |`n/NAME [s/SKILL]` |`[s/SKILL]` is an optional field
 
-|`…`​ |Can be used multiple times |`[s/SKILL]...` |Can have multiple skills: `[s/SKILL1] [t/SKILL2] [t/SKILL3]`
+|`…`​ |Can be used multiple times |`[s/SKILL]...` |Can have multiple skills: `[s/SKILL1] [s/SKILL2] [s/SKILL3]`
 
 |=======================================================================
 
@@ -152,8 +153,7 @@ through the course of the User Guide.
 |Term|Meaning
 
 |Alphanumeric
-|Only contains either digits (0-9) or letters of the English
-                alphabet (A-Z).
+|Only contains either digits (0-9) or letters of the English alphabet (A-Z).
 
 |Command Line Interface (CLI)
 |A means of interacting with a computer program where the user issues commands to the
@@ -165,11 +165,19 @@ through the course of the User Guide.
 |Milestone
 |A key event that is completed during the entire timeline of the project.
 
+|Regex
+|Short-form for regular expression. A regular expression is used to check if a given input matches
+the prescribed pattern or format.
+
 |One-Based Indexing
-|Way of numbering in which the initial element of a sequence is assigned the index 1.
+|Way of numbering in which the initial element of a sequence of elements is assigned the index 1.
+
+|User Story
+|Used primarily for planning of a feature in a project or application. The user story describes the type
+of user, what they want, why and the importance/significance of the feature
 
 |Zero-Based Indexing
-|Way of numbering in which the initial element of a sequence is assigned the index 0.
+|Way of numbering in which the initial element of a sequence of elements is assigned the index 0.
 |===
 
 [[Features]]
