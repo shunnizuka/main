@@ -745,7 +745,7 @@ used to show the difference will be `edit employee 2 n/The magician p/98637251 s
 image::edit_employee_before.png[]
 
 .After entering the edit command
-image::edit_employee_after.png[]
+image::edit_employee_after1.png[]
 
 ==== Edits name/client/deadline/description of a project: `edit project info`
 
@@ -772,22 +772,23 @@ Both the fixed date format and the flexible date can be used here to edit the de
 |image:ug-exclamation.png[width="70"]|
 Note that the start date is unmodifiable and the deadline should be after the start date of the project and
 also after the date of the latest milestone in the project.
+|image:ug-exclamation.png[width="70"]|
+Note that there is a minor bug that does not allow 'info' as part of the argument for the description of the project (e.g. 'desc/A project info...' is not accepted). We are working hard to fix this issue soon.
 |===
 
-Below are some before and after screenshot of how the command should work.
+Below is the before and after screenshots when the command `edit project PocketProjcet info desc/A project management tool d/20/05/2019`.
 
-.Before entering hte edit command
+.Before entering the edit project command
 image::edit_project_before.png[]
 
-.After the edit command is entered
+.After the edit project command is entered
 image::edit_project_after.png[]
-
 
 ==== Edits milestone of a project: `edit project milestone`
 
 You can edit the milestone of the existing project whenever there are changes made to it.
 
-Format: `edit project PROJECT_NAME milestone INDEX [m/milestone] [d/date]`
+Format: `edit project PROJECT_NAME milestone MILESTONE_INDEX [m/milestone] [d/date]`
 
 Examples:
 
@@ -801,9 +802,11 @@ Change the milestone at index 2 in Apollo to 'Implement edit command (09/04/2019
 The date of the milestone must be between the start date and the deadline of the project
 |image:ug-exclamation.png[width="50"]|
 A blank input for milestone description will not be accepted as an input. (e.g. `edit milestone m/`)
+|image:ug-exclamation.png[width="50"]|
+Note that there is a minor bug that does not allow 'milestone' as part of the argument for the description of the milestone (e.g. 'm/A milestone for ui' is not accepted). We are working hard to fix this issue soon.
 |===
 
-Below are some before and after screenshot of how the command should work. The command
+Below is the before and after screenshot of how the command should work. The command
 `edit project Orbital milestone 1 m/Version 1.1 refactoring d/03/08/2019` will be used to show
 this.
 
@@ -875,7 +878,7 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 . `find employee Betsy Tim John` +
 Returns any employee having names `Betsy`, `Tim`, or `John`
 
-Below is a screenshot of what a successful find command will look like.
+Below is a screenshot of what a successful find employee command will look like.
 
 .After entering `find employee stark` command
 image::find_employee.png[]
@@ -901,7 +904,7 @@ image::find_skill.png[]
 
 ==== Find projects in the application: `find project`
 
-Similarly for the project, you can find projects using the project names as keywords.
+Similarly for the projects, you can find projects using the project names as keywords.
 
 Format: `find project KEYWORD [MORE_KEYWORDS]`
 
@@ -933,9 +936,9 @@ image::find_all 1.png[]
 
 ==== Find projects with deadline: 'find deadline'
 
-In order to manage your workload and be aware of the upcoming deadline, you can find all the project which will be due before the deadline you have entered.
+In order to manage your workload and be aware of the upcoming deadline, you can find all the project which will be due before a certain date.
 
-Format: `find deadline KEYWORD
+Format: `find deadline KEYWORD`
 
 Examples:
 
@@ -955,8 +958,6 @@ Below is a screenshot of what a successful find project command will look like.
 
 .After entering `find deadline this month 31` command
 image::find_deadline.png[]
-
-
 
 //end::find[]
 
@@ -1277,15 +1278,41 @@ data of your previous Pocket Project folder.
 |`removefrom Apollo userstory 2`
 
 
-|Edit
-|Column 2, row 5
-|Column 3, row 5
-|Column 4, row 5
+|Edit Employee's details
+|`edit employee INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
+|`edit employee 2 n/Betsy Crower s/C s/HTML`
 
-|Find
+|Edit Project details
+|`edit project PROJECT_NAME info [n/name] [c/client] [d/deadline] [desc/description]`
+|`edit project Apollo info n/Gemini c/John d/12/09/2020 desc/An application for project management`
+
+|Edit milestone details in the project
+|`edit project PROJECT_NAME milestone MILESTONE_INDEX [m/milestone] [d/date]`
+|`edit project Apollo milestone 2 m/Implement edit command d/09/04/2019`
+
+|Edit Userstory details in the project
 |Column 2, row 6
 |Column 3, row 6
-|Column 4, row 6
+
+|Find employees using name
+|`find employee KEYWORD [MORE_KEYWORDS]`
+|`find employee John`
+
+|Find employees using skills
+|`find skill KEYWORD [MORE_KEYWORDS]`
+|`find skill java`
+
+|Find projects using name
+|`find project KEYWORD [MORE_KEYWORDS]`
+|`find project Apollo`
+
+|Find projects using words found in name and description
+|`find all KEYWORDS [MORE KEYWORDS]`
+|`find all management`
+
+|Find projects using deadline
+|`find deadline KEYWORD`
+|`find deadline 15/04/2019`
 
 |Update
 |Column 2, row 7
