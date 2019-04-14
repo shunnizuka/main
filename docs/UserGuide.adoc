@@ -776,7 +776,7 @@ Refer to the screenshot below to see the changes in the screen after a `view pro
 .Details of the project at index 1 of the projects list is shown
 image::view-project-ui.png[]
 
-=== Add an employee/milestone/user story to a project : `addto`
+=== Add an employee/milestone/project task/user story to a project : `addto`
 
 ==== Add an employee to a project: `addto employee`
 
@@ -874,29 +874,38 @@ and looks like.
 image::ug-addtomilestone.png[]
 
 
-==== Add a task to a project milestone: `addto projecttask`
+==== Add a project task to a project's milestone: `addto projecttask`
 
-Adds a task to a project milestone.
+Building further on the functionality of milestones, you can also add project tasks to existing milestones in Pocket Project.
+This allows you to track and plan out in more detail what needs to be done between each milestone.
 
-Format: `addto PROJECT_NAME projecttask [n/TASK_NAME] [m/MILESTONE_INDEX]`
+Format: `addto PROJECT_NAME projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX`
 
-image:ug-notepadpencil.png[width="40"]
-Adds the project task to the milestone at the specified `MILESTONE_INDEX`.
-The index refers to the index number (one-based) shown in the displayed list of milestones.
+|===
+|image:ug-exclamation.png[width="60"]| The `MILESTONE_INDEX` must be a positive integer and cannot be
+larger than the size of the displayed milestone list.
+|===
 
-image:ug-exclamation.png[width="50"]
-The index must be a *positive integer* and cannot be larger than the size of the list.
+Examples:
 
-Example:
+. `addto Apollo projecttask n/Create feature XYZ m/1` +
+   A project task with the given description will be added to the list of tasks under the milestone at index 1 in project "Apollo".
+. `addto Orbital projecttask m/2 n/Prepare concept design sketches` +
+   A project task with the given description will be added to the list of tasks under the milestone at index 2 in project "Orbital".
 
-* `addto Apollo projecttask n/Create feature XYZ m/1` +
-   Adds to the milestone at index 1 in project with name "Apollo", a new project task called "Create feature XYZ".
+|===
+|image:ug-lightbulb.png[width="50"]|There is no specific order for either the project task name or the milestone index when entering the command so either way is acceptable.
+|===
 
-* `addto Apollo projecttask m/2 n/Modify feature XYZ` +
-   Adds to the milestone at index 2 in project with name "Apollo", a new project task called "Modify feature XYZ".
+You can refer to the screenshot below to have a clearer picture of how it works and looks like.
 
-image:ug-lightbulb.png[width="50"]
-There is no specific order for either the project task name or the milestone index so either way is acceptable.
+.*Adding a task to a project's milestone*
+image::ug-addprojecttask.png[]
+
+|===
+|image:ug-notepadpencil.png[width="50"]| Clicking on the arrow beside a milestone containing existing tasks allows you to hide the list of tasks under the milestone.
+The arrow will only appear when there are one or more tasks in your project's milestone.
+|===
 
 ==== Add a User Story to a project: `addto userstory`
 
@@ -936,7 +945,7 @@ Refer to the diagram below to see how the new user story is shown.
 .User stories list showing the newly added user story
 image::addto-user-story-ui.png[]
 
-=== Remove an employee/milestone/user story from a project : `removefrom`
+=== Remove an employee/milestone/project task/user story from a project : `removefrom`
 
 ==== Remove an employee from a project: `removefrom PROJECT_NAME employee`
 
@@ -969,6 +978,32 @@ The index refers to the index number (one-based) shown in the displayed list of 
 image:ug-exclamation.png[width="50"]
 The index must be a *positive integer* and cannot be larger than the size of the list.
 
+==== Remove a project task from a project's milestone: `removefrom PROJECT_NAME projecttask`
+
+You can remove existing project tasks from a milestone if there is a change in the planned project's schedule.
+
+Format: `removefrom PROJECT_NAME projecttask MILESTONE_INDEX PROJECT_TASK_INDEX`
+
+|===
+|image:ug-exclamation.png[width="60"]| The `MILESTONE_INDEX` and `PROJECT_TASK_INDEX` must be a positive integer and cannot be
+larger than the size of the displayed milestones and tasks list.
+|===
+
+Examples:
+
+. `removefrom Apollo projecttask 1 1` +
+The 1st project task in the task list under the 1st milestone of the displayed milestone list in project "Apollo" will be removed.
+. `removefrom Orbital projecttask 2 1` +
+The 1st project task in the task list under the 2nd milestone of the displayed milestone list in project "Orbital" will be removed.
+
+You can refer to the screenshot below to have a clearer picture of how it looks like.
+
+.*Before and after comparison when removing a task from a project's milestone*
+image::ug-removeprojecttask.png[]
+
+|===
+|image:ug-notepadpencil.png[width="50"]| The arrow beside the milestone description for collapsing the task list will disappear if all tasks for that milestone are removed.
+|===
 
 ==== Remove a user story from a project: `removefrom userstory`
 
