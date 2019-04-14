@@ -15,7 +15,11 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/cs2103-ay1819s2-w10-2/main
 
-By: `Team CS2103-AY1819S2-W10-2`      Since: `Jan 2019`      Licence: `MIT`
+Authors: `Daryl Tan, Jeff Gan, Jothinandan Pillay, Lin Dehui, Shune Lei`
+
+Team: CS2103-AY1819S2-W10-2
+
+Since: `January 2019` License: `MIT`
 
 == Introduction
 
@@ -74,9 +78,12 @@ that users can use while using the Pocket Project application.
 The following section details a few key technical terms that are used
 through the course of the Developer Guide.
 
-
+[width="100%",cols="50%,<50%"]
 |===
-|Alphanumeric|Only contains either digits (0-9) or letters of the English
+|Term|Meaning
+
+|Alphanumeric
+|Only contains either digits (0-9) or letters of the English
                 alphabet (A-Z).
 
 |Command Line Interface (CLI)
@@ -88,6 +95,11 @@ through the course of the Developer Guide.
 
 |Milestone
 |A key event that is completed during the entire timeline of the project.
+
+|Regex
+|Short-form for regular expression. A regular expression is a pattern used to match character
+combinations in strings. Basically it is used to check if a given input matches the prescribed pattern or
+format.
 
 |One-Based Indexing
 |Way of numbering in which the initial element of a sequence is assigned the index 1.
@@ -316,6 +328,96 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+=== Pocket Project Dates
+
+As expected, when it comes to a project manager application, the use of dates are used
+extensively in other features and commands throughout the application. These include,
+
+. The setting of `START_DATE` and  `DEADLINE` when adding a project to the Pocket Project application.
+. The setting of `MILESTONE_DATE` when adding a milestone to a particular project.
+. The setting of `COMPLETION_DATE` when completing a particular project.
+. The editing of the above mentioned dates after it has been set.
+. The finding of projects that are due by a certain `DEADLINE`.
+
+==== What is Supports
+
+As it is widely used, it is important that the user is able to easily input any target date but at the same time
+retain some flexibility so that the feature is more user-friendly.
+
+So, keeping that in mind, the dates used in the Pocket Project supports 2 main formats, the Fixed Date Format, which supports 1 main sub-type, and the Flexible Date Format,
+which supports 3 main sub types, all of which are explained below in the following section. A total of 4 sub-types are supported
+across 2 formats and choosing any 1 of 4 will be accepted as a suitable input.
+
+==== How it is Implemented
+===== Fixed Date Format
+
+Format: `DD/MM/YYYY`
+
+Examples:
+
+. `23/12/2019`
+. `09/03/2020`
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]| The fixed date format follows the required `DD/MM/YYYY` format
+strictly and so `09/04/2023` is a valid input but `9/4/2023` is not.
+|===
+
+===== Fixed Date Format: How it Works (Part 1)
+The input is parsed and the validity of the format is determined through the use of a regex as follows:
+
+Validation Regex = `"(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((20)\d\d)"`
+
+
+
+
+===== Flexible Date Format
+
+[width="100%",cols="30%,25%,<45%"]
+|===
+|Format |Chooses the date relative to the ... |Examples
+
+|`today/tomorrow/yesterday`
+|current day
+|`tomorrow` +
+This would select tomorrow's date as the target date.
+
+|`this/next/last week DAY_OF_WEEK`
+|current week
+|`next week 7` +
+This would select next week's Sunday as the target date.
+
+|`this/next/last month DAY_OF_MONTH`
+|current month
+|`last month 6` +
+This would select last month's 6th day as the target date.
+|===
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-notepadpencil.png[width="40"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
+corresponds to Monday to Sunday respectively.
+|===
+
+[width="100%",cols="35%,<65%"]
+|===
+|image:ug-exclamation.png[width="60"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
+the maximum number of days of a particular month in the chosen year.
+|===
+
+===== Flexible Date Format: How it Works (Part 1)
+
+
+
+
+===== Date Formats: How it Works (Part 1)
+==== How it is Implemented
+
+This feature was mainly facilitated by the Java LocalDateTime class and the model and logic component of the Pocket
+Project application.
+
 
 // skill::addTo[]
 === Add employee/milestone/user story to projects feature
