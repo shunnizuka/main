@@ -379,6 +379,7 @@ image::ug-addproject.png[]
 a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
 |===
 
+
 === Delete a project or an employee from the application `delete`
 
 ==== Delete a project from the application: `delete project`
