@@ -294,7 +294,7 @@ The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
 
-image::iverallStatsSequenceDiagram.png[width="1000"]
+image::overallStatsSequenceDiagram.png[width="1000"]
 
 Individual Project:
 
