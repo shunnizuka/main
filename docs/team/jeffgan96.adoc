@@ -55,6 +55,7 @@ This section contains a summary of my various contributions to the project, rang
 ** Documentation:
 *** Added the general documentation for colour coding used in the project: https://github.com/cs2103-ay1819s2-w10-2/main/pull/230[#230]
 *** Enhanced the documentations of existing features such as *list* and *view* features: (same pull request as above: #230)
+*** Added the documentation for the use cases of the app: https://github.com/cs2103-ay1819s2-w10-2/main/pull/148[#148]
 
 ** Team component:
 *** reviewed many of the PRs by team members. Included some for reference: https://github.com/cs2103-ay1819s2-w10-2/main/pull/49[#49], https://github.com/cs2103-ay1819s2-w10-2/main/pull/138[#138], https://github.com/cs2103-ay1819s2-w10-2/main/pull/144[#144]
