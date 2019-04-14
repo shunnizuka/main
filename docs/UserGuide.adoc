@@ -558,8 +558,8 @@ Examples:
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-lightbulb.png[width="50"]| You can input the importance level or the actual user story in any order.
-|image:ug-lightbulb.png[width="50"]| A valid user story can also be simply: `as a ... i want to...`.
+|image:ug-lightbulb.png[width="40"]| You can input the importance level or the actual user story in any order.
+|image:ug-lightbulb.png[width="40"]| A valid user story can also be simply: `as a ... i want to...`.
 E.g `as a user i want to log in` is a valid user story.
 |===
 
@@ -700,6 +700,9 @@ You can edit the details of an existing employees whenever there are changes mad
 
 Format: `edit employee INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
 
+At least one of the optional fields must be provided and all existing values will be updated with the input values.
+When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
+
 Examples:
 
 . `edit employee 1 p/91234567 e/johndoe@example.com` +
@@ -712,14 +715,11 @@ Edits the name of the 2nd employee to be `Betsy Crower` and sets C and HTML as t
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-notepadpencil.png[width="60"]|
+|image:ug-notepadpencil.png[width="40"]|
 Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
-|image:ug-notepadpencil.png[width="60"]|
-At least one of the optional fields must be provided and all existing values will be updated with the input values.
-When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
-|image:ug-exclamation.png[width="70"]|
+|image:ug-exclamation.png[width="50"]|
 The index must be a *positive integer* and cannot be larger than the size of the list.
-|image:ug-lightbulb.png[width="70"]|
+|image:ug-lightbulb.png[width="50"]|
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
 |===
 
@@ -783,9 +783,9 @@ Change the milestone at index 2 in Apollo to 'Implement edit command (09/04/2019
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-exclamation.png[width="70"]|
+|image:ug-exclamation.png[width="50"]|
 The date of the milestone must be between the start date and the deadline of the project
-|image:ug-exclamation.png[width="70"]|
+|image:ug-exclamation.png[width="50"]|
 A blank input for milestone description will not be accepted as an input. (e.g. `edit milestone m/`)
 |===
 
@@ -933,7 +933,7 @@ Returns a list of projects which has 15/04/2019 as the deadline or has deadlines
 |===
 |image:ug-exclamation.png[width="50"]|
 Only accept one argument. e.g. will not accept `find deadline 15/04/2019 20/12/2019`
-|image:ug-notepadpencil.png[width="50"]|
+|image:ug-notepadpencil.png[width="40"]|
 Accepts both flexible date and calender date
 |===
 
