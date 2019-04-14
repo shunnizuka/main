@@ -186,6 +186,10 @@ public class ModelManager implements Model {
     public void removeUserStoryFrom(Project targetProject, UserStory targetUserStory) {
         versionedPocketProject.removeUserStoryFrom(targetProject, targetUserStory);
     }
+    @Override
+    public void removeProjectTaskFrom(Project targetProject, Milestone targetMilestone, ProjectTask targetProjectTask) {
+        versionedPocketProject.removeProjectTaskFrom(targetProject, targetMilestone, targetProjectTask);
+    }
 
     @Override
     public void addEmployeeTo(Project targetProject, Employee targetEmployee) {

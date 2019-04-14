@@ -30,7 +30,8 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newEmployee_success() {
-        Employee validEmployee = new EmployeeBuilder().build();
+        Employee validEmployee = new EmployeeBuilder().withName("Jason Picard").withPhone("90990099")
+            .withEmail("jasonroxxx@gmail.com").withGitHubAccount("jasonballer").build();
 
         Model expectedModel = new ModelManager(model.getPocketProject(), new UserPrefs());
         expectedModel.addEmployee(validEmployee);

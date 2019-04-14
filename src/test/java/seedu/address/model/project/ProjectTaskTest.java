@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalProjectTasks.PROJECT_TASK_DO_SOMETHI
 
 import org.junit.Test;
 
-import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.Assert;
 
 public class ProjectTaskTest {
@@ -18,7 +17,7 @@ public class ProjectTaskTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> new ProjectTask(null));
-        Assert.assertThrows(NullPointerException.class, () -> new ProjectTask(null, null, null));
+        Assert.assertThrows(NullPointerException.class, () -> new ProjectTask(null, null));
     }
 
     @Test
@@ -30,59 +29,48 @@ public class ProjectTaskTest {
 
         // invalid tasks with task status constructor
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskDescription(""), new Status(""),
-                new PocketProjectDate())); // empty string
+                new ProjectTask(new ProjectTaskDescription(""), new Status(""))); // empty string
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskDescription(""), new Status(" "),
-                new PocketProjectDate())); // spaces only
+                new ProjectTask(new ProjectTaskDescription(""), new Status(" "))); // spaces only
     }
 
     @Test
     public void isValidProjectTask() {
         // invalid task null status
         Assert.assertThrows(NullPointerException.class, () ->
-                new ProjectTask(new ProjectTaskDescription("a"), new Status(null), new PocketProjectDate()));
+                new ProjectTask(new ProjectTaskDescription("a"), new Status(null)));
 
         //invalid task status strings
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskDescription("a"), new Status(""),
-                new PocketProjectDate())); // empty string
+                new ProjectTask(new ProjectTaskDescription("a"), new Status(""))); // empty string
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskDescription("a"), new Status(" "),
-                new PocketProjectDate())); // spaces only
+                new ProjectTask(new ProjectTaskDescription("a"), new Status(" "))); // spaces only
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskDescription("a"), new Status("complet"),
-                new PocketProjectDate())); // wrong status string
+                new ProjectTask(new ProjectTaskDescription("a"), new Status("complet"))); // wrong status string
         Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskDescription("a"), new Status("ongoin"),
-                new PocketProjectDate())); // wrong status string
-
-        // invalid completion date
-        Assert.assertThrows(IllegalArgumentException.class, () ->
-                new ProjectTask(new ProjectTaskDescription("a"), new Status("ongoin"),
-                new PocketProjectDate("222/01/2019"))); // wrong date format
+                new ProjectTask(new ProjectTaskDescription("a"), new Status("ongoin"))); // wrong status string
 
         // valid task
         assertTrue(ProjectTask.isValidTask(new ProjectTask(new ProjectTaskDescription("a"))));
 
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
-                new ProjectTaskDescription("a"), new Status("ongoing"),
-                new PocketProjectDate()))); // include task status and completion date constructor
+                new ProjectTaskDescription("a"),
+                new Status("ongoing")))); // include task status constructor
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
-                new ProjectTaskDescription(" Create a task"), new Status("ongoing"),
-                new PocketProjectDate()))); // task name with whitespace at start of string
+                new ProjectTaskDescription(" Create a task"),
+                new Status("ongoing")))); // task name with whitespace at start of string
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
-                new ProjectTaskDescription("Create a task "), new Status("complete"),
-                new PocketProjectDate()))); // task name with trailing whitespace
+                new ProjectTaskDescription("Create a task "),
+                new Status("complete")))); // task name with trailing whitespace
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
-                new ProjectTaskDescription("New task at pp/v1.1"), new Status("complete"),
-                new PocketProjectDate()))); // task name with non-alphanumeric characters
+                new ProjectTaskDescription("New task at pp/v1.1"),
+                new Status("complete")))); // task name with non-alphanumeric characters
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
-                new ProjectTaskDescription("New task at pp/v1.1"), new Status("CoMpLeTe"),
-                new PocketProjectDate()))); // case insensitive task status
+                new ProjectTaskDescription("New task at pp/v1.1"),
+                new Status("CoMpLeTe")))); // case insensitive task status
         assertTrue(ProjectTask.isValidTask(new ProjectTask(
-                new ProjectTaskDescription("New task at pp/v1.1"), new Status("OnGoInG"),
-                new PocketProjectDate()))); // case insensitive task status
+                new ProjectTaskDescription("New task at pp/v1.1"),
+                new Status("OnGoInG")))); // case insensitive task status
     }
 
     @Test
@@ -90,12 +78,12 @@ public class ProjectTaskTest {
         // equals
         ProjectTaskDescription validProjectTaskDescription = new ProjectTaskDescription("Valid");
         ProjectTask validProjectTask = new ProjectTask(new ProjectTaskDescription("Valid"),
-                new Status("ongoing"), new PocketProjectDate());
+                new Status("ongoing"));
         assertEquals(validProjectTask.getTaskDescription(), validProjectTaskDescription.getTaskDescription());
 
         // not equals, case-sensitive
         ProjectTask invalidProjectTask = new ProjectTask(new ProjectTaskDescription("valid"),
-                new Status("ongoing"), new PocketProjectDate());
+                new Status("ongoing"));
         assertNotEquals(invalidProjectTask.getTaskDescription(), validProjectTaskDescription.getTaskDescription());
     }
 
@@ -104,17 +92,17 @@ public class ProjectTaskTest {
         // same string -> equals
         Status status = new Status("ongoing");
         ProjectTask validProjectTask = new ProjectTask(new ProjectTaskDescription("Valid"),
-                new Status("ongoing"), new PocketProjectDate());
+                new Status("ongoing"));
         assertEquals(validProjectTask.getTaskStatus(), status.getStatus());
 
         // status case insensitive -> equals
         ProjectTask caseProjectTask = new ProjectTask(new ProjectTaskDescription("Valid"),
-                new Status("Ongoing"), new PocketProjectDate());
+                new Status("Ongoing"));
         assertEquals(caseProjectTask.getTaskStatus(), status.getStatus());
 
         // different statuses -> not equals
         ProjectTask invalidProjectTask = new ProjectTask(new ProjectTaskDescription("Valid"),
-                new Status("Complete"), new PocketProjectDate());
+                new Status("Complete"));
         assertNotEquals(invalidProjectTask.getTaskStatus(), status.getStatus());
 
         // update status to match -> equals
@@ -151,11 +139,5 @@ public class ProjectTaskTest {
 
         // different project task -> returns false
         assertFalse(PROJECT_TASK_DO_SOMETHING.equals(PROJECT_TASK_COMPLETED));
-
-        // different completion date
-        ProjectTask differentDateTask =
-                new ProjectTask(new ProjectTaskDescription("Completed task"), new Status("complete"),
-                new PocketProjectDate("01/01/2019"));
-        assertFalse(PROJECT_TASK_COMPLETED.equals(differentDateTask));
     }
 }

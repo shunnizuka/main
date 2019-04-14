@@ -22,6 +22,8 @@ public class ViewEmployeeCommand extends ViewCommand {
             + " "
             + VIEW_EMPLOYEE_KEYWORD
             + ": Selects the employee identified by the index number used in the displayed employee list.\n"
+            + "Parameters: INDEX (must be a positive integer) and cannot be larger than maximum integer value which is "
+            + "2,147,483,647 \n"
             + "Example: "
             + ViewCommand.COMMAND_WORD
             + " "

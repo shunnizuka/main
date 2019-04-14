@@ -25,7 +25,7 @@ public class UpdateCommandParserTest {
         assertParseSuccess(parser, "Project X userstory 1 on hold",
                 new UpdateUserStoryCommand(new ProjectName("Project X"), Index.fromOneBased(1),
                         new Status("on hold")));
-        assertParseSuccess(parser, "Project Apollo projecttask 1 1 complete",
+        assertParseSuccess(parser, "Project Apollo projecttask 1 1 Complete",
                 new UpdateProjectTaskCommand(new ProjectName("Project Apollo"), Index.fromOneBased(1),
                         Index.fromOneBased(1), new Status("complete")));
         assertParseSuccess(parser, "Project XYZ projecttask 1 2 on hold",

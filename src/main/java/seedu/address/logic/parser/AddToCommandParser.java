@@ -43,9 +43,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
     private static final Pattern ADD_TO_COMMAND_FORMAT = Pattern.compile("(?<project>(\\S+\\s)+)"
             + "(?<keyword>employee\\s|milestone\\s|userstory\\s|projecttask\\s)(?<arguments>.*)");
 
-    private static final Pattern USER_STORY_FORMAT = Pattern.compile("\\d");
-
-    private static final String WHITESPACE_PREAMBLE = " ";
+    private static final String WHITESPACE = " ";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddToCommand
@@ -74,7 +72,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
         } else if (keyword.equals(AddMilestoneToCommand.ADD_MILESTONE_KEYWORD)) {
             try {
 
-                String s = WHITESPACE_PREAMBLE + arguments; //add whitespace to allow tokenizer to detect regex.
+                String s = WHITESPACE + arguments; //add whitespace to allow tokenizer to detect regex.
                 ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(s, PREFIX_MILESTONE, PREFIX_DATE);
 
                 if (!areAllPrefixesPresent(argMultimap, PREFIX_MILESTONE, PREFIX_DATE)
@@ -95,7 +93,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
         } else if (keyword.equals(AddUserStoryToCommand.ADD_USERSTORY_KEYWORD)) {
             try {
 
-                String s = WHITESPACE_PREAMBLE + arguments; //add whitespace to allow tokenizer to detect regex
+                String s = WHITESPACE + arguments; //add whitespace to allow tokenizer to detect regex
                 ArgumentMultimap argMultimap =
                         ArgumentTokenizer.tokenize(s, PREFIX_USER, PREFIX_FUNCTION, PREFIX_REASON,
                                 PREFIX_IMPORTANCE);
@@ -125,7 +123,7 @@ public class AddToCommandParser implements Parser<AddToCommand> {
 
         } else if (keyword.equals(AddProjectTaskToCommand.ADD_PROJECTTASK_KEYWORD)) {
             try {
-                String s = WHITESPACE_PREAMBLE + arguments; //add whitespace to allow tokenizer to detect regex
+                String s = WHITESPACE + arguments; //add whitespace to allow tokenizer to detect regex
                 ArgumentMultimap argMultimap =
                         ArgumentTokenizer.tokenize(s, PREFIX_NAME, PREFIX_MILESTONE);
 

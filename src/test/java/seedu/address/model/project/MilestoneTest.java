@@ -51,11 +51,6 @@ public class MilestoneTest {
             new PocketProjectDate("23/11/2019"))));
         assertTrue(Milestone.isValidMilestone(new Milestone(new MilestoneDescription("america"),
             new PocketProjectDate("04/03/2019"))));
-
-        //valid fields with padding
-        assertTrue(Milestone.isValidMilestone(new Milestone(new MilestoneDescription("america"),
-            new PocketProjectDate("4/3/2019"))));
-
     }
 
 

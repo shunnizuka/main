@@ -23,7 +23,8 @@ public class AddEmployeeToCommand extends AddToCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " PROJECT_NAME employee"
             + ": adds the employee by the index number used in"
             + "  the displayed employee list into the respective list stored under the stated project.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer) and cannot be larger than maximum integer value which is "
+            + "2,147,483,647 \n"
             + "Example: " + COMMAND_WORD + " Apollo employee 1";
 
     public static final String MESSAGE_ADDTOPROJECT_EMPLOYEE_SUCCESS = "Added Employee: %1$s to %2$s";

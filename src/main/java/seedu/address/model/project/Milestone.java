@@ -43,13 +43,16 @@ public class Milestone {
     /**
      * Adds the given project task to this milestone.
      */
-    public void addTask(ProjectTask task) {
+    public void addProjectTask(ProjectTask task) {
         this.projectTasks.add(task);
     }
 
+    public void removeProjectTask(ProjectTask task) {
+        this.projectTasks.remove(task);
+    }
 
     /**
-     * Updates the given user story in this project.
+     * Updates the given project task in this project's milestone.
      */
     public void updateProjectTask(ProjectTask task, Status newStatus) {
         projectTasks.forEach(pt -> {
