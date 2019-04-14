@@ -382,9 +382,9 @@ Format: `add project n/NAME c/CLIENT_NAME s/START_DATE d/DEADLINE`
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-lightbulb.png[width="50"]|Both the fixed and flexible date format can be used to
+|image:ug-lightbulb.png[width="70"]|Both the fixed and flexible date format can be used to
 select the target `START_DATE` and `DEADLINE`as shown in <<Date Feature in Pocket Project>>
-|image:ug-exclamation.png[width="50"]|The deadline of the project should minimally be 1 day after the
+|image:ug-exclamation.png[width="70"]|The deadline of the project should minimally be 1 day after the
 start of a project.
 |===
 
@@ -417,18 +417,13 @@ in the displayed list.
 
 Format: `addto PROJECT_NAME employee EMPLOYEE_INDEX`
 
-The employee at the specified `EMPLOYEE_INDEX` is added to the
-project specified by the `PROJECT_NAME`.
+The employee at the specified `EMPLOYEE_INDEX` is added to the project specified by the `PROJECT_NAME`.
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-notepadpencil.png[width="40"]| The index refers to the serial number (one-based indexing) shown in
 the displayed list of employees.
-|===
-
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-exclamation.png[width="60"]| The `EMPLOYEE_INDEX` must be a positive integer and cannot be
+|image:ug-exclamation.png[width="50"]| The `EMPLOYEE_INDEX` must be a positive integer and cannot be
 larger than the size of the displayed list.
 |===
 
@@ -453,7 +448,7 @@ and looks like.
 image::ug-addtoemployee.png[]
 
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-lightbulb.png[width="70"]| As shown in the figure above, instead of calling
 the `list employees` command, we can simple click on the `employees` tab located at the top of the side tab panel.
@@ -470,15 +465,11 @@ created, project tasks can be assigned to it.
 Format: `addto PROJECT_NAME milestone m/MILESTONE_DESC d/MILESTONE_DATE`
 
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
-|image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
+|image:ug-lightbulb.png[width="70"]|Both the fixed date format and the flexible date format
 can be used to select the target `MILESTONE_DATE`. Refer to <<Date Feature in Pocket Project>>
-|===
-
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-exclamation.png[width="60"]| As the milestone is part of a project's timeline, the
+|image:ug-exclamation.png[width="70"]| As the milestone is part of a project's timeline, the
 `MILESTONE_DATE` the input date cannot be before the `START_DATE` and after `DEADLINE` of the project.
 |===
 
@@ -491,7 +482,7 @@ of milestones in project "Apollo".
 The milestone with the given description and today's date will be added to the list
 of milestones in project "Orbital".
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-notepadpencil.png[width="40"]| The list of milestones inside the target project
 will automatically be sorted by its date every time a new entry is added.
@@ -511,9 +502,9 @@ This allows you to track and plan out in more detail what needs to be done betwe
 
 Format: `addto PROJECT_NAME projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX`
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
-|image:ug-exclamation.png[width="60"]| The `MILESTONE_INDEX` must be a positive integer and cannot be
+|image:ug-exclamation.png[width="70"]| The `MILESTONE_INDEX` must be a positive integer and cannot be
 larger than the size of the displayed milestone list.
 |===
 
@@ -524,7 +515,7 @@ Examples:
 . `addto Orbital projecttask m/2 n/Prepare concept design sketches` +
    A project task with the given description will be added to the list of tasks under the milestone at index 2 in project "Orbital".
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-lightbulb.png[width="50"]|There is no specific order for either the project task name or the milestone index when entering the command so either way is acceptable.
 |===
@@ -534,7 +525,7 @@ You can refer to the screenshot below to have a clearer picture of how it works 
 .*Adding a task to a project's milestone*
 image::ug-addprojecttask.png[]
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-notepadpencil.png[width="60"]| Clicking on the arrow beside a milestone containing existing tasks allows you to hide the list of tasks under the milestone.
 The arrow will only appear when there are one or more tasks in your project's milestone.
@@ -547,20 +538,12 @@ of certain features can be prioritized over others.
 
 Format: `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY`
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-notepadpencil.png[width="40"]| `STORY_IMPORTANCE`: The priority/importance level of the user story, ranging from 1 to 3. 3 being the most
 important and 1 being the least.
-|===
-
-[width="100%",cols="35%,<65%"]
-|===
 |image:ug-notepadpencil.png[width="40"]| `STORY`: A valid user story must be in the following format - as a ... i want to ... so that ...
-|===
-
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-exclamation.png[width="60"]| Note that `as a`, `i want to` and `so that` are keywords which help us to segment your user story into the respective categories: user, function and reason.
+|image:ug-exclamation.png[width="50"]| Note that `as a`, `i want to` and `so that` are keywords which help us to segment your user story into the respective categories: user, function and reason.
 Hence these keywords cannot be used more than once and needs to be included in a valid user story.
 |===
 
@@ -571,13 +554,9 @@ Examples:
 . `addto Apollo userstory i/1 as a user i want to try out new things so that i can have fun`
 
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-lightbulb.png[width="50"]| You can input the importance level or the actual user story in any order.
-|===
-
-[width="100%",cols="35%,<65%"]
-|===
 |image:ug-lightbulb.png[width="50"]| A valid user story can also be simply: `as a ... i want to...`.
 E.g `as a user i want to log in` is a valid user story.
 |===
