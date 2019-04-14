@@ -202,7 +202,6 @@ Returns an overview of all ongoing projects/the progress of an individual projec
 
 Format: `stats` or `stats PROJ_NAME`/`stats PROJ_INDEX`
 +
-add something here.
 Examples:
 
 `stats` +
@@ -294,9 +293,13 @@ the status of all projects. `Model#individualStats(Project)` passes the given pr
 The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
+
 image::OverallStatsSequenceDiagram.png[width="1000"]
+
 Individual Project:
+
 image::IndividualStatsSequenceDiagram.png[width="1000"]
+
 Usage Scenario example for `stats`:
 
 1.	User executes `stats`/`stats PROJECT_INDEX`/`stats PROJECT_NAME` to view project statistics in Pocket Project.
