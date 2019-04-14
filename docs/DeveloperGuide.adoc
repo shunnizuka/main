@@ -1385,7 +1385,10 @@ Use case ends.
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
 .  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
+.  Should be user-friendly for software engineering project managers and should help them manage their projects more efficiently and effectively.
+.  Should have automated tests to do regression testing whenever an existing feature is enhanced or a new feature is added.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  The system should respond to user input within 2 seconds, whether it is valid or invalid input.
 
 _{More to be added}_
 
