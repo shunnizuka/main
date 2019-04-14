@@ -318,7 +318,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 // skill::addTo[]
-=== Add employee/milestone/user story to projects feature
+=== Add employee/milestone/project task/user story to projects feature
 ==== Current Implementation
 
 This feature focuses on the adding of employees or milestones to a selected project and is mainly facilitated
@@ -326,13 +326,14 @@ by the model component of the PocketProject application. This feature supports t
 
 * `addto [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of all employees in the Pocket Project application.
 * `addto [project name] milestone [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
+* `addto [project name] projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX` -- adds the project task with given description `PROJECT_TASK_DESCRIPTION` to the milestone specified by `MILESTONE_INDEX` in the project with name `[project name]`.
 * `addto [project name] userstory i/IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
 
-These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)`, `Model#addMilestoneTo(Project, Milestone)` and `Model#addUserStoryTo(Projectm UserStory)`.
-These three methods only take in the project and employee/milestone as arguments as the correct Employee/Milestone/UserStory object would be located by
-`AddEmployeeToCommand#excute()`, `AddMilestoneToCommand#execute()` or `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
+These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)`, `Model#addMilestoneTo(Project, Milestone)`, `Model#addProjectTaskTo(Project, Milestone, ProjectTask)` and `Model#addUserStoryTo(Projectm UserStory)`.
+These four methods only take in the project and employee/milestone/project task/user story as arguments as the correct Employee/Milestone/ProjectTask/UserStory object would be located by
+`AddEmployeeToCommand#excute()`, `AddMilestoneToCommand#execute()`, `AddProjectTaskToCommand#execute()` or `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
 
-Given below is an example usage scenario and how the addition of employee/milestone/user story to a project feature behaves at each step.
+Given below is an example usage scenario and how the addition of employee/milestone/project task/user story to a project feature behaves at each step.
 
 `AddEmployeeTo Command`
 
@@ -348,7 +349,13 @@ Step 1. The user enters the command `addto Apollo milestone [milestone details]'
 similar to Step 2 of the `AddEmployeeTo Command` mentioned above. Only the object added is decided between an employee, user story or a
 milestone depending on the user input.
 
+`AddProjectTaskTo Command`
+
+Step 1. The user enters the command `addto Apollo projecttask n/Create feature XYZ m/1`. The rest of the execution process is similar to Step 2 of the `AddEmployeeToCommand` mentioned above.
+The only differences being that the object being added is a project task and that it is being added to a milestone within a project, instead of directly to the project.
+
 `AddUserStoryTo Command`
+
 Step 1. The user enters the command `addto Apollo userstory i/1 as a user i want to view user stories so that i can track them`. The rest of the
 execution process is similar to Step 2 of the `AddEmployeeTo Command`.Only the object added is decided between an employee, user story or a
 milestone depending on the user input.
@@ -390,7 +397,7 @@ The commands will be processed in the same way without any other changes.
 // end::addto[]
 
 // skill::removefrom[]
-=== Remove employee/milestone from projects feature
+=== Remove employee/milestone/project task/user story from projects feature
 ==== Current Implementation
 
 The removing of employee,milestone or user story from projects is facilitated by the model component of the PocketProject.
@@ -398,16 +405,17 @@ This feature currently supports these three commands:
 
 * `removefrom [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of employees in the project named `[project name]`.
 * `removefrom [project name] milestone [milestone index]` -- removes the milestone at index `[milestone index]` in the list of milestones in the project named `[project name]`.
+* `removefrom [project name] projecttask [milestone index] [project task index]` -- removes the project task at index `[project task index]` in the list of tasks under the milestone specified by `[milestone index]` in the project named `[project name]`.
 * `removefrom [project name] userstory [userstory index]` -- removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
 
-These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(Project, Employee)`, `Model#removeMilestoneFrom(Project, Milestone)` and `Model#removeUserStoryFrom(Project, UserStory)`.
-The methods does not take in indices as arguments since the corresponding Employee,Milestone or UserStory object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`, `RemoveMilestoneFromCommand#execute()` or `RemoveUserStoryFromCommand#execute()`
+These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(Project, Employee)`, `Model#removeMilestoneFrom(Project, Milestone)`, `Model#removeProjectTaskFrom(Project, Milestone, ProjectTask)` and `Model#removeUserStoryFrom(Project, UserStory)`.
+The methods does not take in indices as arguments since the corresponding Employee, Milestone, ProjectTask or UserStory object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`, `RemoveMilestoneFromCommand#execute()`, `RemoveProjectTaskFromCommand#execute()` or `RemoveUserStoryFromCommand#execute()`
 before the methods of `Model` are called.
-The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone and user stories are similar:
+The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone, project tasks and user stories are similar:
 
 image::remove_employee_from_sequence_diagram.png[width="1000"]
 
-Given below is an example usage scenario and how the removal of employee/milestone/user story feature behaves at each step.
+Given below is an example usage scenario and how the removal of employee/milestone/project task/user story feature behaves at each step.
 
 Step 1. The user enters the command `view project Apollo'. The app displays the list of employees and milestones in the project named "Apollo" by executing the `view` command.
 
@@ -417,8 +425,9 @@ The `RemoveFromCommandParser` then creates command object and passes it to the `
 
 Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
 
-image:ug-lightbulb.png[width="50"]
-Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+|===
+|image:ug-lightbulb.png[width="40"]|The `[project name]` entered must be valid and exists in the app. The `[employee index]`, `[milestone index]`, `[project task index]` or `[user story index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
+|===
 
 ==== Design Considerations
 
@@ -593,6 +602,89 @@ For example usage scenarios for adding user stories as removing of user stories,
 
 * `addto PROJ_NAME userstory [story]` -- <<Add employee/milestone/user story to projects feature>>
 * `removefrom PROJ_NAME userstory INDEX` -- <<Remove employee/milestone from projects feature>>
+
+
+// skill::projecttask[]
+=== Project Task feature
+==== Current Implementation
+
+This project task feature enhances the usage of the milestone feature in Pocket Project for keeping track of a project's schedule by providing you with a list of tasks which needs to be done between milestones.
+The project task feature is mainly facilitated
+by the model component, and in particular, the `Milestone` class which stores the relevant project tasks in a `UniqueProjectTaskList`.
+ This feature supports three main commands:
+
+* `addto [project name] projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX` -- Adds the project task with the given `[PROJECT_TASK_DESCRIPTION]` to the milestone specified by `[milestone index]` in the project named `[project name]`.
+* `removefrom [project name] projecttask [milestone index] [project task index]` -- Removes the project task at the specified `[project task index]` from the milestone specified by `[milestone index]` in the project with name `[proejct name]`.
+* `update [project name] projecttask [milestone index] [project task index] [status]` -- Updates the status of the project task at the specified `[project task index]` in the milestone specified by `[milestone index]` in the project with name `[project name]`.
+
+Project tasks contain statuses to help you oversee its progress, whether its "Ongoing", "On hold" or "Complete".
+
+==== Implementation of individual commands
+The project task commands are supported by the methods in the `Model` interface: `Model#addProjectTaskTo(Project, Milestone, ProjectTask);`, `Model#removeProjectTaskFrom(Project, Milestone, ProjectTask)` and `Model#updateProjectTask(Project, Milestone, ProjectTask, Status)`.
+These three methods take in `Project`, `Milestone` and `ProjectTask` as common arguments. Hence, the correct project/milestone/project task which the commands act on are first located through
+`AddProjectTaskToCommand#excute()`, `RemoveProjectTaskFromCommand#execute()` or `UpdateProjectTaskCommand#execute()` before the methods of `Model` are called.
+
+===== Update status of project task
+Given below is an example usage scenario and a showcase of how a project task status is updated in a project's milestone at each step.
+
+* `update [project name] projecttask [milestone index] [project task index] [status]` -- Updates the status of the project task at the specified `[project task index]` in the milestone specified by `[milestone index]` in the project with name `[project name]`.
+
+The sequence diagram for the execution of updating a project task status is as follows:
+
+image::UpdateProjectTaskSequenceDiagram.png[width="1000"]
+
+Step 1. The user enters the command `update Apollo projecttask 2 1 Complete`.
+The `LogicManager` then passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `UpdateCommand`
+and passes the rest of the string to the `UpdateCommandParser` to identify which type of `UpdateCommand` is being executed and what are the arguments.
+
+Step 2. The `UpdateCommandParser` then identifies the "projecttask" keyword and  creates an `UpdateProjectTaskCommand` and passes it to the `LogicManager` to be executed.
+
+Step 3. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate and obtain the specified `Project`, `Milestone` and `ProjectTask` objects.
+
+Step 4. The status of the retrieved task is then updated to "Complete" and execution of the `UpdateProjectTaskCommand` ends.
+
+|===
+|image:ug-exclamation.png[width="40"]| The `[project name]` entered must be valid and exists in the app. The `[milestone index]` and `[project task index]` given must refer to some existing milestone and project task. Also,
+                                       the status to be updated to needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
+|===
+===== Add project task to a milestone in project
+Refer to previous section on the implementation of adding to project.
+
+* `addto [project name] projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX` -- <<Add employee/milestone/project task/user story to projects feature>>
+
+===== Remove project task from a milestone in project
+Refer to previous section on the implementation of removing from project.
+
+* `removefrom [project name] projecttask [milestone index] [project task index]` -- <<Remove employee/milestone/project task/user story from projects feature>>
+
+==== Design Considerations
+In this section, I will talk about certain alternatives that could have been taken when designing this feature and why I did or did not use them.
+
+===== Aspect: How should project task objects be stored within a project
+
+Alternative 1: Store project tasks in a `UniqueProjectTaskList` which is in turn stored under a specified milestone. (Current implementation)
+
+* Pros: Only milestone objects are in direct contact with the project tasks through the `UniqueProjectTaskList` container class and checks to ensure project tasks work as they should only need to be done within the milestone instead of in the entire project itself.
+* Cons: Somewhat harder to implement as it requires finding the correct milestone in a project first before anything can be done for the project task specified in the user's command.
+
+Alternative 2: Store project tasks directly in a project and keep a reference to the milestone which it should be under.
+
+* Pros: Easy to implement and will have similar behaviour to existing implementations of other objects stored directly in a project.
+* Cons: It can be confusing in the backend as the user can have tasks under different milestones with the same project task descriptions. This also goes against the Object-Oriented Programming(OOP) Guideline, Law of Demeter
+ as project tasks only need to be in direct contact with milestones but not necessarily with projects themselves.
+
+Based on the above pros and cons for each alternative, I decided on Alternative 1 for 2 reasons:
+
+. As it was in line with the OOP guidelines and principle.
+. As it allowed me to implement a more robust and efficient checking system for project tasks which was constrained within a milestone itself.
+
+==== Future planned enhancements
+The following features are scheduled to be implemented in a future version of Pocket Project:
+
+. Allow the assigning of project tasks to employees in a project which gives you a better overview of who is in charge of doing what task during the project's duration.
+. Include the completion date of a project task when it is completed, allowing you to backtrack from the completion date of the project task to see what was done for the project task's completion.
+// end::projecttask[]
+
 
 === Undo/Redo feature
 ==== Current Implementation
