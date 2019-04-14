@@ -20,7 +20,8 @@ public class DeleteEmployeeCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " employee"
             + ": Deletes the employee identified by the index number used in the displayed employee list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer) cannot be larger than maximum integer value which is "
+            + "2,147,483,647\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Deleted Employee: %1$s";

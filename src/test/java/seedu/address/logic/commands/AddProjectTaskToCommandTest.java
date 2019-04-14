@@ -43,8 +43,10 @@ public class AddProjectTaskToCommandTest {
         expectedModel.addProjectTaskTo(targetProject, TYPICAL_MILESTONE_START, task);
         expectedModel.commitPocketProject();
 
+
         assertCommandSuccess(addProjectTaskToCommand, model, commandHistory, expectedMessage, expectedModel);
     }
+
 
     @Test
     public void execute_invalidProjectName_throwsCommandException() {

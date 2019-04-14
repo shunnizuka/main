@@ -22,8 +22,9 @@ public class CompleteCommand extends Command {
     public static final String COMMAND_WORD = "complete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Completes the project identified by the index(must be positive integer) of the project on \n"
-            + "a specified date."
+            + ": Completes the project identified by the index of the project on \n"
+            + "a specified date. The PROJECT_INDEX needs to be a positive integer and and cannot be larger than "
+            + "maximum integer value which is 2,147,483,647\n"
             + "Parameters: PROJECT_INDEX, COMPLETION_DATE\n"
             + "Example: " + COMMAND_WORD + " 1 11/11/2011\n";
 

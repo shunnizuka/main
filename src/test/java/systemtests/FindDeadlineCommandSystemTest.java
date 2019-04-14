@@ -58,7 +58,7 @@ public class FindDeadlineCommandSystemTest extends PocketProjectSystemTest {
         assertSelectedProjectCardUnchanged();
 
         /* Case: find 0 projects in Pocket Project, non-matching keywords -> 0 projects found */
-        command = FindDeadlineCommand.COMMAND_WORD + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " 13/12/1999";
+        command = FindDeadlineCommand.COMMAND_WORD + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " 13/12/2000";
         ModelHelper.setProjectFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedProjectCardUnchanged();

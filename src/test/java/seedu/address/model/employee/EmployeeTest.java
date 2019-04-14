@@ -35,9 +35,9 @@ public class EmployeeTest {
         // null -> returns false
         assertFalse(ALICE.isSameEmployee(null));
 
-        // different phone and email -> returns false
+        // different phone and email -> returns true
         Employee editedAlice = new EmployeeBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.isSameEmployee(editedAlice));
+        assertTrue(ALICE.isSameEmployee(editedAlice));
 
         // different name -> returns false
         editedAlice = new EmployeeBuilder(ALICE).withName(VALID_NAME_BOB).build();
@@ -56,6 +56,10 @@ public class EmployeeTest {
         // same name, same phone, same email, different attributes -> returns true
         editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB)
             .withSkills(VALID_SKILL_JAVA).build();
+        assertTrue(ALICE.isSameEmployee(editedAlice));
+
+        // all same attributes except skills -> returns true
+        editedAlice = new EmployeeBuilder(ALICE).withSkills(VALID_SKILL_JAVA).build();
         assertTrue(ALICE.isSameEmployee(editedAlice));
     }
 

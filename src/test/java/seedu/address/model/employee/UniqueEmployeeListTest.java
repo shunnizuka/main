@@ -3,6 +3,7 @@ package seedu.address.model.employee;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
@@ -46,7 +47,7 @@ public class UniqueEmployeeListTest {
     @Test
     public void contains_employeeWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEmployeeList.add(ALICE);
-        Employee editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_BOB)
+        Employee editedAlice = new EmployeeBuilder(ALICE).withGitHubAccount(VALID_GITHUB_ALICE)
             .withSkills(VALID_SKILL_JAVA).build();
         assertTrue(uniqueEmployeeList.contains(editedAlice));
     }

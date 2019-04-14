@@ -23,7 +23,8 @@ public class ProjectBuilder {
     public static final String DEFAULT_START_DATE = "22/01/2019";
     public static final String DEFAULT_DEADLINE = "03/03/2019";
     public static final String DEFAULT_CLIENT = "NUS";
-    public static final String DEFAULT_DESCRIPTION = "build an application that manages projects";
+    public static final String DEFAULT_DESCRIPTION = "This project currently has no description. Kindly use "
+        + "the edit command to change this project's description";
 
 
     private ProjectName projectName;
