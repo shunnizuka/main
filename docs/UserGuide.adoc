@@ -198,7 +198,7 @@ or click `Help` which can be found on the menu bar at the top left hand corner o
 |===
 
 .*Accessing help from menu bar*
-image::ug-helpcommand.png[width="800"]
+image::ug-helpcommand.png[width="400"]
 
 === Date Feature in Pocket Project
 
@@ -467,55 +467,102 @@ Format: `list projects`
 
 ==== Edit an employee in the application: `edit employee`
 
-Edits an existing employee.
+You can edit the details of an existing employees whenever there are changes made to the employee's details such as name, phone, email, github and their skills.
 
 Format: `edit employee INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
-
-image:ug-notepadpencil.png[width="40"]
-Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
-
-image:ug-notepadpencil.png[width="40"]
-At least one of the optional fields must be provided and all existing values will be updated with the input values.
-When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
 
 Examples:
 
 * `edit employee 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 * `edit employee 2 n/Betsy Crower s/Java` +
 Edits the name of the 2nd person to be `Betsy Crower` and sets Java as the only skill.
-
 * `edit employee 2 n/Betsy Crower s/C s/HTML` +
 Edits the name of the 2nd employee to be `Betsy Crower` and sets C and HTML as the skills.
 
-image:ug-exclamation.png[width="50"]
+Below is the before and after screenshot to illustrate better.
+
+.Before entering the command `edit employee 2 n/The magician p/98637251 s/`
+image:edit_employee_before.png[]
+
+.After entering the command `edit employee 2 n/The magician p/98637251 s/`
+image:edit_employee_after.png[]
+
+|===
+|image:ug-notepadpencil.png[width="40"]|
+Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
+|image:ug-notepadpencil.png[width="40"]|
+At least one of the optional fields must be provided and all existing values will be updated with the input values.
+When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
+|===
+
+|===
+|image:ug-exclamation.png[width="50"]|
 The index must be a *positive integer* and cannot be larger than the size of the list.
+|===
 
-image:ug-lightbulb.png[width="50"]
+|===
+|image:ug-lightbulb.png[width="50"]|
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
-
+|===
 ==== Edits name/client/deadline/description of a project: `edit project info`
 
-Edits the existing project components such as project name, client, deadline, description of the project.
+You can use this command to edit the general details of an existing project such as project name, deadline, client and description which are shown on the summary panel of the projects.
 
-Format: `edit project PROJ_NAME info [n/name] [c/client] [d/deadline] [desc/description]`
+|===
+|image:ug-notepadpencil.png[width="40"]|
+This command can be used to change the default description that is assigned to the project when the project is added.
+|===
+Format: `edit project PROJECT_NAME info [n/name] [c/client] [d/deadline] [desc/description]`
 
 Examples:
 
 * `edit project Apollo info n/Gemini c/John d/12/09/2020 desc/An application for project management` +
 Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
 
+Below are some before and after screenshot of how the command should work.
 
+.Before entering hte edit command
+image:edit_project_before.png[]
+
+.After the edit command is entered
+image:edit_project_after.png[]
+
+|===
+|image:ug-lightbulb.png[width="50"]|
+Both the fixed date format and the flexible date can be used here to edit the deadline.
+|===
+|===
+|image:ug-exclamation.png[width="50"]|
+Note that the deadline should be after the start date of the project and also after the date of the latest milestone in the project.
+|image:ug-exclamation.png[width="50"]|
+Note that project start date is not modifiable.
+|===
 ==== Edits milestone of a project: `edit project milestone`
 
-Edits the existing milestone in the milestone list of a project.
+You can edit the milestone of the existing project whenever there are changes made to it.
 
 Format: `edit project PROJ_NAME milestone INDEX [m/milestone] [d/date]`
 
 Examples:
 
 * `edit project Apollo milestone 2 m/Implement edit command d/09/04/2019`
-Change the milestone at index 2 in Apollo to 'Implement edit command 09/04/2019'
+Change the milestone at index 2 in Apollo to 'Implement edit command (09/04/2019)'
+
+Below are some before and after screenshot of how the command should work.
+
+.Before entering the `edit project Orbital milestone 1 m/Version 1.1 refactoring d/03/08/2019` command
+image:edit_project_milestone_before.png[]
+
+.After entering the `edit project Orbital milestone 1 m/Version 1.1 refactoring d/03/08/2019` command
+image:edit_project_milestone_after.png[]
+
+|===
+|image:ug-exclamation.png[width="50"]|
+The date of the milestone must be between the start date and the deadline of the project
+|image:ug-exclamation.png[width="50"]|
+A blank input for milestone description will not be accepted as an input. (e.g. `edit milestone m/`)
+|===
 
 ==== Edits UserStory of a project: `edit project userstory` [coming in v2.0]
 
@@ -524,9 +571,25 @@ Edits the existing userstory in the userstory list of a project.
 //tag::find[]
 === Locating employees, projects or skills by name: `find`
 
+There are several ways available for you to search for employees and projects in PocketProject. Below are the things you should take note for all the find command.
+
+//for all the find commands
+|===
+|image:ug-notepadpencil.png[width="40"]|
+The search is case insensitive. e.g `hans` will match `Hans`
+
+|image:ug-notepadpencil.png[width="40"]|
+The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+
+|image:ug-notepadpencil.png[width="40"]|
+Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+|image:ug-exclamation.png[width="50"]|
+Only full words will be matched e.g. `Han` will not match `Hans`
+|===
 ==== Find employees in the application: `find employee`
 
-Finds employees whose names contain any of the given keywords.
+You can search for employees by using their names as of the given keywords.
 
 Format: `find employee KEYWORD [MORE_KEYWORDS]`
 
@@ -539,19 +602,14 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 * `find employee Betsy Tim John` +
 Returns any employee having names `Betsy`, `Tim`, or `John`
 
-==== Find projects in the application: `find project`
+Below is a screenshot of what a successful find command will look like.
 
-Finds projects whose names contain any of the given keywords.
-
-Format: `find project KEYWORD [MORE_KEYWORDS]`
-
-Examples:
-
-* `find project Apollo` +
-Returns a list of projects with names that contain Apollo
+.Afte entering `find employee stark` command
+image:find_employee.png[]
 
 ==== Find employees with skills: `find skill`
-Finds employees with the chosen skill.
+
+You can also look for employees using their skills as keyword. This will make things easier for you when you need to find employees to assign to projects which require a certain skill.
 
 Format: `find skill KEYWORD [MORE_KEYWORDS]`
 
@@ -563,9 +621,30 @@ Returns a list of employees who has java skill.
 * `find skill java C`
 Returns a list of employees who have either java or C or both.
 
+Below is a screenshot of what a successful find skill command will look like.
+
+.Afte entering `find skill java` command
+image:find_skill.png[]
+
+==== Find projects in the application: `find project`
+
+Similarly for the project, you can find projects using the project names as keywords.
+
+Format: `find project KEYWORD [MORE_KEYWORDS]`
+
+Examples:
+
+* `find project Apollo` +
+Returns a list of projects with names that contain Apollo
+
+Below is a screenshot of what a successful find project command will look like.
+
+.Afte entering `find project apollo` command
+image:find_project.png[]
+
 ==== Find projects with any keywords: `find all`
 
-Find projects that contain any of the keywords in the project name, description, deadline.
+This `find all` command allows you to find projects even if you have forgotten the project name. You can simply try to find the project using words that appear in the description of the project.
 
 Format: `find all KEYWORDS [MORE KEYWORDS]`
 
@@ -574,9 +653,14 @@ Examples:
 * `find all software food`
 Returns a list of projects which contains either software or food or both.
 
+Below is a screenshot of what a successful find all command will look like.
+
+.Afte entering `find all management` command
+image:find_all 1.png[]
+
 ==== Find projects with deadline: 'find deadline'
 
-Find projects which has deadline that are before or same as the input provided by the user.
+In order to manage your workload and be aware of the upcoming deadline, you can find all the project which will be due before the deadline you have entered.
 
 Format: `find deadline KEYWORD
 
@@ -585,33 +669,20 @@ Examples:
 * `find deadline 15/04/2019` +
 Returns a list of projects which has 15/04/2019 as the deadline or has deadlines that are before 15/04/2019
 
+Below is a screenshot of what a successful find project command will look like.
+
+.Afte entering `find deadline this month 31` command
+image:find_deadline.png[]
+
 //only for find deadline
-image:ug-exclamation.png[width="50"]
+|===
+|image:ug-exclamation.png[width="50"]|
 Only accept one argument. e.g. will not accept `find deadline 15/04/2019 20/12/2019`
-
-image:ug-notepadpencil.png[width="40"]
+|===
+|===
+|image:ug-notepadpencil.png[width="40"]|
 Accepts both flexible date and calender date
-
-//for all the find commands
-image:ug-notepadpencil.png[width="40"]
-The search is case insensitive. e.g `hans` will match `Hans`
-
-image:ug-notepadpencil.png[width="40"]
-The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-
-image:ug-notepadpencil.png[width="40"]
-Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-image:ug-exclamation.png[width="50"]
-Only full words will be matched e.g. `Han` will not match `Hans`
-
-==== Find Command Usage Scenario
-
-For example, to delete Bernice Yu from the employee list, you can follow these steps:
-
-Step 1: `find employee Bernice` - to narrow down the list to all employees with name containing Bernice
-
-Step 2: `delete employee 1` - deletes Bernice Yu who is the 1st employee in the result of the `find employee Bernice` command.
+|===
 
 //end::find[]
 
