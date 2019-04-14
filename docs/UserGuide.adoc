@@ -527,7 +527,7 @@ image::ug-addprojecttask.png[]
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-notepadpencil.png[width="60"]| Clicking on the arrow beside a milestone containing existing tasks allows you
+|image:ug-notepadpencil.png[width="40"]| Clicking on the arrow beside a milestone containing existing tasks allows you
 to hide the list of tasks under the milestone.
 
 |===
@@ -655,7 +655,7 @@ Format: `removefrom PROJECT_NAME projecttask MILESTONE_INDEX PROJECT_TASK_INDEX`
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-exclamation.png[width="50"]| The `MILESTONE_INDEX` and `PROJECT_TASK_INDEX` must be a positive integer and cannot be
+|image:ug-exclamation.png[width="70"]| The `MILESTONE_INDEX` and `PROJECT_TASK_INDEX` must be a positive integer and cannot be
 larger than the size of the displayed milestones and tasks list.
 |===
 
@@ -672,7 +672,7 @@ You can refer to the screenshot below to have a clearer picture of how it looks 
 image::ug-removeprojecttask.png[]
 
 |===
-|image:ug-notepadpencil.png[width="60"]| The arrow beside the milestone description for collapsing the task list will disappear if all tasks for that milestone are removed.
+|image:ug-notepadpencil.png[width="40"]| The arrow beside the milestone description for collapsing the task list will disappear if all tasks for that milestone are removed.
 |===
 
 ==== Remove a user story from a project: `removefrom userstory`
@@ -709,14 +709,6 @@ Edits the name of the 2nd person to be `Betsy Crower` and sets Java as the only 
 . `edit employee 2 n/Betsy Crower s/C s/HTML` +
 Edits the name of the 2nd employee to be `Betsy Crower` and sets C and HTML as the skills.
 
-Below is the before and after screenshot to illustrate better. The command that will be
-used to show the difference will be `edit employee 2 n/The magician p/98637251 s/`.
-
-.Before entering the edit command
-image::edit_employee_before.png[]
-
-.After entering the edit command
-image::edit_employee_after.png[]
 
 [width="1000",cols="100,<900"]
 |===
@@ -730,6 +722,16 @@ The index must be a *positive integer* and cannot be larger than the size of the
 |image:ug-lightbulb.png[width="70"]|
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
 |===
+
+
+Below is the before and after screenshot to illustrate better. The command that will be
+used to show the difference will be `edit employee 2 n/The magician p/98637251 s/`.
+
+.Before entering the edit command
+image::edit_employee_before.png[]
+
+.After entering the edit command
+image::edit_employee_after.png[]
 
 ==== Edits name/client/deadline/description of a project: `edit project info`
 
@@ -748,13 +750,6 @@ Examples:
 . `edit project Apollo info n/Gemini c/John d/12/09/2020 desc/An application for project management` +
 Change project Apollo name to Gemini, client to John, deadline to 12/09/2020 and the description to 'An application for project management'
 
-Below are some before and after screenshot of how the command should work.
-
-.Before entering hte edit command
-image::edit_project_before.png[]
-
-.After the edit command is entered
-image::edit_project_after.png[]
 
 [width="1000",cols="100,<900"]
 |===
@@ -764,6 +759,15 @@ Both the fixed date format and the flexible date can be used here to edit the de
 Note that the start date is unmodifiable and the deadline should be after the start date of the project and
 also after the date of the latest milestone in the project.
 |===
+
+Below are some before and after screenshot of how the command should work.
+
+.Before entering hte edit command
+image::edit_project_before.png[]
+
+.After the edit command is entered
+image::edit_project_after.png[]
+
 
 ==== Edits milestone of a project: `edit project milestone`
 
@@ -776,6 +780,15 @@ Examples:
 . `edit project Apollo milestone 2 m/Implement edit command d/09/04/2019`
 Change the milestone at index 2 in Apollo to 'Implement edit command (09/04/2019)'
 
+
+[width="1000",cols="100,<900"]
+|===
+|image:ug-exclamation.png[width="70"]|
+The date of the milestone must be between the start date and the deadline of the project
+|image:ug-exclamation.png[width="70"]|
+A blank input for milestone description will not be accepted as an input. (e.g. `edit milestone m/`)
+|===
+
 Below are some before and after screenshot of how the command should work. The command
 `edit project Orbital milestone 1 m/Version 1.1 refactoring d/03/08/2019` will be used to show
 this.
@@ -785,14 +798,6 @@ image::edit_project_milestone_before.png[]
 
 .After entering the edit command
 image::edit_project_milestone_after.png[]
-
-[width="1000",cols="100,<900"]
-|===
-|image:ug-exclamation.png[width="70"]|
-The date of the milestone must be between the start date and the deadline of the project
-|image:ug-exclamation.png[width="70"]|
-A blank input for milestone description will not be accepted as an input. (e.g. `edit milestone m/`)
-|===
 
 ==== Edits User Story in a project: `edit project userstory`
 
@@ -808,16 +813,18 @@ Examples:
 
 . `edit project Apollo userstory 1 i/2`
 
+
+[width="1000",cols="100,<900"]
+|===
+|image:ug-smart.png[width="60"]|
+You can also remove an existing reason from a user story by typing `nil` as the new user story reason.
+|===
+
 Refer to the screenshot below to see how the fields of the user story has been edited when the command `edit project Apollo userstory 1 i/2` is executed.
 
 .Before and after comparisons of the user story's importance level
 image::edit-user-story-ui.png[]
 
-[width="1000",cols="100,<900"]
-|===
-|image:ug-smart.png[width="80"]|
-You can also remove an existing reason from a user story by typing `nil` as the new user story reason.
-|===
 
 //tag::find[]
 === Locating employees, projects or skills by name: `find`
@@ -921,19 +928,21 @@ Examples:
 . `find deadline 15/04/2019` +
 Returns a list of projects which has 15/04/2019 as the deadline or has deadlines that are before 15/04/2019
 
+//only for find deadline
+[width="1000",cols="100,<900"]
+|===
+|image:ug-exclamation.png[width="50"]|
+Only accept one argument. e.g. will not accept `find deadline 15/04/2019 20/12/2019`
+|image:ug-notepadpencil.png[width="50"]|
+Accepts both flexible date and calender date
+|===
+
 Below is a screenshot of what a successful find project command will look like.
 
 .After entering `find deadline this month 31` command
 image::find_deadline.png[]
 
-//only for find deadline
-[width="1000",cols="100,<900"]
-|===
-|image:ug-exclamation.png[width="70"]|
-Only accept one argument. e.g. will not accept `find deadline 15/04/2019 20/12/2019`
-|image:ug-notepadpencil.png[width="60"]|
-Accepts both flexible date and calender date
-|===
+
 
 //end::find[]
 
