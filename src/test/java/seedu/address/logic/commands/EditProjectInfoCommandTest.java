@@ -76,7 +76,6 @@ public class EditProjectInfoCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastProject = Index.fromOneBased(model.getFilteredProjectList().size());
-        System.out.println(indexLastProject.getZeroBased());
         Project lastProject = model.getFilteredProjectList().get(indexLastProject.getZeroBased());
 
         ProjectBuilder projectInList = new ProjectBuilder(lastProject);

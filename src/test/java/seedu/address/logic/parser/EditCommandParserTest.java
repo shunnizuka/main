@@ -188,9 +188,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1" + INVALID_NAME_DESC
             + INVALID_EMAIL_DESC + VALID_GITHUB_AMY + VALID_PHONE_AMY, EmployeeName.MESSAGE_CONSTRAINTS);
 
-        System.out.println(EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
-            + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_PROJECT_NAME_DESC);
-
         //=========== EditProjectCommand ==============================================================================
 
         assertParseFailure(parser, EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
@@ -357,7 +354,6 @@ public class EditCommandParserTest {
         userInput = EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE + " "
             + EditProjectInfoCommand.EDIT_INFO_KEYWORD + NAME_DESC_AMY + CLIENT_DESC_ZULU + DEADLINE_DESC_ALICE
             + NAME_DESC_BOB + CLIENT_DESC_ALICE + DEADLINE_DESC_ZULU;
-        System.out.println(userInput);
         EditProjectInfoCommand.EditProjectDescriptor projectDescriptor = new EditProjectDescriptorBuilder()
             .withName(VALID_NAME_BOB).withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).build();
         EditProjectInfoCommand expectedProjCommand = new EditProjectInfoCommand(targetProject, projectDescriptor);

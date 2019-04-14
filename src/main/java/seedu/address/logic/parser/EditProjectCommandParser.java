@@ -41,13 +41,6 @@ public class EditProjectCommandParser {
 
     private static final String WHITE_SPACE = " ";
 
-    //use for splitting of the argument
-    private static final int START_INDEX = 0;
-    private static final int OFFSET = 1;
-    private static final int LIMIT = 2;
-    private static final int KEYWORD_INDEX = 0;
-    private static final int ARGUMENT_INDEX = 1;
-
     /**
      * Parse the input for the EditProjectCommand
      * @param userInput
@@ -62,22 +55,9 @@ public class EditProjectCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditProjectCommand.MESSAGE_USAGE));
         }
 
-        int indexOfArgs = findKeywordPosition(userInput);
-        String projectName = userInput.substring(START_INDEX, indexOfArgs - OFFSET);
-        //extract argument string containing keyword
-        String argsString = userInput.substring(indexOfArgs);
-        //to extract out the keyword
-        String[] args = argsString.split(WHITE_SPACE, LIMIT);
-        String keyword = args[KEYWORD_INDEX];
-        String arguments = args[ARGUMENT_INDEX];
-
-        ProjectName projectToEdit;
-        try {
-            projectToEdit = ParserUtil.parseProjectName(projectName);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                EditProjectCommand.MESSAGE_USAGE), pe);
-        }
+        final ProjectName projectToEdit = new ProjectName(matcher.group("project").trim());
+        final String keyword = matcher.group("keyword").trim().toLowerCase();
+        final String arguments = matcher.group("arguments");
 
         if (keyword.equals(EditProjectInfoCommand.EDIT_INFO_KEYWORD)) {
             requireNonNull(arguments);
@@ -187,34 +167,5 @@ public class EditProjectCommandParser {
         }
 
     }
-
-    /**
-     * To look for the index of the keyword in the editProject command
-     * The index will be used for extracting keyword and prefixes from the command
-     * @param userInput the editProjectMilestone/editProjectMilestone/editProjectUserStory command
-     * @return the index of the argument in the command
-     */
-    private Integer findKeywordPosition(String userInput) {
-
-        Integer index = Integer.MAX_VALUE;
-
-        if (userInput.contains(EditProjectInfoCommand.EDIT_INFO_KEYWORD)
-            && (userInput.indexOf(EditProjectInfoCommand.EDIT_INFO_KEYWORD) < index)) {
-            index = userInput.indexOf(EditProjectInfoCommand.EDIT_INFO_KEYWORD);
-        }
-
-        if (userInput.contains(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD)
-            && (userInput.indexOf(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD) < index)) {
-            index = userInput.indexOf(EditProjectMilestoneCommand.EDIT_MILESTONE_KEYWORD);
-        }
-
-        if (userInput.contains(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD)
-            && (userInput.indexOf(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD) < index)) {
-            index = userInput.indexOf(EditProjectUserStoryCommand.EDIT_USER_STORY_KEYWORD);
-        }
-
-        return index;
-    }
-
 }
 
