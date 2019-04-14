@@ -657,7 +657,7 @@ The displaying of statistics in Pocket Project will be facilitated by the model 
 planned to support 2 main commands:
 
 * `stats` -- Displays an overview of all the projects: the number of ongoing projects, deadlines etc.
-* `stats PROJ_INDEX` or `stats PROJ_NAME` -- Display a summary of the progress of the project with the given PROJ_INDEX or PROJ_NAME.
+* `stats PROJECT_INDEX` or `stats PROJECT_NAME` -- Display a summary of the progress of the project with the given PROJECT_INDEX or PROJECT_NAME.
 
 The operation will be supported by the methods in the `Model` interface: `Model#overallStats()` and `Model#individualStats(Project)`.
 `Model#overallStats()` will retrieve the data on all the projects/employees to pass to `StatsUtil`, an utility class to produce a string which describes
@@ -667,12 +667,16 @@ the status of all projects. `Model#individualStats(Project)` passes the given pr
 The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
-image::OverallStatsSequenceDiagram.png[width="1000"]
+
+image::overallStatsSequenceDiagram.png[width="1000"]
+
 Individual Project:
-image::IndividualStatsSequenceDiagram.png[width="1000"]
+
+image::individualStatsSequenceDiagram.png[width="1000"]
+
 Usage Scenario example for `stats`:
 
-1.	User executes `stats`/`stats PROJ_INDEX`/`stats PROJ_NAME` to view project statistics in Pocket Project.
+1.	User executes `stats`/`stats PROJECT_INDEX`/`stats PROJECT_NAME` to view project statistics in Pocket Project.
 2.	`PocketProjectParser` will parse and identify the command as a `IndividualStatsCommand` or `OverallStatsCommand`, parse any additional argument accordingly and return the command object.
 3.	`LogicManager` then executes the returned command, calling the `Model#individualStats()` or `Model#overallStats(Project)` accordingly to obtain the string describing the status of concern.
 4.  The returned string is used to construct the result of the command.
