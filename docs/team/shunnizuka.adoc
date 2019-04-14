@@ -28,7 +28,7 @@ This section shows a summary of contributions I have made for the project.
 * *Minor enhancement*: I also added the ability to update the information of the various components inside the project.
 ** What it does: The `edit` command allow users to edit the project information such as name, client, description and deadline as well as
 ** Justification: As the project progresses, there are bound to be changes made to the project information hence it is essential to have an `edit` command to make sure that all the information are up to date.
-** Highlights: The parser for this command was difficult to implement because of the large number of argument inputs involved. 
+** Highlights: The parser for this command was difficult to implement because of the large number of argument inputs involved.
 
 * *Other contributions*:
 

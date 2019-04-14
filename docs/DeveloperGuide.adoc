@@ -575,7 +575,7 @@ All the 3 commands are inherited from the `EditProjectCommand`. This allows flex
 The following sequence diagram shows how `edit project info` command works:
 
 .Sequence diagram for `edit project Apollo info n/Gemini d/12/05/2019`
-image:edit_project_sequence_diagram.png[]
+image:edit_project_sequence_diagram.png[width:"800"]
 
 Given below is the explanation of what happens when the user enter the `edit project info` command based on the diagram above:
 
@@ -628,6 +628,7 @@ The `FindCommandParser` differentiate these 5 commands based on the `COMMAND_KEY
 
 The following sequence diagram shows how the `find employee` command works:
 
+.Sequence diagram for `find employee John` command
 image::findcommand_sequence_diagram.png[width="1000"]
 
 Usage Scenario example for `find employee`:
@@ -670,6 +671,7 @@ The `ListCommandParser` will parse the user input based on the `COMMAND_KEYWORD`
 
 The following sequence diagram shows how the list employee command works:
 
+.Sequence diagram for `list employee` command
 image::listcommand_sequence_diagram.png[width="1000"]
 
 Usage Scenario example for `list employee`:
@@ -703,15 +705,16 @@ The operation will be supported by the methods in the `Model` interface: `Model#
 `Model#overallStats()` will retrieve the data on all the projects/employees to pass to `StatsUtil`, an utility class to produce a string which describes
 the status of all projects. `Model#individualStats(Project)` passes the given project to `StatsUtil` to produce a string in a similar fashion.
 
-
 The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
 
+.Sequence diagram for stats
 image::overallStatsSequenceDiagram.png[width="1000"]
 
 Individual Project:
 
+.Sequence diagram for stats
 image::individualStatsSequenceDiagram.png[width="1000"]
 
 Usage Scenario example for `stats`:
