@@ -14,7 +14,7 @@ This upgraded application enables project managers to keep track of everything a
 My role was to design and write the code for the `addto projecttask`, `update projecttask` and `removefrom projecttask` features. The following sections will explain in further detail about the above-mentioned features,
 as well as what I have documented in the user and developer guides in relation to these enhancements.
 
-Note the following symbols and formatting used in this document:
+Before we continue, do take note of the following symbols and formatting used in this document:
 
 |===
 |Symbol |Meaning
@@ -31,14 +31,14 @@ that users can use while using the Pocket Project application.
 |The exclamation mark icon indicates any warnings that users
  can take note of while using the Pocket Project application.
 
-|```addto```| A grey highlight (called a mark-up) indicates that this is a command that can be inputted into the command line and executed by the application.
+|```addto```| A grey highlight (called a mark-up) indicates that this is a command that can be input into the command line and executed by the application.
 
 |```[aqua]#addto#```| A grey highlight with light blue text indicates this is an abbreviated command shortened for the sake of brevity.
 
 |===
 
 == Summary of contributions
-This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
+This section shows you a summary of my coding, documentation, and other helpful contributions to the team project.
 
 *Feature added*: I added the ability to add, update and remove project tasks to and from a project in the application.
 
@@ -53,9 +53,14 @@ image::PPPmilestonesandtasks.png[]
    The `[aqua]#removefrom projecttask#` command removes the specified task completely from the milestone.
 ** Justification: This feature improves the product significantly because it greatly enhances the level of organization and control which the manager has while planning out a schedule for projects.
 ** Highlights: The implementation of this feature was rather unique and required a slightly creative approach  different from how other features were implemented as it is a component of milestones which in turn is a component of project.
-   Most other features in Pocket Project directly interact with either employees or projects, unlike that of project tasks which interacts only with milestones in a project.
+   Most other features in Pocket Project directly interact with either employees or projects, unlike that of project tasks which interacts only with milestones in a project. It required me to make some changes to the behaviour of the
+   existing Milestone class and how it was stored in a project in order to get it to work as desired.
 ** Credits: The code for `addto` command parser which I extended for the project task feature and the original milestone code which I enhanced was done by my teammate Jothinandan Pillay.
    The code for `update` command parser was done by my teammate Jeff Gan. The code for `removefrom` command parser was done by my teammate Lin Dehui.
+** Code contributed for project task feature
+*** Adding project task to milestone: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/141[#141]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/176[#176]]
+*** Update a project task's status: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/219[#219]]
+*** Removing a project task from a milestone [https://github.com/cs2103-ay1819s2-w10-2/main/pull/228[#228]]
 
 *Other contributions*:
 
@@ -68,17 +73,15 @@ image::PPPmilestonesandtasks.png[]
 *** Find and report bugs and suggest possible enhancements which can be done in the team's issue tracker. [https://github.com/cs2103-ay1819s2-w10-2/main/issues/123[#123]] [https://github.com/cs2103-ay1819s2-w10-2/main/issues/216[#216]]
 *** Helped to do debugging and resolve bugs in other team member's code when they required help. [https://github.com/cs2103-ay1819s2-w10-2/main/pull/225[#225]]
 ** Community contributions:
-*** Reported bugs found in other team's (CS2103-AY1819S2-W14-4) application [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/85[#225]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/192[#192]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/599[#599]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/773[#773]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/912[#912]]
+*** Reported bugs found in other team's (CS2103-AY1819S2-W14-4) application [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/192[#192]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/85[#225]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/599[#599]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/773[#773]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/912[#912]]
 
 
 == Contributions to the User Guide
 
-This section contains my contributions to the user guide regarding the `[aqua]#addto projecttask#`, `[aqua]#removefrom projecttask#` and `[aqua]#update projecttask#` command.
+You can view this section to see my contributions to the User Guide documentation for `[aqua]#addto projecttask#`, `[aqua]#removefrom projecttask#` and `[aqua]#update projecttask#` command.
 
 
 
 == Contributions to the Developer Guide
 
-Below are the sections which I contributed to in the Developer guide for a planned `stats` feature.
-
-include::../DeveloperGuide.adoc[tag=manualtesting]
+You can view this section to see my contributions to the Developer Guide documentation which consists of the implementation of the project task feature as well as several sections on manual testing Pocket Project.
