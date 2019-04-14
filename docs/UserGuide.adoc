@@ -379,20 +379,42 @@ image::ug-addproject.png[]
 a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
 |===
 
-=== Delete an employee or a project from the application `delete`
+=== Delete a project or an employee from the application `delete`
+
+==== Delete a project from the application: `delete project`
+Deletes the a from the list of projects.
+
+Format: `delete project PROJ_NAME` or `delete project PROJ_INDEX`
+
+image:ug-notepadpencil.png[width="40"]
+Deletes the project at the specified `PROJ_INDEX`.
+The index refers to the index number (one-based) shown in the displayed list of projects.
+
+image:ug-exclamation.png[width="60"]
+The index must be a *positive integer* and cannot be larger than the size of the list. The `PROJ_NAME` must be the name
+of an existing project.
+
+Examples:
+
+* `delete project Apollo` +
+Deletes project "Apollo" from project list.
+
+.*Deleting a project at index 1 - before*
+image::ug-deleteproject_before.png[]
+
+.*Deleting a project at index 1 - after*
+image::ug-deleteproject_after.png[]
+
+* `delete project 1` +
+Deletes the first project shown in the most recent displayed list of projects. Figure 11 shows the command being typed but not entered yet
+and figure 12 shows the effect of the command.
+
 
 ==== Delete an employee from the application: `delete employee`
 
 Deletes the specified employee from the employee list.
 
 Format: `delete employee INDEX`
-
-image:ug-notepadpencil.png[width="40"]
-Deletes the employee at the specified `INDEX`.
-The index refers to the index number (one-based) shown in the displayed list of employees.
-
-image:ug-exclamation.png[width="60"]
-The index must be a *positive integer* and cannot be larger than the size of the list.
 
 Examples:
 
@@ -409,18 +431,6 @@ Either the `list employee` command or the `find employee` command needs to be in
 before calling the `delete employee` command as the index is referenced from the last returned list
 of employees.
 
-==== Delete a project from the application: `delete project`
-Deletes the project from the list of projects.
-
-Format: `delete project PROJ_NAME` or `delete project PROJ_INDEX`
-
-Examples:
-
-* `delete project Apollo` +
-Deletes project "Apollo" from project list.
-
-* `delete project 2` +
-Deletes the second project shown in the most recent displayed list of projects.
 
 === Listing all employees or projects in application : `list`
 ==== List all employees in the application: `list employees`
@@ -758,9 +768,17 @@ Format: `removefrom PROJ_NAME employee EMPLOYEE_INDEX`
 
 Examples:
 
-* `view project Apollo` +
-`removefrom Apollo employee 3` +
-Removes the employee at 3rd position at displayed list of employees from Project Apollo.
+.*Removing an employee at index 1 - before*
+image::ug-removeemployee_before.png[]
+
+.*Removing an employee at index 1 - after*
+image::ug-removeemployee_after.png[]
+
+* `view project 1` +
+click on the right arrowhead till the page showing the list of employees in the project +
+`removefrom p1 employee 1` +
+Removes the employee at first position at displayed list of employees from the project 'p1'. The effect of the command is
+demonstrated in figures 15 and 16.
 
 ==== Remove a milestone from a project: `removefrom PROJ_NAME milestone`
 
