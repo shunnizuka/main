@@ -90,10 +90,8 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
             throw new MilestoneNotFoundException();
         }
         if (!targetMilestone.equals(milestone) && contains(milestone)) {
-            System.out.println("throwing");
             throw new DuplicateMilestoneException();
         }
-        System.out.println("adding");
         remove(targetMilestone);
         add(milestone);
     }
