@@ -504,7 +504,7 @@ Format: `addto PROJECT_NAME projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_I
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-exclamation.png[width="70"]| The `MILESTONE_INDEX` must be a positive integer and cannot be
+|image:ug-exclamation.png[width="50"]| The `MILESTONE_INDEX` must be a positive integer and cannot be
 larger than the size of the displayed milestone list.
 |===
 
@@ -527,8 +527,9 @@ image::ug-addprojecttask.png[]
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-notepadpencil.png[width="60"]| Clicking on the arrow beside a milestone containing existing tasks allows you to hide the list of tasks under the milestone.
-The arrow will only appear when there are one or more tasks in your project's milestone.
+|image:ug-notepadpencil.png[width="60"]| Clicking on the arrow beside a milestone containing existing tasks allows you
+to hide the list of tasks under the milestone.
+
 |===
 
 ==== Add a User Story to a project: `addto userstory`
@@ -543,9 +544,10 @@ Format: `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY`
 |image:ug-notepadpencil.png[width="40"]| `STORY_IMPORTANCE`: The priority/importance level of the user story, ranging from 1 to 3. 3 being the most
 important and 1 being the least.
 |image:ug-notepadpencil.png[width="40"]| `STORY`: A valid user story must be in the following format - as a ... i want to ... so that ...
-|image:ug-exclamation.png[width="50"]| Note that `as a`, `i want to` and `so that` are keywords which help us to segment your user story into the respective categories: user, function and reason.
-Hence these keywords cannot be used more than once and needs to be included in a valid user story.
 |===
+
+Note that `as a`, `i want to` and `so that` are keywords which help us to segment your user story into the respective categories: user, function and reason.
+Hence these keywords cannot be used more than once and needs to be included in a valid user story.
 
 Examples:
 
@@ -577,16 +579,16 @@ Deletes the specified employee from the employee list.
 
 Format: `delete employee INDEX`
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
-|image:ug-notepadpencil.png[width="40"]| Deletes the employee at the specified `INDEX`.
-The index refers to the index number (one-based) shown in the displayed list of employees.
+|image:ug-notepadpencil.png[width="40"]|Deletes the employee at the specified `INDEX` based on
+the displayed list of employees.
+|image:ug-exclamation.png[width="50"]| The index must be a *positive integer* and cannot be larger than the size of the list.
 |===
 
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-exclamation.png[width="60"]| The index must be a *positive integer* and cannot be larger than the size of the list.
-|===
+Either the `list employee` command or the `find employee` command needs to be invoked
+before calling the `delete employee` command as the index is referenced from the last returned list
+of employees.
 
 Examples:
 
@@ -597,13 +599,6 @@ Deletes the 2nd person in the displayed employee list.
 . `find employee Betsy` +
 `delete employee 1` +
 Deletes the 1st person in the resultant employee list shown by the `find` command.
-
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-notepadpencil.png[width="40"]| Either the `list employee` command or the `find employee` command needs to be invoked
-before calling the `delete employee` command as the index is referenced from the last returned list
-of employees.
-|===
 
 ==== Delete a project from the application: `delete project`
 Deletes the project from the list of projects.
@@ -645,14 +640,10 @@ Examples:
 `removefrom Apollo milestone 1` +
 Removes the milestone at 1st position of displayed list of milestone from Project Apollo.
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
-|image:ug-notepadpencil.png[width="40"]| Removes the employee at the specified `INDEX`.
-The index refers to the index number (one-based) shown in the displayed list of employees.
-|===
-
-[width="100%",cols="35%,<65%"]
-|===
+|image:ug-notepadpencil.png[width="40"]| Removes the employee at the specified `INDEX` based on
+the displayed list of employees.
 |image:ug-exclamation.png[width="50"]|The index must be a *positive integer* and cannot be larger than the size of the list.
 |===
 
@@ -662,9 +653,9 @@ You can remove existing project tasks from a milestone if there is a change in t
 
 Format: `removefrom PROJECT_NAME projecttask MILESTONE_INDEX PROJECT_TASK_INDEX`
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
-|image:ug-exclamation.png[width="60"]| The `MILESTONE_INDEX` and `PROJECT_TASK_INDEX` must be a positive integer and cannot be
+|image:ug-exclamation.png[width="50"]| The `MILESTONE_INDEX` and `PROJECT_TASK_INDEX` must be a positive integer and cannot be
 larger than the size of the displayed milestones and tasks list.
 |===
 
@@ -727,16 +718,16 @@ image::edit_employee_before.png[]
 .After entering the edit command
 image::edit_employee_after.png[]
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-notepadpencil.png[width="60"]|
 Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list.
-|image:ug-notepadpencil.png[width="40"]|
+|image:ug-notepadpencil.png[width="60"]|
 At least one of the optional fields must be provided and all existing values will be updated with the input values.
 When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
-|image:ug-exclamation.png[width="60"]|
+|image:ug-exclamation.png[width="70"]|
 The index must be a *positive integer* and cannot be larger than the size of the list.
-|image:ug-lightbulb.png[width="50"]|
+|image:ug-lightbulb.png[width="70"]|
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
 |===
 
@@ -744,7 +735,7 @@ You can remove all the person's skills by typing `s/` without specifying any ski
 
 You can use this command to edit the general details of an existing project such as project name, deadline, client and description which are shown on the summary panel of the projects.
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-notepadpencil.png[width="40"]|
 This command can be used to change the default description that is assigned to the project when the project is added.
@@ -765,11 +756,11 @@ image::edit_project_before.png[]
 .After the edit command is entered
 image::edit_project_after.png[]
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-lightbulb.png[width="70"]|
 Both the fixed date format and the flexible date can be used here to edit the deadline.
-|image:ug-exclamation.png[width="60"]|
+|image:ug-exclamation.png[width="70"]|
 Note that the start date is unmodifiable and the deadline should be after the start date of the project and
 also after the date of the latest milestone in the project.
 |===
@@ -795,11 +786,11 @@ image::edit_project_milestone_before.png[]
 .After entering the edit command
 image::edit_project_milestone_after.png[]
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
-|image:ug-exclamation.png[width="80"]|
+|image:ug-exclamation.png[width="70"]|
 The date of the milestone must be between the start date and the deadline of the project
-|image:ug-exclamation.png[width="60"]|
+|image:ug-exclamation.png[width="70"]|
 A blank input for milestone description will not be accepted as an input. (e.g. `edit milestone m/`)
 |===
 
@@ -822,7 +813,7 @@ Refer to the screenshot below to see how the fields of the user story has been e
 .Before and after comparisons of the user story's importance level
 image::edit-user-story-ui.png[]
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-smart.png[width="80"]|
 You can also remove an existing reason from a user story by typing `nil` as the new user story reason.
@@ -834,7 +825,7 @@ You can also remove an existing reason from a user story by typing `nil` as the 
 There are several ways available for you to search for employees and projects in PocketProject. Below are the things you should take note for all the find command.
 
 //for all the find commands
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-notepadpencil.png[width="40"]|
 The search is case insensitive. e.g `hans` will match `Hans`
@@ -936,12 +927,11 @@ Below is a screenshot of what a successful find project command will look like.
 image::find_deadline.png[]
 
 //only for find deadline
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
-|image:ug-exclamation.png[width="80"]|
+|image:ug-exclamation.png[width="70"]|
 Only accept one argument. e.g. will not accept `find deadline 15/04/2019 20/12/2019`
-
-|image:ug-notepadpencil.png[width="40"]|
+|image:ug-notepadpencil.png[width="60"]|
 Accepts both flexible date and calender date
 |===
 
@@ -1013,7 +1003,7 @@ Alternatively, you can also use the `view` command to do so.
 
 Format: `view employee EMPLOYEE_INDEX`
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-notepadpencil.png[width="40"]|
 When viewing the employee, the GitHub page of the employee
@@ -1100,7 +1090,7 @@ Restores the Pocket Project to the state before the previous _undoable_ command 
 
 Format: `undo`
 
-[width="100%",cols="35%,<65%"]
+[width="1000",cols="100,<900"]
 |===
 |image:ug-notepadpencil.png[width="40"]|
 Undoable commands: those commands that modify the Pocket Project's content
@@ -1147,9 +1137,13 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `delete project 1` command) +
 `redo` (reapplies the `clear` command) +
 
-image:ug-lightbulb.png[width="50"]
+[width="1000",cols="100,<900"]
+|===
+|image:ug-lightbulb.png[width="50"]|
 The redo command can only be called if there is an undo command that has not been
 "redo-ne" yet.
+|===
+
 // end::undoredo[]
 
 === Clearing all entries : `clear`
