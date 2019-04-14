@@ -1322,7 +1322,7 @@ data of your previous Pocket Project folder.
 |`edit project Apollo milestone 2 m/Implement edit command d/09/04/2019`
 
 |Edit Userstory Details In The Project
-|`edit project PROJECT_NAME userstory STORY_INDEX STORY
+|`edit project PROJECT_NAME userstory STORY_INDEX STORY`
 |`edit project Apollo userstory 1 as a user i want to be able to login`
 
 |Find Employees Using Name
