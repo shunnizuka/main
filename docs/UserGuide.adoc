@@ -711,7 +711,6 @@ Refer to the diagram below to see the changes in the user stories list after the
 .Before and after comparison of removing a user story
 image::removefrom-user-story-ui.png[]
 
-//tag::edit[]
 === Edit an employee/project in the application : `edit`
 
 ==== Edit an employee in the application: `edit employee`
@@ -743,7 +742,6 @@ The index must be a *positive integer* and cannot be larger than the size of the
 You can remove all the person's skills by typing `s/` without specifying any skills after it.
 |===
 
-
 Below is the before and after screenshot to illustrate better. The command that will be
 used to show the difference will be `edit employee 2 n/The magician p/98637251 s/`.
 
@@ -753,6 +751,7 @@ image::edit_employee_before.png[]
 .After entering the edit command
 image::edit_employee_after1.png[]
 
+//tag::edit[]
 ==== Edits name/client/deadline/description of a project: `edit project info`
 
 You can use this command to edit the general details of an existing project such as project name, deadline, client and description which are shown on the summary panel of the projects.
@@ -850,8 +849,6 @@ Refer to the screenshot below to see how the fields of the user story has been e
 .Before and after comparisons of the user story's importance level
 image::edit-user-story-ui.png[]
 
-
-//tag::find[]
 === Locating employees, projects or skills by name: `find`
 
 There are several ways available for you to search for employees and projects in PocketProject. Below are the things you should take note for all the find command.
@@ -891,9 +888,10 @@ Below is a screenshot of what a successful find employee command will look like.
 .After entering `find employee stark` command
 image::find_employee.png[]
 
+//tag::findskill[]
 ==== Find employees with skills: `find skill`
 
-You can also look for employees using their skills as keyword. This will make things easier for you when you need to find employees to assign to projects which require a certain skill.
+You can look for employees by using their skills as keyword. This will make things easier for you when you need to find employees to assign to projects which require a certain skill.
 
 Format: `find skill KEYWORD [MORE_KEYWORDS]`
 
@@ -910,6 +908,8 @@ Below is a screenshot of what a successful find skill command will look like.
 .After entering `find skill java` command
 image::find_skill.png[]
 
+//end::findskill[]
+
 ==== Find projects in the application: `find project`
 
 Similarly for the projects, you can find projects using the project names as keywords.
@@ -925,6 +925,8 @@ Below is a screenshot of what a successful find project command will look like.
 
 .After entering `find project apollo` command
 image::find_project.png[]
+
+//tag::findall+deadline[]
 
 ==== Find projects with any keywords: `find all`
 
@@ -966,9 +968,7 @@ Below is a screenshot of what a successful find project command will look like.
 
 .After entering `find deadline this month 31` command
 image::find_deadline.png[]
-
-//end::find[]
-
+//end::findall+deadline[]
 
 === Update a user story/project task status: `update`
 You can update the statuses of events to track their progress.

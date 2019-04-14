@@ -551,7 +551,8 @@ There will also be less clutter in `PocketProjectParser` as there are already a 
 
 // end::removefrom[]
 
-//tag::editproject[]
+//tag::editproject1[]
+
 === Edit Project feature
 ==== Current Implementation
 
@@ -563,11 +564,14 @@ This feature allows editing of several components which are under project and is
 
 The `EditProjectCommand Parser` differentiate these 3 commands based on the `COMMAND_KEYWORD` which are info, milestone and userstory.
 
+//eng::editproject1[]
+
 .Class diagram showing inheritance for `EditCommand`
 image:edit_command_class_diagram.png[width:"300"]
 
 All the 3 commands are inherited from the `EditProjectCommand`. This allows flexibility as more edit project command can be easily added when there are new components added to the project.
 
+//editproject2[]
 The following sequence diagram shows how `edit project info` command works:
 
 .Sequence diagram for `edit project Apollo info n/Gemini d/12/05/2019`
@@ -581,17 +585,32 @@ Given below is the explanation of what happens when the user enter the `edit pro
 . `EditProjectCommandParser` then identify the command as a `EditProjectInfoCommand` based on the word `info` and create the respective command and return it back to the `LogicManager`
 . `LogicManager` then execute the command. Validity of the arguments are checked here as well. The method `Model#setProject(projectToEdit, editedProject)` is called to replace the old project with the edited project with the new parameters.
 This method also update the list of project names in the employees who are assigned to project Apollo.
+.  Finally, the project Apollo is edited and the details showing on the ui are updated as well.
 
 |===
 |image:ug-notepadpencil.png[width="40"]|
 If the arguments provided are invalid, a `CommandException` will be thrown and error message will be shown.
 |===
-.  Finally, the project Apollo is edited and the details showing on the ui are updated as well.
 
 The working mechanism behind `EditProjectMilestoneCommand` is similar as well. Instead of replacing the whole project, only the milestone list in the project is edited by replacing the milestone at the given index through `Model#setMilestone(milestoneToEdit, editedMilestone)` method.
 
 ==== Design Consideration
+===== Aspect how to structure the classes under edit command
 
+Alternative 1: Have a single edit project command that allow users to edit all the parts of the project in one command
+
+Alternative 2: Have several separate commands that edit different parts of the project (current implementation)
+
+For alternative 1, the user will not need to remember many commands just to edit the project. However since there are a lot of components in the project,
+different prefixes will be needed for different component so that the parser can identify which component to edit. There are also overlapping attributes in the
+components such as milestone date and project deadline or milestone description and project description. Therefore it is going to be messy in terms of code
+as well as in terms of usage of the command.
+
+Even though alternative 2 involves having to remember different commands, it can be implemented in a way so that the commands are intuitive to the user. For instance,
+the command format for current implementation is quite intuitive. The user just need to specify `edit project` then add in name of the project to edit and the components the user wish to edit.
+Thus, alternative 2 is chosen as it is less confusing both in term of code and usage and can be tweaked to make the command user-friendly.
+
+//end::editproject2[]
 //end::editproject[]
 
 // tag::find[]
@@ -630,7 +649,7 @@ For `find skill` command, the `List<Skills>skills` from employee is retrieved as
 ==== Design Considerations
 
 ===== Aspect: How `find` command is parsed
-Alternative 1: Have a nested `FindCommandParser` (current implementation)
+Alternative 1: Have a separate `FindCommandParser` to parse the command (current implementation)
 
 Alternative 2: Let `PocketProjectParser` handle parsing of all the `find` commands
 
