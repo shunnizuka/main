@@ -1278,15 +1278,41 @@ data of your previous Pocket Project folder.
 |`removefrom Apollo userstory 2`
 
 
-|Edit
-|Column 2, row 5
-|Column 3, row 5
-|Column 4, row 5
+|Edit Employee's details
+|`edit employee INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB] [s/SKILL]...`
+|`edit employee 2 n/Betsy Crower s/C s/HTML`
 
-|Find
+|Edit Project details
+|`edit project PROJECT_NAME info [n/name] [c/client] [d/deadline] [desc/description]`
+|`edit project Apollo info n/Gemini c/John d/12/09/2020 desc/An application for project management`
+
+|Edit milestone details in the project
+|`edit project PROJECT_NAME milestone MILESTONE_INDEX [m/milestone] [d/date]`
+|`edit project Apollo milestone 2 m/Implement edit command d/09/04/2019`
+
+|Edit Userstory details in the project
 |Column 2, row 6
 |Column 3, row 6
-|Column 4, row 6
+
+|Find employees using name
+|`find employee KEYWORD [MORE_KEYWORDS]`
+|`find employee John`
+
+|Find employees using skills
+|`find skill KEYWORD [MORE_KEYWORDS]`
+|`find skill java`
+
+|Find projects using name
+|`find project KEYWORD [MORE_KEYWORDS]`
+|`find project Apollo`
+
+|Find projects using words found in name and description
+|`find all KEYWORDS [MORE KEYWORDS]`
+|`find all management`
+
+|Find projects using deadline
+|`find deadline KEYWORD`
+|`find deadline 15/04/2019`
 
 |Update
 |Column 2, row 7
