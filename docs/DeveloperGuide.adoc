@@ -441,7 +441,7 @@ This feature allows editing of several components which are under project and is
 
 . `edit project PROJECT_NAME info [ARGUMENTS]` - allow editing of project's name, deadline, description
 . `edit project PROJECT_NAME milestone [ARGUMENTS]` - allow editing of details of project milestone such as milestone description and date
-. `edit project PROJECT_NAME userstory [ARGUMENTS]` - allow editing of details of project's userstory (refer to Jeff's portion) 
+. `edit project PROJECT_NAME userstory [ARGUMENTS]` - allow editing of details of project's userstory (refer to Jeff's portion)
 
 The `EditProjectCommand Parser` differentiate these 3 commands based on the `COMMAND_KEYWORD` which are info, milestone and userstory.
 

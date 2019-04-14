@@ -560,7 +560,7 @@ Only full words will be matched e.g. `Han` will not match `Hans`
 |===
 ==== Find employees in the application: `find employee`
 
-You can search for employees by using their names as of the given keywords. 
+You can search for employees by using their names as of the given keywords.
 
 Format: `find employee KEYWORD [MORE_KEYWORDS]`
 
