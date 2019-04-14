@@ -8,6 +8,6 @@ public abstract class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " employee INDEX [n/name] [p/phone] [g/github] [e/email] "
-        + "[s/skills]\n" + COMMAND_WORD + " project PROJECT_NAME info/milestone [ARGUMENTS]";
+        + "[s/skills]\n" + COMMAND_WORD + " project PROJECT_NAME info/milestone/userstory [ARGUMENTS]";
 
 }

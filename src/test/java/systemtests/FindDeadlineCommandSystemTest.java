@@ -105,19 +105,6 @@ public class FindDeadlineCommandSystemTest extends PocketProjectSystemTest {
         assertCommandFailure(command, CalendarDate.DAY_MONTH_CONSTRAINTS);
         assertSelectedProjectCardUnchanged();
 
-        //TODO View Project stuff
-        /* Case: find while a project is selected -> selected card deselected */
-        /*
-        showAllProjects();
-        viewProject(Index.fromOneBased(1));
-        assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getEmployeeName()
-            .equals(DANIEL.getEmployeeName().fullName));
-        command = FindDeadlineCommand.COMMAND_WORD + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " Daniel";
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardDeselected();
-        */
-
         /* Case: find project in empty Pocket Project -> 0 projects found */
         deleteAllProjects();
         command = FindDeadlineCommand.COMMAND_WORD + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " 12/12/2012";

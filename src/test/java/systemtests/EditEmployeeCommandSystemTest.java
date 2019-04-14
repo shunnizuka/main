@@ -200,7 +200,7 @@ public class EditEmployeeCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: invalid skill -> rejected */
         assertCommandFailure(EditEmployeeCommand.COMMAND_WORD + " " + EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD
-                + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + INVALID_SKILL_DESC,
+                + " " + INDEX_FIRST_EMPLOYEE.getOneBased() + SKILL_DESC_C + INVALID_SKILL_DESC,
             Skill.MESSAGE_CONSTRAINTS);
 
         /* Case: edit a employee with new values same as another employee's values -> rejected */

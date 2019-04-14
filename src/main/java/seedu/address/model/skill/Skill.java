@@ -9,8 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Skill {
 
-    public static final String MESSAGE_CONSTRAINTS = "Skill names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Skill names should not be empty";
 
     public final String skillName;
 
@@ -36,7 +35,7 @@ public class Skill {
      * Returns true if a given string is a valid skill name.
      */
     public static boolean isValidSkillName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return !test.trim().isEmpty();
     }
 
     @Override
