@@ -46,16 +46,14 @@ This section shows a summary of contributions I have made for the project.
 *** Set up reposense
 
 == Contributions to the User Guide
-
+This section includes User Guide documentation I have written for the features that I have implemented.
 
 include::../UserGuide.adoc[tag=find]
 include::../UserGuide.adoc[tag=edit]
 
 == Contributions to the Developer Guide
 
-|===
-|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
-|===
+This section includes documentation on implementation of the `find` and `edit` command that I worked on.
 
 include::../DeveloperGuide.adoc[tag=find]
 include::../DeveloperGuide.adoc[tag=editproject]
