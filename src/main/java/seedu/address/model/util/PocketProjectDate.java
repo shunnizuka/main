@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -278,13 +277,6 @@ public class PocketProjectDate extends CalendarDate {
      * @return true is valid format DD/MM/YYYY, otherwise false.
      */
     public static boolean isValidDate(String input) {
-        DateFormat format = SIMPLE_DATE_FORMAT;
-        format.setLenient(false);
-        try {
-            SIMPLE_DATE_FORMAT.parse(input);
-        } catch (ParseException e) {
-            return false;
-        }
         return input.matches(VALIDATION_REGEX);
     }
 
