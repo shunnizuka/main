@@ -28,8 +28,7 @@ public class AddEmployeeToCommandTest {
 
     private Model model = new ModelManager(TestUtil.typicalPocketProject(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
-
-    //TODO
+    
     @Test
     public void execute_validProjectNameValidIndex_success() {
         Project targetProject = model.getProjectWithName(TypicalProjects.PROJECT_ALICE.getProjectName());

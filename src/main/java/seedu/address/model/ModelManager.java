@@ -388,8 +388,7 @@ public class ModelManager implements Model {
     public Project getSelectedProject() {
         return selectedProject.getValue();
     }
-
-    //TODO CHANGE THIS
+    
     @Override
     public void setSelectedProject(Project project) {
         if (project != null && !filteredProjects.contains(project)) {

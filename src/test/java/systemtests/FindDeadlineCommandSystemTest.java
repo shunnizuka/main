@@ -93,8 +93,7 @@ public class FindDeadlineCommandSystemTest extends PocketProjectSystemTest {
         command = "FinD" + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " 12/12/2012";
         assertCommandSuccess(command, expectedModel);
         assertSelectedProjectCardUnchanged();
-
-        //TODO the error message should be CalendarDate.DAY_MONTH_CONSTRAINTS
+        
         /* Case: wrong date format -> invalid date*/
         command = FindDeadlineCommand.COMMAND_WORD + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " 31/04/2019";
         assertCommandFailure(command, CalendarDate.DAY_MONTH_CONSTRAINTS);
