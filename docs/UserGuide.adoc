@@ -574,6 +574,7 @@ Refer to the diagram below to see how the new user story is shown.
 image::addto-user-story-ui.png[width="500"]
 // end::adduserstory[]
 
+//tag:delete_dehui[]
 === Delete a project or an employee from the application `delete`
 
 ==== Delete a project from the application: `delete project`
@@ -599,8 +600,8 @@ image::ug-deleteproject_before.png[]
 image::ug-deleteproject_after.png[]
 
 * `delete project 1` +
-Deletes the first project shown in the most recent displayed list of projects. Figure 16 shows the command being typed but not entered yet
-and figure 17 shows the effect of the command.
+Deletes the first project shown in the most recent displayed list of projects. The first figure above shows the command being typed but not entered yet
+and the second shows the effect of the command.
 
 ==== Delete an employee from the application: `delete employee`
 
@@ -623,7 +624,10 @@ Either the `list employee` command or the `find employee` command needs to be in
 before calling the `delete employee` command as the index is referenced from the last returned list
 of employees.
 
+//end::delete_dehui[]
 === Remove an employee/milestone/project task/user story from a project : `removefrom`
+
+//tag::removefrom_dehui[]
 
 ==== Remove an employee from a project: `removefrom PROJECT_NAME employee`
 
@@ -643,7 +647,7 @@ image::ug-removeemployee_after.png[]
 click on the right arrowhead till the page showing the list of employees in the project +
 `removefrom p1 employee 1` +
 Removes the employee at first position at displayed list of employees from the project 'p1'. The effect of the command is
-demonstrated in figures 18 and 19.
+demonstrated in the two figures above.
 
 ==== Remove a milestone from a project: `removefrom PROJECT_NAME milestone`
 
@@ -663,6 +667,8 @@ Removes the milestone at 1st position of displayed list of milestone from Projec
 the displayed list of employees.
 |image:ug-exclamation.png[width="50"]|The index must be a *positive integer* and cannot be larger than the size of the list.
 |===
+
+//end::removefrom_dehui[]
 
 //tag::daryl[]
 
@@ -1110,6 +1116,7 @@ image::view-project-ui.png[]
 
 // end::view[]
 
+//tag::completeAndStats_dehui[]
 === To indicate the project has been completed : `complete`
 
 Indicates that a project is completed. Currently this command has similar effect to deleting the project, but
@@ -1152,7 +1159,7 @@ deadline: 29/04/2019 | reached 0 out of 1 milestones +
 Milestones not reached yet: +
 1. Finish userguide | deadline: 28/04/2019 | 0 out of 1 tasks completed. +
 
-
+//end::completeAndStats_dehui[]
 
 // tag::undoredo[]
 === Undoing previous command : `undo`
