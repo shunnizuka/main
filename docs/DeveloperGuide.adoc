@@ -359,7 +359,7 @@ Format(s):
 The section details how a fixed and flexible date format is parsed and processed.
 
 .Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
-image::dg-activitydiagdate.png[width="700"]
+image::dg-activitydiagdate.png[width="500"]
 
 Refer to the Activity Diagram above while reading the explanation so as to have a visual
 representation of what happens.
@@ -380,7 +380,7 @@ of `DD/MM/YYYY` at this stage.
 Refer to the code snippet below to see how the validity of the date is verified.
 
 .Code snippet showing verification of a validity of a date.
-image::dg-codesnippet.png[width="500"]
+image::dg-codesnippet.png[width="300"]
 
 As can be seen above, the code not only checks if the selected day falls within the maximum number of days
 in a month, but it also checks for leap years. This ensures that only valid calendar dates are accepted
@@ -435,39 +435,27 @@ image::dg-addtoclassdiagram.png[width="300"]
 
 ==== How it Works
 
-Given below is an example usage scenario and how the addition of employee/milestone to a project feature behaves at each step.
-
-*Add Employee To Project Command Usage Scenario*
-
-. The user enters the command `list employees`.
-. The app displays the list of employees in the Pocket Project by executing the `list` command.
-. The user enters `addto Apollo employee 1`.
-. The `LogicManager` passes the entered string to the `PocketProjectParser`.
-. The `PocketProjectParser` parses the string received and uses the `addto` keyword to identify that the input
-is linked with the `AddToCommand` class.
-. The rest of the string is then passed to the `AddToCommandParser` to identify the type of `AddToCommand`
-that is being executed and the arguments involved.
-. The `AddToCommandParser` then creates the `AddEmployeeToCommand` object and this is passed on to the `LogicManager` for execution.
-. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding
-employee to the project.
-
-Refer to the sequence diagram below to better understanding how the `AddEmployeeTo` Command
-works.
+The section details how a `AddToCommand` is parsed and processed.
 
 .Sequence Diagram: How the Add Employee To Command Works
-image::dg-addemployeeto.png[width="800"]
+image::dg-addemployeeto.png[width="1000"]
 
-*Add Milestone To Project Command Usage Scenario*
+Refer to the sequence diagram above to better understand how the `AddEmployeeTo` Command
+works. The diagram shows the sequence when a `addto Apollo employee 1` is executed.
 
-. The user enters the command `addto Apollo milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`.
-. The rest of the execution process is similar to Steps 4 - 8 of the *Add Employee To Command* mentioned above except that
-an `AddMilestoneToCommand` object is created instead in Step 2d and the corresponding milestone is added to the
-project in Step 2e.
+To simplify the explanation, the process can be summarized into the following key points:
+. The `PocketProjectParser` parses the string received and uses the `addto` keyword to identify that the input
+is linked with the `AddToCommand` class.
+. The `AddToCommandParser` then identifies the type of `AddToCommand` that is being executed and the arguments involved.
+. The `AddToCommandParser` then creates the `AddEmployeeToCommand`/`AddMilestoneToCommand` object and this is passed on to the `LogicManager` for execution.
+. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding
+employee/milestone to the project.
+
 
 [width="300",cols="100,<200"]
 |===
-|image:ug-lightbulb.png[width="50"]| With reference to the above usage scenarios, the main difference is deciding the object
-to be added (Employee or Milestone) based on the user input
+|image:ug-lightbulb.png[width="50"]| The main difference between the 2 commands is deciding the object
+to be added (Employee or Milestone) from model based on the user input.
 |===
 
 ==== Design Considerations
