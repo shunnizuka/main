@@ -793,13 +793,10 @@ also after the date of the latest milestone in the project.
 Note that there is a minor bug that does not allow 'info' as part of the argument for the description of the project (e.g. 'desc/A project info...' is not accepted). We are working hard to fix this issue soon.
 |===
 
-Below is the before and after screenshots when the command `edit project PocketProjcet info desc/A project management tool d/20/05/2019`.
+Below is the before and after screenshots of when the command `edit project PocketProject info desc/A project management tool d/20/05/2019` is entered.
 
-.Before entering the edit project command
-image::edit_project_before.png[]
-
-.After the edit project command is entered
-image::edit_project_after.png[]
+.Before and after comparison for `edit project PocketProjcet info desc/A project management tool d/20/05/2019` command
+image::edit_project_before.png[width:"300"]
 
 ==== Edit milestone of a project: `edit project milestone`
 
@@ -827,11 +824,8 @@ Below is the before and after screenshot of how the command should work. The com
 `edit project Orbital milestone 1 m/Version 1.1 refactoring d/03/08/2019` will be used to show
 this.
 
-.Before entering the edit command
+.Before and after comparison of `edit project Orbital milestone 1 m/Version 1.1 refactoring d/03/08/2019`
 image::edit_project_milestone_before.png[]
-
-.After entering the edit command
-image::edit_project_milestone_after.png[]
 
 //end::edit[]
 
@@ -919,12 +913,12 @@ Returns a list of employees who has java skill.
 . `find skill java C`
 Returns a list of employees who have either java or C or both.
 
+//end::findskill[]
+
 Below is a screenshot of what a successful find skill command will look like.
 
 .After entering `find skill java` command
 image::find_skill.png[]
-
-//end::findskill[]
 
 ==== Find projects in the application: `find project`
 
@@ -942,7 +936,7 @@ Below is a screenshot of what a successful find project command will look like.
 .After entering `find project apollo` command
 image::find_project.png[]
 
-//tag::findall+deadline[]
+//tag::findall[]
 
 ==== Find projects with any keywords: `find all`
 
@@ -953,13 +947,16 @@ Format: `find all KEYWORDS [MORE KEYWORDS]`
 Examples:
 
 . `find all software food`
-Returns a list of projects which contains either software or food or both.
+Returns a list of projects which contains either software or food or both as part of the name/description/client.
 
 Below is a screenshot of what a successful find all command will look like.
 
 .After entering `find all management` command
 image::find_all 1.png[]
 
+//end::findall[]
+
+//start::finddeadline[]
 ==== Find projects with deadline: 'find deadline'
 
 In order to manage your workload and be aware of the upcoming deadline, you can find all the project which will be due before a certain date.
@@ -971,7 +968,7 @@ Examples:
 . `find deadline 15/04/2019` +
 Returns a list of projects which has 15/04/2019 as the deadline or has deadlines that are before 15/04/2019
 
-//only for find deadline
+
 [width="1000",cols="100,<900"]
 |===
 |image:ug-exclamation.png[width="50"]|
@@ -980,12 +977,13 @@ Only accept one argument. e.g. will not accept `find deadline 15/04/2019 20/12/2
 Accepts both flexible date and calender date
 |===
 
+//end::finddeadline[]
+
 Below is a screenshot of what a successful find project command will look like.
 
 .After entering `find deadline this month 31` command
 image::find_deadline.png[]
 
-//end::findall+deadline[]
 
 //end::find[]
 
