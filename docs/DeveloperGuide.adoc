@@ -363,10 +363,10 @@ The section details how a fixed and flexible date format is parsed and processed
 .Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
 image::dg-activitydiagdate.png[width="700"]
 
-Refer to the Activity Diagram above while reading the explanation that follows so as to have a better
-understanding of how it works
+Refer to the Activity Diagram above while reading the explanation so as to have a visual
+representation of what happens.
 
-When a date input is received, it will first be parsed
+When a date input needs to be parsed, it enters the
 *Fixed Date Format*
 
 . The user enter the command `addto Apollo milestone m/Completed DG d/15/04/2019`
@@ -396,15 +396,10 @@ based on the input.
 . ParserUtil` then uses methods `isValidDateFormat` and `isValidDayInMonth` in model to check the format
 and validity of the the input date.
 
-Refer to the Activity Diagram below for a better understanding of how it works
-
-.Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
-image::dg-activitydiagdate.png[width="600"]
-
 Refer to the code snippet below to see how the validity of the date is verified.
 
 .Code snippet showing verification of a validity of a date.
-image::dg-codesnippet.png[width="700"]
+image::dg-codesnippet.png[width="500"]
 
 As can be seen above, the code not only checks if the selected day falls within the maximum number of days
 in a month, but it also checks for leap years. This ensures that only valid calendar dates are accepted
@@ -479,7 +474,7 @@ Refer to the sequence diagram below to better understanding how the `AddEmployee
 works.
 
 .Sequence Diagram: How the Add Employee To Command Works
-image::dg-addemployeeto.png[width="700"]
+image::dg-addemployeeto.png[width="800"]
 
 *Add Milestone To Project Command Usage Scenario*
 
