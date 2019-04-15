@@ -1,0 +1,74 @@
+= Jothinandan Pillay - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== Pocket Project: About the Application
+Pocket Project was built by my team and I in our second year in NUS while pursuing a Computer Science degree. We were
+inspired to create this application as we sought ways to improve efficiency in project management.
+This application was created with the intention of supporting software engineering project managers
+throughout the lifetime of a project, from the planning phase until it is delivered to the client.
+
+Pocket Project's *core functionality* includes:
+* Adding employees and projects to the application
+* Adding user stories to a project which is essential for planning.
+* Assigning projects to employees based on their individual skill sets.
+* Monitoring the progress of a project through milestones and tasks.
+
+== Summary Of My Contributions
+In this section, I detail some of my key contributions towards this application in terms of both features and
+documentation.
+
+* *Major Contribution*: Smart Dates
+
+** *What it does*: This allows the user flexibility in keying in dates when required and supports 2 main sub-formats.
+*** Firstly, it supports a fixed date format where users can key in a date according to *"DD/MM/YYYY"*.
+*** Secondly, it also accepts flexible input from the user. If the user wants a day relative to the current day, he/she can simply type *"today/tomorrow/yesterday"*. Otherwise
+if the user wants a day relative to current week, he/she can input *"this/next/last week DAY_OF_WEEK"*. Lastly if the user wants a date
+relative to the current month, he/she can simply go for *"this/next/last month DAY_OF_MONTH"*.
+*** The validity of the target date is also verified.
+
+** *Why is it useful and important*: As expected, when it comes to a project manager application, the use of dates are used
+extensively in other features throughout the application. In addition, there is likely to be changes
+in dates of milestones or deadlines throughout the lifetime a project. So, this feature enables the user a quick and user-friendly way
+to execute certain commands, greatly improving efficiency. Some of these commands include,
+*** Setting of dates when creating and completing projects and milestones.
+*** Editing of the all components with dates inside a particular project.
+*** Finding projects that are due by a certain *DEADLINE*.
+
+** *The code that I contributed*: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/144[Functional Code & Tests]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/172[Re-structure & Abstraction]]
+
+* *Minor Contributions*:
+** Created functionality for the below mentioned features:
+*** Enabled adding projects to the application. [https://github.com/cs2103-ay1819s2-w10-2/main/pull/49[#49]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/116[#116]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/198[#198]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/208[#208]]
+*** Enabled adding employees and milestones to projects. [https://github.com/cs2103-ay1819s2-w10-2/main/pull/88[#88]][https://github.com/cs2103-ay1819s2-w10-2/main/pull/95[#95]][https://github.com/cs2103-ay1819s2-w10-2/main/pull/109[#109]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/120[#120]]
+** Changed functionality for the below mentioned features
+*** Changed the address attribute of an employee to GitHub account as it is more
+useful in a software engineering project context. [https://github.com/cs2103-ay1819s2-w10-2/main/pull/130[#130]]
+** Enhanced appearance of the User Interface (UI)
+*** Designed the Pocket Project application logo (seen below)
+
+https://github.com/cs2103-ay1819s2-w10-2/main/pull/32
+https://github.com/cs2103-ay1819s2-w10-2/main/pull/34
+
+* *Overall Code Contributions*: [https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&search=jothipillay[RepoSense]]
+
+
+
+=== Contributions to the User Guide
+* I contributed to the following sections in the User Guide
+** Section 1: Introduction
+** Section 2: Background Information
+** Section 3.3: Symbols
+** Section 3.4: Glossary
+** Section 4: Features
+
+=== Contributions to the Developer Guide
+* I contributed to the following sections in the Developer Guide
+** Section 1: Introduction
+** Section 2: Background Information
+** Section 3: Before We Begin
+** Section 6.1: Add employee/milestone/user story to projects feature
+** Appendix A: Product Scope
+** Appendix B: User Stories
+
