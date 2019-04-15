@@ -3,10 +3,11 @@ package seedu.address.model.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.model.util.CalendarDate.DAY_FIELD;
-import static seedu.address.model.util.CalendarDate.MONTH_FIELD;
-import static seedu.address.model.util.CalendarDate.YEAR_FIELD;
+import static seedu.address.model.util.PocketProjectDate.DAY_FIELD;
+import static seedu.address.model.util.PocketProjectDate.MONTH_FIELD;
 import static seedu.address.model.util.PocketProjectDate.PADDING;
+import static seedu.address.model.util.PocketProjectDate.YEAR_FIELD;
+
 
 import java.time.LocalDateTime;
 

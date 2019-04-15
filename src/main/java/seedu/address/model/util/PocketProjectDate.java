@@ -13,7 +13,7 @@ import java.util.Comparator;
  * The class that it used to present all date objects used throughout the application
  */
 
-public class PocketProjectDate extends CalendarDate {
+public class PocketProjectDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format DD/MM/YYYY and the year field only "
         + "accepts values between 2000 and 2099 inclusive. User can also "
@@ -56,14 +56,12 @@ public class PocketProjectDate extends CalendarDate {
         }
     };
 
-    public static final DateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
-    /**
-     * Number of components in a date.
-     */
     public static final int NUM_COMPONENTS = 4;
-
     public static final int PADDING = 0;
+    public static final int DAY_FIELD = 0;
+    public static final int MONTH_FIELD = 1;
+    public static final int YEAR_FIELD = 2;
 
     /**
      * Target date format.
