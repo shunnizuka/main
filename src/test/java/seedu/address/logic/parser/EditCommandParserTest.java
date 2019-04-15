@@ -20,7 +20,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -163,8 +162,6 @@ public class EditCommandParserTest {
             + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1"
             + INVALID_GITHUB_DESC, GitHubAccount.MESSAGE_CONSTRAINTS); //invalid gh
-        assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1"
-            + INVALID_SKILL_DESC, Skill.MESSAGE_CONSTRAINTS); // invalid skill
 
         // invalid phone followed by valid email
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1" + INVALID_PHONE_DESC
@@ -190,9 +187,6 @@ public class EditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, EditEmployeeCommand.EDIT_EMPLOYEE_KEYWORD + " 1" + INVALID_NAME_DESC
             + INVALID_EMAIL_DESC + VALID_GITHUB_AMY + VALID_PHONE_AMY, EmployeeName.MESSAGE_CONSTRAINTS);
-
-        System.out.println(EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE
-            + " " + EditProjectInfoCommand.EDIT_INFO_KEYWORD + INVALID_PROJECT_NAME_DESC);
 
         //=========== EditProjectCommand ==============================================================================
 
@@ -360,7 +354,6 @@ public class EditCommandParserTest {
         userInput = EditProjectCommand.EDIT_PROJECT_KEYWORD + " " + VALID_PROJECT_NAME_ALICE + " "
             + EditProjectInfoCommand.EDIT_INFO_KEYWORD + NAME_DESC_AMY + CLIENT_DESC_ZULU + DEADLINE_DESC_ALICE
             + NAME_DESC_BOB + CLIENT_DESC_ALICE + DEADLINE_DESC_ZULU;
-        System.out.println(userInput);
         EditProjectInfoCommand.EditProjectDescriptor projectDescriptor = new EditProjectDescriptorBuilder()
             .withName(VALID_NAME_BOB).withClient(VALID_CLIENT_ALICE).withDeadline(VALID_DEADLINE_ZULU).build();
         EditProjectInfoCommand expectedProjCommand = new EditProjectInfoCommand(targetProject, projectDescriptor);

@@ -50,7 +50,7 @@ also the proposed schedule for the weeks ahead until the project is due for comp
 
 === Symbols
 The following section details and previews a few symbols that will
-be used throughout the user guide. These symbols are used to represent
+be used throughout the developer guide. These symbols are used to represent
 special information such as tips and warnings.
 
 |===
@@ -253,15 +253,17 @@ image::SDforDeletePerson.png[width="800"]
 
 The sections below give more details of each component.
 
+// tag::ui[]
 [[Design-Ui]]
 === UI component
 
 .Structure of the UI Component
-image::UiClassDiagram.png[width="800"]
+image::UiClassDiagram.png[width="650"]
+// end::ui[]
 
 *API* : link:{repoURL}/blob/master/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EmployeeListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `SideTabPanel`, `StatusBarFooter`, `DetailsPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/blob/master/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/blob/master/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -541,6 +543,7 @@ The methods does not take in indices as arguments since the corresponding Employ
 before the methods of `Model` are called.
 The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone, project tasks and user stories are similar:
 
+.Sequence diagram showing execution of `removefrom Apollo employee 1`.
 image::remove_employee_from_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario and how the removal of employee/milestone/project task/user story feature behaves at each step.
@@ -571,71 +574,111 @@ There will also be less clutter in `PocketProjectParser` as there are already a 
 
 // end::removefrom[]
 
+//tag::editproject1[]
+
 === Edit Project feature
 ==== Current Implementation
 
 This feature allows editing of several components which are under project and is mainly facilitated by the model component. This feature supports 3 main commands:
 
-. `edit project PROJECT_NAME info [ARGUMENTS]` - allow editing of project's name, deadline, description
-. `edit project PROJECT_NAME milestone [ARGUMENTS]` - allow editing of details of project milestone such as milestone description and date
-. `edit project PROJECT_NAME userstory [ARGUMENTS]` - allow editing of details of project's userstory (refer to Jeff's portion)
+. `edit project PROJECT_NAME info [n/name] [c/client] [d/deadline] [desc/description]` - allow editing of project's name, deadline, description
+. `edit project PROJECT_NAME milestone MILESTONE_INDEX [m/milestone] [d/date]` - allow editing of details of project milestone such as milestone description and date
+. `edit project PROJECT_NAME userstory USERSTORY_INDEX STORY` - allow editing of details of project's userstory (explained here <<Edit user story command>>)
 
 The `EditProjectCommand Parser` differentiate these 3 commands based on the `COMMAND_KEYWORD` which are info, milestone and userstory.
 
-The following sequence diagram shows how `edit project info` command works;
+//eng::editproject1[]
 
-Given below is the example usage scenario of how `edit project info` command works:
+.Class diagram showing inheritance for `EditCommand`
+image:edit_command_class_diagram.png[width:"300"]
 
-. User executes `edit project PocketProject info desc/A project management tool d/20/05/2019` to edit description and deadline of the project named PocketProject
-. `PocketProjectParser` will parse and identify the command as an `EditCommand` and pass on the argument `project PocketProject info desc/A project management tool d/20/05/2019`.
-. `EditCommandParser` identify the command as a `EditProjectCommand` based on the word `project` and pass it onto `EditProjectCommandParser`
-. `EditProjectCommandParser` then identify the command as a `EditProjectInfoCommand` based on the `COMMAND_KEYWORD` `info` and create the respective command and return it back to the `LogicManager`
-. `LogicManager` then execute the command and check the validity of the parameters to be edited (in this case, the deadline and the description parameters are checked). The method `Model#setProject(projectToEdit, editedProject)` to replace the old project with the edited project with the new parameters.
-. Finally, the project PicketProject is edited and the details showing on the ui is updated as well.
+All the 3 commands are inherited from the `EditProjectCommand`. This allows flexibility as more edit project command can be easily added when there are new components added to the project.
 
-The working mechanism behind `EditProjectMilestoneCommand` is similar as well, instead of replacing the whole project, only the milestone list in the project is edited and replaced through `Model#setMilestone(milestoneToEdit, editedMilestone)` method.
+//editproject2[]
+The following sequence diagram shows how `edit project info` command works:
+
+.Sequence diagram for `edit project Apollo info n/Gemini d/12/05/2019`
+image:edit_project_sequence_diagram.png[width:"800"]
+
+Given below is the explanation of what happens when the user enter the `edit project info` command based on the diagram above:
+
+. User executes `edit project Apollo info n/Gemini d/12/05/2019` to edit name and deadline of the project named Apollo.
+. `PocketProjectParser` will identify the command as an `EditCommand` based on the word `edit` and pass on the argument to the EditCommandParser.
+. `EditCommandParser` will identify the command as a `EditProjectCommand` based on the word `project` and pass it onto `EditProjectCommandParser`
+. `EditProjectCommandParser` then identify the command as a `EditProjectInfoCommand` based on the word `info` and create the respective command and return it back to the `LogicManager`
+. `LogicManager` then execute the command. Validity of the arguments are checked here as well. The method `Model#setProject(projectToEdit, editedProject)` is called to replace the old project with the edited project with the new parameters.
+This method also update the list of project names in the employees who are assigned to project Apollo.
+.  Finally, the project Apollo is edited and the details showing on the ui are updated as well.
+
+|===
+|image:ug-notepadpencil.png[width="40"]|
+If the arguments provided are invalid, a `CommandException` will be thrown and error message will be shown.
+|===
+
+The working mechanism behind `EditProjectMilestoneCommand` is similar as well. Instead of replacing the whole project, only the milestone list in the project is edited by replacing the milestone at the given index through `Model#setMilestone(milestoneToEdit, editedMilestone)` method.
 
 ==== Design Consideration
+===== Aspect how to structure the classes under edit command
 
+Alternative 1: Have a single edit project command that allow users to edit all the parts of the project in one command
+
+Alternative 2: Have several separate commands that edit different parts of the project (current implementation)
+
+For alternative 1, the user will not need to remember many commands just to edit the project. However since there are a lot of components in the project,
+different prefixes will be needed for different component so that the parser can identify which component to edit. There are also overlapping attributes in the
+components such as milestone date and project deadline or milestone description and project description. Therefore it is going to be messy in terms of code
+as well as in terms of usage of the command.
+
+Even though alternative 2 involves having to remember different commands, it can be implemented in a way so that the commands are intuitive to the user. For instance,
+the command format for current implementation is quite intuitive. The user just need to specify `edit project` then add in name of the project to edit and the components the user wish to edit.
+Thus, alternative 2 is chosen as it is less confusing both in term of code and usage and can be tweaked to make the command user-friendly.
+
+//end::editproject2[]
+//end::editproject[]
 
 // tag::find[]
 === Find Employee/Project/Skill/All feature
 ==== Current Implementation
-For the current `find` feature, there are 4 main commands that the user can execute:
+For the current `find` feature, there are 5 main commands that the user can execute:
 
-    . `find employee [keywords]` - display employees with name containing keywords
-    . `find project [keywords]` - display projects with name containing keywords
-    . `find skill [keywords]` - display employees who has skills matching the keywords
-    . `find all [keywords]` - display projects which contains words matching the keywords
+    . `find employee [KEYWORDS]` - display employees with name containing keywords
+    . `find project [KEYWORDS]` - display projects with name containing keywords
+    . `find skill [KEYWORDS]` - display employees who has skills matching the keywords
+    . `find all [KEYWORDS]` - display projects which contains words matching the keywords
+    . `find deadline KEYWORD` - display projects which contains deadline before the keyword
 
-The `FindCommandParser` differentiate these 3 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill).
+The `FindCommandParser` differentiate these 5 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill/all/deadline).
 
 The following sequence diagram shows how the `find employee` command works:
 
+.Sequence diagram for `find employee John` command
 image::findcommand_sequence_diagram.png[width="1000"]
 
 Usage Scenario example for `find employee`:
 
 . User executes `find employee John` to look for employees whose names contains the word 'John'.
 . `PocketProjectParser` will parse and identify the command as a `FindCommand` and pass on the argument `employee John` to `FindCommandParser`.
-.  `FindCommandParser` identify the command based on the `COMMAND_KEYWORD` employee.
-. `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist. The filtering is done using a predicate that checks through the names of the employee int the application.
+. `FindCommandParser` identify the command based on the `COMMAND_KEYWORD` employee.
+. `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist. The filtering is done through the use of `ProjectNameContainsKeywordPredicate` that checks through the names of the employee int the application.
 . Finally, the `filteredEmployees` list which is the list displayed on the ui is updated.
 
 The working mechanism for `find project` is similar to `find employee`. Instead of updating the `filteredEmployees`, `filteredProjects` is updated instead to display the list of projects with name consisting the keywords.
 
-For `find all` command, the predicate is used to check for the matching keywords in the project name , description, client and deadline, thereby filtering out any projects that contains the keyword in any component of the project.
+For `find all` command, the predicate is used to check for the matching keywords in the project name , description and client, thereby filtering out any projects that contains the keyword in these components of the project.
 
 For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
+
+`find deadline` uses the `ProjectContainsDeadlinePredicate` to compare the deadline of the project against the supplied deadline and filter out the projects with deadline earlier or same as the deadline supplied by the user.
 
 ==== Design Considerations
 
 ===== Aspect: How `find` command is parsed
-Alternative 1: Have a nested `FindCommandParser` (current implementation)
+Alternative 1: Have a separate `FindCommandParser` to parse the command (current implementation)
 
 Alternative 2: Let `PocketProjectParser` handle parsing of all the `find` commands
 
-Using Alternative 1 is better as it provides better abstraction as the details of the 3 different commands will be hidden away. Hence it is more in line with OOP principles. There will also be less clutter in `FindCommandParser` as there are already a lot of other commands being parsed.
+Using Alternative 1 is better because it provides better abstraction as the details of the 5 different find commands will be hidden away as just a single FindCommand.
+Hence it is more in line with OOP principles. There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
 // end::find[]
 
 // skill::undoredo[]
@@ -651,6 +694,7 @@ The `ListCommandParser` will parse the user input based on the `COMMAND_KEYWORD`
 
 The following sequence diagram shows how the list employee command works:
 
+.Sequence diagram for `list employee` command
 image::listcommand_sequence_diagram.png[width="1000"]
 
 Usage Scenario example for `list employee`:
@@ -684,15 +728,16 @@ The operation will be supported by the methods in the `Model` interface: `Model#
 `Model#overallStats()` will retrieve the data on all the projects/employees to pass to `StatsUtil`, an utility class to produce a string which describes
 the status of all projects. `Model#individualStats(Project)` passes the given project to `StatsUtil` to produce a string in a similar fashion.
 
-
 The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
 
+.Sequence diagram for stats
 image::overallStatsSequenceDiagram.png[width="1000"]
 
 Individual Project:
 
+.Sequence diagram for stats
 image::individualStatsSequenceDiagram.png[width="1000"]
 
 Usage Scenario example for `stats`:
@@ -717,6 +762,7 @@ It would be inappropriate to put these methods under the command class or the mo
 
 // end::stats[]
 
+// tag::userstorygeneral[]
 === User Story feature
 ==== General Implementation
 
@@ -725,10 +771,10 @@ which will store the relevant user stories as a `SortedUserStoryList`.
 
 Currently, the user stories feature supports the following commands:
 
-* `addto [project name] userstory i/STORY_IMPORTANCE [story]` -- Adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
-* `removefrom [project name] userstory [userstory index]` -- Removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
-* `edit project [project_name] userstory [userstory index] [story]` --  Edits the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
-* `update [project_name] userstory [userstory index] [status]` -- Updates the status of the user story at the `[userstory index]` in the list of user stories in the project named `[project name]`.
+* `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY` -- Adds the user story specified in `STORY` to the list of user stories in the project with name `PROJECT_NAME`
+* `removefrom PROJECT_NAME userstory STORY_INDEX` -- Removes the user story at index `STORY_INDEX` in the list of user stories in the project named `PROJECT_NAME`.
+* `edit project PROJECT_NAME userstory STORY_INDEX STORY` --  Edits the user story at index `STORY_INDEX` in the list of user stories in the project named `PROJECT_NAME`.
+* `update PROJECT_NAME userstory STORY_INDEX STATUS` -- Updates the status of the user story at the `STORY_INDEX` in the list of user stories in the project named `PROJECT_NAME`.
 
 In addition, the `SortedUserStoryList` maintains a sorted order of user stories according to descending importance level of the user story, followed by ascending lexicographical order of the `UserStoryUser` name.
 
@@ -752,44 +798,44 @@ In the `SortedUserStoryList` these user stories would appear in the following or
 
 Since the user stories with users David and Alan have a higher importance level than John, they will appear above John in the sorted list. Afterwards, since Alan is lexicographically smaller than David, it appears before David in the list.
 
-This is to faciliate users to find important user stories by ensuring a neatly ordered list by relevance of the user story. If a user wishes to do so, they can also sort the list by `UserStoryStatus` using the JavaFX `TableColumn` built-in sort to see which user stories are in progress or on hold. Note that doing so would directly change the
-order of the user stories in the `SortedUserStoryList` hence changing the index of the user story. In general, the GUI is updated to reflect the actual list stored within `SortedUserStoryList` hence any command which acts on an index would affect the user story in that index shown on the GUI.
+This is to faciliate users to find important user stories by ensuring a neatly ordered list by relevance of the user story.
+// end::userstorygeneral[]
 
 ==== Implementation of individual commands
-===== Add user story to project command
-* `addto [project name] userstory i/STORY_IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
 
-This operation is supported by the `Model#addUserStoryTo(Project, UserStory)` method as well as the `Model#getProjectWithName(Name)` method in the `Model` interface.
-It takes in the project and user story as arguments. The specified user story is created and the project specified is located
-by the `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
+// tag::adduserstory[]
+
+===== Add user story to project command
+
+* `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY` -- adds the user story specified in `STORY` to the list of user stories in the project with name `PROJECT_NAME`
+
+This operation uses the `Model#addUserStoryTo(Project, UserStory)` and the `Model#getProjectWithName(Name)` methods in the `Model` interface.
+It takes in the project and user story as arguments. After checking that the `PROJECT_NAME` is valid and `STORY` is created, the `AddUserStoryToCommand#execute()` method is executed to add the `STORY` into the project.
 
 Given below is an example usage scenario and how the addition of user story to a project behaves at each step.
 
 Step 1. The user enters the command `list project'. The app displays the list of projects in the Pocket Project by executing the `list project` command.
 
-Step 2. The user enters `addto Apollo userstory i/1 as a user i want to view user stories so that i can track them`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `AddToCommand`
-by the `addto` keyword and passes the rest of the string to the `AddToCommandParser` to identify which type of `AddToCommand` is being executed and what are the arguments.
-The `AddToCommandParser` then creates the `AddUserStoryTo` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the user story to the project.
+Step 2. The user enters `addto Apollo userstory i/1 as a user i want to view user stories so that i can track them`. The `LogicManager` passes the string into the `PocketProjectParser` which detects it as a `AddToCommand`. It then passes the string to the `AddToCommandParser`
+which creates an `AddUserStoryTo` command. The `LogicManager` then checks for the validity of the user story and executes the `Model#addUserStoryTo(Project, UserStory)` method to add the new user story.
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[project index]` given must refer to some existing project.
+|image:ug-exclamation.png[width="60"]| The `PROJECT_NAME` entered must be valid and the `STORY` added needs to be of the correct format. Else, exceptions would be thrown.
 |===
-
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-exclamation.png[width="60"]| The `[userstory]` added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
-|===
+// end::adduserstory[]
+// tag::removeuserstory[]
 
 ===== Remove user story from project command
-* `removefrom [project name] userstory [userstory index]` -- removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
 
-This operation is supported by the `Model#removeUserStoryFrom(Project, UserStory)` method as well as the `Model#getProjectWithName(Name)` method in the `Model` interface.
-This method does not require the `[user story]` as arguments since the corresponding `[user story]` object associated with the Project object can be found by`RemoveUserStoryFromCommand#execute()`
-before the methods of `Model` are called using the index specified by the user.
+* `removefrom PROJECT_NAME userstory STORY_INDEX` -- removes the user story at index `STORY_INDEX` in the list of user stories in the project named `PROJECT_NAME`.
+
+This operation uses the `Model#removeUserStoryFrom(Project, UserStory)` and the `Model#getProjectWithName(Name)` methods in the `Model` interface.
+It does not require the user story as an argument since the corresponding user story object can be found by the specified `STORY_INDEX`. After checking that the `PROJECT_NAME` and user story is valid, the `AddUserStoryToCommand#execute()` method is executed to remove the user story from the project.
 
 The sequence diagram for the execution of the removing of a user story from a project is as follows:
 
+.Sequence diagram showing execution of `removefrom Apollo userstory 1`.
 image::remove_user_story_from_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario and how the removal of a user story behaves at each step.
@@ -798,23 +844,28 @@ Step 1. The user enters the command `view project Apollo'. The app displays the 
 
 Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
 
-Step 3. The user enters `removefrom Apollo userstory 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as a `RemoveFromCommand` from the `removefrom` keyword inputted and passes the rest of the string to the `RemoveFromCommandParser` to identify which type of `RemoveFromCommand` is being executed.
-The `RemoveFromCommandParser` then detects that the keyword `userstory` is inputted and created a `RemoveUserStoryFrom` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to remove the corresponding user story from the project.
+Step 3. The user enters `removefrom Apollo userstory 1`. The `LogicManager` passes the string into the `PocketProjectParser` which detects it as a `RemoveFromCommand`.
+It then passes the string to the `RemoveFromCommandParser` which creates an `RemoveUserStoryFrom` command. The `LogicManager` then checks for the validity of the user
+story and project and executes the `Model#removeUserStoryFrom(Project, UserStory)` method to remove the user story.
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story. If not, exceptions would be thrown during the execution of the command.
+|image:ug-exclamation.png[width="60"]| The `PROJECT_NAME` entered must be valid and exists in the app. The `STORY_INDEX` given must refer to some existing user story. If not, exceptions would be thrown during the execution of the command.
 |===
+// end::removeuserstory[]
+// tag::edituserstory[]
 
 ===== Edit user story command
-* `edit project [project name] userstory [userstory index] ` -- edits the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
 
-This operation is supported by the `Project#SetUserStory(UserStory, UserStory)` method in the `Project` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class. It takes
+* `edit project PROJECT_NAME userstory STORY_INDEX` -- edits the user story at index `STORY_INDEX` in the list of user stories in the project named `PROJECT_NAME`.
+
+This operation uses the `Project#setUserStory(UserStory, UserStory)` method in the `Project` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class. It takes
 in as arguments firstly, the old user story to edit, and secondly the new user story to replace it with. The `EditProjectUserStoryCommand` checks for the validity of the old and new user stories
-before the `Project#SetUserStory(UserStory, UserStory)` method is called.
+before the `Project#setUserStory(UserStory, UserStory)` method is called.
 
 The sequence diagram for the execution of the editing of a user story in a project is as follows:
 
+.Sequence diagram showing execution of `edit project Apollo userstory 1 as a user I want to login`.
 image::edit_user_story_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario and how the editing of a user story behaves at each step.
@@ -823,22 +874,27 @@ Step 1. The user enters the command `view project Apollo'. The app displays the 
 
 Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
 
-Step 3. The user enters `edit project Apollo userstory 1 as a user i want to login`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as a `EditCommand` from the `edit` keyword inputted and passes the rest of the string to the `EditCommandParser`.
-The `EditCommandParser` then detects that the keyword `project` is inputted and passes the rest of the string to the `EditProjectCommandParser`. The `EditProjectCommandParser` then detects the keyword `userstory` and creates a `EditUserStory` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate the project and remove the corresponding user story from the project.
+Step 3. The user enters `edit project Apollo userstory 1 as a user i want to login`. The `LogicManager` passes the string into the `PocketProjectParser` which detects it as a `EditCommand`.
+It then passes the string to the `EditCommandParser`. The `EditCommandParser` detects the keyword `project` and passes the string to the `EditProjectCommandParser` which creates a `EditUserStory` command. The `LogicManager` then checks for the validity of the user
+story and project and edits the user story using the `Project#setUserStory(UserStory, UserStory)` method.
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story and the new `[user story]` must be valid. If not, exceptions would be thrown during the execution of the command.
+|image:ug-exclamation.png[width="60"]| The `PROJECT_NAME` entered must be valid and exists in the app. The `STORY_INDEX` given must refer to some existing user story and the new `STORY` must be valid. If not, exceptions would be thrown during the execution of the command.
 |===
+// end::edituserstory[]
+// tag::updateuserstory[]
 
 ===== Update user story command
-* `update [project_name] userstory [userstory index] [status]` -- Updates the status of the user story at the `[userstory index]` in the list of user stories in the project named `[project name]`.
 
-This operation is supported by the `UserStory#UpdateStatus(Status)` method in the `UserStory` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class.
+* `update PROJECT_NAME userstory STORY_INDEX STATUS` -- Updates the status of the user story at the `STORY_INDEX` in the list of user stories in the project named `PROJECT_NAME`.
+
+This operation uses the `UserStory#UpdateStatus(Status)` method in the `UserStory` class as well as the `Model#getProjectWithName(Name)` method in the `Model` class.
 It takes in as arguments the new status of the user story. The `UpdateUserStoryCommand` checks for the validity of the arguments and locates the specified user story from the project. It then calls the `UserStory#UpdateStatus(status)` method.
 
 The sequence diagram for the execution of updating a user story status is as follows:
 
+.Sequence diagram showing execution of `update Apollo userstory 1 ongoing`.
 image::update_user_story_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario of how the updating of a user story behaves at each step.
@@ -847,13 +903,15 @@ Step 1. The user enters the command `view project Apollo'. The app displays the 
 
 Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
 
-Step 3. The user enters `update Apollo userstory 1 ongoing`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as a `UpdateCommand` from the `update` keyword inputted and passes the rest of the string to the `UpdateCommandParser`.
-The `UpdateCommandParser` then detects the keyword `userstory` and creates a `UpdateUserStory` command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate the project and update the status of the corresponding user story in the project.
+Step 3. The user enters `update Apollo userstory 1 ongoing`. The `LogicManager` passes the string to the `PocketProjectParser` which detects the string as a `UpdateCommand`. The `PocketProjectParser` passes the rest of the string to the `UpdateCommandParser`.
+The `UpdateCommandParser` then detects the keyword `userstory` and creates a `UpdateUserStory` command object and passes it to the `LogicManager` to be executed. The `LogicManager` then checks for the validity of the user story and project and updates the user story's status using the `UserStory#UpdateStatus(Status)` method.
 
 [width="100%",cols="35%,<65%"]
 |===
-|image:ug-exclamation.png[width="60"]| The `[project name]` entered must be valid and exists in the app. The `[userstory index]` given must refer to some existing user story and the new `[status]` must be valid. If not, exceptions would be thrown during the execution of the command.
+|image:ug-exclamation.png[width="60"]| The `PROJECT_NAME` entered must be valid and exists in the app. The `STORY_INDEX` given must refer to some existing user story and the new `STATUS` must be valid. If not, exceptions would be thrown during the execution of the command.
 |===
+// end::updateuserstory[]
+// tag::designandfuture[]
 
 ==== Design Considerations
 ===== Aspect: How to structure the user story details to be inputted into the project
@@ -871,16 +929,6 @@ story, having to remember 4 different `regex` expressions may be hard for a user
 and smoothness for a user by allowing them to type in full sentences how they would normally do for a user story, while allowing proper classification of the components of the story to be able to
 be displayed in the UI component as a `TableView`.
 
-===== Aspect: How the command string (e.g. `removefrom Apollo userstory 1`) is parsed
-
-Alternative 1: Let `PocketProjectParser` handle the whole string and construct the command.
-
-Alternative 2: Having 2 parsing stages where the `PocketProjectParser` identify that the command string is trying to execute a `RemoveFromCommand` from the `removefrom` key word, then passes
-the rest of the string to another specialized `RemoveFromCommandParser`. (current implementation)
-
-Using alternative 2 is better  as it provides better abstraction as the details of the 2 different types of `RemoveFromCommand` will be hidden away, hence it is more in line with OOP principles.
-There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
-
 ===== Aspect: How to show/store the list of user stories
 
 Alternative 1: Sort the user stories only by decreasing priority.
@@ -889,7 +937,7 @@ Alternative 2: Sort the user stories by the sequence it is added.
 
 Alternative 3: Sort the user stories only by the names of the target user.
 
-Alternative 4: Sort the user stories by decreasing priority, followed by the name of the target user.
+Alternative 4: Sort the user stories by decreasing priority, followed by the name of the target user. (Current implementation)
 
 Using alternative 2 is the simplest and most straightforward approach, but does not provide any value adding to the user. Both alternative 1 and 3 are useful,
 hence we decided to combine them to produce alternative 4, which allows not only the important user stories to be listed first, but also provides better readability as similar user stories are grouped together.
@@ -903,10 +951,10 @@ Hence this proposed feature will allow users to be able to click the user storie
 
 . Provide even greater flexibility when parsing user stories. Currently, user stories require specific keywords `as a`, `i want to`, `so that`. In future, users should be able to type sentences naturally and it can still be parsed.
 This will be made available by widening the range of keywords the parser is able to detect as well as the different sentence structures possible.
+// end::designandfuture[]
 
 
-
-// skill::projecttask[]
+// tag::projecttask[]
 === Project Task feature
 ==== Current Implementation
 
@@ -921,10 +969,10 @@ by the model component, and in particular, the `Milestone` class which stores th
 
 Project tasks contain statuses to help you oversee its progress, whether its "Ongoing", "On hold" or "Complete".
 
-==== Implementation of individual commands
-The project task commands are supported by the methods in the `Model` interface: `Model#addProjectTaskTo(Project, Milestone, ProjectTask);`, `Model#removeProjectTaskFrom(Project, Milestone, ProjectTask)` and `Model#updateProjectTask(Project, Milestone, ProjectTask, Status)`.
+==== Implementation of project task commands
+The project task commands are supported by the methods in the `Model` interface: `Model#addProjectTaskTo(Project, Milestone, ProjectTask)`, `Model#removeProjectTaskFrom(Project, Milestone, ProjectTask)` and `Model#updateProjectTask(Project, Milestone, ProjectTask, Status)`.
 These three methods take in `Project`, `Milestone` and `ProjectTask` as common arguments. Hence, the correct project/milestone/project task which the commands act on are first located through
-`AddProjectTaskToCommand#excute()`, `RemoveProjectTaskFromCommand#execute()` or `UpdateProjectTaskCommand#execute()` before the methods of `Model` are called.
+`AddProjectTaskToCommand#excute()`, `RemoveProjectTaskFromCommand#execute()` or `UpdateProjectTaskCommand#execute()` before the methods of `Model` acting on the milestone/project task are called.
 
 ===== Update status of project task
 Given below is an example usage scenario and a showcase of how a project task status is updated in a project's milestone at each step.
@@ -933,6 +981,7 @@ Given below is an example usage scenario and a showcase of how a project task st
 
 The sequence diagram for the execution of updating a project task status is as follows:
 
+.Sequence diagram showing execution of `update Apollo projecttask 2 1 Complete`
 image::UpdateProjectTaskSequenceDiagram.png[width="1000"]
 
 Step 1. The user enters the command `update Apollo projecttask 2 1 Complete`.
@@ -941,23 +990,17 @@ and passes the rest of the string to the `UpdateCommandParser` to identify which
 
 Step 2. The `UpdateCommandParser` then identifies the "projecttask" keyword and  creates an `UpdateProjectTaskCommand` and passes it to the `LogicManager` to be executed.
 
-Step 3. The command execution will check the validity of the arguments and then call the methods of the `Model` component to locate and obtain the specified `Project`, `Milestone` and `ProjectTask` objects.
+Step 3. On execution of the command, the validity of the arguments are checked and then call the methods of the `Model` component to locate and obtain the necessary objects.
 
-Step 4. The status of the retrieved task is then updated to "Complete" and execution of the `UpdateProjectTaskCommand` ends.
+Step 4. The `Model` component then searches for the project with name `Apollo`. After which, it searches for the milestone at index 2 of the project's milestone list. Then, it retrieves the specified project task at index 1 in the milestone's project task list.
+In each of these 3 searches for the specified object, after the object is found, it is returned to the `UpdateProjectTaskCommand` object and used for the next search.
+
+Step 5. The update status method of the retrieved task is then called with "Complete" as an argument. This updates the project task status to "Complete" and execution of the `UpdateProjectTaskCommand` ends.
 
 |===
 |image:ug-exclamation.png[width="40"]| The `[project name]` entered must be valid and exists in the app. The `[milestone index]` and `[project task index]` given must refer to some existing milestone and project task. Also,
                                        the status to be updated to needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
 |===
-===== Add project task to a milestone in project
-Refer to previous section on the implementation of adding to project.
-
-* `addto [project name] projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX` -- <<Add employee/milestone/project task/user story to projects feature>>
-
-===== Remove project task from a milestone in project
-Refer to previous section on the implementation of removing from project.
-
-* `removefrom [project name] projecttask [milestone index] [project task index]` -- <<Remove employee/milestone/project task/user story from projects feature>>
 
 ==== Design Considerations
 In this section, I will talk about certain alternatives that could have been taken when designing this feature and why I did or did not use them.
@@ -1683,16 +1726,14 @@ Use case ends.
 
 
 [appendix]
-== Non Functional Requirements
 
+== Non Functional Requirements
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
 .  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
 .  Should be user-friendly for software engineering project managers and should help them manage their projects more efficiently and effectively.
 .  Should have automated tests to do regression testing whenever an existing feature is enhanced or a new feature is added.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 .  The system should respond to user input within 2 seconds, whether it is valid or invalid input.
-
-_{More to be added}_
 
 [appendix]
 == Glossary
@@ -1719,9 +1760,13 @@ Cons:
 * ...
 
 [appendix]
+
+//tag::daryl[]
+
 == Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
+//end::daryl[]
 
 [NOTE]
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
@@ -1755,6 +1800,92 @@ Assuming that the employees added here do not exist in the app beforehand.
   Expected: The second addition fails because the employee already exists.
 . Test case: `add employee n/Jack p/12345678 e/a.gmail.com g/abc.com` +
   Expected: Addition failed because of lack of '@' in the given email.
+
+=== Adding a project
+
+. Adding a new project
+
+.. Prerequisite: Project list doesn't already contain a project named 'Apollo'.
+.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
+   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `add project n/Ap.ollo c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Invalid project name error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/Symb.Corp d/23/11/2020` +
+   Expected: No new project is added. Invalid client name error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp d/30/02/2020` +
+   Expected: No new project is added. Invalid date error details shown in the status message. Status bar remains the same.
+.. Test case: `add project c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo d/23/11/2020` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp` +
+   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
+
+. Adding a new project that has at most 1 field different from an existing project.
+
+.. Prerequisite: This test case assumes that the command `add project n/Apollo c/SymbCorp d/23/11/2020` has been entered successfully at least once before.
+.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+.. Test case: `add project n/Apollo1 c/SymbCorp d/23/11/2020` +
+   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `add project n/Apollo c/SymbCorp1 d/23/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+.. Test case: `add project n/Apollo c/SymbCorp d/10/11/2020` +
+   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
+
+=== Adding a milestone
+
+. Adding a milestone to a project
+
+.. Prerequisite: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'. 'Apollo' doesn't already contain milestones with names 'Finished UserGuide' and 'Finished DevGuide'.
+.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Not Found milestone Finished UserGuide 23/04/2019` +
+   Expected: No new milestone is added. Invalid project name error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone 23/04/2019` +
+   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone Finished UserGuide 234/04/2019` +
+   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
+
+. Adding a new milestone that has at most 1 field different from an existing milestone in a project.
+
+.. Prerequisite: This test case assumes that the command `addto Apollo milestone Finished UserGuide 23/04/2019` has been entered successfully at least once before.
+.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
+   Expected: No new milestone is added. Duplicate milestone error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo milestone Finished DevGuide 23/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo milestone Finished UserGuide 11/04/2019` +
+   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
+
+=== Adding a project task
+
+. Adding a project task to a project's milestone
+
+.. Prerequisite: Project list has a project named 'Apollo' and has only 2 existing milestone in it.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Expected: A new project task with description "Create feature XYZ" is added to the first milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/2` +
+   Expected: A new project task with description "Create feature XYZ" is added to the second milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
+   Expected: No new project task is added. Duplicate project task error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ m/3` +
+   Expected: No new project task is added. Invalid milestone index error details shown in status message. Status bar remains the same.
+.. Test case: `addto Apollo projecttask n/Create feature XYZ` +
+   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
+.. Test case: `addto Apollo projecttask m/1` +
+   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
+
+=== Adding a UserStory
+
+. Adding a new user story to a project
+
+.. Prerequisites: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'.
+.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/2` +
+   Expected: A new user story is added to 'Apollo'. Details of the added user story shown in the status message. Timestamp in the status bar is updated.
+.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/4` +
+   Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
+.. Test case: `addto Project Apollo userstory as a project manager i want to add employees into a project so that track which employees are in a project` +
+   Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
 
 === Delete Command
 ==== Deleting an employee
@@ -1845,6 +1976,27 @@ Deleting a project while all projects are listed
 .. Test case: `removefrom Apollo projecttask 1` +
    Expected: No project task is removed. Invalid command format error details shown in the status message. Status bar remains the same.
 
+=== Updating status of a project task
+
+.. Prerequisite: Project with name 'Apollo' exists and has only 1 milestone with at least 1 project task in it.
+.. Test case: `update Apollo projecttask 1 1 complete` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to complete.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 on hold` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to on hold.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 ongoing` +
+   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to ongoing.
+   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
+.. Test case: `update Apollo projecttask 1 1 invalid` +
+   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 1 complete` +
+   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 2 1 complete` +
+   Expected: Status of project task is not updated. Invalid milestone index format error displayed in status message. Status bar remains the same.
+.. Test case: `update Apollo projecttask 1 2 complete` +
+   Expected: Status of project task is not updated. Invalid project task index format error displayed in status message. Status bar remains the same.
+
 === Finding an employee/project by keywords in their names
 
 .. Test case: `find project a b c` +
@@ -1872,27 +2024,6 @@ Deleting a project while all projects are listed
    Expected: The first project in the list is removed from the list of ongoing projects and indicated as completed. Timestamp shown in the status bar is updated.
 .. Test case: `complete x 11/11/2011` where x is not the index of a displayed project +
    Expected: Error detail shown. The Timestamp in the status bar is not updated.
-
-=== Updating status of a project task
-
-.. Prerequisite: Project with name 'Apollo' exists and has only 1 milestone with at least 1 project task in it.
-.. Test case: `update Apollo projecttask 1 1 complete` +
-   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to complete.
-   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
-.. Test case: `update Apollo projecttask 1 1 on hold` +
-   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to on hold.
-   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
-.. Test case: `update Apollo projecttask 1 1 ongoing` +
-   Expected: Status of the first project task in the first milestone displayed in 'Apollo' milestones and tasks list updated to ongoing.
-   Project task updated success message is shown in status message and the timestamp in the status bar is updated.
-.. Test case: `update Apollo projecttask 1 1 invalid` +
-   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
-.. Test case: `update Apollo projecttask 1 complete` +
-   Expected: Status of project task is not updated. Invalid command format error displayed in status message. Status bar remains the same.
-.. Test case: `update Apollo projecttask 2 1 complete` +
-   Expected: Status of project task is not updated. Invalid milestone index format error displayed in status message. Status bar remains the same.
-.. Test case: `update Apollo projecttask 1 2 complete` +
-   Expected: Status of project task is not updated. Invalid project task index format error displayed in status message. Status bar remains the same.
 
 === Clearing all data from the app
 
@@ -1938,92 +2069,6 @@ Assumption: all the objects being manipulated in these test cases exist in the a
    Expected: The first command will delete the first employee in the list from the app while the undo command will restore it. The redo command deletes it again.
 .. Test case: `redo` is entered as the first command on start-up +
    Expected: Output error message. There is no undone command to redo.
-
-=== Adding a project
-
-. Adding a new project
-
-.. Prerequisite: Project list doesn't already contain a project named 'Apollo'.
-.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
-   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `add project n/Ap.ollo c/SymbCorp d/23/11/2020` +
-   Expected: No new project is added. Invalid project name error details shown in the status message. Status bar remains the same.
-.. Test case: `add project n/Apollo c/Symb.Corp d/23/11/2020` +
-   Expected: No new project is added. Invalid client name error details shown in the status message. Status bar remains the same.
-.. Test case: `add project n/Apollo c/SymbCorp d/30/02/2020` +
-   Expected: No new project is added. Invalid date error details shown in the status message. Status bar remains the same.
-.. Test case: `add project c/SymbCorp d/23/11/2020` +
-   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
-.. Test case: `add project n/Apollo d/23/11/2020` +
-   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
-.. Test case: `add project n/Apollo c/SymbCorp` +
-   Expected: No new project is added. Invalid command format error details shown in the status message. Status bar remains the same.
-
-. Adding a new project that has at most 1 field different from an existing project.
-
-.. Prerequisite: This test case assumes that the command `add project n/Apollo c/SymbCorp d/23/11/2020` has been entered successfully at least once before.
-.. Test case: `add project n/Apollo c/SymbCorp d/23/11/2020` +
-   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
-.. Test case: `add project n/Apollo1 c/SymbCorp d/23/11/2020` +
-   Expected: A new project is added to the list. Details of the added project shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `add project n/Apollo c/SymbCorp1 d/23/11/2020` +
-   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
-.. Test case: `add project n/Apollo c/SymbCorp d/10/11/2020` +
-   Expected: No new project is added. Duplicate project error details shown in status message. Status bar remains the same.
-
-=== Adding a milestone
-
-. Adding a milestone to a project
-
-.. Prerequisite: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'. 'Apollo' doesn't already contain milestones with names 'Finished UserGuide' and 'Finished DevGuide'.
-.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
-   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `addto Not Found milestone Finished UserGuide 23/04/2019` +
-   Expected: No new milestone is added. Invalid project name error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo milestone 23/04/2019` +
-   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo milestone Finished UserGuide 234/04/2019` +
-   Expected: No new milestone is added. Invalid command format error details shown in status message. Status bar remains the same.
-
-. Adding a new milestone that has at most 1 field different from an existing milestone in a project.
-
-.. Prerequisite: This test case assumes that the command `addto Apollo milestone Finished UserGuide 23/04/2019` has been entered successfully at least once before.
-.. Test case: `addto Apollo milestone Finished UserGuide 23/04/2019` +
-   Expected: No new milestone is added. Duplicate milestone error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo milestone Finished DevGuide 23/04/2019` +
-   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `addto Apollo milestone Finished UserGuide 11/04/2019` +
-   Expected: A new milestone is added to 'Apollo'. Details of the added milestone shown in the status message. Timestamp in the status bar is updated.
-
-=== Adding a project task
-
-.Adding a project task to a project's milestone
-
-.. Prerequisite: Project list has a project named 'Apollo' and has only 2 existing milestone in it.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
-   Expected: A new project task with description "Create feature XYZ" is added to the first milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ m/2` +
-   Expected: A new project task with description "Create feature XYZ" is added to the second milestone in project named 'Apollo'. Details of the added project task shown in status message. Timestamp in the status bar is updated.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ m/1` +
-   Expected: No new project task is added. Duplicate project task error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ m/3` +
-   Expected: No new project task is added. Invalid milestone index error details shown in status message. Status bar remains the same.
-.. Test case: `addto Apollo projecttask n/Create feature XYZ` +
-   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
-.. Test case: `addto Apollo projecttask m/1` +
-   Expected: No new project task is added. Invalid command format error details shown in status message. Status bar remain the same.
-
-=== Adding a UserStory
-
-. Adding a new user story to a project
-
-.. Prerequisites: The project list contains a project with name 'Apollo' but not a project with name 'Not Found'.
-.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/2` +
-   Expected: A new user story is added to 'Apollo'. Details of the added user story shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `addto Apollo userstory as a project manager i want to add employees into a project so that i can track which employees are in a project i/4` +
-   Expected: No new user story is added. Invalid command format error details shown in status message. Status bar remains the same.
-.. Other invalid add userstory commands to try: `addto Apollo userstory x AAA y AAA z AAA` (where expected `x` = as a, `y` = i want to, `z` = so that, `AAA` can be anything. Modify `x` or `y` or `z` to be different from expected.) +
-   Expected: Similar to previous.
 
 === Saving data
 

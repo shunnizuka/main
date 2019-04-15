@@ -272,6 +272,13 @@ public class Project {
     }
 
     /**
+     * Retrieve the date of the latest milestone in the project
+     */
+    public PocketProjectDate getLastestMilestoneDate() {
+        return milestones.getLatestMilestoneDate();
+    }
+
+    /**
      * Returns true if this project contains the given Employee.
      */
     public boolean containsEmployee(Employee employee) {

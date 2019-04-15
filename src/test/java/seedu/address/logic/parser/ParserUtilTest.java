@@ -30,7 +30,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_GITHUB = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_SKILL = "#friend";
+    private static final String INVALID_SKILL = "";
     private static final String INVALID_TASKDESCRIPTION = " ";
     private static final String INVALID_STATUS = " ";
 
