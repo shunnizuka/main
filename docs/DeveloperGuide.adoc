@@ -398,12 +398,12 @@ and validity of the the input date.
 Refer to the Activity Diagram below for a better understanding of how it works
 
 .Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
-image::dg-activitydiagdate.png[width="300"]
+image::dg-activitydiagdate.png[width="1000"]
 
 Refer to the code snippet below to see how the validity of the date is verified.
 
 .Code snippet showing verification of a validity of a date.
-image::dg-codesnippet.png[width="300"]
+image::dg-codesnippet.png[width="1000"]
 
 As can be seen above, the code not only checks if the selected day falls within the maximum number of days
 in a month, but it also checks for leap years. This ensures that only valid calendar dates are accepted
@@ -419,15 +419,17 @@ current, next and last week's Wednesday respectively
 User keys in  `this week 3`, `next week 3`, `last week 3` to denote the
 current, next and last week's Wednesday respectively.
 
-The second design was chosen as the first one is ambiguous and subjective an individual's language
+The second design was chosen as the first one is ambiguous and subjective to an individual's language
 use. For example, if today was Monday, some people would refer to the current week's Wednesday as
 `next Wednesday` whereas others would refer to the next week's Wednesday as the `next Wednesday`. Thus to
 remove confusion, the keyword this/next/last was added. In addition, instead of spelling out the days of week,
-it is designed such that users can key in the day number instead. This speeds things up and also reduces errors
+it was designed such that users can key in the day number instead. This speeds things up and also reduces errors
 due to spelling mistakes in the name of the days.
 // end::datefeature[]
 
 // tag::addtoemployeemilestone[]
+
+
 === Adding Employees and Milestones to a Project
 ==== Overview
 
@@ -523,6 +525,8 @@ input as such:
 ** `addto PROJECT_NAME ms m/MILESTONE_DESCRIPTION d/MILESTONE_DATE` instead of `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`
 
 The commands will be processed in the same way without any other changes.
+
+// end::addtoemployeemilestone[]
 
 // skill::removefrom[]
 === Remove employee/milestone/project task/user story from projects feature

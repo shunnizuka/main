@@ -46,10 +46,10 @@ documentation.
 *Major Contribution: Smart Dates*
 
 * *What it does*: This allows the user flexibility in keying in dates when required and supports 2 main sub-formats.
-** Firstly, it supports a fixed date format where users can key in a date according to *"DD/MM/YYYY"*.
-** Secondly, it also accepts flexible input from the user. If the user wants a day relative to the current day, he/she can simply type *"today/tomorrow/yesterday"*. Otherwise
-if the user wants a day relative to current week, he/she can input *"this/next/last week DAY_OF_WEEK"*. Lastly if the user wants a date
-relative to the current month, he/she can simply go for *"this/next/last month DAY_OF_MONTH"*.
+** Firstly, it supports a fixed date format where users can key in a date according to `DD/MM/YYYY`.
+** Secondly, it also accepts flexible input from the user. If the user wants a day relative to the current day, he/she can simply type `today/tomorrow/yesterday`. Otherwise
+if the user wants a day relative to current week, he/she can input `this/next/last week DAY_OF_WEEK`. Lastly if the user wants a date
+relative to the current month, he/she can simply go for `this/next/last month DAY_OF_MONTH`.
 ** The validity of the target date is also verified.
 
 * *Why it is useful and important*: As expected, when it comes to a project manager application, the use of dates are used
@@ -58,7 +58,7 @@ in dates of milestones or deadlines throughout the lifetime a project. So, this 
 to execute certain commands, greatly improving efficiency. Some of these commands include,
 ** Setting of dates when creating and completing projects and milestones.
 ** Editing of the all components with dates inside a particular project.
-** Finding projects that are due by a certain *DEADLINE*.
+** Finding projects that are due by a certain `DEADLINE`.
 
 * *Highlights*: The date input is parsed by a special *Pocket Project Date Parser* that was designed specifically to parse
 both the fixed and flexible date formats. In fact, the  user does not even need to explicitly indicate his/her intended format as the
@@ -85,7 +85,6 @@ image::PPLogo.png[width="100"]
 *Other Contributions*:
 
 * Project Management
-** Initiated ideas on new features and suggested improvements to current features.
 ** Helped track issues on the team repository using labels and assignees.
 ** Compiled and formatted the entire User Guide after individual contributions by team members: https://github.com/cs2103-ay1819s2-w10-2/main/pull/242[#242]
 
@@ -95,17 +94,10 @@ image::PPLogo.png[width="100"]
 ** Fixed Various Bugs: https://github.com/cs2103-ay1819s2-w10-2/main/pull/172[#172] https://github.com/cs2103-ay1819s2-w10-2/main/pull/232[#232] https://github.com/cs2103-ay1819s2-w10-2/main/pull/245[#245]
 
 * Documentation
-** Enhanced documentation of existing features such as *help*: https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]
+** Enhanced documentation of existing and new features such as `help`, `add employee/project` among others: https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]
 ** Created a set of symbols/legends for User Guide and Developer Guide https://github.com/cs2103-ay1819s2-w10-2/main/pull/84[#84]
-*** Used throughout various documents to express ideas more easily.
-** Set up a glossary for User Guide and Developer Guide https://github.com/cs2103-ay1819s2-w10-2/main/pull/84[#84]
-*** So that the user or developer can understand key technical terms that they may be unfamiliar with.
-** Created a section on the format of commands used in our application and what it means in the User Guide. https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]
-*** This allows the user to more easily understand the commands when reading through the list of Features in the User Guide.
 ** Documented our product scope and all user stories in the Developer Guide https://github.com/cs2103-ay1819s2-w10-2/main/pull/149[#149]
-*** Generated during the planning phase of our project
-** Documented usage and development of features I initiated and implemented. This is featured in a separate section below.
-Refer to <<Contributions to the User Guide>> and <<Contributions to the Developer Guide>>.
+** Refer to <<Contributions to the User Guide>> and <<Contributions to the Developer Guide>> for more details.
 
 * Community
 ** Reviewed pull requests with valid non-trivial feedback: https://github.com/cs2103-ay1819s2-w10-2/main/pull/118[#118] https://github.com/cs2103-ay1819s2-w10-2/main/pull/126[#126] https://github.com/cs2103-ay1819s2-w10-2/main/pull/141[#141] https://github.com/cs2103-ay1819s2-w10-2/main/pull/214[#214] https://github.com/cs2103-ay1819s2-w10-2/main/pull/230[#230]
@@ -116,15 +108,23 @@ Refer to <<Contributions to the User Guide>> and <<Contributions to the Develope
 ** Integrated a new GitHub plugin, Codacy, to the GitHub team repository: https://github.com/cs2103-ay1819s2-w10-2/main/pull/154[#154]
 
 === Contributions to the User Guide
-In this section, I detail some of the key contributions I made to the User Guide.
+In this section, I detail some of the key contributions I made to the User Guide targeted and helping users
+understand how to use the application.
 
 include::../UserGuide.adoc[tag=datefeature]
-include::../UserGuide.adoc[tag=addprojectfeature]
 include::../UserGuide.adoc[tag=addmilestone]
 
+This section is not exhaustive of my contributions and the rest can be
+viewed at https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/UserGuide.adoc[Pocket Project: User Guide]
+
 === Contributions to the Developer Guide
-In this section, I detail some of the key contributions I made to the Developer Guide.
+In this section, I detail some of the key contributions I made to the Developer Guide targetted at helping
+fellow developers understand the implementation and design considerations that went behind the building of
+the application.
 
 include::../DeveloperGuide.adoc[tag=datefeature]
 include::../DeveloperGuide.adoc[tag=addtoemployeemilestone]
+
+This section is not exhaustive of my contributions and the rest can be
+viewed at https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/DeveloperGuide.adoc[Pocket Project: Developer Guide]
 

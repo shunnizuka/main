@@ -314,7 +314,7 @@ image::ug-monthweek.png[][width="500"]
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-notepadpencil.png[width="50"]|You do not need to specify which format you are planning to use and the application
+|image:ug-notepadpencil.png[width="40"]|You do not need to specify which format you are planning to use and the application
 is able to differentiate it based on the input received.
 |===
 
@@ -454,7 +454,7 @@ image::ug-addtoemployee.png[]
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-lightbulb.png[width="70"]| As shown in the figure above, instead of calling
+|image:ug-lightbulb.png[width="50"]| As shown in the figure above, instead of calling
 the `list employees` command, we can simple click on the `employees` tab located at the top of the side tab panel.
 |===
 
@@ -473,9 +473,9 @@ Format: `addto PROJECT_NAME milestone m/MILESTONE_DESC d/MILESTONE_DATE`
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-lightbulb.png[width="70"]|Both the fixed date format and the flexible date format
+|image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
 can be used to select the target `MILESTONE_DATE`. Refer to <<Date Feature in Pocket Project>>
-|image:ug-exclamation.png[width="70"]| As the milestone is part of a project's timeline, the
+|image:ug-exclamation.png[width="50"]| As the milestone is part of a project's timeline, the
 `MILESTONE_DATE` the input date cannot be before the `START_DATE` and after `DEADLINE` of the project.
 |===
 
