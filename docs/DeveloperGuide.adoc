@@ -380,7 +380,7 @@ of `DD/MM/YYYY` at this stage.
 Refer to the code snippet below to see how the validity of the date is verified.
 
 .Code snippet showing verification of a validity of a date.
-image::dg-codesnippet.png[width="300"]
+image::dg-codesnippet.png[width="500"]
 
 As can be seen above, the code not only checks if the selected day falls within the maximum number of days
 in a month, but it also checks for leap years. This ensures that only valid calendar dates are accepted
@@ -475,6 +475,8 @@ make use of this `AddToCommandParser` to handle different inputs. Choosing this 
 implementation of adding user stories and project tasks to a project after this was initially constructed. Refer to <<User Story feature>>
 and <<Project Task feature>> to learn more about these features.
 
+// end::addtoemployeemilestone[]
+
 ==== Future Planned Implementations
 
 The following additional feature is scheduled to be implemented in future versions.
@@ -488,7 +490,7 @@ input as such:
 
 The commands will be processed in the same way without any other changes.
 
-// end::addtoemployeemilestone[]
+
 
 // skill::removefrom[]
 === Remove employee/milestone/project task/user story from projects feature
