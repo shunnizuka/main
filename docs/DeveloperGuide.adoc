@@ -395,12 +395,12 @@ and validity of the the input date.
 Refer to the Activity Diagram below for a better understanding of how it works
 
 .Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
-image::dg-activitydiagdate.png[width="500"]
+image::dg-activitydiagdate.png[width="600"]
 
 Refer to the code snippet below to see how the validity of the date is verified.
 
 .Code snippet showing verification of a validity of a date.
-image::dg-codesnippet.png[width="500"]
+image::dg-codesnippet.png[width="700"]
 
 As can be seen above, the code not only checks if the selected day falls within the maximum number of days
 in a month, but it also checks for leap years. This ensures that only valid calendar dates are accepted
@@ -425,8 +425,6 @@ due to spelling mistakes in the name of the days.
 // end::datefeature[]
 
 // tag::addtoemployeemilestone[]
-
-
 === Adding Employees and Milestones to a Project
 ==== Overview
 
@@ -476,7 +474,7 @@ Refer to the sequence diagram below to better understanding how the `AddEmployee
 works.
 
 .Sequence Diagram: How the Add Employee To Command Works
-image::dg-addemployeeto.png[width="500"]
+image::dg-addemployeeto.png[width="700"]
 
 *Add Milestone To Project Command Usage Scenario*
 

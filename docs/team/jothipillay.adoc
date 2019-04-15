@@ -109,7 +109,7 @@ In this section, I detail some of the key contributions I made to the User Guide
 understand how to use the application.
 
 include::../UserGuide.adoc[tag=datefeature]
-include::../UserGuide.adoc[tag=addmilestone]
+include::../UserGuide.adoc[tag=addprojectfeature]
 
 These sections are not exhaustive of my contributions and the rest can be
 viewed at https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/UserGuide.adoc[Pocket Project: User Guide]
@@ -120,7 +120,7 @@ fellow developers understand the implementation and design considerations that w
 the application.
 
 include::../DeveloperGuide.adoc[tag=datefeature]
-include::../DeveloperGuide.adoc[tag=addprojectfeature]
+include::../DeveloperGuide.adoc[tag=addtoemployeemilestone]
 
 These sections are not exhaustive of my contributions and the rest can be
 viewed at https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/DeveloperGuide.adoc[Pocket Project: Developer Guide]
