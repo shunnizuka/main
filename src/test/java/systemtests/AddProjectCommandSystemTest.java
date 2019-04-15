@@ -64,7 +64,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: add a employee with all fields same as another employee in the pocket project except name -> added */
         toAdd = new Project(new ProjectName("Zululu"), new Client("Shunnizuka"),
-            new PocketProjectDate("10/10/2010"), new PocketProjectDate("04/09/2023"));
+                new PocketProjectDate("10/10/2010"), new PocketProjectDate("04/09/2023"));
         assertCommandSuccess(toAdd);
 
         /* Case: add to empty pocket project -> added */
@@ -78,6 +78,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
         showProjectsWithName(KEYWORD_MATCHING_YANKEE);
         assertCommandSuccess(PROJECT_XAVIER);
+        assertCommandSuccess(PROJECT_VICTOR);
 
         /* ----------------------------------- Perform invalid add project operations ------------------------------ */
 

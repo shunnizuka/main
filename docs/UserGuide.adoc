@@ -787,7 +787,7 @@ also after the date of the latest milestone in the project.
 Note that there is a minor bug that does not allow 'info' as part of the argument for the description of the project (e.g. 'desc/A project info...' is not accepted). We are working hard to fix this issue soon.
 |===
 
-Below is the before and after screenshots when the command `edit project PocketProject info desc/A project management tool d/20/05/2019`.
+Below is the before and after screenshots of when the command `edit project PocketProject info desc/A project management tool d/20/05/2019` is entered.
 
 .Before and after comparison for `edit project PocketProjcet info desc/A project management tool d/20/05/2019` command
 image::edit_project_before.png[width:"300"]
@@ -941,7 +941,7 @@ Format: `find all KEYWORDS [MORE KEYWORDS]`
 Examples:
 
 . `find all software food`
-Returns a list of projects which contains either software or food or both.
+Returns a list of projects which contains either software or food or both as part of the name/description/client.
 
 Below is a screenshot of what a successful find all command will look like.
 
