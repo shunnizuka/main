@@ -488,7 +488,7 @@ project in Step 2e.
 
 [width="1000",cols="100,<900"]
 |===
-|image:ug-smart.png[width="60"]| With reference to the above usage scenarios, the main difference is deciding the object
+|image:ug-lightbulb.png[width="50"]| With reference to the above usage scenarios, the main difference is deciding the object
 to be added (Employee or Milestone) based on the user input
 |===
 
