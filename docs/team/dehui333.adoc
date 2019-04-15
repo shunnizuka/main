@@ -76,250 +76,33 @@ it to its present state.
 
 .. Other contributions:
 * Coding
-. Implementation of the part of the `removefrom` command which allows removal of employees or milestones from projects(Pull Request {empty}[https://github.com/cs2103-ay1819s2-w10-2/main/pull/79[79]]).
+. Implementation of the part of the `removefrom` command which allows removal of employees or milestones from projects(Pull Request {empty}[https://github.com/cs2103-ay1819s2-w10-2/main/pull/79[#79]]).
 . Implementation of the `delete` command which allows the deletion of projects from the app. Refactored the `delete` command of the original address book to one which deletes employees.
-(Pull Request {empty}[https://github.com/cs2103-ay1819s2-w10-2/main/pull/39[39]])
+(Pull Request {empty}[https://github.com/cs2103-ay1819s2-w10-2/main/pull/39[#39]])
 . Implementation of the `complete` command which allows indication of projects as completed.
 
 * Project Management
 . Set up Travis Continuous Integration and Coverall
 
+* Team Contributions
+. Find and report bugs and suggest possible enhancements which can be done in the team's issue tracker. [https://github.com/cs2103-ay1819s2-w10-2/main/issues/82[#82]]
+
+* Community Contributions
+. Reported bugs found in other team's (CS2103-AY1819S2-W11-2) application [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/40[#40]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/317[#317]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/370[#370]] [https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/621[#621]]
+
 == Contributions to the User Guide
 
-The sections below are the parts that are written by me, and may not be in the same order as in the user guide.
-Some of the figure numbers are changed too.
-
-=== Delete a project or an employee from the application `delete`
-
-==== Delete a project from the application: `delete project`
-Deletes the a from the list of projects.
-
-Format: `delete project PROJECT_NAME` or `delete project PROJECT_INDEX`
-
-image:ug-notepadpencil.png[width="40"]
-Deletes the project at the specified `PROJECT_INDEX`.
-The index refers to the index number (one-based) shown in the displayed list of projects.
-
-image:ug-exclamation.png[width="60"]
-The index must be a *positive integer* and cannot be larger than the size of the list. The `PROJECT_NAME` must be the name
-of an existing project.
-
-Examples:
-
-* `delete project Apollo` +
-Deletes project "Apollo" from project list.
-
-.*Deleting a project at index 1 - before*
-image::ug-deleteproject_before.png[]
-
-.*Deleting a project at index 1 - after*
-image::ug-deleteproject_after.png[]
-
-* `delete project 1` +
-Deletes the first project shown in the most recent displayed list of projects. Figure 1 shows the command being typed but not entered yet
-and figure 2 shows the effect of the command.
-
-
-==== Delete an employee from the application: `delete employee`
-
-Deletes the specified employee from the employee list.
-
-Format: `delete employee INDEX`
-
-Examples:
-
-* `list employees` +
-`delete employee 2` +
-Deletes the 2nd person in the displayed employee list.
-
-* `find employee Betsy` +
-`delete employee 1` +
-Deletes the 1st person in the resultant employee list shown by the `find` command.
-
-image:ug-notepadpencil.png[width="40"]
-Either the `list employee` command or the `find employee` command needs to be invoked
-before calling the `delete employee` command as the index is referenced from the last returned list
-of employees.
-
-
-=== Remove an employee/milestone/user story from a project : `removefrom`
-
-==== Remove an employee from a project: `removefrom PROJECT_NAME employee`
-
-Removing an employee from a project.
-
-Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
-
-Examples:
-
-.*Removing an employee at index 1 - before*
-image::ug-removeemployee_before.png[]
-
-.*Removing an employee at index 1 - after*
-image::ug-removeemployee_after.png[]
-
-* `view project 1` +
-click on the right arrowhead till the page showing the list of employees in the project +
-`removefrom p1 employee 1` +
-Removes the employee at first position at displayed list of employees from the project 'p1'. The effect of the command is
-demonstrated in figures 3 and 4.
-
-==== Remove a milestone from a project: `removefrom PROJECT_NAME milestone`
-
-Removing a milestone from a project.
-
-Format: `removefrom PROJECT_NAME milestone MS_INDEX`
-
-Examples:
-
-* `view project Apollo` +
-`removefrom Apollo milestone 1` +
-Removes the milestone at 1st position of displayed list of milestone from Project Apollo.
-
-image:ug-notepadpencil.png[width="40"]
-Removes the employee at the specified `INDEX`.
-The index refers to the index number (one-based) shown in the displayed list of employees.
-
-image:ug-exclamation.png[width="50"]
-The index must be a *positive integer* and cannot be larger than the size of the list.
-
-=== To indicate the project has been completed : `complete`
-
-Indicates that a project is completed.
-
-Format:  `complete PROJECT_INDEX COMPLETION_DATE`
-
-Examples:
-
-* `list projects` +
-The list of ongoing projects are listed.
-`complete 1 11/11/2011` +
-The first project in the shown list is indicated as completed on 11/11/2011.
-
-=== Display statistics regarding the projects : `stats`
-
-Returns an overview of all ongoing projects/the progress of an individual project.
-
-Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX`
-+
-Examples:
-
-`stats` +
-Number of ongoing projects: 5 +
-Projects with deadline in this month: +
------------------------- +
-1. Project6 | deadline: 17/04/2019|reached 0 out of 1 milestones +
------------------------- +
-2. Project2 | deadline: 17/06/2019|reached 1 out of 1 milestones +
-3. Project3 | deadline: 17/06/2019|reached 1 out of 1 milestones +
-4. Project1 | deadline: 17/05/2019|reached 0 out of 1 milestones +
-5. Project4 | deadline: 17/05/2019|reached 0 out of 0 milestones +
-
-
-
-`stats 1` +
-Progress of p1: +
-deadline: 29/04/2019 | reached 0 out of 1 milestones +
-Milestones not reached yet: +
-1. Finish userguide | deadline: 28/04/2019 | 0 out of 1 tasks completed. +
-
-
-
+You can view these sections to see my contributions to the User Guide documentation for `[aqua]#removefrom employee#`, `[aqua]#removefrom milestone#` command, `[aqua]#complete#` command and `[aqua]#stats#` command.
+The part on the `[aqua]#delete#` command is excluded due to insufficient space, please go to [https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/UserGuide.adoc#delete-a-project-or-an-employee-from-the-application-delete[User Guide Section 4.5 -delete command]] if you are interested.
+include::../UserGuide.adoc[tag=removefrom_dehui]
+include::../UserGuide.adoc[tag=completeAndStats_dehui]
 
 == Contributions to the Developer Guide
 
-// skill::removefrom[]
-=== Remove employee/milestone from projects feature
-
-The part on userstory is done by my team mate: Jeff Gan
-
-==== Current Implementation
-
-The removing of employee,milestone or user story from projects is facilitated by the model component of the PocketProject.
-This feature currently supports these three commands:
-
-* `removefrom [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of employees in the project named `[project name]`.
-* `removefrom [project name] milestone [milestone index]` -- removes the milestone at index `[milestone index]` in the list of milestones in the project named `[project name]`.
-* `removefrom [project name] userstory [userstory index]` -- removes the user story at index `[userstory index]` in the list of user stories in the project named `[project name]`.
-
-These operations are supported by the methods in the `Model` interface: `Model#removeEmployeeFrom(Project, Employee)`, `Model#removeMilestoneFrom(Project, Milestone)` and `Model#removeUserStoryFrom(Project, UserStory)`.
-The methods does not take in indices as arguments since the corresponding Employee,Milestone or UserStory object associated with the Project object would be found by `RemoveEmployeeFromCommand#excute()`, `RemoveMilestoneFromCommand#execute()` or `RemoveUserStoryFromCommand#execute()`
-before the methods of `Model` are called.
-The sequence diagram for the execution of the removing of employee from a project is as follows, the sequence for the removal of milestone and user stories are similar:
-
-image::remove_employee_from_sequence_diagram.png[width="1000"]
-
-Given below is an example usage scenario and how the removal of employee/milestone/user story feature behaves at each step.
-
-Step 1. The user enters the command `view project Apollo'. The app displays the list of employees and milestones in the project named "Apollo" by executing the `view` command.
-
-Step 2. The user enters `removefrom Apollo employee 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `RemoveFromCommand` (which constitutes of `RemoveEmployeeFromCommand`
-and `RemoveMilestoneFromCommand` by the `removefrom` keyword and passes the rest of the string to the `RemoveFromCommandParser` to identify which type of `RemoveFromCommand` is being executed and what are the arguments.
-The `RemoveFromCommandParser` then creates command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to remove the corresponding objects.
-
-Step 3. The user executes 'removefrom Apollo milestone 2'. The execution of this command is similar to step 2, just that the type of object changes from `Employee` to `Milestone`.
-
-image:ug-lightbulb.png[width="50"]
-Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` or `[milestone index]` given must refer to some existing employee or milestone. If not, exceptions would be thrown during the execution of the command.
-
-==== Design Considerations
-
-===== Aspect: How the command string (e.g. `removefrom Apollo employee 1`) is parsed
-
-Alternative 1: Let `PocketProjectParser` handle the whole string and construct the command.
-
-Alternative 2: Having 2 parsing stages where the `PocketProjectParser` identify that the command string is trying to execute a `RemoveFromCommand` from the `removefrom` key word, then passes
-the rest of the string to another specialized `RemoveFromCommandParser`. (current implementation)
-
-Using alternative 2 is better  as it provides better abstraction as the details of the 2 different types of `RemoveFromCommand` will be hidden away, hence it is more in line with OOP principles.
-There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
-
-// end::removefrom[]
-// skill::stats[]
-=== Stats feature
-==== Implementation
-
-The displaying of statistics in Pocket Project will be facilitated by the model component. This feature is
-planned to support 2 main commands:
-
-* `stats` -- Displays an overview of all the projects: the number of ongoing projects, closest deadline etc.
-* `stats PROJECT_INDEX` or `stats PROJECT_NAME` -- Display a summary of the progress of the project with the given PROJECT_INDEX or PROJECT_NAME.
-
-The operation will be supported by the methods in the `Model` interface: `Model#overallStats()` and `Model#individualStats(Project)`.
-`Model#overallStats()` will retrieve the data on all the projects/employees to pass to `StatsUtil`, an utility class to produce a string which describes
-the status of all projects. `Model#individualStats(Project)` passes the given project to `StatsUtil` to produce a string in a similar fashion.
+You can view this section to see my contributions to the Developer Guide documentation which consists of the implementation of the removefrom feature(only the parts on employees and milestones, others are added by my teammates) and stats feature and also several sections on manual testing Pocket Project (which unfortunately there is no space to include in here, so check out this link if you're interested! [https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/DeveloperGuide.adoc#instructions-for-manual-testing[Manual testing, sections G2, G7-G11, G14-G21]).
 
 
-The following sequence diagrams show how the stats command will work:
-
-Overview of all projects:
-
-image::overallStatsSequenceDiagram.png[width="1000"]
-
-Individual Project:
-
-image::individualStatsSequenceDiagram.png[width="1000"]
-
-Usage Scenario example for `stats`:
-
-1.	User executes `stats`/`stats PROJECT_INDEX`/`stats PROJECT_NAME` to view project statistics in Pocket Project.
-2.	`PocketProjectParser` will parse and identify the command as a `IndividualStatsCommand` or `OverallStatsCommand`, parse any additional argument accordingly and return the command object.
-3.	`LogicManager` then executes the returned command, calling the `Model#individualStats()` or `Model#overallStats(Project)` accordingly to obtain the string describing the status of concern.
-4.  The returned string is used to construct the result of the command.
-
-==== Design Considerations
-===== Aspect: How the string is constructed.
-Alternative 1: Retrieve all the relevant project(s), find out the relevant information and construct the string in the `execute()` method
-of the command object.
-
-Alternative 2: Do the construction in the model.
-
-Alternative 3: Do it somewhere else.
-
-I have decided to use alternative 3 and create a specialized helper class to scrap the relevant information from the list of projects to
-produce the string. This is chosen because I have decided to have several helper methods to construct the different parts of the string(e.g. about the number of ongoing projects etc..).
-It would be inappropriate to put these methods under the command class or the model because they are not very related.
-
-// end::stats[]
+include::../DeveloperGuide.adoc[tag=removefrom_dg]
+include::../DeveloperGuide.adoc[tag=stats_dg]
 
 

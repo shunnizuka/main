@@ -539,7 +539,10 @@ The commands will be processed in the same way without any other changes.
 // end::jothiAddTo[]
 
 // skill::removefrom[]
+//tag::removefrom_dg[]
+
 === Remove employee/milestone/project task/user story from projects feature
+
 ==== Current Implementation
 
 The removing of employee,milestone or user story from projects is facilitated by the model component of the PocketProject.
@@ -584,6 +587,7 @@ the rest of the string to another specialized `RemoveFromCommandParser`. (curren
 Using alternative 2 is better  as it provides better abstraction as the details of the 2 different types of `RemoveFromCommand` will be hidden away, hence it is more in line with OOP principles.
 There will also be less clutter in `PocketProjectParser` as there are already a lot of other commands being parsed.
 
+//end::removefrom_dg[]
 // end::removefrom[]
 
 //tag::editproject1[]
@@ -727,6 +731,8 @@ Alternative 2: Let `PocketProjectParser` handle parsing of all the `list` comman
 Using Alternative 1 is better as it provides better abstraction as the `listCommandParser` will handle all `list` commands. It also reduces the cluttering in the main `PocketProjectParser`.
 
 // skill::stats[]
+//tag::stats_dg[]
+
 === Stats feature
 ==== Implementation
 
@@ -744,12 +750,10 @@ The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
 
-.Sequence diagram for stats
+.Sequence diagram showing execution of `stats`
 image::overallStatsSequenceDiagram.png[width="1000"]
 
-Individual Project:
-
-.Sequence diagram for stats
+.Sequence diagram showing execution of `stats 1`
 image::individualStatsSequenceDiagram.png[width="1000"]
 
 Usage Scenario example for `stats`:
@@ -772,6 +776,7 @@ I have decided to use alternative 3 and create a specialized helper class to scr
 produce the string. This is chosen because I have decided to have several helper methods to construct the different parts of the string(e.g. about the number of ongoing projects, project with closest deadline etc..).
 It would be inappropriate to put these methods under the command class or the model because they are not very related.
 
+//end::stats_dg[]
 // end::stats[]
 
 // tag::userstorygeneral[]
