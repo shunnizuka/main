@@ -62,7 +62,7 @@ public class PocketProjectDateParser {
         } else if ((keyword.equals(CliSyntax.PREFIX_CURRENT.toString()))
             || (keyword.equals(CliSyntax.PREFIX_FUTURE.toString()))
                 || (keyword.equals(CliSyntax.PREFIX_PAST.toString()))) {
-                    return parseKeyword(keyword, arguments.trim());
+            return parseKeyword(keyword, arguments.trim());
         } else {
             throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
         }

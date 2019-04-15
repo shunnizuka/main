@@ -180,7 +180,7 @@ public class ParserUtil {
         String trimmedDate = date.trim();
         String formattedDate;
 
-        if(!PocketProjectDateParser.isFlexibleInput(trimmedDate)) {
+        if (!PocketProjectDateParser.isFlexibleInput(trimmedDate)) {
             formattedDate = trimmedDate;
             if (!PocketProjectDate.isValidDate(formattedDate)) {
                 throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
