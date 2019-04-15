@@ -540,8 +540,7 @@ to hide the list of tasks under the milestone.
 
 ==== Add a user story to a project: `addto userstory`
 
-You can add a user story to a project which is useful in the planning stage of a project where the implementation
-of certain features can be prioritized over others.
+You can add a user story to a project. User stories are tools used in software development to capture a description of a software feature from an end-user perspective.
 
 Format: `addto PROJECT_NAME userstory i/STORY_IMPORTANCE STORY`
 
@@ -562,13 +561,14 @@ Examples:
 |===
 |image:ug-smart.png[width="40"]| You can input the importance level or the actual user story in any order.
 |image:ug-smart.png[width="40"]| A valid user story can also be simply: `as a ... i want to...`.
+
 E.g `as a user i want to log in` is a valid user story.
 |===
 
 Upon a successful addition of a user story, you should be able to see the new user story in the list of user stories.
 You may need to toggle the buttons to get to the correct panel.
 
-Refer to the diagram below to see how the new user story is shown.
+Refer to the screenshot below to see how the new user story is shown.
 
 .User stories list showing the newly added user story
 image::addto-user-story-ui.png[width="500"]
@@ -707,9 +707,9 @@ Examples:
 
 . `view project Apollo` +
 `removefrom Apollo userstory 2` +
-Removes the user story at the 2nd position of the displayed list of user stories from Project Apollo.
+Removes the user story at the 2nd position of the list of user stories from Project Apollo.
 
-Refer to the diagram below to see the changes in the user stories list after the command above has been executed.
+Refer to the screenshots below to see the changes in the user stories list after the command above has been executed.
 
 .Before and after comparison of removing a user story
 image::removefrom-user-story-ui.png[width="600"]

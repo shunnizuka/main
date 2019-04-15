@@ -826,7 +826,7 @@ It takes in the project and user story as arguments. After checking that the `PR
 
 Given below is an example usage scenario and how the addition of user story to a project behaves at each step.
 
-Step 1. The user enters the command `list project'. The app displays the list of projects in the Pocket Project by executing the `list project` command.
+Step 1. The user enters the command `list project`. The app displays the list of projects in the Pocket Project by executing the `list project` command.
 
 Step 2. The user enters `addto Apollo userstory i/1 as a user i want to view user stories so that i can track them`. The `LogicManager` passes the string into the `PocketProjectParser` which detects it as a `AddToCommand`. It then passes the string to the `AddToCommandParser`
 which creates an `AddUserStoryTo` command. The `LogicManager` then checks for the validity of the user story and executes the `Model#addUserStoryTo(Project, UserStory)` method to add the new user story.
@@ -882,7 +882,7 @@ image::edit_user_story_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario and how the editing of a user story behaves at each step.
 
-Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
+Step 1. The user enters the command `view project Apollo`. The app displays the list of details of the project named "Apollo" by executing the `view` command.
 
 Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
 
@@ -911,7 +911,7 @@ image::update_user_story_sequence_diagram.png[width="1000"]
 
 Given below is an example usage scenario of how the updating of a user story behaves at each step.
 
-Step 1. The user enters the command `view project Apollo'. The app displays the list of details of the project named "Apollo" by executing the `view` command.
+Step 1. The user enters the command `view project Apollo`. The app displays the list of details of the project named "Apollo" by executing the `view` command.
 
 Step 2. The user can use the buttons in the details panel to scroll to the panel showing the user stories.
 
