@@ -602,29 +602,27 @@ The `EditProjectCommand Parser` differentiate these 3 commands based on the `COM
 .Class diagram showing inheritance for `EditCommand`
 image::edit_command_class_diagram.png[width:"300"]
 
-All the 3 commands are inherited from the `EditProjectCommand`. This allows flexibility as more edit project command can be easily added when there are new components added to the project.
+All these 3 commands are inherited from the `EditProjectCommand` as shown in the diagram above. This allows flexibility as more edit project command can be easily added when there are new components added to the project.
 
 The following sequence diagram shows how `edit project info` command works:
 
 .Sequence diagram for `edit project Apollo info n/Gemini d/12/05/2019`
 image::edit_project_sequence_diagram.png[width:"800"]
 
-Given below is the explanation of what happens when the user enter the `edit project info` command based on the diagram above:
+Given below is the explanation of what happens when the user enter the `edit project Apollo info n/Gemini d/12/05/2019` command based on the diagram above:
 
 . User executes `edit project Apollo info n/Gemini d/12/05/2019` to edit name and deadline of the project named Apollo.
 . `PocketProjectParser` will identify the command as an `EditCommand` based on the word `edit` and pass on the argument to the EditCommandParser.
-. `EditCommandParser` will identify the command as a `EditProjectCommand` based on the word `project` and pass it onto `EditProjectCommandParser`
-. `EditProjectCommandParser` then identify the command as a `EditProjectInfoCommand` based on the word `info` and create the respective command and return it back to the `LogicManager`
-. `LogicManager` then execute the command. Validity of the arguments are checked here as well. The method `Model#setProject(projectToEdit, editedProject)` is called to replace the old project with the edited project with the new parameters.
+. Similarly the arguments will continue to parse through `EditCommandParser` and `EditProjectCommandParser` which will identify the command as `EditProjectInfoCommand` and return it back to the `LogicManager`
+. `LogicManager` then execute the command. Validity of the arguments are checked here as well. The method `Model#setProject(projectToEdit, editedProject)` is called to replace the old project with the edited project which contains the new parameters.
 This method also update the list of project names in the employees who are assigned to project Apollo.
-.  Finally, the project Apollo is edited and the details showing on the ui are updated as well.
-
+.  Finally, the project Apollo is edited and the updated details are shown on the UI.
 |===
 |image:ug-notepadpencil.png[width="40"]|
 If the arguments provided are invalid, a `CommandException` will be thrown and error message will be shown.
 |===
 
-The working mechanism behind `EditProjectMilestoneCommand` is similar as well. Instead of replacing the whole project, only the milestone list in the project is edited by replacing the milestone at the given index through `Model#setMilestone(milestoneToEdit, editedMilestone)` method.
+The working mechanism behind `EditProjectMilestoneCommand` is similar as well. Instead of replacing the whole project, only the milestone list in the project is edited by replacing the milestone at the given index through the `Model#setMilestone(milestoneToEdit, editedMilestone)` method.
 
 ==== Design Consideration
 ===== Aspect how to structure the classes under edit command
@@ -634,7 +632,7 @@ Alternative 1: Have a single edit project command that allow users to edit all t
 Alternative 2: Have several separate commands that edit different parts of the project (current implementation)
 
 For alternative 1, the user will not need to remember many commands just to edit the project. However since there are a lot of components in the project,
-different prefixes will be needed for different component so that the parser can identify which component to edit. There are also overlapping attributes in the
+different prefixes will be needed for different components so that the parser can identify which component to edit. There are also overlapping attributes in the
 components such as milestone date and project deadline or milestone description and project description. Therefore it is going to be messy in terms of code
 as well as in terms of usage of the command.
 
@@ -655,7 +653,7 @@ For the current `find` feature, there are 5 main commands that the user can exec
     . `find all [KEYWORDS]` - display projects which contains words matching the keywords
     . `find deadline KEYWORD` - display projects which contains deadline before the keyword
 
-The `FindCommandParser` differentiate these 5 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill/all/deadline) as illustrated by the diagram below.
+The `FindCommandParser` differentiates these 5 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill/all/deadline) as illustrated in the diagram below.
 
 .Activity diagram on behavior of `FindCommandParser`
 image::find_parser_activity.png[]
@@ -669,7 +667,7 @@ Usage Scenario example for `find employee`:
 
 . User executes `find employee John` to look for employees whose names contains the word 'John'.
 . `PocketProjectParser` will parse and identify the command as a `FindCommand` and pass on the argument `employee John` to `FindCommandParser`.
-. `FindCommandParser` identify the command based on the `COMMAND_KEYWORD` employee.
+. `FindCommandParser` identify the command based on the `COMMAND_KEYWORD` 'employee'.
 . `find employee` command is executed. Employees with name consisting the keywords are filtered out from the employeelist. The filtering is done through the use of `ProjectNameContainsKeywordPredicate` that checks through the names of the employee int the application.
 . Finally, the `filteredEmployees` list which is the list displayed on the ui is updated.
 
@@ -677,7 +675,7 @@ The working mechanism for `find project` is similar to `find employee`. Instead 
 
 For `find all` command, the predicate is used to check for the matching keywords in the project name , description and client, thereby filtering out any projects that contains the keyword in these components of the project.
 
-For `find skill` command, the `List<Skills>skills` from employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
+For `find skill` command, the `List<Skills>skills` from the employee is retrieved as a `String` to match against the keywords. Then the matched employees are filtered and displayed on the ui.
 
 `find deadline` uses the `ProjectContainsDeadlinePredicate` to compare the deadline of the project against the supplied deadline and filter out the projects with deadline earlier or same as the deadline supplied by the user.
 
