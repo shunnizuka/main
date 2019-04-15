@@ -80,12 +80,6 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
         showProjectsWithName(KEYWORD_MATCHING_YANKEE);
         assertCommandSuccess(PROJECT_XAVIER);
 
-        /* ------------------------ Perform add operation while a project card is selected ------------------------- */
-
-        /* Case: selects first card in the project list, add a project -> added, card selection remains unchanged */
-        viewProject(Index.fromOneBased(1));
-        assertCommandSuccess(PROJECT_VICTOR);
-
         /* ----------------------------------- Perform invalid add project operations ------------------------------ */
 
         /* Case: add a duplicate employee -> rejected */

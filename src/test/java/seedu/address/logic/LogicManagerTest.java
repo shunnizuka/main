@@ -71,8 +71,7 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         assertHistoryCorrect(deleteCommand);
     }
-
-    //TODO: remove the assert for history
+    
     @Test
     public void execute_validCommand_success() {
         String listEmployeeCommand = ListCommand.COMMAND_WORD + " " + ListEmployeeCommand.LIST_EMPLOYEE_KEYWORD;
