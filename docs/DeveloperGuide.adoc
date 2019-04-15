@@ -710,10 +710,12 @@ The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
 
+.Sequence diagram showing execution of `stats`
 image::overallStatsSequenceDiagram.png[width="1000"]
 
 Individual Project:
 
+.Sequence diagram showing execution of `stats 1`
 image::individualStatsSequenceDiagram.png[width="1000"]
 
 Usage Scenario example for `stats`:

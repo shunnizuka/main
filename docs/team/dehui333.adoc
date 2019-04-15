@@ -100,7 +100,7 @@ include::../UserGuide.adoc[tag=completeAndStats_dehui]
 
 == Contributions to the Developer Guide
 
-You can view this section to see my contributions to the Developer Guide documentation which consists of the implementation of the removefrom feature(only the parts on employees and milestones, others are added by my teammates) and stats feature and also several sections on manual testing Pocket Project (which unfortunately I am out of space to include in here, so check out this link if you're interested! [https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/DeveloperGuide.adoc#instructions-for-manual-testing[Manual testing, sections G2, G7-G11, G14-G21]).
+You can view this section to see my contributions to the Developer Guide documentation which consists of the implementation of the removefrom feature(only the parts on employees and milestones, others are added by my teammates) and stats feature and also several sections on manual testing Pocket Project (which unfortunately there is no space to include in here, so check out this link if you're interested! [https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/DeveloperGuide.adoc#instructions-for-manual-testing[Manual testing, sections G2, G7-G11, G14-G21]).
 
 
 include::../DeveloperGuide.adoc[tag=removefrom_dg]

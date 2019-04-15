@@ -574,7 +574,7 @@ Refer to the diagram below to see how the new user story is shown.
 image::addto-user-story-ui.png[width="500"]
 // end::adduserstory[]
 
-//tag:delete_dehui[]
+//tag::delete_dehui[]
 === Delete a project or an employee from the application `delete`
 
 ==== Delete a project from the application: `delete project`
