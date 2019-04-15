@@ -313,7 +313,7 @@ You can refer to the screenshots of the program below for a clearer picture. Ass
 current date is 12 April 2019 (12/04/2019), Friday.
 
 .*Using "this/next/last month DAY_OF_MONTH" as a flexible date input*
-image::ug-monthweek.png[]
+image::ug-monthweek.png[][width="500"]
 
 
 ===== Some additional information
@@ -331,9 +331,10 @@ as 2019 is not a leap year.
 
 // end::datefeature[]
 
-// tag::addfeature[]
+
 === Adding an employee or project to the application: `add`
 
+// tag::addemployeefeature[]
 ==== Adding an employee to the application: `add employee`
 
 You can add an employee to the Pocket Project when a new employee joins the company/team
@@ -371,7 +372,9 @@ repository. Otherwise, the page will not load.
 by toggling the arrows on the details panel.
 |===
 
+// end::addemployeefeature[]
 
+// tag::addprojectfeature[]
 ==== Add a project to the application: `add project`
 
 You can add a project to the Pocket Project when the company/team takes on a new project
@@ -401,7 +404,7 @@ You can refer to the screenshot below to have a clearer picture of how it works
 and looks like.
 
 .*Adding a project to the application and what we can do with it*
-image::ug-addproject.png[]
+image::ug-addproject.png[][width="500"]
 
 [width="1000",cols="100,<900"]
 |===
@@ -409,7 +412,8 @@ image::ug-addproject.png[]
 a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
 |===
 
-// end::addfeature[]
+// end::addprojectfeature[]
+
 
 === Add an employee/milestone/project task/user story to a project : `addto`
 

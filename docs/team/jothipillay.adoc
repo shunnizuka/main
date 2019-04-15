@@ -10,16 +10,16 @@ This application was created with the intention of supporting software engineeri
 throughout the lifetime of a project, from the planning phase until it is delivered to the client.
 
 Pocket Project's *core functionality* includes:
-* Adding employees and projects to the application
+
 * Adding user stories to a project which is essential for planning.
 * Assigning projects to employees based on their individual skill sets.
 * Monitoring the progress of a project through milestones and tasks.
 
-=== Before We Begin
+== Before We Begin
 The following section details and previews a few symbols and formats that will
 be used in this portfolio.
 
-[width="100%",cols="35%,<65%"]
+[width="300",cols="35%,<65%"]
 |===
 |Symbol |Meaning
 
@@ -34,11 +34,6 @@ that you can use while using the Pocket Project application.
 |image:ug-exclamation.png[width="50"]
 |The exclamation mark icon indicates any warnings that you
  can take note of while using the Pocket Project application.
-
-|image:ug-smart.png[width="60"]
-|The graduation cap icon indicates any advanced usages or
- extra technical information about how a particular command works
- should you be interested to know.
 
 |```code```
 | Words highlighted in grey, known as `markups`, are used to indicate code segments or commands in the application.
@@ -69,63 +64,62 @@ to execute certain commands, greatly improving efficiency. Some of these command
 both the fixed and flexible date formats. In fact, the  user does not even need to explicitly indicate his/her intended format as the
 parser is designed to differentiate based on the input string received.
 
-* *The code that I contributed*: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/144[Functional Code & Tests Part 1]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/172[Functional Code & Tests Part 2]]
+* *The code that I contributed*: https://github.com/cs2103-ay1819s2-w10-2/main/pull/144[Functional Code & Tests Part 1] https://github.com/cs2103-ay1819s2-w10-2/main/pull/172[Functional Code & Tests Part 2]
 
 *Minor Contributions*:
 
 * Created functionality for the below mentioned features:
-** Enabled adding projects to the application. [https://github.com/cs2103-ay1819s2-w10-2/main/pull/49[#49]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/116[#116]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/198[#198]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/208[#208]]
-** Enabled adding employees and milestones to projects. [https://github.com/cs2103-ay1819s2-w10-2/main/pull/88[#88]][https://github.com/cs2103-ay1819s2-w10-2/main/pull/95[#95]][https://github.com/cs2103-ay1819s2-w10-2/main/pull/109[#109]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/120[#120]]
+** Enabled adding projects to the application. https://github.com/cs2103-ay1819s2-w10-2/main/pull/49[#49] https://github.com/cs2103-ay1819s2-w10-2/main/pull/116[#116] https://github.com/cs2103-ay1819s2-w10-2/main/pull/198[#198] https://github.com/cs2103-ay1819s2-w10-2/main/pull/208[#208]
+** Enabled adding employees and milestones to projects. https://github.com/cs2103-ay1819s2-w10-2/main/pull/88[#88] https://github.com/cs2103-ay1819s2-w10-2/main/pull/95[#95] https://github.com/cs2103-ay1819s2-w10-2/main/pull/109[#109] https://github.com/cs2103-ay1819s2-w10-2/main/pull/120[#120]
 * Changed functionality for the below mentioned features:
 ** Changed the address attribute of an employee to GitHub account as it is more
-useful in a software engineering project context. [https://github.com/cs2103-ay1819s2-w10-2/main/pull/130[#130]]
+useful in a software engineering project context. https://github.com/cs2103-ay1819s2-w10-2/main/pull/130[#130]
 * Enhanced appearance of the User Interface (UI):
 ** Designed the Pocket Project application logo (Refer to the figure below)
 
 .Pocket Project Logo
-image::PPLogo.png[width="200"]
+image::PPLogo.png[width="100"]
 
-*Overall Code Contributions*: [https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&search=jothipillay[RepoSense]]
+*Overall Code Contributions*: https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&search=jothipillay[RepoSense]
 
 *Other Contributions*:
 
 * Project Management
 ** Initiated ideas on new features and suggested improvements to current features.
 ** Helped track issues on the team repository using labels and assignees.
-** Compiled and formatted the entire User Guide after individual contributions by team members: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/242[#242]]
+** Compiled and formatted the entire User Guide after individual contributions by team members: https://github.com/cs2103-ay1819s2-w10-2/main/pull/242[#242]
 
 * Other Enhancements/Fixes to Existing Features
-** Abstracted out common code in classes in the Model to reduce code duplication: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/221[#221]]
-** Helped set up Project Model and some of its component classes: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/32[#32]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/34[#34]]
-** Fixed Various Bugs: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/172[#172]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/232[#232]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/245[#245]]
+** Abstracted out common code in classes in the Model to reduce code duplication: https://github.com/cs2103-ay1819s2-w10-2/main/pull/221[#221]
+** Helped set up Project Model and some of its component classes: https://github.com/cs2103-ay1819s2-w10-2/main/pull/32[#32] https://github.com/cs2103-ay1819s2-w10-2/main/pull/34[#34]
+** Fixed Various Bugs: https://github.com/cs2103-ay1819s2-w10-2/main/pull/172[#172] https://github.com/cs2103-ay1819s2-w10-2/main/pull/232[#232] https://github.com/cs2103-ay1819s2-w10-2/main/pull/245[#245]
 
 * Documentation
-** Enhanced documentation of existing features such as *help*: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]]
-** Created a set of symbols/legends for User Guide and Developer Guide [https://github.com/cs2103-ay1819s2-w10-2/main/pull/84[#84]]
+** Enhanced documentation of existing features such as *help*: https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]
+** Created a set of symbols/legends for User Guide and Developer Guide https://github.com/cs2103-ay1819s2-w10-2/main/pull/84[#84]
 *** Used throughout various documents to express ideas more easily.
-** Set up a glossary for User Guide and Developer Guide [https://github.com/cs2103-ay1819s2-w10-2/main/pull/84[#84]]
+** Set up a glossary for User Guide and Developer Guide https://github.com/cs2103-ay1819s2-w10-2/main/pull/84[#84]
 *** So that the user or developer can understand key technical terms that they may be unfamiliar with.
-** Created a section on the format of commands used in our application and what it means in the User Guide. [https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]]
+** Created a section on the format of commands used in our application and what it means in the User Guide. https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]
 *** This allows the user to more easily understand the commands when reading through the list of Features in the User Guide.
-** Documented our product scope and all user stories in the Developer Guide [https://github.com/cs2103-ay1819s2-w10-2/main/pull/149[#149]]
+** Documented our product scope and all user stories in the Developer Guide https://github.com/cs2103-ay1819s2-w10-2/main/pull/149[#149]
 *** Generated during the planning phase of our project
 ** Documented usage and development of features I initiated and implemented. This is featured in a separate section below.
 Refer to <<Contributions to the User Guide>> and <<Contributions to the Developer Guide>>.
 
 * Community
-** Reviewed pull requests with valid non-trivial feedback: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/118[#118]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/126[#126]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/141[#141]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/214[#214]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/230[#230]]
-** Reported bugs and offered suggestions to another team, CS2103-AY1819S2-T12-4, in the module: [https://github.com/CS2103-AY1819S2-T12-4/main/issues/247[#247]]
-** The Smart Date feature that I implemented was adopted by my some of my fellow teammates for use in their own individual features: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/165[#165]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/209[#209]]
+** Reviewed pull requests with valid non-trivial feedback: https://github.com/cs2103-ay1819s2-w10-2/main/pull/118[#118] https://github.com/cs2103-ay1819s2-w10-2/main/pull/126[#126] https://github.com/cs2103-ay1819s2-w10-2/main/pull/141[#141] https://github.com/cs2103-ay1819s2-w10-2/main/pull/214[#214] https://github.com/cs2103-ay1819s2-w10-2/main/pull/230[#230]
+** Reported bugs and offered suggestions to another team, CS2103-AY1819S2-T12-4, in the module: https://github.com/CS2103-AY1819S2-T12-4/main/issues/247[#247]
+** The Smart Date feature that I implemented was adopted by my some of my fellow teammates for use in their own individual features: https://github.com/cs2103-ay1819s2-w10-2/main/pull/165[#165] https://github.com/cs2103-ay1819s2-w10-2/main/pull/209[#209]
 
 * Tools
-** Integrated a new GitHub plugin, Codacy, to the GitHub team repository: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/154[#154]]
+** Integrated a new GitHub plugin, Codacy, to the GitHub team repository: https://github.com/cs2103-ay1819s2-w10-2/main/pull/154[#154]
 
 === Contributions to the User Guide
 In this section, I detail some of the key contributions I made to the User Guide.
 
 include::../UserGuide.adoc[tag=datefeature]
-include::../UserGuide.adoc[tag=addfeature]
-include::../UserGuide.adoc[tag=addemployee]
+include::../UserGuide.adoc[tag=addprojectfeature]
 include::../UserGuide.adoc[tag=addmilestone]
 
 === Contributions to the Developer Guide
