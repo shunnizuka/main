@@ -219,9 +219,7 @@ Whenever a particular command requires a date field, you can choose to use eithe
 below mentioned formats.
 
 ==== Fixed Date Format
-
-You can input a date using the fixed date format.
-
+You can input a date using the fixed date format. +
 Format: `DD/MM/YYYY`
 
 Examples: +
@@ -235,21 +233,17 @@ year `2099` and acts as a loose safety feature for accidental errors while input
 |===
 
 ==== Flexible Date Format
-
 Alternatively, you can also input a date using the flexible date format. The flexible date format
 allows you to give an input with relation to the current date. It supports the below mentioned 3 formats.
 
-*Choosing a date relative to the current day*
-
+*Choosing a date relative to the current day* +
 You can key in `today`,`tomorrow` and `yesterday` to get today's, tomorrow's and
 yesterday's date respectively.
 
 Format: `today/tomorrow/yesterday`
 
 *Choosing a date relative to the current week*
-
-You can also aim to choose a date with relation to the current week.
-
+You can also aim to choose a date with relation to the current week. +
 Format: `this/next/last week DAY_OF_WEEK`
 
 [width="300",cols="100,<200"]
@@ -273,8 +267,7 @@ image::ug-dateweek.png[][width="500"]
 
 *Choosing a date relative to the current month*
 
-You can also aim to choose a date with relation to the current week.
-
+You can also aim to choose a date with relation to the current week. +
 Format: `this/next/last month DAY_OF_MONTH`
 
 [width="300",cols="100,<200"]
@@ -288,7 +281,6 @@ Examples: +
 This would select the current month's 24th day as the target date. +
 2. `next month 17` +
 This would select next month's 17th day as the target date.
-
 // end::datefeature[]
 
 [width="300",cols="100,<200"]
@@ -296,8 +288,6 @@ This would select next month's 17th day as the target date.
 |image:ug-notepadpencil.png[width="40"]|You do not need to specify which format you are planning to use and the application
 is able to differentiate it based on the input received.
 |===
-
-
 
 ===== Some additional information
 The application will also automatically help to check the validity of the target
@@ -352,14 +342,12 @@ by toggling the arrows on the details panel.
 
 // tag::addprojectfeature[]
 ==== Add a project to the application: `add project`
-
 You can add a project to the Pocket Project when the team takes on a new project
 so that key details of the project are stored and employees, milestones, tasks and user stories
 can be assigned to them in the future.
 
 The project has a default description when created and this can be
 edited using <<Edits name/client/deadline/description of a project: `edit project info`>>
-
 
 Format: `add project n/NAME c/CLIENT_NAME s/START_DATE d/DEADLINE`
 
@@ -384,7 +372,6 @@ image::ug-addproject.png[][width="500"]
 |image:ug-lightbulb.png[width="50"]|You can also view the list of all employees currently working on the project,
 a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
 |===
-
 // end::addprojectfeature[]
 
 

@@ -341,12 +341,10 @@ As dates are widely used throughout the application, it is important that the us
 retain some flexibility so that it is more user-friendly. Therefore, the dates used in the Pocket Project supports 2 main formats as shown below.
 
 *Fixed Date Format*
-
 Format(s): +
 1. `DD/MM/YYYY`
 
 *Flexible Date Format*
-
 Format(s): +
 1.`today/tomorrow/yesterday` +
 2.`this/next/last week DAY_OF_WEEK` +
@@ -378,21 +376,17 @@ image::dg-codesnippet.png[width="500"]
 As can be seen above, the code not only checks if the selected day falls within the maximum number of days
 in a month, but it also checks for leap years. This ensures that only valid calendar dates are accepted
 as a viable input.
-
 ==== Design Considerations
-
 *Potential Design 1* +
 User keys in  `Wednesday`, `next Wednesday`, `last Wednesday` to denote the current, next and last week's Wednesday respectively
 
 *Potential Design 2 (Selected Implementation)* +
 User keys in  `this week 3`, `next week 3`, `last week 3`  to denote the current, next and last week's Wednesday respectively
 
-The second design was chosen as the first one is ambiguous and subjective to an individual's language
-use. For example, if today was Monday, and a person was to mention `next Wednesday`, some people would be thinking of the current week's Wednesday
-whereas may be thinking of next week's Wednesday. Thus to remove confusion, the keyword this/next/last was added. In addition, instead of spelling out the days of week,
-it was designed such that users can key in the day number instead. This speeds things up and also reduces errors
-due to spelling mistakes in the name of the days.
-
+The second design was chosen as the first one is subjective to an individual's language
+use. For example, if today was Monday, and a person was to mention `next Wednesday`, some people may be thinking of the Wednesday in 2 days time
+whereas others may be thinking of next week's Wednesday. Thus to remove confusion, the keyword this/next/last was added. In addition, instead of spelling out the days,
+users can key in the day number instead. This speeds things up and also reduces errors due to spelling mistakes in the name of the day.
 // end::datefeature[]
 
 // tag::addtoemployeemilestone[]
@@ -403,14 +397,11 @@ This feature focuses on the adding of employees and milestones to a selected pro
 
 1. `addto PROJECT_NAME employee EMPLOYEE_INDEX` +
 Adds the employee at index `EMPLOYEE_INDEX` to the list of employees in the project named `PROJECT_NAME`.
-
 2. `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE` +
 Adds the specified milestone to the list of milestones in project named `PROJECT_NAME`.
 
 In addition, the common code in `AddToEmployeeCommand` class and `AddToMilestoneCommand` class is
-abstracted into a `AddToCommand` class which inherits from `Command` class.
-
-Refer to the Class Diagram below for a better visualization of the inheritance relationship.
+abstracted into a `AddToCommand` class which inherits from `Command` class. Refer to the Class Diagram below for a better visualization of the inheritance relationship.
 
 .Class Diagram: Showing inheritance relationship between the commands.
 image::dg-addtoclassdiagram.png[width="300"]
@@ -438,7 +429,6 @@ employee/milestone to the project.
 to be added (Employee or Milestone) from model based on the user input.
 |===
 ==== Design Considerations
-
 *Potential Design 1* +
 The idea is to have only 1 parser ,`PocketProjectParser`, which receives and parses the whole input string
 before constructing the relevant command.
@@ -451,7 +441,6 @@ The 2nd design was chosen as there is better abstraction of the details and it a
 to be add on top of the implemented parser. If future developers want to add more objects to the project, they can simply
 make use of this `AddToCommandParser` to handle different inputs. Choosing this design was a good choice as it helped with the
 implementation of adding user stories and project tasks to a project after this was initially constructed.
-
 // end::addtoemployeemilestone[]
 
 ==== Future Planned Implementations
