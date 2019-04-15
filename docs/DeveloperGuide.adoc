@@ -366,30 +366,30 @@ However, the focus of this section will be purely on the `MILESTONE_DATE`
 *Fixed Date Format*
 
 . The user enter the command `addto Apollo milestone m/Completed DG d/15/04/2019`
-.. The `AddToCommandParser` passes the date `15/04/2019` to the `ParserUtil` for parsing.
-.. The `ParserUtil` then hands it over to the `PocketProjectDateParser` to parse the input.
-.. The `PocketProjectDateParser` first checks if the input is a flexible date input or not by checking
+. The `AddToCommandParser` passes the date `15/04/2019` to the `ParserUtil` for parsing.
+. The `ParserUtil` then hands it over to the `PocketProjectDateParser` to parse the input.
+. The `PocketProjectDateParser` first checks if the input is a flexible date input or not by checking
 for the presence of a `/` in the input.
-.. Since it is not a flexible input, the `PocketProjectDateParser` passes the input back to the `ParserUtil`
-.. ParserUtil` then uses methods `isValidDateFormat` and `isValidDayInMonth` in model to check the format
+. Since it is not a flexible input, the `PocketProjectDateParser` passes the input back to the `ParserUtil`
+. ParserUtil` then uses methods `isValidDateFormat` and `isValidDayInMonth` in model to check the format
 and validity of the the input date.
 
 *Flexible Date Format*
 
 . The user enter the command `addto Apollo milestone m/Completed DG d/this week 2`
-.. The `AddToCommandParser` passes the date `this week 2` to the `ParserUtil` for parsing.
-.. The `ParserUtil` then hands it over to the `PocketProjectDateParser` to parse the input.
-.. The `PocketProjectDateParser` first checks if the input is a flexible date input or not by checking
+. The `AddToCommandParser` passes the date `this week 2` to the `ParserUtil` for parsing.
+. The `ParserUtil` then hands it over to the `PocketProjectDateParser` to parse the input.
+. The `PocketProjectDateParser` first checks if the input is a flexible date input or not by checking
 for the presence of a `/` in the input.
-.. Since it is a flexible input, the `PocketProjectDateParser` searches for 2 sets of keywords. The input
+. Since it is a flexible input, the `PocketProjectDateParser` searches for 2 sets of keywords. The input
 is parsed once to identify the `this` keyword and it is parsed again with another method to identify
 the `week` keyword.
-.. It then checks if the `DAY_OF_WEEK` value provided is between 1 and 7 corresponding to Monday and
+. It then checks if the `DAY_OF_WEEK` value provided is between 1 and 7 corresponding to Monday and
 Sunday respectively.
-.. `The PocketProjectDateParser` then uses the method `thisWeekDate` in model to calculate the date
+. `The PocketProjectDateParser` then uses the method `thisWeekDate` in model to calculate the date
 based on the input.
-.. The calculated date is then converted back to a string and passed back to the `ParserUtil`
-.. ParserUtil` then uses methods `isValidDateFormat` and `isValidDayInMonth` in model to check the format
+. The calculated date is then converted back to a string and passed back to the `ParserUtil`
+. ParserUtil` then uses methods `isValidDateFormat` and `isValidDayInMonth` in model to check the format
 and validity of the the input date.
 
 Refer to the Activity Diagram below for a better understanding of how it works
@@ -422,9 +422,11 @@ use. For example, if today was Monday, some people would refer to the current we
 remove confusion, the keyword this/next/last was added. In addition, instead of spelling out the days of week,
 it was designed such that users can key in the day number instead. This speeds things up and also reduces errors
 due to spelling mistakes in the name of the days.
+
 // end::datefeature[]
 
 // tag::addtoemployeemilestone[]
+
 === Adding Employees and Milestones to a Project
 ==== Overview
 
@@ -458,16 +460,15 @@ Given below is an example usage scenario and how the addition of employee/milest
 *Add Employee To Project Command Usage Scenario*
 
 . The user enters the command `list employees`.
-.. The app displays the list of employees in the Pocket Project by executing the `list` command.
-
+. The app displays the list of employees in the Pocket Project by executing the `list` command.
 . The user enters `addto Apollo employee 1`.
-.. The `LogicManager` passes the entered string to the `PocketProjectParser`.
-.. The `PocketProjectParser` parses the string received and uses the `addto` keyword to identify that the input
+. The `LogicManager` passes the entered string to the `PocketProjectParser`.
+. The `PocketProjectParser` parses the string received and uses the `addto` keyword to identify that the input
 is linked with the `AddToCommand` class.
-.. The rest of the string is then passed to the `AddToCommandParser` to identify the type of `AddToCommand`
+. The rest of the string is then passed to the `AddToCommandParser` to identify the type of `AddToCommand`
 that is being executed and the arguments involved.
-.. The `AddToCommandParser` then creates the `AddEmployeeToCommand` object and this is passed on to the `LogicManager` for execution.
-.. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding
+. The `AddToCommandParser` then creates the `AddEmployeeToCommand` object and this is passed on to the `LogicManager` for execution.
+. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding
 employee to the project.
 
 Refer to the sequence diagram below to better understanding how the `AddEmployeeTo` Command
@@ -479,7 +480,7 @@ image::dg-addemployeeto.png[width="700"]
 *Add Milestone To Project Command Usage Scenario*
 
 . The user enters the command `addto Apollo milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`.
-.. The rest of the execution process is similar to Step 2 of the *Add Employee To Command* mentioned above except that
+. The rest of the execution process is similar to Steps 4 - 8 of the *Add Employee To Command* mentioned above except that
 an `AddMilestoneToCommand` object is created instead in Step 2d and the corresponding milestone is added to the
 project in Step 2e.
 

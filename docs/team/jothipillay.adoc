@@ -9,17 +9,14 @@ inspired to create this application as we sought ways to improve efficiency in p
 This application was created with the intention of supporting software engineering project managers
 throughout the lifetime of a project, from the planning phase until it is delivered to the client.
 
-Pocket Project's *core functionality* includes:
-
-* Adding user stories to a project which is essential for planning.
-* Assigning projects to employees based on their individual skill sets.
-* Monitoring the progress of a project through milestones and tasks.
+Pocket Project's *core functionality* includes adding user stories to a project which is essential for planning, assigning
+projects to employees based on their individual skill sets and monitoring the progress of a project through milestones and tasks.
 
 == Before We Begin
 The following section details and previews a few symbols and formats that will
 be used in this portfolio.
 
-[width="300",cols="35%,<65%"]
+[width="200",cols="35%,<65%"]
 |===
 |Symbol |Meaning
 
@@ -70,8 +67,6 @@ parser is designed to differentiate based on the input string received.
 
 * Enabled adding projects to the application. https://github.com/cs2103-ay1819s2-w10-2/main/pull/49[#49] https://github.com/cs2103-ay1819s2-w10-2/main/pull/116[#116] https://github.com/cs2103-ay1819s2-w10-2/main/pull/198[#198] https://github.com/cs2103-ay1819s2-w10-2/main/pull/208[#208]
 * Enabled adding employees and milestones to projects. https://github.com/cs2103-ay1819s2-w10-2/main/pull/88[#88] https://github.com/cs2103-ay1819s2-w10-2/main/pull/95[#95] https://github.com/cs2103-ay1819s2-w10-2/main/pull/109[#109] https://github.com/cs2103-ay1819s2-w10-2/main/pull/120[#120]
-* Changed the address attribute of an employee to GitHub account as it is more
-useful in a software engineering project context. https://github.com/cs2103-ay1819s2-w10-2/main/pull/130[#130]
 * Designed the Pocket Project application logo.
 
 .Pocket Project Logo
@@ -87,14 +82,12 @@ image::PPLogo.png[width="100"]
 
 * Other Enhancements/Fixes to Existing Features
 ** Abstracted out common code in classes in the Model to reduce code duplication: https://github.com/cs2103-ay1819s2-w10-2/main/pull/221[#221]
-** Helped set up Project Model and some of its component classes: https://github.com/cs2103-ay1819s2-w10-2/main/pull/32[#32] https://github.com/cs2103-ay1819s2-w10-2/main/pull/34[#34]
 ** Fixed Various Bugs: https://github.com/cs2103-ay1819s2-w10-2/main/pull/172[#172] https://github.com/cs2103-ay1819s2-w10-2/main/pull/232[#232] https://github.com/cs2103-ay1819s2-w10-2/main/pull/245[#245]
 
 * Documentation
-** Enhanced documentation of existing and new features such as `help`, `add employee/project` among others: https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]
+** Enhanced documentation of existing and new features such as `help`, `add employee` among others: https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]
 ** Created a set of symbols/legends for User Guide and Developer Guide https://github.com/cs2103-ay1819s2-w10-2/main/pull/84[#84]
-** Documented our product scope and all user stories in the Developer Guide https://github.com/cs2103-ay1819s2-w10-2/main/pull/149[#149]
-** Refer to <<Contributions to the User Guide>> and <<Contributions to the Developer Guide>> for more details.
+** Documented all user stories used in planning in the Developer Guide https://github.com/cs2103-ay1819s2-w10-2/main/pull/149[#149]
 
 * Community
 ** Reviewed pull requests with valid non-trivial feedback: https://github.com/cs2103-ay1819s2-w10-2/main/pull/118[#118] https://github.com/cs2103-ay1819s2-w10-2/main/pull/126[#126] https://github.com/cs2103-ay1819s2-w10-2/main/pull/141[#141] https://github.com/cs2103-ay1819s2-w10-2/main/pull/214[#214] https://github.com/cs2103-ay1819s2-w10-2/main/pull/230[#230]

@@ -212,11 +212,6 @@ image::ug-helpcommand.png[width="400"]
 
 // tag::datefeature[]
 === Date Feature in Pocket Project
-
-In this application, a few commands involve the use of calendar dates. Examples of such
-commands include the setting of start dates and deadlines to projects and the setting of
-completion dates to projects, milestones and tasks.
-
 Whenever a particular command requires a date field, you can choose to use either of the
 below mentioned formats.
 
@@ -244,8 +239,6 @@ year `2099` and acts as a loose safety feature for accidental errors while input
 
 Alternatively, you can also input a date using the flexible date format. The flexible date format
 allows you to give an input with relation to the current date. It supports the below mentioned 3 formats.
-
-The 3 flexible date formats will also be demonstrated with screenshots
 
 ===== Choosing a date relative to the current day
 
