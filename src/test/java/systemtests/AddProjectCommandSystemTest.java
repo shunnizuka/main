@@ -22,7 +22,6 @@ import static seedu.address.testutil.TypicalProjects.PROJECT_ZULU;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -65,7 +64,7 @@ public class AddProjectCommandSystemTest extends PocketProjectSystemTest {
 
         /* Case: add a employee with all fields same as another employee in the pocket project except name -> added */
         toAdd = new Project(new ProjectName("Zululu"), new Client("Shunnizuka"),
-                new PocketProjectDate("10/10/2010"), new PocketProjectDate("04/09/2023"));
+            new PocketProjectDate("10/10/2010"), new PocketProjectDate("04/09/2023"));
         assertCommandSuccess(toAdd);
 
         /* Case: add to empty pocket project -> added */
