@@ -257,12 +257,6 @@ yesterday's date respectively.
 
 Format: `today/tomorrow/yesterday`
 
-You can refer to the screenshots of the program below for a clearer picture. Assume that the
-current date is 12 April 2019 (12/04/2019).
-
-.*Using "today/tomorrow/yesterday" as a flexible date input*
-image::ug-tdytmryst.png[]
-
 ===== Choosing a date relative to the current week
 You can also aim to choose a date with relation to the current week.
 
