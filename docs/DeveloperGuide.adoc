@@ -358,43 +358,24 @@ Format(s):
 
 The section details how a fixed and flexible date format is parsed and processed.
 
-
-
 .Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
 image::dg-activitydiagdate.png[width="700"]
 
 Refer to the Activity Diagram above while reading the explanation so as to have a visual
 representation of what happens.
 
-When a date input needs to be parsed, it enters the
-*Fixed Date Format*
+To simplify the explanation, the process can be summarized into the following key points:
 
-. The user enter the command `addto Apollo milestone m/Completed DG d/15/04/2019`
-. The `AddToCommandParser` passes the date `15/04/2019` to the `ParserUtil` for parsing.
-. The `ParserUtil` then hands it over to the `PocketProjectDateParser` to parse the input.
-. The `PocketProjectDateParser` first checks if the input is a flexible date input or not by checking
-for the presence of a `/` in the input.
-. Since it is not a flexible input, the `PocketProjectDateParser` passes the input back to the `ParserUtil`
-. ParserUtil` then uses methods `isValidDateFormat` and `isValidDayInMonth` in model to check the format
-and validity of the the input date.
-
-*Flexible Date Format*
-
-. The user enter the command `addto Apollo milestone m/Completed DG d/this week 2`
-. The `AddToCommandParser` passes the date `this week 2` to the `ParserUtil` for parsing.
-. The `ParserUtil` then hands it over to the `PocketProjectDateParser` to parse the input.
-. The `PocketProjectDateParser` first checks if the input is a flexible date input or not by checking
-for the presence of a `/` in the input.
-. Since it is a flexible input, the `PocketProjectDateParser` searches for 2 sets of keywords. The input
-is parsed once to identify the `this` keyword and it is parsed again with another method to identify
-the `week` keyword.
-. It then checks if the `DAY_OF_WEEK` value provided is between 1 and 7 corresponding to Monday and
-Sunday respectively.
-. `The PocketProjectDateParser` then uses the method `thisWeekDate` in model to calculate the date
-based on the input.
-. The calculated date is then converted back to a string and passed back to the `ParserUtil`
-. ParserUtil` then uses methods `isValidDateFormat` and `isValidDayInMonth` in model to check the format
-and validity of the the input date.
+. A check is first made to determine if the input is a fixed or flexible date format. This is done by
+checking for the presence of a `/` in the input.
+. If it is a fixed format input, a check is made to determine if it conforms to the `DD/MM/YYYY` format.
+. If it is a flexible format input, the input is parsed and the `PocketProjectParser` identifies keywords such
+as `today/tomorrow/yesterday`, `this/next/last week` or `this,next,last month` to determine the appropriate methods to call from the model.
+. Once the relevant model method is identified and the target date is calculated, it is formatted into
+the `DD/MM/YYYY` format.
+. Regardless of whether the input was fixed or flexible, the current string would represent the form
+of `DD/MM/YYYY` at this stage.
+. The date in the form `DD/MM/YYYY` is then checked to ensure that it is a valid calendar date.
 
 Refer to the code snippet below to see how the validity of the date is verified.
 

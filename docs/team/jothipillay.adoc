@@ -108,7 +108,7 @@ These sections are not exhaustive of my contributions and the rest can be
 viewed at https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/UserGuide.adoc[Pocket Project: User Guide]
 
 === Contributions to the Developer Guide
-In this section, I detail some of the key contributions I made to the Developer Guide targetted at helping
+In this section, I detail some of the key contributions I made to the Developer Guide targeted at helping
 fellow developers understand the implementation and design considerations that went behind the building of
 the application.
 
