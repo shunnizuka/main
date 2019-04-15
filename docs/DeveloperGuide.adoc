@@ -551,7 +551,7 @@ There will also be less clutter in `PocketProjectParser` as there are already a 
 
 // end::removefrom[]
 
-//tag::editproject1[]
+//tag::editproject[]
 
 === Edit Project feature
 ==== Current Implementation
@@ -564,18 +564,15 @@ This feature allows editing of several components which are under project and is
 
 The `EditProjectCommand Parser` differentiate these 3 commands based on the `COMMAND_KEYWORD` which are info, milestone and userstory.
 
-//eng::editproject1[]
-
 .Class diagram showing inheritance for `EditCommand`
-image:edit_command_class_diagram.png[width:"300"]
+image::edit_command_class_diagram.png[width:"300"]
 
 All the 3 commands are inherited from the `EditProjectCommand`. This allows flexibility as more edit project command can be easily added when there are new components added to the project.
 
-//editproject2[]
 The following sequence diagram shows how `edit project info` command works:
 
 .Sequence diagram for `edit project Apollo info n/Gemini d/12/05/2019`
-image:edit_project_sequence_diagram.png[width:"800"]
+image::edit_project_sequence_diagram.png[width:"800"]
 
 Given below is the explanation of what happens when the user enter the `edit project info` command based on the diagram above:
 
@@ -610,7 +607,6 @@ Even though alternative 2 involves having to remember different commands, it can
 the command format for current implementation is quite intuitive. The user just need to specify `edit project` then add in name of the project to edit and the components the user wish to edit.
 Thus, alternative 2 is chosen as it is less confusing both in term of code and usage and can be tweaked to make the command user-friendly.
 
-//end::editproject2[]
 //end::editproject[]
 
 // tag::find[]
@@ -624,7 +620,10 @@ For the current `find` feature, there are 5 main commands that the user can exec
     . `find all [KEYWORDS]` - display projects which contains words matching the keywords
     . `find deadline KEYWORD` - display projects which contains deadline before the keyword
 
-The `FindCommandParser` differentiate these 5 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill/all/deadline).
+The `FindCommandParser` differentiate these 5 commands based on the `COMMAND_KEYWORDS` entered by the users (e.g. employee/project/skill/all/deadline) as illustrated by the diagram below.
+
+.Activity diagram on behavior of `FindCommandParser`
+image::find_parser_activity.png[]
 
 The following sequence diagram shows how the `find employee` command works:
 
