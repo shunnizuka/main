@@ -232,7 +232,7 @@ Examples:
 . `09/03/2020`
 
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
 |image:ug-exclamation.png[width="50"]| The fixed date format follows the required `DD/MM/YYYY` format
 strictly and so `09/04/2023` is a valid input but `9/4/2023` is not.
@@ -245,8 +245,7 @@ year `2099` and acts as a loose safety feature for accidental errors while input
 Alternatively, you can also input a date using the flexible date format. The flexible date format
 allows you to give an input with relation to the current date. It supports the below mentioned 3 formats.
 
-The 3 flexible date formats will also be demonstrated with screenshots using the of the `add project` command which requires
-a `s/START_DATE` and a `d/DEADLINE`.
+The 3 flexible date formats will also be demonstrated with screenshots
 
 ===== Choosing a date relative to the current day
 
@@ -260,7 +259,7 @@ You can also aim to choose a date with relation to the current week.
 
 Format: `this/next/last week DAY_OF_WEEK`
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
 |image:ug-notepadpencil.png[width="40"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
 corresponds to Monday to Sunday respectively.
@@ -274,17 +273,18 @@ This would select next week's Sunday as the target date.
 This would select last week's Tuesday as the target date.
 
 You can refer to the screenshots of the program below for a clearer picture. Assume that the
-current date is 12 April 2019 (12/04/2019), Friday.
+current date is 12 April 2019 (12/04/2019), Friday.  It will be demonstrated using the `add project` command which requires
+a `s/START_DATE` and a `d/DEADLINE`.
 
 .*Using "this/next/last week DAY_OF_WEEK" as a flexible date input*
-image::ug-dateweek.png[]
+image::ug-dateweek.png[][width="500"]
 
 ===== Choosing a date relative to the current month
 You can also aim to choose a date with relation to the current week.
 
 Format: `this/next/last month DAY_OF_MONTH`
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
 |image:ug-exclamation.png[width="50"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
 the maximum number of days of a particular month in the chosen year.
@@ -297,20 +297,21 @@ This would select the current month's 24th day as the target date.
 . `next month 17` +
 This would select next month's 17th day as the target date.
 
-===== Some additional information
-
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
 |image:ug-notepadpencil.png[width="40"]|You do not need to specify which format you are planning to use and the application
 is able to differentiate it based on the input received.
 |===
 
+// end::datefeature[]
+
+===== Some additional information
 The application will also automatically help to check the validity of the target
 date. Should you accidentally target an invalid dates such as `31/04/2019`, it will be rejected as the month of April
 only has 30 days. Additionally, leap years are also considered. So, as 2020 is a leap year, `29/02/2020` is considered a valid input but `29/02/2019` will be rejected
 as 2019 is not a leap year.
 
-// end::datefeature[]
+
 
 
 === Adding an employee or project to the application: `add`
@@ -368,11 +369,11 @@ edited using <<Edits name/client/deadline/description of a project: `edit projec
 
 Format: `add project n/NAME c/CLIENT_NAME s/START_DATE d/DEADLINE`
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
-|image:ug-lightbulb.png[width="70"]|Both the fixed and flexible date format can be used to
+|image:ug-lightbulb.png[width="50"]|Both the fixed and flexible date format can be used to
 select the target `START_DATE` and `DEADLINE`as shown in <<Date Feature in Pocket Project>>
-|image:ug-exclamation.png[width="70"]|The deadline of the project should minimally be 1 day after the
+|image:ug-exclamation.png[width="50"]|The deadline of the project should minimally be 1 day after the
 start of a project.
 |===
 
@@ -387,9 +388,9 @@ and looks like.
 .*Adding a project to the application and what we can do with it*
 image::ug-addproject.png[][width="500"]
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
-|image:ug-lightbulb.png[width="70"]|You can also view the list of all employees currently working on the project,
+|image:ug-lightbulb.png[width="50"]|You can also view the list of all employees currently working on the project,
 a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
 |===
 
@@ -410,7 +411,7 @@ Format: `addto PROJECT_NAME employee EMPLOYEE_INDEX`
 
 The employee at the specified `EMPLOYEE_INDEX` is added to the project specified by the `PROJECT_NAME`.
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
 |image:ug-notepadpencil.png[width="40"]| The index refers to the serial number (one-based indexing) shown in
 the displayed list of employees.
@@ -439,7 +440,7 @@ and looks like.
 image::ug-addtoemployee.png[]
 
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
 |image:ug-lightbulb.png[width="50"]| As shown in the figure above, instead of calling
 the `list employees` command, we can simple click on the `employees` tab located at the top of the side tab panel.
@@ -458,7 +459,7 @@ created, project tasks can be assigned to it.
 Format: `addto PROJECT_NAME milestone m/MILESTONE_DESC d/MILESTONE_DATE`
 
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
 |image:ug-lightbulb.png[width="50"]|Both the fixed date format and the flexible date format
 can be used to select the target `MILESTONE_DATE`. Refer to <<Date Feature in Pocket Project>>
@@ -475,7 +476,7 @@ of milestones in project "Apollo".
 The milestone with the given description and today's date will be added to the list
 of milestones in project "Orbital".
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
 |image:ug-notepadpencil.png[width="40"]| The list of milestones inside the target project
 will automatically be sorted by its date every time a new entry is added.

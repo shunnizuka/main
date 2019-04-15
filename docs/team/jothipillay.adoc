@@ -68,14 +68,11 @@ parser is designed to differentiate based on the input string received.
 
 *Minor Contributions*:
 
-* Created functionality for the below mentioned features:
-** Enabled adding projects to the application. https://github.com/cs2103-ay1819s2-w10-2/main/pull/49[#49] https://github.com/cs2103-ay1819s2-w10-2/main/pull/116[#116] https://github.com/cs2103-ay1819s2-w10-2/main/pull/198[#198] https://github.com/cs2103-ay1819s2-w10-2/main/pull/208[#208]
-** Enabled adding employees and milestones to projects. https://github.com/cs2103-ay1819s2-w10-2/main/pull/88[#88] https://github.com/cs2103-ay1819s2-w10-2/main/pull/95[#95] https://github.com/cs2103-ay1819s2-w10-2/main/pull/109[#109] https://github.com/cs2103-ay1819s2-w10-2/main/pull/120[#120]
-* Changed functionality for the below mentioned features:
-** Changed the address attribute of an employee to GitHub account as it is more
+* Enabled adding projects to the application. https://github.com/cs2103-ay1819s2-w10-2/main/pull/49[#49] https://github.com/cs2103-ay1819s2-w10-2/main/pull/116[#116] https://github.com/cs2103-ay1819s2-w10-2/main/pull/198[#198] https://github.com/cs2103-ay1819s2-w10-2/main/pull/208[#208]
+* Enabled adding employees and milestones to projects. https://github.com/cs2103-ay1819s2-w10-2/main/pull/88[#88] https://github.com/cs2103-ay1819s2-w10-2/main/pull/95[#95] https://github.com/cs2103-ay1819s2-w10-2/main/pull/109[#109] https://github.com/cs2103-ay1819s2-w10-2/main/pull/120[#120]
+* Changed the address attribute of an employee to GitHub account as it is more
 useful in a software engineering project context. https://github.com/cs2103-ay1819s2-w10-2/main/pull/130[#130]
-* Enhanced appearance of the User Interface (UI):
-** Designed the Pocket Project application logo.
+* Designed the Pocket Project application logo.
 
 .Pocket Project Logo
 image::PPLogo.png[width="100"]
@@ -114,7 +111,7 @@ understand how to use the application.
 include::../UserGuide.adoc[tag=datefeature]
 include::../UserGuide.adoc[tag=addmilestone]
 
-This section is not exhaustive of my contributions and the rest can be
+These sections are not exhaustive of my contributions and the rest can be
 viewed at https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/UserGuide.adoc[Pocket Project: User Guide]
 
 === Contributions to the Developer Guide
@@ -123,8 +120,8 @@ fellow developers understand the implementation and design considerations that w
 the application.
 
 include::../DeveloperGuide.adoc[tag=datefeature]
-include::../DeveloperGuide.adoc[tag=addtoemployeemilestone]
+include::../DeveloperGuide.adoc[tag=addprojectfeature]
 
-This section is not exhaustive of my contributions and the rest can be
+These sections are not exhaustive of my contributions and the rest can be
 viewed at https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/DeveloperGuide.adoc[Pocket Project: Developer Guide]
 

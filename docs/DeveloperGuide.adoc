@@ -337,11 +337,8 @@ This section describes some noteworthy details on how certain features are imple
 ==== Overview
 
 As dates are widely used throughout the application, it is important that the user is able to easily input any target date but at the same time
-retain some flexibility so that the feature is more user-friendly.
-
-So, keeping that in mind, the dates used in the Pocket Project supports 2 main formats, the Fixed Date Format, which supports 1 main sub-type, and the Flexible Date Format,
-which supports 3 main sub types, all of which are explained below in the following section. A total of 4 sub-types are supported
-across 2 formats and choosing any 1 of 4 will be accepted as a suitable input.
+retain some flexibility so that the feature is more user-friendly. So, keeping that in mind, the dates used in the Pocket Project supports 2 main formats, the Fixed Date Format, which supports 1 main sub-type, and the Flexible Date Format,
+which supports 3 main sub types.
 
 *Fixed Date Format*
 
@@ -398,12 +395,12 @@ and validity of the the input date.
 Refer to the Activity Diagram below for a better understanding of how it works
 
 .Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
-image::dg-activitydiagdate.png[width="1000"]
+image::dg-activitydiagdate.png[width="500"]
 
 Refer to the code snippet below to see how the validity of the date is verified.
 
 .Code snippet showing verification of a validity of a date.
-image::dg-codesnippet.png[width="1000"]
+image::dg-codesnippet.png[width="500"]
 
 As can be seen above, the code not only checks if the selected day falls within the maximum number of days
 in a month, but it also checks for leap years. This ensures that only valid calendar dates are accepted
@@ -479,7 +476,7 @@ Refer to the sequence diagram below to better understanding how the `AddEmployee
 works.
 
 .Sequence Diagram: How the Add Employee To Command Works
-image::dg-addemployeeto.png[width="1000"]
+image::dg-addemployeeto.png[width="500"]
 
 *Add Milestone To Project Command Usage Scenario*
 
@@ -488,7 +485,7 @@ image::dg-addemployeeto.png[width="1000"]
 an `AddMilestoneToCommand` object is created instead in Step 2d and the corresponding milestone is added to the
 project in Step 2e.
 
-[width="1000",cols="100,<900"]
+[width="300",cols="100,<200"]
 |===
 |image:ug-lightbulb.png[width="50"]| With reference to the above usage scenarios, the main difference is deciding the object
 to be added (Employee or Milestone) based on the user input
@@ -510,8 +507,6 @@ to be add on top of the implemented parser. If future developers want to add mor
 make use of this `AddToCommandParser` to handle different inputs. Choosing this design was a good choice as it helped with the
 implementation of adding user stories and project tasks to a project after this was initially constructed. Refer to <<User Story feature>>
 and <<Project Task feature>> to learn more about these features.
-
-// end::addtoemployeemilestone[]
 
 ==== Future Planned Implementations
 
