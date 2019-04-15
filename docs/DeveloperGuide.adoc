@@ -332,6 +332,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 == Implementation of Key Features
 This section describes some noteworthy details on how certain features are implemented.
 
+// tag::datefeature[]
 === Pocket Project Dates
 
 As expected, when it comes to a project manager application, the use of dates are used
@@ -420,9 +421,9 @@ the maximum number of days of a particular month in the chosen year.
 
 This feature was mainly facilitated by the Java LocalDateTime class and the model and logic component of the Pocket
 Project application.
+// end::datefeature[]
 
-
-// skill::jothiAddTo[]
+// tag::addtoemployeemilestone[]
 === Adding Employees and Milestones to a Project
 ==== Overview
 
@@ -534,7 +535,7 @@ input as such:
 
 The commands will be processed in the same way without any other changes.
 
-// end::jothiAddTo[]
+// end::addtoemployeemilestone[]
 
 // skill::removefrom[]
 === Remove employee/milestone/project task/user story from projects feature

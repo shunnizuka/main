@@ -100,6 +100,7 @@ image::PPLogo.png[width="200"]
 ** Fixed Various Bugs: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/172[#172]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/232[#232]] [https://github.com/cs2103-ay1819s2-w10-2/main/pull/245[#245]]
 
 * Documentation
+** Enhanced documentation of existing features such as *help*: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/229[#229]]
 ** Created a set of symbols/legends for User Guide and Developer Guide [https://github.com/cs2103-ay1819s2-w10-2/main/pull/84[#84]]
 *** Used throughout various documents to express ideas more easily.
 ** Set up a glossary for User Guide and Developer Guide [https://github.com/cs2103-ay1819s2-w10-2/main/pull/84[#84]]
@@ -119,14 +120,17 @@ Refer to <<Contributions to the User Guide>> and <<Contributions to the Develope
 * Tools
 ** Integrated a new GitHub plugin, Codacy, to the GitHub team repository: [https://github.com/cs2103-ay1819s2-w10-2/main/pull/154[#154]]
 
-
 === Contributions to the User Guide
 In this section, I detail some of the key contributions I made to the User Guide.
 
-include::../UserGuide.adoc[tag=adduserstory]
-include::../UserGuide.adoc[tag=removeuserstory]
-include::../UserGuide.adoc[tag=updateuserstory]
+include::../UserGuide.adoc[tag=datefeature]
+include::../UserGuide.adoc[tag=addfeature]
+include::../UserGuide.adoc[tag=addemployee]
+include::../UserGuide.adoc[tag=addmilestone]
 
 === Contributions to the Developer Guide
 In this section, I detail some of the key contributions I made to the Developer Guide.
+
+include::../DeveloperGuide.adoc[tag=datefeature]
+include::../DeveloperGuide.adoc[tag=addtoemployeemilestone]
 

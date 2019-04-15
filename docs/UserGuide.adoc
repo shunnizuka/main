@@ -210,6 +210,7 @@ or click `Help` which can be found on the menu bar at the top left hand corner o
 .*Accessing help from menu bar*
 image::ug-helpcommand.png[width="400"]
 
+// tag::datefeature[]
 === Date Feature in Pocket Project
 
 In this application, a few commands involve the use of calendar dates. Examples of such
@@ -328,6 +329,9 @@ date. Should you accidentally target an invalid dates such as `31/04/2019`, it w
 only has 30 days. Additionally, leap years are also considered. So, as 2020 is a leap year, `29/02/2020` is considered a valid input but `29/02/2019` will be rejected
 as 2019 is not a leap year.
 
+// end::datefeature[]
+
+// tag::addfeature[]
 === Adding an employee or project to the application: `add`
 
 ==== Adding an employee to the application: `add employee`
@@ -388,7 +392,6 @@ select the target `START_DATE` and `DEADLINE`as shown in <<Date Feature in Pocke
 start of a project.
 |===
 
-//TODO edit proj description below.
 Examples:
 
 . `add project n/Apollo s/10/03/2019 d/12/12/2019 c/FairPrice`
@@ -406,8 +409,11 @@ image::ug-addproject.png[]
 a list of milestones and tasks, and a list of user stories by toggling the arrows on the details panel.
 |===
 
+// end::addfeature[]
+
 === Add an employee/milestone/project task/user story to a project : `addto`
 
+// tag::addemployee[]
 ==== Add an employee to a project: `addto employee`
 
 You can add an employee to any projects already created in the Pocket Project application. You can
@@ -454,7 +460,9 @@ image::ug-addtoemployee.png[]
 the `list employees` command, we can simple click on the `employees` tab located at the top of the side tab panel.
 |===
 
+// end::addemployee[]
 
+// tag::addmilestone[]
 ==== Add a milestone to a project: `addto milestone`
 
 You can add a milestone to any projects already created in the Pocket Project application. Milestones are typically
@@ -494,6 +502,7 @@ and looks like.
 .*Adding a milestone to a project*
 image::ug-addtomilestone.png[]
 
+// end::addmilestone[]
 
 ==== Add a project task to a project's milestone: `addto projecttask`
 
