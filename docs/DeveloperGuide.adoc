@@ -405,11 +405,14 @@ Adds the employee at index `EMPLOYEE_INDEX` to the list of employees in the proj
 2. `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE` +
 Adds the specified milestone to the list of milestones in project named `PROJECT_NAME`.
 
-In addition, the common code in `AddToEmployeeCommand` class and `AddToMilestoneCommand` class is
-abstracted into a `AddToCommand` class which inherits from `Command` class. Refer to the Class Diagram below for a better visualization of the inheritance relationship.
+In addition, the `AddToEmployeeCommand` class and `AddToMilestoneCommand` class is
+abstracted into a `AddToCommand` class which inherits from `Command` class. This allows for
+further `AddTo` functionalities to be added while conforming to the Open-Closed Principle.
+
+Refer to the Class Diagram below for a better visualization of the inheritance relationship.
 
 .Class Diagram: Showing inheritance relationship between the commands.
-image::dg-addtoclassdiagram.png[width="300"]
+image::dg-addtoclassdiagram.png[width="700"]
 
 ==== How it Works
 
