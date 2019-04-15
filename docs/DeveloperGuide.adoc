@@ -356,13 +356,17 @@ Format(s):
 
 ==== How it Works
 
-Given below is an example usage scenario of how a fixed and flexible date format is parsed and processed.
-The command will be demonstrated using the `AddMilestoneToCommand` which takes the following format:
+The section details how a fixed and flexible date format is parsed and processed.
 
-Format: `addto PROJECT_NAME milestone m/MILESTONE_DESC d/MILESTONE_DATE`
 
-However, the focus of this section will be purely on the `MILESTONE_DATE`
 
+.Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
+image::dg-activitydiagdate.png[width="700"]
+
+Refer to the Activity Diagram above while reading the explanation that follows so as to have a better
+understanding of how it works
+
+When a date input is received, it will first be parsed
 *Fixed Date Format*
 
 . The user enter the command `addto Apollo milestone m/Completed DG d/15/04/2019`
