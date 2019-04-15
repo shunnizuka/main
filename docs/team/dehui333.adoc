@@ -92,9 +92,8 @@ it to its present state.
 
 == Contributions to the User Guide
 
-You can view these sections to see my contributions to the User Guide documentation for `[aqua]#delete#`, `[aqua]#removefrom employee#`, `[aqua]#removefrom milestone#` command, `[aqua]#complete#` command and `[aqua]#stats#` command.
-
-include::../UserGuide.adoc[tag=delete_dehui]
+You can view these sections to see my contributions to the User Guide documentation for `[aqua]#removefrom employee#`, `[aqua]#removefrom milestone#` command, `[aqua]#complete#` command and `[aqua]#stats#` command.
+The part on the `[aqua]#delete#` command is excluded due to insufficient space, please go to [https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/UserGuide.adoc#delete-a-project-or-an-employee-from-the-application-delete[User Guide Section 4.5 -delete command]] if you are interested.
 include::../UserGuide.adoc[tag=removefrom_dehui]
 include::../UserGuide.adoc[tag=completeAndStats_dehui]
 
@@ -105,3 +104,4 @@ You can view this section to see my contributions to the Developer Guide documen
 
 include::../DeveloperGuide.adoc[tag=removefrom_dg]
 include::../DeveloperGuide.adoc[tag=stats_dg]
+
