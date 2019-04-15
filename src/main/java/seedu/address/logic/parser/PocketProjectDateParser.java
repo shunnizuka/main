@@ -45,30 +45,26 @@ public class PocketProjectDateParser {
      */
     public static String parsePocketProjectDate(String dateInput) throws ParseException {
 
-        if (!isFlexibleInput(dateInput)) {
-            return dateInput;
-        } else {
-            final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(dateInput.trim());
-            if (!matcher.matches()) {
-                throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
-            }
+        final Matcher matcher = BASIC_FLEXIDATE_FORMAT.matcher(dateInput.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
+        }
 
-            final String keyword = matcher.group("keyword").toLowerCase().trim();
-            final String arguments = matcher.group("arguments").trim();
+        final String keyword = matcher.group("keyword").toLowerCase().trim();
+        final String arguments = matcher.group("arguments").trim();
 
-            if (keyword.equals(CliSyntax.PREFIX_TODAY.toString())) {
-                return formatDate(CURRENT);
-            } else if (keyword.equals(CliSyntax.PREFIX_TOMORROW.toString())) {
-                return formatDate(NEXT);
-            } else if (keyword.equals(CliSyntax.PREFIX_YESTERDAY.toString())) {
-                return formatDate(LAST);
-            } else if ((keyword.equals(CliSyntax.PREFIX_CURRENT.toString()))
-                || (keyword.equals(CliSyntax.PREFIX_FUTURE.toString()))
+        if (keyword.equals(CliSyntax.PREFIX_TODAY.toString())) {
+            return formatDate(CURRENT);
+        } else if (keyword.equals(CliSyntax.PREFIX_TOMORROW.toString())) {
+            return formatDate(NEXT);
+        } else if (keyword.equals(CliSyntax.PREFIX_YESTERDAY.toString())) {
+            return formatDate(LAST);
+        } else if ((keyword.equals(CliSyntax.PREFIX_CURRENT.toString()))
+            || (keyword.equals(CliSyntax.PREFIX_FUTURE.toString()))
                 || (keyword.equals(CliSyntax.PREFIX_PAST.toString()))) {
-                return parseKeyword(keyword, arguments.trim());
-            } else {
-                throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
-            }
+            return parseKeyword(keyword, arguments.trim());
+        } else {
+            throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -97,7 +93,7 @@ public class PocketProjectDateParser {
         }
     }
 
-    private static boolean isFlexibleInput(String flexibleDateInput) {
+    public static boolean isFlexibleInput(String flexibleDateInput) {
         return flexibleDateInput.matches(ALPHA_NUMERIC_VALIDATION_REGEX);
     }
 

@@ -178,10 +178,15 @@ public class ParserUtil {
 
         requireNonNull(date);
         String trimmedDate = date.trim();
-        String formattedDate = PocketProjectDateParser.parsePocketProjectDate(trimmedDate).trim();
+        String formattedDate;
 
-        if (!PocketProjectDate.isValidDate(formattedDate)) {
-            throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
+        if (!PocketProjectDateParser.isFlexibleInput(trimmedDate)) {
+            formattedDate = trimmedDate;
+            if (!PocketProjectDate.isValidDate(formattedDate)) {
+                throw new ParseException(PocketProjectDate.MESSAGE_CONSTRAINTS);
+            }
+        } else {
+            formattedDate = PocketProjectDateParser.parsePocketProjectDate(trimmedDate).trim();
         }
 
         if (!CalendarDate.isValidDayInMonth(formattedDate)) {
