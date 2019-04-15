@@ -17,13 +17,13 @@ import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
 import static seedu.address.testutil.TypicalEmployees.BENSON;
 import static seedu.address.testutil.TypicalEmployees.CARL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 import static seedu.address.testutil.TypicalMilestones.TYPICAL_MILESTONE_END;
 import static seedu.address.testutil.TypicalMilestones.TYPICAL_MILESTONE_START;
 import static seedu.address.testutil.TypicalProjectNames.NON_EXISTENT_PROJECT_NAME;
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_1;
 import static seedu.address.testutil.TypicalProjectNames.TYPICAL_PROJECT_NAME_INDEX_2;
 import static seedu.address.testutil.TypicalProjects.PROJECT_ALICE;
+import static seedu.address.testutil.TypicalProjects.PROJECT_GEORGE;
 import static seedu.address.testutil.TypicalProjects.getTypicalPocketProjectWithProjects;
 import static seedu.address.testutil.TypicalUserStories.USER_STORY_FIRST_MANAGER;
 import static seedu.address.testutil.TypicalUserStories.USER_STORY_SECOND_MANAGER;
@@ -42,7 +42,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.PocketProject;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
-import seedu.address.model.util.PocketProjectDate;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.PocketProjectBuilder;
 import seedu.address.testutil.ProjectBuilder;
@@ -144,7 +143,7 @@ public class EditProjectInfoCommandTest {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
         // edit Project in filtered list into a duplicate in pocket project
-        Project projectInList = model.getPocketProject().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
+        Project projectInList = model.getProjectWithName(PROJECT_GEORGE.getProjectName());
         EditProjectCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1,
             new EditProjectDescriptorBuilder(projectInList).build());
 
@@ -167,9 +166,14 @@ public class EditProjectInfoCommandTest {
         EditProjectInfoCommand.EditProjectDescriptor descriptor =
             new EditProjectDescriptorBuilder().withDeadline("01/01/2001").build();
         EditProjectCommand editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1, descriptor);
-
         assertCommandFailure(editProjectCommand, model, commandHistory,
-            PocketProjectDate.START_END_DATE_CONSTRAINTS);
+            Messages.MESSAGE_INVALID_EDITED_PROJECT_DEADLINE);
+
+        descriptor =
+            new EditProjectDescriptorBuilder().withDeadline("01/01/2012").build();
+        editProjectCommand = new EditProjectInfoCommand(TYPICAL_PROJECT_NAME_INDEX_1, descriptor);
+        assertCommandFailure(editProjectCommand, model, commandHistory,
+            Messages.MESSAGE_INVALID_EDITED_PROJECT_DEADLINE);
     }
 
     @Test
@@ -243,12 +247,13 @@ public class EditProjectInfoCommandTest {
 
         model.undoPocketProject();
 
-        /* TODO travis keep failing me for this even though it passed on my computer
+        /*
         assertTrue(model.getPocketProject().getEmployeeList().get(0).getCurrentProjects()
             .contains(PROJECT_ALICE.getProjectName()));
         assertTrue(model.getPocketProject().getEmployeeList().get(1).getCurrentProjects()
             .contains(PROJECT_ALICE.getProjectName()));
         */
+
     }
 
     @Test

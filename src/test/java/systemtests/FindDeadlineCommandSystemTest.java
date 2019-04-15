@@ -97,26 +97,13 @@ public class FindDeadlineCommandSystemTest extends PocketProjectSystemTest {
         //TODO the error message should be CalendarDate.DAY_MONTH_CONSTRAINTS
         /* Case: wrong date format -> invalid date*/
         command = FindDeadlineCommand.COMMAND_WORD + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " 31/04/2019";
-        assertCommandFailure(command, PocketProjectDate.MESSAGE_CONSTRAINTS);
+        assertCommandFailure(command, CalendarDate.DAY_MONTH_CONSTRAINTS);
         assertSelectedProjectCardUnchanged();
 
         /* Case: same as above but using flexible date -> invalid date */
         command = FindDeadlineCommand.COMMAND_WORD + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " this month 31";
         assertCommandFailure(command, CalendarDate.DAY_MONTH_CONSTRAINTS);
         assertSelectedProjectCardUnchanged();
-
-        //TODO View Project stuff
-        /* Case: find while a project is selected -> selected card deselected */
-        /*
-        showAllProjects();
-        viewProject(Index.fromOneBased(1));
-        assertFalse(getEmployeeListPanel().getHandleToSelectedCard().getEmployeeName()
-            .equals(DANIEL.getEmployeeName().fullName));
-        command = FindDeadlineCommand.COMMAND_WORD + " " + FindDeadlineCommand.FIND_DEADLINE_KEYWORD + " Daniel";
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardDeselected();
-        */
 
         /* Case: find project in empty Pocket Project -> 0 projects found */
         deleteAllProjects();

@@ -94,14 +94,14 @@ Some of the figure numbers are changed too.
 ==== Delete a project from the application: `delete project`
 Deletes the a from the list of projects.
 
-Format: `delete project PROJ_NAME` or `delete project PROJ_INDEX`
+Format: `delete project PROJECT_NAME` or `delete project PROJECT_INDEX`
 
 image:ug-notepadpencil.png[width="40"]
-Deletes the project at the specified `PROJ_INDEX`.
+Deletes the project at the specified `PROJECT_INDEX`.
 The index refers to the index number (one-based) shown in the displayed list of projects.
 
 image:ug-exclamation.png[width="60"]
-The index must be a *positive integer* and cannot be larger than the size of the list. The `PROJ_NAME` must be the name
+The index must be a *positive integer* and cannot be larger than the size of the list. The `PROJECT_NAME` must be the name
 of an existing project.
 
 Examples:
@@ -144,11 +144,11 @@ of employees.
 
 === Remove an employee/milestone/user story from a project : `removefrom`
 
-==== Remove an employee from a project: `removefrom PROJ_NAME employee`
+==== Remove an employee from a project: `removefrom PROJECT_NAME employee`
 
 Removing an employee from a project.
 
-Format: `removefrom PROJ_NAME employee EMPLOYEE_INDEX`
+Format: `removefrom PROJECT_NAME employee EMPLOYEE_INDEX`
 
 Examples:
 
@@ -164,11 +164,11 @@ click on the right arrowhead till the page showing the list of employees in the 
 Removes the employee at first position at displayed list of employees from the project 'p1'. The effect of the command is
 demonstrated in figures 3 and 4.
 
-==== Remove a milestone from a project: `removefrom PROJ_NAME milestone`
+==== Remove a milestone from a project: `removefrom PROJECT_NAME milestone`
 
 Removing a milestone from a project.
 
-Format: `removefrom PROJ_NAME milestone MS_INDEX`
+Format: `removefrom PROJECT_NAME milestone MS_INDEX`
 
 Examples:
 
@@ -187,7 +187,7 @@ The index must be a *positive integer* and cannot be larger than the size of the
 
 Indicates that a project is completed.
 
-Format:  `complete PROJ_INDEX COMPLETION_DATE`
+Format:  `complete PROJECT_INDEX COMPLETION_DATE`
 
 Examples:
 
@@ -200,9 +200,8 @@ The first project in the shown list is indicated as completed on 11/11/2011.
 
 Returns an overview of all ongoing projects/the progress of an individual project.
 
-Format: `stats` or `stats PROJ_NAME`/`stats PROJ_INDEX`
+Format: `stats` or `stats PROJECT_NAME`/`stats PROJECT_INDEX`
 +
-add something here.
 Examples:
 
 `stats` +
@@ -294,9 +293,13 @@ the status of all projects. `Model#individualStats(Project)` passes the given pr
 The following sequence diagrams show how the stats command will work:
 
 Overview of all projects:
-image::OverallStatsSequenceDiagram.png[width="1000"]
+
+image::overallStatsSequenceDiagram.png[width="1000"]
+
 Individual Project:
-image::IndividualStatsSequenceDiagram.png[width="1000"]
+
+image::individualStatsSequenceDiagram.png[width="1000"]
+
 Usage Scenario example for `stats`:
 
 1.	User executes `stats`/`stats PROJECT_INDEX`/`stats PROJECT_NAME` to view project statistics in Pocket Project.

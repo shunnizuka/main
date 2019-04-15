@@ -27,6 +27,8 @@ import seedu.address.model.util.PocketProjectDate;
  */
 public class UniqueMilestoneList implements Iterable<Milestone> {
 
+    private static final int OFFSET = 1;
+
     private final ObservableList<Milestone> internalList = FXCollections.observableArrayList();
     private final ObservableList<Milestone> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
@@ -88,10 +90,8 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
             throw new MilestoneNotFoundException();
         }
         if (!targetMilestone.equals(milestone) && contains(milestone)) {
-            System.out.println("throwing");
             throw new DuplicateMilestoneException();
         }
-        System.out.println("adding");
         remove(targetMilestone);
         add(milestone);
     }
@@ -112,6 +112,14 @@ public class UniqueMilestoneList implements Iterable<Milestone> {
         }
 
         internalList.setAll(milestones);
+    }
+
+    /**
+     * Retrieve the date of the latest milestone to check against the deadline of the project when editing
+     */
+    public PocketProjectDate getLatestMilestoneDate() {
+        //milestone sorted based on date, hence get the last milestone in the list
+        return internalList.get(internalList.size() - OFFSET).getDate();
     }
 
     /**
