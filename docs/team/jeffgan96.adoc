@@ -80,6 +80,8 @@ In this section, I will showcase some of my contributions to the Developer's Gui
 to our Developer's Guide: [https://github.com/cs2103-ay1819s2-w10-2/main/blob/master/docs/DeveloperGuide.adoc]
 
 include::../DeveloperGuide.adoc[tag=ui]
+include::../DeveloperGuide.adoc[tag=adduserstory]
+include::../DeveloperGuide.adoc[tag=removeuserstory]
 include::../DeveloperGuide.adoc[tag=edituserstory]
 include::../DeveloperGuide.adoc[tag=updateuserstory]
 include::../DeveloperGuide.adoc[tag=designandfuture]
