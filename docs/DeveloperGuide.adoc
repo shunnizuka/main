@@ -339,8 +339,8 @@ This section describes some noteworthy details on how certain features are imple
 ==== Overview
 
 As dates are widely used throughout the application, it is important that the user is able to easily input any target date but at the same time
-retain some flexibility so that the feature is more user-friendly. So, keeping that in mind, the dates used in the Pocket Project supports 2 main formats, the Fixed Date Format, which supports 1 main sub-type, and the Flexible Date Format,
-which supports 3 main sub types.
+retain some flexibility so that it is more user-friendly. So, the dates used in the Pocket Project supports 2 main formats, the Fixed Date Format, which supports 1 sub-type, and the Flexible Date Format,
+which supports 3 sub-types.
 
 *Fixed Date Format*
 
@@ -363,7 +363,7 @@ The section details how a fixed and flexible date format is parsed and processed
 .Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
 image::dg-activitydiagdate.png[width="500"]
 
-Refer to the Activity Diagram above while reading the explanation so as to have a visual
+Refer to the Activity Diagram above while reading the summary below so as to have a visual
 representation of what happens.
 
 To simplify the explanation, the process can be summarized into the following key points:
@@ -372,10 +372,10 @@ To simplify the explanation, the process can be summarized into the following ke
 checking for the presence of a `/` in the input.
 . If it is a fixed format input, a check is made to determine if it conforms to the `DD/MM/YYYY` format.
 . If it is a flexible format input, the input is parsed and the `PocketProjectParser` identifies keywords such
-as `today/tomorrow/yesterday`, `this/next/last week` or `this,next,last month` to determine the appropriate methods to call from the model.
+as `tomorrow`, `last week` or `,this month` to determine the appropriate methods to call from the model.
 . Once the relevant model method is identified and the target date is calculated, it is formatted into
 the `DD/MM/YYYY` format.
-. Regardless of whether the input was fixed or flexible, the current string would represent the form
+. Regardless of the initial format of the input, the current string would represent the form
 of `DD/MM/YYYY` at this stage.
 . The date in the form `DD/MM/YYYY` is then checked to ensure that it is a valid calendar date.
 
@@ -474,8 +474,7 @@ parser which is the  `AddToCommandParser`.
 The 2nd design was chosen as there is better abstraction of the details and it also allows further functionality
 to be add on top of the implemented parser. If future developers want to add more objects to the project, they can simply
 make use of this `AddToCommandParser` to handle different inputs. Choosing this design was a good choice as it helped with the
-implementation of adding user stories and project tasks to a project after this was initially constructed. Refer to <<User Story feature>>
-and <<Project Task feature>> to learn more about these features.
+implementation of adding user stories and project tasks to a project after this was initially constructed.
 
 // end::addtoemployeemilestone[]
 
@@ -491,8 +490,6 @@ input as such:
 ** `addto PROJECT_NAME ms m/MILESTONE_DESCRIPTION d/MILESTONE_DATE` instead of `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`
 
 The commands will be processed in the same way without any other changes.
-
-
 
 // skill::removefrom[]
 === Remove employee/milestone/project task/user story from projects feature
