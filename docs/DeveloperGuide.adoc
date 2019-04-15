@@ -96,7 +96,6 @@ through the course of the Developer Guide.
 |Milestone
 |A key event that is completed during the entire timeline of the project.
 
-
 |Project Task
 |Events which are completed during a milestone to achieve the next milestone.
 
@@ -332,8 +331,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
-== Implementation
-
+== Implementation of Key Features
 This section describes some noteworthy details on how certain features are implemented.
 
 === Pocket Project Dates
@@ -426,84 +424,119 @@ This feature was mainly facilitated by the Java LocalDateTime class and the mode
 Project application.
 
 
-// skill::addTo[]
-=== Add employee/milestone/project task/user story to projects feature
-==== Current Implementation
+// skill::jothiAddTo[]
+=== Adding Employees and Milestones to a Project
+==== Overview
 
-This feature focuses on the adding of employees or milestones to a selected project and is mainly facilitated
-by the model component of the PocketProject application. This feature supports two main commands:
+This feature focuses on the adding of employees and milestones to a selected project.
+This feature supports two commands which are explained below.
 
-* `addto [project name] employee [employee index]` -- removes the employee at index `[employee index]` in the list of all employees in the Pocket Project application.
-* `addto [project name] milestone [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
-* `addto [project name] projecttask n/PROJECT_TASK_DESCRIPTION m/MILESTONE_INDEX` -- adds the project task with given description `PROJECT_TASK_DESCRIPTION` to the milestone specified by `MILESTONE_INDEX` in the project with name `[project name]`.
-* `addto [project name] userstory i/IMPORTANCE [story]` -- adds the user story specified in `[story]` to the list of user stories in the project with name `[project name]`
+*Add Employee To Project Command Overview*
 
-These operations are supported by the methods in the `Model` interface: `Model#addEmployeeTo(Project, Employee)`, `Model#addMilestoneTo(Project, Milestone)`, `Model#addProjectTaskTo(Project, Milestone, ProjectTask)` and `Model#addUserStoryTo(Projectm UserStory)`.
-These four methods only take in the project and employee/milestone/project task/user story as arguments as the correct Employee/Milestone/ProjectTask/UserStory object would be located by
-`AddEmployeeToCommand#excute()`, `AddMilestoneToCommand#execute()`, `AddProjectTaskToCommand#execute()` or `AddUserStoryToCommand#execute()` before the methods of `Model` are called.
+* `addto PROJECT_NAME employee EMPLOYEE_INDEX` +
 
-Given below is an example usage scenario and how the addition of employee/milestone/project task/user story to a project feature behaves at each step.
+Adds the employee at index `EMPLOYEE_INDEX` in the displayed list of employees to the list of employees in the project named `PROJECT_NAME`.
 
-`AddEmployeeTo Command`
+[width="1000",cols="100,<900"]
+|===
+|image:ug-exclamation.png[width="50"]| The `PROJECT_NAME` entered must be valid and must already exist in the application.
+|image:ug-exclamation.png[width="50"]| The `EMPLOYEE_INDEX` given must refer to some existing employee in the application.
+|===
 
-Step 1. The user enters the command `list employees'. The app displays the list of employees in the Pocket Project by executing the `list` command.
+*Add Milestone To Project Command Overview*
 
-Step 2. The user enters `addto Apollo employee 1`. The `LogicManager` passes the entered string to the `PocketProjectParser`. The `PocketProjectParser` parses the string received and identifies the command as falling under the class of `AddToCommand`
-by the `addto` keyword and passes the rest of the string to the `AddToCommandParser` to identify which type of `AddToCommand` is being executed and what are the arguments.
-The `AddToCommandParser` then creates command object and passes it to the `LogicManager` to be executed. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding object.
+* `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`
 
-`AddMilestoneTo Command`
+Adds the milestone specified in `m/MILESTONE_DESCRIPTION` and `MILESTONE_DATE` to the list of milestones in the project named `PROJECT_NAME`.
 
-Step 1. The user enters the command `addto Apollo milestone [milestone details]'. The rest of the execution process is
-similar to Step 2 of the `AddEmployeeTo Command` mentioned above. Only the object added is decided between an employee, user story or a
-milestone depending on the user input.
+[width="1000",cols="100,<900"]
+|===
+|image:ug-exclamation.png[width="50"]| The `MILESTONE_DESCRIPTION` must not be empty or contain only whitespaces.
+|image:ug-exclamation.png[width="50"]| The `MILESTONE_DATE` given must conform to either the Fixed or Flexible Date Format.
+See <<Pocket Project Dates>>.
+|===
 
-`AddProjectTaskTo Command`
+==== How it Works
 
-Step 1. The user enters the command `addto Apollo projecttask n/Create feature XYZ m/1`. The rest of the execution process is similar to Step 2 of the `AddEmployeeToCommand` mentioned above.
-The only differences being that the object being added is a project task and that it is being added to a milestone within a project, instead of directly to the project.
+These 2 commands are actually similar in nature and both of them are mainly facilitated
+by the model component of the Pocket Project application.
 
-`AddUserStoryTo Command`
+* `Model#addEmployeeTo(Project, Employee)`
+* `Model#addMilestoneTo(Project, Milestone)`.
 
-Step 1. The user enters the command `addto Apollo userstory i/1 as a user i want to view user stories so that i can track them`. The rest of the
-execution process is similar to Step 2 of the `AddEmployeeTo Command`.Only the object added is decided between an employee, user story or a
-milestone depending on the user input.
+These 2 methods only take in the Project and Employee/Milestone as arguments as the correct Employee/Milestone object would be located by
+`AddEmployeeToCommand#excute()`, `AddMilestoneToCommand#execute()` before `Model#addEmployeeTo(Project, Employee)`
+and `Model#addMilestoneTo(Project, Milestone)` is called.
 
-image:ug-lightbulb.png[width="50"]
-Tip: The `[project name]` entered must be valid and exists in the app. The `[employee index]` given must refer to some existing employee. Also,
-the milestone added needs to be of the correct format. If not, exceptions would be thrown during the execution of the command.
+===== Example Usage Scenario
+
+Given below is an example usage scenario and how the addition of employee/milestone to a project feature behaves at each step.
+
+*Add Employee To Project Command Usage Scenario*
+
+. The user enters the command `list employees`.
+.. The app displays the list of employees in the Pocket Project by executing the `list` command.
+
+. The user enters `addto Apollo employee 1`.
+.. The `LogicManager` passes the entered string to the `PocketProjectParser`.
+.. The `PocketProjectParser` parses the string received and uses the `addto` keyword to identify that the input
+is linked with the `AddToCommand` class.
+.. The rest of the string is then passed to the `AddToCommandParser` to identify the type of `AddToCommand`
+that is being executed and the arguments involved.
+.. The `AddToCommandParser` then creates the `AddEmployeeToCommand` object and this is passed on to the `LogicManager` for execution.
+.. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding
+employee to the project.
+
+Refer to the sequence diagram below to better understanding how the `AddEmployeeTo` Command
+works.
+
+.How the Add Employee To Command Works
+image::dg-addemployeeto.png[width="1000"]
+
+*Add Milestone To Project Command Usage Scenario*
+
+. The user enters the command `addto Apollo milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`.
+.. The rest of the execution process is similar to Step 2 of the *Add Employee To Command* mentioned above except that
+an `AddMilestoneToCommand` object is created instead in Step 2d and the corresponding milestone is added to the
+project in Step 2e.
+
+[width="1000",cols="100,<900"]
+|===
+|image:ug-smart.png[width="60"]| With reference to the above usage scenarios, the main difference is deciding the object
+to be added (Employee or Milestone) based on the user input
+|===
 
 ==== Design Considerations
-===== Aspect: How to structure the user story details to be inputted into the project
 
-Alternative 1: Use a `regex` to indicate the importance/priority of a user story, then have the user key in the user story in the specified format `as a...i want to...so that...`(Current implementation)
+*Potential Design 1* +
+Have only 1 parser where the `PocketProjectParser` receives and parses the whole input string
+before constructing the relevant command.
 
-Alternative 2: Use only `regex` to denote the different parts of a user story. For example, `i/` to denote the importance level, `u/` to denote user etc...
+*Potential Design 2 (Selected Implementation)* +
+Have a total of 2 parsers, the first being `PocketProjectParser` which uses the `addto` key word to
+identify that it is a `AddToCommand` command. The rest of the input string minus the `addto` keyword is then parsed by the second
+parser which is the  `AddToCommandParser`.
 
-Alternative 3: Store the entire string as given by the user as it is and not parse the input.
-
-Using alternative 3 is the simplest and most straight forward way to handle the user input, but it does not provide much functionality. As user stories should be organised and easy to read as a list,
-we will need to use some sort of `TableView` or `ListView` to view the stories. Thus, using alternative 3 will only allow the entire string to be generated and is not user friendly.
-Between alternative 2 and alternative 1, alternative 2 provides an easier way for the program to generate and partition the input using `regex` expressions. However, as there are many parts to a user
-story, having to remember 4 different `regex` expressions may be hard for a user to remember and may be inconvenient. Using alternative 1 is a mix of both 2 and 3, which allows abit more flexibility
-and smoothness for a user by allowing them to type in full sentences how they would normally do for a user story, while allowing proper classification of the components of the story to be able to
-be displayed in the UI component as a `TableView`.
-
+The 2nd design was chosen as there is better abstraction of the details and it also allows further functionality
+to be add on top of the implemented parser. If future developers want to add more objects to the project, they can simply
+make use of this `AddToCommandParser` to handle different inputs. Choosing this design was a good choice as it helped with the
+implementation of adding user stories and project tasks to a project after this was initially constructed. Refer to <<User Story feature>>
+and <<Project Task feature>> to learn more about these features.
 
 ==== Future Planned Implementations
 
-The following additional features are scheduled to be implemented in future version.
+The following additional feature is scheduled to be implemented in future versions.
 
-1. Add an alias to to the addto commands so that it is more user-friendly for users of this application. Users
-can key in the two above mentioned commands by replacing `employee` with `e` and `milestone` with `m`. The commands can be
+* Add an alias for the arguments in the addto commands so that it is more user-friendly for users of this application. Users
+can key in the two above mentioned commands by replacing `employee` with `e` and `milestone` with `ms`. The commands can be
 input as such:
 
-* `addto [project name] e [employee index]` -- removes the employee at index `[employee index]` in the list of all employees in the Pocket Project application.
-* `addto [project name] m [milestone details]` -- adds the milestone specified in `[milestone details]` to the list of milestones in the project named `[project name]`.
+** `addto PROJECT_NAME e EMPLOYEE_INDEX` instead of `addto PROJECT_NAME employee EMPLOYEE_INDEX`
+** `addto PROJECT_NAME ms m/MILESTONE_DESCRIPTION d/MILESTONE_DATE` instead of `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`
 
 The commands will be processed in the same way without any other changes.
 
-// end::addto[]
+// end::jothiAddTo[]
 
 // skill::removefrom[]
 === Remove employee/milestone/project task/user story from projects feature
