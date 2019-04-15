@@ -337,27 +337,22 @@ This section describes some noteworthy details on how certain features are imple
 // tag::datefeature[]
 === Pocket Project Dates
 ==== Overview
-
 As dates are widely used throughout the application, it is important that the user is able to easily input any target date but at the same time
-retain some flexibility so that it is more user-friendly. So, the dates used in the Pocket Project supports 2 main formats, the Fixed Date Format, which supports 1 sub-type, and the Flexible Date Format,
-which supports 3 sub-types.
+retain some flexibility so that it is more user-friendly. Therefore, the dates used in the Pocket Project supports 2 main formats as shown below.
 
 *Fixed Date Format*
 
-Format(s):
-
-. `DD/MM/YYYY`
+Format(s): +
+1. `DD/MM/YYYY`
 
 *Flexible Date Format*
 
-Format(s):
-
-. `today/tomorrow/yesterday`
-. `this/next/last week DAY_OF_WEEK`
-. `this/next/last month DAY_OF_MONTH`
+Format(s): +
+1.`today/tomorrow/yesterday` +
+2.`this/next/last week DAY_OF_WEEK` +
+3.`this/next/last month DAY_OF_MONTH`
 
 ==== How it Works
-
 The section details how a fixed and flexible date format is parsed and processed.
 
 .Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
@@ -366,14 +361,13 @@ image::dg-activitydiagdate.png[width="500"]
 Refer to the Activity Diagram above while reading the summary below so as to have a visual
 representation of what happens.
 
-To simplify the explanation, the process can be summarized into the following key points:
-
-. A check is first made to determine if the input is a fixed or flexible date format. This is done by
-checking for the presence of a `/` in the input.
-. If it is a fixed format input, a check is made to determine if it conforms to the `DD/MM/YYYY` format.
-. If it is a flexible format input, the input is parsed and the `PocketProjectParser` identifies keywords to determine the appropriate methods to call from the model. The target
-date is then formatted into the DD/MM/YYYY format.
-. Regardless of the initial format of the input, the current string would represent the form
+To simplify the explanation, the process can be summarized into the following key points: +
+1.  A check is first made to determine if the input is a fixed or flexible date format. This is done by
+checking for the presence of a `/` in the input. +
+2. If it is a fixed format input, a check is made to determine if it conforms to the `DD/MM/YYYY` format. +
+3. If it is a flexible format input, the input is parsed and the `PocketProjectParser` identifies keywords to determine the appropriate methods to call from the model. The target
+date is then formatted into the DD/MM/YYYY format. +
+4. Regardless of the initial format of the input, the current string would represent the form
 of `DD/MM/YYYY` at this stage. The validity of the date is then checked.
 
 Refer to the code snippet below to see how the validity of the date is verified.
@@ -395,8 +389,7 @@ User keys in  `this week 3`, `next week 3`, `last week 3`  to denote the current
 
 The second design was chosen as the first one is ambiguous and subjective to an individual's language
 use. For example, if today was Monday, and a person was to mention `next Wednesday`, some people would be thinking of the current week's Wednesday
-whereas may be thinking of next week's Wednesday. Thus to
-remove confusion, the keyword this/next/last was added. In addition, instead of spelling out the days of week,
+whereas may be thinking of next week's Wednesday. Thus to remove confusion, the keyword this/next/last was added. In addition, instead of spelling out the days of week,
 it was designed such that users can key in the day number instead. This speeds things up and also reduces errors
 due to spelling mistakes in the name of the days.
 
@@ -406,23 +399,16 @@ due to spelling mistakes in the name of the days.
 
 === Adding Employees and Milestones to a Project
 ==== Overview
-
 This feature focuses on the adding of employees and milestones to a selected project. It supports two commands which are explained below.
 
-*Add Employee To Project Command Overview*
+1. `addto PROJECT_NAME employee EMPLOYEE_INDEX` +
+Adds the employee at index `EMPLOYEE_INDEX` to the list of employees in the project named `PROJECT_NAME`.
 
-* `addto PROJECT_NAME employee EMPLOYEE_INDEX` +
+2. `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE` +
+Adds the specified milestone to the list of milestones in project named `PROJECT_NAME`.
 
-Adds the employee at index `EMPLOYEE_INDEX` in the displayed list of employees to the list of employees in the project named `PROJECT_NAME`.
-
-*Add Milestone To Project Command Overview*
-
-* `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`
-
-Adds the milestone specified in `m/MILESTONE_DESCRIPTION` and `MILESTONE_DATE` to the list of milestones in the project named `PROJECT_NAME`.
-
-In addition, as both the `AddToEmployeeCommand` class and `AddToMilestoneCommand` class has some duplicate code, the common code is
-abstracted into out into a `AddToCommand` class which inherits from the `Command` class.
+In addition, the common code in `AddToEmployeeCommand` class and `AddToMilestoneCommand` class is
+abstracted into a `AddToCommand` class which inherits from `Command` class.
 
 Refer to the Class Diagram below for a better visualization of the inheritance relationship.
 
@@ -430,7 +416,6 @@ Refer to the Class Diagram below for a better visualization of the inheritance r
 image::dg-addtoclassdiagram.png[width="300"]
 
 ==== How it Works
-
 The section details how a `AddToCommand` is parsed and processed.
 
 .Sequence Diagram: How the Add Employee To Command Works
@@ -439,22 +424,19 @@ image::dg-addemployeeto.png[width="1000"]
 Refer to the sequence diagram above to better understand how the `AddEmployeeTo` Command
 works. The diagram shows the sequence when a `addto Apollo employee 1` is executed.
 
-To simplify the explanation, the process can be summarized into the following key points:
-
-. The `PocketProjectParser` parses the string received and uses the `addto` keyword to identify that the input
-is linked with the `AddToCommand` class.
-. The `AddToCommandParser` then identifies the type of `AddToCommand` that is being executed and the arguments involved.
-. The `AddToCommandParser` then creates the `AddEmployeeToCommand`/`AddMilestoneToCommand` object and this is passed on to the `LogicManager` for execution.
-. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding
+To simplify the explanation, the process can be summarized into the following key points: +
+1. The `PocketProjectParser` parses the string received and uses the `addto` keyword to identify that the input
+is linked with the `AddToCommand` class. +
+2. The `AddToCommandParser` then identifies the type of `AddToCommand` that is being executed and the arguments involved. +
+3. The `AddToCommandParser` then creates the `AddEmployeeToCommand`/`AddMilestoneToCommand` object and this is passed on to the `LogicManager` for execution. +
+4. The command execution will check the validity of the arguments and then call the methods of the `Model` component to add the corresponding
 employee/milestone to the project.
-
 
 [width="300",cols="100,<200"]
 |===
 |image:ug-lightbulb.png[width="50"]| The main difference between the 2 commands is deciding the object
 to be added (Employee or Milestone) from model based on the user input.
 |===
-
 ==== Design Considerations
 
 *Potential Design 1* +

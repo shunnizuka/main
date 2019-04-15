@@ -49,17 +49,16 @@ if the user wants a day relative to current week, he/she can input `this/next/la
 relative to the current month, he/she can simply go for `this/next/last month DAY_OF_MONTH`.
 ** The validity of the target date is also verified.
 
-* *Why it is useful and important*: As expected, when it comes to a project manager application, the use of dates are used
-extensively in other features throughout the application. In addition, there is likely to be changes
-in dates of milestones or deadlines throughout the lifetime a project. So, this feature enables the user a quick and user-friendly way
-to execute certain commands, greatly improving efficiency. Some of these commands include,
+* *Why it is useful and important*: In this application, dates are used
+extensively in other features. So, smart dates enable the user a quick and user-friendly way
+to execute certain commands, greatly improving efficiency. Some of these commands include:
 ** Setting of dates when creating and completing projects and milestones.
 ** Editing of the all components with dates inside a particular project.
 ** Finding projects that are due by a certain `DEADLINE`.
 
 * *Highlights*: The date input is parsed by a special *Pocket Project Date Parser* that was designed specifically to parse
-both the fixed and flexible date formats. In fact, the  user does not even need to explicitly indicate his/her intended format as the
-parser is designed to differentiate based on the input string received.
+both the fixed and flexible date formats. In fact, the user does not even need to explicitly indicate his/her intended format as the
+parser is designed to differentiate based on the input received.
 
 * *The code that I contributed*: https://github.com/cs2103-ay1819s2-w10-2/main/pull/144[Functional Code & Tests Part 1] https://github.com/cs2103-ay1819s2-w10-2/main/pull/172[Functional Code & Tests Part 2]
 
