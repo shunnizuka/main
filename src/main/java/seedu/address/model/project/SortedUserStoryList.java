@@ -31,11 +31,11 @@ import seedu.address.model.project.exceptions.UserStoryNotFoundException;
  */
 public class SortedUserStoryList implements Iterable<UserStory> {
 
+    private static final Logger logger = LogsCenter.getLogger(SortedUserStoryList.class);
+
     private final ObservableList<UserStory> internalList = FXCollections.observableArrayList();
     private final ObservableList<UserStory> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
-    private static final Logger logger = LogsCenter.getLogger(SortedUserStoryList.class);
 
     /**
      * Returns true if the list contains an equivalent user story as the given argument.
@@ -58,7 +58,7 @@ public class SortedUserStoryList implements Iterable<UserStory> {
 
         internalList.add(toAdd);
         Collections.sort(internalList);
-        logger.log(INFO,"Added new user story: " + toAdd.getUserStoryUser() + toAdd.getUserStoryFunction()
+        logger.log(INFO, "Added new user story: " + toAdd.getUserStoryUser() + toAdd.getUserStoryFunction()
                 + toAdd.getUserStoryReason() + toAdd.getUserStoryImportance() + toAdd.getUserStoryStatus());
     }
 
@@ -71,7 +71,7 @@ public class SortedUserStoryList implements Iterable<UserStory> {
         if (!internalList.remove(toRemove)) {
             throw new UserStoryNotFoundException();
         }
-        logger.log(INFO,"Removed user story: " + toRemove.getUserStoryUser() + toRemove.getUserStoryFunction()
+        logger.log(INFO, "Removed user story: " + toRemove.getUserStoryUser() + toRemove.getUserStoryFunction()
                 + toRemove.getUserStoryReason() + toRemove.getUserStoryImportance() + toRemove.getUserStoryStatus());
     }
 
