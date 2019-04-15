@@ -33,7 +33,7 @@ that you can use while using the Pocket Project application.
  can take note of while using the Pocket Project application.
 
 |```code```
-| Words highlighted in grey, known as `markups`, are used to indicate code segments or commands in the application.
+| Words highlighted, known as `markups`, are used to indicate code segments or commands in the application.
 |===
 
 == Summary Of My Contributions
