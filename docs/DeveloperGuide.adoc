@@ -335,8 +335,9 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::datefeature[]
-=== Pocket Project Dates
+=== Pocket Project Dates (Smart Dates)
 ==== Overview
+
 As dates are widely used throughout the application, it is important that the user is able to easily input any target date but at the same time
 retain some flexibility so that it is more user-friendly. Therefore, the dates used in the Pocket Project supports 2 main formats as shown below.
 
@@ -351,6 +352,7 @@ Format(s): +
 3.`this/next/last month DAY_OF_MONTH`
 
 ==== How it Works
+
 The section details how a fixed and flexible date format is parsed and processed.
 
 .Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
@@ -364,7 +366,7 @@ To simplify the explanation, the process can be summarized into the following ke
 checking for the presence of a `/` in the input. +
 2. If it is a fixed format input, a check is made to determine if it conforms to the `DD/MM/YYYY` format. +
 3. If it is a flexible format input, the input is parsed and the `PocketProjectParser` identifies keywords to determine the appropriate methods to call from the model. The target
-date is then formatted into the DD/MM/YYYY format. +
+date is then formatted into the `DD/MM/YYYY` format. +
 4. Regardless of the initial format of the input, the current string would represent the form
 of `DD/MM/YYYY` at this stage. The validity of the date is then checked.
 
@@ -378,6 +380,7 @@ in a month, but it also checks for leap years. This ensures that only valid cale
 as a viable input.
 
 ==== Design Considerations
+
 *Potential Design 1* +
 User keys in  `Wednesday`, `next Wednesday`, `last Wednesday` to denote the current, next and last week's Wednesday respectively
 
@@ -394,6 +397,7 @@ users can key in the day number instead. This speeds things up and also reduces 
 
 === Adding Employees and Milestones to a Project
 ==== Overview
+
 This feature focuses on the adding of employees and milestones to a selected project. It supports two commands which are explained below.
 
 1. `addto PROJECT_NAME employee EMPLOYEE_INDEX` +
@@ -408,6 +412,7 @@ abstracted into a `AddToCommand` class which inherits from `Command` class. Refe
 image::dg-addtoclassdiagram.png[width="300"]
 
 ==== How it Works
+
 The section details how a `AddToCommand` is parsed and processed.
 
 .Sequence Diagram: How the Add Employee To Command Works
@@ -431,12 +436,13 @@ to be added (Employee or Milestone) from model based on the user input.
 |===
 
 ==== Design Considerations
+
 *Potential Design 1* +
 The idea is to have only 1 parser ,`PocketProjectParser`, which receives and parses the whole input string
 before constructing the relevant command.
 
 *Potential Design 2 (Selected Implementation)* +
-Have a total of 2 parsers where the first parser, `PocketProjectParser` identifies the `addto` key word
+The idea is to have a total of 2 parsers where the first parser, `PocketProjectParser` identifies the `addto` key word
 and the rest of the input string is then parsed by the corresponding second parser, `AddToCommandParser`.
 
 The 2nd design was chosen as there is better abstraction of the details and it also allows further functionality

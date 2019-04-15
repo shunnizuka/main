@@ -44,13 +44,13 @@ documentation.
 
 * *What it does*: This allows the user flexibility in keying in dates when required and supports 2 main sub-formats.
 ** Firstly, it supports a fixed date format where users can key in a date according to `DD/MM/YYYY`.
-** Secondly, it also accepts flexible input from the user. If the user wants a day relative to the current day, he/she can simply type `today/tomorrow/yesterday`. Otherwise
-if the user wants a day relative to current week, he/she can input `this/next/last week DAY_OF_WEEK`. Lastly if the user wants a date
+** Secondly, it also accepts flexible input from the user. If the user wants a date relative to the current day, he/she can simply type `today/tomorrow/yesterday`. Otherwise
+if the user wants a date relative to current week, he/she can input `this/next/last week DAY_OF_WEEK`. Lastly if the user wants a date
 relative to the current month, he/she can simply go for `this/next/last month DAY_OF_MONTH`.
 ** The validity of the target date is also verified.
 
 * *Why it is useful and important*: In this application, dates are used
-extensively in other features. So, smart dates enable the user a quick and user-friendly way
+extensively in other features. So, smart dates provides the user with a quick and user-friendly way
 to execute certain commands. Some of these commands include:
 ** Setting of dates when creating and completing projects and milestones.
 ** Editing of the all components with dates inside a particular project.
@@ -96,7 +96,7 @@ image::PPLogo.png[width="100"]
 ** Integrated a new GitHub plugin, Codacy, to the GitHub team repository: https://github.com/cs2103-ay1819s2-w10-2/main/pull/154[#154]
 
 === Contributions to the User Guide
-In this section, I detail some of the key contributions I made to the User Guide targeted and helping users
+In this section, I detail some of the key contributions I made to the User Guide targeted at helping users
 understand how to use the application.
 
 include::../UserGuide.adoc[tag=datefeature]
