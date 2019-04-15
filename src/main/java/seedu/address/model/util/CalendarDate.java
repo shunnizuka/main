@@ -23,6 +23,10 @@ public class CalendarDate {
     private static final int DAY_FIELD = 0;
     private static final int MONTH_FIELD = 1;
     private static final int YEAR_FIELD = 2;
+
+    /**
+     * Constants to represent first and last month values
+     */
     private static final int FIRST_DAY_MONTH = 1;
     private static final int LAST_MONTH = 12;
     private static final int NEXT = 1;
