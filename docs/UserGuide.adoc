@@ -855,7 +855,7 @@ Refer to the screenshot below to see how the fields of the user story has been e
 
 .Before and after comparisons of the user story's importance level
 
-image::edit-user-story-ui.png[]
+image::edit-user-story-ui.png[width="550"]
 // end::edituserstory[]
 
 //tag::find[]
