@@ -246,9 +246,7 @@ Alternatively, you can also input a date using the flexible date format. The fle
 allows you to give an input with relation to the current date. It supports the below mentioned 3 formats.
 
 The 3 flexible date formats will also be demonstrated with screenshots using the of the `add project` command which requires
-a `s/START_DATE` and a `d/DEADLINE`. This is all the relevant information that you need to know for this section
-but more details about the `add project` command will be covered later in
-<<Add a project to the application: `add project`>>
+a `s/START_DATE` and a `d/DEADLINE`.
 
 ===== Choosing a date relative to the current day
 
@@ -270,8 +268,6 @@ corresponds to Monday to Sunday respectively.
 
 Examples:
 
-. `this week 4` +
-This would select the current week's Thursday as the target date.
 . `next week 7` +
 This would select next week's Sunday as the target date.
 . `last week 2` +
@@ -300,15 +296,6 @@ Examples:
 This would select the current month's 24th day as the target date.
 . `next month 17` +
 This would select next month's 17th day as the target date.
-. `last month 6` +
-This would select last month's 6th day as the target date.
-
-You can refer to the screenshots of the program below for a clearer picture. Assume that the
-current date is 12 April 2019 (12/04/2019), Friday.
-
-.*Using "this/next/last month DAY_OF_MONTH" as a flexible date input*
-image::ug-monthweek.png[][width="500"]
-
 
 ===== Some additional information
 
