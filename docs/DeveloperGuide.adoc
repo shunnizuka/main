@@ -376,6 +376,7 @@ image::dg-codesnippet.png[width="500"]
 As can be seen above, the code not only checks if the selected day falls within the maximum number of days
 in a month, but it also checks for leap years. This ensures that only valid calendar dates are accepted
 as a viable input.
+
 ==== Design Considerations
 *Potential Design 1* +
 User keys in  `Wednesday`, `next Wednesday`, `last Wednesday` to denote the current, next and last week's Wednesday respectively
@@ -428,6 +429,7 @@ employee/milestone to the project.
 |image:ug-lightbulb.png[width="50"]| The main difference between the 2 commands is deciding the object
 to be added (Employee or Milestone) from model based on the user input.
 |===
+
 ==== Design Considerations
 *Potential Design 1* +
 The idea is to have only 1 parser ,`PocketProjectParser`, which receives and parses the whole input string
