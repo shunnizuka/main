@@ -334,101 +334,104 @@ This section describes some noteworthy details on how certain features are imple
 
 // tag::datefeature[]
 === Pocket Project Dates
+==== Overview
 
-As expected, when it comes to a project manager application, the use of dates are used
-extensively in other features and commands throughout the application. These include,
-
-. The setting of `START_DATE` and  `DEADLINE` when adding a project to the Pocket Project application.
-. The setting of `MILESTONE_DATE` when adding a milestone to a particular project.
-. The setting of `COMPLETION_DATE` when completing a particular project.
-. The editing of the above mentioned dates after it has been set.
-. The finding of projects that are due by a certain `DEADLINE`.
-
-==== What is Supports
-
-As it is widely used, it is important that the user is able to easily input any target date but at the same time
+As dates are widely used throughout the application, it is important that the user is able to easily input any target date but at the same time
 retain some flexibility so that the feature is more user-friendly.
 
 So, keeping that in mind, the dates used in the Pocket Project supports 2 main formats, the Fixed Date Format, which supports 1 main sub-type, and the Flexible Date Format,
 which supports 3 main sub types, all of which are explained below in the following section. A total of 4 sub-types are supported
 across 2 formats and choosing any 1 of 4 will be accepted as a suitable input.
 
-==== How it is Implemented
-===== Fixed Date Format
+*Fixed Date Format*
 
-Format: `DD/MM/YYYY`
+Format(s):
 
-Examples:
+. `DD/MM/YYYY`
 
-. `23/12/2019`
-. `09/03/2020`
+*Flexible Date Format*
 
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-exclamation.png[width="60"]| The fixed date format follows the required `DD/MM/YYYY` format
-strictly and so `09/04/2023` is a valid input but `9/4/2023` is not.
-|===
+Format(s):
 
-===== Fixed Date Format: How it Works (Part 1)
-The input is parsed and the validity of the format is determined through the use of a regex as follows:
+. `today/tomorrow/yesterday`
+. `this/next/last week DAY_OF_WEEK`
+. `this/next/last month DAY_OF_MONTH`
 
-Validation Regex = `"(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((20)\d\d)"`
+==== How it Works
 
+Given below is an example usage scenario of how a fixed and flexible date format is parsed and processed.
+The command will be demonstrated using the `AddMilestoneToCommand` which takes the following format:
 
+Format: `addto PROJECT_NAME milestone m/MILESTONE_DESC d/MILESTONE_DATE`
 
+However, the focus of this section will be purely on the `MILESTONE_DATE`
 
-===== Flexible Date Format
+*Fixed Date Format*
 
-[width="100%",cols="30%,25%,<45%"]
-|===
-|Format |Chooses the date relative to the ... |Examples
+. The user enter the command `addto Apollo milestone m/Completed DG d/15/04/2019`
+.. The `AddToCommandParser` passes the date `15/04/2019` to the `ParserUtil` for parsing.
+.. The `ParserUtil` then hands it over to the `PocketProjectDateParser` to parse the input.
+.. The `PocketProjectDateParser` first checks if the input is a flexible date input or not by checking
+for the presence of a `/` in the input.
+.. Since it is not a flexible input, the `PocketProjectDateParser` passes the input back to the `ParserUtil`
+.. ParserUtil` then uses methods `isValidDateFormat` and `isValidDayInMonth` in model to check the format
+and validity of the the input date.
 
-|`today/tomorrow/yesterday`
-|current day
-|`tomorrow` +
-This would select tomorrow's date as the target date.
+*Flexible Date Format*
 
-|`this/next/last week DAY_OF_WEEK`
-|current week
-|`next week 7` +
-This would select next week's Sunday as the target date.
+. The user enter the command `addto Apollo milestone m/Completed DG d/this week 2`
+.. The `AddToCommandParser` passes the date `this week 2` to the `ParserUtil` for parsing.
+.. The `ParserUtil` then hands it over to the `PocketProjectDateParser` to parse the input.
+.. The `PocketProjectDateParser` first checks if the input is a flexible date input or not by checking
+for the presence of a `/` in the input.
+.. Since it is a flexible input, the `PocketProjectDateParser` searches for 2 sets of keywords. The input
+is parsed once to identify the `this` keyword and it is parsed again with another method to identify
+the `week` keyword.
+.. It then checks if the `DAY_OF_WEEK` value provided is between 1 and 7 corresponding to Monday and
+Sunday respectively.
+.. `The PocketProjectDateParser` then uses the method `thisWeekDate` in model to calculate the date
+based on the input.
+.. The calculated date is then converted back to a string and passed back to the `ParserUtil`
+.. ParserUtil` then uses methods `isValidDateFormat` and `isValidDayInMonth` in model to check the format
+and validity of the the input date.
 
-|`this/next/last month DAY_OF_MONTH`
-|current month
-|`last month 6` +
-This would select last month's 6th day as the target date.
-|===
+Refer to the Activity Diagram below for a better understanding of how it works
 
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-notepadpencil.png[width="40"]|The `DAY_OF_WEEK` takes an integer in the range of 1 to 7 which
-corresponds to Monday to Sunday respectively.
-|===
+.Activity Diagram: Showing how a fixed and flexible date format is parsed and processed.
+image::dg-activitydiagdate.png[width="300"]
 
-[width="100%",cols="35%,<65%"]
-|===
-|image:ug-exclamation.png[width="60"]|The `DAY_OF_MONTH` takes the value of positive integer but it cannot exceed
-the maximum number of days of a particular month in the chosen year.
-|===
+Refer to the code snippet below to see how the validity of the date is verified.
 
-===== Flexible Date Format: How it Works (Part 1)
+.Code snippet showing verification of a validity of a date.
+image::dg-codesnippet.png[width="300"]
 
+As can be seen above, the code not only checks if the selected day falls within the maximum number of days
+in a month, but it also checks for leap years. This ensures that only valid calendar dates are accepted
+as a viable input.
 
+==== Design Considerations
 
+*Potential Design 1* +
+User keys in  `Wednesday`, `next Wednesday`, `last Wednesday` to denote the
+current, next and last week's Wednesday respectively
 
-===== Date Formats: How it Works (Part 1)
-==== How it is Implemented
+*Potential Design 2 (Selected Implementation)* +
+User keys in  `this week 3`, `next week 3`, `last week 3` to denote the
+current, next and last week's Wednesday respectively.
 
-This feature was mainly facilitated by the Java LocalDateTime class and the model and logic component of the Pocket
-Project application.
+The second design was chosen as the first one is ambiguous and subjective an individual's language
+use. For example, if today was Monday, some people would refer to the current week's Wednesday as
+`next Wednesday` whereas others would refer to the next week's Wednesday as the `next Wednesday`. Thus to
+remove confusion, the keyword this/next/last was added. In addition, instead of spelling out the days of week,
+it is designed such that users can key in the day number instead. This speeds things up and also reduces errors
+due to spelling mistakes in the name of the days.
 // end::datefeature[]
 
 // tag::addtoemployeemilestone[]
 === Adding Employees and Milestones to a Project
 ==== Overview
 
-This feature focuses on the adding of employees and milestones to a selected project.
-This feature supports two commands which are explained below.
+This feature focuses on the adding of employees and milestones to a selected project. It supports two commands which are explained below.
 
 *Add Employee To Project Command Overview*
 
@@ -436,38 +439,22 @@ This feature supports two commands which are explained below.
 
 Adds the employee at index `EMPLOYEE_INDEX` in the displayed list of employees to the list of employees in the project named `PROJECT_NAME`.
 
-[width="1000",cols="100,<900"]
-|===
-|image:ug-exclamation.png[width="50"]| The `PROJECT_NAME` entered must be valid and must already exist in the application.
-|image:ug-exclamation.png[width="50"]| The `EMPLOYEE_INDEX` given must refer to some existing employee in the application.
-|===
-
 *Add Milestone To Project Command Overview*
 
 * `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`
 
 Adds the milestone specified in `m/MILESTONE_DESCRIPTION` and `MILESTONE_DATE` to the list of milestones in the project named `PROJECT_NAME`.
 
-[width="1000",cols="100,<900"]
-|===
-|image:ug-exclamation.png[width="50"]| The `MILESTONE_DESCRIPTION` must not be empty or contain only whitespaces.
-|image:ug-exclamation.png[width="50"]| The `MILESTONE_DATE` given must conform to either the Fixed or Flexible Date Format.
-See <<Pocket Project Dates>>.
-|===
+In addition, as both the `AddToEmployeeCommand` class and `AddToMilestoneCommand` class has some duplicate code, the common code is
+abstracted into out into a `AddToCommand` class. Thus instead of directly inheriting from the `Command` class, both commands
+inherit from the `AddToCommand` class which inherits from the `Command` class.
+
+Refer to the Class Diagram below for a better understanding.
+
+.Class Diagram: Showing inheritance relationship between the commands.
+image::dg-addtoclassdiagram.png[width="300"]
 
 ==== How it Works
-
-These 2 commands are actually similar in nature and both of them are mainly facilitated
-by the model component of the Pocket Project application.
-
-* `Model#addEmployeeTo(Project, Employee)`
-* `Model#addMilestoneTo(Project, Milestone)`.
-
-These 2 methods only take in the Project and Employee/Milestone as arguments as the correct Employee/Milestone object would be located by
-`AddEmployeeToCommand#excute()`, `AddMilestoneToCommand#execute()` before `Model#addEmployeeTo(Project, Employee)`
-and `Model#addMilestoneTo(Project, Milestone)` is called.
-
-===== Example Usage Scenario
 
 Given below is an example usage scenario and how the addition of employee/milestone to a project feature behaves at each step.
 
@@ -489,7 +476,7 @@ employee to the project.
 Refer to the sequence diagram below to better understanding how the `AddEmployeeTo` Command
 works.
 
-.How the Add Employee To Command Works
+.Sequence Diagram: How the Add Employee To Command Works
 image::dg-addemployeeto.png[width="1000"]
 
 *Add Milestone To Project Command Usage Scenario*
@@ -522,6 +509,8 @@ make use of this `AddToCommandParser` to handle different inputs. Choosing this 
 implementation of adding user stories and project tasks to a project after this was initially constructed. Refer to <<User Story feature>>
 and <<Project Task feature>> to learn more about these features.
 
+// end::addtoemployeemilestone[]
+
 ==== Future Planned Implementations
 
 The following additional feature is scheduled to be implemented in future versions.
@@ -534,8 +523,6 @@ input as such:
 ** `addto PROJECT_NAME ms m/MILESTONE_DESCRIPTION d/MILESTONE_DATE` instead of `addto PROJECT_NAME milestone m/MILESTONE_DESCRIPTION d/MILESTONE_DATE`
 
 The commands will be processed in the same way without any other changes.
-
-// end::addtoemployeemilestone[]
 
 // skill::removefrom[]
 === Remove employee/milestone/project task/user story from projects feature

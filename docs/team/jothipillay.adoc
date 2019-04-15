@@ -75,7 +75,7 @@ parser is designed to differentiate based on the input string received.
 ** Changed the address attribute of an employee to GitHub account as it is more
 useful in a software engineering project context. https://github.com/cs2103-ay1819s2-w10-2/main/pull/130[#130]
 * Enhanced appearance of the User Interface (UI):
-** Designed the Pocket Project application logo (Refer to the figure below)
+** Designed the Pocket Project application logo.
 
 .Pocket Project Logo
 image::PPLogo.png[width="100"]
